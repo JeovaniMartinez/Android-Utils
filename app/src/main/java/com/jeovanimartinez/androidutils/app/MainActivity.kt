@@ -14,5 +14,7 @@ class MainActivity : AppCompatActivity() {
         if (true){
 
         }
+
+        Test.mensaje(this@MainActivity)
     }
 }
