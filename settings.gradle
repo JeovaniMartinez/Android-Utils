@@ -1,1 +1,3 @@
-rootProject.name = "Android Utils"
+include ':androidutils'
+include ':app'
+rootProject.name = "Android-Utils"
