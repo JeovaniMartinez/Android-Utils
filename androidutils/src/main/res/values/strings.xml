@@ -1,5 +1,5 @@
 <resources>
 
-    <string name="rate_app_unable_to_show_app_on_google_play">Not available</string>
+    <string name="rate_app_unable_to_show_app_on_google_play">Not available, please rate App on Google Play</string>
 
 </resources>
