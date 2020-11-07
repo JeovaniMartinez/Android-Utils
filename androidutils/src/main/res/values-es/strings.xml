@@ -2,4 +2,6 @@
 
     <string name="rate_app_unable_to_show_app_on_google_play">No disponible, por favor califica la aplicación en Google Play</string>
 
+    <string name="more_apps_unable_to_show_dev_page">No disponible</string>
+
 </resources>
