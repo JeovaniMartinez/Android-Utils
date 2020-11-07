@@ -9,3 +9,9 @@ Utilidad para dirigir al usuario a los detalles de la aplicación en Google Play
 ```
 package com.jeovanimartinez.androidutils.reviews
 ```
+
+### MoreAppsGPlay 
+Utilidad para dirigir al usuario a la página del desarrollador en Google Play, usualmente usada para invitar al usuario a que instale las aplicaciones del desarrollador.
+```
+package com.jeovanimartinez.androidutils.moreapps
+```
