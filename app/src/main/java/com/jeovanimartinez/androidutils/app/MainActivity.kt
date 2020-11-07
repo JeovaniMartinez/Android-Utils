@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
         rateInGooglePlayBtn.setOnClickListener{
             // RateApp.logEnable = false
             RateApp.rateInGooglePlay(this@MainActivity, null)
+        }
+
+        // Más aplicaciones
+        moreAppsBtn.setOnClickListener {
+            MoreAppsGPlay.showAppList(this@MainActivity, null)
         }
 
     }

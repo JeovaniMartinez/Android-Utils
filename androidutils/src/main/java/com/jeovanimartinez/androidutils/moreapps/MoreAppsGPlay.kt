@@ -11,7 +11,7 @@ import com.jeovanimartinez.androidutils.BuildConfig
 import com.jeovanimartinez.androidutils.R
 
 /**
- * Utilidad para dirigir al usuario a Google Play, específicamente a la lista de aplicaciones del desarollador
+ * Utilidad para dirigir al usuario a Google Play, específicamente a la lista de aplicaciones del desarrollador
  * El uso principal es para invitar al usuario a que instale otras aplicaciones del desarrollador
  * */
 object MoreAppsGPlay {
@@ -38,7 +38,7 @@ object MoreAppsGPlay {
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
             if (logEnable) Log.i(LOG_TAG, "Sent user to view developer page in google play [$webUriString]")
             firebaseAnalytics?.logEvent("more_apps_sent_to_google_play", null)
-        } catch (e2: ActivityNotFoundException) {
+        } catch (ex: ActivityNotFoundException) {
             // Si no se pudo mostrar, se muestra un mensaje
             Toast.makeText(activity, R.string.more_apps_unable_to_show_dev_page, Toast.LENGTH_SHORT).show()
             if (logEnable) Log.i(LOG_TAG, "Unable to send user to developer page")

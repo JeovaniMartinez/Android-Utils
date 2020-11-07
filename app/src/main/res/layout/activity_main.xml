@@ -31,6 +31,14 @@
                 android:text="Rate In Google Play"
                 tools:ignore="HardcodedText" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/moreAppsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="More Apps"
+                tools:ignore="HardcodedText" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
