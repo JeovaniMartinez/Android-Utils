@@ -32,23 +32,25 @@ object RateApp {
      * @param firebaseAnalytics instancia de FirebaseAnalytics por si se desean registrar los eventos, dejar en null si no se requiere
      * */
     fun rateInGooglePlay(activity: Activity, firebaseAnalytics: FirebaseAnalytics? = null) {
-        val uri = Uri.parse("market://details?id=${activity.packageName}")
+        val marketUriString = "market://details?id=${activity.packageName}"
+        val uri = Uri.parse(marketUriString)
         val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
         googlePlayIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
         try {
             activity.startActivity(googlePlayIntent) // Se intenta mostrar en la app de google play
-            if (logEnable) Log.i(LOG_TAG, "The app is shown in the google play app")
+            if (logEnable) Log.i(LOG_TAG, "Sent user to view app details in google play app [$marketUriString]")
             firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_app", null)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // Si no se puede mostrar en la app de google play, se intenta abrir en el navegador web
-                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=$${activity.packageName}")))
-                if (logEnable) Log.i(LOG_TAG, "The app is shown in the google play in web browser")
+                val webUriString = "http://play.google.com/store/apps/details?id=$${activity.packageName}"
+                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
+                if (logEnable) Log.i(LOG_TAG, "Sent user to view app details in google play on web browser [$webUriString]")
                 firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_web", null)
             } catch (e2: ActivityNotFoundException) {
                 // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
                 Toast.makeText(activity, R.string.rate_app_unable_to_show_app_on_google_play, Toast.LENGTH_SHORT).show()
-                if (logEnable) Log.i(LOG_TAG, "Unable to show app, google play app and web browser are not available")
+                if (logEnable) Log.i(LOG_TAG, "Unable to sent user to app details, google play app and web browser are not available")
                 firebaseAnalytics?.logEvent("rate_app_unable_to_show_on_google_play", null)
             }
         }
