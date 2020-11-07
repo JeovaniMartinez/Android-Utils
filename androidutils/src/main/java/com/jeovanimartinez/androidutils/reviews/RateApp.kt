@@ -43,7 +43,7 @@ object RateApp {
         } catch (e1: ActivityNotFoundException) {
             try {
                 // Si no se puede mostrar en la app de google play, se intenta abrir en el navegador web
-                val webUriString = "http://play.google.com/store/apps/details?id=$${activity.packageName}"
+                val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
                 if (logEnable) Log.i(LOG_TAG, "Sent user to view app details in google play on web browser [$webUriString]")
                 firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_web", null)
