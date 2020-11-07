@@ -50,7 +50,7 @@ object RateApp {
             } catch (e2: ActivityNotFoundException) {
                 // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
                 Toast.makeText(activity, R.string.rate_app_unable_to_show_app_on_google_play, Toast.LENGTH_SHORT).show()
-                if (logEnable) Log.i(LOG_TAG, "Unable to sent user to app details, google play app and web browser are not available")
+                if (logEnable) Log.i(LOG_TAG, "Unable to send user to app details, google play app and web browser are not available")
                 firebaseAnalytics?.logEvent("rate_app_unable_to_show_on_google_play", null)
             }
         }
