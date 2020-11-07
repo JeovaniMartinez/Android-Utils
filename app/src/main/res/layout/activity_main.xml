@@ -12,7 +12,8 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/toggleThemeBtn"
@@ -20,6 +21,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Toggle Theme"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rateInGooglePlayBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Rate In Google Play"
                 tools:ignore="HardcodedText" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

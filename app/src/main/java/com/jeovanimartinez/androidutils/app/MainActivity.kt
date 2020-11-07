@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import com.jeovanimartinez.androidutils.reviews.RateApp
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,12 @@ class MainActivity : AppCompatActivity() {
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
+        }
+
+        // Calificar en google play
+        rateInGooglePlayBtn.setOnClickListener{
+            // RateApp.logEnable = false
+            RateApp.rateInGooglePlay(this@MainActivity, null)
         }
 
     }
