@@ -3,3 +3,6 @@
 # logEnable
 
 `var logEnable: <ERROR CLASS>`
+
+Para habilitar o deshabilitar los mensajes del log
+

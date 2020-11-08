@@ -19,7 +19,7 @@ object RateApp {
 
     private const val LOG_TAG = "RateApp"
 
-    // Para habilitar o deshabilitar los mensajes del log
+    /** Para habilitar o deshabilitar los mensajes del log */
     var logEnable = BuildConfig.DEBUG
 
     /**

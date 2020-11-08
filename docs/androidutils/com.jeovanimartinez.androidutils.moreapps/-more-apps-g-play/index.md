@@ -11,8 +11,8 @@ El uso principal es para invitar al usuario a que instale otras aplicaciones del
 
 | Name | Summary |
 |---|---|
-| [developerId](developer-id.md) | `var developerId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [logEnable](log-enable.md) | `var logEnable: <ERROR CLASS>` |
+| [developerId](developer-id.md) | ID del desarrollador`var developerId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [logEnable](log-enable.md) | Para habilitar o deshabilitar los mensajes del log`var logEnable: <ERROR CLASS>` |
 
 ### Functions
 

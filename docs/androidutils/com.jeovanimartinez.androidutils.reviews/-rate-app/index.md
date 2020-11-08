@@ -12,7 +12,7 @@ ya que no hay manera de mandarlo directamente a calificar la app con este métod
 
 | Name | Summary |
 |---|---|
-| [logEnable](log-enable.md) | `var logEnable: <ERROR CLASS>` |
+| [logEnable](log-enable.md) | Para habilitar o deshabilitar los mensajes del log`var logEnable: <ERROR CLASS>` |
 
 ### Functions
 

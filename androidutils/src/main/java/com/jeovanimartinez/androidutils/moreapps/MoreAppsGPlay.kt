@@ -18,10 +18,10 @@ object MoreAppsGPlay {
 
     private const val LOG_TAG = "MoreAppsGPlay"
 
-    // ID del desarrollador
+    /** ID del desarrollador */
     var developerId = "Jedemm+Technologies"
 
-    // Para habilitar o deshabilitar los mensajes del log
+    /** Para habilitar o deshabilitar los mensajes del log */
     var logEnable = BuildConfig.DEBUG
 
     /**
