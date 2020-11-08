@@ -54,6 +54,7 @@ dokka {
     outputDirectory = "../docs"
 
     configuration {
+        skipDeprecated = false
         noAndroidSdkLink = true
     }
 }
