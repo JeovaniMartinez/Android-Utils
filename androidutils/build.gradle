@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'org.jetbrains.dokka'
 }
 
 android {
@@ -45,4 +46,14 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-analytics:18.0.0'
 
+}
+
+// Para generar la documentación
+dokka {
+    outputFormat = 'gfm'
+    outputDirectory = "../docs"
+
+    configuration {
+        noAndroidSdkLink = true
+    }
 }
