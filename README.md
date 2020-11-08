@@ -11,10 +11,18 @@ Ejemplo de uso:
 ```Kotlin
 RateApp.rateInGooglePlay(this@MainActivity, null)
 ```
-[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)
+**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)**
+
+#
 
 ### MoreAppsGPlay 
 Utilidad para dirigir al usuario a la página del desarrollador en Google Play, usualmente usada para invitar al usuario a que instale las aplicaciones del desarrollador.
+
+Ejemplo de uso:
 ```Kotlin
-package com.jeovanimartinez.androidutils.moreapps
+MoreAppsGPlay.developerId = "Jedemm+Technologies" // Asignar el ID del desarrollador
+MoreAppsGPlay.showAppList(this@MainActivity, null)
 ```
+**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)**
+
+#
