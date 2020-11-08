@@ -1,0 +1,5 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+
+com.jeovanimartinez.androidutils.moreapps
+com.jeovanimartinez.androidutils.reviews
