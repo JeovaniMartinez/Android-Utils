@@ -18,4 +18,4 @@ El uso principal es para invitar al usuario a que instale otras aplicaciones del
 
 | Name | Summary |
 |---|---|
-| [showAppList](show-app-list.md) | Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId) Si no es posible, muestra un toast con un mensaje`fun showAppList(activity: Activity, firebaseAnalytics: FirebaseAnalytics? = null): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
+| [showAppList](show-app-list.md) | Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId). Si no es posible, muestra un toast con un mensaje.`fun showAppList(activity: Activity, firebaseAnalytics: FirebaseAnalytics? = null): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |

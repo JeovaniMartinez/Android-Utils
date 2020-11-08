@@ -4,8 +4,8 @@
 
 `fun showAppList(activity: Activity, firebaseAnalytics: FirebaseAnalytics? = null): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId)
-Si no es posible, muestra un toast con un mensaje
+Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId).
+Si no es posible, muestra un toast con un mensaje.
 
 ### Parameters
 

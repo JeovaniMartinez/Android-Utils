@@ -25,8 +25,8 @@ object MoreAppsGPlay {
     var logEnable = BuildConfig.DEBUG
 
     /**
-     * Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId)
-     * Si no es posible, muestra un toast con un mensaje
+     * Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId).
+     * Si no es posible, muestra un toast con un mensaje.
      *
      * @param activity actividad desde donde se llama, se usa para iniciar otras actividades
      * @param firebaseAnalytics instancia de FirebaseAnalytics por si se desean registrar los eventos, dejar en null si no se requiere
