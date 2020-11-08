@@ -11,7 +11,7 @@ import com.jeovanimartinez.androidutils.BuildConfig
 import com.jeovanimartinez.androidutils.R
 
 /**
- * Utilidad para dirigir al usuario a Google Play, específicamente a la lista de aplicaciones del desarrollador
+ * Utilidad para dirigir al usuario a Google Play, específicamente a la lista de aplicaciones del desarrollador.
  * El uso principal es para invitar al usuario a que instale otras aplicaciones del desarrollador.
  * */
 object MoreAppsGPlay {
