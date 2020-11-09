@@ -29,8 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         // Calificar en google play
         rateInGooglePlayBtn.setOnClickListener{
-            // RateApp.logEnable = false
-            RateApp.rateInGooglePlay(this@MainActivity, null)
+            RateApp.setLogEnable(true).goToRateInGooglePlay(this@MainActivity)
         }
 
         // Más aplicaciones
