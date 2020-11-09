@@ -20,7 +20,22 @@ object RateApp {
     private const val LOG_TAG = "RateApp"
 
     /** Para habilitar o deshabilitar los mensajes del log */
-    var logEnable = BuildConfig.DEBUG
+    private var logEnable = BuildConfig.DEBUG
+
+    /** Instancia de Firebase Analytics para registro de eventos */
+    private var firebaseAnalytics: FirebaseAnalytics? = null
+
+    /** Habilita o deshabilita los mensajes del log en base a [logEnable] */
+    fun setLogEnable(logEnable: Boolean): RateApp {
+        this.logEnable = logEnable
+        return this
+    }
+
+    /** Asigna la instancia de [firebaseAnalytics] para registrar los eventos de esta clase */
+    fun setFirebaseAnalyticsInstance(firebaseAnalytics: FirebaseAnalytics): RateApp {
+        this.firebaseAnalytics = firebaseAnalytics
+        return this
+    }
 
     /**
      * Dirige al usuario a los detalles de la aplicación en Google Play para que pueda calificar la aplicación.
@@ -29,9 +44,8 @@ object RateApp {
      * Referencia: https://stackoverflow.com/questions/10816757/rate-this-app-link-in-google-play-store-app-on-the-phone
      *
      * @param activity actividad desde donde se llama, se usa para iniciar otras actividades
-     * @param firebaseAnalytics instancia de FirebaseAnalytics por si se desean registrar los eventos, dejar en null si no se requiere
      * */
-    fun rateInGooglePlay(activity: Activity, firebaseAnalytics: FirebaseAnalytics? = null) {
+    fun goToRateInGooglePlay(activity: Activity) {
         val marketUriString = "market://details?id=${activity.packageName}"
         val uri = Uri.parse(marketUriString)
         val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
