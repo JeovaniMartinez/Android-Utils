@@ -21,3 +21,13 @@ El uso principal es para invitar al usuario a que califique la aplicación, se a
 ya que no hay manera de mandarlo directamente a calificar la app con este método.
 
 
+|
+
+##### [com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp](../com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md)
+
+Utilidad para iniciar el flujo que invita al usuario a calificar la aplicación.
+Para Android 5.0 (API 21) y posteriores, se utiliza Google Play In-App Review API, por lo que se puede calificar dentro de la aplicación.
+Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es
+dirigido a los detalles de la aplicación en Google Play.
+
+
