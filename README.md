@@ -2,6 +2,17 @@
 
 Conjunto de utilidades para el desarrollo de aplicaciones Android
 
+La mayoría de las clases tienen los siguientes métodos en común
+```Kotlin
+setLogEnable(true) // Habilita o deshabilita el log de depuración
+
+/*
+* Para asignar la instancia de FirebaseAnalytics, que permite que algunas clases registren eventos.
+* Es necesario que la aplicación tenga configurado FirebaseAnalytics
+* */
+setFirebaseAnalyticsInstance(FirebaseAnalytics.getInstance(this@MainActivity))
+```
+
 ## Lista de utilidades
 
 ### RateApp 
@@ -20,8 +31,7 @@ Utilidad para dirigir al usuario a la página del desarrollador en Google Play, 
 
 Ejemplo de uso:
 ```Kotlin
-MoreAppsGPlay.developerId = "Jedemm+Technologies" // Asignar el ID del desarrollador
-MoreAppsGPlay.showAppList(this@MainActivity, null)
+MoreAppsGPlay.setDeveloperId("Jedemm+Technologies").showAppList(this@MainActivity)
 ```
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)**
 
