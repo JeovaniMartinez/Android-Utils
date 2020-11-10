@@ -6,6 +6,13 @@
 |---|---|
 |
 
+##### [com.jeovanimartinez.androidutils.Base](../com.jeovanimartinez.androidutils/-base/index.md)
+
+Clase base con propiedades y funciones comunes
+
+
+|
+
 ##### [com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay](../com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)
 
 Utilidad para dirigir al usuario a Google Play, específicamente a la lista de aplicaciones del desarrollador.
