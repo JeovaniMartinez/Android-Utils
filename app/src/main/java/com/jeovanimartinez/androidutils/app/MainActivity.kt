@@ -34,8 +34,9 @@ class MainActivity : AppCompatActivity() {
 
         // Más aplicaciones
         moreAppsBtn.setOnClickListener {
-            MoreAppsGPlay.showAppList(this@MainActivity)
+            MoreAppsGPlay.setLogEnable(true).setDeveloperId("INTSIG+Information+Co.,Ltd").showAppList(this@MainActivity)
         }
+
 
     }
 
