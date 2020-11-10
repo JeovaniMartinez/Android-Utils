@@ -15,7 +15,7 @@ abstract class Base<T : Base<T>> {
     protected abstract val LOG_TAG: String
 
     /** Instancia de Firebase Analytics para registro de eventos, asignar solo si se requiere */
-    private var firebaseAnalytics: FirebaseAnalytics? = null
+    protected var firebaseAnalytics: FirebaseAnalytics? = null
 
     /** Para habilitar o deshabilitar los mensajes del log de depuración, de manera predeterminada es según BuildConfig.DEBUG */
     private var logEnable = BuildConfig.DEBUG
