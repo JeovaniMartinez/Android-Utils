@@ -19,19 +19,39 @@ object MoreAppsGPlay {
     private const val LOG_TAG = "MoreAppsGPlay"
 
     /** ID del desarrollador */
-    var developerId = "Jedemm+Technologies"
+    private var developerId = "Jedemm+Technologies"
+
+    /** Instancia de Firebase Analytics para registro de eventos */
+    private var firebaseAnalytics: FirebaseAnalytics? = null
 
     /** Para habilitar o deshabilitar los mensajes del log */
-    var logEnable = BuildConfig.DEBUG
+    private var logEnable = BuildConfig.DEBUG
+
+    /** Asigna el ID de desarrollador [developerId] del cual se va a mostrar la lista de aplicaciones */
+    fun setDeveloperId(developerId: String): MoreAppsGPlay {
+        this.developerId = developerId
+        return this
+    }
+
+    /** Asigna la instancia de [firebaseAnalytics] para registrar los eventos de esta clase */
+    fun setFirebaseAnalyticsInstance(firebaseAnalytics: FirebaseAnalytics): MoreAppsGPlay {
+        this.firebaseAnalytics = firebaseAnalytics
+        return this
+    }
+
+    /** Habilita o deshabilita los mensajes del log en base a [logEnable] */
+    fun setLogEnable(logEnable: Boolean): MoreAppsGPlay {
+        this.logEnable = logEnable
+        return this
+    }
 
     /**
      * Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId).
      * Si no es posible, muestra un toast con un mensaje.
      *
      * @param activity actividad desde donde se llama, se usa para iniciar otras actividades
-     * @param firebaseAnalytics instancia de FirebaseAnalytics por si se desean registrar los eventos, dejar en null si no se requiere
      * */
-    fun showAppList(activity: Activity, firebaseAnalytics: FirebaseAnalytics? = null) {
+    fun showAppList(activity: Activity) {
         try {
             // Se intenta abrir en el navegador web la página del desarrollador (si el usuario tiene Google Play se muestra ahí)
             val webUriString = "https://play.google.com/store/apps/developer?id=$developerId"

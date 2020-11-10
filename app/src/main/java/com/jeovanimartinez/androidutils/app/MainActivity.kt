@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         // Más aplicaciones
         moreAppsBtn.setOnClickListener {
-            MoreAppsGPlay.showAppList(this@MainActivity, null)
+            MoreAppsGPlay.showAppList(this@MainActivity)
         }
 
     }
