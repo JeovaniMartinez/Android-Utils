@@ -9,7 +9,7 @@ Utilidad para dirigir al usuario a los detalles de la aplicación en Google Play
 
 Ejemplo de uso:
 ```Kotlin
-RateApp.rateInGooglePlay(this@MainActivity, null)
+RateApp.goToRateInGooglePlay(this@MainActivity)
 ```
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)**
 
