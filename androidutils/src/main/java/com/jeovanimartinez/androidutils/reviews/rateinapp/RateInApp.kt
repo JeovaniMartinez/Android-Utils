@@ -15,6 +15,7 @@ object RateInApp : Base<RateInApp>() {
     /** Objeto con las constantes para las preferencias */
     object Preferences {
         const val KEY = "rate_in_app_preferences"
+        const val CONFIGURED = "configured"
         const val LAUNCH_COUNTER = "rate_in_app_launch_counter"
         const val LAST_SHOW_DATE = "rate_in_app_last_show_date"
         const val NEVER_SHOW_AGAIN = "rate_in_app_never_show_again" // Aplica solo para el mensaje de versiones anteriores a Android 5
@@ -55,5 +56,13 @@ object RateInApp : Base<RateInApp>() {
      * minRemindElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo
      * */
     private var minRemindLaunchTimes = 3
+
+    /**
+    * Inicializa y configura la utilidad, debe llamarse siempre solo una vez en la aplicación
+    * ya sea en el onCreate() de la app o de la actividad principal
+    * */
+    fun init(context: Context) {
+
+    }
 
 }
