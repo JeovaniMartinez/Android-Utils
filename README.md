@@ -2,6 +2,18 @@
 
 Conjunto de utilidades para el desarrollo de aplicaciones Android
 
+#
+
+#### Configuración
+Agregar la siguiente configuración en Gradle (a nivel de la app)
+```Gradle
+dependencies {
+    implementation 'com.github.JeovaniMartinez:Android-Utils:VERSION'
+}
+```
+
+#### General
+
 La mayoría de las clases tienen los siguientes métodos en común
 ```Kotlin
 setLogEnable(true) // Habilita o deshabilita el log de depuración
