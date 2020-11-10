@@ -4,10 +4,8 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.widget.Toast
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.jeovanimartinez.androidutils.BuildConfig
+import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 
 /**
@@ -15,27 +13,9 @@ import com.jeovanimartinez.androidutils.R
  * El uso principal es para invitar al usuario a que califique la aplicación, se abren los detalles generales de la app,
  * ya que no hay manera de mandarlo directamente a calificar la app con este método.
  * */
-object RateApp {
+object RateApp : Base<RateApp>() {
 
-    private const val LOG_TAG = "RateApp"
-
-    /** Para habilitar o deshabilitar los mensajes del log */
-    private var logEnable = BuildConfig.DEBUG
-
-    /** Instancia de Firebase Analytics para registro de eventos */
-    private var firebaseAnalytics: FirebaseAnalytics? = null
-
-    /** Habilita o deshabilita los mensajes del log en base a [logEnable] */
-    fun setLogEnable(logEnable: Boolean): RateApp {
-        this.logEnable = logEnable
-        return this
-    }
-
-    /** Asigna la instancia de [firebaseAnalytics] para registrar los eventos de esta clase */
-    fun setFirebaseAnalyticsInstance(firebaseAnalytics: FirebaseAnalytics): RateApp {
-        this.firebaseAnalytics = firebaseAnalytics
-        return this
-    }
+    override val LOG_TAG = "RateApp"
 
     /**
      * Dirige al usuario a los detalles de la aplicación en Google Play para que pueda calificar la aplicación.
@@ -52,19 +32,19 @@ object RateApp {
         googlePlayIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
         try {
             activity.startActivity(googlePlayIntent) // Se intenta mostrar en la app de google play
-            if (logEnable) Log.i(LOG_TAG, "Sent user to view app details in google play app [$marketUriString]")
+            log("Sent user to view app details in google play app [$marketUriString]")
             firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_app", null)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // Si no se puede mostrar en la app de google play, se intenta abrir en el navegador web
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
-                if (logEnable) Log.i(LOG_TAG, "Sent user to view app details in google play on web browser [$webUriString]")
+                log("Sent user to view app details in google play on web browser [$webUriString]", e1)
                 firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_web", null)
             } catch (e2: ActivityNotFoundException) {
                 // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
                 Toast.makeText(activity, R.string.rate_app_unable_to_show_app_on_google_play, Toast.LENGTH_SHORT).show()
-                if (logEnable) Log.i(LOG_TAG, "Unable to send user to app details, google play app and web browser are not available")
+                log("Unable to send user to app details, google play app and web browser are not available", e2)
                 firebaseAnalytics?.logEvent("rate_app_unable_to_show_on_google_play", null)
             }
         }
