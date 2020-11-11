@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.reviews.rateinapp
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.android.play.core.review.ReviewManagerFactory
 import com.jeovanimartinez.androidutils.Base
 import java.text.DateFormat
 import java.util.*
@@ -177,11 +178,11 @@ object RateInApp : Base<RateInApp>() {
 
     /**
      * Ejecuta la verificación y muestra el flujo para calificar, llamar cuando se valide que se cumplen todas las condiciones de la configuración
-     * @param activity actividad desde donde se llama
+     * @param activity actividad
      * */
     private fun doCheckAndShow(activity: Activity) {
 
-        log("doCheckAndShow")
+        log("doCheckAndShow() Invoked")
 
         // Primero se carga el valor de cuantas veces se ha mostrado el flujo para calificar
         val launchCounter = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 1)
@@ -241,7 +242,7 @@ object RateInApp : Base<RateInApp>() {
 
         // Se verifica si han transcurrido los días mínimos requeridos
         if (elapsedDays < minElapsedDays) {
-            log("It is not necessary to show flow to rate app, a minimum of $minElapsedDays day elapsed is required, current: $elapsedDays")
+            log("It is not necessary to show flow to rate app, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
             return // No es necesario continuar, no se cumple una condición requerida
         }
 
@@ -251,6 +252,59 @@ object RateInApp : Base<RateInApp>() {
         // Se cumplen todas las condiciones, se debe mostrar el flujo para calificar la aplicación
         log("All conditions are met, the flow to rate app must be shown")
 
+        log("The SDK version currently running is: ${android.os.Build.VERSION.SDK_INT}")
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            // Para Android 5 y posteriores, donde hay soporte para Google Play In-App Review API
+            log("Let's go to rate with Google Play In-App Review API")
+            rateWithInAppReviewApi(activity)
+        } else {
+            // Para versiones anteriores a Android 5, donde Google Play In-App Review API no esta disponible
+            log("Let's go to rate with Dialog")
+            rateWithDialog(activity)
+        }
+
+    }
+
+    /**
+     * Muestra el flujo para calificar con Google Play In-App Review API.
+     * Referencia: https://developer.android.com/guide/playcore/in-app-review
+     *
+     * @param activity actividad
+     * */
+     fun rateWithInAppReviewApi(activity: Activity) {
+        log("rateWithInAppReviewApi() Invoked")
+        val reviewManager = ReviewManagerFactory.create(activity)
+        val managerRequest = reviewManager.requestReviewFlow()
+        // Primero hay que crear la solicitud
+        managerRequest.addOnCompleteListener { request ->
+            if (request.isSuccessful) {
+                // Si la solicitud se creo correctamente
+                log("RequestReviewFlow successfully obtained")
+                val reviewInfo = request.result // Se obtiene el resultado
+                val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // Se lanza el flujo para calificar
+                reviewFlow.addOnCompleteListener {
+                    /*
+                    * Al finalizar el flujo, teniendo en cuenta que la API no informa si el usuario califico la app o no,
+                    * tampoco informa si se mostró el diálogo o no, por lo que solo indica el fin del proceso
+                    * */
+                    log("Finished flow to rate app with Google Play In-App Review API")
+                }
+            } else {
+                log("Error on RequestReviewFlow, can not show flow to rate app")
+            }
+        }
+    }
+
+    /**
+     * Muestra un mensaje para invitar al usuario a calificar la app, en caso de confirmación, el usuario
+     * es dirigido a los detalles de la app en Google Play para que pueda calificarla
+     *
+     * @param activity actividad
+     * */
+    private fun rateWithDialog(activity: Activity) {
+        log("rateWithDialog() Invoked")
+        log("CALIFICAR DIALOGO PENDIENTE...")
     }
 
 }
