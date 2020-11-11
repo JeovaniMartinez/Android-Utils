@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import com.jeovanimartinez.androidutils.Base
+import java.util.*
 
 /**
  * Utilidad para iniciar el flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación.
@@ -19,6 +20,7 @@ object RateInApp : Base<RateInApp>() {
     object Preferences {
         const val KEY = "rate_in_app_preferences"
         const val CONFIGURED = "configured"
+        const val FIRST_OPEN_DATE = "first_open_date"
         const val LAUNCH_COUNTER = "rate_in_app_launch_counter"
         const val LAST_SHOW_DATE = "rate_in_app_last_show_date"
         const val FLOW_SHOWN_COUNTER = "flow_shown_counter"
@@ -29,10 +31,10 @@ object RateInApp : Base<RateInApp>() {
 
     /**
      * Establece el número mínimo de días requeridos desde que se instalo la app para poder mostrar el flujo, se usa en combinación con minInstallLaunchTimes,
-     * y se deben cumplir ambas condiciones para mostrar el flujo
+     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir del dia en que se instalo)
      * */
     fun setMinInstallElapsedDays(minInstallElapsedDays: Int): RateInApp {
-        validateConfigArgument(minInstallElapsedDays)
+        validateConfigArgument(minInstallElapsedDays, 0)
         this.minInstallElapsedDays = minInstallElapsedDays
         return this
     }
@@ -41,10 +43,10 @@ object RateInApp : Base<RateInApp>() {
 
     /**
      * Establece el número mínimo de veces que se debe haber iniciado la app desde que se instalo para poder mostrar el flujo, se usa en combinación con
-     * minInstallElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo
+     * minInstallElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1, se muestra a partir del primer inicio
      * */
     fun setMinInstallLaunchTimes(minInstallLaunchTimes: Int): RateInApp {
-        validateConfigArgument(minInstallLaunchTimes)
+        validateConfigArgument(minInstallLaunchTimes, 1)
         this.minInstallLaunchTimes = minInstallLaunchTimes
         return this
     }
@@ -53,10 +55,10 @@ object RateInApp : Base<RateInApp>() {
 
     /**
      * Número mínimo de días requeridos desde que se mostró el flujo para mostrarlo nuevamente, se usa en combinación con minRemindLaunchTimes,
-     * y se deben cumplir ambas condiciones para mostrar el flujo
+     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
      * */
     fun setMinRemindElapsedDays(minRemindElapsedDays: Int): RateInApp {
-        validateConfigArgument(minRemindElapsedDays)
+        validateConfigArgument(minRemindElapsedDays, 0)
         this.minRemindElapsedDays = minRemindElapsedDays
         return this
     }
@@ -65,17 +67,17 @@ object RateInApp : Base<RateInApp>() {
 
     /**
      * Número mínimo de veces que se debe haber iniciado la app desde que mostró el flujo para mostrarlo nuevamente, se usa en combinación con
-     * minRemindElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo
+     * minRemindElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1 (se muestra a partir del primer inicio)
      * */
     fun setMinRemindLaunchTimes(minRemindLaunchTimes: Int): RateInApp {
-        validateConfigArgument(minRemindLaunchTimes)
+        validateConfigArgument(minRemindLaunchTimes, 1)
         this.minRemindLaunchTimes = minRemindLaunchTimes
         return this
     }
 
     /** Se asegura que el argumento de configuración [value] sea válido */
-    private fun validateConfigArgument(value: Int) {
-        if (value < 0) throw IllegalArgumentException("Value must be equal to or greater than zero")
+    private fun validateConfigArgument(value: Int, minValue: Int) {
+        if (value < minValue) throw IllegalArgumentException("Invalid config value, value ($value) must be equal to or greater than $minValue")
     }
 
     private lateinit var sharedPreferences: SharedPreferences // Para manipular las preferencias
@@ -87,20 +89,22 @@ object RateInApp : Base<RateInApp>() {
      * @param context contexto
      * */
     fun init(context: Context) {
-        if(initialized) {
+        if (initialized) {
             log("RateInApp is already initialized")
             return
         }
         configurePreferences(context) // Se configuran las preferencias
         updateLaunchCounter() // Se cuenta el nuevo inicio
         initialized = true
-        log("""
+        log(
+            """
             RateInApp initialized
             minInstallElapsedDays: $minInstallElapsedDays
             minInstallLaunchTimes: $minInstallLaunchTimes
             minRemindElapsedDays: $minRemindElapsedDays
             minRemindLaunchTimes: $minRemindLaunchTimes
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     /**
@@ -119,6 +123,7 @@ object RateInApp : Base<RateInApp>() {
         sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
         if (!sharedPreferences.getBoolean(Preferences.CONFIGURED, false)) {
             with(sharedPreferences.edit()) {
+                putLong(Preferences.FIRST_OPEN_DATE, Date().time)
                 putInt(Preferences.LAUNCH_COUNTER, 0)
                 putLong(Preferences.LAST_SHOW_DATE, 0)
                 putLong(Preferences.FLOW_SHOWN_COUNTER, 0)
