@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import com.jeovanimartinez.androidutils.Base
+import java.text.DateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Utilidad para iniciar el flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación.
@@ -20,7 +22,6 @@ object RateInApp : Base<RateInApp>() {
     private object Preferences {
         const val KEY = "rate_in_app_preferences"
         const val CONFIGURED = "configured"
-        const val FIRST_OPEN_DATE = "first_open_date"
         const val LAUNCH_COUNTER = "rate_in_app_launch_counter"
         const val LAST_SHOW_DATE = "rate_in_app_last_show_date"
         const val FLOW_SHOWN_COUNTER = "flow_shown_counter"
@@ -153,10 +154,9 @@ object RateInApp : Base<RateInApp>() {
         sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
         if (!sharedPreferences.getBoolean(Preferences.CONFIGURED, false)) {
             with(sharedPreferences.edit()) {
-                putLong(Preferences.FIRST_OPEN_DATE, Date().time)
                 putInt(Preferences.LAUNCH_COUNTER, 0)
-                putLong(Preferences.LAST_SHOW_DATE, 0)
-                putLong(Preferences.FLOW_SHOWN_COUNTER, 0)
+                putLong(Preferences.LAST_SHOW_DATE, Date().time) // Al inicio, se configura con la fecha actual, para tener un valor de referencia
+                putInt(Preferences.FLOW_SHOWN_COUNTER, 0)
                 putBoolean(Preferences.NEVER_SHOW_AGAIN, false)
                 putBoolean(Preferences.CONFIGURED, true)
                 apply()
@@ -180,6 +180,76 @@ object RateInApp : Base<RateInApp>() {
      * @param activity actividad desde donde se llama
      * */
     private fun doCheckAndShow(activity: Activity) {
+
+        log("doCheckAndShow")
+
+        // Primero se carga el valor de cuantas veces se ha mostrado el flujo para calificar
+        val launchCounter = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 1)
+        val lastShowDateValue = sharedPreferences.getLong(Preferences.LAST_SHOW_DATE, 0)
+        val lastShowDate = Date(lastShowDateValue)
+        val flowShowCounter = sharedPreferences.getInt(Preferences.FLOW_SHOWN_COUNTER, 0)
+        val neverShowAgain = sharedPreferences.getBoolean(Preferences.NEVER_SHOW_AGAIN, false)
+
+        val minElapsedDays: Int
+        val minLaunchTimes: Int
+
+        if (flowShowCounter == 0) {
+            // Si el flujo se no se ha mostrado ninguna vez, se asignan los valores según los valores de instalación
+            minElapsedDays = minInstallElapsedDays
+            minLaunchTimes = minInstallLaunchTimes
+            log("Values configured by install values")
+        } else {
+            // Si el flujo ya se ha mostrado al menos una vez, se asignan los valores según los valores de recordatorio
+            minElapsedDays = minRemindElapsedDays
+            minLaunchTimes = minRemindLaunchTimes
+            log("Values configured by remind values")
+        }
+
+        // Se muestran los valores con fines de depuración, la fecha se muestra en formato local para su mejor comprensión
+        log(
+            """
+            Current Values
+            launchCounter: $launchCounter
+            lastShowDateValue $lastShowDateValue
+            lastShowDate: ${DateFormat.getDateTimeInstance().format(lastShowDate)}
+            flowShowCounter: $flowShowCounter
+            neverShowAgain: $neverShowAgain
+            minElapsedDays: $minElapsedDays
+            minLaunchTimes: $minLaunchTimes
+        """.trimIndent()
+        )
+
+        // Se verifica si se cumplen los inicios mínimos requeridos
+        if (launchCounter < minLaunchTimes) {
+            log("It is not necessary to show flow to rate app, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
+            return // No es necesario continuar, no se cumple una condición requerida
+        }
+
+        // Se cumplen los inicios requeridos
+        log("The condition of minimum required launches is met, current: $launchCounter | required: $minLaunchTimes")
+
+        // Se calculan los dias transcurridos entre la última fecha que se mostró el mensaje y la fecha actual
+        val elapsedDays = ((Date().time - lastShowDateValue) / TimeUnit.DAYS.toMillis(1)).toInt()
+        log("Elapsed days between last date of flow to rate app showed and today is: $elapsedDays")
+
+        // Si los días transcurridos son negativos, indica una alteración en la fecha del dispositivo, por lo que el valor de LAST_SHOW_DATE se restablece
+        if (elapsedDays < 0) {
+            sharedPreferences.edit().putLong(Preferences.LAST_SHOW_DATE, Date().time).apply()
+            log("Elapsed days ($elapsedDays) value is negative and invalid, the value is restarted to current date")
+            return // No es necesario continuar, ya que se restableció la fecha
+        }
+
+        // Se verifica si han transcurrido los días mínimos requeridos
+        if (elapsedDays < minElapsedDays) {
+            log("It is not necessary to show flow to rate app, a minimum of $minElapsedDays day elapsed is required, current: $elapsedDays")
+            return // No es necesario continuar, no se cumple una condición requerida
+        }
+
+        // Se cumplen los días transcurridos
+        log("The condition of minimum elapsed days is met, current: $elapsedDays | required: $minElapsedDays")
+
+        // Se cumplen todas las condiciones, se debe mostrar el flujo para calificar la aplicación
+        log("All conditions are met, the flow to rate app must be shown")
 
     }
 
