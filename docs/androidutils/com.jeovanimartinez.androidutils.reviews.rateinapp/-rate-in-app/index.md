@@ -9,12 +9,6 @@ Para Android 5.0 (API 21) y posteriores, se utiliza Google Play In-App Review AP
 Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es
 dirigido a los detalles de la aplicación en Google Play.
 
-### Types
-
-| Name | Summary |
-|---|---|
-| [Preferences](-preferences/index.md) | Objeto con las constantes para las preferencias`object Preferences` |
-
 ### Properties
 
 | Name | Summary |
