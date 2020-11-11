@@ -17,7 +17,7 @@ object RateInApp : Base<RateInApp>() {
     override val LOG_TAG = "RateInApp"
 
     /** Objeto con las constantes para las preferencias */
-    object Preferences {
+    private object Preferences {
         const val KEY = "rate_in_app_preferences"
         const val CONFIGURED = "configured"
         const val FIRST_OPEN_DATE = "first_open_date"
