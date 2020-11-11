@@ -39,6 +39,22 @@
                 android:text="More Apps"
                 tools:ignore="HardcodedText" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/initRateInAppBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Init RateInApp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/checkAndShowRateInAppBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Check and show RateInApp"
+                tools:ignore="HardcodedText" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
