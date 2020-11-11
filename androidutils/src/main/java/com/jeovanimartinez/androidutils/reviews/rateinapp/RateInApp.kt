@@ -19,6 +19,7 @@ object RateInApp : Base<RateInApp>() {
         const val CONFIGURED = "configured"
         const val LAUNCH_COUNTER = "rate_in_app_launch_counter"
         const val LAST_SHOW_DATE = "rate_in_app_last_show_date"
+        const val FLOW_SHOWN_COUNTER = "flow_shown_counter"
         const val NEVER_SHOW_AGAIN = "rate_in_app_never_show_again" // Aplica solo para el mensaje de versiones anteriores a Android 5
     }
 
@@ -70,17 +71,17 @@ object RateInApp : Base<RateInApp>() {
         return this
     }
 
+    /** Se asegura que el argumento de configuración [value] sea válido */
+    private fun validateConfigArgument(value: Int) {
+        if (value < 0) throw IllegalArgumentException("Value must be equal to or greater than zero")
+    }
+
     /**
      * Inicializa y configura la utilidad, debe llamarse siempre solo una vez en la aplicación
      * ya sea en el onCreate() de la app o de la actividad principal
      * */
     fun init(context: Context) {
 
-    }
-
-    /** Se asegura que el argumento de configuración [value] sea válido */
-    private fun validateConfigArgument(value: Int) {
-        if (value < 0) throw IllegalArgumentException("Value must be equal to or greater than zero")
     }
 
 }
