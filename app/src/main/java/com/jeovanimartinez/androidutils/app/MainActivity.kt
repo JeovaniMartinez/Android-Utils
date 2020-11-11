@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         initRateInAppBtn.setOnClickListener {
+            RateInApp.rateWithInAppReviewApi(this@MainActivity)
             RateInApp.setShowAtEvent(2).setMinInstallLaunchTimes(3).setMinInstallElapsedDays(5).init(this@MainActivity)
         }
 
