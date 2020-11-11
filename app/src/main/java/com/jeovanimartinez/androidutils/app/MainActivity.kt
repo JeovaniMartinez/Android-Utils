@@ -38,6 +38,13 @@ class MainActivity : AppCompatActivity() {
             MoreAppsGPlay.showAppList(this@MainActivity)
         }
 
+        initRateInAppBtn.setOnClickListener {
+            RateInApp.init(this@MainActivity)
+        }
+
+        checkAndShowRateInAppBtn.setOnClickListener {
+            RateInApp.checkAndShow(this@MainActivity)
+        }
 
     }
 

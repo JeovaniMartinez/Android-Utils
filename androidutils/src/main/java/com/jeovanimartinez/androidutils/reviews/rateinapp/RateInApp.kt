@@ -1,6 +1,8 @@
 package com.jeovanimartinez.androidutils.reviews.rateinapp
 
+import android.app.Activity
 import android.content.Context
+import android.content.SharedPreferences
 import com.jeovanimartinez.androidutils.Base
 
 /**
@@ -76,12 +78,66 @@ object RateInApp : Base<RateInApp>() {
         if (value < 0) throw IllegalArgumentException("Value must be equal to or greater than zero")
     }
 
+    private lateinit var sharedPreferences: SharedPreferences // Para manipular las preferencias
+    private var initialized = false // Auxiliar para determinar si ya se llamo a init
+
     /**
      * Inicializa y configura la utilidad, debe llamarse siempre solo una vez en la aplicación
      * ya sea en el onCreate() de la app o de la actividad principal
+     * @param context contexto
      * */
     fun init(context: Context) {
+        if(initialized) {
+            log("RateInApp is already initialized")
+            return
+        }
+        configurePreferences(context) // Se configuran las preferencias
+        updateLaunchCounter() // Se cuenta el nuevo inicio
+        initialized = true
+        log("""
+            RateInApp initialized
+            minInstallElapsedDays: $minInstallElapsedDays
+            minInstallLaunchTimes: $minInstallLaunchTimes
+            minRemindElapsedDays: $minRemindElapsedDays
+            minRemindLaunchTimes: $minRemindLaunchTimes
+        """.trimIndent())
+    }
 
+    /**
+     * Verifica si se cumplen las condiciones para mostrar el flujo para calificar, y muestra el flujo solo si se cumplen las condiciones
+     * @param activity actividad desde donde se llama
+     * */
+    fun checkAndShow(activity: Activity) {
+        if (!initialized) throw Exception("Need call init() before call this method")
+    }
+
+    /**
+     * Genera la instancia para manipular las preferencias y configura las preferencias a los valores predeterminados en caso de que aún no estén configuradas
+     * @param context contexto
+     * */
+    private fun configurePreferences(context: Context) {
+        sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
+        if (!sharedPreferences.getBoolean(Preferences.CONFIGURED, false)) {
+            with(sharedPreferences.edit()) {
+                putInt(Preferences.LAUNCH_COUNTER, 0)
+                putLong(Preferences.LAST_SHOW_DATE, 0)
+                putLong(Preferences.FLOW_SHOWN_COUNTER, 0)
+                putBoolean(Preferences.NEVER_SHOW_AGAIN, false)
+                putBoolean(Preferences.CONFIGURED, true)
+                apply()
+            }
+            log("The preferences are configured for first time")
+        } else {
+            log("The preferences are already configured")
+        }
+    }
+
+    /** Actualiza el contador de inicios de la app */
+    private fun updateLaunchCounter() {
+        val currentValue = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 0)
+        val newValue = currentValue + 1
+        sharedPreferences.edit().putInt(Preferences.LAUNCH_COUNTER, newValue).apply()
+        log("Updated launch counter value from $currentValue to $newValue")
     }
 
 }
