@@ -96,6 +96,8 @@ object RateInApp : Base<RateInApp>() {
 
     private lateinit var sharedPreferences: SharedPreferences // Para manipular las preferencias
     private var initialized = false // Auxiliar para determinar si ya se llamo a init
+    private var eventCount = 0 // Auxiliar para contar cuantas veces se ha llamado a checkAndShow
+    private var validated = false // Determina si ya se valido si se debe mostrar el flujo, para solo validarlo una vez por sesión
 
     /**
      * Inicializa y configura la utilidad, debe llamarse siempre solo una vez en la aplicación
@@ -127,7 +129,20 @@ object RateInApp : Base<RateInApp>() {
      * @param activity actividad desde donde se llama
      * */
     fun checkAndShow(activity: Activity) {
-        if (!initialized) throw Exception("Need call init() before call this method")
+        if (!initialized) throw Exception("Need call init() before call this method") // Es necesario llamar a init antes de llamar a este método
+
+        if (validated) return log("The conditions have already been validated in this session") // Solo se valida una vez por sesión
+
+        eventCount++ // Se actualiza el contador de veces que se llama a este método
+
+        // Si no corresponde mostrar en esta llamada al evento
+        if (showAtEvent != eventCount) return log("No need verify conditions in this call, showAtEvent: $showAtEvent | eventCount $eventCount")
+
+        // Al llegar a este punto, se debe validar si se va a mostrar el flujo
+        log("We proceed to verify the conditions to show the flow to rate the app, event number: $showAtEvent")
+        doCheckAndShow(activity) // Se ejecuta la verificación
+
+        validated = true // Al final, se indica que ya se valido, para solo hacerlo una vez por sesión
     }
 
     /**
@@ -158,6 +173,14 @@ object RateInApp : Base<RateInApp>() {
         val newValue = currentValue + 1
         sharedPreferences.edit().putInt(Preferences.LAUNCH_COUNTER, newValue).apply()
         log("Updated launch counter value from $currentValue to $newValue")
+    }
+
+    /**
+     * Ejecuta la verificación y muestra el flujo para calificar, llamar cuando se valide que se cumplen todas las condiciones de la configuración
+     * @param activity actividad desde donde se llama
+     * */
+    private fun doCheckAndShow(activity: Activity) {
+
     }
 
 }
