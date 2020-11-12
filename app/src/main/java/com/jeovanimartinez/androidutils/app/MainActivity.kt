@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
@@ -9,6 +10,8 @@ import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var rateInAppConfigured = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Calificar en google play
-        rateInGooglePlayBtn.setOnClickListener{
+        rateInGooglePlayBtn.setOnClickListener {
             RateApp.goToRateInGooglePlay(this@MainActivity)
         }
 
@@ -39,11 +42,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         initRateInAppBtn.setOnClickListener {
-            RateInApp.rateWithInAppReviewApi(this@MainActivity)
-            RateInApp.setShowAtEvent(2).setMinInstallLaunchTimes(3).setMinInstallElapsedDays(5).init(this@MainActivity)
+            RateInApp
+                .setMinInstallElapsedDays(0)
+                .setMinInstallLaunchTimes(1)
+                .setMinRemindElapsedDays(0)
+                .setMinRemindLaunchTimes(1)
+                .setShowAtEvent(1)
+                .init(this@MainActivity)
+
+            rateInAppConfigured = true
         }
 
         checkAndShowRateInAppBtn.setOnClickListener {
+            if (!rateInAppConfigured) {
+                Toast.makeText(this@MainActivity, "Please initialize RateInApp before to click this button", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             RateInApp.checkAndShow(this@MainActivity)
         }
 
