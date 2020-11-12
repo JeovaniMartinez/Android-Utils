@@ -273,7 +273,7 @@ object RateInApp : Base<RateInApp>() {
      *
      * @param activity actividad
      * */
-     fun rateWithInAppReviewApi(activity: Activity) {
+     private fun rateWithInAppReviewApi(activity: Activity) {
         log("rateWithInAppReviewApi() Invoked")
         val reviewManager = ReviewManagerFactory.create(activity)
         val managerRequest = reviewManager.requestReviewFlow()
