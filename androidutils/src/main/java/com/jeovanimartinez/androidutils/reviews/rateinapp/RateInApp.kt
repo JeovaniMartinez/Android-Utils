@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit
  * Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es
  * dirigido a los detalles de la aplicación en Google Play.
  * */
+@Suppress("unused")
 object RateInApp : Base<RateInApp>() {
 
     override val LOG_TAG = "RateInApp"
@@ -280,18 +281,26 @@ object RateInApp : Base<RateInApp>() {
         managerRequest.addOnCompleteListener { request ->
             if (request.isSuccessful) {
                 // Si la solicitud se creo correctamente
-                log("RequestReviewFlow successfully obtained")
+                log("ReviewFlow successfully obtained")
+                firebaseAnalytics?.logEvent("rate_app_review_flow_obtained", null)
                 val reviewInfo = request.result // Se obtiene el resultado
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // Se lanza el flujo para calificar
                 reviewFlow.addOnCompleteListener {
                     /*
                     * Al finalizar el flujo, teniendo en cuenta que la API no informa si el usuario califico la app o no,
-                    * tampoco informa si se mostró el diálogo o no, por lo que solo indica el fin del proceso
+                    * tampoco informa si se mostró el diálogo o no, por lo que solo indica el fin del proceso.
+                    *
+                    * Consideraciones:
+                    *   - No se puede saber si se mostró el flujo o no, ni el resultado (si se califico o no la app)
+                    *   - Si el usuario ya ha calificado la aplicación, el flujo no se muestra, pero se llama aquí reviewFlow.addOnCompleteListener
+                    *   - Si el usuario aun no califica la app, pero ya se supero la cuota para mostrar el mensaje, el mensaje no se muestra
                     * */
                     log("Finished flow to rate app with Google Play In-App Review API")
+                    firebaseAnalytics?.logEvent("rate_app_review_flow_completed", null)
                 }
             } else {
-                log("Error on RequestReviewFlow, can not show flow to rate app")
+                log("Error on request ReviewFlow, can not show flow to rate app")
+                firebaseAnalytics?.logEvent("rate_app_request_review_flow_error", null)
             }
         }
     }
@@ -304,6 +313,8 @@ object RateInApp : Base<RateInApp>() {
      * */
     private fun rateWithDialog(activity: Activity) {
         log("rateWithDialog() Invoked")
+        firebaseAnalytics?.logEvent("rate_app_dialog_shown", null)
+
         log("CALIFICAR DIALOGO PENDIENTE...")
     }
 
