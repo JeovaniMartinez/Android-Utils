@@ -299,6 +299,7 @@ object RateInApp : Base<RateInApp>() {
                     firebaseAnalytics?.logEvent("rate_app_review_flow_completed", null)
                 }
             } else {
+                validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
                 log("Error on request ReviewFlow, can not show flow to rate app")
                 firebaseAnalytics?.logEvent("rate_app_request_review_flow_error", null)
             }
