@@ -296,6 +296,7 @@ object RateInApp : Base<RateInApp>() {
                     *   - Si el usuario aun no califica la app, pero ya se supero la cuota para mostrar el mensaje, el mensaje no se muestra
                     * */
                     log("Finished flow to rate app with Google Play In-App Review API")
+                    updatePreferencesOnFlowShown() // Se Actualizan las preferencias, ya que se completo el flujo
                     firebaseAnalytics?.logEvent("rate_app_review_flow_completed", null)
                 }
             } else {
@@ -314,9 +315,43 @@ object RateInApp : Base<RateInApp>() {
      * */
     private fun rateWithDialog(activity: Activity) {
         log("rateWithDialog() Invoked")
-        firebaseAnalytics?.logEvent("rate_app_dialog_shown", null)
 
-        log("CALIFICAR DIALOGO PENDIENTE...")
+        // Se verifica si aún hay que mostrar el diálogo
+        val neverShowAgain = sharedPreferences.getBoolean(Preferences.NEVER_SHOW_AGAIN, false)
+
+        if (!neverShowAgain) {
+            // Hay que mostrar el diálogo
+            log("neverShowAgain = $neverShowAgain | The dialogue is shown")
+            updatePreferencesOnFlowShown() // Se actualizan las preferencias, ya que se muestro el diálogo
+            firebaseAnalytics?.logEvent("rate_app_dialog_shown", null)
+        } else {
+            // El usuario ya había indicado que no quiere ver el diálogo
+            log("neverShowAgain = $neverShowAgain | No need to show dialogue anymore")
+        }
+
+    }
+
+    /**
+     * Actualiza las preferencias para indicar que se acaba de mostrar el flujo para calificar la aplicación,
+     * llamar solo en el reviewFlow.addOnCompleteListener (que indica que se completo el flujo) o llamar cuando
+     * se muestre el diálogo para calificar en versiones anteriores a Android 5
+     * */
+    private fun updatePreferencesOnFlowShown() {
+
+        log("updatePreferencesOnFlowShown() Invoked")
+
+        // Se carga el contador de veces que se ha mostrado el flujo, y se le incrementa uno, para contar esta vez que se mostró el flujo
+        val flowShowCounter = sharedPreferences.getInt(Preferences.FLOW_SHOWN_COUNTER, 0) + 1
+
+        with(sharedPreferences.edit()) {
+            putInt(Preferences.LAUNCH_COUNTER, 0) // Se restablece el contador de inicios a cero
+            putLong(Preferences.LAST_SHOW_DATE, Date().time) // Se actualiza la fecha en que se mostró el flujo
+            putInt(Preferences.FLOW_SHOWN_COUNTER, flowShowCounter) // Se actualiza el contador de veces que se ha mostrado el flujo
+            apply()
+        }
+
+        log("updatePreferencesOnFlowShown() Done")
+
     }
 
 }
