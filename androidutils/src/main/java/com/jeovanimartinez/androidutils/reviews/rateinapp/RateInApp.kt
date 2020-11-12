@@ -30,7 +30,7 @@ object RateInApp : Base<RateInApp>() {
         const val NEVER_SHOW_AGAIN = "rate_in_app_never_show_again" // Aplica solo para el mensaje de versiones anteriores a Android 5
     }
 
-    private var minInstallElapsedDays = 4
+    private var minInstallElapsedDays = 10
 
     /**
      * Establece el número mínimo de días requeridos desde que se instalo la app para poder mostrar el flujo, se usa en combinación con minInstallLaunchTimes,
@@ -42,7 +42,7 @@ object RateInApp : Base<RateInApp>() {
         return this
     }
 
-    private var minInstallLaunchTimes = 5
+    private var minInstallLaunchTimes = 10
 
     /**
      * Establece el número mínimo de veces que se debe haber iniciado la app desde que se instalo para poder mostrar el flujo, se usa en combinación con
@@ -66,7 +66,7 @@ object RateInApp : Base<RateInApp>() {
         return this
     }
 
-    private var minRemindLaunchTimes = 3
+    private var minRemindLaunchTimes = 4
 
     /**
      * Número mínimo de veces que se debe haber iniciado la app desde que mostró el flujo para mostrarlo nuevamente, se usa en combinación con
