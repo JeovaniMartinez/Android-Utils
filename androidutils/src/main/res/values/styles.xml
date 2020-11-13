@@ -16,6 +16,8 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <!-- Se puede consultar un ejemplo de las variaciones en la carpeta del proyecto /resources/Translucent theme/ -->
+
     <!-- Tema translúcido, fondo completamente transparente -->
     <style name="AndroidUtilsTheme.Translucent.Transparent" parent="AndroidUtilsTheme.Translucent">
         <item name="android:windowBackground">@android:color/transparent</item>
