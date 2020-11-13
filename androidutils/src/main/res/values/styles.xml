@@ -1,0 +1,59 @@
+<resources>
+
+    <!--
+        Base del tema, la aplicación que use la biblioteca debe declarar un estilo con el mismo nombre que herede del tema principal de la app,
+        esto para que la biblioteca conserve el estilo que usa la app
+    -->
+    <style name="AndroidUtilsTheme" parent="Theme.MaterialComponents" />
+
+    <!-- Tema translúcido, hereda de AndroidUtilsTheme que se va a tomar de la aplicación que implemente la biblioteca -->
+    <style name="AndroidUtilsTheme.Translucent" parent="AndroidUtilsTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- Tema translúcido, fondo completamente transparente -->
+    <style name="AndroidUtilsTheme.Translucent.Transparent" parent="AndroidUtilsTheme.Translucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- Tema translúcido, fondo completamente transparente a pantalla completa -->
+    <style name="AndroidUtilsTheme.Translucent.Transparent.FullScreen" parent="AndroidUtilsTheme.Translucent.Transparent">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- Tema translúcido, fondo con poca opacidad -->
+    <style name="AndroidUtilsTheme.Translucent.Little" parent="AndroidUtilsTheme.Translucent">
+        <item name="android:windowBackground">@drawable/translucent_background_little</item>
+    </style>
+
+    <!-- Tema translúcido, fondo con poca opacidad a pantalla completa -->
+    <style name="AndroidUtilsTheme.Translucent.Little.FullScreen" parent="AndroidUtilsTheme.Translucent.Little">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- Tema translúcido, fondo con opacidad media -->
+    <style name="AndroidUtilsTheme.Translucent.Half" parent="AndroidUtilsTheme.Translucent">
+        <item name="android:windowBackground">@drawable/translucent_background_half</item>
+    </style>
+
+    <!-- Tema translúcido, fondo con opacidad media a pantalla completa -->
+    <style name="AndroidUtilsTheme.Translucent.Half.FullScreen" parent="AndroidUtilsTheme.Translucent.Half">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- Tema translúcido, fondo con opacidad alta -->
+    <style name="AndroidUtilsTheme.Translucent.Opaque" parent="AndroidUtilsTheme.Translucent">
+        <item name="android:windowBackground">@drawable/translucent_background_opaque</item>
+    </style>
+
+    <!-- Tema translúcido, fondo con opacidad alta a pantalla completa -->
+    <style name="AndroidUtilsTheme.Translucent.Opaque.FullScreen" parent="AndroidUtilsTheme.Translucent.Opaque">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+</resources>

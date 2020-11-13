@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Este fondo (#E9000000) es idéntico al del Bottom Sheet más oscuro del sistema, como el que se abre para comprar un producto integrado  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#E9000000" />
+</shape>
