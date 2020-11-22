@@ -32,6 +32,11 @@ abstract class Base<T : Base<T>> {
         return this as T
     }
 
+    /** Devuelve el estado actual del log, true si esta habilitado, false de lo contrario */
+    protected fun isLogEnable(): Boolean {
+        return logEnable
+    }
+
     /**
      * Muestra el [message] y el [throwable] en el log de DEPURACIÓN,
      * usado para detallar el flujo de ejecución, se puede habilitar y deshabilitar con setLogEnable
