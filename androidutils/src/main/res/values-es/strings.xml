@@ -7,7 +7,7 @@
     <string name="rate_app_unable_to_show_app_on_google_play">No disponible, por favor califica la aplicación en Google Play</string>
 
     <!-- RateAppActivity - Actividad/Diálogo para calificar aplicación -->
-    <string name="rate_dialog_ask">¿Te gustaría calificar nuestra aplicación?</string>
+    <string name="rate_dialog_ask">¿Te gustaría calificar nuestra aplicación en Google Play?</string>
     <string name="rate_dialog_rate_now">Calificar Ahora</string>
     <string name="rate_dialog_no_thanks">No, gracias\nYa la he calificado</string>
     <string name="rate_dialog_later">En otro momento</string>
