@@ -62,7 +62,7 @@ Ya que se ha configurado la utilidad, llamar al siguiente método en el momento 
 ```Kotlin
 RateInApp.checkAndShow(this@MainActivity)
 ```
-**[Documentación ](docs\androidutils\com.jeovanimartinez.androidutils.reviews.rateinapp\-rate-in-app\index.md)**
+**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md)**
 
 #
 
