@@ -1,8 +1,11 @@
 package com.jeovanimartinez.androidutils.reviews.rateinapp
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.jeovanimartinez.androidutils.Base
 import java.text.DateFormat
@@ -92,6 +95,17 @@ object RateInApp : Base<RateInApp>() {
         return this
     }
 
+    private var showNeverAskAgainButton = true // De manera predeterminada si se muestra el botón
+
+    /**
+     * Para versiones anteriores a Android 5, donde se muestra el diálogo para invitar al usuario a calificar la app,
+     * permite establecer la visibilidad del botón de nunca volver a preguntar, en base a [showNeverAskAgainButton]
+     * */
+    fun setShowNeverAskAgainButton(showNeverAskAgainButton: Boolean): RateInApp {
+        this.showNeverAskAgainButton = showNeverAskAgainButton
+        return this
+    }
+
     /** Se asegura que el argumento de configuración [value] sea válido */
     private fun validateConfigArgument(value: Int, minValue: Int) {
         if (value < minValue) throw IllegalArgumentException("Invalid config value, value ($value) must be equal to or greater than $minValue")
@@ -123,6 +137,7 @@ object RateInApp : Base<RateInApp>() {
             minRemindElapsedDays: $minRemindElapsedDays
             minRemindLaunchTimes: $minRemindLaunchTimes
             showAtEvent: $showAtEvent
+            showNeverAskAgainButton: $showNeverAskAgainButton
         """.trimIndent()
         )
     }
@@ -253,9 +268,9 @@ object RateInApp : Base<RateInApp>() {
         // Se cumplen todas las condiciones, se debe mostrar el flujo para calificar la aplicación
         log("All conditions are met, the flow to rate app must be shown")
 
-        log("The SDK version currently running is: ${android.os.Build.VERSION.SDK_INT}")
+        log("The SDK version currently running is: ${Build.VERSION.SDK_INT}")
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Para Android 5 y posteriores, donde hay soporte para Google Play In-App Review API
             log("Let's go to rate with Google Play In-App Review API")
             rateWithInAppReviewApi(activity)
@@ -324,6 +339,15 @@ object RateInApp : Base<RateInApp>() {
             log("neverShowAgain = $neverShowAgain | The dialogue is shown")
             updatePreferencesOnFlowShown() // Se actualizan las preferencias, ya que se muestro el diálogo
             firebaseAnalytics?.logEvent("rate_app_dialog_shown", null)
+
+            // Se muestra la actividad (estilo diálogo)
+            activity.startActivity(
+                Intent(activity, RateAppActivity::class.java)
+                    .putExtra(RateAppActivity.Companion.ExtraKey.LOG_ENABLE, isLogEnable())
+                    .putExtra(RateAppActivity.Companion.ExtraKey.SHOW_NEVER_ASK_AGAIN_BUTTON, showNeverAskAgainButton),
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
+            )
+
         } else {
             // El usuario ya había indicado que no quiere ver el diálogo
             log("neverShowAgain = $neverShowAgain | No need to show dialogue anymore")
