@@ -64,6 +64,8 @@ RateInApp.checkAndShow(this@MainActivity)
 ```
 **[Documentación ](docs\androidutils\com.jeovanimartinez.androidutils.reviews.rateinapp\-rate-in-app\index.md)**
 
+#
+
 ### RateApp 
 
 Utilidad para dirigir al usuario a los detalles de la aplicación en Google Play, usualmente usada para invitar al usuario a calificar la aplicación.
