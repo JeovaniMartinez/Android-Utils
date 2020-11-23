@@ -30,6 +30,13 @@ ya que no hay manera de mandarlo directamente a calificar la app con este métod
 
 |
 
+##### [com.jeovanimartinez.androidutils.reviews.rateinapp.RateAppActivity](../com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-app-activity/index.md)
+
+Actividad que se muestra en forma de diálogo para invitar al usuario a calificar la aplicación
+
+
+|
+
 ##### [com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp](../com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md)
 
 Utilidad para iniciar el flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación.
