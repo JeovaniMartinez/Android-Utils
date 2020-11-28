@@ -57,12 +57,12 @@ class RateAppActivity : AppCompatActivity() {
         rateApp_rateNow.setOnClickListener {
             if (logEnable) Log.d(LOG_TAG, "User clicked rateApp_rateNow button")
             RateApp.goToRateInGooglePlay(this@RateAppActivity) // Se usa la utilidad para dirigir al usuario Google Play
-            finish()
+            supportFinishAfterTransition() // Necesario para que se muestre la transición de salida
         }
 
         rateApp_later.setOnClickListener {
             if (logEnable) Log.d(LOG_TAG, "User clicked rateApp_later button")
-            finish()
+            supportFinishAfterTransition()
         }
 
         rateApp_noThanks.setOnClickListener {
@@ -78,7 +78,7 @@ class RateAppActivity : AppCompatActivity() {
             sharedPreferences.edit().putBoolean("rate_in_app_never_show_again", true).apply()
             if (logEnable) Log.d(LOG_TAG, "Set rate_in_app_never_show_again to true and saved in preferences")
 
-            finish()
+            supportFinishAfterTransition()
         }
 
     }
