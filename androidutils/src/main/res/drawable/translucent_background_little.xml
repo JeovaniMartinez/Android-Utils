@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!-- Este fondo (#52000000) es idéntico al que usan los diálogos del sistema, tiene la misma transparencia -->
-
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#52000000" />
-</shape>
