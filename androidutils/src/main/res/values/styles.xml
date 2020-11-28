@@ -1,10 +1,14 @@
 <resources>
 
+    <!--########################################################################################################################################################################################## -->
+
     <!--
         Base del tema, la aplicación que use la biblioteca debe declarar un estilo con el mismo nombre que herede del tema principal de la app,
         esto para que la biblioteca conserve el estilo que usa la app
     -->
     <style name="AndroidUtilsTheme" parent="Theme.MaterialComponents" />
+
+    <!--########################################################################################################################################################################################## -->
 
     <!-- TEMA TRANSLÚCIDO [INICIO] -->
 
@@ -13,7 +17,7 @@
        - Se pueden definir variaciones del tema, con ajustando la opacidad del fondo, solo heredar de AndroidUtilsTheme.Translucent y establecer android:backgroundDimAmount
          con el valor deseado, entre 0 y 1 (0 a 100%),
        - Se puede consultar un ejemplo de las variaciones en la carpeta del proyecto /resources/translucent-theme
-   -->
+    -->
 
     <!-- Tema translúcido con la opacidad predeterminada, hereda de AndroidUtilsTheme que se va a tomar de la aplicación que implemente la biblioteca -->
     <style name="AndroidUtilsTheme.Translucent" parent="AndroidUtilsTheme">
@@ -49,5 +53,15 @@
     </style>
 
     <!-- TEMA TRANSLÚCIDO [FIN] -->
+
+    <!--########################################################################################################################################################################################## -->
+
+    <!-- ESTILOS PARA LAS VISTAS DE LA BIBLIOTECA -->
+
+    <style name="AndroidUtilsTheme.RateAppTheme" parent="AndroidUtilsTheme.Translucent">
+        <item name="android:backgroundDimAmount">0.8</item>
+    </style>
+
+    <!--########################################################################################################################################################################################## -->
 
 </resources>
