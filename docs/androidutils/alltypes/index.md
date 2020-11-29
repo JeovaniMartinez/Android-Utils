@@ -4,6 +4,11 @@
 
 | Name | Summary |
 |---|---|
+| (extensions in package com.jeovanimartinez.androidutils.extensions)
+
+##### [android.app.Activity](../com.jeovanimartinez.androidutils.extensions/android.app.-activity/index.md)
+
+
 |
 
 ##### [com.jeovanimartinez.androidutils.Base](../com.jeovanimartinez.androidutils/-base/index.md)

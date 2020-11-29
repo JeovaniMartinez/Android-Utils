@@ -1,7 +1,8 @@
 $dokka.format:gfm
 $dokka.linkExtension:md
-
+$dokka.location:com.jeovanimartinez.androidutils.extensions$configureTaskDescription(android.app.Activity, kotlin.Int, kotlin.Int, kotlin.Int)com.jeovanimartinez.androidutils.extensions/android.app.-activity/configure-task-description.md
 com.jeovanimartinez.androidutils
+com.jeovanimartinez.androidutils.extensions
 com.jeovanimartinez.androidutils.moreapps
 com.jeovanimartinez.androidutils.reviews
 com.jeovanimartinez.androidutils.reviews.rateinapp
