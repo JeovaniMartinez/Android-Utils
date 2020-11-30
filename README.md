@@ -37,7 +37,10 @@ setLogEnable(true) // Habilita o deshabilita el log de depuración
 setFirebaseAnalyticsInstance(FirebaseAnalytics.getInstance(this@MainActivity))
 ```
 
-## Lista de utilidades
+#
+#
+
+## Lista de Utilidades
 
 ### RateInApp 
 Utilidad para iniciar un flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación (Cantos días tiene instalada, cuantas veces se ha iniciado, etc.).
@@ -88,3 +91,17 @@ MoreAppsGPlay.setDeveloperId("Jedemm+Technologies").showAppList(this@MainActivit
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)**
 
 #
+
+#
+
+## Funciones de Extensión
+
+### Activity **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.extensions/android.app.-activity/index.md)**
+
+- Permite configurar fácilmente el TaskDescription de la actividad, llamar en el onCreate() para la configuración inicial, y si es necesario en otro momento para actualizar la TaskDescription.
+```Kotlin
+configureTaskDescription(R.string.app_name, R.drawable.ic_logo, R.color.colorBackground)
+```
+
+
+
