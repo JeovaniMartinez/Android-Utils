@@ -96,7 +96,7 @@ MoreAppsGPlay.setDeveloperId("Jedemm+Technologies").showAppList(this@MainActivit
 
 ## Funciones de Extensión
 
-### Activity **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.extensions/android.app.-activity/index.md)**
+### Activity **[[Documentación]](docs/androidutils/com.jeovanimartinez.androidutils.extensions/android.app.-activity/index.md)**
 
 - Permite configurar fácilmente el TaskDescription de la actividad, llamar en el onCreate() para la configuración inicial, y si es necesario en otro momento para actualizar la TaskDescription.
 ```Kotlin
