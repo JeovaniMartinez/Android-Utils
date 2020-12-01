@@ -102,6 +102,3 @@ MoreAppsGPlay.setDeveloperId("Jedemm+Technologies").showAppList(this@MainActivit
 ```Kotlin
 configureTaskDescription(R.string.app_name, R.drawable.ic_logo, R.color.colorBackground)
 ```
-
-
-
