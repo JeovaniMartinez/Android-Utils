@@ -50,6 +50,8 @@ Utilidad para iniciar un flujo que invita al usuario a calificar la aplicación,
 Para Android 5.0 (API 21) y posteriores, se utiliza Google Play In-App Review API, por lo que se puede calificar dentro de la aplicación.
 Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es dirigido a los detalles de la aplicación en Google Play.
 
+![Demo](/resources/images/rate-in-app/rate-in-app-demo.png?raw=true)
+
 Ejemplo de uso:
 
 En el onCreate() del singleton o de la actividad principal, hay que establecer los valores de configuración e inicializar la utilidad pasando un contexto. Es muy importante hacerlo solo una vez en la app, ya que en ese momento se contabilizan las veces que ha iniciado el usuario la aplicación. (Consultar la documentación para ver la función de cada parámetro de la configuración).
