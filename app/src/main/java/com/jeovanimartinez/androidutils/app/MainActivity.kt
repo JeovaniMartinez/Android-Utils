@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
@@ -72,6 +73,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             RateInApp.checkAndShow(this@MainActivity)
+
+        }
+
+        // Muestra la actividad de acerca de
+        about.setOnClickListener {
+
+            AboutApp.apply {
+                //appName = "Jeo"
+                termsAndPrivacyPolicyLink = "http:www.cok.com"
+            }.show(this@MainActivity)
 
         }
 
