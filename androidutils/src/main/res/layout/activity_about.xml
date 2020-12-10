@@ -170,6 +170,14 @@
                     app:layout_constraintTop_toBottomOf="@id/about_BottomSeparator"
                     tools:ignore="SmallSp" />
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/about_verticalGuideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
