@@ -30,7 +30,7 @@ object AboutApp {
 
     /** Logo de la empresa */
     @DrawableRes
-    var companyLogo = R.drawable.logo_jedem
+    var companyLogo = R.drawable.logo_jedemm_com
 
     /** Nombre de la empresa */
     @StringRes
