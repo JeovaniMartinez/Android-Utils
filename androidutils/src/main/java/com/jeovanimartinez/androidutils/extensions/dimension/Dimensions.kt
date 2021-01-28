@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.jeovanimartinez.androidutils.extensions.dimensions
+package com.jeovanimartinez.androidutils.extensions.dimension
 
 import android.content.Context
 import android.view.View
