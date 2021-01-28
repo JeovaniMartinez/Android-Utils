@@ -41,20 +41,20 @@ abstract class Base<T : Base<T>> {
      * Muestra el [message] y el [throwable] en el log de DEPURACIÓN,
      * usado para detallar el flujo de ejecución, se puede habilitar y deshabilitar con setLogEnable
      **/
-    protected fun log(message: Any, throwable: Throwable? = null) {
+    internal fun log(message: Any, throwable: Throwable? = null) {
         if (!logEnable) return
         if (throwable != null) Log.d(LOG_TAG, message.toString(), throwable)
         else Log.d(LOG_TAG, message.toString())
     }
 
     /** Muestra el [message] y el [throwable] en el log de ADVERTENCIA */
-    protected fun logw(message: Any, throwable: Throwable? = null) {
+    internal fun logw(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.w(LOG_TAG, message.toString(), throwable)
         else Log.w(LOG_TAG, message.toString())
     }
 
     /** Muestra el [message] y el [throwable] en el log de ERROR */
-    protected fun loge(message: Any, throwable: Throwable? = null) {
+    internal fun loge(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.e(LOG_TAG, message.toString(), throwable)
         else Log.e(LOG_TAG, message.toString())
     }
