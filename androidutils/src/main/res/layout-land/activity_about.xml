@@ -13,6 +13,23 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/about_topActionCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@id/about_contentCard"
+            app:layout_constraintTop_toTopOf="@id/about_contentCard">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/about_closeTermsBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="?attr/actionBarItemBackground"
+                app:srcCompat="@drawable/ic_back" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/about_contentCard"
             android:layout_width="430dp"
             android:layout_height="240dp"
@@ -200,8 +217,8 @@
                 android:layout_height="match_parent"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar

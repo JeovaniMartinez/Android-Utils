@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.about
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import com.jeovanimartinez.androidutils.extensions.dimension.dip
+import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import kotlinx.android.synthetic.main.activity_about.*
 import java.util.*
 
@@ -21,9 +24,9 @@ import java.util.*
 /** Actividad de acerca de */
 class AboutActivity : AppCompatActivity() {
 
-    var activityIsRunning = true // Para mostrar toast solo si la actividad esta en ejecución
-    var loadingTermsAndPolicyInProgress = false
-    var termsAndPolicyVisible = false
+    private var activityIsRunning = true // Para mostrar toast solo si la actividad esta en ejecución
+    private var loadingTermsAndPolicyInProgress = false
+    private var termsAndPolicyVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +61,21 @@ class AboutActivity : AppCompatActivity() {
 
         about_progressBar.visibility = View.GONE
         about_termsAndPolicyWebView.visibility = View.GONE
+        about_topActionCard.visibility = View.GONE
+
+        // Se ajusta para ocultar el elemento
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            about_topActionCard.translationX = dip(48).toFloat()
+        } else {
+            about_topActionCard.translationY = dip(48).toFloat()
+        }
 
         about_closeBtn.setOnClickListener {
             supportFinishAfterTransition()
+        }
+
+        about_closeTermsBtn.setOnClickListener {
+            hideTermsAndPolicy()
         }
 
     }
@@ -138,6 +153,8 @@ class AboutActivity : AppCompatActivity() {
                 super.onPageFinished(view, url)
                 AboutApp.log("WebViewClient onPageFinished() invoked")
 
+                view?.scrollTo(0, 0) // Se posiciona en el top de la vista
+
                 // Se espera un momento para evitar acciones repetidas
                 Handler(Looper.getMainLooper()).postDelayed({
                     loadingTermsAndPolicyInProgress = false
@@ -174,6 +191,14 @@ class AboutActivity : AppCompatActivity() {
         AboutApp.log("showTermsAndPolicy() Invoked")
         termsAndPolicyVisible = true // Indica que están visibles
 
+        // Visibilidad y animación del botón de atrás en los términos
+        about_topActionCard.visibility = View.VISIBLE
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            about_topActionCard.animate().translationX(0f).onAnimationEnd { }
+        } else {
+            about_topActionCard.animate().translationY(0f).onAnimationEnd { }
+        }
+
         about_termsAndPolicyWebView.visibility = View.VISIBLE
 
         // Se manda al final de la vista para mostrar una animación
@@ -191,10 +216,16 @@ class AboutActivity : AppCompatActivity() {
         AboutApp.log("hideTermsAndPolicy() Invoked")
         termsAndPolicyVisible = false // Se indica que ya no están visibles
 
+        // Visibilidad y animación del botón de atrás en los términos
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            about_topActionCard.animate().translationX(dip(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
+        } else {
+            about_topActionCard.animate().translationY(dip(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
+        }
+
         // Se muestra el contenedor de la tarjeta y se oculta el web view mediante una animación
         about_contentCardLayout.animate().translationX(0f).start()
         about_termsAndPolicyWebView.animate().translationX(about_contentCard.width.toFloat()).start()
     }
-
 
 }
