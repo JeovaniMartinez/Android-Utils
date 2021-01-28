@@ -20,9 +20,11 @@
     <string name="about_app_author_link">https://github.com/JeovaniMartinez</string>
     <string name="about_app_company_name">Jedemm Technologies</string>
     <string name="about_app_company_link">https://jedemm.com</string>
-    <string name="about_app_copyright">Copyright © %1$s</string>
+    <string name="about_app_copyright">Copyright © %1$s %2$s</string>
     <string name="about_app_all_rights_reserved">All Rights Reserved</string>
     <string name="about_app_terms_and_policy">Terms &amp;\nPrivacy Policy</string>
+    <string name="about_app_terms_and_policy_not_available">Not available</string>
+    <string name="about_app_terms_and_policy_network_error">Not available, internet connection required</string>
     <string name="about_app_terms_and_policy_link">https://jedemm.com</string>
     <string name="about_app_open_source_licenses">Open Source\nLicenses</string>
 
