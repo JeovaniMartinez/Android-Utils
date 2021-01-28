@@ -167,7 +167,7 @@
                     android:layout_height="48dp"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+
                     app:layout_constraintTop_toBottomOf="@id/about_BottomSeparator"
                     app:srcCompat="@drawable/ic_close_box" />
 
@@ -180,11 +180,31 @@
                     android:gravity="center"
                     android:text="@string/about_app_open_source_licenses"
                     android:textSize="9sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/about_termsAndPolicy"
+                    app:layout_constraintEnd_toStartOf="@id/about_closeBtn"
                     app:layout_constraintTop_toBottomOf="@id/about_BottomSeparator"
                     tools:ignore="SmallSp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <WebView
+                android:id="@+id/about_termsAndPolicyWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/about_progressBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="-7dp"
+                android:indeterminate="true" />
 
         </com.google.android.material.card.MaterialCardView>
 
