@@ -95,18 +95,16 @@ class AboutActivity : AppCompatActivity() {
         about_topActionCard.setCardBackgroundColor(color)
         about_contentCard.setCardBackgroundColor(color)
 
-        val iconsColor = ContextCompat.getColor(this@AboutActivity, AboutApp.iconsColor)
-
-        val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_close_box)
-        val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
-
+        // Se asigna el color de los iconos, solo funciona de Android 5 en adelante
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val iconsColor = ContextCompat.getColor(this@AboutActivity, AboutApp.iconsColor)
+            val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_close_box)
+            val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
             closeDrawable?.setTint(iconsColor)
             closeTermsDrawable?.setTint(iconsColor)
+            about_closeBtn.setImageDrawable(closeDrawable)
+            about_closeTermsBtn.setImageDrawable(closeTermsDrawable)
         }
-
-        about_closeBtn.setImageDrawable(closeDrawable)
-        about_closeTermsBtn.setImageDrawable(closeTermsDrawable)
 
         about_openSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
