@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Colores del predeterminados tema, si se reemplazan en la app, se van a usar los colores definidos en la app, ya que estos
+        archivos se mezclan y tiene prioridad el de la app
+    -->
+    <color name="colorPrimary">#00838f</color>
+    <color name="colorAccent">#00838f</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorPrimaryVariant">#009688</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#2196F3</color>
+    <color name="colorSecondaryVariant">#1976D2</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorOnBackground">#000000</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorError">#B00020</color>
+    <color name="colorOnError">#FFFFFF</color>
+
+    <!-- Colores para la actividad de acerca de -->
+    <color name="colorActivityAboutIcons">#707070</color>
+    <color name="colorTermsAndPrivacyPolicyText">#434343</color>
+
+</resources>
