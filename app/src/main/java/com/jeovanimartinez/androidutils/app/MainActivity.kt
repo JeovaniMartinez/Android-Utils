@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.about.AboutApp
+import com.jeovanimartinez.androidutils.extensions.configureTaskDescription
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initSetup()
+
+        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, R.color.teal_200)
     }
 
     private fun initSetup() {
@@ -80,8 +83,18 @@ class MainActivity : AppCompatActivity() {
         about.setOnClickListener {
 
             AboutApp.apply {
-                //appName = "Jeo"
-                termsAndPrivacyPolicyLink = "http:www.cok.com"
+                backgroundColor = R.color.colorBackground
+                appIcon = R.drawable.library_logo
+                appName = R.string.about_app_app_name
+                appVersionName = BuildConfig.VERSION_NAME
+                authorName = R.string.about_app_author_name
+                authorLink = R.string.about_app_author_link
+                companyLogo = R.drawable.logo_jedemm_com
+                companyName = R.string.about_app_company_name
+                companyLink = R.string.about_app_company_link
+                termsAndPrivacyPolicyLink = R.string.terms_and_privacy_policy_link
+                termsAndPrivacyPolicyTextColor = R.color.colorTermsAndPrivacyPolicyText
+                showOpenSourceLicenses = true
             }.show(this@MainActivity)
 
         }

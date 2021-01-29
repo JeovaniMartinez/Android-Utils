@@ -7,10 +7,21 @@ import android.os.Build
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 
 /** Utilidad para mostrar una pantalla de acerca de la aplicación */
-object AboutApp {
+object AboutApp : Base<AboutApp>() {
+
+    override val LOG_TAG = "AboutApp"
+
+    /** Color de fondo de la actividad, si se deja en null se usa el color predeterminado del tema de la app (si esta definido) sino se usa el del tema de la biblioteca */
+    @ColorRes
+    var backgroundColor = R.color.colorBackground
+
+    /** Color para los iconos */
+    @ColorRes
+    var iconsColor = R.color.colorActivityAboutIcons
 
     /** Ícono de la aplicación */
     @DrawableRes
@@ -19,6 +30,9 @@ object AboutApp {
     /** Nombre de la aplicación */
     @StringRes
     var appName = R.string.about_app_app_name
+
+    /** Version de la aplicación */
+    var appVersionName: String = ""
 
     /** Nombre del autor */
     @StringRes
@@ -43,6 +57,10 @@ object AboutApp {
     /** URL de los términos de uso y política de privacidad */
     @StringRes
     var termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link
+
+    /** Color del texto de los términos de uso y política de privacidad, si no se define, se usa el color predeterminado  */
+    @ColorRes
+    var termsAndPrivacyPolicyTextColor = R.color.colorTermsAndPrivacyPolicyText
 
     /**
      * Determina si se muestra un botón para ver las licencias de código abierto de la app.
@@ -76,6 +94,7 @@ object AboutApp {
             Intent(activity, AboutActivity::class.java),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
         )
+        log("Launched AboutActivity")
     }
 
 }

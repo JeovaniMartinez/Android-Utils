@@ -12,6 +12,7 @@ import android.view.View
 import android.view.Window
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
@@ -90,6 +91,23 @@ class AboutActivity : AppCompatActivity() {
 
         about_openSourceLicenses.visibility = if (AboutApp.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
+        val color = ContextCompat.getColor(this@AboutActivity, AboutApp.backgroundColor)
+        about_topActionCard.setCardBackgroundColor(color)
+        about_contentCard.setCardBackgroundColor(color)
+
+        val iconsColor = ContextCompat.getColor(this@AboutActivity, AboutApp.iconsColor)
+
+        val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_close_box)
+        val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            closeDrawable?.setTint(iconsColor)
+            closeTermsDrawable?.setTint(iconsColor)
+        }
+
+        about_closeBtn.setImageDrawable(closeDrawable)
+        about_closeTermsBtn.setImageDrawable(closeTermsDrawable)
+
         about_openSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
         }
@@ -143,7 +161,8 @@ class AboutActivity : AppCompatActivity() {
 
         // Se obtiene el color de fondo y el color del texto para enviar los datos al servidor y obtener la vista adaptada al tema (el substring elimina el alpha ya que no se requiere)
         val backgroundColor = Integer.toHexString(about_contentCard.cardBackgroundColor.defaultColor).substring(2)
-        val textColor = Integer.toHexString(about_appName.currentTextColor).substring(2)
+        val textColor = resources.getString(AboutApp.termsAndPrivacyPolicyTextColor).replace("#", "").substring(2) // Se obtiene como texto y se ajusta el color
+
 
         // Se genera un objeto WebViewClient para los eventos
         about_termsAndPolicyWebView.webViewClient = object : WebViewClient() {
@@ -182,7 +201,7 @@ class AboutActivity : AppCompatActivity() {
         @SuppressLint("SetJavaScriptEnabled")
         about_termsAndPolicyWebView.settings.javaScriptEnabled = true // Se habilita javascript ya que es necesario para que se configure el estilo de la página con los parámetros de la URL
         // Se carga la URL, pasando los parámetros de color de fondo y color de texto
-        about_termsAndPolicyWebView.loadUrl("https://s3.amazonaws.com/jedemm.com/RCC_Calculator/license.html?background-color=$backgroundColor&text-color=$textColor")
+        about_termsAndPolicyWebView.loadUrl("${getString(AboutApp.termsAndPrivacyPolicyLink)}?background-color=$backgroundColor&text-color=$textColor")
     }
 
     /** Muestra los términos y la política de privacidad, llamar solo si se cargaron correctamente */
