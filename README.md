@@ -11,7 +11,8 @@ Conjunto de utilidades para el desarrollo de aplicaciones Android
 - Toda la definición de paquetes, clases, propiedades, métodos, etc. está escrita en idioma inglés, y toda la documentación está escrita en español.
 - La biblioteca muestra algunas vistas, considerando lo siguiente:
 	- Soporte para tema claro y oscuro, se utiliza los componentes de Material Design para Android, y se sigue su estilo de diseño.
-	- Las vistas se pueden mostrar en los siguientes idiomas: Inglés, Español
+	- Las vistas se pueden mostrar en los siguientes idiomas: Inglés, Español.
+	- En algunos ejemplos de uso se muestra un panel colapsable llamado "Modo compacto" donde se muestra el código con la configuración mínima requerida para la utilidad, teniendo en cuanta que se usan muchos valores predeterminados definidos en la biblioteca, por lo que se recomienda usar ese código solo si se tiene una rama de la biblioteca y se han ajustado los valores predeterminados por los deseados.
 
 #### Configuración
 Agregar la siguiente configuración en Gradle (a nivel de la app)
@@ -78,6 +79,16 @@ Ejemplo de uso:
 ```Kotlin
 RateApp.goToRateInGooglePlay(this@MainActivity)
 ```
+<details>
+<summary>Modo compacto</summary>
+<p>
+	
+```Kotlin
+RateApp.goToRateInGooglePlay(this@MainActivity)
+```
+</p>
+</details> 
+
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)**
 
 #
@@ -89,6 +100,16 @@ Ejemplo de uso:
 ```Kotlin
 MoreAppsGPlay.setDeveloperId("Jedemm+Technologies").showAppList(this@MainActivity)
 ```
+<details>
+<summary>Modo compacto</summary>
+<p>
+	
+```Kotlin
+MoreAppsGPlay.showAppList(this@MainActivity)
+```
+</p>
+</details>
+
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)**
 
 #
