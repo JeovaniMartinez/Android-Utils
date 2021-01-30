@@ -6,7 +6,7 @@
 |---|---|
 | [com.jeovanimartinez.androidutils](com.jeovanimartinez.androidutils/index.md) |  |
 | [com.jeovanimartinez.androidutils.about](com.jeovanimartinez.androidutils.about/index.md) |  |
-| [com.jeovanimartinez.androidutils.extensions](com.jeovanimartinez.androidutils.extensions/index.md) |  |
+| [com.jeovanimartinez.androidutils.extensions.activity](com.jeovanimartinez.androidutils.extensions.activity/index.md) |  |
 | [com.jeovanimartinez.androidutils.extensions.context](com.jeovanimartinez.androidutils.extensions.context/index.md) |  |
 | [com.jeovanimartinez.androidutils.extensions.dimension](com.jeovanimartinez.androidutils.extensions.dimension/index.md) |  |
 | [com.jeovanimartinez.androidutils.extensions.nullability](com.jeovanimartinez.androidutils.extensions.nullability/index.md) |  |

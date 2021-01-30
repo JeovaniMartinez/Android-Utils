@@ -18,9 +18,9 @@ Actividad de acerca de
 Utilidad para mostrar una pantalla de acerca de la aplicación
 
 
-| (extensions in package com.jeovanimartinez.androidutils.extensions)
+| (extensions in package com.jeovanimartinez.androidutils.extensions.activity)
 
-##### [android.app.Activity](../com.jeovanimartinez.androidutils.extensions/android.app.-activity/index.md)
+##### [android.app.Activity](../com.jeovanimartinez.androidutils.extensions.activity/android.app.-activity/index.md)
 
 
 |

@@ -1,6 +1,6 @@
 $dokka.format:gfm
 $dokka.linkExtension:md
-$dokka.location:com.jeovanimartinez.androidutils.extensions$configureTaskDescription(android.app.Activity, kotlin.Int, kotlin.Int, kotlin.Int)com.jeovanimartinez.androidutils.extensions/android.app.-activity/configure-task-description.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.activity$configureTaskDescription(android.app.Activity, kotlin.Int, kotlin.Int, kotlin.Int)com.jeovanimartinez.androidutils.extensions.activity/android.app.-activity/configure-task-description.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.context$longToast(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.context/android.content.-context/long-toast.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.context$longToast(android.content.Context, kotlin.String)com.jeovanimartinez.androidutils.extensions.context/android.content.-context/long-toast.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.context$shortToast(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.context/android.content.-context/short-toast.md
@@ -22,7 +22,7 @@ $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp(android
 $dokka.location:com.jeovanimartinez.androidutils.extensions.view$onAnimationEnd(android.view.ViewPropertyAnimator, kotlin.Function1((android.animation.Animator, kotlin.Unit)))com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/on-animation-end.md
 com.jeovanimartinez.androidutils
 com.jeovanimartinez.androidutils.about
-com.jeovanimartinez.androidutils.extensions
+com.jeovanimartinez.androidutils.extensions.activity
 com.jeovanimartinez.androidutils.extensions.context
 com.jeovanimartinez.androidutils.extensions.dimension
 com.jeovanimartinez.androidutils.extensions.nullability

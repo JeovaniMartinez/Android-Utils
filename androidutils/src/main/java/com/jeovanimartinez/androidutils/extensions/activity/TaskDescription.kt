@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.jeovanimartinez.androidutils.extensions
+package com.jeovanimartinez.androidutils.extensions.activity
 
 import android.app.Activity
 import android.app.ActivityManager
