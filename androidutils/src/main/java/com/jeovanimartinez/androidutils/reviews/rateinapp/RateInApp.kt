@@ -343,7 +343,6 @@ object RateInApp : Base<RateInApp>() {
             // Se muestra la actividad (estilo diálogo)
             activity.startActivity(
                 Intent(activity, RateAppActivity::class.java)
-                    .putExtra(RateAppActivity.Companion.ExtraKey.LOG_ENABLE, isLogEnable())
                     .putExtra(RateAppActivity.Companion.ExtraKey.SHOW_NEVER_ASK_AGAIN_BUTTON, showNeverAskAgainButton),
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
             )

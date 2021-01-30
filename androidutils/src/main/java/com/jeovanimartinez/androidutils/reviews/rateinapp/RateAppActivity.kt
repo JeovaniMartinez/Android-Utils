@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.transition.Fade
-import android.util.Log
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
@@ -20,14 +19,11 @@ class RateAppActivity : AppCompatActivity() {
     companion object {
         /** Claves para los extras que se reciben al iniciar la actividad */
         object ExtraKey {
-            const val LOG_ENABLE = "log_enable" // Boolean
             const val SHOW_NEVER_ASK_AGAIN_BUTTON = "show_never_ask_again_button" // Boolean
         }
 
-        private const val LOG_TAG = "RateInApp" // Se usa la misma etiqueta que en RateInApp
     }
 
-    private var logEnable = false
     private var showNeverAskAgainButton = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,16 +31,15 @@ class RateAppActivity : AppCompatActivity() {
         configureTransitions()
         setContentView(R.layout.activity_rate_app)
 
-        logEnable = intent.extras?.getBoolean(ExtraKey.LOG_ENABLE) ?: false
         showNeverAskAgainButton = intent.extras?.getBoolean(ExtraKey.SHOW_NEVER_ASK_AGAIN_BUTTON) ?: true
 
         initSetup()
 
-        if (logEnable) Log.d(LOG_TAG, "Started RateAppActivity")
+        RateInApp.log("Started RateAppActivity")
     }
 
     override fun onBackPressed() {
-        if (logEnable) Log.d(LOG_TAG, "User clicked back button")
+        RateInApp.log("User clicked back button")
         super.onBackPressed()
     }
 
@@ -55,19 +50,19 @@ class RateAppActivity : AppCompatActivity() {
         rateApp_noThanks.visibility = if (showNeverAskAgainButton) View.VISIBLE else View.GONE
 
         rateApp_rateNow.setOnClickListener {
-            if (logEnable) Log.d(LOG_TAG, "User clicked rateApp_rateNow button")
+            RateInApp.log("User clicked rateApp_rateNow button")
             RateApp.goToRateInGooglePlay(this@RateAppActivity) // Se usa la utilidad para dirigir al usuario Google Play
             supportFinishAfterTransition() // Necesario para que se muestre la transición de salida
         }
 
         rateApp_later.setOnClickListener {
-            if (logEnable) Log.d(LOG_TAG, "User clicked rateApp_later button")
+            RateInApp.log("User clicked rateApp_later button")
             supportFinishAfterTransition()
         }
 
         rateApp_noThanks.setOnClickListener {
 
-            if (logEnable) Log.d(LOG_TAG, "User clicked rateApp_noThanks button")
+            RateInApp.log("User clicked rateApp_noThanks button")
 
             /*
             * Se guarda la preferencia de no mostrar nuevamente el diálogo
@@ -76,7 +71,7 @@ class RateAppActivity : AppCompatActivity() {
             * */
             val sharedPreferences = getSharedPreferences("rate_in_app_preferences", Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
             sharedPreferences.edit().putBoolean("rate_in_app_never_show_again", true).apply()
-            if (logEnable) Log.d(LOG_TAG, "Set rate_in_app_never_show_again to true and saved in preferences")
+            RateInApp.log("Set rate_in_app_never_show_again to true and saved in preferences")
 
             supportFinishAfterTransition()
         }
