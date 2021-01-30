@@ -120,31 +120,20 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 
 #### Activity **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.activity/android.app.-activity/index.md)**
 
-Lista de archivos:
 - TaskDescription.kt: Contiene extensiones para configurar fácilmente el TaskDescription de las actividades.
-
 
 #### Context **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/android.content.-context/index.md)**
 
-Lista de archivos:
 - Toast.kt: Extensiones para mostrar rápidamente toast de corta y larga duración.
 
 #### Dimension **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/index.md)**
 
-Lista de archivos:
 - Dimensions.kt: Extensiones disponibles para cualquier vista y cualquier contexto, permiten convertir fácilmente dp o sp a px y viceversa.
 
 #### Nullability **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.nullability/index.md)**
 
-Lista de archivos:
 - NullSafety.kt: Extensiones para trabajar más fácilmente con valores nulos y con la seguridad contra nulos.
-
 
 #### View **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/index.md)**
 
-Lista de archivos:
 - Animations.kt: Extensiones para facilitar el uso de animaciones en las vistas.
-
-
-
-
