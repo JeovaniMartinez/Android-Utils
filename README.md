@@ -35,6 +35,7 @@ Se recomienda usar la siguiente configuración para habilitarlo en desarrollo y 
 Base.logEnable = BuildConfig.DEBUG
 ```
 Nota: Base es la superclase de la mayoría de las utilidades, por eso su valor afecta de manera global a todas las utilidades.
+
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils/-base/index.md)**
 #
 #
