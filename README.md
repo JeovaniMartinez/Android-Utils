@@ -29,17 +29,13 @@ La biblioteca muestra algunas vistas, las cuales siguen el estilo del tema de la
 
 #### General
 
-La mayoría de las clases tienen los siguientes métodos en común
+El log de depuración se puede habilitar y deshabilitar de manera global, y afecta a todas las utilidades de la biblioteca.
+Se recomienda usar la siguiente configuración para habilitarlo en desarrollo y deshabilitarlo en producción, solo es necesario ajustarlo una vez dentro de la app, ya sea en el singleton de la app o en el onCreate() de la actividad principal.
 ```Kotlin
-setLogEnable(true) // Habilita o deshabilita el log de depuración
-
-/*
-* Para asignar la instancia de FirebaseAnalytics, que permite que algunas clases registren eventos.
-* Es necesario que la aplicación tenga configurado FirebaseAnalytics
-* */
-setFirebaseAnalyticsInstance(FirebaseAnalytics.getInstance(this@MainActivity))
+Base.logEnable = BuildConfig.DEBUG
 ```
-
+Nota: Base es la superclase de la mayoría de las utilidades, por eso su valor afecta de manera global a todas las utilidades.
+**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils/-base/index.md)**
 #
 #
 
