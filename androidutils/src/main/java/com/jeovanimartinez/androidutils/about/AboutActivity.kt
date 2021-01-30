@@ -198,6 +198,7 @@ class AboutActivity : AppCompatActivity() {
 
         @SuppressLint("SetJavaScriptEnabled")
         about_termsAndPolicyWebView.settings.javaScriptEnabled = true // Se habilita javascript ya que es necesario para que se configure el estilo de la página con los parámetros de la URL
+        about_termsAndPolicyWebView.settings.domStorageEnabled = true // Se habilita para mejor compatibilidad
         // Se carga la URL, pasando los parámetros de color de fondo y color de texto
         about_termsAndPolicyWebView.loadUrl("${getString(AboutApp.termsAndPrivacyPolicyLink)}?background-color=$backgroundColor&text-color=$textColor")
     }
