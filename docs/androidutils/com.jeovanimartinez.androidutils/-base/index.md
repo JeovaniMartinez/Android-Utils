@@ -23,9 +23,13 @@ Clase base con propiedades y funciones comunes
 
 | Name | Summary |
 |---|---|
-| [isLogEnable](is-log-enable.md) | Devuelve el estado actual del log, true si esta habilitado, false de lo contrario`fun isLogEnable(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
 | [setFirebaseAnalyticsInstance](set-firebase-analytics-instance.md) | Asigna la instancia de [firebaseAnalytics](set-firebase-analytics-instance.md#com.jeovanimartinez.androidutils.Base$setFirebaseAnalyticsInstance(com.google.firebase.analytics.FirebaseAnalytics)/firebaseAnalytics) para registro de eventos`fun setFirebaseAnalyticsInstance(firebaseAnalytics: FirebaseAnalytics): T` |
-| [setLogEnable](set-log-enable.md) | Habilita o deshabilita los mensajes del log de depuración en base a [logEnable](set-log-enable.md#com.jeovanimartinez.androidutils.Base$setLogEnable(kotlin.Boolean)/logEnable)`fun setLogEnable(logEnable: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): T` |
+
+### Companion Object Properties
+
+| Name | Summary |
+|---|---|
+| [logEnable](log-enable.md) | Para habilitar o deshabilitar los mensajes del log de depuración, de manera predeterminada es según BuildConfig.DEBUG, esta configuración aplica para todas las clases que hereden de Base, es decir se activa o desactiva de manera global`var logEnable: <ERROR CLASS>` |
 
 ### Inheritors
 
