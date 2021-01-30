@@ -118,24 +118,33 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 
 ## Funciones de Extensión
 
-### Activity
+### Activity **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.activity/android.app.-activity/index.md)**
 
-- TaskDescription: Extensión para configurar fácilmente el TaskDescription en las actividades. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions/android.app.-activity/configure-task-description.md)**
-
-### Context
-
-- General: Conjunto de extensiones para Context. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/android.content.-context/index.md)**
+Lista de archivos:
+- TaskDescription.kt: Contiene extensiones para configurar fácilmente el TaskDescription de las actividades.
 
 
-### Dimension
+### Context **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/android.content.-context/index.md)**
 
-- Extensiones disponibles para cualquier vista y cualquier contexto, permiten convertir fácilmente dp o sp a px y viceversa. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/index.md)**
+Lista de archivos:
+- Toast.kt: Extensiones para mostrar rápidamente toast de corta y larga duración.
 
-### Nullability
+### Dimension **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/index.md)**
 
-- Extensiones para trabajar más fácilmente con valores nulos y con la seguridad contra nulos. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.nullability/index.md)**
+Lista de archivos:
+- Dimensions.kt: Extensiones disponibles para cualquier vista y cualquier contexto, permiten convertir fácilmente dp o sp a px y viceversa.
 
-### View
+### Nullability **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.nullability/index.md)**
 
-- Animaciones: extensiones para facilitar el uso de animaciones. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/index.md)**
+Lista de archivos:
+- NullSafety.kt: Extensiones para trabajar más fácilmente con valores nulos y con la seguridad contra nulos.
+
+
+### View **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/index.md)**
+
+Lista de archivos:
+- Animations.kt: Extensiones para facilitar el uso de animaciones en las vistas.
+
+
+
 
