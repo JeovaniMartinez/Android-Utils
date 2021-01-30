@@ -20,8 +20,10 @@
     <color name="colorError">#B00020</color>
     <color name="colorOnError">#FFFFFF</color>
 
+    <!-- Color para los iconos -->
+    <color name="colorIcon">#707070</color>
+
     <!-- Colores para la actividad de acerca de -->
-    <color name="colorActivityAboutIcons">#707070</color>
     <color name="colorTermsAndPrivacyPolicyText">#434343</color>
 
 </resources>

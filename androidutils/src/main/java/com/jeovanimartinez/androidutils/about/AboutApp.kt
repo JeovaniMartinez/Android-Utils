@@ -21,7 +21,7 @@ object AboutApp : Base<AboutApp>() {
 
     /** Color para los iconos */
     @ColorRes
-    var iconsColor = R.color.colorActivityAboutIcons
+    var iconsColor = R.color.colorIcon
 
     /** Ícono de la aplicación */
     @DrawableRes

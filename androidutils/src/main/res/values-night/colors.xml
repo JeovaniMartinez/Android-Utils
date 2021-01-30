@@ -20,8 +20,10 @@
     <color name="colorError">#CF6679</color>
     <color name="colorOnError">#000000</color>
 
+    <!-- Color para los iconos -->
+    <color name="colorIcon">#CACACA</color>
+
     <!-- Colores para la actividad de acerca de -->
-    <color name="colorActivityAboutIcons">#CACACA</color>
     <color name="colorTermsAndPrivacyPolicyText">#CFCFCF</color>
 
 </resources>
