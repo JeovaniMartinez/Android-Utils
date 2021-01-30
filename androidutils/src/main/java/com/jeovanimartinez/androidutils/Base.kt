@@ -10,6 +10,14 @@ import com.google.firebase.analytics.FirebaseAnalytics
  * */
 abstract class Base<T : Base<T>> {
 
+    companion object {
+        /**
+         * Para habilitar o deshabilitar los mensajes del log de depuración, de manera predeterminada es según BuildConfig.DEBUG,
+         * esta configuración aplica para todas las clases que hereden de Base, es decir se activa o desactiva de manera global
+         **/
+        var logEnable = BuildConfig.DEBUG
+    }
+
     /** Etiqueta par el log */
     @Suppress("PropertyName")
     protected abstract val LOG_TAG: String
@@ -17,24 +25,10 @@ abstract class Base<T : Base<T>> {
     /** Instancia de Firebase Analytics para registro de eventos, asignar solo si se requiere */
     protected var firebaseAnalytics: FirebaseAnalytics? = null
 
-    /** Para habilitar o deshabilitar los mensajes del log de depuración, de manera predeterminada es según BuildConfig.DEBUG */
-    private var logEnable = BuildConfig.DEBUG
-
     /** Asigna la instancia de [firebaseAnalytics] para registro de eventos */
     fun setFirebaseAnalyticsInstance(firebaseAnalytics: FirebaseAnalytics): T {
         this.firebaseAnalytics = firebaseAnalytics
         return this as T
-    }
-
-    /** Habilita o deshabilita los mensajes del log de depuración en base a [logEnable] */
-    fun setLogEnable(logEnable: Boolean): T {
-        this.logEnable = logEnable
-        return this as T
-    }
-
-    /** Devuelve el estado actual del log, true si esta habilitado, false de lo contrario */
-    protected fun isLogEnable(): Boolean {
-        return logEnable
     }
 
     /**
