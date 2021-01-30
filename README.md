@@ -118,10 +118,24 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 
 ## Funciones de Extensión
 
-### Activity **[[Documentación]](docs/androidutils/com.jeovanimartinez.androidutils.extensions/android.app.-activity/index.md)**
+### Activity
 
-- Permite configurar fácilmente el TaskDescription de la actividad, llamar en el onCreate() para la configuración inicial, y si es necesario en otro momento para actualizar la TaskDescription.
-```Kotlin
-configureTaskDescription(R.string.app_name, R.drawable.ic_logo, R.color.colorBackground)
-```
+- TaskDescription: Extensión para configurar fácilmente el TaskDescription en las actividades. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions/android.app.-activity/configure-task-description.md)**
+
+### Context
+
+- General: Conjunto de extensiones para Context. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/android.content.-context/index.md)**
+
+
+### Dimension
+
+- Extensiones disponibles para cualquier vista y cualquier contexto, permiten convertir fácilmente dp o sp a px y viceversa. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/index.md)**
+
+### Nullability
+
+- Extensiones para trabajar más fácilmente con valores nulos y con la seguridad contra nulos. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.nullability/index.md)**
+
+### View
+
+- Animaciones: extensiones para facilitar el uso de animaciones. **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/index.md)**
 
