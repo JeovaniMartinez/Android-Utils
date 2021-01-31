@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.extensions.context.shortToast
 
 /**
  * Utilidad para dirigir al usuario a Google Play, específicamente a la lista de aplicaciones del desarrollador.
@@ -34,7 +34,7 @@ object MoreAppsGPlay : Base<MoreAppsGPlay>() {
             firebaseAnalytics?.logEvent("more_apps_sent_to_google_play", null)
         } catch (ex: ActivityNotFoundException) {
             // Si no se pudo mostrar, se muestra un mensaje
-            Toast.makeText(activity, R.string.more_apps_unable_to_show_dev_page, Toast.LENGTH_SHORT).show()
+            activity.shortToast(R.string.more_apps_unable_to_show_dev_page)
             log("Unable to send user to developer page", ex)
             firebaseAnalytics?.logEvent("more_apps_unable_to_show_dev_page", null)
         }
