@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.extensions.context.shortToast
 
 /**
  * Utilidad para dirigir al usuario a Google Play, específicamente a los detalles de la aplicación.
@@ -17,11 +17,11 @@ object RateApp : Base<RateApp>() {
 
     override val LOG_TAG = "RateApp"
 
+    // Referencia: https://stackoverflow.com/questions/10816757/rate-this-app-link-in-google-play-store-app-on-the-phone
     /**
      * Dirige al usuario a los detalles de la aplicación en Google Play para que pueda calificar la aplicación.
      * Si es posible, se abre la aplicación directamente en la app de Google Play, en caso de no ser posible, se abre
      * en el navegador, si tampoco es posible, muestra un toast con un mensaje.
-     * Referencia: https://stackoverflow.com/questions/10816757/rate-this-app-link-in-google-play-store-app-on-the-phone
      *
      * @param activity actividad desde donde se llama, se usa para iniciar otras actividades
      * */
@@ -43,7 +43,7 @@ object RateApp : Base<RateApp>() {
                 firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_web", null)
             } catch (e2: ActivityNotFoundException) {
                 // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
-                Toast.makeText(activity, R.string.rate_app_unable_to_show_app_on_google_play, Toast.LENGTH_SHORT).show()
+                activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
                 log("Unable to send user to app details, google play app and web browser are not available", e2)
                 firebaseAnalytics?.logEvent("rate_app_unable_to_show_on_google_play", null)
             }
