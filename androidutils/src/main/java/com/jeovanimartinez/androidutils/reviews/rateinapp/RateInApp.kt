@@ -37,28 +37,36 @@ object RateInApp : Base<RateInApp>() {
      * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
      * */
     var minInstallElapsedDays = 10
-        set(value) = validateConfigArgument(value, 0)
+        set(value) {
+            field = validateConfigArgument(value, 0)
+        }
 
     /**
      * Número mínimo de veces que se debe haber iniciado la app desde que se instalo para poder mostrar el flujo, se usa en combinación con minInstallElapsedDays,
      * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1 (se muestra a partir del primer inicio)
      * */
     var minInstallLaunchTimes = 10
-        set(value) = validateConfigArgument(value, 1)
+        set(value) {
+            field = validateConfigArgument(value, 1)
+        }
 
     /**
      * Número mínimo de días requeridos desde que se mostró el flujo para mostrarlo nuevamente, se usa en combinación con minRemindLaunchTimes,
      * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
      * */
     var minRemindElapsedDays = 2
-        set(value) = validateConfigArgument(value, 0)
+        set(value) {
+            field = validateConfigArgument(value, 0)
+        }
 
     /**
      * Número mínimo de veces que se debe haber iniciado la app desde que mostró el flujo para mostrarlo nuevamente, se usa en combinación con
      * minRemindElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1 (se muestra a partir del primer inicio)
      * */
     var minRemindLaunchTimes = 4
-        set(value) = validateConfigArgument(value, 1)
+        set(value) {
+            field = validateConfigArgument(value, 1)
+        }
 
     /**
      * Cuando se llama a checkAndShow() se va a mostrar el flujo si se cumplen las condiciones, setShowAtEvent permite modificar a las cuantas veces
@@ -67,8 +75,9 @@ object RateInApp : Base<RateInApp>() {
      * a onResume(). Si de otro modo, showAtEvent fuera 1, el flujo se mostraría en la primera llamada a onResume(). El valor mínimo de showAtEvent es 1
      * */
     var showAtEvent = 2
-        set(value) = validateConfigArgument(value, 1)
-
+        set(value) {
+            field = validateConfigArgument(value, 1)
+        }
 
     /**
      * Para versiones anteriores a Android 5, donde se muestra el diálogo para invitar al usuario a calificar la app,
@@ -77,9 +86,10 @@ object RateInApp : Base<RateInApp>() {
     var showNeverAskAgainButton = true // De manera predeterminada si se muestra el botón
 
 
-    /** Se asegura que el argumento de configuración [value] sea válido */
-    private fun validateConfigArgument(value: Int, minValue: Int) {
+    /** Se asegura que el argumento de configuración [value] sea válido y devuelve el mismo valor para una asignación mas fácil */
+    private fun validateConfigArgument(value: Int, minValue: Int): Int {
         if (value < minValue) throw IllegalArgumentException("Invalid config value, value ($value) must be equal to or greater than $minValue")
+        return value
     }
 
     private lateinit var sharedPreferences: SharedPreferences // Para manipular las preferencias
