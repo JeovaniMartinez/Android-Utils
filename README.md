@@ -79,16 +79,6 @@ Ejemplo de uso:
 ```Kotlin
 RateApp.goToRateInGooglePlay(this@MainActivity)
 ```
-<details>
-<summary>Modo compacto</summary>
-<p>
-	
-```Kotlin
-RateApp.goToRateInGooglePlay(this@MainActivity)
-```
-</p>
-</details> 
-
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)**
 
 #

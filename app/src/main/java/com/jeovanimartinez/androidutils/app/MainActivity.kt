@@ -45,9 +45,6 @@ class MainActivity : AppCompatActivity() {
 
             RateApp.goToRateInGooglePlay(this@MainActivity)
 
-            // Modo compacto
-            // RateApp.goToRateInGooglePlay(this@MainActivity)
-
         }
 
         // Más aplicaciones
