@@ -16,14 +16,8 @@ object MoreAppsGPlay : Base<MoreAppsGPlay>() {
 
     override val LOG_TAG = "MoreAppsGPlay"
 
-    /** ID del desarrollador */
-    private var developerId = "Jedemm+Technologies"
-
-    /** Asigna el ID de desarrollador [developerId] del cual se va a mostrar la lista de aplicaciones */
-    fun setDeveloperId(developerId: String): MoreAppsGPlay {
-        this.developerId = developerId
-        return this
-    }
+    /** ID del desarrollador del cual se va a mostrar la lista de aplicaciones al llamar a showAppList */
+    var developerId = "Jedemm+Technologies"
 
     /**
      * Dirige al usuario a la lista de aplicaciones del desarrollador, en base a su ID (developerId).

@@ -50,7 +50,10 @@ class MainActivity : AppCompatActivity() {
         // Más aplicaciones
         moreApps.setOnClickListener {
 
-            MoreAppsGPlay.showAppList(this@MainActivity)
+            MoreAppsGPlay.apply { developerId = "GitHub" }.showAppList(this@MainActivity)
+
+            // Modo compacto
+            // MoreAppsGPlay.showAppList(this@MainActivity)
 
         }
 

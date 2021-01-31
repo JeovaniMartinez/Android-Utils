@@ -4,5 +4,5 @@
 
 `var developerId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
 
-ID del desarrollador
+ID del desarrollador del cual se va a mostrar la lista de aplicaciones al llamar a showAppList
 

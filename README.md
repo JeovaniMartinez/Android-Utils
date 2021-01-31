@@ -98,7 +98,7 @@ Utilidad para dirigir al usuario a la página del desarrollador en Google Play, 
 
 Ejemplo de uso:
 ```Kotlin
-MoreAppsGPlay.setDeveloperId("Jedemm+Technologies").showAppList(this@MainActivity)
+MoreAppsGPlay.apply { developerId = "GitHub" }.showAppList(this@MainActivity)
 ```
 <details>
 <summary>Modo compacto</summary>
