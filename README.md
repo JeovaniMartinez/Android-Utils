@@ -53,14 +53,14 @@ Ejemplo de uso:
 
 En el onCreate() del singleton o de la actividad principal, hay que establecer los valores de configuración e inicializar la utilidad pasando un contexto. Es muy importante hacerlo solo una vez en la app, ya que en ese momento se contabilizan las veces que ha iniciado el usuario la aplicación. (Consultar la documentación para ver la función de cada parámetro de la configuración).
 ```Kotlin
-RateInApp
-    .setMinInstallElapsedDays(10)
-    .setMinInstallLaunchTimes(10)
-    .setMinRemindElapsedDays(2)
-    .setMinRemindLaunchTimes(4)
-    .setShowAtEvent(2)
-    .setShowNeverAskAgainButton(true)
-    .init(this@MainActivity)
+RateInApp.apply {
+    minInstallElapsedDays = 10
+    minInstallLaunchTimes = 10
+    minRemindElapsedDays = 2
+    minRemindLaunchTimes = 4
+    showAtEvent = 2
+    showNeverAskAgainButton = true
+}.init(this@MainActivity)
 ```
 
 Ya que se ha configurado la utilidad, llamar al siguiente método en el momento en el que se quiera mostrar el flujo para calificar, el flujo se mostrará solo si se cumplen las condiciones especificadas en la configuración.

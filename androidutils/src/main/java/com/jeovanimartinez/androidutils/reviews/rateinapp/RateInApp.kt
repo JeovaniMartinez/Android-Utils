@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit
  * Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es
  * dirigido a los detalles de la aplicación en Google Play.
  * */
-@Suppress("unused")
 object RateInApp : Base<RateInApp>() {
 
     override val LOG_TAG = "RateInApp"
@@ -33,55 +32,33 @@ object RateInApp : Base<RateInApp>() {
         const val NEVER_SHOW_AGAIN = "rate_in_app_never_show_again" // Aplica solo para el mensaje de versiones anteriores a Android 5
     }
 
-    private var minInstallElapsedDays = 10
+    /**
+     * Número mínimo de días requeridos desde que se instalo la app para poder mostrar el flujo, se usa en combinación con minInstallLaunchTimes,
+     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
+     * */
+    var minInstallElapsedDays = 10
+        set(value) = validateConfigArgument(value, 0)
 
     /**
-     * Establece el número mínimo de días requeridos desde que se instalo la app para poder mostrar el flujo, se usa en combinación con minInstallLaunchTimes,
-     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir del dia en que se instalo)
+     * Número mínimo de veces que se debe haber iniciado la app desde que se instalo para poder mostrar el flujo, se usa en combinación con minInstallElapsedDays,
+     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1 (se muestra a partir del primer inicio)
      * */
-    fun setMinInstallElapsedDays(minInstallElapsedDays: Int): RateInApp {
-        validateConfigArgument(minInstallElapsedDays, 0)
-        this.minInstallElapsedDays = minInstallElapsedDays
-        return this
-    }
-
-    private var minInstallLaunchTimes = 10
-
-    /**
-     * Establece el número mínimo de veces que se debe haber iniciado la app desde que se instalo para poder mostrar el flujo, se usa en combinación con
-     * minInstallElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1, se muestra a partir del primer inicio
-     * */
-    fun setMinInstallLaunchTimes(minInstallLaunchTimes: Int): RateInApp {
-        validateConfigArgument(minInstallLaunchTimes, 1)
-        this.minInstallLaunchTimes = minInstallLaunchTimes
-        return this
-    }
-
-    private var minRemindElapsedDays = 2
+    var minInstallLaunchTimes = 10
+        set(value) = validateConfigArgument(value, 1)
 
     /**
      * Número mínimo de días requeridos desde que se mostró el flujo para mostrarlo nuevamente, se usa en combinación con minRemindLaunchTimes,
      * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
      * */
-    fun setMinRemindElapsedDays(minRemindElapsedDays: Int): RateInApp {
-        validateConfigArgument(minRemindElapsedDays, 0)
-        this.minRemindElapsedDays = minRemindElapsedDays
-        return this
-    }
-
-    private var minRemindLaunchTimes = 4
+    var minRemindElapsedDays = 2
+        set(value) = validateConfigArgument(value, 0)
 
     /**
      * Número mínimo de veces que se debe haber iniciado la app desde que mostró el flujo para mostrarlo nuevamente, se usa en combinación con
      * minRemindElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1 (se muestra a partir del primer inicio)
      * */
-    fun setMinRemindLaunchTimes(minRemindLaunchTimes: Int): RateInApp {
-        validateConfigArgument(minRemindLaunchTimes, 1)
-        this.minRemindLaunchTimes = minRemindLaunchTimes
-        return this
-    }
-
-    private var showAtEvent = 2
+    var minRemindLaunchTimes = 4
+        set(value) = validateConfigArgument(value, 1)
 
     /**
      * Cuando se llama a checkAndShow() se va a mostrar el flujo si se cumplen las condiciones, setShowAtEvent permite modificar a las cuantas veces
@@ -89,22 +66,16 @@ object RateInApp : Base<RateInApp>() {
      * pero la tercer vez que se llame a ese método, en ese caso, establecer showAtEvent = 3, que hará que se muestre el flujo hasta la tercera vez que se llame
      * a onResume(). Si de otro modo, showAtEvent fuera 1, el flujo se mostraría en la primera llamada a onResume(). El valor mínimo de showAtEvent es 1
      * */
-    fun setShowAtEvent(showAtEvent: Int): RateInApp {
-        validateConfigArgument(showAtEvent, 1)
-        this.showAtEvent = showAtEvent
-        return this
-    }
+    var showAtEvent = 2
+        set(value) = validateConfigArgument(value, 1)
 
-    private var showNeverAskAgainButton = true // De manera predeterminada si se muestra el botón
 
     /**
      * Para versiones anteriores a Android 5, donde se muestra el diálogo para invitar al usuario a calificar la app,
      * permite establecer la visibilidad del botón de nunca volver a preguntar, en base a [showNeverAskAgainButton]
      * */
-    fun setShowNeverAskAgainButton(showNeverAskAgainButton: Boolean): RateInApp {
-        this.showNeverAskAgainButton = showNeverAskAgainButton
-        return this
-    }
+    var showNeverAskAgainButton = true // De manera predeterminada si se muestra el botón
+
 
     /** Se asegura que el argumento de configuración [value] sea válido */
     private fun validateConfigArgument(value: Int, minValue: Int) {
@@ -288,7 +259,7 @@ object RateInApp : Base<RateInApp>() {
      *
      * @param activity actividad
      * */
-     private fun rateWithInAppReviewApi(activity: Activity) {
+    private fun rateWithInAppReviewApi(activity: Activity) {
         log("rateWithInAppReviewApi() Invoked")
         val reviewManager = ReviewManagerFactory.create(activity)
         val managerRequest = reviewManager.requestReviewFlow()

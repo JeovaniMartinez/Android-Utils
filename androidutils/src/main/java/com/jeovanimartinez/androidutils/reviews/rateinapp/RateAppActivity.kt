@@ -24,14 +24,10 @@ class RateAppActivity : AppCompatActivity() {
 
     }
 
-    private var showNeverAskAgainButton = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         configureTransitions()
         setContentView(R.layout.activity_rate_app)
-
-        showNeverAskAgainButton = intent.extras?.getBoolean(ExtraKey.SHOW_NEVER_ASK_AGAIN_BUTTON) ?: true
 
         initSetup()
 
@@ -47,7 +43,7 @@ class RateAppActivity : AppCompatActivity() {
     private fun initSetup() {
         configureTopShapeBackground()
 
-        rateApp_noThanks.visibility = if (showNeverAskAgainButton) View.VISIBLE else View.GONE
+        rateApp_noThanks.visibility = if (RateInApp.showNeverAskAgainButton) View.VISIBLE else View.GONE
 
         rateApp_rateNow.setOnClickListener {
             RateInApp.log("User clicked rateApp_rateNow button")

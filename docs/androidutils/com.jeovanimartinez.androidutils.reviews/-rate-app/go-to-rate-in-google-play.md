@@ -7,7 +7,6 @@
 Dirige al usuario a los detalles de la aplicación en Google Play para que pueda calificar la aplicación.
 Si es posible, se abre la aplicación directamente en la app de Google Play, en caso de no ser posible, se abre
 en el navegador, si tampoco es posible, muestra un toast con un mensaje.
-Referencia: https://stackoverflow.com/questions/10816757/rate-this-app-link-in-google-play-store-app-on-the-phone
 
 ### Parameters
 

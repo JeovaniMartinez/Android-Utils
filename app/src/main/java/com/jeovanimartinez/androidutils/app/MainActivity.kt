@@ -63,14 +63,14 @@ class MainActivity : AppCompatActivity() {
         // Iniciar y configurar la utilidad para mostrar el flujo para calificar la app
         initRateInApp.setOnClickListener {
 
-            RateInApp
-                .setMinInstallElapsedDays(0)
-                .setMinInstallLaunchTimes(1)
-                .setMinRemindElapsedDays(0)
-                .setMinRemindLaunchTimes(1)
-                .setShowAtEvent(1)
-                .setShowNeverAskAgainButton(true)
-                .init(this@MainActivity)
+            RateInApp.apply {
+                minInstallElapsedDays = 10
+                minInstallLaunchTimes = 10
+                minRemindElapsedDays = 2
+                minRemindLaunchTimes = 4
+                showAtEvent = 2
+                showNeverAskAgainButton = true
+            }.init(this@MainActivity)
 
             rateInAppConfigured = true
 

@@ -4,6 +4,6 @@
 
 `var minInstallElapsedDays: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
 
-Número mínimo de días requeridos desde que se instalo la app para poder mostrar el flujo, se usa en combinación con minLaunchTimes,
-y se deben cumplir ambas condiciones para mostrar el flujo
+Número mínimo de días requeridos desde que se instalo la app para poder mostrar el flujo, se usa en combinación con minInstallLaunchTimes,
+y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
 
