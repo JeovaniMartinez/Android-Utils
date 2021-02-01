@@ -291,6 +291,7 @@ object RateInApp : Base<RateInApp>() {
                 firebaseAnalytics?.logEvent("rate_app_review_flow_obtained", null)
                 val reviewInfo = request.result // Se obtiene el resultado
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // Se lanza el flujo para calificar
+                // Flujo completado
                 reviewFlow.addOnCompleteListener {
                     /*
                     * Al finalizar el flujo, teniendo en cuenta que la API no informa si el usuario califico la app o no,
@@ -304,6 +305,12 @@ object RateInApp : Base<RateInApp>() {
                     log("Finished flow to rate app with Google Play In-App Review API")
                     updatePreferencesOnFlowShown() // Se Actualizan las preferencias, ya que se completo el flujo
                     firebaseAnalytics?.logEvent("rate_app_review_flow_completed", null)
+                }
+                // Error en el flujo
+                reviewFlow.addOnFailureListener {
+                    validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
+                    log("Failure on ReviewFlow, can not show flow to rate app")
+                    firebaseAnalytics?.logEvent("rate_app_review_flow_failure", null)
                 }
             } else {
                 validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
