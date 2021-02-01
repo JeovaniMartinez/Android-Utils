@@ -291,26 +291,30 @@ object RateInApp : Base<RateInApp>() {
                 firebaseAnalytics?.logEvent("rate_app_review_flow_obtained", null)
                 val reviewInfo = request.result // Se obtiene el resultado
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // Se lanza el flujo para calificar
-                // Flujo completado
-                reviewFlow.addOnCompleteListener {
+                // El proceso del flujo fue exitoso
+                reviewFlow.addOnSuccessListener {
                     /*
-                    * Al finalizar el flujo, teniendo en cuenta que la API no informa si el usuario califico la app o no,
-                    * tampoco informa si se mostró el diálogo o no, por lo que solo indica el fin del proceso.
-                    *
-                    * Consideraciones:
-                    *   - No se puede saber si se mostró el flujo o no, ni el resultado (si se califico o no la app)
-                    *   - Si el usuario ya ha calificado la aplicación, el flujo no se muestra, pero se llama aquí reviewFlow.addOnCompleteListener
-                    *   - Si el usuario aun no califica la app, pero ya se supero la cuota para mostrar el mensaje, el mensaje no se muestra
-                    * */
-                    log("Finished flow to rate app with Google Play In-App Review API")
+                     * El flujo fue correcto, teniendo en cuenta que la API no informa si el usuario califico la app o no,
+                     * tampoco informa si se mostró el diálogo o no, por lo que solo indica que el proceso fue exitoso.
+                     *
+                     * Consideraciones:
+                     *   - No se puede saber si se mostró el flujo o no, ni el resultado (si se califico o no la app)
+                     *   - Si el usuario ya ha calificado la aplicación, el flujo no se muestra, pero se llama aquí
+                     *   - Si el usuario aun no califica la app, pero ya se supero la cuota para mostrar el mensaje, el mensaje no se muestra
+                     */
+                    log("Successful review flow to rate app with Google Play In-App Review API")
                     updatePreferencesOnFlowShown() // Se Actualizan las preferencias, ya que se completo el flujo
-                    firebaseAnalytics?.logEvent("rate_app_review_flow_completed", null)
+                    firebaseAnalytics?.logEvent("rate_app_review_flow_successful", null)
                 }
                 // Error en el flujo
                 reviewFlow.addOnFailureListener {
                     validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
                     log("Failure on ReviewFlow, can not show flow to rate app")
                     firebaseAnalytics?.logEvent("rate_app_review_flow_failure", null)
+                }
+                // Flujo completado
+                reviewFlow.addOnCompleteListener {
+                    log("Finished flow to rate app with Google Play In-App Review API")
                 }
             } else {
                 validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
