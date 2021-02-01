@@ -22,6 +22,9 @@ object RateInApp : Base<RateInApp>() {
 
     override val LOG_TAG = "RateInApp"
 
+    // Tiempo transcurrido desde que se obtuvo el flujo hasta que se completo para considerar que se mostró el flujo
+    private const val RATE_FLOW_MIN_ELAPSED_TIME = 2000 // Expresado en milisegundos
+
     /** Objeto con las constantes para las preferencias */
     private object Preferences {
         const val KEY = "rate_in_app_preferences"
@@ -287,6 +290,8 @@ object RateInApp : Base<RateInApp>() {
         managerRequest.addOnCompleteListener { request ->
             if (request.isSuccessful) {
                 // Si la solicitud se creo correctamente
+                var successfulReviewFlow = false // Determina si el flujo fue correcto
+                val flowObtainedTime = Date().time // Se almacena la fecha en que se obtuvo el flujo
                 log("ReviewFlow successfully obtained")
                 firebaseAnalytics?.logEvent("rate_app_review_flow_obtained", null)
                 val reviewInfo = request.result // Se obtiene el resultado
@@ -302,6 +307,7 @@ object RateInApp : Base<RateInApp>() {
                      *   - Si el usuario ya ha calificado la aplicación, el flujo no se muestra, pero se llama aquí
                      *   - Si el usuario aun no califica la app, pero ya se supero la cuota para mostrar el mensaje, el mensaje no se muestra
                      */
+                    successfulReviewFlow = true // El flujo fue correcto
                     log("Successful review flow to rate app with Google Play In-App Review API")
                     updatePreferencesOnFlowShown() // Se Actualizan las preferencias, ya que se completo el flujo
                     firebaseAnalytics?.logEvent("rate_app_review_flow_successful", null)
@@ -315,6 +321,23 @@ object RateInApp : Base<RateInApp>() {
                 // Flujo completado
                 reviewFlow.addOnCompleteListener {
                     log("Finished flow to rate app with Google Play In-App Review API")
+                    /*
+                    * Si el el resultado del flujo fue correcto.
+                    * La API no informa si se mostró el flujo o no, pero según pruebas realizadas, esto se puede inferir determinando el tiempo desde que se
+                    * obtuvo el flujo hasta que se completo, si tarda un determinado tiempo, lo más probable es que el flujo se haya mostrado, no es una certeza
+                    * del 100%, pero se infiere por el tiempo transcurrido.
+                    * Registrar si se mostró o no el flujo es muy útil para los eventos de analytics, ya que permite ajustar la configuración de cada cuantos días
+                    * y cada cuantos inicios de la app es conveniente intentar mostrar el flujo para obtener el mayor número de revisiones en la app sin molestar
+                    * mucho al usuario.
+                    * */
+                    if (successfulReviewFlow) {
+                        val elapsedTime = Date().time - flowObtainedTime
+                        log("Elapsed time in review flow ${elapsedTime / 1000.0} seconds ($elapsedTime milliseconds)")
+                        if (elapsedTime >= RATE_FLOW_MIN_ELAPSED_TIME) {
+                            log("Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${RATE_FLOW_MIN_ELAPSED_TIME / 1000.0}, it is considered that the flow was shown to user")
+                            firebaseAnalytics?.logEvent("rate_app_review_flow_showed", null)
+                        }
+                    }
                 }
             } else {
                 validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
