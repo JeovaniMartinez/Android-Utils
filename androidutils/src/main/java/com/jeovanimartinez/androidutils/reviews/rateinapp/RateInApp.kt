@@ -218,36 +218,46 @@ object RateInApp : Base<RateInApp>() {
         )
 
         // Se verifica si se cumplen los inicios mínimos requeridos
-        if (launchCounter < minLaunchTimes) {
-            log("It is not necessary to show flow to rate app, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
-            return // No es necesario continuar, no se cumple una condición requerida
+        val launchCounterFulfilled = if (launchCounter < minLaunchTimes) {
+            log("The condition of minimum required launches is not fulfilled, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
+            false
+        } else {
+            // Se cumplen los inicios requeridos
+            log("The condition of minimum required launches is fulfilled, current: $launchCounter | required: $minLaunchTimes")
+            true
         }
-
-        // Se cumplen los inicios requeridos
-        log("The condition of minimum required launches is met, current: $launchCounter | required: $minLaunchTimes")
 
         // Se calculan los dias transcurridos entre la última fecha que se mostró el mensaje y la fecha actual
         val elapsedDays = ((Date().time - lastShowDateValue) / TimeUnit.DAYS.toMillis(1)).toInt()
         log("Elapsed days between last date of flow to rate app showed and today is: $elapsedDays")
 
+        var elapsedDaysFulfilled = false // Para determinar si se cumple la condición de días transcurridos
+
         // Si los días transcurridos son negativos, indica una alteración en la fecha del dispositivo, por lo que el valor de LAST_SHOW_DATE se restablece
         if (elapsedDays < 0) {
             sharedPreferences.edit().putLong(Preferences.LAST_SHOW_DATE, Date().time).apply()
             log("Elapsed days ($elapsedDays) value is negative and invalid, the value is restarted to current date")
-            return // No es necesario continuar, ya que se restableció la fecha
+        } else {
+            // Se verifica si han transcurrido los días mínimos requeridos
+            elapsedDaysFulfilled = if (elapsedDays < minElapsedDays) {
+                log("The condition of minimum elapsed days is not fulfilled, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
+                false
+            } else {
+                // Se cumplen los días transcurridos
+                log("The condition of minimum elapsed days is fulfilled, current: $elapsedDays | required: $minElapsedDays")
+                true
+            }
         }
 
-        // Se verifica si han transcurrido los días mínimos requeridos
-        if (elapsedDays < minElapsedDays) {
-            log("It is not necessary to show flow to rate app, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
-            return // No es necesario continuar, no se cumple una condición requerida
+        // Si alguna de las condiciones no se cumplen
+        if (!launchCounterFulfilled || !elapsedDaysFulfilled) {
+            log("Not all conditions are fulfilled [launchCounterFulfilled = $launchCounterFulfilled] [elapsedDaysFulfilled = $elapsedDaysFulfilled], It is not necessary to show flow to rate app")
+            return
         }
 
-        // Se cumplen los días transcurridos
-        log("The condition of minimum elapsed days is met, current: $elapsedDays | required: $minElapsedDays")
+        // Si se cumplen todas las condiciones, se debe mostrar el flujo para calificar la aplicación
 
-        // Se cumplen todas las condiciones, se debe mostrar el flujo para calificar la aplicación
-        log("All conditions are met, the flow to rate app must be shown")
+        log("All conditions are fulfilled, the flow to rate app must be shown")
 
         log("The SDK version currently running is: ${Build.VERSION.SDK_INT}")
 
