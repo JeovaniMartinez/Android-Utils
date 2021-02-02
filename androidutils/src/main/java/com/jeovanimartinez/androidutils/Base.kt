@@ -1,5 +1,3 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package com.jeovanimartinez.androidutils
 
 import android.os.Bundle
