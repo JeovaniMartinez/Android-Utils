@@ -293,7 +293,6 @@ object RateInApp : Base<RateInApp>() {
                 var successfulReviewFlow = false // Determina si el flujo fue correcto
                 val flowObtainedTime = Date().time // Se almacena la fecha en que se obtuvo el flujo
                 log("ReviewFlow successfully obtained")
-                firebaseAnalytics?.logEvent("rate_app_review_flow_obtained", null)
                 val reviewInfo = request.result // Se obtiene el resultado
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // Se lanza el flujo para calificar
                 // El proceso del flujo fue exitoso
