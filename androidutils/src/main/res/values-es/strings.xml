@@ -28,4 +28,8 @@
     <string name="about_app_terms_and_policy_link">https://jedemm.com</string>
     <string name="about_app_open_source_licenses">Licencias de\nCódigo Abierto</string>
 
+    <!-- SystemWebBrowser - Utilidad para mostrar páginas en el navegador web del sistema -->
+    <string name="system_web_browser_not_available">No hay ninguna aplicación instalada para mostrar la página web solicitada</string>
+    <string name="system_web_browser_error">No disponible</string>
+
 </resources>
