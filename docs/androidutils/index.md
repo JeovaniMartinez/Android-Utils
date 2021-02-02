@@ -14,6 +14,7 @@
 | [com.jeovanimartinez.androidutils.moreapps](com.jeovanimartinez.androidutils.moreapps/index.md) |  |
 | [com.jeovanimartinez.androidutils.reviews](com.jeovanimartinez.androidutils.reviews/index.md) |  |
 | [com.jeovanimartinez.androidutils.reviews.rateinapp](com.jeovanimartinez.androidutils.reviews.rateinapp/index.md) |  |
+| [com.jeovanimartinez.androidutils.web](com.jeovanimartinez.androidutils.web/index.md) |  |
 
 ### Index
 

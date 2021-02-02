@@ -74,6 +74,13 @@ Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al 
 dirigido a los detalles de la aplicación en Google Play.
 
 
+|
+
+##### [com.jeovanimartinez.androidutils.web.SystemWebBrowser](../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md)
+
+Utilidad para interactuar con el navegador web del sistema
+
+
 | (extensions in package com.jeovanimartinez.androidutils.extensions.dimension)
 
 ##### [android.view.View](../com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/index.md)
