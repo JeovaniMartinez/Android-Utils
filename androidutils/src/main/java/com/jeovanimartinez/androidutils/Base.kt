@@ -47,23 +47,28 @@ abstract class Base<T : Base<T>> {
      * @param eventParams Parámetros para el evento (opcional)
      * */
     internal fun firebaseAnalytics(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
-        log("Event emitted: [ $eventName ]")
+
+        // Registra el resultado del evento en el log, con el [message] que indica la acción que se realizó
+        val logResult = { message: String ->
+            log("Event emitted: [ $eventName ] | $message")
+        }
 
         // Si no hay instancia de Firebase Analytics,
         if (firebaseAnalyticsInstance == null) {
-            log("No need to log event into Firebase Analytics, firebaseAnalyticsInstance is null")
+            logResult("No need to log event into Firebase Analytics, firebaseAnalyticsInstance is null")
             return
         }
 
         // Si el log esta deshabilitado para esta clase en específico
         if (!firebaseAnalyticsEnabled) {
-            log("No need to log event into Firebase Analytics, this is disabled for this class instance")
+            logResult("No need to log event into Firebase Analytics, this is disabled for this class instance")
             return
         }
 
         // De otro modo, se procede a registrar el evento en Firebase Analytics
         firebaseAnalyticsInstance?.logEvent(eventName, eventParams)
-        log("Event logged into Firebase Analytics")
+        logResult("Event logged into Firebase Analytics")
+
     }
 
     /**
