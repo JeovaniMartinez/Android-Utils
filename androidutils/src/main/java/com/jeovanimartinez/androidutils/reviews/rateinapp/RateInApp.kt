@@ -309,13 +309,13 @@ object RateInApp : Base<RateInApp>() {
                     successfulReviewFlow = true // El flujo fue correcto
                     log("Successful review flow to rate app with Google Play In-App Review API")
                     updatePreferencesOnFlowShown() // Se Actualizan las preferencias, ya que se completo el flujo
-                    firebaseAnalytics?.logEvent("rate_app_review_flow_successful", null)
+                    firebaseAnalytics("rate_app_review_flow_successful", null)
                 }
                 // Error en el flujo
                 reviewFlow.addOnFailureListener {
                     validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
                     log("Failure on ReviewFlow, can not show flow to rate app")
-                    firebaseAnalytics?.logEvent("rate_app_review_flow_failure", null)
+                    firebaseAnalytics("rate_app_review_flow_failure", null)
                 }
                 // Flujo completado
                 reviewFlow.addOnCompleteListener {
@@ -334,14 +334,14 @@ object RateInApp : Base<RateInApp>() {
                         log("Elapsed time in review flow ${elapsedTime / 1000.0} seconds ($elapsedTime milliseconds)")
                         if (elapsedTime >= RATE_FLOW_MIN_ELAPSED_TIME) {
                             log("Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${RATE_FLOW_MIN_ELAPSED_TIME / 1000.0}, it is considered that the flow was shown to user")
-                            firebaseAnalytics?.logEvent("rate_app_review_flow_showed", null)
+                            firebaseAnalytics("rate_app_review_flow_showed", null)
                         }
                     }
                 }
             } else {
                 validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
                 log("Error on request ReviewFlow, can not show flow to rate app")
-                firebaseAnalytics?.logEvent("rate_app_request_review_flow_error", null)
+                firebaseAnalytics("rate_app_request_review_flow_error", null)
             }
         }
     }
@@ -362,7 +362,7 @@ object RateInApp : Base<RateInApp>() {
             // Hay que mostrar el diálogo
             log("neverShowAgain = $neverShowAgain | The dialogue is shown")
             updatePreferencesOnFlowShown() // Se actualizan las preferencias, ya que se muestro el diálogo
-            firebaseAnalytics?.logEvent("rate_app_dialog_shown", null)
+            firebaseAnalytics("rate_app_dialog_shown", null)
 
             // Se muestra la actividad (estilo diálogo)
             activity.startActivity(

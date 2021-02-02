@@ -33,19 +33,19 @@ object RateApp : Base<RateApp>() {
         try {
             activity.startActivity(googlePlayIntent) // Se intenta mostrar en la app de google play
             log("Sent user to view app details in google play app [$marketUriString]")
-            firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_app", null)
+            firebaseAnalytics("rate_app_sent_to_google_play_app", null)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // Si no se puede mostrar en la app de google play, se intenta abrir en el navegador web
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
                 log("Sent user to view app details in google play on web browser [$webUriString]", e1)
-                firebaseAnalytics?.logEvent("rate_app_sent_to_google_play_web", null)
+                firebaseAnalytics("rate_app_sent_to_google_play_web", null)
             } catch (e2: ActivityNotFoundException) {
                 // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
                 log("Unable to send user to app details, google play app and web browser are not available", e2)
-                firebaseAnalytics?.logEvent("rate_app_unable_to_show_on_google_play", null)
+                firebaseAnalytics("rate_app_unable_to_show_on_google_play", null)
             }
         }
     }
