@@ -46,7 +46,7 @@ Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(this)
 ```
 También se puede desactivar el registro de eventos para una utilidad en específico:
 ```Kotlin
-MoreAppsGPlay.apply { firebaseAnalyticsEnabled = false }
+MoreAppsGPlay.firebaseAnalyticsEnabled = false
 ```
 
 #
