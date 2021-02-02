@@ -12,7 +12,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.res.ResourcesCompat
 
 /**
- * Conjunto de extensiones para las Actividades
+ * Extensión para para configurar el TaskDescription de las actividades
  * */
 
 /**
