@@ -66,10 +66,8 @@ class RateAppActivity : AppCompatActivity() {
 
     }
 
-    /**
-     * Asigna el color de fondo de la tarjeta al fondo de la forma superior, para mantener soporte para tema claro y oscuro
-     * Referencia: https://stackoverflow.com/questions/11376516/change-drawable-color-programmatically/11376812
-     * */
+    // Referencia: https://stackoverflow.com/a/11376610
+    /**Asigna el color de fondo de la tarjeta al fondo de la forma superior, para mantener soporte para tema claro y oscuro */
     private fun configureTopShapeBackground() {
         val topShapeBackground = AppCompatResources.getDrawable(this@RateAppActivity, R.drawable.rate_app_top_shape)
         val finalTopShapeBackground = DrawableCompat.wrap(topShapeBackground!!)
