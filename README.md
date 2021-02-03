@@ -12,7 +12,7 @@ Conjunto de utilidades para el desarrollo de aplicaciones Android
 - La biblioteca muestra algunas vistas, considerando lo siguiente:
 	- Soporte para tema claro y oscuro, se utiliza los componentes de Material Design para Android, y se sigue su estilo de diseño.
 	- Las vistas se pueden mostrar en los siguientes idiomas: Inglés, Español.
-- En algunos ejemplos de uso se muestra un panel colapsable llamado "Modo compacto" donde se muestra el código con la configuración mínima requerida para la utilidad, teniendo en cuanta que se usan muchos valores predeterminados definidos en la biblioteca, por lo que se recomienda usar ese código solo si se tiene una rama de la biblioteca y se han ajustado los valores predeterminados por los deseados.
+- En algunos ejemplos de uso se muestra un panel colapsable llamado "Modo compacto" donde se muestra el código con la configuración mínima requerida para la utilidad, teniendo en cuanta que en algunos casos, se usan valores predeterminados definidos en la biblioteca, por lo que se recomienda usar ese código solo si se tiene una rama de la biblioteca y se han ajustado los valores predeterminados por los deseados.
 
 #### Configuración
 Agregar la siguiente configuración en Gradle (a nivel de la app)
@@ -113,6 +113,30 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 </details>
 
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)**
+
+#
+
+### SystemWebBrowser 
+Utilidades para interactuar con el navegador web del sistema.
+
+#### - openUrl
+Abre el navegador web del sistema en la URL especificada.
+
+Ejemplo de uso:
+```Kotlin
+SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com", "jedemm_website")
+```
+<details>
+<summary>Modo compacto</summary>
+<p>
+	
+```Kotlin
+SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
+```
+</p>
+</details>
+
+**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.web/-system-web-browser/open-url.md)**
 
 #
 
