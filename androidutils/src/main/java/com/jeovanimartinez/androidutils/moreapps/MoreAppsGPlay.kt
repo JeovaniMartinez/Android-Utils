@@ -32,10 +32,10 @@ object MoreAppsGPlay : Base<MoreAppsGPlay>() {
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
             log("Sent user to view developer page in google play [$webUriString]")
             firebaseAnalytics("more_apps_sent_to_google_play", null)
-        } catch (ex: ActivityNotFoundException) {
+        } catch (e: ActivityNotFoundException) {
             // Si no se pudo mostrar, se muestra un mensaje
             activity.shortToast(R.string.more_apps_unable_to_show_dev_page)
-            log("Unable to send user to developer page", ex)
+            logw("Unable to send user to developer page", e)
             firebaseAnalytics("more_apps_unable_to_show_dev_page", null)
         }
     }
