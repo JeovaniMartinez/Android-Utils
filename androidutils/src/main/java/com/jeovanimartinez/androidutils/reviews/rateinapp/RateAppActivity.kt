@@ -16,14 +16,6 @@ import kotlinx.android.synthetic.main.activity_rate_app.*
 /** Actividad que se muestra en forma de diálogo para invitar al usuario a calificar la aplicación */
 class RateAppActivity : AppCompatActivity() {
 
-    companion object {
-        /** Claves para los extras que se reciben al iniciar la actividad */
-        object ExtraKey {
-            const val SHOW_NEVER_ASK_AGAIN_BUTTON = "show_never_ask_again_button" // Boolean
-        }
-
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         configureTransitions()
