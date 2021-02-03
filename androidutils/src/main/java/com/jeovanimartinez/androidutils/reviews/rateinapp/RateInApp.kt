@@ -177,7 +177,8 @@ object RateInApp : Base<RateInApp>() {
     }
 
     /**
-     * Ejecuta la verificación y muestra el flujo para calificar, llamar cuando se valide que se cumplen todas las condiciones de la configuración
+     * Ejecuta la verificación y muestra el flujo para calificar, llamar cuando se valide que se cumplen todas las condiciones de la configuración,
+     * llamar después de ejecutar las primeras verificaciones en CheckAndShow, las funciones se separaron para mejor estructura del código
      * @param activity actividad
      * */
     private fun doCheckAndShow(activity: Activity) {
@@ -366,8 +367,7 @@ object RateInApp : Base<RateInApp>() {
 
             // Se muestra la actividad (estilo diálogo)
             activity.startActivity(
-                Intent(activity, RateAppActivity::class.java)
-                    .putExtra(RateAppActivity.Companion.ExtraKey.SHOW_NEVER_ASK_AGAIN_BUTTON, showNeverAskAgainButton),
+                Intent(activity, RateAppActivity::class.java),
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
             )
 
