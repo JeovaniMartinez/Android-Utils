@@ -40,7 +40,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
                 // Solo se registra el evento
                 firebaseAnalytics("open_url_in_system_web_browser")
             }
-            log("URL: [$url] opened, case: $case")
+            log("URL: [$url] opened, case: ${case?.trim()}")
         } catch (e: ActivityNotFoundException) {
             // No Hay ninguna aplicación que pueda abrir la URL
             context.shortToast(R.string.system_web_browser_not_available)
