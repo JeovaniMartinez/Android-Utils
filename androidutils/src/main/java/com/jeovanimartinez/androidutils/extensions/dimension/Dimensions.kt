@@ -11,40 +11,40 @@ import androidx.annotation.DimenRes
  * El código es el de la biblioteca anko: https://github.com/Kotlin/anko/blob/master/anko/library/static/commons/src/main/java/Dimensions.kt
  * */
 
-/** Convierte dp en px (dip2px) */
-fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
+/** Convierte dp en px */
+fun Context.dp2px(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
-/** Convierte dp en px (dip2px) */
-fun View.dip(value: Int): Int = context.dip(value)
+/** Convierte dp en px */
+fun View.dp2px(value: Int): Int = context.dp2px(value)
 
-/** Convierte dp en px (dip2px) */
-fun Context.dip(value: Float): Int = (value * resources.displayMetrics.density).toInt()
+/** Convierte dp en px */
+fun Context.dp2px(value: Float): Int = (value * resources.displayMetrics.density).toInt()
 
-/** Convierte dp en px (dip2px) */
-fun View.dip(value: Float): Int = context.dip(value)
+/** Convierte dp en px */
+fun View.dp2px(value: Float): Int = context.dp2px(value)
 
-/** Convierte sp en px (sp2px) */
-fun Context.sp(value: Int): Int = (value * resources.displayMetrics.scaledDensity).toInt()
+/** Convierte sp en px */
+fun Context.sp2px(value: Int): Int = (value * resources.displayMetrics.scaledDensity).toInt()
 
-/** Convierte sp en px (sp2px) */
-fun View.sp(value: Int): Int = context.sp(value)
+/** Convierte sp en px */
+fun View.sp2px(value: Int): Int = context.sp2px(value)
 
-/** Convierte sp en px (sp2px) */
-fun Context.sp(value: Float): Int = (value * resources.displayMetrics.scaledDensity).toInt()
+/** Convierte sp en px */
+fun Context.sp2px(value: Float): Int = (value * resources.displayMetrics.scaledDensity).toInt()
 
-/** Convierte sp en px (sp2px) */
-fun View.sp(value: Float): Int = context.sp(value)
+/** Convierte sp en px */
+fun View.sp2px(value: Float): Int = context.sp2px(value)
 
-/** Convierte px en dp (px2dp) */
-fun Context.px2dip(px: Int): Float = px.toFloat() / resources.displayMetrics.density
+/** Convierte px en dp */
+fun Context.px2dp(px: Int): Float = px.toFloat() / resources.displayMetrics.density
 
-/** Convierte px en dp (px2dp) */
-fun View.px2dip(px: Int): Float = context.px2dip(px)
+/** Convierte px en dp */
+fun View.px2dp(px: Int): Float = context.px2dp(px)
 
-/** Convierte px en sp (px2sp) */
+/** Convierte px en sp */
 fun Context.px2sp(px: Int): Float = px.toFloat() / resources.displayMetrics.scaledDensity
 
-/** Convierte px en sp (px2sp) */
+/** Convierte px en sp */
 fun View.px2sp(px: Int): Float = context.px2sp(px)
 
 /** Recuperar una dimensión para un ID de recurso en particular para su uso como tamaño en píxeles sin procesar */

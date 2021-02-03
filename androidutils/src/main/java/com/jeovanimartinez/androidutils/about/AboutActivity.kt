@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
-import com.jeovanimartinez.androidutils.extensions.dimension.dip
+import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import kotlinx.android.synthetic.main.activity_about.*
 import java.util.*
@@ -83,9 +83,9 @@ class AboutActivity : AppCompatActivity() {
 
         // Se ajusta para ocultar el elemento
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            about_topActionCard.translationX = dip(48).toFloat()
+            about_topActionCard.translationX = dp2px(48).toFloat()
         } else {
-            about_topActionCard.translationY = dip(48).toFloat()
+            about_topActionCard.translationY = dp2px(48).toFloat()
         }
 
         about_termsAndPolicy.setOnClickListener {
@@ -280,9 +280,9 @@ class AboutActivity : AppCompatActivity() {
 
         // Visibilidad y animación del botón de atrás en los términos
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            about_topActionCard.animate().translationX(dip(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
+            about_topActionCard.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
         } else {
-            about_topActionCard.animate().translationY(dip(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
+            about_topActionCard.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
         }
 
         // Se muestra el contenedor de la tarjeta y se oculta el web view mediante una animación
