@@ -116,6 +116,30 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 
 #
 
+### SystemWebBrowser 
+Utilidades para interactuar con el navegador web del sistema.
+
+#### - openUrl
+Abre el navegador web del sistema en la URL especificada.
+
+Ejemplo de uso:
+```Kotlin
+SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com", "jedemm_website")
+```
+<details>
+<summary>Modo compacto</summary>
+<p>
+	
+```Kotlin
+SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
+```
+</p>
+</details>
+
+**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.web/-system-web-browser/open-url.md)**
+
+#
+
 #
 
 ## Funciones de Extensión
