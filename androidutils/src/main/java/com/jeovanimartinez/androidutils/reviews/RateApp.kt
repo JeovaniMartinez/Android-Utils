@@ -17,7 +17,7 @@ object RateApp : Base<RateApp>() {
 
     override val LOG_TAG = "RateApp"
 
-    // Referencia: https://stackoverflow.com/questions/10816757/rate-this-app-link-in-google-play-store-app-on-the-phone
+    // Referencia: https://stackoverflow.com/a/10816846
     /**
      * Dirige al usuario a los detalles de la aplicación en Google Play para que pueda calificar la aplicación.
      * Si es posible, se abre la aplicación directamente en la app de Google Play, en caso de no ser posible, se abre
@@ -39,12 +39,12 @@ object RateApp : Base<RateApp>() {
                 // Si no se puede mostrar en la app de google play, se intenta abrir en el navegador web
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
-                log("Sent user to view app details in google play on web browser [$webUriString]", e1)
+                log("Sent user to view app details in google play on web browser [$webUriString]")
                 firebaseAnalytics("rate_app_sent_to_google_play_web", null)
             } catch (e2: ActivityNotFoundException) {
                 // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
-                log("Unable to send user to app details, google play app and web browser are not available", e2)
+                logw("Unable to send user to app details, google play app and web browser are not available", e2)
                 firebaseAnalytics("rate_app_unable_to_show_on_google_play", null)
             }
         }
