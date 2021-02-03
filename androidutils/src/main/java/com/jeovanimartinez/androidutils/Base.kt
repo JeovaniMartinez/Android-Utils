@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.Size
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
 /**
  * Clase base con propiedades y funciones comunes
@@ -47,7 +48,11 @@ abstract class Base<T : Base<T>> {
     internal fun firebaseAnalytics(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
 
         // Registra el resultado del evento en el log, con el [message] que indica la acción que se realizó
-        val logResult = { message: String -> log("Event emitted: [ $eventName ] | $message") }
+        val logResult = { message: String ->
+            var params = "[N/A]" // Para informar en el log
+            eventParams.whenNotNull { params = it.toString().replace("Bundle", "") }
+            log("Event emitted: [ $eventName ] Params: $params | $message")
+        }
 
         // Si no hay instancia de Firebase Analytics,
         if (firebaseAnalyticsInstance == null) return logResult("No need to log event into Firebase Analytics, firebaseAnalyticsInstance is null")
