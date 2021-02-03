@@ -35,7 +35,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) // Se inicia la actividad
             if (case != null && case.isNotBlank()) {
                 // Se registra el evento y el caso como parámetro
-                firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("case", case.trim()) })
+                firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("open_url_case", case.trim()) })
             } else {
                 // Solo se registra el evento
                 firebaseAnalytics("open_url_in_system_web_browser")
@@ -44,12 +44,12 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
         } catch (e: ActivityNotFoundException) {
             // No Hay ninguna aplicación que pueda abrir la URL
             context.shortToast(R.string.system_web_browser_not_available)
-            firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("case", "activity_not_found_exception") })
+            firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("open_url_case", "activity_not_found_exception") })
             logw("Unable to open URL [$url], web browser not available", e)
         } catch (e: Exception) {
             // Excepción general
             context.shortToast(R.string.system_web_browser_error)
-            firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("case", "exception") })
+            firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("open_url_case", "exception") })
             loge("Error opening URL [$url]", e)
         }
     }
