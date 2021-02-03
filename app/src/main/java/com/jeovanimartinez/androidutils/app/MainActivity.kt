@@ -10,6 +10,7 @@ import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
+import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -102,6 +103,15 @@ class MainActivity : AppCompatActivity() {
                 termsAndPrivacyPolicyTextColor = R.color.colorTermsAndPrivacyPolicyText
                 showOpenSourceLicenses = true
             }.show(this@MainActivity)
+
+        }
+
+        openUrl.setOnClickListener {
+
+            SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com", "jedemm_website")
+
+            // Modo compacto
+            //SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 
         }
 
