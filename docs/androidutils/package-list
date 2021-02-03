@@ -7,18 +7,18 @@ $dokka.location:com.jeovanimartinez.androidutils.extensions.context$shortToast(a
 $dokka.location:com.jeovanimartinez.androidutils.extensions.context$shortToast(android.content.Context, kotlin.String)com.jeovanimartinez.androidutils.extensions.context/android.content.-context/short-toast.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dimen(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/dimen.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dimen(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/dimen.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dip(android.content.Context, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/dip.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dip(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/dip.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dip(android.view.View, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/dip.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dip(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/dip.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$px2dip(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/px2dip.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$px2dip(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/px2dip.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dp2px(android.content.Context, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/dp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dp2px(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/dp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dp2px(android.view.View, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/dp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$dp2px(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/dp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$px2dp(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/px2dp.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$px2dp(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/px2dp.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$px2sp(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/px2sp.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$px2sp(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/px2sp.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp(android.content.Context, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/sp.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/sp.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp(android.view.View, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/sp.md
-$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/sp.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(android.content.Context, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/sp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/sp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(android.view.View, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/sp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/sp2px.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.view$onAnimationEnd(android.view.ViewPropertyAnimator, kotlin.Function1((android.animation.Animator, kotlin.Unit)))com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/on-animation-end.md
 com.jeovanimartinez.androidutils
 com.jeovanimartinez.androidutils.about

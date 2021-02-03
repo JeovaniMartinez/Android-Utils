@@ -10,7 +10,7 @@ Abre el navegador web del sistema en la [url](open-url.md#com.jeovanimartinez.an
 
 `context` - contexto para poder lanzar el intent del navegador
 
-`url` - URL a mostrar
+`url` - URL a mostrar, debe ser una URL completa, que incluya http o https, de otro modo no va a pasar la validación
 
 `case` - razón por la que se abre la URL en el navegador. Esto aplica solo si Firebase Analytics esta habilitado, cuando se muestra
     una URL en el navegador se registra el evento, este evento contiene un parámetro que ayuda a determinar que sitio web se mostró,

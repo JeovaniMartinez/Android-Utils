@@ -2,7 +2,7 @@
 
 # px2sp
 
-`fun Context.px2sp(px: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Float`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html)
+`fun Context.px2sp(value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Float`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html)
 
-Convierte px en sp (px2sp)
+Convierte px en sp
 

@@ -6,12 +6,6 @@
 
 Actividad que se muestra en forma de diálogo para invitar al usuario a calificar la aplicación
 
-### Types
-
-| Name | Summary |
-|---|---|
-| [ExtraKey](-extra-key/index.md) | Claves para los extras que se reciben al iniciar la actividad`object ExtraKey` |
-
 ### Constructors
 
 | Name | Summary |
