@@ -4,5 +4,5 @@
 
 `var appIcon: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
 
-Ícono de la aplicación
+Ícono o logo de la aplicación
 

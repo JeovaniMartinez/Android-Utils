@@ -2,6 +2,12 @@
 
 ## Package com.jeovanimartinez.androidutils.extensions.nullability
 
+### Extensions for External Classes
+
+| Name | Summary |
+|---|---|
+| [kotlin.Any](kotlin.-any/index.md) |  |
+
 ### Functions
 
 | Name | Summary |

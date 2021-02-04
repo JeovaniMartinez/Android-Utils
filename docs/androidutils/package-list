@@ -19,6 +19,8 @@ $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(andr
 $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(android.content.Context, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/sp2px.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(android.view.View, kotlin.Float)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/sp2px.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.dimension$sp2px(android.view.View, kotlin.Int)com.jeovanimartinez.androidutils.extensions.dimension/android.view.-view/sp2px.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.nullability$isNotNull(kotlin.Any)com.jeovanimartinez.androidutils.extensions.nullability/kotlin.-any/is-not-null.md
+$dokka.location:com.jeovanimartinez.androidutils.extensions.nullability$isNull(kotlin.Any)com.jeovanimartinez.androidutils.extensions.nullability/kotlin.-any/is-null.md
 $dokka.location:com.jeovanimartinez.androidutils.extensions.view$onAnimationEnd(android.view.ViewPropertyAnimator, kotlin.Function1((android.animation.Animator, kotlin.Unit)))com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/on-animation-end.md
 com.jeovanimartinez.androidutils
 com.jeovanimartinez.androidutils.about

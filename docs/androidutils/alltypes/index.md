@@ -23,6 +23,11 @@ Utilidad para mostrar una pantalla de acerca de la aplicación
 ##### [android.app.Activity](../com.jeovanimartinez.androidutils.extensions.activity/android.app.-activity/index.md)
 
 
+| (extensions in package com.jeovanimartinez.androidutils.extensions.nullability)
+
+##### [kotlin.Any](../com.jeovanimartinez.androidutils.extensions.nullability/kotlin.-any/index.md)
+
+
 |
 
 ##### [com.jeovanimartinez.androidutils.Base](../com.jeovanimartinez.androidutils/-base/index.md)
