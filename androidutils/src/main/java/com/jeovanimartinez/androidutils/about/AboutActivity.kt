@@ -112,6 +112,7 @@ class AboutActivity : AppCompatActivity() {
 
         about_openSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
+            AboutApp.firebaseAnalytics("about_app_open_source_licenses_shown")
         }
 
         about_closeBtn.setOnClickListener {
@@ -287,6 +288,8 @@ class AboutActivity : AppCompatActivity() {
             about_termsAndPolicyWebView.translationX = 0f
 
         }
+
+        AboutApp.firebaseAnalytics("about_app_terms_policy_shown")
 
     }
 

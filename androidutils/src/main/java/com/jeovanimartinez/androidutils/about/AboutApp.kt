@@ -99,6 +99,7 @@ object AboutApp : Base<AboutApp>() {
             Intent(activity, AboutActivity::class.java),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
         )
+        firebaseAnalytics("about_app_shown") // Se registra el evento aquí, para evitar registrarlos más de una vez en la actividad (en caso de que sea recreada)
         log("Launched AboutActivity")
     }
 
