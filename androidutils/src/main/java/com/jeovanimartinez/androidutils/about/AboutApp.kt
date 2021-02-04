@@ -15,7 +15,7 @@ object AboutApp : Base<AboutApp>() {
 
     override val LOG_TAG = "AboutApp"
 
-    /** Color de fondo de la actividad, si se deja en null se usa el color predeterminado del tema de la app (si esta definido) sino se usa el del tema de la biblioteca */
+    /** Color de fondo de la actividad, si no se asigna se usa el color de fondo del tema */
     @ColorRes
     var backgroundColor = R.color.colorBackground
 
@@ -23,7 +23,7 @@ object AboutApp : Base<AboutApp>() {
     @ColorRes
     var iconsColor = R.color.colorIcon
 
-    /** Ícono de la aplicación */
+    /** Ícono o logo de la aplicación */
     @DrawableRes
     var appIcon = R.drawable.library_logo
 
@@ -70,25 +70,30 @@ object AboutApp : Base<AboutApp>() {
      * */
     var showOpenSourceLicenses = true
 
+    // Para que se pueda aplicar la task description en la actividad, taskDescriptionTitle, taskDescriptionIcon y taskDescriptionColor deben asignarse
+
     /**
-     * Si se desea configurar la TaskDescription para la actividad de acerca de, asignar las propiedades del objeto,
-     * para que se establezca el TaskDescription, ninguna propiedad debe ser null, todas deben ser asignadas
+     * Título para la Task Description de la actividad. Se usa en conjunto con taskDescriptionIcon y taskDescriptionColor y ninguna
+     * propiedad debe ser null para que se configure el Task Description.
      * */
-    object TaskDescription {
-        /** Título */
-        @StringRes
-        var title: Int? = null
+    @StringRes
+    var taskDescriptionTitle: Int? = null
 
-        /** Ícono */
-        @DrawableRes
-        var icon: Int? = null
+    /**
+     * Icono para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionColor y ninguna
+     * propiedad debe ser null para que se configure el Task Description.
+     * */
+    @DrawableRes
+    var taskDescriptionIcon: Int? = null
 
-        /** Color */
-        @ColorRes
-        var color: Int? = null
-    }
+    /**
+     * Color para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionIcon y ninguna
+     * propiedad debe ser null para que se configure el Task Description.
+     * */
+    @ColorRes
+    var taskDescriptionColor: Int? = null
 
-    /** Muestra la actividad de acerca de, requiere la [activity] */
+    /** Muestra la actividad de acerca de, requiere la [activity] para poder iniciar la actividad AboutActivity */
     fun show(activity: Activity) {
         activity.startActivity(
             Intent(activity, AboutActivity::class.java),

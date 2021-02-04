@@ -102,6 +102,9 @@ class MainActivity : AppCompatActivity() {
                 termsAndPrivacyPolicyLink = R.string.terms_and_privacy_policy_link
                 termsAndPrivacyPolicyTextColor = R.color.colorTermsAndPrivacyPolicyText
                 showOpenSourceLicenses = true
+                taskDescriptionTitle = R.string.app_name
+                taskDescriptionIcon = R.mipmap.ic_launcher
+                taskDescriptionColor = R.color.teal_200
             }.show(this@MainActivity)
 
         }

@@ -15,8 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import kotlinx.android.synthetic.main.activity_about.*
 import java.util.*
@@ -77,6 +79,17 @@ class AboutActivity : AppCompatActivity() {
     /** Configuración inicial */
     private fun initSetup() {
 
+        // Se configura el task description si es necesario
+        if (AboutApp.taskDescriptionTitle.isNotNull() && AboutApp.taskDescriptionIcon.isNotNull() && AboutApp.taskDescriptionColor.isNotNull()) {
+            configureTaskDescription(AboutApp.taskDescriptionTitle!!, AboutApp.taskDescriptionIcon!!, AboutApp.taskDescriptionColor!!)
+            AboutApp.log("AboutActivity task description configured by AboutApp.TaskDescription properties")
+        } else {
+            AboutApp.log(
+                "Is not necessary configure task description " +
+                        "[title = ${AboutApp.taskDescriptionTitle}; icon = ${AboutApp.taskDescriptionIcon}; color = ${AboutApp.taskDescriptionColor}]"
+            )
+        }
+
         about_progressBar.visibility = View.GONE
         about_termsAndPolicyWebView.visibility = View.GONE
         about_topActionCard.visibility = View.GONE
@@ -91,7 +104,6 @@ class AboutActivity : AppCompatActivity() {
         about_termsAndPolicy.setOnClickListener {
             loadTermsAndPolicy()
         }
-
 
         about_closeTermsBtn.setOnClickListener {
             hideTermsAndPolicy()
@@ -136,13 +148,10 @@ class AboutActivity : AppCompatActivity() {
 
     /** Configura la versión de la app y el copyright */
     private fun configureData() {
-
         about_appVersion.text = getString(R.string.about_app_version, AboutApp.appVersionName)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         about_copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), getString(AboutApp.companyName))
-
     }
-
 
     /** Configura la transición de entrada y salida */
     private fun configureTransitions() {
@@ -154,7 +163,6 @@ class AboutActivity : AppCompatActivity() {
             }
         }
     }
-
 
     /**
      * Inicia el proceso para obtener los términos y la política de privacidad en un el web view, ya que se obtienen desde el servidor para mostrar la
