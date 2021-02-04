@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="blue_200">#90CAF9</color>
-    <color name="blue_500">#2196F3</color>
-    <color name="blue_700">#1976D2</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-
-    <color name="colorBackground_light">#FFFFFF</color>
-    <color name="colorBackground_dark">#212121</color>
+    <!-- Colores del tema de la app -->
+    <color name="colorPrimary">#00838f</color>
+    <color name="colorAccent">#00838f</color>
+    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorPrimaryVariant">#009688</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#2196F3</color>
+    <color name="colorSecondaryVariant">#1976D2</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorOnBackground">#000000</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorError">#B00020</color>
+    <color name="colorOnError">#FFFFFF</color>
 
 </resources>

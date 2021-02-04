@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Colores del tema de la app -->
+    <color name="colorPrimary">#4DB6AC</color>
+    <color name="colorAccent">#4DB6AC</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryVariant">#80CBC4</color>
+    <color name="colorOnPrimary">#121212</color>
+    <color name="colorSecondary">#2196F3</color>
+    <color name="colorSecondaryVariant">#1976D2</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorBackground">#212121</color>
+    <color name="colorOnBackground">#FFFFFF</color>
+    <color name="colorSurface">#CF0000</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+    <color name="colorError">#CF6679</color>
+    <color name="colorOnError">#000000</color>
+
+</resources>

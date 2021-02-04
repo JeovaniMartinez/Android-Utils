@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         initSetup()
 
-        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, R.color.teal_200)
+        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, R.color.colorBackground)
     }
 
     private fun initSetup() {
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                 showOpenSourceLicenses = true
                 taskDescriptionTitle = R.string.app_name
                 taskDescriptionIcon = R.mipmap.ic_launcher
-                taskDescriptionColor = R.color.teal_200
+                taskDescriptionColor = R.color.colorBackground
             }.show(this@MainActivity)
 
         }
