@@ -20,6 +20,7 @@ import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
+import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_about.*
 import java.util.*
 
@@ -142,6 +143,14 @@ class AboutActivity : AppCompatActivity() {
             closeTermsDrawable?.setTint(iconsColor)
             about_closeBtn.setImageDrawable(closeDrawable)
             about_closeTermsBtn.setImageDrawable(closeTermsDrawable)
+        }
+
+        about_authorName.setOnClickListener {
+            SystemWebBrowser.openUrl(this@AboutActivity, getString(AboutApp.authorLink), "about_app_author_link")
+        }
+
+        about_companyLogo.setOnClickListener {
+            SystemWebBrowser.openUrl(this@AboutActivity, getString(AboutApp.companyLink), "about_app_company_link")
         }
 
     }
