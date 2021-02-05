@@ -117,7 +117,7 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 #
 
 ### SystemWebBrowser 
-Utilidades para interactuar con el navegador web del sistema.
+Utilidad para interactuar con el navegador web del sistema.
 
 #### - openUrl
 Abre el navegador web del sistema en la URL especificada.
