@@ -24,7 +24,7 @@ En el diseño de las actividades que hereden de esta clase deben tener un Relati
 
 | Name | Summary |
 |---|---|
-| [configureWindowDim](configure-window-dim.md) | Configura el dim (atenuación) de la ventana`fun configureWindowDim(window: Window?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
+| [configureWindowDim](configure-window-dim.md) | Configura el dim (atenuación) de una ventana (independiente a esta clase)`fun configureWindowDim(window: Window?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [onCreate](on-create.md) | Cuando se crea la actividad, para asignar los valores iniciales`open fun onCreate(savedInstanceState: Bundle?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [onPause](on-pause.md) | Al pausar la actividad, se agrega un fondo a la actividad para obtener una mejor vista en las animaciones`open fun onPause(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
 | [onResume](on-resume.md) | Al reanudar la actividad, se reasigna el fondo transparente, de modo que se mantenga la opacidad en base al valor de dimAmount`open fun onResume(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |

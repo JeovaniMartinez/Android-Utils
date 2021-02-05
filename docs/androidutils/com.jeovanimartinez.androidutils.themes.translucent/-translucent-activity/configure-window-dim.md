@@ -4,7 +4,7 @@
 
 `fun configureWindowDim(window: Window?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Configura el dim (atenuación) de la ventana
+Configura el dim (atenuación) de una ventana (independiente a esta clase)
 
 ### Parameters
 
