@@ -60,7 +60,8 @@ Estilo y clase base que permite que las actividades tengan un fondo completament
 **[Demostración](/resources/images/translucent-theme/translucent-theme-demo.png?raw=true)**
 
 Ejemplo de uso:
-Nota: En el diseño de las actividades que hereden de `TranslucentActivity` deben tener un RelativeLayout como elemento raíz en el diseño para que ocupen el espacio completo de la pantalla, o bien un tamaño fijo.
+
+Nota: En el archivo de diseño, las actividades que hereden de `TranslucentActivity` deben tener un `RelativeLayout` como elemento raíz en para que ocupen el espacio completo de la pantalla, o bien un tamaño fijo.
 1. En el archivo `AndroidManifest` asignar el tema `AndroidUtilsTheme.Translucent` a la actividad deseada.
 ```xml
  <activity
