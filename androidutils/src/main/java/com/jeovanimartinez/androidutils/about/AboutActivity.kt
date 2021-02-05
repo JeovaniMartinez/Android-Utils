@@ -11,7 +11,6 @@ import android.transition.Fade
 import android.view.View
 import android.view.Window
 import android.webkit.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
@@ -20,13 +19,14 @@ import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
+import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_about.*
 import java.util.*
 
 
 /** Actividad de acerca de */
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : TranslucentActivity() {
 
     companion object {
         const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
@@ -37,6 +37,7 @@ class AboutActivity : AppCompatActivity() {
     private var termsAndPolicyVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        activityOpacity = 0.9f
         super.onCreate(savedInstanceState)
         configureTransitions()
         setContentView(R.layout.activity_about)
@@ -50,6 +51,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        activityOpacity = 0.9f
         if (termsAndPolicyVisible) return hideTermsAndPolicy()
         super.onBackPressed()
     }
@@ -246,6 +248,7 @@ class AboutActivity : AppCompatActivity() {
 
         AboutApp.log("showTermsAndPolicy() Invoked")
         termsAndPolicyVisible = true // Indica que están visibles
+        activityOpacity = 0.95f
 
         if (animate) {
 
@@ -297,6 +300,7 @@ class AboutActivity : AppCompatActivity() {
     private fun hideTermsAndPolicy() {
         AboutApp.log("hideTermsAndPolicy() Invoked")
         termsAndPolicyVisible = false // Se indica que ya no están visibles
+        activityOpacity = 0.9f // Se restaura al valor inicial
 
         // Visibilidad y animación del botón de atrás en los términos
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {

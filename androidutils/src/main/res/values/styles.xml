@@ -10,16 +10,10 @@
 
     <!--########################################################################################################################################################################################## -->
 
-    <!-- TEMA TRANSLÚCIDO [INICIO] -->
-
     <!--
-       - Las actividades que usen el tema, deben tener un RelativeLayout como elemento raíz en el diseño para que ocupen el espacio completo, o bien un tamaño fijo.
-       - Se pueden definir variaciones del tema, con ajustando la opacidad del fondo, solo heredar de AndroidUtilsTheme.Translucent y establecer android:backgroundDimAmount
-         con el valor deseado, entre 0 y 1 (0 a 100%),
-       - Se puede consultar un ejemplo de las variaciones en la carpeta del proyecto /resources/translucent-theme
+       Tema translúcido. Detalles de implementación en androidutils.themes.translucent.TranslucentActivity.
+       Se puede consultar un ejemplo de la vista en la carpeta del proyecto /resources/translucent-theme
     -->
-
-    <!-- Tema translúcido con la opacidad predeterminada, hereda de AndroidUtilsTheme que se va a tomar de la aplicación que implemente la biblioteca -->
     <style name="AndroidUtilsTheme.Translucent" parent="AndroidUtilsTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -27,39 +21,10 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0</item>
         <item name="android:windowMinWidthMajor">100%</item>
         <item name="android:windowMinWidthMinor">100%</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
-
-    <!-- Tema translúcido, fondo completamente transparente -->
-    <style name="AndroidUtilsTheme.Translucent.Transparent" parent="AndroidUtilsTheme.Translucent">
-        <item name="android:backgroundDimAmount">0</item>
-    </style>
-
-    <!-- Tema translúcido, fondo con poca opacidad -->
-    <style name="AndroidUtilsTheme.Translucent.Little" parent="AndroidUtilsTheme.Translucent">
-        <item name="android:backgroundDimAmount">0.20</item>
-    </style>
-
-    <!-- Tema translúcido, fondo con opacidad media -->
-    <style name="AndroidUtilsTheme.Translucent.Half" parent="AndroidUtilsTheme.Translucent">
-        <item name="android:backgroundDimAmount">0.55</item>
-    </style>
-
-    <!-- Tema translúcido, fondo con opacidad alta -->
-    <style name="AndroidUtilsTheme.Translucent.Opaque" parent="AndroidUtilsTheme.Translucent">
-        <item name="android:backgroundDimAmount">0.90</item>
-    </style>
-
-    <!-- TEMA TRANSLÚCIDO [FIN] -->
-
-    <!--########################################################################################################################################################################################## -->
-
-    <!-- ESTILOS PARA LAS VISTAS DE LA BIBLIOTECA -->
-
-    <style name="AndroidUtilsTheme.RateAppTheme" parent="AndroidUtilsTheme.Translucent">
-        <item name="android:backgroundDimAmount">0.8</item>
     </style>
 
     <!--########################################################################################################################################################################################## -->

@@ -9,11 +9,11 @@
     <application>
         <activity
             android:name=".about.AboutActivity"
-            android:theme="@style/AndroidUtilsTheme.Translucent.Opaque" />
+            android:theme="@style/AndroidUtilsTheme.Translucent" />
         <activity
             android:name=".reviews.rateinapp.RateAppActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/AndroidUtilsTheme.RateAppTheme" />
+            android:theme="@style/AndroidUtilsTheme.Translucent" />
     </application>
 
 </manifest>
