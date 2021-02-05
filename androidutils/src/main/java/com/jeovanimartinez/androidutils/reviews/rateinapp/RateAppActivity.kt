@@ -6,17 +6,18 @@ import android.os.Bundle
 import android.transition.Fade
 import android.view.View
 import android.view.Window
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.reviews.RateApp
+import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
 import kotlinx.android.synthetic.main.activity_rate_app.*
 
 /** Actividad que se muestra en forma de diálogo para invitar al usuario a calificar la aplicación */
-class RateAppActivity : AppCompatActivity() {
+class RateAppActivity : TranslucentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.activityOpacity = 0.83f
         super.onCreate(savedInstanceState)
         configureTransitions()
         setContentView(R.layout.activity_rate_app)
