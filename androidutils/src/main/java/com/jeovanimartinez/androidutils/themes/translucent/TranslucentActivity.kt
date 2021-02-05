@@ -3,9 +3,11 @@ package com.jeovanimartinez.androidutils.themes.translucent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
 /**
  * Clase base para actividades con fondo translúcido.
@@ -44,6 +46,25 @@ open class TranslucentActivity : AppCompatActivity() {
     override fun onResume() {
         window.setBackgroundDrawable(generateBackgroundDrawable(0f)) // Se asigna el fondo a la ventana
         super.onResume()
+    }
+
+    /**
+     * Configura el dim (atenuación) de la ventana
+     * @param window ventana de la que se va a configurar el dim
+     * Invocar a esta función cuando se vaya a mostrar una ventana encima de la actividad, para asegurarse que la atenuación
+     * de la ventana a mostrar sea igual o mayor que la opacidad de la actividad, ya que si no se hace se genera
+     * un efecto visual indeseable.
+     * Por ejemplo, para un diálogo:
+     *  val dialog = MaterialAlertDialogBuilder(this@AboutActivity).setTitle("DEMO").show();
+     *  configureWindowDim(dialog.window);
+     * */
+    fun configureWindowDim(window: Window?) {
+        val currentWindowDim = window?.attributes?.dimAmount
+        currentWindowDim.whenNotNull {
+            if (it < activityOpacity) {
+                window?.setDimAmount(activityOpacity)
+            }
+        }
     }
 
     /** Genera un fondo negro para la actividad, con el [alpha] indicado (entre 0 y 1, que representa la opacidad) */
