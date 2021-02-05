@@ -45,6 +45,11 @@ Clase base con propiedades y funciones comunes
 ##### [android.content.Context](../com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/index.md)
 
 
+| (extensions in package com.jeovanimartinez.androidutils.extensions.basictypes)
+
+##### [kotlin.Float](../com.jeovanimartinez.androidutils.extensions.basictypes/kotlin.-float/index.md)
+
+
 |
 
 ##### [com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay](../com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)
@@ -84,6 +89,15 @@ dirigido a los detalles de la aplicación en Google Play.
 ##### [com.jeovanimartinez.androidutils.web.SystemWebBrowser](../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md)
 
 Utilidad para interactuar con el navegador web del sistema
+
+
+|
+
+##### [com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity](../com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.md)
+
+Clase base para actividades con fondo translúcido.
+Las actividades que hereden de esta clase deben tener el siguiente tema en el manifest: android:theme="@style/AndroidUtilsTheme.Translucent"
+En el diseño de las actividades que hereden de esta clase deben tener un RelativeLayout como elemento raíz en el diseño para que ocupen el espacio completo, o bien un tamaño fijo.
 
 
 | (extensions in package com.jeovanimartinez.androidutils.extensions.dimension)

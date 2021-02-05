@@ -3,3 +3,6 @@
 # onResume
 
 `protected fun onResume(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Al reanudar la actividad, se reasigna el fondo transparente, de modo que se mantenga la opacidad en base al valor de dimAmount
+

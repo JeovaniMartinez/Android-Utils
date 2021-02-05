@@ -2,7 +2,7 @@
 
 # RateAppActivity
 
-`class RateAppActivity : AppCompatActivity`
+`class RateAppActivity : `[`TranslucentActivity`](../../com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.md)
 
 Actividad que se muestra en forma de diálogo para invitar al usuario a calificar la aplicación
 
@@ -17,4 +17,4 @@ Actividad que se muestra en forma de diálogo para invitar al usuario a califica
 | Name | Summary |
 |---|---|
 | [onBackPressed](on-back-pressed.md) | `fun onBackPressed(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
-| [onCreate](on-create.md) | `fun onCreate(savedInstanceState: Bundle?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
+| [onCreate](on-create.md) | Cuando se crea la actividad, para asignar los valores iniciales`fun onCreate(savedInstanceState: Bundle?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |
