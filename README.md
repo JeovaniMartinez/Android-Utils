@@ -182,6 +182,10 @@ SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 
 - TaskDescription.kt: Contiene extensiones para configurar fácilmente el TaskDescription de las actividades.
 
+#### Basic Types **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.basictypes/index.md)**
+
+- Float.kt: Extensiones para el tipo de dato Float.
+
 #### Context **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/android.content.-context/index.md)**
 
 - Toast.kt: Extensiones para mostrar rápidamente toast de corta y larga duración.
