@@ -31,14 +31,14 @@ La biblioteca muestra algunas vistas, las cuales siguen el estilo del tema de la
 #### General
 
 El log de depuración se puede habilitar y deshabilitar de manera global, y afecta a todas las utilidades de la biblioteca.
-Se recomienda usar la siguiente configuración para habilitarlo en desarrollo y deshabilitarlo en producción, solo es necesario ajustarlo una vez dentro de la app, ya sea en el singleton de la app o en el onCreate() de la actividad principal.
+Se recomienda usar la siguiente configuración para habilitarlo en desarrollo y deshabilitarlo en producción, solo es necesario ajustarlo una vez dentro de la app, ya sea en el singleton de la app o en el `onCreate()` de la actividad principal.
 ```Kotlin
 Base.logEnable = BuildConfig.DEBUG
 ```
 Nota: Base es la superclase de la mayoría de las utilidades. **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils/-base/index.md)**
 
 #### Firebase Analytics
-El registro de eventos personalizados es muy útil para comprender como interactúan los usuarios con la aplicación, las utilidades de la biblioteca registran eventos útiles en Firebase Analytics. Este registro esta deshabilitado de manera predeterminada, para habilitarlo, hay que definir la instancia de Firebase Analytics, esto es necesario hacerlo en el onCreate() del singleton de la app o de la actividad principal, al asignar la instancia, el registro de eventos se va a habilitar para todas las utilidades de la biblioteca.
+El registro de eventos personalizados es muy útil para comprender como interactúan los usuarios con la aplicación, las utilidades de la biblioteca registran eventos útiles en Firebase Analytics. Este registro esta deshabilitado de manera predeterminada, para habilitarlo, hay que definir la instancia de Firebase Analytics, esto es necesario hacerlo en el `onCreate()` del singleton de la app o de la actividad principal, al asignar la instancia, el registro de eventos se va a habilitar para todas las utilidades de la biblioteca.
 
 Para habilitar el registro de eventos en Firebase Analytics:
 ```Kotlin
@@ -71,6 +71,13 @@ Ejemplo de uso:
 ```Kotlin
 class AboutActivity : TranslucentActivity() { ... }
 ```
+3. Asignar el valor a la propiedad `activityOpacity` en el lugar donde se desea ajustar la opacidad de la actividad, para que la actividad tenga el fondo al iniciarse se debe asignar entes de `super.onCreate(savedInstanceState)` en el `onCreate()`. La propiedad puede reasignarse en cualquier parte y el cambio se ve reflejado de manera instantánea. El valor debe estar entre 0 y 1, que corresponde a una opacidad del 0% y del 100% respectivamente.
+```Kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.activityOpacity = 0.9f
+        super.onCreate(savedInstanceState)
+}
+```
 
 ### RateInApp 
 Utilidad para iniciar un flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación (Cantos días tiene instalada, cuantas veces se ha iniciado, etc.).
@@ -81,7 +88,7 @@ Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al 
 
 Ejemplo de uso:
 
-En el onCreate() del singleton de la app o de la actividad principal, hay que establecer los valores de configuración e inicializar la utilidad pasando un contexto. Es muy importante hacerlo solo una vez en la app, ya que en ese momento se contabilizan las veces que ha iniciado el usuario la aplicación. (Consultar la documentación para ver la función de cada parámetro de la configuración).
+En el `onCreate()` del singleton de la app o de la actividad principal, hay que establecer los valores de configuración e inicializar la utilidad pasando un contexto. Es muy importante hacerlo solo una vez en la app, ya que en ese momento se contabilizan las veces que ha iniciado el usuario la aplicación. (Consultar la documentación para ver la función de cada parámetro de la configuración).
 ```Kotlin
 RateInApp.apply {
     minInstallElapsedDays = 10
