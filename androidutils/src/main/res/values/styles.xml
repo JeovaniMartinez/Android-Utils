@@ -12,7 +12,7 @@
 
     <!--
        Tema translúcido. Detalles de implementación en androidutils.themes.translucent.TranslucentActivity.
-       Se puede consultar un ejemplo de la vista en la carpeta del proyecto /resources/translucent-theme
+       Se puede consultar un ejemplo de la vista en la carpeta del proyecto /resources/images/translucent-theme
     -->
     <style name="AndroidUtilsTheme.Translucent" parent="AndroidUtilsTheme">
         <item name="android:windowIsTranslucent">true</item>
