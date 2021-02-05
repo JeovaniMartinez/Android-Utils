@@ -37,7 +37,7 @@ class AboutActivity : TranslucentActivity() {
     private var termsAndPolicyVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        activityOpacity = 0.9f
+        super.activityOpacity = 0.9f
         super.onCreate(savedInstanceState)
         configureTransitions()
         setContentView(R.layout.activity_about)
@@ -51,7 +51,6 @@ class AboutActivity : TranslucentActivity() {
     }
 
     override fun onBackPressed() {
-        activityOpacity = 0.9f
         if (termsAndPolicyVisible) return hideTermsAndPolicy()
         super.onBackPressed()
     }
@@ -248,7 +247,7 @@ class AboutActivity : TranslucentActivity() {
 
         AboutApp.log("showTermsAndPolicy() Invoked")
         termsAndPolicyVisible = true // Indica que están visibles
-        activityOpacity = 0.95f
+        super.activityOpacity = 0.95f
 
         if (animate) {
 
@@ -300,7 +299,7 @@ class AboutActivity : TranslucentActivity() {
     private fun hideTermsAndPolicy() {
         AboutApp.log("hideTermsAndPolicy() Invoked")
         termsAndPolicyVisible = false // Se indica que ya no están visibles
-        activityOpacity = 0.9f // Se restaura al valor inicial
+        super.activityOpacity = 0.9f // Se restaura al valor inicial
 
         // Visibilidad y animación del botón de atrás en los términos
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
