@@ -54,6 +54,24 @@ MoreAppsGPlay.firebaseAnalyticsEnabled = false
 
 ## Lista de Utilidades
 
+### Translucent Theme 
+Estilo y clase base que permite que las actividades tengan un fondo completamente transparente, o bien un fondo con cierta opacidad entre 0 (completamente transparente) y 1 (completamente opaco). 
+
+**[Demostración](/resources/images/translucent-theme/translucent-theme-demo.png?raw=true)**
+
+Ejemplo de uso:
+
+1. En el archivo `AndroidManifest` asignar el tema `AndroidUtilsTheme.Translucent` a la actividad deseada.
+```xml
+ <activity
+            android:name=".about.AboutActivity"
+            android:theme="@style/AndroidUtilsTheme.Translucent" />
+```
+2. En la actividad deseada, heredar de `TranslucentActivity` que a su vez hereda de `AppCompatActivity`.
+```Kotlin
+class AboutActivity : TranslucentActivity() { ... }
+```
+
 ### RateInApp 
 Utilidad para iniciar un flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación (Cantos días tiene instalada, cuantas veces se ha iniciado, etc.).
 Para Android 5.0 (API 21) y posteriores, se utiliza Google Play In-App Review API, por lo que se puede calificar dentro de la aplicación.
