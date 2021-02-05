@@ -60,7 +60,7 @@ Estilo y clase base que permite que las actividades tengan un fondo completament
 **[Demostración](/resources/images/translucent-theme/translucent-theme-demo.png?raw=true)**
 
 Ejemplo de uso:
-
+Nota: En el diseño de las actividades que hereden de `TranslucentActivity` deben tener un RelativeLayout como elemento raíz en el diseño para que ocupen el espacio completo de la pantalla, o bien un tamaño fijo.
 1. En el archivo `AndroidManifest` asignar el tema `AndroidUtilsTheme.Translucent` a la actividad deseada.
 ```xml
  <activity
@@ -78,6 +78,14 @@ override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 }
 ```
+Para generar el mejor efecto de opacidad en la actividad, se usa la propiedad `dimAmount` de la ventana para controlar la opacidad. En algunos casos (como cuando se muestra un diálogo) este cuenta con su propio valor de dimAmount, y cuando ese valor es menor que el de activityOpacity se genera un efecto indeseado en la vista. Para corregir esto, la actividad TranslucentActivity cuenta con una función especial llamada `configureWindowDim` que hay que invocar cuando se va a mostrar una vista encima de la actividad, esto corrige ese inconveniente y mantiene la opacidad adecuada. Por ejemplo, para realizar el ajuste en un diálogo:
+```Kotlin
+val dialog = MaterialAlertDialogBuilder(this@AboutActivity).setTitle("DEMO").show()
+configureWindowDim(dialog.window)
+```
+**[Documentación](docs/androidutils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.md)**<br>
+**[Ejemplo de implementación (diseño)](androidutils/src/main/res/layout/activity_about.xml)**<br>
+**[Ejemplo de implementación (código)](androidutils/src/main/java/com/jeovanimartinez/androidutils/about/AboutActivity.kt)**
 
 ### RateInApp 
 Utilidad para iniciar un flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación (Cantos días tiene instalada, cuantas veces se ha iniciado, etc.).
