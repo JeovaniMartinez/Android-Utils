@@ -7,7 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.transition.Fade
+import android.transition.Explode
 import android.view.View
 import android.view.Window
 import android.webkit.*
@@ -183,8 +183,8 @@ class AboutActivity : TranslucentActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             with(window) {
                 requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-                enterTransition = Fade().setDuration(200)
-                exitTransition = Fade().setDuration(200)
+                enterTransition = Explode()
+                exitTransition = Explode()
             }
         }
     }
