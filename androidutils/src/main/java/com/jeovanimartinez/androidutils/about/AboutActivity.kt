@@ -108,6 +108,7 @@ class AboutActivity : TranslucentActivity() {
 
         about_termsAndPolicy.setOnClickListener {
             loadTermsAndPolicy()
+            about_termsAndPolicy.isClickable = false // Se deshabilita el clic, para evitar acciones repetidas
         }
 
         about_closeTermsBtn.setOnClickListener {
@@ -232,6 +233,8 @@ class AboutActivity : TranslucentActivity() {
 
                 about_progressBar.visibility = View.GONE // Se oculta al terminar la petición
                 if (pageLoadSuccessful) showTermsAndPolicy(animateShowTermsView) // Solo se muestran si la página se cargo correctamente
+
+                about_termsAndPolicy.isClickable = true // Se habilita nuevamente
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
