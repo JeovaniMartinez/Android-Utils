@@ -11,6 +11,7 @@ import android.transition.Fade
 import android.view.View
 import android.view.Window
 import android.webkit.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
@@ -18,6 +19,8 @@ import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescrip
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
+import com.jeovanimartinez.androidutils.extensions.nullability.isNull
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
@@ -129,6 +132,13 @@ class AboutActivity : TranslucentActivity() {
         about_appName.text = getString(AboutApp.appName)
         about_authorName.text = getString(AboutApp.authorName)
         about_companyLogo.setImageResource(AboutApp.companyLogo)
+        if (AboutApp.termsAndPrivacyPolicyLink.isNull()) {
+            about_termsAndPolicy.visibility = View.GONE
+            val openSourceLParams = about_openSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
+            openSourceLParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
+            openSourceLParams.endToStart = ConstraintLayout.LayoutParams.UNSET
+            about_openSourceLicenses.layoutParams = openSourceLParams
+        }
 
         about_openSourceLicenses.visibility = if (AboutApp.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
@@ -147,12 +157,16 @@ class AboutActivity : TranslucentActivity() {
             about_closeTermsBtn.setImageDrawable(closeTermsDrawable)
         }
 
-        about_authorName.setOnClickListener {
-            SystemWebBrowser.openUrl(this@AboutActivity, getString(AboutApp.authorLink), "about_app_author_link")
+        AboutApp.authorLink.whenNotNull { link ->
+            about_authorName.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, getString(link), "about_app_author_link")
+            }
         }
 
-        about_companyLogo.setOnClickListener {
-            SystemWebBrowser.openUrl(this@AboutActivity, getString(AboutApp.companyLink), "about_app_company_link")
+        AboutApp.companyLink.whenNotNull { link ->
+            about_companyLogo.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, getString(link), "about_app_company_link")
+            }
         }
 
     }
@@ -239,7 +253,9 @@ class AboutActivity : TranslucentActivity() {
         about_termsAndPolicyWebView.settings.javaScriptEnabled = true // Se habilita javascript ya que es necesario para que se configure el estilo de la página con los parámetros de la URL
         about_termsAndPolicyWebView.settings.domStorageEnabled = true // Se habilita para mejor compatibilidad
         // Se carga la URL, pasando los parámetros de color de fondo y color de texto
-        about_termsAndPolicyWebView.loadUrl("${getString(AboutApp.termsAndPrivacyPolicyLink)}?background-color=$backgroundColor&text-color=$textColor")
+        AboutApp.termsAndPrivacyPolicyLink.whenNotNull {
+            about_termsAndPolicyWebView.loadUrl("${getString(it)}?background-color=$backgroundColor&text-color=$textColor")
+        }
     }
 
     /** Muestra los términos y la política de privacidad, llamar solo si se cargaron correctamente, [animate] determina si se muestran con una animación o no */

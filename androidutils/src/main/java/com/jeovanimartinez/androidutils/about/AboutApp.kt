@@ -38,9 +38,9 @@ object AboutApp : Base<AboutApp>() {
     @StringRes
     var authorName = R.string.about_app_author_name
 
-    /** URL que se abre al dar clic al nombre del autor */
+    /** URL que se abre al dar clic al nombre del autor, null para no abrir ningún enlace */
     @StringRes
-    var authorLink = R.string.about_app_author_link
+    var authorLink: Int? = R.string.about_app_author_link
 
     /** Logo de la empresa */
     @DrawableRes
@@ -50,13 +50,13 @@ object AboutApp : Base<AboutApp>() {
     @StringRes
     var companyName = R.string.about_app_company_name
 
-    /** URL que se abre al dar clic al logo de la empresa */
+    /** URL que se abre al dar clic al logo de la empresa, null para no abrir ningún enlace */
     @StringRes
-    var companyLink = R.string.about_app_company_link
+    var companyLink: Int? = R.string.about_app_company_link
 
-    /** URL de los términos de uso y política de privacidad */
+    /** URL de los términos de uso y política de privacidad, dejar en null si la app no se desea mostrarlos */
     @StringRes
-    var termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link
+    var termsAndPrivacyPolicyLink: Int? = R.string.about_app_terms_and_policy_link
 
     /** Color del texto de los términos de uso y política de privacidad, si no se define, se usa el color predeterminado  */
     @ColorRes
