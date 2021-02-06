@@ -169,7 +169,7 @@
                     android:id="@+id/about_termsAndPolicy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
+                    android:layout_marginStart="14dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="@string/about_app_terms_and_policy"
