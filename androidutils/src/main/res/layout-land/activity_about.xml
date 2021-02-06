@@ -194,7 +194,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/about_topSeparator"
-                    app:srcCompat="@drawable/ic_close_box" />
+                    app:srcCompat="@drawable/ic_check_circle_outline" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/about_openSourceLicenses"

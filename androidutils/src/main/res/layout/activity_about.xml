@@ -185,7 +185,7 @@
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/about_BottomSeparator"
-                    app:srcCompat="@drawable/ic_close_box" />
+                    app:srcCompat="@drawable/ic_check_circle_outline" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/about_openSourceLicenses"

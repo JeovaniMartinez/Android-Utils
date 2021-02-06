@@ -149,7 +149,7 @@ class AboutActivity : TranslucentActivity() {
         // Se asigna el color de los iconos, solo funciona de Android 5 en adelante
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val iconsColor = ContextCompat.getColor(this@AboutActivity, AboutApp.iconsColor)
-            val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_close_box)
+            val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_check_circle_outline)
             val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
             closeDrawable?.setTint(iconsColor)
             closeTermsDrawable?.setTint(iconsColor)
