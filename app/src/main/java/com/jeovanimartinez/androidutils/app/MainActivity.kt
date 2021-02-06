@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 companyLogo = R.drawable.logo_jedemm_com
                 companyName = R.string.about_app_company_name
                 companyLink = R.string.about_app_company_link
-                termsAndPrivacyPolicyLink = R.string.terms_and_privacy_policy_link
+                termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link
                 termsAndPrivacyPolicyTextColor = R.color.colorTermsAndPrivacyPolicyText
                 showOpenSourceLicenses = true
                 taskDescriptionTitle = R.string.app_name

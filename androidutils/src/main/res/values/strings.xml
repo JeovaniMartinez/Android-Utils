@@ -25,7 +25,7 @@
     <string name="about_app_terms_and_policy">Terms &amp;\nPrivacy Policy</string>
     <string name="about_app_terms_and_policy_not_available">Not available</string>
     <string name="about_app_terms_and_policy_network_error">Not available, internet connection required</string>
-    <string name="about_app_terms_and_policy_link">https://jedemm.com</string>
+    <string name="about_app_terms_and_policy_link">https://jedemm.com/android-utils/terms-and-policy/license.html</string>
     <string name="about_app_open_source_licenses">Open Source\nLicenses</string>
 
     <!-- SystemWebBrowser - Utilidad para mostrar páginas en el navegador web del sistema -->
