@@ -136,7 +136,7 @@ RateApp.goToRateInGooglePlay(this@MainActivity)
 ### About 
 Utilidad para mostrar una actividad de acerca de, donde se incluye la información de la app, del autor y de la empresa, el copyright, así como las licencias de código abierto, los términos de licencia y la política de privacidad.
 
-![Demo](/resources/images/rate-in-app/rate-in-app-demo.png?raw=true)
+![Demo](/resources/images/about/about-demo.png?raw=true)
 
 Ejemplo de uso:
 ```Kotlin
