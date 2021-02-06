@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity() {
 
             AboutApp.apply {
                 backgroundColor = R.color.colorBackground
+                iconsColor = R.color.colorIcon
                 appIcon = R.drawable.library_logo
                 appName = R.string.about_app_app_name
                 appVersionName = BuildConfig.VERSION_NAME
