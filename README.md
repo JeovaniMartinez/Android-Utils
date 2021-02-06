@@ -16,7 +16,7 @@ Conjunto de utilidades para el desarrollo de aplicaciones Android
 - La biblioteca muestra algunas vistas, considerando lo siguiente:
 	- Soporte para tema claro y oscuro, se utiliza los componentes de Material Design para Android, y se sigue su estilo de diseño.
 	- Las vistas se pueden mostrar en los siguientes idiomas: Inglés, Español.
-- En algunos ejemplos de uso se muestra un panel colapsable llamado "Modo compacto" donde se muestra el código con la configuración mínima requerida para la utilidad, teniendo en cuanta que en algunos casos, se usan valores predeterminados definidos en la biblioteca, por lo que se recomienda usar ese código solo si se tiene una rama de la biblioteca y se han ajustado los valores predeterminados por los deseados.
+- En algunos ejemplos de uso se muestra un panel colapsable llamado "Modo compacto" donde se muestra el código con la configuración mínima requerida para la utilidad, teniendo en cuanta que en algunos casos, se usan valores predeterminados definidos en la biblioteca.
 
 #### Configuración
 Agregar la siguiente configuración en Gradle (a nivel de la app)
