@@ -161,6 +161,14 @@ AboutApp.apply {
 ```
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.about/-about-app/index.md)**
 
+#### Términos de Licencia y Política de Privacidad
+La actividad muestra los términos y la política en un `WebView`, que se cargan desde una URL (`termsAndPrivacyPolicyLink`) para poder mostrar siempre la versión más actualizada de los mismos. Con el fin de mostrar la página web con el estilo del tema que usa la app, se envían dos parámetros a la URL ` background-color` y ` text-color` para personalizar el color de fondo de la página y el color del texto respectivamente
+<br><br>
+La siguiente plantilla para la página es la que se usa en el ejemplo, y ya se encarga de procesar los parámetros y ajustar la vista: 
+
+**[Plantilla](resources/terms-and-privacy-policy)**<br>
+**[Demostración](https://jedemm.com/android-utils/terms-and-policy/license.html?background-color=212121&text-color=CFCFCF)**
+
 #
 
 ### MoreAppsGPlay 
