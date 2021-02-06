@@ -143,6 +143,11 @@ class AboutActivity : TranslucentActivity() {
 
         about_openSourceLicenses.visibility = if (AboutApp.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
+        // En versiones anteriores a Android 4.4 se oculta siempre, ya que la actividad no funciona correctamente
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            about_openSourceLicenses.visibility = View.GONE
+        }
+
         val color = ContextCompat.getColor(this@AboutActivity, AboutApp.backgroundColor)
         about_topActionCard.setCardBackgroundColor(color)
         about_contentCard.setCardBackgroundColor(color)
