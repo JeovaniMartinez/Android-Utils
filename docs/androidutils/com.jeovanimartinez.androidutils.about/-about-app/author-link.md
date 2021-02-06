@@ -2,7 +2,7 @@
 
 # authorLink
 
-`var authorLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`var authorLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?`
 
-URL que se abre al dar clic al nombre del autor
+URL que se abre al dar clic al nombre del autor, null para no abrir ningún enlace
 

@@ -2,7 +2,7 @@
 
 # companyLink
 
-`var companyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`var companyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?`
 
-URL que se abre al dar clic al logo de la empresa
+URL que se abre al dar clic al logo de la empresa, null para no abrir ningún enlace
 

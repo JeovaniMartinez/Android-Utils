@@ -13,10 +13,10 @@ Utilidad para mostrar una pantalla de acerca de la aplicación
 | [appIcon](app-icon.md) | Ícono o logo de la aplicación`var appIcon: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [appName](app-name.md) | Nombre de la aplicación`var appName: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [appVersionName](app-version-name.md) | Version de la aplicación`var appVersionName: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [authorLink](author-link.md) | URL que se abre al dar clic al nombre del autor`var authorLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [authorLink](author-link.md) | URL que se abre al dar clic al nombre del autor, null para no abrir ningún enlace`var authorLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?` |
 | [authorName](author-name.md) | Nombre del autor`var authorName: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [backgroundColor](background-color.md) | Color de fondo de la actividad, si no se asigna se usa el color de fondo del tema`var backgroundColor: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [companyLink](company-link.md) | URL que se abre al dar clic al logo de la empresa`var companyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [companyLink](company-link.md) | URL que se abre al dar clic al logo de la empresa, null para no abrir ningún enlace`var companyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?` |
 | [companyLogo](company-logo.md) | Logo de la empresa`var companyLogo: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [companyName](company-name.md) | Nombre de la empresa`var companyName: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [iconsColor](icons-color.md) | Color para los iconos`var iconsColor: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
@@ -25,7 +25,7 @@ Utilidad para mostrar una pantalla de acerca de la aplicación
 | [taskDescriptionColor](task-description-color.md) | Color para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionIcon y ninguna propiedad debe ser null para que se configure el Task Description.`var taskDescriptionColor: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?` |
 | [taskDescriptionIcon](task-description-icon.md) | Icono para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionColor y ninguna propiedad debe ser null para que se configure el Task Description.`var taskDescriptionIcon: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?` |
 | [taskDescriptionTitle](task-description-title.md) | Título para la Task Description de la actividad. Se usa en conjunto con taskDescriptionIcon y taskDescriptionColor y ninguna propiedad debe ser null para que se configure el Task Description.`var taskDescriptionTitle: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?` |
-| [termsAndPrivacyPolicyLink](terms-and-privacy-policy-link.md) | URL de los términos de uso y política de privacidad`var termsAndPrivacyPolicyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [termsAndPrivacyPolicyLink](terms-and-privacy-policy-link.md) | URL de los términos de uso y política de privacidad, dejar en null si la app no se desea mostrarlos`var termsAndPrivacyPolicyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?` |
 | [termsAndPrivacyPolicyTextColor](terms-and-privacy-policy-text-color.md) | Color del texto de los términos de uso y política de privacidad, si no se define, se usa el color predeterminado`var termsAndPrivacyPolicyTextColor: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 
 ### Functions

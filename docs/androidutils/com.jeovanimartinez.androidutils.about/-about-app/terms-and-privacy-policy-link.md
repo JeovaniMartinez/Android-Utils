@@ -2,7 +2,7 @@
 
 # termsAndPrivacyPolicyLink
 
-`var termsAndPrivacyPolicyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`var termsAndPrivacyPolicyLink: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`?`
 
-URL de los términos de uso y política de privacidad
+URL de los términos de uso y política de privacidad, dejar en null si la app no se desea mostrarlos
 
