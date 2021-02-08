@@ -31,8 +31,10 @@ com.jeovanimartinez.androidutils.extensions.context
 com.jeovanimartinez.androidutils.extensions.dimension
 com.jeovanimartinez.androidutils.extensions.nullability
 com.jeovanimartinez.androidutils.extensions.view
+com.jeovanimartinez.androidutils.filesystem.tempfiles
 com.jeovanimartinez.androidutils.moreapps
 com.jeovanimartinez.androidutils.reviews
 com.jeovanimartinez.androidutils.reviews.rateinapp
 com.jeovanimartinez.androidutils.themes.translucent
+com.jeovanimartinez.androidutils.views.viewtoimage
 com.jeovanimartinez.androidutils.web

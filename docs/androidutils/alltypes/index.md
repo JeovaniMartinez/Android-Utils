@@ -60,6 +60,11 @@ El uso principal es para invitar al usuario a que instale otras aplicaciones del
 
 |
 
+##### [com.jeovanimartinez.androidutils.ParseValue](../com.jeovanimartinez.androidutils/-parse-value/index.md)
+
+
+|
+
 ##### [com.jeovanimartinez.androidutils.reviews.RateApp](../com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)
 
 Utilidad para dirigir al usuario a Google Play, específicamente a los detalles de la aplicación.
@@ -93,6 +98,13 @@ Utilidad para interactuar con el navegador web del sistema
 
 |
 
+##### [com.jeovanimartinez.androidutils.filesystem.tempfiles.TempFiles](../com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/index.md)
+
+Utilidad para trabajar con archivos temporales
+
+
+|
+
 ##### [com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity](../com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.md)
 
 Clase base para actividades con fondo translúcido.
@@ -108,5 +120,10 @@ En el diseño de las actividades que hereden de esta clase deben tener un Relati
 | (extensions in package com.jeovanimartinez.androidutils.extensions.view)
 
 ##### [android.view.ViewPropertyAnimator](../com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/index.md)
+
+
+|
+
+##### [com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImageConfig](../com.jeovanimartinez.androidutils.views.viewtoimage/-view-to-image-config/index.md)
 
 
