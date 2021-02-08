@@ -53,6 +53,12 @@ También se puede desactivar el registro de eventos para una utilidad en especí
 MoreAppsGPlay.firebaseAnalyticsEnabled = false
 ```
 
+#### Firebase Crashlytics
+La biblioteca puede registrar algunos flujos de error recuperables en Firebase Crashlytics, para esto es necesario asignar la instancia de crashlytics a la biblioteca, esto es necesario hacerlo en el `onCreate()` del singleton de la app o de la actividad principal, teniendo en cuenta que la app que implementa la biblioteca debe tener configurado Firebase Crashlytics.
+```Kotlin
+Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
+```
+
 #
 #
 
