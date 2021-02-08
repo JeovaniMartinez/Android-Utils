@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.filesystem.tempfiles
 
 import android.content.Context
 import android.graphics.Bitmap
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jeovanimartinez.androidutils.Base
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,6 +31,7 @@ object TempFiles : Base<TempFiles>() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 makeTempDir(context) // Por si no existe el directorio, se genera para poder obtener la lista de archivos
+                throw Exception("ERROR TEST")
                 val files = File(context.filesDir, TEMP_FILES_DIR).listFiles()
                 files?.forEach {
                     it.delete()
@@ -39,6 +41,7 @@ object TempFiles : Base<TempFiles>() {
                 log("clearTempFilesFolder() done")
             } catch (e: Exception) {
                 loge("Failed to delete files from temporary folder", e)
+                FirebaseCrashlytics.getInstance().recordException(e)
             }
         }
     }
