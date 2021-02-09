@@ -198,6 +198,21 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 
 #
 
+### TempFiles  
+Utilidad para crear y eliminar fácilmente archivos temporales de la app. Los archivos temporales se crean en una carpeta privada de la aplicación llamada `androidutils_tempfiles`.
+
+#### - clearTempFilesFolder
+Elimina todos los archivos creados con esta utilidad (los archivos de la carpeta temporal), se recomienda llamar al inicio de la app o donde se necesite limpiar el contenido de la carpeta. La función se ejecuta de manera asíncrona para no afectar el flujo de la app y puede llamarse desde cualquier lugar.
+
+Ejemplo de uso:
+```Kotlin
+TempFiles.clearTempFilesFolder(this@MainActivity)
+```
+
+#### - [Lista de utilidades](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/index.md)
+
+#
+
 ### SystemWebBrowser 
 Utilidad para interactuar con el navegador web del sistema.
 
