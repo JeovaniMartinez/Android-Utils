@@ -1,3 +1,4 @@
+include ':lintcheck'
 include ':androidutils'
 include ':app'
 rootProject.name = "Android-Utils"

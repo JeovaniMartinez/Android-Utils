@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android-Utils.iml" filepath="$PROJECT_DIR$/.idea/modules/Android-Utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.iml" filepath="$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.iml" />
     </modules>
   </component>
 </project>
