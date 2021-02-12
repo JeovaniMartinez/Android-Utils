@@ -1,64 +1,130 @@
 package com.jeovanimartinez.androidutils.lintcheck.annotations
 
-import com.android.tools.lint.client.api.UElementHandler
+import com.android.resources.ResourceType
+import com.android.tools.lint.checks.AnnotationDetector
 import com.android.tools.lint.detector.api.*
-import com.android.tools.lint.detector.api.Detector.UastScanner
+import com.intellij.psi.*
+import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
+import org.jetbrains.uast.UAnnotation
+import org.jetbrains.uast.UCallExpression
 import org.jetbrains.uast.UElement
-import org.jetbrains.uast.ULiteralExpression
-import org.jetbrains.uast.evaluateString
+import org.jetbrains.uast.UReferenceExpression
+import org.w3c.dom.Attr
 
 /**
- * Sample detector showing how to analyze Kotlin/Java code.
- * This example flags all string literals in the code that contain
- * the word "lint".
+ * A custom lint check that prohibits usage of the `android.widget.Toast` class and suggests
+ * using a Snackbar from the support library instead.
  */
-@Suppress("UnstableApiUsage")
-class TypeOrResource : Detector(), UastScanner {
-    override fun getApplicableUastTypes(): List<Class<out UElement?>>? {
-        return listOf(ULiteralExpression::class.java)
-    }
-
-    override fun createUastHandler(context: JavaContext): UElementHandler? {
-        // Note: Visiting UAST nodes is a pretty general purpose mechanism;
-        // Lint has specialized support to do common things like "visit every class
-        // that extends a given super class or implements a given interface", and
-        // "visit every call site that calls a method by a given name" etc.
-        // Take a careful look at UastScanner and the various existing lint check
-        // implementations before doing things the "hard way".
-        // Also be aware of context.getJavaEvaluator() which provides a lot of
-        // utility functionality.
-        return object : UElementHandler() {
-            override fun visitLiteralExpression(node: ULiteralExpression) {
-                val string = node.evaluateString() ?: return
-                if (string.contains("lint") && string.matches(Regex(".*\\blint\\b.*"))) {
-                    context.report(ISSUE, node, context.getLocation(node),
-                        "This code mentions `lint`: **Congratulations**")
-                }
-            }
-        }
-    }
+class TypeOrResource : AnnotationDetector(){
 
     companion object {
-        /** Issue describing the problem and pointing to the detector implementation */
-        @JvmField
-        val ISSUE: Issue = Issue.create(
-            // ID: used in @SuppressLint warnings etc
-            id = "ShortUniqueId",
-            // Title -- shown in the IDE's preference dialog, as category headers in the
-            // Analysis results window, etc
-            briefDescription = "Lint Mentions",
-            // Full explanation of the issue; you can use some markdown markup such as
-            // `monospace`, *italic*, and **bold**.
-            explanation = """
-                    This check highlights string literals in code which mentions the word `lint`. \
-                    Blah blah blah.
-                    Another paragraph here.
-                    """, // no need to .trimIndent(), lint does that automatically
+        val ISSUE = Issue.create(
+            id = "AndroidToastJavaKotlin",
+            briefDescription = "Prohibits usages of `android.widget.Toast`",
+            explanation = "UPDATEDDDDD Usages of `android.widget.Toast` are prohibited",
             category = Category.CORRECTNESS,
-            priority = 6,
-            severity = Severity.WARNING,
+            severity = Severity.ERROR,
             implementation = Implementation(
                 TypeOrResource::class.java,
-                Scope.JAVA_FILE_SCOPE))
+                Scope.JAVA_FILE_SCOPE
+            )
+        )
     }
+
+    override fun inheritAnnotation(annotation: String): Boolean {
+        return super.inheritAnnotation(annotation)
+    }
+
+    override fun isApplicableAnnotationUsage(type: AnnotationUsageType): Boolean {
+        return super.isApplicableAnnotationUsage(type)
+    }
+
+    override fun visitAnnotationUsage(context: JavaContext, usage: UElement, type: AnnotationUsageType, annotation: UAnnotation, qualifiedName: String, method: PsiMethod?, referenced: PsiElement?, annotations: List<UAnnotation>, allMemberAnnotations: List<UAnnotation>, allClassAnnotations: List<UAnnotation>, allPackageAnnotations: List<UAnnotation>) {
+        super.visitAnnotationUsage(context, usage, type, annotation, qualifiedName, method, referenced, annotations, allMemberAnnotations, allClassAnnotations, allPackageAnnotations)
+    }
+
+    override fun visitAnnotationUsage(context: JavaContext, usage: UElement, type: AnnotationUsageType, annotation: UAnnotation, qualifiedName: String,
+                                      method: PsiMethod?, annotations: List<UAnnotation>, allMemberAnnotations: List<UAnnotation>, allClassAnnotations: List<UAnnotation>, allPackageAnnotations: List<UAnnotation>) {
+
+
+
+
+        val c = usage.sourcePsi?.node?.firstChildNode?.elementType
+        val d = usage.sourcePsi?.node?.firstChildNode?.text
+
+        if(c != null && d != null) {
+            if(c == DOT_QUALIFIED_EXPRESSION &&  d != "R.string" && d != "android.R.string" ) {
+                context.report(
+                    issue = ISSUE,
+                    scope = usage,
+                    location = context.getLocation(usage),
+                    message = "Please use String or String resource ID JM TEST"
+                )
+            }
+        }
+
+
+
+    }
+
+    override fun visitReference(
+        context: JavaContext,
+        visitor: JavaElementVisitor?,
+        reference: PsiJavaCodeReferenceElement,
+        referenced: PsiElement
+    ) {
+        super.visitReference(context, visitor, reference, referenced)
+    }
+
+    override fun visitReference(
+        context: JavaContext,
+        reference: UReferenceExpression,
+        referenced: PsiElement
+    ) {
+        super.visitReference(context, reference, referenced)
+    }
+
+    override fun visitResourceReference(
+        context: JavaContext,
+        visitor: JavaElementVisitor?,
+        node: PsiElement,
+        type: ResourceType,
+        name: String,
+        isFramework: Boolean
+    ) {
+        super.visitResourceReference(context, visitor, node, type, name, isFramework)
+    }
+
+    override fun visitResourceReference(
+        context: JavaContext,
+        node: UElement,
+        type: ResourceType,
+        name: String,
+        isFramework: Boolean
+    ) {
+        super.visitResourceReference(context, node, type, name, isFramework)
+    }
+
+    override fun visitMethodCall(context: JavaContext, node: UCallExpression, method: PsiMethod) {
+        super.visitMethodCall(context, node, method)
+    }
+
+    override fun visitAttribute(context: XmlContext, attribute: Attr) {
+        super.visitAttribute(context, attribute)
+    }
+
+
+
+    override fun applicableAnnotations(): List<String>? {
+        return listOf("com.jeovanimartinez.androidutils.annotations.StringOrStringRes")
+    }
+
+
+
+    override fun createPsiVisitor(context: JavaContext): JavaElementVisitor? {
+        return super.createPsiVisitor(context)
+    }
+
+
+
 }
