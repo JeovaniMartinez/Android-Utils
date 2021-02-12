@@ -1,16 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.4.21"
-    ext.dokka_version = '0.10.1'
+    ext {
+        gradlePluginVersion = '4.1.2'
+        lintVersion = '27.1.2' // En base al plugin de Gradle, si gradle es X.Y.Z, lint debe ser X+23.Y.Z.
+        kotlinVersion = '1.4.21'
+        dokkaVersion = '0.10.1'
+        ossLicensesPlugin = '0.10.2'
+    }
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}")
-        classpath 'com.google.android.gms:oss-licenses-plugin:0.10.2'
+        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
+        classpath "com.google.android.gms:oss-licenses-plugin:$ossLicensesPlugin"
     }
 }
 
