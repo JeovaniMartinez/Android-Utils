@@ -2,14 +2,19 @@ package com.jeovanimartinez.androidutils.lintcheck.annotations
 
 import com.android.resources.ResourceType
 import com.android.tools.lint.checks.AnnotationDetector
+import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.*
 import com.intellij.psi.*
 import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
-import org.jetbrains.uast.UAnnotation
-import org.jetbrains.uast.UCallExpression
-import org.jetbrains.uast.UElement
-import org.jetbrains.uast.UReferenceExpression
+import org.jetbrains.kotlin.KtNodeTypes.INTEGER_CONSTANT
+import org.jetbrains.kotlin.lexer.KtTokens
+import org.jetbrains.uast.*
+import org.objectweb.asm.tree.ClassNode
+import org.objectweb.asm.tree.MethodInsnNode
+import org.objectweb.asm.tree.MethodNode
 import org.w3c.dom.Attr
+import org.w3c.dom.Element
+import java.lang.Exception
 
 /**
  * A custom lint check that prohibits usage of the `android.widget.Toast` class and suggests
@@ -47,12 +52,110 @@ class TypeOrResource : AnnotationDetector(){
                                       method: PsiMethod?, annotations: List<UAnnotation>, allMemberAnnotations: List<UAnnotation>, allClassAnnotations: List<UAnnotation>, allPackageAnnotations: List<UAnnotation>) {
 
 
+        // Se obtiene el tipo de elemento con su nombre de debug, por ejemplo REGULAR_STRING_PART para un String
+        val elementType = usage.sourcePsi?.node?.firstChildNode?.elementType
+        // Se obtiene el valor en texto, básicamente es el valor con el que se invoca.toString()
+        val text = usage.sourcePsi?.node?.firstChildNode?.text
+
+        val elementPrev = usage.sourcePsi?.node?.firstChildNode?.treePrev // Siguiente elemento
+        val elementNext = usage.sourcePsi?.node?.firstChildNode?.treeNext // Elemento anterior
+
+        // Se valida que haya contenido para verificar
+        if (elementType != null && text != null) {
+            /*
+            * Solo se valida si elementPrev && elementNext son null, esto indica que no hay nada antes del valor ni después, por ejemplo
+            * si el valor donde se invoca es:
+            *   5 si entra, ya que no hay nada antes ni después
+            *   5f si entra, ya que f se considera parte del valor
+            *   5.toString() no entra, ya que después del valor hay un punto
+            * */
+            if (elementPrev == null && elementNext == null) {
+
+                // VALIDACIÓN PARA STRING
+
+                // Si el tipo de elemento no es un string, se reporta el error
+                if (elementType != KtTokens.CHARACTER_LITERAL && elementType != KtTokens.REGULAR_STRING_PART && elementType != KtTokens.OPEN_QUOTE) {
+                    return context.report(
+                        issue = ISSUE,
+                        scope = usage,
+                        location = context.getLocation(usage),
+                        message = "Invalid type, expected String or String Resource"
+                    )
+                }
+
+            }
+        }
+
+        // Si no entro en el reporte anterior, ahora se verifica si el valor corresponde a un valor de R.
+
+        // VALIDACIÓN PARA STRING
+
+        if (elementType != null && text != null) {
+            if (text.contains("R.")) {
+                if (elementType == DOT_QUALIFIED_EXPRESSION && text != "R.string" && text != "android.R.string") {
+                    return context.report(
+                        issue = ISSUE,
+                        scope = usage,
+                        location = context.getLocation(usage),
+                        message = "Invalid resource, expected String or String Resource"
+                    )
+                }
+            }
+        }
+
+//        val c = usage.sourcePsi?.node?.firstChildNode?.elementType
+//        val d = usage.sourcePsi?.node?.firstChildNode?.text
+//
+//
+//        val nextS = usage.sourcePsi?.node?.firstChildNode?.treeNext
+//        val nextP = usage.sourcePsi?.node?.firstChildNode?.treePrev
+//
+//        if(nextS == null && nextP == null){
+//            context.report(
+//                issue = ISSUE,
+//                scope = usage,
+//                location = context.getLocation(usage),
+//                message = "Can evaluate IT"
+//            )
+//        }
+//
+//        val isIstring = (c == KtTokens.CHARACTER_LITERAL || c == KtTokens.REGULAR_STRING_PART || c == KtTokens.OPEN_QUOTE)
+//
+//
+//        val applyVerification = c == KtTokens.CHARACTER_LITERAL ||
+//        c == KtTokens.REGULAR_STRING_PART ||
+//        c == KtTokens.OPEN_QUOTE ||
+//        c == KtTokens.INTEGER_LITERAL ||
+//        c == KtTokens.OPEN_QUOTE ||
+//        c == KtTokens.OPEN_QUOTE ||
+//        c == KtTokens.OPEN_QUOTE
+//
+//        val canInt = try {
+//            d?.toInt()
+//            true
+//        } catch (e: Exception) {
+//            false
+//        }
+//
+//        val ee = context.getLocation(usage)
 
 
-        val c = usage.sourcePsi?.node?.firstChildNode?.elementType
-        val d = usage.sourcePsi?.node?.firstChildNode?.text
+        // QUE SE OBTIENE
+        // R.string.demo = DOT_QUALIFIED_EXPRESSION R.string
+        // android.R.string.ok = DOT_QUALIFIED_EXPRESSION android.R.string
+        // R.color.demo = DOT_QUALIFIED_EXPRESSION R.color
+        // R.drawable.demo = DOT_QUALIFIED_EXPRESSION R.drawable
+        // R.dimen..demo = DOT_QUALIFIED_EXPRESSION R.dimen
+        // R.raw.demo = DOT_QUALIFIED_EXPRESSION R.raw
+        // "" = OPEN_QUOTE
+        // "one" = REGULAR_STRING_PART
+        // 'c' = CHARACTER_LITERAL
+        // 25.toString() = INTEGER_CONSTANT
+        // 25 = INTEGER_LITERAL
+        // 10f = FLOAT_CONSTANT
 
-        if(c != null && d != null) {
+
+        /*if(c != null && d != null) {
             if(c == DOT_QUALIFIED_EXPRESSION &&  d != "R.string" && d != "android.R.string" ) {
                 context.report(
                     issue = ISSUE,
@@ -61,11 +164,22 @@ class TypeOrResource : AnnotationDetector(){
                     message = "Please use String or String resource ID JM TEST"
                 )
             }
-        }
+        }*/
+
+
 
 
 
     }
+
+
+
+
+    override fun checkCall(context: ClassContext, classNode: ClassNode, method: MethodNode, call: MethodInsnNode) {
+        super.checkCall(context, classNode, method, call)
+    }
+
+
 
     override fun visitReference(
         context: JavaContext,
