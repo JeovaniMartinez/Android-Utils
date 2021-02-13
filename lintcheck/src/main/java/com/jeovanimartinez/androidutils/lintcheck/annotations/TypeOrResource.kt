@@ -1,20 +1,18 @@
+@file:Suppress("UnstableApiUsage")
+
 package com.jeovanimartinez.androidutils.lintcheck.annotations
 
 import com.android.resources.ResourceType
 import com.android.tools.lint.checks.AnnotationDetector
-import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.*
 import com.intellij.psi.*
 import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
-import org.jetbrains.kotlin.KtNodeTypes.INTEGER_CONSTANT
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.uast.*
 import org.objectweb.asm.tree.ClassNode
 import org.objectweb.asm.tree.MethodInsnNode
 import org.objectweb.asm.tree.MethodNode
 import org.w3c.dom.Attr
-import org.w3c.dom.Element
-import java.lang.Exception
 
 /**
  * A custom lint check that prohibits usage of the `android.widget.Toast` class and suggests
@@ -23,18 +21,38 @@ import java.lang.Exception
 class TypeOrResource : AnnotationDetector(){
 
     companion object {
+        // Configuración y descripción del problema
         val ISSUE = Issue.create(
-            id = "AndroidToastJavaKotlin",
-            briefDescription = "Prohibits usages of `android.widget.Toast`",
-            explanation = "UPDATEDDDDD Usages of `android.widget.Toast` are prohibited",
+            id = "TypeOrResource",
+            briefDescription = "Validate that the correct type or correct resource is received.`",
+            explanation = """
+                When using this annotation, generally the accepted data type is Any, so this verification is in charge of validating 
+                that the correct data type is received according to the annotation. For example, the @StringOrStringRes annotation is
+                expected to receive a string value, such as "Hello" or an ID of a string resource, such as R.string.demo. If a String 
+                is received, the data is treated as is, if a string ID is received, the value is obtained and it is treated as a String, 
+                but if an incorrect data type is received like a Float or an incorrect resource like R .color.demo. app will throw an 
+                exception at runtime. For this reason, this check helps to assign a correct value according to the annotation.
+            """.trimIndent(),
             category = Category.CORRECTNESS,
             severity = Severity.ERROR,
-            implementation = Implementation(
-                TypeOrResource::class.java,
-                Scope.JAVA_FILE_SCOPE
-            )
+            implementation = Implementation(TypeOrResource::class.java, Scope.JAVA_FILE_SCOPE)
         )
     }
+
+    /*
+
+    Mensajes
+
+    Invalid type, expected string object or string resource
+    Invalid resource, expected string resource or string object
+
+    Invalid type, expected color int or color resource
+    Invalid resource, expected color resource or color int
+
+    Invalid type, expected drawable object or drawable resource
+    Invalid resource, expected drawable resource or drawable object
+
+    * */
 
     override fun inheritAnnotation(annotation: String): Boolean {
         return super.inheritAnnotation(annotation)
@@ -79,7 +97,7 @@ class TypeOrResource : AnnotationDetector(){
                         issue = ISSUE,
                         scope = usage,
                         location = context.getLocation(usage),
-                        message = "Invalid type, expected String or String Resource"
+                        message = "Invalid type, expected string object or string resource"
                     )
                 }
 
@@ -97,7 +115,7 @@ class TypeOrResource : AnnotationDetector(){
                         issue = ISSUE,
                         scope = usage,
                         location = context.getLocation(usage),
-                        message = "Invalid resource, expected String or String Resource"
+                        message = "Invalid resource, expected string resource or string object"
                     )
                 }
             }
