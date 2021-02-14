@@ -74,8 +74,10 @@ class TypeOrResource : AnnotationDetector() {
             *   5 = si entra, ya que no hay nada antes ni después
             *   5f = si entra, ya que f se considera parte del valor
             *   5.toString() = no entra, ya que después del valor hay un punto
+            * También se valida que el tipo de dato no sea un identificador, para evitar mostrar el error al usar la variable
+            * o propiedad que tiene la anotación, y solo mostrar el error en la asignación
             * */
-            if (elementPrev == null && elementNext == null) {
+            if (elementPrev == null && elementNext == null && elementType != KtTokens.IDENTIFIER) {
                 // Se ejecuta la verificación según la anotación encontrada
                 when (qualifiedName) {
                     "com.jeovanimartinez.androidutils.annotations.ColorOrColorRes" -> checkColorOrColorRes(context, usage, elementType, text, CheckType.DATA_TYPE)
