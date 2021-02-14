@@ -76,15 +76,89 @@ class TypeOrResource : AnnotationDetector() {
             *   5.toString() = no entra, ya que después del valor hay un punto
             * */
             if (elementPrev == null && elementNext == null) {
-                checkStringOrStringRes(context, usage, elementType, text, CheckType.DATA_TYPE)
+                // Se ejecuta la verificación según la anotación encontrada
+                when (qualifiedName) {
+                    "com.jeovanimartinez.androidutils.annotations.ColorOrColorRes" -> checkColorOrColorRes(context, usage, elementType, text, CheckType.DATA_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.DATA_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.DATA_TYPE)
+                }
             }
 
             // Ahora se verifica si el valor corresponde a un valor de los recursos.
-            if (elementType == DOT_QUALIFIED_EXPRESSION && text.contains("R.")) {
-                checkStringOrStringRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
+            if (elementType == DOT_QUALIFIED_EXPRESSION && text.contains("R.") && (text.startsWith("R.") || text.startsWith("android.R."))) {
+                // Se ejecuta la verificación según la anotación encontrada
+                when (qualifiedName) {
+                    "com.jeovanimartinez.androidutils.annotations.ColorOrColorRes" -> checkColorOrColorRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
+                }
             }
         }
 
+    }
+
+    /**
+     * Verifica el uso de la anotación ColorOrColorRes y reporta el problema (issue) si aplica
+     * @param context contexto
+     * @param usage referencia dentro del código donde se usa la anotación y donde se esta analizando el código
+     * @param elementType tipo de elemento
+     * @param text valor que se le asigna a la variable o propiedad de la anotación en string
+     * @param checkType tipo de verificación
+     * */
+    private fun checkColorOrColorRes(context: JavaContext, usage: UElement, elementType: IElementType, text: String, checkType: CheckType) {
+        when (checkType) {
+            CheckType.DATA_TYPE -> {
+                // Se reporta el problema si el tipo de dato que se asigna no es un entero
+                if (elementType != KtTokens.INTEGER_LITERAL) {
+                    context.report(
+                        issue = ISSUE,
+                        scope = usage,
+                        location = context.getLocation(usage),
+                        message = "Invalid type, expected color int or color resource"
+                    )
+                }
+            }
+            CheckType.RESOURCE_TYPE -> {
+                // Se reporta el reporta el problema si el recurso no es un color resource
+                if (text != "R.color" && text != "android.R.color") {
+                    return context.report(
+                        issue = ISSUE,
+                        scope = usage,
+                        location = context.getLocation(usage),
+                        message = "Invalid resource, expected color resource or color int"
+                    )
+                }
+            }
+        }
+    }
+
+    /**
+     * Verifica el uso de la anotación DrawableOrDrawableRes y reporta el problema (issue) si aplica
+     * @param context contexto
+     * @param usage referencia dentro del código donde se usa la anotación y donde se esta analizando el código
+     * @param elementType tipo de elemento
+     * @param text valor que se le asigna a la variable o propiedad de la anotación en string
+     * @param checkType tipo de verificación
+     * */
+    @Suppress("UNUSED_PARAMETER")
+    private fun checkDrawableOrDrawableRes(context: JavaContext, usage: UElement, elementType: IElementType, text: String, checkType: CheckType) {
+        when (checkType) {
+            CheckType.DATA_TYPE -> {
+                // Drawable no es un tipo de dato primitivo, por lo que se reciben identificadores o referencias, y en este caso no se reporta ningún problema
+                // Invalid type, expected drawable object or drawable resource
+            }
+            CheckType.RESOURCE_TYPE -> {
+                // Se reporta el reporta el problema si el recurso no es un drawable resource
+                if (text != "R.drawable" && text != "android.R.drawable") {
+                    return context.report(
+                        issue = ISSUE,
+                        scope = usage,
+                        location = context.getLocation(usage),
+                        message = "Invalid resource, expected drawable resource or drawable object"
+                    )
+                }
+            }
+        }
     }
 
     /**
