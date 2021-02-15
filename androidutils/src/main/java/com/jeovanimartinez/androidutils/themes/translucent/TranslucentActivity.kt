@@ -11,7 +11,10 @@ import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
 /**
  * Clase base para actividades con fondo translúcido.
- * Las actividades que hereden de esta clase deben tener el siguiente tema en el manifest: android:theme="@style/AndroidUtilsTheme.Translucent"
+ * Las actividades que hereden de esta clase deben tener el siguiente tema en el manifest:
+ * ```
+ *     android:theme="@style/AndroidUtilsTheme.Translucent"
+ * ```
  * En el diseño de las actividades que hereden de esta clase deben tener un RelativeLayout como elemento raíz en el diseño para que ocupen el espacio completo, o bien un tamaño fijo.
  * */
 open class TranslucentActivity : AppCompatActivity() {
@@ -49,14 +52,16 @@ open class TranslucentActivity : AppCompatActivity() {
     }
 
     /**
-     * Configura el dim (atenuación) de una ventana (independiente a esta clase)
-     * @param window ventana de la que se va a configurar el dim
+     * Configura el dim (atenuación) de una ventana (independiente a esta clase).
      * Invocar a esta función cuando se vaya a mostrar una ventana encima de la actividad, para asegurarse que la atenuación
      * de la ventana a mostrar sea igual o mayor que la opacidad de la actividad, ya que si no se hace se genera
      * un efecto visual indeseable.
+     * ```
      * Por ejemplo, para un diálogo:
      *  val dialog = MaterialAlertDialogBuilder(this@AboutActivity).setTitle("DEMO").show();
      *  configureWindowDim(dialog.window);
+     * ```
+     * @param window ventana de la que se va a configurar el dim.
      * */
     fun configureWindowDim(window: Window?) {
         val currentWindowDim = window?.attributes?.dimAmount

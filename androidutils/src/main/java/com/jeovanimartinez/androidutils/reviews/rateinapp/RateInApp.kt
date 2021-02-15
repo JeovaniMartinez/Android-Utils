@@ -277,10 +277,9 @@ object RateInApp : Base<RateInApp>() {
 
     }
 
+    // Referencia: https://developer.android.com/guide/playcore/in-app-review
     /**
      * Muestra el flujo para calificar con Google Play In-App Review API.
-     * Referencia: https://developer.android.com/guide/playcore/in-app-review
-     *
      * @param activity actividad
      * */
     private fun rateWithInAppReviewApi(activity: Activity) {
