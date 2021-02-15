@@ -8,4 +8,5 @@ package com.jeovanimartinez.androidutils.annotations
 @MustBeDocumented
 @Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.PROPERTY, AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.PROPERTY_SETTER, AnnotationTarget.LOCAL_VARIABLE)
+@Deprecated("Tanto color-int como color res son valores tipo int, por lo cual el uso de esta anotación sería ambiguo, ya que, en el valor asignado, no se podría saber si se trata de un color-int o un resource.")
 annotation class ColorOrColorRes
