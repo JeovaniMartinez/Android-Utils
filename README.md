@@ -19,6 +19,16 @@ Conjunto de utilidades para el desarrollo de aplicaciones Android
 - En algunos ejemplos de uso se muestra un panel colapsable llamado "Modo compacto" donde se muestra el código con la configuración mínima requerida para la utilidad, teniendo en cuanta que en algunos casos, se usan valores predeterminados definidos en la biblioteca.
 
 #### Configuración
+Agregar la siguiente configuración en Gradle (a nivel del proyecto)
+```Gradle
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
 Agregar la siguiente configuración en Gradle (a nivel de la app)
 ```Gradle
 dependencies {
@@ -97,6 +107,8 @@ configureWindowDim(dialog.window)
 **[Documentación](docs/androidutils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.md)**<br>
 **[Ejemplo de implementación (diseño)](androidutils/src/main/res/layout/activity_about.xml)**<br>
 **[Ejemplo de implementación (código)](androidutils/src/main/java/com/jeovanimartinez/androidutils/about/AboutActivity.kt)**
+
+#
 
 ### RateInApp 
 Utilidad para iniciar un flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación (Cantos días tiene instalada, cuantas veces se ha iniciado, etc.).
