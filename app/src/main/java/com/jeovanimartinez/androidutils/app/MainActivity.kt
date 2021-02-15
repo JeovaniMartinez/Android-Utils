@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
+import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         initSetup()
 
-        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, R.color.colorBackground)
+        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
     }
 
     private fun initSetup() {
