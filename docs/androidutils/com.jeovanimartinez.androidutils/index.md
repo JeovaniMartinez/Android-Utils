@@ -1,10 +1,13 @@
-[androidutils](../index.md) / [com.jeovanimartinez.androidutils](./index.md)
+//[androidutils](../index.md)/[com.jeovanimartinez.androidutils](index.md)
 
-## Package com.jeovanimartinez.androidutils
 
-### Types
 
-| Name | Summary |
+# Package com.jeovanimartinez.androidutils  
+
+
+## Types  
+  
+|  Name|  Summary| 
 |---|---|
-| [Base](-base/index.md) | Clase base con propiedades y funciones comunes`abstract class Base<T : `[`Base`](-base/index.md)`<T>>` |
-| [ParseValue](-parse-value/index.md) | `class ParseValue : `[`Base`](-base/index.md)`<`[`ParseValue`](-parse-value/index.md)`>` |
+| <a name="com.jeovanimartinez.androidutils/Base///PointingToDeclaration/"></a>[Base](-base/index.md)| <a name="com.jeovanimartinez.androidutils/Base///PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>abstract class [Base](-base/index.md)<[T](-base/index.md) : [Base](-base/index.md)<[T](-base/index.md)>>  <br>More info  <br>Clase base con propiedades y funciones comunes  <br><br><br>
+

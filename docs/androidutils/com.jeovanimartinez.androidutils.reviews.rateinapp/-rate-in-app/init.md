@@ -1,12 +1,27 @@
-[androidutils](../../index.md) / [com.jeovanimartinez.androidutils.reviews.rateinapp](../index.md) / [RateInApp](index.md) / [init](./init.md)
+//[androidutils](../../index.md)/[com.jeovanimartinez.androidutils.reviews.rateinapp](../index.md)/[RateInApp](index.md)/[init](init.md)
 
-# init
 
-`fun init(context: Context): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Inicializa y configura la utilidad, debe llamarse siempre solo una vez en la aplicación
-ya sea en el onCreate() de la app o de la actividad principal
+# init  
+[androidJvm]  
+Content  
+fun [init](init.md)(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html))  
+More info  
 
-### Parameters
 
-`context` - contexto
+Inicializa y configura la utilidad, debe llamarse siempre solo una vez en la aplicación ya sea en el onCreate() de la app o de la actividad principal
+
+
+
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.reviews.rateinapp/RateInApp/init/#android.content.Context/PointingToDeclaration/"></a>context| <a name="com.jeovanimartinez.androidutils.reviews.rateinapp/RateInApp/init/#android.content.Context/PointingToDeclaration/"></a><br><br>contexto<br><br>
+  
+  
+
+
+

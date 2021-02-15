@@ -57,12 +57,12 @@ dependencies {
 }
 
 // Para generar la documentación
-dokka {
-    outputFormat = 'gfm'
-    outputDirectory = "../docs"
-
-    configuration {
-        skipDeprecated = false
-        noAndroidSdkLink = true
+dokkaGfm.configure {
+    dokkaSourceSets {
+        named("main") {
+            outputDirectory.set(file("../docs"))
+            noAndroidSdkLink.set(false)
+            skipDeprecated.set(false)
+        }
     }
 }

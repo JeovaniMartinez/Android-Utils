@@ -1,8 +1,17 @@
-[androidutils](../../index.md) / [com.jeovanimartinez.androidutils.moreapps](../index.md) / [MoreAppsGPlay](index.md) / [developerId](./developer-id.md)
+//[androidutils](../../index.md)/[com.jeovanimartinez.androidutils.moreapps](../index.md)/[MoreAppsGPlay](index.md)/[developerId](developer-id.md)
 
-# developerId
 
-`var developerId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+
+# developerId  
+[androidJvm]  
+Content  
+var [developerId](developer-id.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  
+More info  
+
 
 ID del desarrollador del cual se va a mostrar la lista de aplicaciones al llamar a showAppList
+
+  
+
+
 

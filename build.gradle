@@ -4,7 +4,7 @@ buildscript {
         gradlePluginVersion = '4.1.2'
         lintVersion = '27.1.2' // En base al plugin de Gradle, si gradle es X.Y.Z, lint debe ser X+23.Y.Z.
         kotlinVersion = '1.4.21'
-        dokkaVersion = '0.10.1'
+        dokkaVersion = '1.4.20'
         ossLicensesPlugin = '0.10.2'
     }
     repositories {

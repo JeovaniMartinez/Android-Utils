@@ -1,15 +1,15 @@
-[androidutils](../index.md) / [com.jeovanimartinez.androidutils.extensions.nullability](./index.md)
+//[androidutils](../index.md)/[com.jeovanimartinez.androidutils.extensions.nullability](index.md)
 
-## Package com.jeovanimartinez.androidutils.extensions.nullability
 
-### Extensions for External Classes
 
-| Name | Summary |
+# Package com.jeovanimartinez.androidutils.extensions.nullability  
+
+
+## Functions  
+  
+|  Name|  Summary| 
 |---|---|
-| [kotlin.Any](kotlin.-any/index.md) |  |
+| <a name="com.jeovanimartinez.androidutils.extensions.nullability//isNotNull/kotlin.Any?#/PointingToDeclaration/"></a>[isNotNull](is-not-null.md)| <a name="com.jeovanimartinez.androidutils.extensions.nullability//isNotNull/kotlin.Any?#/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?.[isNotNull](is-not-null.md)(): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)  <br>More info  <br>Verifica si la variable es null.  <br><br><br>
+| <a name="com.jeovanimartinez.androidutils.extensions.nullability//isNull/kotlin.Any?#/PointingToDeclaration/"></a>[isNull](is-null.md)| <a name="com.jeovanimartinez.androidutils.extensions.nullability//isNull/kotlin.Any?#/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?.[isNull](is-null.md)(): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)  <br>More info  <br>Verifica si la variable es null.  <br><br><br>
+| <a name="com.jeovanimartinez.androidutils.extensions.nullability//whenNotNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),kotlin.Unit]/PointingToDeclaration/"></a>[whenNotNull](when-not-null.md)| <a name="com.jeovanimartinez.androidutils.extensions.nullability//whenNotNull/TypeParam(bounds=[kotlin.Any])?#kotlin.Function1[TypeParam(bounds=[kotlin.Any]),kotlin.Unit]/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>fun <[T](when-not-null.md) : [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)> [T](when-not-null.md)?.[whenNotNull](when-not-null.md)(f: ([T](when-not-null.md)) -> [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html))  <br>More info  <br>Ejecuta el código del bloque solo si la variable no es null.  <br><br><br>
 
-### Functions
-
-| Name | Summary |
-|---|---|
-| [whenNotNull](when-not-null.md) | Ejecuta el código del bloque solo si la variable no es null. Dentro de la función, siempre usar it para hacer referencia al valor de la variable. Por ejemplo: demo.whenNotNull {     // Usar siempre it en lugar del nombre de la variable, ya que la variable puede ser null, it nunca lo va a ser si entra al bloque     Log.d("Check Nullability", it) } Funciona de igual manera si se llama con el operador de llamada segura (?) o sin el (demo.whenNotNull es equivalente a demo?.whenNotNull). Para efectos prácticos, se recomienda llamar sin el aperador de llamada segura.`fun <T : `[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`> T?.whenNotNull(f: (it: T) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html) |

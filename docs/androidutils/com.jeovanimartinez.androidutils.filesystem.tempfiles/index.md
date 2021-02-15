@@ -1,9 +1,13 @@
-[androidutils](../index.md) / [com.jeovanimartinez.androidutils.filesystem.tempfiles](./index.md)
+//[androidutils](../index.md)/[com.jeovanimartinez.androidutils.filesystem.tempfiles](index.md)
 
-## Package com.jeovanimartinez.androidutils.filesystem.tempfiles
 
-### Types
 
-| Name | Summary |
+# Package com.jeovanimartinez.androidutils.filesystem.tempfiles  
+
+
+## Types  
+  
+|  Name|  Summary| 
 |---|---|
-| [TempFiles](-temp-files/index.md) | Utilidad para trabajar con archivos temporales`object TempFiles : `[`Base`](../com.jeovanimartinez.androidutils/-base/index.md)`<`[`TempFiles`](-temp-files/index.md)`>` |
+| <a name="com.jeovanimartinez.androidutils.filesystem.tempfiles/TempFiles///PointingToDeclaration/"></a>[TempFiles](-temp-files/index.md)| <a name="com.jeovanimartinez.androidutils.filesystem.tempfiles/TempFiles///PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>object [TempFiles](-temp-files/index.md) : [Base](../com.jeovanimartinez.androidutils/-base/index.md)<[TempFiles](-temp-files/index.md)>   <br>More info  <br>Utilidad para trabajar con archivos temporales  <br><br><br>
+

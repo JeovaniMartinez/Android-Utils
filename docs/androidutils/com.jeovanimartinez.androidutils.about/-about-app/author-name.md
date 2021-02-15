@@ -1,8 +1,19 @@
-[androidutils](../../index.md) / [com.jeovanimartinez.androidutils.about](../index.md) / [AboutApp](index.md) / [authorName](./author-name.md)
+//[androidutils](../../index.md)/[com.jeovanimartinez.androidutils.about](../index.md)/[AboutApp](index.md)/[authorName](author-name.md)
 
-# authorName
 
-`var authorName: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+
+# authorName  
+[androidJvm]  
+Content  
+@[StringRes](https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html)()  
+  
+var [authorName](author-name.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+More info  
+
 
 Nombre del autor
+
+  
+
+
 

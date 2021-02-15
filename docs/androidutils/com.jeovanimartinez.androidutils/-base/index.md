@@ -1,40 +1,53 @@
-[androidutils](../../index.md) / [com.jeovanimartinez.androidutils](../index.md) / [Base](./index.md)
+//[androidutils](../../index.md)/[com.jeovanimartinez.androidutils](../index.md)/[Base](index.md)
 
-# Base
 
-`abstract class Base<T : `[`Base`](./index.md)`<T>>`
+
+# Base  
+ [androidJvm] abstract class [Base](index.md)<[T](index.md) : [Base](index.md)<[T](index.md)>>
 
 Clase base con propiedades y funciones comunes
 
-### Constructors
+   
 
-| Name | Summary |
+
+## Constructors  
+  
+|  Name|  Summary| 
 |---|---|
-| [&lt;init&gt;](-init-.md) | Clase base con propiedades y funciones comunes`Base()` |
+| <a name="com.jeovanimartinez.androidutils/Base/Base/#/PointingToDeclaration/"></a>[Base](-base.md)| <a name="com.jeovanimartinez.androidutils/Base/Base/#/PointingToDeclaration/"></a> [androidJvm] fun [Base](-base.md)()   <br>
 
-### Properties
 
-| Name | Summary |
+## Types  
+  
+|  Name|  Summary| 
 |---|---|
-| [firebaseAnalyticsEnabled](firebase-analytics-enabled.md) | Determina si el registro de eventos en Firebase Analytics esta habilitado para la instancia de la clase, para el registro de eventos, la propiedad estática del companion object firebaseAnalyticsInstance también debe estar asignada, si esa propiedad es null, no se van a registrar eventos, ya que es requerida`var firebaseAnalyticsEnabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
-| [LOG_TAG](-l-o-g_-t-a-g.md) | Etiqueta par el log`abstract val LOG_TAG: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| <a name="com.jeovanimartinez.androidutils/Base.Companion///PointingToDeclaration/"></a>[Companion](-companion/index.md)| <a name="com.jeovanimartinez.androidutils/Base.Companion///PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>object [Companion](-companion/index.md)  <br><br><br>
 
-### Companion Object Properties
 
-| Name | Summary |
+## Functions  
+  
+|  Name|  Summary| 
 |---|---|
-| [firebaseAnalyticsInstance](firebase-analytics-instance.md) | Instancia de Firebase Analytics, asignar solo si se requiere que la app que implementa la biblioteca registre los eventos de análisis, esta propiedad es global y se usa en todas las subclases de esta clase. Si se desea desactivar el registro de eventos para una clase en específico, hacerlo mediante la propiedad firebaseAnalyticsEnabled de la instancia de la clase`var firebaseAnalyticsInstance: FirebaseAnalytics?` |
-| [firebaseCrashlyticsInstance](firebase-crashlytics-instance.md) | Instancia de Firebase Crashlytics, asignar solo si se requiere que la app que implementa la biblioteca registre errores en Firebase Crashlytics, esta propiedad es global y se usa en todas las subclases de esta clase. Asignarla solo una vez en el singleton de la app, teniendo en cuenta que la app debe tener configurado Firebase Crashlytics, o bien dejar en null si no se requiere o si no se usa Firebase Crashlytics en la app. El registro de errores se realiza solo en ciertos casos donde puede ser util, por lo que donde se dese usar en las subclases de Base, invocar firebaseCrashlyticsInstance?.recordException(e) para registrar la excepción, ya que no se hace en las funciones de log directamente porque solo se requiere registrar la excepción en ciertos casos.`var firebaseCrashlyticsInstance: FirebaseCrashlytics?` |
-| [logEnable](log-enable.md) | Para habilitar o deshabilitar los mensajes del log de depuración, de manera predeterminada es según BuildConfig.DEBUG, esta configuración aplica para todas las clases que hereden de Base, es decir se activa o desactiva de manera global`var logEnable: <ERROR CLASS>` |
+| <a name="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"></a>[equals](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1006092240)| <a name="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>open operator fun [equals](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1006092240)(other: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)  <br><br><br>
+| <a name="kotlin/Any/hashCode/#/PointingToDeclaration/"></a>[hashCode](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1006092240)| <a name="kotlin/Any/hashCode/#/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>open fun [hashCode](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1006092240)(): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  <br><br><br>
+| <a name="kotlin/Any/toString/#/PointingToDeclaration/"></a>[toString](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1006092240)| <a name="kotlin/Any/toString/#/PointingToDeclaration/"></a>[androidJvm]  <br>Content  <br>open fun [toString](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1006092240)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  <br><br><br>
 
-### Inheritors
 
-| Name | Summary |
+## Properties  
+  
+|  Name|  Summary| 
 |---|---|
-| [AboutApp](../../com.jeovanimartinez.androidutils.about/-about-app/index.md) | Utilidad para mostrar una pantalla de acerca de la aplicación`object AboutApp : `[`Base`](./index.md)`<`[`AboutApp`](../../com.jeovanimartinez.androidutils.about/-about-app/index.md)`>` |
-| [MoreAppsGPlay](../../com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md) | Utilidad para dirigir al usuario a Google Play, específicamente a la lista de aplicaciones del desarrollador. El uso principal es para invitar al usuario a que instale otras aplicaciones del desarrollador.`object MoreAppsGPlay : `[`Base`](./index.md)`<`[`MoreAppsGPlay`](../../com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)`>` |
-| [ParseValue](../-parse-value/index.md) | `class ParseValue : `[`Base`](./index.md)`<`[`ParseValue`](../-parse-value/index.md)`>` |
-| [RateApp](../../com.jeovanimartinez.androidutils.reviews/-rate-app/index.md) | Utilidad para dirigir al usuario a Google Play, específicamente a los detalles de la aplicación. El uso principal es para invitar al usuario a que califique la aplicación, se abren los detalles generales de la app, ya que no hay manera de mandarlo directamente a calificar la app con este método.`object RateApp : `[`Base`](./index.md)`<`[`RateApp`](../../com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)`>` |
-| [RateInApp](../../com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md) | Utilidad para iniciar el flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación. Para Android 5.0 (API 21) y posteriores, se utiliza Google Play In-App Review API, por lo que se puede calificar dentro de la aplicación. Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es dirigido a los detalles de la aplicación en Google Play.`object RateInApp : `[`Base`](./index.md)`<`[`RateInApp`](../../com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md)`>` |
-| [SystemWebBrowser](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md) | Utilidad para interactuar con el navegador web del sistema`object SystemWebBrowser : `[`Base`](./index.md)`<`[`SystemWebBrowser`](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md)`>` |
-| [TempFiles](../../com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/index.md) | Utilidad para trabajar con archivos temporales`object TempFiles : `[`Base`](./index.md)`<`[`TempFiles`](../../com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/index.md)`>` |
+| <a name="com.jeovanimartinez.androidutils/Base/firebaseAnalyticsEnabled/#/PointingToDeclaration/"></a>[firebaseAnalyticsEnabled](firebase-analytics-enabled.md)| <a name="com.jeovanimartinez.androidutils/Base/firebaseAnalyticsEnabled/#/PointingToDeclaration/"></a> [androidJvm] var [firebaseAnalyticsEnabled](firebase-analytics-enabled.md): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) = trueDetermina si el registro de eventos en Firebase Analytics esta habilitado para la instancia de la clase, para el registro de eventos, la propiedad estática del companion object firebaseAnalyticsInstance también debe estar asignada, si esa propiedad es null, no se van a registrar eventos, ya que es requerida   <br>
+
+
+## Inheritors  
+  
+|  Name| 
+|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp///PointingToDeclaration/"></a>[AboutApp](../../com.jeovanimartinez.androidutils.about/-about-app/index.md)
+| <a name="com.jeovanimartinez.androidutils.filesystem.tempfiles/TempFiles///PointingToDeclaration/"></a>[TempFiles](../../com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/index.md)
+| <a name="com.jeovanimartinez.androidutils.moreapps/MoreAppsGPlay///PointingToDeclaration/"></a>[MoreAppsGPlay](../../com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.md)
+| <a name="com.jeovanimartinez.androidutils.reviews/RateApp///PointingToDeclaration/"></a>[RateApp](../../com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)
+| <a name="com.jeovanimartinez.androidutils.reviews.rateinapp/RateInApp///PointingToDeclaration/"></a>[RateInApp](../../com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md)
+| <a name="com.jeovanimartinez.androidutils.web/SystemWebBrowser///PointingToDeclaration/"></a>[SystemWebBrowser](../../com.jeovanimartinez.androidutils.web/-system-web-browser/index.md)
+
