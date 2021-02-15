@@ -253,7 +253,7 @@ SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 
 ## Funciones de Extensión
 
-#### Activity **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.activity/android.app.-activity/index.md)**
+#### Activity **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.activity/index.md)**
 
 - TaskDescription.kt: Contiene extensiones para configurar fácilmente el TaskDescription de las actividades.
 
@@ -261,7 +261,7 @@ SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 
 - Float.kt: Extensiones para el tipo de dato Float.
 
-#### Context **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/android.content.-context/index.md)**
+#### Context **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/index.md)**
 
 - Toast.kt: Extensiones para mostrar rápidamente toast de corta y larga duración.
 
@@ -269,10 +269,10 @@ SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 
 - Dimensions.kt: Extensiones disponibles para cualquier vista y cualquier contexto, permiten convertir fácilmente dp o sp a px y viceversa.
 
-#### Nullability **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.nullability/index.md)**
+#### Nullability **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/index.md)**
 
 - NullSafety.kt: Extensiones para trabajar más fácilmente con valores nulos y con la seguridad contra nulos.
 
-#### View **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.view/android.view.-view-property-animator/index.md)**
+#### View **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.view/index.md)**
 
 - Animations.kt: Extensiones para facilitar el uso de animaciones en las vistas.
