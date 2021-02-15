@@ -263,13 +263,15 @@ SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 
 #### Context **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.context/index.md)**
 
+- Resources.kt: Conjunto de extensiones para trabajar con los recursos dentro del context.
 - Toast.kt: Extensiones para mostrar rápidamente toast de corta y larga duración.
+- TypeOrResource.kt: Conjunto de extensiones para tratar un valor como un tipo de dato, o bien obtener el valor de los recursos.
 
-#### Dimension **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/android.content.-context/index.md)**
+#### Dimension **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/index.md)**
 
 - Dimensions.kt: Extensiones disponibles para cualquier vista y cualquier contexto, permiten convertir fácilmente dp o sp a px y viceversa.
 
-#### Nullability **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/index.md)**
+#### Nullability **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.nullability/index.md)**
 
 - NullSafety.kt: Extensiones para trabajar más fácilmente con valores nulos y con la seguridad contra nulos.
 
