@@ -61,7 +61,7 @@ dokkaGfm.configure {
     dokkaSourceSets {
         named("main") {
             outputDirectory.set(file("../docs"))
-            noAndroidSdkLink.set(false)
+            noAndroidSdkLink.set(true)
             skipDeprecated.set(false)
         }
     }
