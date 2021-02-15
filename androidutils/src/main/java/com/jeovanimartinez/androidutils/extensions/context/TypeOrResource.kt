@@ -4,7 +4,7 @@ package com.jeovanimartinez.androidutils.extensions.context
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
+import androidx.appcompat.content.res.AppCompatResources
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import java.lang.Exception
@@ -41,7 +41,7 @@ fun Context.typeAsString(@StringOrStringRes stringOrStringRes: Any): String {
 fun Context.typeAsDrawable(@DrawableOrDrawableRes drawableOrDrawableRes: Any): Drawable? {
     return when (drawableOrDrawableRes) {
         is Drawable -> drawableOrDrawableRes // Si es drawable, se devuelve tal cual
-        is Int -> ContextCompat.getDrawable(this, drawableOrDrawableRes) // Si es un entero, se asume que es el ID de un recurso por lo que se obtiene, si el recurso no existe, se genera una excepción
+        is Int -> AppCompatResources.getDrawable(this, drawableOrDrawableRes) // Si es un entero, se asume que es el ID de un recurso por lo que se obtiene, si el recurso no existe, se genera una excepción
         else -> throw Exception("Expected value type drawable object or int (for get the drawable resource by ID) but received value type ${drawableOrDrawableRes.javaClass}") // Tipo de dato no válido
     }
 }

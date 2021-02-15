@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 
 /**
@@ -19,7 +20,7 @@ fun Context.getColorCompat(@ColorRes id: Int): Int {
     return ContextCompat.getColor(this, id)
 }
 
-/** Obtiene un drawable de los recursos en base a su id mediante ContextCompat.getDrawable() */
+/** Obtiene un drawable de los recursos en base a su id mediante AppCompatResources.getDrawable() */
 fun Context.getDrawableCompat(@DrawableRes id: Int): Drawable? {
-    return ContextCompat.getDrawable(this, id)
+    return AppCompatResources.getDrawable(this, id)
 }
