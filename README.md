@@ -70,6 +70,13 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 ```
 
 #
+
+## Anotaciones
+
+`@DrawableOrDrawableRes` Indica que el valor esperado debe ser un Drawable o el ID de un recuso de drawable. Por ejemplo: drawableObject, R.drawable.demo.
+
+`@StringOrStringRes` Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string. Por ejemplo: 'a', "Hola", R.string.demo.
+
 #
 
 ## Lista de Utilidades
