@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
+import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
@@ -86,7 +87,7 @@ class AboutActivity : TranslucentActivity() {
 
         // Se configura el task description si es necesario
         if (AboutApp.taskDescriptionTitle.isNotNull() && AboutApp.taskDescriptionIcon.isNotNull() && AboutApp.taskDescriptionColor.isNotNull()) {
-            configureTaskDescription(AboutApp.taskDescriptionTitle!!, AboutApp.taskDescriptionIcon!!, AboutApp.taskDescriptionColor!!)
+            configureTaskDescription(AboutApp.taskDescriptionTitle!!, AboutApp.taskDescriptionIcon!!, getColorCompat(AboutApp.taskDescriptionColor!!))
             AboutApp.log("AboutActivity task description configured by AboutApp.TaskDescription properties")
         } else {
             AboutApp.log(
