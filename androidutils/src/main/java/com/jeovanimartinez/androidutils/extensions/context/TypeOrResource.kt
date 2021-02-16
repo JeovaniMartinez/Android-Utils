@@ -32,16 +32,18 @@ fun Context.typeAsString(@StringOrStringRes stringOrStringRes: Any): String {
 
 /**
  * Analiza el tipo de dato recibido [drawableOrDrawableRes] y devuelve siempre un Drawable.
+ * - Si el tipo de dato es null, devuelve null.
  * - Si el tipo de dato es Drawable lo devuelve tal cual, sin procesar.
  * - Si el tipo de dato es entero, se asume que es un ID de recurso, por lo que se obtiene y devuelve el Drawable, en caso de no existir el recurso, lanza una excepción.
  * - Para cualquier otro tipo de dato lanza una excepción, ya que el dato no se puede tratar directamente como Drawable.
  *
  * El valor de retorno puede ser null de acuerdo a la definición de ContextCompat.getDrawable()
  * */
-fun Context.typeAsDrawable(@DrawableOrDrawableRes drawableOrDrawableRes: Any): Drawable? {
+fun Context.typeAsDrawable(@DrawableOrDrawableRes drawableOrDrawableRes: Any?): Drawable? {
+    if (drawableOrDrawableRes == null) return null // Si es null, devuelve null
     return when (drawableOrDrawableRes) {
         is Drawable -> drawableOrDrawableRes // Si es drawable, se devuelve tal cual
-        is Int -> AppCompatResources.getDrawable(this, drawableOrDrawableRes) // Si es un entero, se asume que es el ID de un recurso por lo que se obtiene, si el recurso no existe, se genera una excepción
+        is Int -> AppCompatResources.getDrawable(this, drawableOrDrawableRes) // Si es un entero, se asume que es el ID de un recurso
         else -> throw Exception("Expected value type drawable object or int (for get the drawable resource by ID) but received value type ${drawableOrDrawableRes.javaClass}") // Tipo de dato no válido
     }
 }
