@@ -5,14 +5,18 @@
 # appName  
 [androidJvm]  
 Content  
-@[StringRes](https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html)()  
-  
-var [appName](app-name.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [appName](app-name.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)  
 More info  
 
 
-Nombre de la aplicación
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/appName/#/PointingToDeclaration/"></a>appName| <a name="com.jeovanimartinez.androidutils.about/AboutApp/appName/#/PointingToDeclaration/"></a><br><br>Nombre de la aplicación.<br><br>
+  
   
 
 

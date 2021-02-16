@@ -5,14 +5,18 @@
 # authorLink  
 [androidJvm]  
 Content  
-@[StringRes](https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html)()  
-  
-var [authorLink](author-link.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)?  
+val [authorLink](author-link.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?  
 More info  
 
 
-URL que se abre al dar clic al nombre del autor, null para no abrir ningún enlace
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/authorLink/#/PointingToDeclaration/"></a>authorLink| <a name="com.jeovanimartinez.androidutils.about/AboutApp/authorLink/#/PointingToDeclaration/"></a><br><br>URL que se abre al dar clic al nombre del autor, null para no abrir ningún enlace.<br><br>
+  
   
 
 

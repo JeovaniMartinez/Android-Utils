@@ -5,14 +5,18 @@
 # companyLogo  
 [androidJvm]  
 Content  
-@[DrawableRes](https://developer.android.com/reference/kotlin/androidx/annotation/DrawableRes.html)()  
-  
-var [companyLogo](company-logo.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [companyLogo](company-logo.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?  
 More info  
 
 
-Logo de la empresa
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/companyLogo/#/PointingToDeclaration/"></a>companyLogo| <a name="com.jeovanimartinez.androidutils.about/AboutApp/companyLogo/#/PointingToDeclaration/"></a><br><br>Logo de la empresa.<br><br>
+  
   
 
 

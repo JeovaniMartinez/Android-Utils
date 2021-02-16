@@ -5,14 +5,18 @@
 # taskDescriptionTitle  
 [androidJvm]  
 Content  
-@[StringRes](https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html)()  
-  
-var [taskDescriptionTitle](task-description-title.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)? = null  
+val [taskDescriptionTitle](task-description-title.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?  
 More info  
 
 
-Título para la Task Description de la actividad. Se usa en conjunto con taskDescriptionIcon y taskDescriptionColor y ninguna propiedad debe ser null para que se configure el Task Description.
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/taskDescriptionTitle/#/PointingToDeclaration/"></a>taskDescriptionTitle| <a name="com.jeovanimartinez.androidutils.about/AboutApp/taskDescriptionTitle/#/PointingToDeclaration/"></a><br><br>Título para la Task Description de la actividad. Se usa en conjunto con taskDescriptionIcon y taskDescriptionColor, ninguno de estos tres parámetros     debe ser null para que se configure el Task Description.<br><br>
+  
   
 
 

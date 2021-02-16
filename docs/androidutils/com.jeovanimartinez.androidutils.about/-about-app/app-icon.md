@@ -5,14 +5,18 @@
 # appIcon  
 [androidJvm]  
 Content  
-@[DrawableRes](https://developer.android.com/reference/kotlin/androidx/annotation/DrawableRes.html)()  
-  
-var [appIcon](app-icon.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [appIcon](app-icon.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?  
 More info  
 
 
-Ícono o logo de la aplicación
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/appIcon/#/PointingToDeclaration/"></a>appIcon| <a name="com.jeovanimartinez.androidutils.about/AboutApp/appIcon/#/PointingToDeclaration/"></a><br><br>Ícono o logo de la aplicación.<br><br>
+  
   
 
 

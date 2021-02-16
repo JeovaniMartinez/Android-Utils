@@ -5,14 +5,18 @@
 # iconsColor  
 [androidJvm]  
 Content  
-@[ColorRes](https://developer.android.com/reference/kotlin/androidx/annotation/ColorRes.html)()  
-  
-var [iconsColor](icons-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [iconsColor](icons-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
 More info  
 
 
-Color para los iconos
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/iconsColor/#/PointingToDeclaration/"></a>iconsColor| <a name="com.jeovanimartinez.androidutils.about/AboutApp/iconsColor/#/PointingToDeclaration/"></a><br><br>Color para los iconos, el valor predeterminado es el color de definido en el tema.<br><br>
+  
   
 
 

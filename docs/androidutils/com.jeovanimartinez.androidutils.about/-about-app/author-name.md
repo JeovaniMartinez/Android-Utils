@@ -5,14 +5,18 @@
 # authorName  
 [androidJvm]  
 Content  
-@[StringRes](https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html)()  
-  
-var [authorName](author-name.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [authorName](author-name.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)  
 More info  
 
 
-Nombre del autor
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/authorName/#/PointingToDeclaration/"></a>authorName| <a name="com.jeovanimartinez.androidutils.about/AboutApp/authorName/#/PointingToDeclaration/"></a><br><br>Nombre del autor.<br><br>
+  
   
 
 

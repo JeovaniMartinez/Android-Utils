@@ -5,14 +5,18 @@
 # companyName  
 [androidJvm]  
 Content  
-@[StringRes](https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html)()  
-  
-var [companyName](company-name.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [companyName](company-name.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)  
 More info  
 
 
-Nombre de la empresa
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/companyName/#/PointingToDeclaration/"></a>companyName| <a name="com.jeovanimartinez.androidutils.about/AboutApp/companyName/#/PointingToDeclaration/"></a><br><br>Nombre de la empresa.<br><br>
+  
   
 
 

@@ -5,7 +5,7 @@
 # saveBitmapToFile  
 [androidJvm]  
 Content  
-fun [saveBitmapToFile](save-bitmap-to-file.md)(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html), bitmap: [Bitmap](https://developer.android.com/reference/kotlin/android/graphics/Bitmap.html)): [File](https://developer.android.com/reference/kotlin/java/io/File.html)  
+fun [saveBitmapToFile](save-bitmap-to-file.md)(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html), bitmap: [Bitmap](https://developer.android.com/reference/kotlin/android/graphics/Bitmap.html)): [File](https://docs.oracle.com/javase/8/docs/api/java/io/File.html)  
 More info  
 
 

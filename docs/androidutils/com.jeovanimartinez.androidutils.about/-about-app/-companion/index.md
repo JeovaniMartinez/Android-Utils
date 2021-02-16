@@ -1,4 +1,4 @@
-//[androidutils](../../../index.md)/[com.jeovanimartinez.androidutils](../../index.md)/[Base](../index.md)/[Companion](index.md)
+//[androidutils](../../../index.md)/[com.jeovanimartinez.androidutils.about](../../index.md)/[AboutApp](../index.md)/[Companion](index.md)
 
 
 
@@ -19,7 +19,5 @@
   
 |  Name|  Summary| 
 |---|---|
-| <a name="com.jeovanimartinez.androidutils/Base.Companion/firebaseAnalyticsInstance/#/PointingToDeclaration/"></a>[firebaseAnalyticsInstance](firebase-analytics-instance.md)| <a name="com.jeovanimartinez.androidutils/Base.Companion/firebaseAnalyticsInstance/#/PointingToDeclaration/"></a> [androidJvm] var [firebaseAnalyticsInstance](firebase-analytics-instance.md): FirebaseAnalytics? = nullInstancia de Firebase Analytics, asignar solo si se requiere que la app que implementa la biblioteca registre los eventos de análisis, esta propiedad es global y se usa en todas las subclases de esta clase.   <br>
-| <a name="com.jeovanimartinez.androidutils/Base.Companion/firebaseCrashlyticsInstance/#/PointingToDeclaration/"></a>[firebaseCrashlyticsInstance](firebase-crashlytics-instance.md)| <a name="com.jeovanimartinez.androidutils/Base.Companion/firebaseCrashlyticsInstance/#/PointingToDeclaration/"></a> [androidJvm] var [firebaseCrashlyticsInstance](firebase-crashlytics-instance.md): FirebaseCrashlytics? = nullInstancia de Firebase Crashlytics, asignar solo si se requiere que la app que implementa la biblioteca registre errores en Firebase Crashlytics, esta propiedad es global y se usa en todas las subclases de esta clase.   <br>
-| <a name="com.jeovanimartinez.androidutils/Base.Companion/logEnable/#/PointingToDeclaration/"></a>[logEnable](log-enable.md)| <a name="com.jeovanimartinez.androidutils/Base.Companion/logEnable/#/PointingToDeclaration/"></a> [androidJvm] var [logEnable](log-enable.md): <ERROR CLASS>Para habilitar o deshabilitar los mensajes del log de depuración, de manera predeterminada es según BuildConfig.   <br>
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp.Companion/instance/#/PointingToDeclaration/"></a>[instance](instance.md)| <a name="com.jeovanimartinez.androidutils.about/AboutApp.Companion/instance/#/PointingToDeclaration/"></a> [androidJvm] lateinit var [instance](instance.md): [AboutApp](../index.md)   <br>
 

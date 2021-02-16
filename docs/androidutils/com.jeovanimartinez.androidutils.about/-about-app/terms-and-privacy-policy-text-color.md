@@ -5,14 +5,18 @@
 # termsAndPrivacyPolicyTextColor  
 [androidJvm]  
 Content  
-@[ColorRes](https://developer.android.com/reference/kotlin/androidx/annotation/ColorRes.html)()  
-  
-var [termsAndPrivacyPolicyTextColor](terms-and-privacy-policy-text-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [termsAndPrivacyPolicyTextColor](terms-and-privacy-policy-text-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
 More info  
 
 
-Color del texto de los términos de uso y política de privacidad, si no se define, se usa el color predeterminado
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/termsAndPrivacyPolicyTextColor/#/PointingToDeclaration/"></a>termsAndPrivacyPolicyTextColor| <a name="com.jeovanimartinez.androidutils.about/AboutApp/termsAndPrivacyPolicyTextColor/#/PointingToDeclaration/"></a><br><br>Color del texto de los términos de uso y política de privacidad, el valor predeterminado es el color de definido en el tema.<br><br>
+  
   
 
 

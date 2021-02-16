@@ -5,14 +5,18 @@
 # companyLink  
 [androidJvm]  
 Content  
-@[StringRes](https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html)()  
-  
-var [companyLink](company-link.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)?  
+val [companyLink](company-link.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?  
 More info  
 
 
-URL que se abre al dar clic al logo de la empresa, null para no abrir ningún enlace
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/companyLink/#/PointingToDeclaration/"></a>companyLink| <a name="com.jeovanimartinez.androidutils.about/AboutApp/companyLink/#/PointingToDeclaration/"></a><br><br>URL que se abre al dar clic al logo de la empresa, null para no abrir ningún enlace.<br><br>
+  
   
 
 

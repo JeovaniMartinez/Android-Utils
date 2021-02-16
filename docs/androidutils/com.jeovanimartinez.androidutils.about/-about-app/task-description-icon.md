@@ -5,14 +5,18 @@
 # taskDescriptionIcon  
 [androidJvm]  
 Content  
-@[DrawableRes](https://developer.android.com/reference/kotlin/androidx/annotation/DrawableRes.html)()  
-  
-var [taskDescriptionIcon](task-description-icon.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)? = null  
+val [taskDescriptionIcon](task-description-icon.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)?  
 More info  
 
 
-Icono para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionColor y ninguna propiedad debe ser null para que se configure el Task Description.
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/taskDescriptionIcon/#/PointingToDeclaration/"></a>taskDescriptionIcon| <a name="com.jeovanimartinez.androidutils.about/AboutApp/taskDescriptionIcon/#/PointingToDeclaration/"></a><br><br>Ícono para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionColor, ninguno de estos tres parámetros     debe ser null para que se configure el Task Description.<br><br>
+  
   
 
 

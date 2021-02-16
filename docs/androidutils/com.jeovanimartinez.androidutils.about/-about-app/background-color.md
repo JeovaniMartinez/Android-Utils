@@ -5,14 +5,18 @@
 # backgroundColor  
 [androidJvm]  
 Content  
-@[ColorRes](https://developer.android.com/reference/kotlin/androidx/annotation/ColorRes.html)()  
-  
-var [backgroundColor](background-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
+val [backgroundColor](background-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  
 More info  
 
 
-Color de fondo de la actividad, si no se asigna se usa el color de fondo del tema
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/backgroundColor/#/PointingToDeclaration/"></a>backgroundColor| <a name="com.jeovanimartinez.androidutils.about/AboutApp/backgroundColor/#/PointingToDeclaration/"></a><br><br>Color de fondo de la actividad, el valor predeterminado es el color de fondo del tema.<br><br>
+  
   
 
 

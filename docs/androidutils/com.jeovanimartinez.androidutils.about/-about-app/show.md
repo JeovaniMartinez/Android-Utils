@@ -5,11 +5,11 @@
 # show  
 [androidJvm]  
 Content  
-fun [show](show.md)(activity: [Activity](https://developer.android.com/reference/kotlin/android/app/Activity.html))  
+fun [show](show.md)()  
 More info  
 
 
-Muestra la actividad de acerca de, requiere la activity para poder iniciar la actividad AboutActivity
+Muestra la actividad de acerca de
 
   
 

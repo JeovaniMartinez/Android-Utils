@@ -5,14 +5,18 @@
 # taskDescriptionColor  
 [androidJvm]  
 Content  
-@[ColorRes](https://developer.android.com/reference/kotlin/androidx/annotation/ColorRes.html)()  
-  
-var [taskDescriptionColor](task-description-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)? = null  
+val [taskDescriptionColor](task-description-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)?  
 More info  
 
 
-Color para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionIcon y ninguna propiedad debe ser null para que se configure el Task Description.
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/taskDescriptionColor/#/PointingToDeclaration/"></a>taskDescriptionColor| <a name="com.jeovanimartinez.androidutils.about/AboutApp/taskDescriptionColor/#/PointingToDeclaration/"></a><br><br>Color para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionIcon, ninguno de estos tres parámetros     debe ser null para que se configure el Task Description.<br><br>
+  
   
 
 

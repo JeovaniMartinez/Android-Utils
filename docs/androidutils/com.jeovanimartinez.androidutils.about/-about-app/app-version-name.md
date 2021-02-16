@@ -5,12 +5,18 @@
 # appVersionName  
 [androidJvm]  
 Content  
-var [appVersionName](app-version-name.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  
+val [appVersionName](app-version-name.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)  
 More info  
 
 
-Version de la aplicación
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.about/AboutApp/appVersionName/#/PointingToDeclaration/"></a>appVersionName| <a name="com.jeovanimartinez.androidutils.about/AboutApp/appVersionName/#/PointingToDeclaration/"></a><br><br>Version de la aplicación.<br><br>
+  
   
 
 
