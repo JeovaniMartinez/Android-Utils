@@ -14,7 +14,6 @@ import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 
-
 /**
  * Utilidad para mostrar una actividad de acerca de la aplicación.
  * @param activity Actividad para poder iniciar la AboutActivity.
@@ -56,14 +55,14 @@ class AboutApp(
     @ColorInt val termsAndPrivacyPolicyTextColor: Int = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText),
     val showOpenSourceLicenses: Boolean,
     @StringOrStringRes val taskDescriptionTitle: Any?,
-    @DrawableRes taskDescriptionIcon: Int?,
+    @DrawableRes val taskDescriptionIcon: Int?,
     @ColorInt val taskDescriptionColor: Int?
 ) : Base<AboutApp>() {
 
     override val LOG_TAG = "AboutApp"
 
     companion object {
-        lateinit var instance: AboutApp
+        lateinit var instance: AboutApp // Para poder usar en AboutActivity las propiedades y métodos de instancia de la clase
     }
 
     /** Muestra la actividad de acerca de */
