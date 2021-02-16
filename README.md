@@ -70,6 +70,7 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 ```
 
 #
+#
 
 ## Anotaciones
 
@@ -77,6 +78,7 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 
 `@StringOrStringRes` Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string. Por ejemplo: 'a', "Hola", R.string.demo.
 
+#
 #
 
 ## Lista de Utilidades
@@ -165,24 +167,25 @@ Utilidad para mostrar una actividad de acerca de, donde se incluye la informaci√
 
 Ejemplo de uso:
 ```Kotlin
-AboutApp.apply {
-    backgroundColor = R.color.colorBackground
-    iconsColor = R.color.colorIcon
-    appIcon = R.drawable.library_logo
-    appName = R.string.about_app_app_name
-    appVersionName = BuildConfig.VERSION_NAME
-    authorName = R.string.about_app_author_name
-    authorLink = R.string.about_app_author_link
-    companyLogo = R.drawable.logo_jedemm_com
-    companyName = R.string.about_app_company_name
-    companyLink = R.string.about_app_company_link
-    termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link
-    termsAndPrivacyPolicyTextColor = R.color.colorTermsAndPrivacyPolicyText
-    showOpenSourceLicenses = true
-    taskDescriptionTitle = R.string.app_name
-    taskDescriptionIcon = R.mipmap.ic_launcher
-    taskDescriptionColor = R.color.colorBackground
-}.show(this@MainActivity)
+AboutApp(
+    activity = this@MainActivity,
+    backgroundColor = getColorCompat(R.color.colorBackground),
+    iconsColor = getColorCompat(R.color.colorIcon),
+    appIcon = R.drawable.library_logo,
+    appName = R.string.about_app_app_name,
+    appVersionName = BuildConfig.VERSION_NAME,
+    authorName = R.string.about_app_author_name,
+    authorLink = R.string.about_app_author_link,
+    companyLogo = R.drawable.logo_jedemm_com,
+    companyName = R.string.about_app_company_name,
+    companyLink = R.string.about_app_company_link,
+    termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link,
+    termsAndPrivacyPolicyTextColor = getColorCompat(R.color.colorTermsAndPrivacyPolicyText),
+    showOpenSourceLicenses = true,
+    taskDescriptionTitle = R.string.app_name,
+    taskDescriptionIcon = R.mipmap.ic_launcher,
+    taskDescriptionColor = getColorCompat(R.color.colorBackground)
+).show()
 ```
 **[Documentaci√≥n ](docs/androidutils/com.jeovanimartinez.androidutils.about/-about-app/index.md)**
 
