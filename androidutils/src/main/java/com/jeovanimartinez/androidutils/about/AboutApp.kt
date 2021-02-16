@@ -54,9 +54,9 @@ class AboutApp(
     @StringOrStringRes val termsAndPrivacyPolicyLink: Any?,
     @ColorInt val termsAndPrivacyPolicyTextColor: Int = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText),
     val showOpenSourceLicenses: Boolean,
-    @StringOrStringRes val taskDescriptionTitle: Any?,
-    @DrawableRes val taskDescriptionIcon: Int?,
-    @ColorInt val taskDescriptionColor: Int?
+    @StringOrStringRes val taskDescriptionTitle: Any? = null,
+    @DrawableRes val taskDescriptionIcon: Int? = null,
+    @ColorInt val taskDescriptionColor: Int? = null
 ) : Base<AboutApp>() {
 
     override val LOG_TAG = "AboutApp"
