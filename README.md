@@ -70,6 +70,7 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 ```
 
 #
+#
 
 ## Anotaciones
 
@@ -77,6 +78,7 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 
 `@StringOrStringRes` Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string. Por ejemplo: 'a', "Hola", R.string.demo.
 
+#
 #
 
 ## Lista de Utilidades
