@@ -10,6 +10,15 @@ import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.uast.*
 
+/*
+* Para debuggear esta clase:
+* - Asegurarse de que la app de prueba tenga una llamada a la anotación requerida.
+* - Colocar el punto de interrupción.
+* - En el panel de Gradle del IDE, expandir la opción de app (si la app, no la de lintcheck), ya que para ejecutar
+*   esta clase, se realiza mediante la verificación lint de la app.
+* - Dirigirse a Task > verification clic derecho en lint y seleccionar debug.
+* */
+
 /**
  * Lint check que se encarga de verificar las anotaciones de TypeOrResource y comprobar que la propiedad que usa la anotación
  * tenga un valor adecuado y advertir al usuario si no es asi.
