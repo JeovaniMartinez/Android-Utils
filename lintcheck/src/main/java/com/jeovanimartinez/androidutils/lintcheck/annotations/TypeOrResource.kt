@@ -65,8 +65,12 @@ class TypeOrResource : AnnotationDetector() {
         val elementPrev = usage.sourcePsi?.node?.firstChildNode?.treePrev // Siguiente elemento
         val elementNext = usage.sourcePsi?.node?.firstChildNode?.treeNext // Elemento anterior
 
-        // Se valida que haya contenido para verificar, de otro modo no se reporta ningún problema
-        if (elementType != null && text != null) {
+        /*
+        * Se valida que haya contenido para verificar, de otro modo no se reporta ningún problema.
+        * También se valida que el valor de text no sea "null", ya que esto indica que el valor del elemento
+        * es null, para efectos de esta validación si se pueden aceptar valores null.
+        * */
+        if (elementType != null && text != null && text != "null") {
 
             /*
             * Para el tipo de dato, solo se valida si elementPrev && elementNext son null, esto indica que no hay
