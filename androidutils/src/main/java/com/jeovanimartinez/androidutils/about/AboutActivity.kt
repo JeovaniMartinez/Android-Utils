@@ -90,7 +90,7 @@ class AboutActivity : TranslucentActivity() {
         // Se configura el task description si es necesario
         if (aboutApp.taskDescriptionTitle.isNotNull() && aboutApp.taskDescriptionIcon.isNotNull() && aboutApp.taskDescriptionColor.isNotNull()) {
             configureTaskDescription(aboutApp.taskDescriptionTitle!!, aboutApp.taskDescriptionIcon!!, aboutApp.taskDescriptionColor!!)
-            aboutApp.log("AboutActivity task description configured by AboutApp.TaskDescription properties")
+            aboutApp.log("AboutActivity task description configured by AboutApp options")
         } else {
             aboutApp.log(
                 "Is not necessary configure task description " +
