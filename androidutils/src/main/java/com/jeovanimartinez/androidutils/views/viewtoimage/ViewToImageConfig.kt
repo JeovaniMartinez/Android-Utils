@@ -1,20 +1,24 @@
 package com.jeovanimartinez.androidutils.views.viewtoimage
 
-import android.content.Context
+import android.graphics.Color
 import android.view.View
 import androidx.annotation.ColorInt
+import com.jeovanimartinez.androidutils.views.utils.Padding
+import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.DrawableWatermark
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
 
 /**
  * Configuración para convertir una vista en una imagen.
- * @param context Contexto.
  * @param view Vista que se va a convertir a imagen.
- * @param backgroundColor Color de fondo a aplicar a la imagen, null aplica un color transparente.
- * @param textWatermark Marca de agua de texto a colocar en la imagen.
+ * @param backgroundColor Color de fondo a aplicar a la imagen, el predeterminado es transparente.
+ * @param padding Padding a aplicar entre la vista y los bordes de la imagen.
+ * @param textWatermarkList Lista de marcas de agua de texto, dejar la lista vacía para no aplicar ninguna.
+ * @param drawableWatermarkList Lista de marcas de agua de drawable, dejar la lista vacía para no aplicar ninguna.
  * */
 data class ViewToImageConfig(
-    val context: Context,
     val view: View,
-    @ColorInt val backgroundColor: Int? = null,
-    val textWatermark: TextWatermark? = null
+    @ColorInt val backgroundColor: Int = Color.TRANSPARENT,
+    val padding: Padding,
+    val textWatermarkList: ArrayList<TextWatermark> = arrayListOf(),
+    val drawableWatermarkList: ArrayList<DrawableWatermark> = arrayListOf()
 )
