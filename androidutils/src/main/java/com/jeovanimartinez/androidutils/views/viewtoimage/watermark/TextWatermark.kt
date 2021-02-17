@@ -8,15 +8,19 @@ import com.jeovanimartinez.androidutils.views.utils.Margin
 /**
  * Configuración para crear una marca de agua de texto
  * @param text Texto.
+ * @param textSize Tamaño del texto. El valor se interpreta como sp, por ejemplo si textSize = 12.0, al generar la marca de agua el tamaño
+ *        del texto será de 12 sp.
  * @param textColor Color del texto.
  * @param position Posición del texto dentro de la imagen.
- * @param margin Márgenes para el texto.
+ * @param margin Márgenes para el texto. Los valores se interpretan como dp, por ejemplo si el margin top = 10.0, al generar la marca de agua
+ *        el margin top será de 10 dp.
  * @param rotation Rotación del texto.
  * @param opacity Opacidad del texto en un valor de 0 a 1, donde 0 significa que el texto es completamente transparente
  *        y 1 significa que el texto es completamente opaco.
  * */
 data class TextWatermark(
     @StringOrStringRes val text: Any,
+    val textSize: Float,
     @ColorInt val textColor: Int,
     val position: WatermarkPosition,
     val margin: Margin,
