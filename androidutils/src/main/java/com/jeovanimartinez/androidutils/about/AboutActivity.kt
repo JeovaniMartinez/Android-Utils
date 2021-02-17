@@ -34,6 +34,7 @@ import java.util.*
 class AboutActivity : TranslucentActivity() {
 
     companion object {
+        var aboutActivityRunning = false // Auxiliar para permitir solo una instancia de esta actividad
         private const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
     }
 
@@ -43,6 +44,7 @@ class AboutActivity : TranslucentActivity() {
     private lateinit var aboutAppConfig: AboutAppConfig // Datos de configuración
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        aboutActivityRunning = true // Indica que la actividad esta en ejecución
         super.activityOpacity = 0.9f
         super.onCreate(savedInstanceState)
         configureTransitions()
@@ -71,6 +73,19 @@ class AboutActivity : TranslucentActivity() {
     override fun onStop() {
         activityIsRunning = false
         super.onStop()
+    }
+
+    override fun onDestroy() {
+        AboutApp.log("Activity onDestroy(), isFinishing: $isFinishing")
+        /*
+        * Si esta finalizando, el objeto de AboutApp.currentConfig  se manda a null para liberarlo de la memoria, ya que no se requiere
+        * y cuando se vuelva a mostrar la actividad, el objeto se asigna antes de mostrarla.
+        * */
+        if (isFinishing) {
+            AboutApp.currentConfig = null
+            aboutActivityRunning = false // Indica el fin de la actividad
+        }
+        super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

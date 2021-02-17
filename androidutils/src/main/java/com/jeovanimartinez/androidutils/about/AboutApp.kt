@@ -31,6 +31,12 @@ object AboutApp : Base<AboutApp>() {
      * */
     fun show(activity: Activity, aboutAppConfig: AboutAppConfig) {
 
+        // Si la actividad ya esta en ejecución
+        if (AboutActivity.aboutActivityRunning) {
+            log("AboutActivity is running and only one instance of this activity is allowed")
+            return
+        }
+
         // Se obtiene el valor de los colores de la configuración
         var backgroundColor = aboutAppConfig.backgroundColor
         var iconsColor = aboutAppConfig.iconsColor
@@ -44,6 +50,8 @@ object AboutApp : Base<AboutApp>() {
 
         // Se genera el objeto final de configuración y se asigna al singleton para poder usar los datos en la AboutActivity
         currentConfig = aboutAppConfig.copy(backgroundColor = backgroundColor, iconsColor = iconsColor, termsAndPrivacyPolicyLink = termsAndPrivacyPolicyLink)
+
+        AboutActivity.aboutActivityRunning = true // Se hace true ya que se va a iniciar la actividad
 
         // Se inicia la actividad de acerca de, currentConfig ya esta listo para usarse en dicha actividad
         activity.startActivity(
