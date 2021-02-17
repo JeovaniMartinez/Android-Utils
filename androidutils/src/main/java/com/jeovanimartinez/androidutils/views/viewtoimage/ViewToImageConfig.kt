@@ -12,7 +12,7 @@ import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermar
  * @param view Vista que se va a convertir a imagen.
  * @param backgroundColor Color de fondo a aplicar a la imagen, el predeterminado es transparente.
  * @param padding Padding a aplicar entre la vista y los bordes de la imagen. Los valores se interpretan como dp,
- *        por ejemplo si el padding top = 10.0, al generar la imagen el padding top será de 10dp.
+ *        por ejemplo si el padding top = 10, al generar la imagen el padding top será de 10dp.
  * @param textWatermarkList Lista de marcas de agua de texto, dejar la lista vacía para no aplicar ninguna.
  * @param drawableWatermarkList Lista de marcas de agua de drawable, dejar la lista vacía para no aplicar ninguna.
  * */

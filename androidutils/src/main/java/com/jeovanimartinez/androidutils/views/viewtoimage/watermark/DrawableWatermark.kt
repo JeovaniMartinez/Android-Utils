@@ -8,7 +8,7 @@ import com.jeovanimartinez.androidutils.views.utils.Margin
  * Configuración para crear una marca de un drawable (figura, forma, imagen, etc.)
  * @param drawable Drawable para la marca de agua.
  * @param position Posición del drawable dentro de la imagen.
- * @param margin Márgenes del drawable. Los valores se interpretan como dp, por ejemplo si el margin top = 10.0, al generar la marca de agua
+ * @param margin Márgenes del drawable. Los valores se interpretan como dp, por ejemplo si el margin top = 10, al generar la marca de agua
  *        el margin top será de 10 dp.
  * @param rotation Rotación del drawable.
  * @param opacity Opacidad del drawable en un valor de 0 a 1, donde 0 significa completamente transparente
