@@ -34,7 +34,12 @@ import java.util.*
 class AboutActivity : TranslucentActivity() {
 
     companion object {
-        var aboutActivityRunning = false // Auxiliar para permitir solo una instancia de esta actividad
+        /*
+        * Auxiliar para permitir solo una instancia de esta actividad.
+        * Se usa de esta manera y no con android:launchMode="singleInstance" ya que debido al tema
+        * transparente y a la transición, usar esa configuración no funciona adecuadamente.
+        * */
+        var aboutActivityRunning = false
         private const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
     }
 
