@@ -40,16 +40,16 @@ object AboutApp : Base<AboutApp>() {
         // Se obtiene el valor de los colores de la configuración
         var backgroundColor = aboutAppConfig.backgroundColor
         var iconsColor = aboutAppConfig.iconsColor
-        var termsAndPrivacyPolicyLink = aboutAppConfig.termsAndPrivacyPolicyLink
+        var termsAndPrivacyPolicyTextColor = aboutAppConfig.termsAndPrivacyPolicyTextColor
         // aboutAppConfig.taskDescriptionColor no es necesario, ya que su valor no es obligatorio, y puede ser null
 
         // Para los colores en null, se obtiene su color predeterminado
         if (backgroundColor.isNull()) backgroundColor = activity.getColorCompat(R.color.colorBackground)
         if (iconsColor.isNull()) iconsColor = activity.getColorCompat(R.color.colorIcon)
-        if (termsAndPrivacyPolicyLink.isNull()) termsAndPrivacyPolicyLink = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText)
+        if (termsAndPrivacyPolicyTextColor.isNull()) termsAndPrivacyPolicyTextColor = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText)
 
         // Se genera el objeto final de configuración y se asigna al singleton para poder usar los datos en la AboutActivity
-        currentConfig = aboutAppConfig.copy(backgroundColor = backgroundColor, iconsColor = iconsColor, termsAndPrivacyPolicyLink = termsAndPrivacyPolicyLink)
+        currentConfig = aboutAppConfig.copy(backgroundColor = backgroundColor, iconsColor = iconsColor, termsAndPrivacyPolicyTextColor = termsAndPrivacyPolicyTextColor)
 
         AboutActivity.aboutActivityRunning = true // Se hace true ya que se va a iniciar la actividad
 
