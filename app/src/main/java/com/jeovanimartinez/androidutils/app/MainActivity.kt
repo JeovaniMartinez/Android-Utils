@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
+import com.jeovanimartinez.androidutils.about.AboutAppConfig
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
@@ -90,8 +91,7 @@ class MainActivity : AppCompatActivity() {
         // Muestra la actividad de acerca de
         about.setOnClickListener {
 
-            AboutApp(
-                activity = this@MainActivity,
+            val aboutAppConfig = AboutAppConfig(
                 backgroundColor = getColorCompat(R.color.colorBackground),
                 iconsColor = getColorCompat(R.color.colorIcon),
                 appIcon = R.drawable.library_logo,
@@ -108,7 +108,9 @@ class MainActivity : AppCompatActivity() {
                 taskDescriptionTitle = R.string.app_name,
                 taskDescriptionIcon = R.mipmap.ic_launcher,
                 taskDescriptionColor = getColorCompat(R.color.colorBackground)
-            ).show()
+            )
+
+            AboutApp.show(this@MainActivity, aboutAppConfig)
 
         }
 
