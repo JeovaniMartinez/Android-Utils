@@ -1,5 +1,3 @@
-@file:Suppress("CanBePrimaryConstructorProperty")
-
 package com.jeovanimartinez.androidutils.about
 
 import android.app.Activity
