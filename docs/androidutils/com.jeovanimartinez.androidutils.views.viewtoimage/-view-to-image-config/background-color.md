@@ -5,12 +5,18 @@
 # backgroundColor  
 [androidJvm]  
 Content  
-var [backgroundColor](background-color.md): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)  
+val [backgroundColor](background-color.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)? = null  
 More info  
 
 
-Color de fondo, debe ser el color en hexadecimal (string) o el id del recurso de colors (int)
-
+## Parameters  
+  
+androidJvm  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="com.jeovanimartinez.androidutils.views.viewtoimage/ViewToImageConfig/backgroundColor/#/PointingToDeclaration/"></a>backgroundColor| <a name="com.jeovanimartinez.androidutils.views.viewtoimage/ViewToImageConfig/backgroundColor/#/PointingToDeclaration/"></a><br><br>Color de fondo a aplicar a la imagen, null aplica un color transparente.<br><br>
+  
   
 
 

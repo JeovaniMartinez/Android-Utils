@@ -5,7 +5,7 @@
 # component1  
 [androidJvm]  
 Content  
-operator fun [component1](component1.md)(): [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)  
+operator fun [component1](component1.md)(): [Context](https://developer.android.com/reference/kotlin/android/content/Context.html)  
 
 
 

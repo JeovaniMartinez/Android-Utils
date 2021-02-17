@@ -24,5 +24,6 @@
 | <a name="com.jeovanimartinez.androidutils.reviews.rateinapp////PointingToDeclaration/"></a>[com.jeovanimartinez.androidutils.reviews.rateinapp](com.jeovanimartinez.androidutils.reviews.rateinapp/index.md) | 
 | <a name="com.jeovanimartinez.androidutils.themes.translucent////PointingToDeclaration/"></a>[com.jeovanimartinez.androidutils.themes.translucent](com.jeovanimartinez.androidutils.themes.translucent/index.md) | 
 | <a name="com.jeovanimartinez.androidutils.views.viewtoimage////PointingToDeclaration/"></a>[com.jeovanimartinez.androidutils.views.viewtoimage](com.jeovanimartinez.androidutils.views.viewtoimage/index.md) | 
+| <a name="com.jeovanimartinez.androidutils.views.viewtoimage.watermark////PointingToDeclaration/"></a>[com.jeovanimartinez.androidutils.views.viewtoimage.watermark](com.jeovanimartinez.androidutils.views.viewtoimage.watermark/index.md) | 
 | <a name="com.jeovanimartinez.androidutils.web////PointingToDeclaration/"></a>[com.jeovanimartinez.androidutils.web](com.jeovanimartinez.androidutils.web/index.md) | 
 

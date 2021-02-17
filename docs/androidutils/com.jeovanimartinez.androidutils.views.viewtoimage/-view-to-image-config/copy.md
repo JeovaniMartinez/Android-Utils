@@ -5,7 +5,7 @@
 # copy  
 [androidJvm]  
 Content  
-fun [copy](copy.md)(backgroundColor: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)): [ViewToImageConfig](index.md)  
+fun [copy](copy.md)(context: [Context](https://developer.android.com/reference/kotlin/android/content/Context.html), view: [View](https://developer.android.com/reference/kotlin/android/view/View.html), backgroundColor: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)? = null, textWatermark: [TextWatermark](../../com.jeovanimartinez.androidutils.views.viewtoimage.watermark/-text-watermark/index.md)? = null): [ViewToImageConfig](index.md)  
 
 
 
