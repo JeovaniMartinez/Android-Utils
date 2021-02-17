@@ -9,7 +9,7 @@ package com.jeovanimartinez.androidutils.views.utils
  * @param bottom Padding inferior.
  * @param left Padding izquierdo.
  * */
-data class Padding(var top: Float, var right: Float, var bottom: Float, var left: Float) {
+data class Padding(val top: Float, val right: Float, val bottom: Float, val left: Float) {
 
     /**
      * Configuración de rellenos (padding).

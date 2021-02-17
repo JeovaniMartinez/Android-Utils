@@ -9,7 +9,7 @@ package com.jeovanimartinez.androidutils.views.utils
  * @param bottom Margen inferior.
  * @param left Margen izquierdo.
  * */
-data class Margin(var top: Float, var right: Float, var bottom: Float, var left: Float) {
+data class Margin(val top: Float, val right: Float, val bottom: Float, val left: Float) {
 
     /**
      * Configuración de márgenes.
