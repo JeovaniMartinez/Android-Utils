@@ -34,13 +34,13 @@ import java.util.*
 class AboutActivity : TranslucentActivity() {
 
     companion object {
-        const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
+        private const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
     }
 
     private var activityIsRunning = true // Para mostrar toast solo si la actividad esta en ejecución
     private var loadingTermsAndPolicyInProgress = false
     private var termsAndPolicyVisible = false
-    private var aboutApp = AboutApp.instance // Instancia de del objeto de configuración
+    private lateinit var aboutAppConfig: AboutAppConfig // Datos de configuración
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.activityOpacity = 0.9f
@@ -48,7 +48,9 @@ class AboutActivity : TranslucentActivity() {
         configureTransitions()
         setContentView(R.layout.activity_about)
 
-        aboutApp.log("Started AboutActivity")
+        aboutAppConfig = AboutApp.currentConfig!! // Se asigna el objeto de configuración para poder usarse
+
+        AboutApp.log("Started AboutActivity")
 
         initSetup()
         configureByAboutApp()
@@ -88,13 +90,13 @@ class AboutActivity : TranslucentActivity() {
     private fun initSetup() {
 
         // Se configura el task description si es necesario
-        if (aboutApp.taskDescriptionTitle.isNotNull() && aboutApp.taskDescriptionIcon.isNotNull() && aboutApp.taskDescriptionColor.isNotNull()) {
-            configureTaskDescription(aboutApp.taskDescriptionTitle!!, aboutApp.taskDescriptionIcon!!, aboutApp.taskDescriptionColor!!)
-            aboutApp.log("AboutActivity task description configured by AboutApp options")
+        if (aboutAppConfig.taskDescriptionTitle.isNotNull() && aboutAppConfig.taskDescriptionIcon.isNotNull() && aboutAppConfig.taskDescriptionColor.isNotNull()) {
+            configureTaskDescription(aboutAppConfig.taskDescriptionTitle!!, aboutAppConfig.taskDescriptionIcon!!, aboutAppConfig.taskDescriptionColor!!)
+            AboutApp.log("AboutActivity task description configured by AboutApp options")
         } else {
-            aboutApp.log(
+            AboutApp.log(
                 "Is not necessary configure task description " +
-                        "[title = ${aboutApp.taskDescriptionTitle}; icon = ${aboutApp.taskDescriptionIcon}; color = ${aboutApp.taskDescriptionColor}]"
+                        "[title = ${aboutAppConfig.taskDescriptionTitle}; icon = ${aboutAppConfig.taskDescriptionIcon}; color = ${aboutAppConfig.taskDescriptionColor}]"
             )
         }
 
@@ -120,7 +122,7 @@ class AboutActivity : TranslucentActivity() {
 
         about_openSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
-            aboutApp.firebaseAnalytics("about_app_open_source_licenses_shown")
+            AboutApp.firebaseAnalytics("about_app_open_source_licenses_shown")
         }
 
         about_closeBtn.setOnClickListener {
@@ -132,11 +134,11 @@ class AboutActivity : TranslucentActivity() {
     /** Configura la actividad en base al objeto AboutApp  */
     private fun configureByAboutApp() {
 
-        about_appIcon.setImageDrawable(typeAsDrawable(aboutApp.appIcon))
-        about_appName.text = typeAsString(aboutApp.appName)
-        about_authorName.text = typeAsString(aboutApp.authorName)
-        about_companyLogo.setImageDrawable(typeAsDrawable(aboutApp.companyLogo))
-        if (aboutApp.termsAndPrivacyPolicyLink.isNull()) {
+        about_appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
+        about_appName.text = typeAsString(aboutAppConfig.appName)
+        about_authorName.text = typeAsString(aboutAppConfig.authorName)
+        about_companyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
+        if (aboutAppConfig.termsAndPrivacyPolicyLink.isNull()) {
             about_termsAndPolicy.visibility = View.GONE
             val openSourceLParams = about_openSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
             openSourceLParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
@@ -144,33 +146,33 @@ class AboutActivity : TranslucentActivity() {
             about_openSourceLicenses.layoutParams = openSourceLParams
         }
 
-        about_openSourceLicenses.visibility = if (aboutApp.showOpenSourceLicenses) View.VISIBLE else View.GONE
+        about_openSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
         // En versiones anteriores a Android 4.4 se oculta siempre, ya que la actividad no funciona correctamente
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             about_openSourceLicenses.visibility = View.GONE
         }
 
-        about_topActionCard.setCardBackgroundColor(aboutApp.backgroundColor)
-        about_contentCard.setCardBackgroundColor(aboutApp.backgroundColor)
+        about_topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
+        about_contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
 
         // Se asigna el color de los iconos, solo funciona de Android 5 en adelante
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_check_circle_outline)
             val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
-            closeDrawable?.setTint(aboutApp.iconsColor)
-            closeTermsDrawable?.setTint(aboutApp.iconsColor)
+            closeDrawable?.setTint(aboutAppConfig.iconsColor!!)
+            closeTermsDrawable?.setTint(aboutAppConfig.iconsColor!!)
             about_closeBtn.setImageDrawable(closeDrawable)
             about_closeTermsBtn.setImageDrawable(closeTermsDrawable)
         }
 
-        aboutApp.authorLink.whenNotNull { link ->
+        aboutAppConfig.authorLink.whenNotNull { link ->
             about_authorName.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_author_link")
             }
         }
 
-        aboutApp.companyLink.whenNotNull { link ->
+        aboutAppConfig.companyLink.whenNotNull { link ->
             about_companyLogo.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_company_link")
             }
@@ -180,9 +182,9 @@ class AboutActivity : TranslucentActivity() {
 
     /** Configura la versión de la app y el copyright */
     private fun configureData() {
-        about_appVersion.text = getString(R.string.about_app_version, aboutApp.appVersionName)
+        about_appVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        about_copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutApp.companyName))
+        about_copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
     }
 
     /** Configura la transición de entrada y salida */
@@ -206,11 +208,11 @@ class AboutActivity : TranslucentActivity() {
 
         // Si ya están en proceso de carga, no es necesario hacerlo nuevamente
         if (loadingTermsAndPolicyInProgress) {
-            aboutApp.log("loadTermsAndPolicy() is already in progress")
+            AboutApp.log("loadTermsAndPolicy() is already in progress")
             return
         }
 
-        aboutApp.log("loadTermsAndPolicy() Invoked")
+        AboutApp.log("loadTermsAndPolicy() Invoked")
 
         loadingTermsAndPolicyInProgress = true // Se indica que se están cargando
         about_progressBar.visibility = View.VISIBLE // Se muestra la barra de progreso, ya que puede demorar un tiempo
@@ -219,7 +221,7 @@ class AboutActivity : TranslucentActivity() {
 
         // Se obtiene el color de fondo y el color del texto para enviar los datos al servidor y obtener la vista adaptada al tema (el substring elimina el alpha ya que no se requiere)
         val backgroundColor = Integer.toHexString(about_contentCard.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
-        val textColor = Integer.toHexString(aboutApp.termsAndPrivacyPolicyTextColor).substring(2).toUpperCase(Locale.ROOT)
+        val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).toUpperCase(Locale.ROOT)
 
 
         // Se genera un objeto WebViewClient para los eventos
@@ -228,7 +230,7 @@ class AboutActivity : TranslucentActivity() {
             // Cuando finaliza la carga de la página (independientemente de si el resultado fue exitoso o no)
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                aboutApp.log("WebViewClient onPageFinished() invoked")
+                AboutApp.log("WebViewClient onPageFinished() invoked")
 
                 view?.scrollTo(0, 0) // Se posiciona en el top de la vista
 
@@ -246,14 +248,14 @@ class AboutActivity : TranslucentActivity() {
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_network_error)
-                aboutApp.log("WebViewClient onReceivedError() invoked")
+                AboutApp.log("WebViewClient onReceivedError() invoked")
                 super.onReceivedError(view, request, error)
             }
 
             override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_not_available)
-                aboutApp.log("WebViewClient onReceivedHttpError() invoked")
+                AboutApp.log("WebViewClient onReceivedHttpError() invoked")
                 super.onReceivedHttpError(view, request, errorResponse)
             }
         }
@@ -262,7 +264,7 @@ class AboutActivity : TranslucentActivity() {
         about_termsAndPolicyWebView.settings.javaScriptEnabled = true // Se habilita javascript ya que es necesario para que se configure el estilo de la página con los parámetros de la URL
         about_termsAndPolicyWebView.settings.domStorageEnabled = true // Se habilita para mejor compatibilidad
         // Se carga la URL, pasando los parámetros de color de fondo y color de texto
-        aboutApp.termsAndPrivacyPolicyLink.whenNotNull {
+        aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
             about_termsAndPolicyWebView.loadUrl("${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor")
         }
     }
@@ -270,7 +272,7 @@ class AboutActivity : TranslucentActivity() {
     /** Muestra los términos y la política de privacidad, llamar solo si se cargaron correctamente, [animate] determina si se muestran con una animación o no */
     private fun showTermsAndPolicy(animate: Boolean = true) {
 
-        aboutApp.log("showTermsAndPolicy() Invoked")
+        AboutApp.log("showTermsAndPolicy() Invoked")
         termsAndPolicyVisible = true // Indica que están visibles
         super.activityOpacity = 0.95f
 
@@ -316,13 +318,13 @@ class AboutActivity : TranslucentActivity() {
 
         }
 
-        aboutApp.firebaseAnalytics("about_app_terms_policy_shown")
+        AboutApp.firebaseAnalytics("about_app_terms_policy_shown")
 
     }
 
     /** Oculta la vista de los términos y la política de privacidad */
     private fun hideTermsAndPolicy() {
-        aboutApp.log("hideTermsAndPolicy() Invoked")
+        AboutApp.log("hideTermsAndPolicy() Invoked")
         termsAndPolicyVisible = false // Se indica que ya no están visibles
         super.activityOpacity = 0.9f // Se restaura al valor inicial
 
