@@ -52,7 +52,8 @@ object TempFiles : Base<TempFiles>() {
      * @param context Contexto.
      * @param bitmap Imagen tipo bitmap a guardar en el archivo.
      * @param fileName Nombre del archivo donde se va a guardar la imagen, el parámetro es opcional, si no se
-     *        especifica o si se recibe una cadena en blanco, se genera un UUID para el nombre del archivo.
+     *        especifica o si se recibe una cadena en blanco, se genera un UUID para el nombre del archivo. Si ya
+     *        existe un archivo con el mismo nombre en la carpeta, se reemplaza.
      * @return El archivo generado.
      * */
     fun saveBitmapToFile(context: Context, bitmap: Bitmap, fileName: String = ""): File {
