@@ -114,7 +114,7 @@ object ViewToImage : Base<ViewToImage>() {
 
         // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua
         val positionY = when (position) {
-            TOP_LEFT, TOP_CENTER, TOP_RIGHT  -> {
+            TOP_LEFT, TOP_CENTER, TOP_RIGHT -> {
                 0f
             }
             MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> {
@@ -128,7 +128,7 @@ object ViewToImage : Base<ViewToImage>() {
                 if (rotation == DEG_0 || rotation == DEG_180) {
                     canvas.height - fontHeight
                 } else {
-                    canvas.height - fontHeightDescent
+                    canvas.height - textWidth
                 }
             }
         }
@@ -146,7 +146,11 @@ object ViewToImage : Base<ViewToImage>() {
                 }
             }
             TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> {
-                0f
+                if (rotation == DEG_0 || rotation == DEG_180) {
+                    canvas.width - textWidth
+                } else {
+                    canvas.width - fontHeight
+                }
             }
         }
 
@@ -156,7 +160,7 @@ object ViewToImage : Base<ViewToImage>() {
             }
             DEG_90 -> {
                 canvas.rotate(90f, 0f, 0f)
-                canvas.drawText(text, 0f + positionY + offsetY, -offsetX - fontHeightDescent, paint)
+                canvas.drawText(text, positionY + offsetY, -positionX - offsetX - fontHeightDescent, paint)
             }
             DEG_180 -> {
                 canvas.rotate(180f, 0f, 0f)
@@ -164,7 +168,7 @@ object ViewToImage : Base<ViewToImage>() {
             }
             DEG_270 -> {
                 canvas.rotate(270f, 0f, 0f)
-                canvas.drawText(text, -positionY - offsetY - textWidth, offsetX + fontHeightAscent, paint)
+                canvas.drawText(text, -positionY - offsetY - textWidth, positionX + offsetX + fontHeightAscent, paint)
             }
         }
 
