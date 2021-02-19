@@ -100,6 +100,8 @@ object ViewToImage : Base<ViewToImage>() {
 
         val position = watermark.position
         val rotation = watermark.rotation
+        val offsetX = watermark.offsetX
+        val offsetY = watermark.offsetY
 
         canvas.save()
 
@@ -108,19 +110,19 @@ object ViewToImage : Base<ViewToImage>() {
                 paint.textAlign = Paint.Align.LEFT
                 when (rotation) {
                     WatermarkRotation.DEG_0 -> {
-                        canvas.drawText(text, 0f, fontHeightAscent, paint)
+                        canvas.drawText(text, 0f + offsetX, fontHeightAscent + offsetY, paint)
                     }
                     WatermarkRotation.DEG_90 -> {
                         canvas.rotate(90f, 0f, 0f)
-                        canvas.drawText(text, 0f, -fontHeightDescent, paint)
+                        canvas.drawText(text, 0f + offsetY, -fontHeightDescent - offsetX, paint)
                     }
                     WatermarkRotation.DEG_180 -> {
                         canvas.rotate(180f, 0f, 0f)
-                        canvas.drawText(text, -textWidth, -fontHeightDescent, paint)
+                        canvas.drawText(text, -textWidth - offsetX, -fontHeightDescent - offsetY, paint)
                     }
                     WatermarkRotation.DEG_270 -> {
                         canvas.rotate(270f, 0f, 0f)
-                        canvas.drawText(text, -textWidth, fontHeightAscent, paint)
+                        canvas.drawText(text, -textWidth - offsetY, fontHeightAscent + offsetX, paint)
                     }
                 }
             }
