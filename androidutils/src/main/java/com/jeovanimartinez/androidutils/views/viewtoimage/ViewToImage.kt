@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.views.viewtoimage
 import android.content.Context
 import android.graphics.*
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
@@ -73,6 +74,7 @@ object ViewToImage : Base<ViewToImage>() {
             color = watermark.textColor
             textSize = context.dp2px(watermark.textSize).toFloat() // Se usa en dp, para evitar alteraciones si el dispositivo usa una fuente más grande o más pequeña
             isAntiAlias = true /// Para una buena calidad
+            typeface = context.getFontCompat(watermark.typeface!!) // AJUSTAR CUANDO ES NULL
         }
 
         // Se calcula el tamaño del texto, referencia: https://stackoverflow.com/a/42091739

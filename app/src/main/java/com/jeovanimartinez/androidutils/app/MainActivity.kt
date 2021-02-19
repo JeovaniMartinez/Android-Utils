@@ -2,6 +2,8 @@ package com.jeovanimartinez.androidutils.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
@@ -12,6 +14,7 @@ import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
+import com.jeovanimartinez.androidutils.tmpwatermark
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +31,10 @@ class MainActivity : AppCompatActivity() {
         initSetup()
 
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            tmpwatermark(this@MainActivity, viewDemo, R.font.fugaz_one_regular)
+        }, 200)
     }
 
     private fun initSetup() {
