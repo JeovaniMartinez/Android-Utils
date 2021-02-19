@@ -1,10 +1,15 @@
 package com.jeovanimartinez.androidutils.views.viewtoimage
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
+import android.graphics.*
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.extensions.context.typeAsString
+import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
+import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
+import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkPosition
+import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkRotation
+import kotlin.math.abs
 
 /**
  * Utilidad para convertir una vista en una imagen.
@@ -45,9 +50,116 @@ object ViewToImage : Base<ViewToImage>() {
         canvas.drawColor(config.backgroundColor)
         // Se dibuja el bitmap de la vista en el canvas de la imagen final, incluyendo el padding
         canvas.drawBitmap(viewBitmap, finalPadding.left, finalPadding.top, null)
-        
+
+        // Se dibujan todas las marcas de agua de texto
+        config.textWatermarkList.forEach { drawTextWatermark(context, canvas, it) }
+
         return image
 
     }
 
+    /**
+     * Dibuja la marca de agua en el canvas.
+     * @param context Contexto.
+     * @param canvas Canvas de la imagen donde se va a dibujar la marca de agua.
+     * @param watermark Marca de agua de texto.
+     * */
+    private fun drawTextWatermark(context: Context, canvas: Canvas, watermark: TextWatermark) {
+
+        val text = context.typeAsString(watermark.text) // Texto para dibujar
+
+        // Se genera un objeto Paint para aplicar el estilo
+        val paint = Paint().apply {
+            color = watermark.textColor
+            textSize = context.dp2px(watermark.textSize).toFloat() // Se usa en dp, para evitar alteraciones si el dispositivo usa una fuente más grande o más pequeña
+            isAntiAlias = true /// Para una buena calidad
+        }
+
+        // Se calcula el tamaño del texto, referencia: https://stackoverflow.com/a/42091739
+
+        // Para el ancho que va a ocupar el texto
+        val textRect = Rect()
+        paint.getTextBounds(text, 0, text.length, textRect)
+        val textWidth = textRect.width().toFloat() // Ancho del texto
+
+        // Para el alto del texto, se debe considerar el alto de la fuente, para contemplar todos los caracteres que pueden aparecer
+
+        /*
+        * fontMetrics del objeto paint indica métricas sobre la fuente, donde se puede deducir los siguiente:
+        * Supongamos una linea imaginaria (renglón) donde se va a dibujar el texto, el texto queda por encima del renglón, pero los caracteres como la
+        * "y" tiene una parte que queda por debajo del renglón. La parte que queda encima del renglón es el valor de ascent (que es negativo porque es
+        * del renglón hacia arriba) y la parte que queda por debajo del renglón es descent, y sumando el valor absoluto de estos valores, podemos determinar
+        * el alto máximo que puede usar la fuente para dibujar el texto. En algunos casos, es necesario usar solo el valor absoluto de ascent cuando se
+        * dibuja en el canvas, ya que en el eje Y se comienza a dibujar en el renglón (excluyendo el espacio que ocupan los caracteres debajo del renglón) y en
+        * otros casos se requiere usar solo el valor absoluto de descent, para que se alcance a apreciar el texto port debajo del renglón.
+        * */
+
+        val fontHeight = abs(paint.fontMetrics.ascent) + abs(paint.fontMetrics.descent) // Alto total de la fuente
+        val fontHeightAscent = abs(paint.fontMetrics.ascent) // Alto por encima del renglón que puede ocupar la fuente
+        val fontHeightDescent = abs(paint.fontMetrics.descent) // Alto por debajo del renglón que puede ocupar la fuente
+
+        val position = watermark.position
+        val rotation = watermark.rotation
+
+        canvas.save()
+
+        when (position) {
+            WatermarkPosition.TOP_LEFT -> {
+                paint.textAlign = Paint.Align.LEFT
+                when (rotation) {
+                    WatermarkRotation.DEG_0 -> {
+                        canvas.drawText(text, 0f, fontHeightAscent, paint)
+                    }
+                    WatermarkRotation.DEG_90 -> {
+                        canvas.rotate(90f, 0f, 0f)
+                        canvas.drawText(text, 0f, -fontHeightDescent, paint)
+                    }
+                    WatermarkRotation.DEG_180 -> {
+                        canvas.rotate(180f, 0f, 0f)
+                        canvas.drawText(text, -textWidth, -fontHeightDescent, paint)
+                    }
+                    WatermarkRotation.DEG_270 -> {
+                        canvas.rotate(270f, 0f, 0f)
+                        canvas.drawText(text, -textWidth, fontHeightAscent, paint)
+                    }
+                }
+            }
+        }
+
+        canvas.restore()
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
