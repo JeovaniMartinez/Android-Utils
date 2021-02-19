@@ -114,39 +114,53 @@ object ViewToImage : Base<ViewToImage>() {
 
         // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua
         val positionY = when (position) {
-            TOP_LEFT -> 0f
-            MIDDLE_LEFT -> {
+            TOP_LEFT, TOP_CENTER, TOP_RIGHT  -> {
+                0f
+            }
+            MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> {
                 if (rotation == DEG_0 || rotation == DEG_180) {
                     (canvas.height / 2) - (fontHeight / 2)
                 } else {
                     (canvas.height / 2) - (textWidth / 2)
                 }
             }
-            BOTTOM_LEFT -> {
+            BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> {
                 if (rotation == DEG_0 || rotation == DEG_180) {
                     canvas.height - fontHeight
                 } else {
                     canvas.height - fontHeightDescent
                 }
             }
-            else -> 0f
+        }
+
+        // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua
+        val positionX = when (position) {
+            TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT  -> {
+                0f
+            }
+            TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> {
+               0f
+            }
+            TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> {
+                0f
+            }
         }
 
         when (rotation) {
             DEG_0 -> {
-                canvas.drawText(text, 0f + offsetX, fontHeightAscent + offsetY + positionY, paint)
+                canvas.drawText(text, positionX + offsetX, positionY + offsetY + fontHeightAscent, paint)
             }
             DEG_90 -> {
                 canvas.rotate(90f, 0f, 0f)
-                canvas.drawText(text, 0f + offsetY + positionY, -fontHeightDescent - offsetX, paint)
+                canvas.drawText(text, 0f + positionY + offsetY, -offsetX - fontHeightDescent, paint)
             }
             DEG_180 -> {
                 canvas.rotate(180f, 0f, 0f)
-                canvas.drawText(text, -textWidth - offsetX, -fontHeightDescent - offsetY - positionY, paint)
+                canvas.drawText(text, -offsetX - textWidth, -positionY - offsetY - fontHeightDescent, paint)
             }
             DEG_270 -> {
                 canvas.rotate(270f, 0f, 0f)
-                canvas.drawText(text, -textWidth - offsetY - positionY, fontHeightAscent + offsetX, paint)
+                canvas.drawText(text, -positionY - offsetY - textWidth, offsetX + fontHeightAscent, paint)
             }
         }
 
