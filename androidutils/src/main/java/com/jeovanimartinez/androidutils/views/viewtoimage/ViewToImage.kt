@@ -135,11 +135,15 @@ object ViewToImage : Base<ViewToImage>() {
 
         // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua
         val positionX = when (position) {
-            TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT  -> {
+            TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> {
                 0f
             }
             TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> {
-               0f
+                if (rotation == DEG_0 || rotation == DEG_180) {
+                    (canvas.width / 2) - (textWidth / 2)
+                } else {
+                    (canvas.width / 2) - (fontHeight / 2)
+                }
             }
             TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> {
                 0f
@@ -156,7 +160,7 @@ object ViewToImage : Base<ViewToImage>() {
             }
             DEG_180 -> {
                 canvas.rotate(180f, 0f, 0f)
-                canvas.drawText(text, -offsetX - textWidth, -positionY - offsetY - fontHeightDescent, paint)
+                canvas.drawText(text, -positionX - offsetX - textWidth, -positionY - offsetY - fontHeightDescent, paint)
             }
             DEG_270 -> {
                 canvas.rotate(270f, 0f, 0f)
