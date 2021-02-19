@@ -9,8 +9,8 @@ import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkPosition
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkRotation
+import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkPosition.*
+import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkRotation.*
 import kotlin.math.abs
 
 /**
@@ -114,16 +114,16 @@ object ViewToImage : Base<ViewToImage>() {
 
         // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua
         val positionY = when (position) {
-            WatermarkPosition.TOP_LEFT -> 0f
-            WatermarkPosition.MIDDLE_LEFT -> {
-                if (rotation == WatermarkRotation.DEG_0 || rotation == WatermarkRotation.DEG_180) {
+            TOP_LEFT -> 0f
+            MIDDLE_LEFT -> {
+                if (rotation == DEG_0 || rotation == DEG_180) {
                     (canvas.height / 2) - (fontHeight / 2)
                 } else {
                     (canvas.height / 2) - (textWidth / 2)
                 }
             }
-            WatermarkPosition.BOTTOM_LEFT -> {
-                if (rotation == WatermarkRotation.DEG_0 || rotation == WatermarkRotation.DEG_180) {
+            BOTTOM_LEFT -> {
+                if (rotation == DEG_0 || rotation == DEG_180) {
                     canvas.height - fontHeight
                 } else {
                     canvas.height - fontHeightDescent
@@ -133,18 +133,18 @@ object ViewToImage : Base<ViewToImage>() {
         }
 
         when (rotation) {
-            WatermarkRotation.DEG_0 -> {
+            DEG_0 -> {
                 canvas.drawText(text, 0f + offsetX, fontHeightAscent + offsetY + positionY, paint)
             }
-            WatermarkRotation.DEG_90 -> {
+            DEG_90 -> {
                 canvas.rotate(90f, 0f, 0f)
                 canvas.drawText(text, 0f + offsetY + positionY, -fontHeightDescent - offsetX, paint)
             }
-            WatermarkRotation.DEG_180 -> {
+            DEG_180 -> {
                 canvas.rotate(180f, 0f, 0f)
                 canvas.drawText(text, -textWidth - offsetX, -fontHeightDescent - offsetY - positionY, paint)
             }
-            WatermarkRotation.DEG_270 -> {
+            DEG_270 -> {
                 canvas.rotate(270f, 0f, 0f)
                 canvas.drawText(text, -textWidth - offsetY - positionY, fontHeightAscent + offsetX, paint)
             }
