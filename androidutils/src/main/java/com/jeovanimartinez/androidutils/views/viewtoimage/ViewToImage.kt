@@ -106,25 +106,44 @@ object ViewToImage : Base<ViewToImage>() {
         canvas.save()
 
         when (position) {
-            WatermarkPosition.TOP_LEFT -> {
+            WatermarkPosition.TOP_LEFT, WatermarkPosition.MIDDLE_LEFT, WatermarkPosition.BOTTOM_LEFT -> {
+
                 paint.textAlign = Paint.Align.LEFT
+
+                // Ajuste en el eje y para que la marca de agua se posicione en la parte superior, a la mitad o en la parte inferior
+                val yAdjust = when (position) {
+                    WatermarkPosition.TOP_LEFT -> 0f
+                    WatermarkPosition.MIDDLE_LEFT -> {
+                        if (rotation == WatermarkRotation.DEG_0 || rotation == WatermarkRotation.DEG_180) {
+                            (canvas.height / 2) - (fontHeight / 2)
+                        } else {
+                            (canvas.height / 2) - (textWidth / 2)
+                        }
+                    }
+                    WatermarkPosition.BOTTOM_LEFT -> {
+                        1f
+                    }
+                    else -> 0f
+                }
+
                 when (rotation) {
                     WatermarkRotation.DEG_0 -> {
-                        canvas.drawText(text, 0f + offsetX, fontHeightAscent + offsetY, paint)
+                        canvas.drawText(text, 0f + offsetX, fontHeightAscent + offsetY + yAdjust, paint)
                     }
                     WatermarkRotation.DEG_90 -> {
                         canvas.rotate(90f, 0f, 0f)
-                        canvas.drawText(text, 0f + offsetY, -fontHeightDescent - offsetX, paint)
+                        canvas.drawText(text, 0f + offsetY + yAdjust, -fontHeightDescent - offsetX, paint)
                     }
                     WatermarkRotation.DEG_180 -> {
                         canvas.rotate(180f, 0f, 0f)
-                        canvas.drawText(text, -textWidth - offsetX, -fontHeightDescent - offsetY, paint)
+                        canvas.drawText(text, -textWidth - offsetX, -fontHeightDescent - offsetY - yAdjust, paint)
                     }
                     WatermarkRotation.DEG_270 -> {
                         canvas.rotate(270f, 0f, 0f)
-                        canvas.drawText(text, -textWidth - offsetY, fontHeightAscent + offsetX, paint)
+                        canvas.drawText(text, -textWidth - offsetY - yAdjust, fontHeightAscent + offsetX, paint)
                     }
                 }
+
             }
         }
 
