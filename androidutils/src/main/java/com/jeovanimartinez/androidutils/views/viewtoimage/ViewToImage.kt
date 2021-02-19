@@ -6,6 +6,7 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkPosition
@@ -74,7 +75,11 @@ object ViewToImage : Base<ViewToImage>() {
             color = watermark.textColor
             textSize = context.dp2px(watermark.textSize).toFloat() // Se usa en dp, para evitar alteraciones si el dispositivo usa una fuente más grande o más pequeña
             isAntiAlias = true /// Para una buena calidad
-            typeface = context.getFontCompat(watermark.typeface!!) // AJUSTAR CUANDO ES NULL
+            textAlign = Paint.Align.LEFT // Se alinea siempre a la izquierda y a partir de esa alineación se ajusta según la posición
+            // Se asigna la fuente en caso de recibirla
+            watermark.typeface.whenNotNull {
+                typeface = context.getFontCompat(it)
+            }
         }
 
         // Se calcula el tamaño del texto, referencia: https://stackoverflow.com/a/42091739
@@ -105,51 +110,43 @@ object ViewToImage : Base<ViewToImage>() {
         val offsetX = watermark.offsetX
         val offsetY = watermark.offsetY
 
-        canvas.save()
+        canvas.save() // Se guarda el estado actual del canvas
 
-        when (position) {
-            WatermarkPosition.TOP_LEFT, WatermarkPosition.MIDDLE_LEFT, WatermarkPosition.BOTTOM_LEFT -> {
-
-                paint.textAlign = Paint.Align.LEFT
-
-                // Ajuste en el eje y para que la marca de agua se posicione en la parte superior, a la mitad o en la parte inferior
-                val yAdjust = when (position) {
-                    WatermarkPosition.TOP_LEFT -> 0f
-                    WatermarkPosition.MIDDLE_LEFT -> {
-                        if (rotation == WatermarkRotation.DEG_0 || rotation == WatermarkRotation.DEG_180) {
-                            (canvas.height / 2) - (fontHeight / 2)
-                        } else {
-                            (canvas.height / 2) - (textWidth / 2)
-                        }
-                    }
-                    WatermarkPosition.BOTTOM_LEFT -> {
-                        1f
-                    }
-                    else -> 0f
+        // Se determina la posición en el eje Y de acuerdo a la posición de la marca de agua
+        val positionY = when (position) {
+            WatermarkPosition.TOP_LEFT -> 0f
+            WatermarkPosition.MIDDLE_LEFT -> {
+                if (rotation == WatermarkRotation.DEG_0 || rotation == WatermarkRotation.DEG_180) {
+                    (canvas.height / 2) - (fontHeight / 2)
+                } else {
+                    (canvas.height / 2) - (textWidth / 2)
                 }
+            }
+            WatermarkPosition.BOTTOM_LEFT -> {
+                1f
+            }
+            else -> 0f
+        }
 
-                when (rotation) {
-                    WatermarkRotation.DEG_0 -> {
-                        canvas.drawText(text, 0f + offsetX, fontHeightAscent + offsetY + yAdjust, paint)
-                    }
-                    WatermarkRotation.DEG_90 -> {
-                        canvas.rotate(90f, 0f, 0f)
-                        canvas.drawText(text, 0f + offsetY + yAdjust, -fontHeightDescent - offsetX, paint)
-                    }
-                    WatermarkRotation.DEG_180 -> {
-                        canvas.rotate(180f, 0f, 0f)
-                        canvas.drawText(text, -textWidth - offsetX, -fontHeightDescent - offsetY - yAdjust, paint)
-                    }
-                    WatermarkRotation.DEG_270 -> {
-                        canvas.rotate(270f, 0f, 0f)
-                        canvas.drawText(text, -textWidth - offsetY - yAdjust, fontHeightAscent + offsetX, paint)
-                    }
-                }
-
+        when (rotation) {
+            WatermarkRotation.DEG_0 -> {
+                canvas.drawText(text, 0f + offsetX, fontHeightAscent + offsetY + positionY, paint)
+            }
+            WatermarkRotation.DEG_90 -> {
+                canvas.rotate(90f, 0f, 0f)
+                canvas.drawText(text, 0f + offsetY + positionY, -fontHeightDescent - offsetX, paint)
+            }
+            WatermarkRotation.DEG_180 -> {
+                canvas.rotate(180f, 0f, 0f)
+                canvas.drawText(text, -textWidth - offsetX, -fontHeightDescent - offsetY - positionY, paint)
+            }
+            WatermarkRotation.DEG_270 -> {
+                canvas.rotate(270f, 0f, 0f)
+                canvas.drawText(text, -textWidth - offsetY - positionY, fontHeightAscent + offsetX, paint)
             }
         }
 
-        canvas.restore()
+        canvas.restore() // Se restablece el canvas para anular los cambios en la rotación después de dibujar el texto
 
     }
 
