@@ -112,7 +112,7 @@ object ViewToImage : Base<ViewToImage>() {
 
         canvas.save() // Se guarda el estado actual del canvas
 
-        // Se determina la posición en el eje Y de acuerdo a la posición de la marca de agua
+        // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua
         val positionY = when (position) {
             WatermarkPosition.TOP_LEFT -> 0f
             WatermarkPosition.MIDDLE_LEFT -> {
@@ -123,7 +123,11 @@ object ViewToImage : Base<ViewToImage>() {
                 }
             }
             WatermarkPosition.BOTTOM_LEFT -> {
-                1f
+                if (rotation == WatermarkRotation.DEG_0 || rotation == WatermarkRotation.DEG_180) {
+                    canvas.height - fontHeight
+                } else {
+                    canvas.height - fontHeightDescent
+                }
             }
             else -> 0f
         }
