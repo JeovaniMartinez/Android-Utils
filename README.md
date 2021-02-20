@@ -304,3 +304,4 @@ SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 #### View **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.extensions.view/index.md)**
 
 - Animations.kt: Extensiones para facilitar el uso de animaciones en las vistas.
+- MarginAndPadding.kt: Conjunto de extensiones para las clases Margin y Padding.
