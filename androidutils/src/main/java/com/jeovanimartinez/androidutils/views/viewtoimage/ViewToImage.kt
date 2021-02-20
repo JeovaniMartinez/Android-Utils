@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.views.viewtoimage
 import android.content.Context
 import android.graphics.*
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
@@ -70,18 +71,21 @@ object ViewToImage : Base<ViewToImage>() {
 
         val text = context.typeAsString(watermark.text) // Texto para dibujar
 
+        // Se valida el valor de la opacidad
+        if (watermark.opacity < 0f || watermark.opacity > 1f) throw Exception("The opacity value for text watermark must be between 0 and 1")
+
         // Se genera un objeto Paint para aplicar el estilo
         val paint = Paint().apply {
             color = watermark.textColor
             textSize = context.dp2px(watermark.textSize).toFloat() // Se usa en dp, para evitar alteraciones si el dispositivo usa una fuente más grande o más pequeña
             isAntiAlias = true /// Para una buena calidad
             textAlign = Paint.Align.LEFT // Se alinea siempre a la izquierda y a partir de esa alineación se ajusta según la posición
+            alpha = watermark.opacity.mapValue(0f, 1f, 0f, 255f).toInt() // Se mapea y asigna la opacidad
             // Se asigna la fuente en caso de recibirla
             watermark.typeface.whenNotNull {
                 typeface = context.getFontCompat(it)
             }
         }
-
 
         // Para el ancho que va a ocupar el texto, paint.measureText es más exacto que paint.getTextBounds, referencia: https://stackoverflow.com/a/7579469
         val textWidth = paint.measureText(text) // Ancho del texto
