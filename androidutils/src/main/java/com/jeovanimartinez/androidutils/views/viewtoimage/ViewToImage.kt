@@ -82,12 +82,9 @@ object ViewToImage : Base<ViewToImage>() {
             }
         }
 
-        // Se calcula el tamaño del texto, referencia: https://stackoverflow.com/a/42091739
 
-        // Para el ancho que va a ocupar el texto
-        val textRect = Rect()
-        paint.getTextBounds(text, 0, text.length, textRect)
-        val textWidth = textRect.width().toFloat() // Ancho del texto
+        // Para el ancho que va a ocupar el texto, paint.measureText es más exacto que paint.getTextBounds, referencia: https://stackoverflow.com/a/7579469
+        val textWidth = paint.measureText(text) // Ancho del texto
 
         // Para el alto del texto, se debe considerar el alto de la fuente, para contemplar todos los caracteres que pueden aparecer
 
@@ -99,6 +96,7 @@ object ViewToImage : Base<ViewToImage>() {
         * el alto máximo que puede usar la fuente para dibujar el texto. En algunos casos, es necesario usar solo el valor absoluto de ascent cuando se
         * dibuja en el canvas, ya que en el eje Y se comienza a dibujar en el renglón (excluyendo el espacio que ocupan los caracteres debajo del renglón) y en
         * otros casos se requiere usar solo el valor absoluto de descent, para que se alcance a apreciar el texto port debajo del renglón.
+        * Referencia: https://stackoverflow.com/a/42091739
         * */
 
         val fontHeight = abs(paint.fontMetrics.ascent) + abs(paint.fontMetrics.descent) // Alto total de la fuente
