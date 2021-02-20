@@ -78,17 +78,17 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 
 Estas anotaciones están diseñadas para orientar al desarrollador sobre el tipo de dato o recurso que se puede asignar a una propiedad o variable, la biblioteca cuenta con el módulo `lintcheck` que se encarga de verificar el uso de las anotaciones y mostrar advertencias en caso de que se detecte un valor incorrecto.
 
-Por lo general, en estas anotaciones, el tipo de dato esperado es Any, para dar la flexibilidad de aceptar diferentes tipos de datos. Por ejemplo, en algunos casos se espera un tipo de dato String, que se procesa tal cual, pero también se puede esperar un tipo de dato Int, para obtener el String de los recursos mediante su ID.
+Por lo general, en estas anotaciones, el tipo de dato esperado es Any, para dar la flexibilidad de aceptar diferentes tipos de datos. Por ejemplo, en algunos casos se espera un tipo de dato String, que se procesa tal cual, pero también se puede esperar un tipo de dato Int, para obtener el String de los recursos mediante su ID.<br>
 La biblioteca permite esta flexibilidad y se encarga de identificar el tipo de dato y tratarlo de manera adecuada, y en caso de ser un tipo de dato incorrecto, se genera una excepción.
 
 
 #### `@DrawableOrDrawableRes`
 
-Indica que el valor esperado debe ser un Drawable o el ID de un recuso de drawable. Por ejemplo: `drawableObject`, `R.drawable.demo`.
+Indica que el valor esperado debe ser un Drawable o el ID de un recuso de drawable. Por ejemplo: `drawableObject`, `R.drawable.demo`
 
 #### `@StringOrStringRes` 
 
-Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string. Por ejemplo: `'a'`, `"Hola"`, `R.string.demo`.
+Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string. Por ejemplo: `'a'`, `"Hola"`, `R.string.demo`
 
 #
 #
