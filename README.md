@@ -198,7 +198,7 @@ val aboutAppConfig = AboutAppConfig(
     taskDescriptionColor = getColorCompat(R.color.colorBackground)
 )
 
-AboutApp.show(this@MainActivity, aboutAppConfig)
+AboutApp.show(activity, aboutAppConfig)
 ```
 **[Documentación (configuración)](docs/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.md)**<br>
 **[Documentación (utilidad)](docs/androidutils/com.jeovanimartinez.androidutils.about/-about-app/index.md)**
@@ -218,7 +218,7 @@ Utilidad para dirigir al usuario a la página del desarrollador en Google Play, 
 
 Ejemplo de uso:
 ```Kotlin
-MoreAppsGPlay.apply { developerId = "GitHub" }.showAppList(this@MainActivity)
+MoreAppsGPlay.apply { developerId = "GitHub" }.showAppList(activity)
 ```
 <details>
 <summary>Modo compacto</summary>
@@ -237,15 +237,17 @@ MoreAppsGPlay.showAppList(this@MainActivity)
 ### TempFiles  
 Utilidad para crear y eliminar fácilmente archivos temporales de la app. Los archivos temporales se crean en una carpeta privada de la aplicación llamada `androidutils_tempfiles`
 
-#### - clearTempFilesFolder
+#### Lista de utilidades
+
+#### - clearTempFilesFolder **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/clear-temp-files-folder.md)**
 Elimina todos los archivos creados con esta utilidad (los archivos de la carpeta temporal), se recomienda llamar al inicio de la app o donde se necesite limpiar el contenido de la carpeta. La función se ejecuta de manera asíncrona para no afectar el flujo de la app y puede llamarse desde cualquier lugar.
 
 Ejemplo de uso:
 ```Kotlin
-TempFiles.clearTempFilesFolder(this@MainActivity)
+TempFiles.clearTempFilesFolder(context)
 ```
 
-#### - [Lista de utilidades](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/index.md)
+#### - saveBitmapToFile **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/save-bitmap-to-file.md)**
 
 #
 
