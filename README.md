@@ -105,9 +105,9 @@ Ejemplo de uso:
 Nota: En el archivo de diseño, las actividades que hereden de `TranslucentActivity` deben tener un `RelativeLayout` como elemento raíz en para que ocupen el espacio completo de la pantalla, o bien un tamaño fijo.
 1. En el archivo `AndroidManifest` asignar el tema `AndroidUtilsTheme.Translucent` a la actividad deseada.
 ```xml
- <activity
-            android:name=".about.AboutActivity"
-            android:theme="@style/AndroidUtilsTheme.Translucent" />
+<activity
+    android:name=".about.AboutActivity"
+    android:theme="@style/AndroidUtilsTheme.Translucent" />
 ```
 2. En la actividad deseada, heredar de `TranslucentActivity` que a su vez hereda de `AppCompatActivity`.
 ```Kotlin
@@ -116,8 +116,8 @@ class AboutActivity : TranslucentActivity() { ... }
 3. Asignar el valor a la propiedad `activityOpacity` en el lugar donde se desea ajustar la opacidad de la actividad, para que la actividad tenga el fondo al iniciarse se debe asignar entes de `super.onCreate(savedInstanceState)` en el `onCreate()`. La propiedad puede reasignarse en cualquier parte y el cambio se ve reflejado de manera instantánea. El valor debe estar entre 0 y 1, que corresponde a una opacidad del 0% y del 100% respectivamente.
 ```Kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
-        super.activityOpacity = 0.9f
-        super.onCreate(savedInstanceState)
+    super.activityOpacity = 0.9f
+    super.onCreate(savedInstanceState)
 }
 ```
 Para generar el mejor efecto de opacidad en la actividad, se usa la propiedad `dimAmount` de la ventana para controlar la opacidad. En algunos casos (como cuando se muestra un diálogo) este cuenta con su propio valor de dimAmount, y cuando ese valor es menor que el de activityOpacity se genera un efecto indeseado en la vista. Para corregir esto, la actividad TranslucentActivity cuenta con una función especial llamada `configureWindowDim` que hay que invocar cuando se va a mostrar una vista encima de la actividad, esto corrige ese inconveniente y mantiene la opacidad adecuada. Por ejemplo, para realizar el ajuste en un diálogo:
@@ -149,12 +149,12 @@ RateInApp.apply {
     minRemindLaunchTimes = 4
     showAtEvent = 2
     showNeverAskAgainButton = true
-}.init(this@MainActivity)
+}.init(context)
 ```
 
 Ya que se ha configurado la utilidad, llamar al siguiente método en el momento en el que se quiera mostrar el flujo para calificar, el flujo se mostrará solo si se cumplen las condiciones especificadas en la configuración.
 ```Kotlin
-RateInApp.checkAndShow(this@MainActivity)
+RateInApp.checkAndShow(activity)
 ```
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md)**
 
@@ -166,21 +166,20 @@ Utilidad para dirigir al usuario a los detalles de la aplicación en Google Play
 
 Ejemplo de uso:
 ```Kotlin
-RateApp.goToRateInGooglePlay(this@MainActivity)
+RateApp.goToRateInGooglePlay(activity)
 ```
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.md)**
 
 #
 
 ### About 
-Utilidad para mostrar una actividad de acerca de, donde se incluye la información de la app, del autor y de la empresa, el copyright, así como las licencias de código abierto, los términos de licencia y la política de privacidad.
+Utilidad para mostrar una actividad de acerca de, donde se incluye la información de la app, del autor, de la empresa, el copyright, así como las licencias de código abierto, los términos de licencia y la política de privacidad.
 
 ![Demo](/resources/images/about/about-demo.png?raw=true)
 
 Ejemplo de uso:
 ```Kotlin
-AboutApp(
-    activity = this@MainActivity,
+val aboutAppConfig = AboutAppConfig(
     backgroundColor = getColorCompat(R.color.colorBackground),
     iconsColor = getColorCompat(R.color.colorIcon),
     appIcon = R.drawable.library_logo,
@@ -197,9 +196,12 @@ AboutApp(
     taskDescriptionTitle = R.string.app_name,
     taskDescriptionIcon = R.mipmap.ic_launcher,
     taskDescriptionColor = getColorCompat(R.color.colorBackground)
-).show()
+)
+
+AboutApp.show(this@MainActivity, aboutAppConfig)
 ```
-**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.about/-about-app/index.md)**
+**[Documentación (configuración)](docs/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.md)**<br>
+**[Documentación (utilidad)](docs/androidutils/com.jeovanimartinez.androidutils.about/-about-app/index.md)**
 
 #### Términos de Licencia y Política de Privacidad
 La actividad muestra los términos y la política en un `WebView`, que se cargan desde una URL (`termsAndPrivacyPolicyLink`) para poder mostrar siempre la versión más actualizada de los mismos. Con el fin de mostrar la página web con el estilo del tema que usa la app, se envían dos parámetros a la URL ` background-color` y ` text-color` para personalizar el color de fondo de la página y el color del texto respectivamente.
