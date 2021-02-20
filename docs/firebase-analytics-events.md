@@ -24,6 +24,6 @@
 
 La cantidad de veces que se solicito el flujo se puede calcular mediante la suma de rate_app_review_flow_successful, rate_app_request_review_flow_error y rate_app_review_flow_failure.
 
-SystemWebBrowser
+### SystemWebBrowser
 - `open_url_in_system_web_browser` Se dirige al usuario a una página web en el navegador del sistema.
   - `open_url_case` Parámetro que indica la razón por la que se dirigió al usuario el navegador, y registra también cuando se produce un error.
