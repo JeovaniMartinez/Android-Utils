@@ -110,8 +110,8 @@ object ViewToImage : Base<ViewToImage>() {
         // Se obtienen datos de la configuración
         val position = watermark.position
         val rotation = watermark.rotation
-        val offsetX = watermark.offsetX
-        val offsetY = watermark.offsetY
+        val offsetX = context.dp2px(watermark.offsetX)
+        val offsetY = context.dp2px(watermark.offsetY)
 
         /*
         * Ll archivo view-to-image-helper.svg de los recursos del proyecto se uso para analizar y definir como generar la marca de agua
