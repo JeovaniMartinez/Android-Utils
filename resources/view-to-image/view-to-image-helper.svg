@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000"
+   height="1000"
+   viewBox="0 0 264.58332 264.58334"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="calc.svg">
+  <defs
+     id="defs2">
+    <pattern
+       id="EMFhbasepattern"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6"
+       x="0"
+       y="0" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.5"
+     inkscape:cx="563.37128"
+     inkscape:cy="379.39121"
+     inkscape:document-units="px"
+     inkscape:current-layer="svg8"
+     showgrid="false"
+     showguides="true"
+     units="px"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0">
+    <sodipodi:guide
+       position="52.563886,224.89583"
+       orientation="0,1"
+       id="guide839"
+       inkscape:label=""
+       inkscape:locked="true"
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="79.374999,209.81459"
+       orientation="-1,0"
+       id="guide843"
+       inkscape:label=""
+       inkscape:locked="true"
+       inkscape:color="rgb(0,0,255)" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <rect
+     style="fill:#575654;fill-opacity:1;stroke-width:0.253306"
+     id="rect817"
+     width="158.75"
+     height="79.375"
+     x="0"
+     y="0"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-32.41665)"
+     sodipodi:insensitive="true" />
+  <g
+     id="g857"
+     sodipodi:insensitive="true"
+     inkscape:label="texto"
+     transform="translate(0,-6.6145831)">
+    <rect
+       y="32.416649"
+       x="8.8817842e-16"
+       height="7.9375"
+       width="21.166666"
+       id="rect827"
+       style="fill:#0000ff;fill-opacity:1;stroke-width:0.21038"
+       transform="translate(0,-32.416649)"
+       sodipodi:insensitive="true" />
+    <rect
+       y="2.3455806e-07"
+       x="0"
+       height="6.614583"
+       width="21.166666"
+       id="rect839"
+       style="fill:#d4aa00;fill-opacity:1;stroke-width:0.190156"
+       sodipodi:insensitive="true" />
+    <rect
+       y="3.8364582"
+       x="0"
+       height="0.26458332"
+       width="21.166666"
+       id="rect845"
+       style="fill:#ff0000;fill-opacity:1;stroke-width:0.0883479"
+       sodipodi:insensitive="true" />
+    <text
+       transform="scale(1.0617967,0.94179989)"
+       id="text825"
+       y="7.0170646"
+       x="-0.68492568"
+       style="font-style:normal;font-weight:normal;font-size:7.01364px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.175341"
+       xml:space="preserve"
+       sodipodi:insensitive="true"><tspan
+         style="fill:#ffffff;stroke-width:0.175341"
+         y="7.0170646"
+         x="-0.68492568"
+         id="tspan823"
+         sodipodi:role="line">Hoy Ú</tspan></text>
+    <circle
+       style="fill:#ff00ff;fill-opacity:1;stroke-width:0.0531833"
+       id="path861"
+       cx="0.26458332"
+       cy="6.6145835"
+       r="0.26458332"
+       sodipodi:insensitive="true" />
+  </g>
+  <rect
+     style="fill:#ff00ff;fill-opacity:1;stroke-width:0.264583"
+     id="rect841"
+     width="79.375"
+     height="158.75"
+     x="-79.375"
+     y="-2.220446e-16" />
+  <g
+     id="g1135"
+     transform="translate(467.19249,224.90717)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:199.881%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-97.672562"
+       id="text856"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-97.672562"
+         id="tspan848"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan844">textWidth = 80</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan846"> </tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-89.805885"
+         id="tspan854"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan850">fontHeight = 30</tspan><tspan
+           dx="-0.32883713"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan852"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:199.881%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-81.812347"
+       id="text870"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-81.812347"
+         id="tspan862"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan858">fontHeightAscent = 25</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan860"> </tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-73.945671"
+         id="tspan868"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan864">fontHeightDescent = 5</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan866"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:199.881%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-65.952133"
+       id="text882"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-65.952133"
+         id="tspan874"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan872"> </tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-58.085457"
+         id="tspan880"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan876">Texto de ejemplo: Hoy Ú</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan878"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-50.091911"
+       id="text888"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-50.091911"
+         id="tspan886"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan884"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-319.7901"
+       y="-50.091911"
+       id="text896"><tspan
+         sodipodi:role="line"
+         x="-319.7901"
+         y="-50.091911"
+         id="tspan894"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan890">Rectángulo con texto: fontHeight y textWidth</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan892"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-42.225246"
+       id="text902"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-42.225246"
+         id="tspan900"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan898"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-319.7901"
+       y="-42.225246"
+       id="text910"><tspan
+         sodipodi:role="line"
+         x="-319.7901"
+         y="-42.225246"
+         id="tspan908"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan904">Línea roja: mitad absoluta de la fuente (mitad de fontHeight)</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan906"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-34.231697"
+       id="text916"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-34.231697"
+         id="tspan914"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan912"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-319.7901"
+       y="-34.231697"
+       id="text924"><tspan
+         sodipodi:role="line"
+         x="-319.7901"
+         y="-34.231697"
+         id="tspan922"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan918">Rectángulo amarillo: fontHeightAscent</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan920"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-26.365038"
+       id="text930"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-26.365038"
+         id="tspan928"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan926"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-319.7901"
+       y="-26.365038"
+       id="text938"><tspan
+         sodipodi:role="line"
+         x="-319.7901"
+         y="-26.365038"
+         id="tspan936"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan932">Rectángulo azul: fontHeightDescent </tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan934"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-18.371485"
+       id="text944"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-18.371485"
+         id="tspan942"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan940"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-319.7901"
+       y="-18.371485"
+       id="text958"><tspan
+         sodipodi:role="line"
+         x="-319.7901"
+         y="-18.371485"
+         id="tspan956"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan946">Punto morado: Pivote, donde se </tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan948">comienza</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan950"> </tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan952">a dibujar el texto</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan954"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:199.881%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="-10.504816"
+       id="text968"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-10.504816"
+         id="tspan962"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan960"> </tspan></tspan><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="-2.63814"
+         id="tspan966"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan964"> </tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;line-height:125%;font-family:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-332.22452"
+       y="5.3553982"
+       id="text984"><tspan
+         sodipodi:role="line"
+         x="-332.22452"
+         y="5.3553982"
+         id="tspan982"
+         style="stroke-width:0.264583"><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan970">Siempre Y = </tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan972">-</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan974">25 en Inkscape, para el origen correcto. Es decir </tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan976">-</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan978">25 = 0</tspan><tspan
+           dx="0"
+           dy="0"
+           style="font-style:normal;font-variant:normal;font-weight:400;font-size:3.93568px;font-family:Calibri;fill:#000000;stroke-width:0.264583"
+           id="tspan980"> </tspan></tspan></text>
+  </g>
+</svg>

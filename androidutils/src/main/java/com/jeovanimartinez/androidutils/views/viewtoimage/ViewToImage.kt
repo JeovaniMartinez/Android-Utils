@@ -61,7 +61,7 @@ object ViewToImage : Base<ViewToImage>() {
     }
 
     /**
-     * Dibuja la marca de agua en el canvas.
+     * Dibuja la marca de agua de texto en el canvas.
      * @param context Contexto.
      * @param canvas Canvas de la imagen donde se va a dibujar la marca de agua.
      * @param watermark Marca de agua de texto.
@@ -105,68 +105,66 @@ object ViewToImage : Base<ViewToImage>() {
         val fontHeightAscent = abs(paint.fontMetrics.ascent) // Alto por encima del renglón que puede ocupar la fuente
         val fontHeightDescent = abs(paint.fontMetrics.descent) // Alto por debajo del renglón que puede ocupar la fuente
 
+        // Se obtienen datos de la configuración
         val position = watermark.position
         val rotation = watermark.rotation
         val offsetX = watermark.offsetX
         val offsetY = watermark.offsetY
 
+        /*
+        * Ll archivo view-to-image-helper.svg de los recursos del proyecto se uso para analizar y definir como generar la marca de agua
+        * en las diferentes posiciones y en los diferentes ángulos.
+        * */
+
         canvas.save() // Se guarda el estado actual del canvas
 
-        // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua
+        // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua (superior, a la mitad o inferior)
         val positionY = when (position) {
             TOP_LEFT, TOP_CENTER, TOP_RIGHT -> {
                 0f
             }
             MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) {
-                    (canvas.height / 2) - (fontHeight / 2)
-                } else {
-                    (canvas.height / 2) - (textWidth / 2)
-                }
+                if (rotation == DEG_0 || rotation == DEG_180) (canvas.height / 2) - (fontHeight / 2)
+                else (canvas.height / 2) - (textWidth / 2)
             }
             BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) {
-                    canvas.height - fontHeight
-                } else {
-                    canvas.height - textWidth
-                }
+                if (rotation == DEG_0 || rotation == DEG_180) canvas.height - fontHeight
+                else canvas.height - textWidth
             }
         }
 
-        // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua
+        // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua (izquierda, centro o derecha)
         val positionX = when (position) {
             TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> {
                 0f
             }
             TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> {
-                if (rotation == DEG_0 || rotation == DEG_180) {
-                    (canvas.width / 2) - (textWidth / 2)
-                } else {
-                    (canvas.width / 2) - (fontHeight / 2)
-                }
+                if (rotation == DEG_0 || rotation == DEG_180) (canvas.width / 2) - (textWidth / 2)
+                else (canvas.width / 2) - (fontHeight / 2)
             }
             TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) {
-                    canvas.width - textWidth
-                } else {
-                    canvas.width - fontHeight
-                }
+                if (rotation == DEG_0 || rotation == DEG_180) canvas.width - textWidth
+                else canvas.width - fontHeight
             }
         }
 
+        // Se ajusta la rotación del canvas según los grados y se dibuja el texto aplicando la configuración correspondiente
         when (rotation) {
             DEG_0 -> {
                 canvas.drawText(text, positionX + offsetX, positionY + offsetY + fontHeightAscent, paint)
             }
             DEG_90 -> {
+                // Al girar 90 grados, se intercambian los valores del eje X por los del eje Y y viceversa
                 canvas.rotate(90f, 0f, 0f)
                 canvas.drawText(text, positionY + offsetY, -positionX - offsetX - fontHeightDescent, paint)
             }
             DEG_180 -> {
+                // Al rotar 180 grados se realizan restas para ajustar la posición del texto
                 canvas.rotate(180f, 0f, 0f)
                 canvas.drawText(text, -positionX - offsetX - textWidth, -positionY - offsetY - fontHeightDescent, paint)
             }
             DEG_270 -> {
+                // Al girar 270 grados, se intercambian los valores del eje X por los del eje Y y viceversa
                 canvas.rotate(270f, 0f, 0f)
                 canvas.drawText(text, -positionY - offsetY - textWidth, positionX + offsetX + fontHeightAscent, paint)
             }
