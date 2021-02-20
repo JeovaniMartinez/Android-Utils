@@ -239,7 +239,7 @@ Utilidad para crear y eliminar fácilmente archivos temporales de la app. Los ar
 
 #### Lista de utilidades
 
-#### - clearTempFilesFolder **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/clear-temp-files-folder.md)**
+#### - clearTempFilesFolder **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/clear-temp-files-folder.md)**
 Elimina todos los archivos creados con esta utilidad (los archivos de la carpeta temporal), se recomienda llamar al inicio de la app o donde se necesite limpiar el contenido de la carpeta. La función se ejecuta de manera asíncrona para no afectar el flujo de la app y puede llamarse desde cualquier lugar.
 
 Ejemplo de uso:
@@ -247,7 +247,7 @@ Ejemplo de uso:
 TempFiles.clearTempFilesFolder(context)
 ```
 
-#### - saveBitmapToFile **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/save-bitmap-to-file.md)**
+#### - saveBitmapToFile **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.filesystem.tempfiles/-temp-files/save-bitmap-to-file.md)**
 
 #
 
