@@ -254,7 +254,9 @@ TempFiles.clearTempFilesFolder(context)
 ### SystemWebBrowser 
 Utilidad para interactuar con el navegador web del sistema.
 
-#### - openUrl
+#### Lista de utilidades
+
+#### - openUrl **[[ Documentación ]](docs/androidutils/com.jeovanimartinez.androidutils.web/-system-web-browser/open-url.md)**
 Abre el navegador web del sistema en la URL especificada.
 
 Ejemplo de uso:
@@ -270,8 +272,6 @@ SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")
 ```
 </p>
 </details>
-
-**[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.web/-system-web-browser/open-url.md)**
 
 #
 
