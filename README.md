@@ -7,11 +7,11 @@
 
 # Android Utils
 
-Conjunto de utilidades para el desarrollo de aplicaciones Android
+Conjunto de utilidades para el desarrollo de aplicaciones Android.
 
 #
 
-### Consideraciones
+#### Consideraciones
 - Toda la definición de paquetes, clases, propiedades, métodos, etc. está escrita en idioma inglés, y toda la documentación está escrita en español.
 - La biblioteca muestra algunas vistas, considerando lo siguiente:
 	- Soporte para tema claro y oscuro, se utiliza los componentes de Material Design para Android, y se sigue su estilo de diseño.
@@ -42,7 +42,7 @@ La biblioteca muestra algunas vistas, las cuales siguen el estilo del tema de la
 <style name="AndroidUtilsTheme" parent="AppTheme" />
 ```
 
-#### General
+#### Configuración General
 
 El log de depuración se puede habilitar y deshabilitar de manera global, y afecta a todas las utilidades de la biblioteca.
 Se recomienda usar la siguiente configuración para habilitarlo en desarrollo y deshabilitarlo en producción, solo es necesario ajustarlo una vez dentro de la app, ya sea en el singleton de la app o en el `onCreate()` de la actividad principal.
@@ -56,7 +56,7 @@ El registro de eventos personalizados es muy útil para comprender como interact
 
 Para habilitar el registro de eventos en Firebase Analytics:
 ```Kotlin
-Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(this)
+Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(context)
 ```
 También se puede desactivar el registro de eventos para una utilidad en específico:
 ```Kotlin
@@ -74,9 +74,21 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 
 ## Anotaciones
 
-`@DrawableOrDrawableRes` Indica que el valor esperado debe ser un Drawable o el ID de un recuso de drawable. Por ejemplo: drawableObject, R.drawable.demo.
+### Anotaciones para inspección de código
 
-`@StringOrStringRes` Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string. Por ejemplo: 'a', "Hola", R.string.demo.
+Estas anotaciones están diseñadas para orientar al desarrollador sobre el tipo de dato o recurso que se puede asignar a una propiedad o variable, la biblioteca cuenta con el módulo `lintcheck` que se encarga de verificar el uso de las anotaciones y mostrar advertencias en caso de que se detecte un valor incorrecto.
+
+Por lo general, en estas anotaciones, el tipo de dato esperado es Any, para dar la flexibilidad de aceptar diferentes tipos de datos. Por ejemplo, en algunos casos se espera un tipo de dato String, que se procesa tal cual, pero también se puede esperar un tipo de dato Int, para obtener el String de los recursos mediante su ID.
+La biblioteca permite esta flexibilidad y se encarga de identificar el tipo de dato y tratarlo de manera adecuada, y en caso de ser un tipo de dato incorrecto, se genera una excepción.
+
+
+#### `@DrawableOrDrawableRes`
+
+Indica que el valor esperado debe ser un Drawable o el ID de un recuso de drawable. Por ejemplo: `drawableObject`, `R.drawable.demo`.
+
+#### `@StringOrStringRes` 
+
+Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string. Por ejemplo: `'a'`, `"Hola"`, `R.string.demo`.
 
 #
 #
