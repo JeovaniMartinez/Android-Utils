@@ -25,14 +25,14 @@ object ViewToImage : Base<ViewToImage>() {
     override val LOG_TAG = "ViewToImage"
 
     /**
-     * Ejecuta la conversión de una vista a una imagen tipo Bitmap.
+     * Realiza la conversión de una vista a una imagen tipo Bitmap.
      * @param context Contexto.
      * @param config Objeto de configuración.
      * @return La vista en formato Bitmap.
      * */
     fun convert(context: Context, config: ViewToImageConfig): Bitmap {
 
-        log("Converting view into bitmap image")
+        log("Converting view into bitmap image started")
 
         val view = config.view
 
@@ -46,7 +46,7 @@ object ViewToImage : Base<ViewToImage>() {
         // Se genera un bitmap de la vista para dibujarse en la imagen final
         val viewBitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888) // Se genera el bitmap con el mismo ancho y alto de la vista
         val viewCanvas = Canvas(viewBitmap) // Se genera un canvas para el bitmap
-        view.draw(viewCanvas) // Se dibuja la vista en el canvas, y como el canvas se genera a partir del bitmap, hace que se dibuje también en el bitmap
+        view.draw(viewCanvas) // Se dibuja la vista en el canvas, y como el canvas pertenece al bitmap, hace que se dibuje también en el bitmap
 
         // Se genera la imagen final tipo Bitmap, ya incluyendo el tamaño de la vista y el padding
         val image = Bitmap.createBitmap(imageWidth, imageHeight, Bitmap.Config.ARGB_8888)
@@ -61,6 +61,8 @@ object ViewToImage : Base<ViewToImage>() {
         config.textWatermarkList.forEach { drawTextWatermark(context, canvas, it) }
         // Se dibujan todas las marcas de agua de drawable
         config.drawableWatermarkList.forEach { drawDrawableWatermark(context, canvas, it) }
+
+        log("Converting view into bitmap image finished")
 
         return image
 
@@ -113,7 +115,6 @@ object ViewToImage : Base<ViewToImage>() {
         val fontHeightDescent = abs(paint.fontMetrics.descent) // Alto por debajo del renglón que puede ocupar la fuente
 
         // Se obtienen datos de la configuración
-        val position = watermark.position
         val rotation = watermark.rotation
         val offsetX = context.dp2px(watermark.offsetX)
         val offsetY = context.dp2px(watermark.offsetY)
@@ -125,23 +126,8 @@ object ViewToImage : Base<ViewToImage>() {
 
         canvas.save() // Se guarda el estado actual del canvas
 
-        // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua (superior, a la mitad o inferior)
-        val positionY = when (position) {
-            TOP_LEFT, TOP_CENTER, TOP_RIGHT -> {
-                0f
-            }
-            MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) (canvas.height / 2) - (fontHeight / 2)
-                else (canvas.height / 2) - (textWidth / 2)
-            }
-            BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) canvas.height - fontHeight
-                else canvas.height - textWidth
-            }
-        }
-
         // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua (izquierda, centro o derecha)
-        val positionX = when (position) {
+        val positionX = when (watermark.position) {
             TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> {
                 0f
             }
@@ -152,6 +138,21 @@ object ViewToImage : Base<ViewToImage>() {
             TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> {
                 if (rotation == DEG_0 || rotation == DEG_180) canvas.width - textWidth
                 else canvas.width - fontHeight
+            }
+        }
+
+        // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua (superior, a la mitad o inferior)
+        val positionY = when (watermark.position) {
+            TOP_LEFT, TOP_CENTER, TOP_RIGHT -> {
+                0f
+            }
+            MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> {
+                if (rotation == DEG_0 || rotation == DEG_180) (canvas.height / 2) - (fontHeight / 2)
+                else (canvas.height / 2) - (textWidth / 2)
+            }
+            BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> {
+                if (rotation == DEG_0 || rotation == DEG_180) canvas.height - fontHeight
+                else canvas.height - textWidth
             }
         }
 
@@ -203,24 +204,23 @@ object ViewToImage : Base<ViewToImage>() {
             isAntiAlias = true /// Para una buena calidad
         }
 
-        // Se obtienen datos de la configuración
-        val position = watermark.position
-        val offsetX = context.dp2px(watermark.offsetX)
-        val offsetY = context.dp2px(watermark.offsetY)
+        // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua (izquierda, centro o derecha)
+        val positionX = when (watermark.position) {
+            TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> 0f
+            TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> (canvas.width / 2) - (watermark.width / 2)
+            TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> canvas.width - watermark.width
+        }
 
         // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua (superior, a la mitad o inferior)
-        val positionY = when (position) {
+        val positionY = when (watermark.position) {
             TOP_LEFT, TOP_CENTER, TOP_RIGHT -> 0f
             MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> (canvas.height / 2) - (watermark.height / 2)
             BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> canvas.height - watermark.height
         }
 
-        // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua (izquierda, centro o derecha)
-        val positionX = when (position) {
-            TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> 0f
-            TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> (canvas.width / 2) - (watermark.width / 2)
-            TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> canvas.width - watermark.width
-        }
+        // Se obtienen y procesan datos de la configuración
+        val offsetX = context.dp2px(watermark.offsetX)
+        val offsetY = context.dp2px(watermark.offsetY)
 
         // Se dibuja el bitmap en el canvas
         canvas.drawBitmap(bitmap, positionX + offsetX, positionY + offsetY, paint)
