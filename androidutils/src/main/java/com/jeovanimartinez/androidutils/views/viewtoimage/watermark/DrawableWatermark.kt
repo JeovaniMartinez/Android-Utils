@@ -1,23 +1,26 @@
 package com.jeovanimartinez.androidutils.views.viewtoimage.watermark
 
+import androidx.annotation.Dimension
 import androidx.annotation.FloatRange
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
-import com.jeovanimartinez.androidutils.views.utils.Margin
 
 /**
  * Configuración para crear una marca de un drawable (figura, forma, imagen, etc.)
  * @param drawable Drawable para la marca de agua.
- * @param position Posición del drawable dentro de la imagen.
- * @param margin Márgenes del drawable. Los valores se interpretan como dp, por ejemplo si el margin top = 10, al generar la marca de agua
- *        el margin top será de 10 dp.
- * @param rotation Rotación del drawable.
- * @param opacity Opacidad del drawable en un valor de 0 a 1, donde 0 significa completamente transparente
- *        y 1 significa completamente opaco.
+ * @param position Posición de la marca de agua dentro de la imagen.
+ * @param width Ancho para el drawable y la marca de agua en dp.
+ * @param height Alto para el drawable y la marca de agua en dp.
+ * @param offsetX Desplazamiento en el eje x en dp.
+ * @param offsetY Desplazamiento en el eje y en dp.
+ * @param opacity Opacidad de la marca de agua en un valor de 0 a 1, donde 0 significa
+ *        completamente transparente y 1 significa completamente opaco.
  * */
 data class DrawableWatermark(
-    @DrawableOrDrawableRes val drawable: Any?,
+    @DrawableOrDrawableRes val drawable: Any,
     val position: WatermarkPosition,
-    val margin: Margin,
-    val rotation: Float = 0f,
+    @Dimension(unit = Dimension.DP) val width: Float,
+    @Dimension(unit = Dimension.DP) val height: Float,
+    @Dimension(unit = Dimension.DP) val offsetX: Float,
+    @Dimension(unit = Dimension.DP) val offsetY: Float,
     @FloatRange(from = 0.0, to = 1.0) val opacity: Float = 1f,
 )
