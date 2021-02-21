@@ -2,13 +2,16 @@ package com.jeovanimartinez.androidutils.views.viewtoimage
 
 import android.content.Context
 import android.graphics.*
+import androidx.core.graphics.drawable.toBitmap
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
+import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
+import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.DrawableWatermark
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkPosition.*
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkRotation.*
@@ -56,13 +59,15 @@ object ViewToImage : Base<ViewToImage>() {
 
         // Se dibujan todas las marcas de agua de texto
         config.textWatermarkList.forEach { drawTextWatermark(context, canvas, it) }
+        // Se dibujan todas las marcas de agua de drawable
+        config.drawableWatermarkList.forEach { drawDrawableWatermark(context, canvas, it) }
 
         return image
 
     }
 
     /**
-     * Dibuja la marca de agua de texto en el canvas.
+     * Dibuja una marca de agua de texto en el canvas.
      * @param context Contexto.
      * @param canvas Canvas de la imagen donde se va a dibujar la marca de agua.
      * @param watermark Marca de agua de texto.
@@ -176,36 +181,52 @@ object ViewToImage : Base<ViewToImage>() {
 
     }
 
+    /**
+     * Dibuja una marca de agua de drawable en el canvas.
+     * @param context Contexto.
+     * @param canvas Canvas de la imagen donde se va a dibujar la marca de agua.
+     * @param watermark Marca de agua de drawable.
+     * */
+    private fun drawDrawableWatermark(context: Context, canvas: Canvas, watermark: DrawableWatermark) {
+
+        // Se valida el valor de la opacidad
+        if (watermark.opacity < 0f || watermark.opacity > 1f) throw Exception("The opacity value for drawable watermark must be between 0 and 1")
+
+        val drawable = context.typeAsDrawable(watermark.drawable)!! // Se obtiene el drawable
+
+        // Se genera un bitmap del drawable para dibujarse en el canvas
+        val bitmap = drawable.toBitmap(watermark.width.toInt(), watermark.height.toInt(), Bitmap.Config.ARGB_8888)
+
+        // Se genera un objeto Paint para aplicar el estilo
+        val paint = Paint().apply {
+            alpha = watermark.opacity.mapValue(0f, 1f, 0f, 255f).toInt() // Se mapea y asigna la opacidad
+            isAntiAlias = true /// Para una buena calidad
+        }
+
+        // Se obtienen datos de la configuración
+        val position = watermark.position
+        val offsetX = context.dp2px(watermark.offsetX)
+        val offsetY = context.dp2px(watermark.offsetY)
+
+        // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua (superior, a la mitad o inferior)
+        val positionY = when (position) {
+            TOP_LEFT, TOP_CENTER, TOP_RIGHT -> 0f
+            MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> (canvas.height / 2) - (watermark.height / 2)
+            BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> canvas.height - watermark.height
+        }
+
+        // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua (izquierda, centro o derecha)
+        val positionX = when (position) {
+            TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> 0f
+            TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> (canvas.width / 2) - (watermark.width / 2)
+            TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> canvas.width - watermark.width
+        }
+
+        // Se dibuja el bitmap en el canvas
+        canvas.drawBitmap(bitmap, positionX + offsetX, positionY + offsetY, paint)
+
+        bitmap.recycle() // Se recicla debido a que ya no se requiere
+
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
