@@ -1,9 +1,11 @@
-package com.jeovanimartinez.androidutils.views.viewtoimage.watermark
+package com.jeovanimartinez.androidutils.watermark.type
 
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.annotation.FontRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkRotation
 
 /**
  * Configuración para crear una marca de agua de texto.

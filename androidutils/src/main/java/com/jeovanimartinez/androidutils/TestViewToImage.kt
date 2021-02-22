@@ -9,7 +9,7 @@ import com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImage
 import com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImageConfig
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
 import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkPosition
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkRotation
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkRotation
 import java.io.File
 
 fun testViewToImage(context: Context, view: View, font: Int? = null) {

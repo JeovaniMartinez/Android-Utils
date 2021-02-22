@@ -4,8 +4,8 @@ import android.graphics.Color
 import android.view.View
 import androidx.annotation.ColorInt
 import com.jeovanimartinez.androidutils.views.utils.Padding
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.DrawableWatermark
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
+import com.jeovanimartinez.androidutils.watermark.type.DrawableWatermark
+import com.jeovanimartinez.androidutils.watermark.type.TextWatermark
 
 /**
  * Configuración para convertir una vista en una imagen.

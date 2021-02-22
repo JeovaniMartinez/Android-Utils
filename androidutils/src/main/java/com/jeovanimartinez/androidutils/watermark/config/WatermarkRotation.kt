@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.jeovanimartinez.androidutils.views.viewtoimage.watermark
+package com.jeovanimartinez.androidutils.watermark.config
 
 /** Enum para la rotación de la marca de agua */
 enum class WatermarkRotation {

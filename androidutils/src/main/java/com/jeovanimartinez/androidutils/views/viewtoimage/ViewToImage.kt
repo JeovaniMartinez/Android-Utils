@@ -11,10 +11,10 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.DrawableWatermark
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.TextWatermark
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkPosition.*
-import com.jeovanimartinez.androidutils.views.viewtoimage.watermark.WatermarkRotation.*
+import com.jeovanimartinez.androidutils.watermark.type.DrawableWatermark
+import com.jeovanimartinez.androidutils.watermark.type.TextWatermark
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition.*
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkRotation.*
 import kotlin.math.abs
 
 /**

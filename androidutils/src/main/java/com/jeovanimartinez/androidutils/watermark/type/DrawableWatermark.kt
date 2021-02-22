@@ -1,8 +1,9 @@
-package com.jeovanimartinez.androidutils.views.viewtoimage.watermark
+package com.jeovanimartinez.androidutils.watermark.type
 
 import androidx.annotation.Dimension
 import androidx.annotation.FloatRange
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 
 /**
  * Configuración para crear una marca de un drawable (figura, forma, imagen, etc.)
