@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
@@ -15,6 +16,7 @@ import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
 import com.jeovanimartinez.androidutils.testViewToImage
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -36,7 +38,8 @@ class MainActivity : AppCompatActivity() {
 
             testViewToImage(this@MainActivity, toggleTheme, null)
 
-
+            val d = WatermarkPosition.BOTTOM_CENTER
+            toggleTheme.alpha
         }, 200)
 
 

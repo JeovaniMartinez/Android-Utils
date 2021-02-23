@@ -5,7 +5,6 @@ import androidx.annotation.FloatRange
 import androidx.annotation.FontRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
-import com.jeovanimartinez.androidutils.watermark.config.WatermarkRotation
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
 
 /**

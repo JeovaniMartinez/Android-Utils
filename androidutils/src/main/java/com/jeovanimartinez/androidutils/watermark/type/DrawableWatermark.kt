@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.watermark.type
 import androidx.annotation.Dimension
 import androidx.annotation.FloatRange
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
+import com.jeovanimartinez.androidutils.watermark.Watermark
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 
 /**
@@ -26,4 +27,4 @@ data class DrawableWatermark(
     @Dimension(unit = Dimension.DP) val offsetY: Float,
     val rotation: Float = 0f,
     @FloatRange(from = 0.0, to = 1.0) val opacity: Float = 1f,
-)
+) : Watermark
