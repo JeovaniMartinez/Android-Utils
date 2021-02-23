@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.views.viewtoimage
 import android.content.Context
 import android.graphics.*
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
@@ -10,12 +11,14 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.graphics.rotate
+import com.jeovanimartinez.androidutils.extensions.graphics.trimByEdgeColor
+import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
 import com.jeovanimartinez.androidutils.watermark.type.DrawableWatermark
 import com.jeovanimartinez.androidutils.watermark.type.TextWatermark
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition.*
-import com.jeovanimartinez.androidutils.watermark.config.WatermarkRotation.*
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
 import kotlin.math.abs
 
 /**
@@ -82,6 +85,8 @@ object ViewToImage : Base<ViewToImage>() {
         // Se valida el valor de la opacidad
         if (watermark.opacity < 0f || watermark.opacity > 1f) throw Exception("The opacity value for text watermark must be between 0 and 1")
 
+        val watermarkShadow = if (watermark.shadow.isNotNull()) watermark.shadow!! else WatermarkShadow(0f, 0f, 0f, Color.TRANSPARENT)
+
         // Se genera un objeto Paint para aplicar el estilo
         val paint = Paint().apply {
             color = watermark.textColor
@@ -93,6 +98,7 @@ object ViewToImage : Base<ViewToImage>() {
             watermark.typeface.whenNotNull {
                 typeface = context.getFontCompat(it)
             }
+            setShadowLayer(watermarkShadow.radius, watermarkShadow.dx, watermarkShadow.dy, watermarkShadow.shadowColor)
         }
 
         // Para el ancho que va a ocupar el texto, paint.measureText es más exacto que paint.getTextBounds, referencia: https://stackoverflow.com/a/7579469
@@ -121,65 +127,37 @@ object ViewToImage : Base<ViewToImage>() {
         val offsetY = context.dp2px(watermark.offsetY)
 
         /*
-        * Ll archivo view-to-image-helper.svg de los recursos del proyecto se uso para analizar y definir como generar la marca de agua
+        * El archivo view-to-image-helper.svg de los recursos del proyecto se uso para analizar y definir como generar la marca de agua
         * en las diferentes posiciones y en los diferentes ángulos.
         * */
 
-        canvas.save() // Se guarda el estado actual del canvas
+        val absX = abs(watermarkShadow.dx)
+        val absY = abs(watermarkShadow.dy)
 
-        // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua (izquierda, centro o derecha)
-        val positionX = when (watermark.position) {
-            TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> {
-                0f
-            }
-            TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> {
-                if (rotation == DEG_0 || rotation == DEG_180) (canvas.width / 2) - (textWidth / 2)
-                else (canvas.width / 2) - (fontHeight / 2)
-            }
-            TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) canvas.width - textWidth
-                else canvas.width - fontHeight
-            }
-        }
+        val textBitmap = Bitmap.createBitmap(textWidth.toInt() + (absX * 2).toInt(), fontHeight.toInt() + (absY * 2).toInt(), Bitmap.Config.ARGB_8888) // Se genera un bitmap para dibujar el texto
+        val textCanvas = Canvas(textBitmap)
 
-        // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua (superior, a la mitad o inferior)
-        val positionY = when (watermark.position) {
-            TOP_LEFT, TOP_CENTER, TOP_RIGHT -> {
-                0f
-            }
-            MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) (canvas.height / 2) - (fontHeight / 2)
-                else (canvas.height / 2) - (textWidth / 2)
-            }
-            BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> {
-                if (rotation == DEG_0 || rotation == DEG_180) canvas.height - fontHeight
-                else canvas.height - textWidth
-            }
-        }
+        textCanvas.drawColor(Color.RED)
+        textCanvas.drawText(text, absX, fontHeightAscent + absY, paint) // Se dibuja el texto en el bitmap mediante el canvas
 
-        // Se ajusta la rotación del canvas según los grados y se dibuja el texto aplicando la configuración correspondiente
-        when (rotation) {
-            DEG_0 -> {
-                canvas.drawText(text, positionX + offsetX, positionY + offsetY + fontHeightAscent, paint)
-            }
-            DEG_90 -> {
-                // Al girar 90 grados, se intercambian los valores del eje X por los del eje Y y viceversa
-                canvas.rotate(90f, 0f, 0f)
-                canvas.drawText(text, positionY + offsetY, -positionX - offsetX - fontHeightDescent, paint)
-            }
-            DEG_180 -> {
-                // Al rotar 180 grados se realizan restas para ajustar la posición del texto
-                canvas.rotate(180f, 0f, 0f)
-                canvas.drawText(text, -positionX - offsetX - textWidth, -positionY - offsetY - fontHeightDescent, paint)
-            }
-            DEG_270 -> {
-                // Al girar 270 grados, se intercambian los valores del eje X por los del eje Y y viceversa
-                canvas.rotate(270f, 0f, 0f)
-                canvas.drawText(text, -positionY - offsetY - textWidth, positionX + offsetX + fontHeightAscent, paint)
-            }
-        }
 
-        canvas.restore() // Se restablece el canvas para anular los cambios en la rotación después de dibujar el texto
+        val trimed = textBitmap.trimByEdgeColor(Color.RED)
+
+        drawDrawableWatermark(
+            context,
+            canvas,
+            DrawableWatermark(
+                trimed.toDrawable(context.resources),
+                watermark.position, trimed.width.toFloat(),
+                trimed.height.toFloat(),
+                watermark.offsetX,
+                watermark.offsetY,
+                watermark.rotation,
+                1f // Se pasa siempre la opacidad de 1f, ya que este valor se aplicó en el paint del texto y no es necesario aplicarlo nuevamente
+            )
+        )
+
+        textBitmap.recycle()
 
     }
 

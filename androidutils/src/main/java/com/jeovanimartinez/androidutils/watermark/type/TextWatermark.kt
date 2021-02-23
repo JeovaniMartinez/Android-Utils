@@ -6,6 +6,7 @@ import androidx.annotation.FontRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkRotation
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
 
 /**
  * Configuración para crear una marca de agua de texto.
@@ -32,7 +33,8 @@ data class TextWatermark(
     val position: WatermarkPosition,
     val offsetX: Float,
     val offsetY: Float,
-    var rotation: WatermarkRotation = WatermarkRotation.DEG_0,
+    var rotation: Float,
     @FloatRange(from = 0.0, to = 1.0) val opacity: Float = 1f,
-    @FontRes val typeface: Int? = null
+    @FontRes val typeface: Int? = null,
+    val shadow: WatermarkShadow? = null
 )
