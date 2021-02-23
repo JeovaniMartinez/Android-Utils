@@ -9,6 +9,7 @@ import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.extensions.graphics.rotate
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.dp2px
 import com.jeovanimartinez.androidutils.watermark.type.DrawableWatermark
@@ -196,7 +197,16 @@ object ViewToImage : Base<ViewToImage>() {
         val drawable = context.typeAsDrawable(watermark.drawable)!! // Se obtiene el drawable
 
         // Se genera un bitmap del drawable para dibujarse en el canvas
-        val bitmap = drawable.toBitmap(watermark.width.toInt(), watermark.height.toInt(), Bitmap.Config.ARGB_8888)
+        var bitmapTmp: Bitmap? = null // Bitmap temporal para la imagen origina (sin aplicar rotación)
+        val bitmap = if (watermark.rotation == 0f) {
+            // Si no hay rotación, se asigna directamente el drawable al bitmap
+            drawable.toBitmap(watermark.width.toInt(), watermark.height.toInt(), Bitmap.Config.ARGB_8888)
+        } else {
+            // En caso de haber rotación, se aplica y se asigna al bitmap
+            bitmapTmp = drawable.toBitmap(watermark.width.toInt(), watermark.height.toInt(), Bitmap.Config.ARGB_8888)
+            bitmapTmp.rotate(watermark.rotation)
+        }
+        bitmapTmp.whenNotNull { it.recycle() } // Al final, si no es null se recicla el bitmap temporal
 
         // Se genera un objeto Paint para aplicar el estilo
         val paint = Paint().apply {
@@ -207,15 +217,15 @@ object ViewToImage : Base<ViewToImage>() {
         // Se determina la posición inicial en el eje X de acuerdo a la posición de la marca de agua (izquierda, centro o derecha)
         val positionX = when (watermark.position) {
             TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> 0f
-            TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> (canvas.width / 2) - (watermark.width / 2)
-            TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> canvas.width - watermark.width
+            TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> ((canvas.width / 2) - (bitmap.width / 2)).toFloat()
+            TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> (canvas.width - bitmap.width).toFloat()
         }
 
         // Se determina la posición inicial en el eje Y de acuerdo a la posición de la marca de agua (superior, a la mitad o inferior)
         val positionY = when (watermark.position) {
             TOP_LEFT, TOP_CENTER, TOP_RIGHT -> 0f
-            MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> (canvas.height / 2) - (watermark.height / 2)
-            BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> canvas.height - watermark.height
+            MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> ((canvas.height / 2) - (bitmap.height / 2)).toFloat()
+            BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> (canvas.height - bitmap.height).toFloat()
         }
 
         // Se obtienen y procesan datos de la configuración
