@@ -1,11 +1,11 @@
 @file:Suppress("unused")
 
-package com.jeovanimartinez.androidutils.extensions.view
+package com.jeovanimartinez.androidutils.extensions.graphics
 
 import android.content.Context
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
-import com.jeovanimartinez.androidutils.views.utils.Margin
-import com.jeovanimartinez.androidutils.views.utils.Padding
+import com.jeovanimartinez.androidutils.graphics.utils.Margin
+import com.jeovanimartinez.androidutils.graphics.utils.Padding
 
 /**
  * Conjunto de extensiones para las clases Margin y Padding

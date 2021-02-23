@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.jeovanimartinez.androidutils.views.utils
+package com.jeovanimartinez.androidutils.graphics.utils
 
 /**
  * Configuración de márgenes.
