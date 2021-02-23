@@ -2,8 +2,12 @@
 
 package com.jeovanimartinez.androidutils.watermark.config
 
-/** Enum de posiciones para la marca de agua */
+/**
+ * Enum for watermark position.
+ * Use ABSOLUTE for custom position, or any other for fixed position.
+ * */
 enum class WatermarkPosition {
+    ABSOLUTE,
     TOP_LEFT,
     TOP_CENTER,
     TOP_RIGHT,
