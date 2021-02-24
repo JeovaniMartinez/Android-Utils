@@ -52,7 +52,6 @@ sealed class Watermark {
         override val measurementDimension: Dimension = Dimension.PX
     ) : Watermark()
 
-
     /**
      * Definition for a text watermark.
      * @param text Text for the watermark.
@@ -68,8 +67,8 @@ sealed class Watermark {
      * @param shadow Shadow configuration for text watermark, null for not apply shadow.
      * @param measurementDimension Type of dimension to use to draw watermark, its apply for textSize, dx, dy and shadow configuration (radius, dx and dy).
      *        For example, if the value of dx is 10f and measurementDimension is Dimension.PX, the offset of the drawn watermark will be 10 px in x-axis,
-     *        but if measurementDimension is Dimension.DP, the the offset of the drawn watermark in x-axis will be calculate
-     *        according the screen density.
+     *        but if measurementDimension is Dimension.DP, the the offset of the drawn watermark in x-axis will be calculate according the screen density.
+     *        If the Dimension is DP or SP, will always be interpreted as a DP to keep text size ratio.
      * */
     data class Text(
         @StringOrStringRes val text: Any,
