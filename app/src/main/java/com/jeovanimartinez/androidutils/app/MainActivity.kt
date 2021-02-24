@@ -1,10 +1,12 @@
 package com.jeovanimartinez.androidutils.app
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
@@ -12,13 +14,19 @@ import com.jeovanimartinez.androidutils.about.AboutAppConfig
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.filesystem.tempfiles.TempFiles
+import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
-import com.jeovanimartinez.androidutils.testViewToImage
+import com.jeovanimartinez.androidutils.watermark.Watermark
+import com.jeovanimartinez.androidutils.watermark.WatermarkUtils
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,13 +44,48 @@ class MainActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            testViewToImage(this@MainActivity, toggleTheme, null)
+            //testViewToImage(this@MainActivity, viewDemo, R.font.fugaz_one_regular)
 
             val d = WatermarkPosition.BOTTOM_CENTER
             toggleTheme.alpha
         }, 200)
 
 
+        val shape = GradientDrawable()
+        shape.shape = GradientDrawable.RECTANGLE
+        shape.cornerRadii = floatArrayOf(8f, 8f, 8f, 8f, 0f, 0f, 0f, 0f)
+        shape.setColor(Color.RED)
+
+
+        val bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888)
+        val watermark = Watermark.Drawable(
+            R.drawable.library_logo,
+            WatermarkPosition.BOTTOM_RIGHT,
+            200f,
+            200f,
+            -10f,
+            -10f,
+            0f,
+            0.5f,
+            Dimension.PX
+        )
+
+        val tw = Watermark.Text(
+            "Hola Mundo",
+            60f,
+            Color.BLACK,
+            WatermarkPosition.MIDDLE_LEFT,
+            10f,
+            0f,
+            0f,
+            1f,
+            null,
+            WatermarkShadow(2f,3f,3f, Color.parseColor("#811976D2")),
+            Dimension.DP
+        )
+
+        WatermarkUtils.drawWatermarks(this@MainActivity, bitmap, arrayListOf(tw, watermark))
+        TempFiles.saveBitmapToFile(this@MainActivity, bitmap, "Test1")
 
     }
 
