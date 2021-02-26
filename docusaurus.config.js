@@ -5,7 +5,7 @@ module.exports = {
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/favicon.ico',
+    favicon: 'img/site/favicon.ico',
     organizationName: 'Jeovani Martínez',
     projectName: 'Android Utils',
     themeConfig: {
@@ -13,7 +13,7 @@ module.exports = {
             title: 'Android Utils',
             logo: {
                 alt: 'My Site Logo',
-                src: 'img/logo.svg',
+                src: 'img/site/logo.svg',
             },
             items: [
                 {
