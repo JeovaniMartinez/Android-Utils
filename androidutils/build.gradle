@@ -56,8 +56,8 @@ dependencies {
 
 }
 
-// Para generar la documentación
-dokkaGfm.configure {
+// To generate documentation
+dokkaHtml.configure {
     dokkaSourceSets {
         named("main") {
             outputDirectory.set(file("../docs"))
