@@ -5,6 +5,8 @@ title: Translucent Theme
 
 #### [[ Reference ]](https://jeovanimartinez.github.io/Android-Utils/reference/androidutils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.html)
 
+### Description
+
 Style and base class that allows activities to have a completely transparent background, or a background with a certain opacity.
 
 Demo image pending...
