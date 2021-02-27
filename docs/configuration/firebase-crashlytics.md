@@ -15,7 +15,7 @@ If you want to enable errors registry, your project must have Firebase Crashlyti
 :::
 
 The library can register some recoverable error streams in Firebase Crashlytics, for this it is necessary to assign the crashlytics instance to the 
-library, this must be done in in the onCreate() of the singleton or main activity, taking into account that the app that implements the library must 
+library, this must be done in in the `onCreate()` of the singleton or main activity, taking into account that the app that implements the library must 
 have Firebase Crashlytics configured.
 
 To enable recoverable errors register:
