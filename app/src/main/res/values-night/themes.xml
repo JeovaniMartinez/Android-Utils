@@ -17,7 +17,7 @@
         <item name="colorOnError">@color/colorOnError</item>
     </style>
 
-    <!-- Tema de la biblioteca Android Utils, se usa para conservar el estilo de la aplicación  -->
+    <!-- Android Utils library theme, used to preserve the app style. -->
     <style name="AndroidUtilsTheme" parent="AppTheme" />
 
 </resources>
