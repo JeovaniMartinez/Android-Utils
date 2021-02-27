@@ -47,7 +47,8 @@ In the example, the `MoreAppsGPlay` utility does not log events to Firebase Anal
 The following list shows the events that the library can log and their description.
 
 :::note
-Some events have <Parameter>parameters</Parameter>, for the correct analysis of these events it is necessary to configure them in the Firebase console or Google Analytics console.
+Some events have <Parameter>parameters</Parameter>, for the correct analysis of these events it is necessary to configure them in the Firebase console 
+or Google Analytics console.
 :::
 
 <br/>
@@ -73,11 +74,11 @@ The license terms and privacy policy are displayed in the about activity.
 
 ---
 <Event>more_apps_sent_to_google_play</Event><br/>
-Event Description ...
+The user is directed to the developer page, either in the web browser or on Google Play app.
 
 ---
 <Event>more_apps_unable_to_show_dev_page</Event><br/>
-Event Description ...
+It is not possible to direct the user to the developer page, since the URL could not be opened in the web browser or in Google Play.
 
 ---
 <br/><br/>
@@ -86,15 +87,15 @@ Event Description ...
 
 ---
 <Event>rate_app_sent_to_google_play_app</Event><br/>
-Event Description ...
+The user is directed to the Google Play app to rate the application.
 
 ---
 <Event>rate_app_sent_to_google_play_web</Event><br/>
-Event Description ...
+The user is directed to the Google Play website to rate the app, as it was not possible to direct them to the Google Play app.
 
 ---
 <Event>rate_app_unable_to_show_on_google_play</Event><br/>
-Event Description ...
+The user cannot be directed to the Google Play app or the website to rate the app.
 
 ---
 <br/><br/>
@@ -103,23 +104,26 @@ Event Description ...
 
 ---
 <Event>rate_app_review_flow_successful</Event><br/>
-Event Description ...
+The flow to invite the user to rate the app was successfully obtained.
 
 ---
 <Event>rate_app_request_review_flow_error</Event><br/>
-Event Description ...
+There was an error getting the flow to invite the user to rate the app.
 
 ---
 <Event>rate_app_review_flow_showed</Event><br/>
-Event Description ...
+The flow to invite the user to rate the app was shown (the review API does not provide the result, but it can be inferred, although it is not 100% accurate).
 
 ---
 <Event>rate_app_review_flow_failure</Event><br/>
-Event Description ...
+Event Description ...The flow could be fetched (rate_app_review_flow_successful) but could not be displayed.
 
 ---
 <Event>rate_app_dialog_shown</Event><br/>
-Event Description ...
+The dialog to rate the app was shown, it only applies in versions prior to Android 5 where the revision API is not available.
+
+---
+The count of flow requested can be calculated by summing the `rate_app_review_flow_successful`, `rate_app_request_review_flow_error` and `rate_app_review_flow_failure`.
 
 ---
 <br/><br/>
@@ -128,7 +132,7 @@ Event Description ...
 
 ---
 <Event>open_url_in_system_web_browser</Event><br/>
-Event Description ...
+The user is directed to a web page in the system web browser.
 <br/><br/>
 <Parameter>open_url_case</Parameter><br/>
-Parameter Description ...
+Parameter that indicates the reason why the user was directed tosyste web browser, and also records when an error occurs.
