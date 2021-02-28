@@ -24,6 +24,5 @@ Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 ```
 
 :::note
-[**Base**](https://jeovanimartinez.github.io/Android-Utils/reference/androidutils/com.jeovanimartinez.androidutils/-base/index.html) is the superclass of 
-most utilities.
+<a href="../reference/androidutils/com.jeovanimartinez.androidutils/-base/index.html" target="_blank"><b>Base</b></a> is the superclass of  most utilities.
 :::

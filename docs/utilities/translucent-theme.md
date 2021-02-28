@@ -3,7 +3,7 @@ id: translucent-theme
 title: Translucent Theme
 ---
 
-#### [[ Reference ]](https://jeovanimartinez.github.io/Android-Utils/reference/androidutils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.html)
+#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ### Description
 
