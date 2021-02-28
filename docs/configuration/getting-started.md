@@ -28,6 +28,8 @@ dependencies {
 }
 ```
 
+---
+
 ### Style
 
 The library can show some views, which follow the style of the app theme and have support for the light and dark theme,

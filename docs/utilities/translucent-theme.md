@@ -11,6 +11,8 @@ Style and base class that allows activities to have a completely transparent bac
 
 Demo image pending...
 
+---
+
 ### Usage
 
 :::note

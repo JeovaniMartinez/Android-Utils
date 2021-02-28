@@ -42,6 +42,8 @@ MoreAppsGPlay.firebaseAnalyticsEnabled = false
 ```
 In the example, the `MoreAppsGPlay` utility does not log events to Firebase Analytics, but all the other utilities will.
 
+---
+
 ## Event list
 
 The following list shows the events that the library can log and their description.
@@ -68,7 +70,7 @@ Open source licenses are displayed in the about activity.
 The license terms and privacy policy are displayed in the about activity.
 
 ---
-<br/><br/>
+<br/>
 
 ### MoreAppsGPlay
 
@@ -81,7 +83,7 @@ The user is directed to the developer page, either in the web browser or on Goog
 It is not possible to direct the user to the developer page, since the URL could not be opened in the web browser or in Google Play.
 
 ---
-<br/><br/>
+<br/>
 
 ### RateApp
 
@@ -98,7 +100,7 @@ The user is directed to the Google Play website to rate the app, as it was not p
 The user cannot be directed to the Google Play app or the website to rate the app.
 
 ---
-<br/><br/>
+<br/>
 
 ### RateInApp
 
@@ -126,7 +128,7 @@ The dialog to rate the app was shown, it only applies in versions prior to Andro
 The count of flow requested can be calculated by summing the `rate_app_review_flow_successful`, `rate_app_request_review_flow_error` and `rate_app_review_flow_failure`.
 
 ---
-<br/><br/>
+<br/>
 
 ### SystemWebBrowser
 

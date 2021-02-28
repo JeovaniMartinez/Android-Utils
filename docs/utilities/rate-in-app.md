@@ -14,6 +14,9 @@ accepts, they are directed to the app details on Google Play.
 
 ![img](../../static/img/rate-in-app-demo.png)
 
+
+---
+
 ### Usage
 
 Either In the `onCreate()` of the singleton or main activity you have to set the configuration values and initialize the utility by passing a context. 

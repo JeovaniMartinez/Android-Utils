@@ -24,12 +24,16 @@ In some cases, the use of values of the wrong data type cannot be detected at co
 
 Indicates that the expected value or object should be a Drawable object or the ID of a drawable resource. For example: `drawableObject`, `R.drawable.demo`.
 
+_Detection example in Android Studio:_
+
 ![img](../img/annotations/img1.png)
 
 ### `@StringOrStringRes`
 
 Indicates that the expected value or object must be a data type String, Char (since it can be represented as String) or the ID of a string resource. 
 For example: `'a'`, `"Hello"`, `R.string.demo`
+
+_Detection example in Android Studio:_
 
 ![img](../img/annotations/img2.png)
 
