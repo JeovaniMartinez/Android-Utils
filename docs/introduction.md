@@ -5,7 +5,7 @@ sidebar_label: Android Utils
 slug: /introduction
 ---
 
-Android utils is a library that groups together a set of utilities for Android apps developing.
+Android utils is a library that groups a set of utilities for Android apps developing.
 
 Some time ago I started developing Android apps, every time I went from one project to another, there were many parts of
 the code of an app that I needed to add to another app and I only needed to make a few minor adjustments, but doing it
