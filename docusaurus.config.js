@@ -23,7 +23,7 @@ module.exports = {
                     position: 'left',
                 },
                 {
-                    href: 'https://jeovanimartinez.github.io/Android-Utils/reference/androidutils/index.html',
+                    href: '/docs/reference/androidutils/index.html',
                     label: 'API Reference',
                     position: 'left',
                 },
