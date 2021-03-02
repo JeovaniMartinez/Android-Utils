@@ -26,7 +26,7 @@ Indicates that the expected value or object should be a Drawable object or the I
 
 _Detection example in Android Studio:_
 
-![img](../img/annotations/img1.png)
+![img](../img/annotations/annotations-img1.png)
 
 ### `@StringOrStringRes`
 
@@ -35,7 +35,7 @@ For example: `'a'`, `"Hello"`, `R.string.demo`
 
 _Detection example in Android Studio:_
 
-![img](../img/annotations/img2.png)
+![img](../img/annotations/annotations-img2.png)
 
 ---
 
