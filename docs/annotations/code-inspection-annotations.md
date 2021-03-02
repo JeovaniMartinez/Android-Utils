@@ -12,7 +12,7 @@ and display warnings in case an incorrect value is detected.
 Generally, in these annotations, the expected data type is Any, to give you the flexibility to accept different data types. For example, in some cases 
 a String data type is expected, which is processed as is, but an Int data type (which represents the ID) can also be expected and in this case the String 
 is obtained from the resources by means of its ID. The library allows this flexibility and is in charge of identifying the type of data and treating it 
-appropriately, and if it is an incorrect type of data, an exception is generated.
+appropriately, and if it is an incorrect type of data, an exception is thrown.
 
 In some cases, the use of values of the wrong data type cannot be detected at compile time, but an exception will be thrown at runtime if it is detected.
 

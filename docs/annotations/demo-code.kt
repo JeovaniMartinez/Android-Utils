@@ -10,8 +10,9 @@ private fun tmp() {
 
     /*
     * In some cases, the data type cannot be detected at compile time, so an
-    * exception will be thrown at runtime to indicate the error.
-    * */
+    * exception will be thrown at runtime to indicate the error if the data
+    * type is wrong.
+    */
     showImage(this@MainActivity)
 
 
@@ -32,8 +33,9 @@ private fun tmp() {
 
     /*
     * In some cases, the data type cannot be detected at compile time, so an
-    * exception will be thrown at runtime to indicate the error.
-    * */
+    * exception will be thrown at runtime to indicate the error if the data
+    * type is wrong.
+    */
     showMessage(this@MainActivity)
 
 }
