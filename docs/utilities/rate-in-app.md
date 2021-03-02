@@ -12,8 +12,9 @@ how many times it has been launched, etc.). For Android 5.0 (API 21) and later, 
 is used, so it can be rated within the app. For versions prior to Android 5.0, a dialog is displayed to invite the user to rate the app, if the user 
 accepts, they are directed to the app details on Google Play.
 
-![img](../../static/img/rate-in-app-demo.png)
+![img](../img/rate-in-app/rate-in-app-img1.png)
 
+![img](../img/rate-in-app/rate-in-app-img2.png)
 
 ---
 
@@ -35,8 +36,18 @@ RateInApp.apply {
 }.init(context)
 ```
 
-Since the utility has been configured, call the next method at the time you want to show the flow to qualify, the flow will be displayed only if the 
-conditions specified in the configuration are met.
+Since the utility has been configured, call the next method at the time you want to show the flow to rate app, the flow will be displayed only if the 
+all conditions specified in the configuration are met.
 ```Kotlin
 RateInApp.checkAndShow(activity)
 ```
+
+:::tip
+The library provides a detailed flow In the logcat, that you can consult to see the validation of the conditions and perform tests.
+
+![img](../img/rate-in-app/rate-in-app-img3.png)
+:::
+
+---
+
+### Considerations
