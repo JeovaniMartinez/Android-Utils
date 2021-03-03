@@ -25,7 +25,7 @@ It is very important to do it only once in the app, since at that moment the tim
 
 #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.html#%5Bcom.jeovanimartinez.androidutils.reviews.rateinapp%2FRateInApp%2FminInstallElapsedDays%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F371564532" target="_blank"><b>[ Configuration parameters  ]</b></a>
 
-```Kotlin
+```kotlin
 RateInApp.apply {
     minInstallElapsedDays = 10
     minInstallLaunchTimes = 10
@@ -38,7 +38,7 @@ RateInApp.apply {
 
 Since the utility has been configured, call the next method at the time you want to show the flow to rate app, the flow will be displayed only if the 
 all conditions specified in the configuration are met.
-```Kotlin
+```kotlin
 RateInApp.checkAndShow(activity)
 ```
 
