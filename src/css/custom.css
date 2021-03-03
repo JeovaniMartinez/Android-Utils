@@ -15,6 +15,27 @@
     --ifm-color-primary-lighter: rgb(102, 212, 189);
     --ifm-color-primary-lightest: rgb(146, 224, 208);
     --ifm-code-font-size: 95%;
+
+    --ra-admonition-color: #ecf4f9;
+    --ra-admonition-color-border: #2a98b9;
+
+    --ra-admonition-color-note: #f2f2f2;
+    --ra-admonition-color-note-border: #6b6b6b;
+
+    --ra-admonition-color-success: #f1fdf9;
+    --ra-admonition-color-success-border: #00bf88;
+
+    --ra-admonition-color-caution: #fffbf5;
+    --ra-admonition-color-caution-border: #f0ad4e;
+
+    --ra-admonition-color-error: #fff2f2;
+    --ra-admonition-color-error-border: #d9534f;
+
+    --ra-admonition-icon-color: black !important;
+
+    /* Alert text color */
+    --ifm-alert-color: #000000;
+
 }
 
 .docusaurus-highlight-code-line {
@@ -22,4 +43,47 @@
     display: block;
     margin: 0 calc(-1 * var(--ifm-pre-padding));
     padding: 0 var(--ifm-pre-padding);
+}
+
+/*
+* Admonition theme reference: https://github.com/reduxjs/redux/blob/master/website/src/css/custom.css
+*/
+
+.admonition {
+    color: black;
+    border-radius: var(--ifm-global-radius);
+    border-left: 12px solid var(--ra-admonition-color-border);
+}
+
+.admonition.admonition-info,
+.admonition.admonition-important,
+.admonition.admonition-secondary {
+    background-color: var(--ra-admonition-color);
+}
+
+.admonition.admonition-note {
+    background-color: var(--ra-admonition-color-note);
+    border-color: var(--ra-admonition-color-note-border);
+}
+
+.admonition.admonition-success,
+.admonition.admonition-tip {
+    background-color: var(--ra-admonition-color-success);
+    border-color: var(--ra-admonition-color-success-border);
+}
+
+.admonition.admonition-caution {
+    background-color: var(--ra-admonition-color-caution);
+    border-color: var(--ra-admonition-color-caution-border);
+}
+
+.admonition.admonition-warning,
+.admonition.admonition-danger {
+    background-color: var(--ra-admonition-color-error);
+    border-color: var(--ra-admonition-color-error-border);
+}
+
+.admonition .admonition-icon svg {
+    fill: black;
+    stroke: black;
 }
