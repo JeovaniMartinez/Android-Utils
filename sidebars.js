@@ -3,7 +3,7 @@ module.exports = {
         Introduction: ['introduction'],
         Configuration: ['configuration/getting-started', 'configuration/log', 'configuration/firebase-analytics', 'configuration/firebase-crashlytics'],
         Annotations: ['annotations/code-inspection-annotations'],
-        "Library Utilities": ['utilities/translucent-theme', 'utilities/rate-in-app', 'utilities/rate-app', 'utilities/about-app', 'utilities/more-apps'],
+        "Library Utilities": ['utilities/translucent-theme', 'utilities/rate-in-app', 'utilities/rate-app', 'utilities/about-app', 'utilities/more-apps', 'utilities/temp-files'],
         "Release Notes": ['release-notes/v1.0.0'],
         Docusaurus: ['docusaurus/style-guide', 'docusaurus/mdx'], // Temporally
     },
