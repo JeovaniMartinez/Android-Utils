@@ -1,6 +1,6 @@
 ---
 id: rate-app
-title: RateApp
+title: Rate App
 ---
 
 #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.html" target="_blank"><b>[ Reference ]</b></a>
