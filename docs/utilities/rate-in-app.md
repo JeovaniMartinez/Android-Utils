@@ -58,10 +58,10 @@ You can modify the date of your device to be able to run simulate the course of 
 
 ### In-App Review API
 
-- The Google Play In-App Review API has a [limited quota](https://developer.android.com/guide/playcore/in-app-review#quotas) to be able to show the 
-flow to rate the app, so on certain occasions, all the conditions may be met, but the flow will be not displayed.
 - It is highly recommended to read the official [In-App Review API documentation](https://developer.android.com/guide/playcore/in-app-review) to 
 understand how the API behaves.
+- The Google Play In-App Review API has a [limited quota](https://developer.android.com/guide/playcore/in-app-review#quotas) to be able to show the 
+flow to rate the app, so on certain occasions, all the conditions may be met, but the flow will be not displayed.
 - The app doesn't have to be published to test, but your apps application ID must be available at least in the internal testing track.
 - After deleting a revision, it is recommended to clear data and delete cache of Google Play Store app to be able to carry out the tests and that the 
 flow shown again.
