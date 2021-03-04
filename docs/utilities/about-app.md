@@ -8,7 +8,7 @@ title: About App
 Utility to show an about app activity, which includes the information of the app, the author, the company, the copyright, as well as the open source 
 licenses, the license terms and the privacy policy. The activity is optimized to adjust elements in portrait and landscape screen modes.
 
-![img](../img/rate-app/rate-app-img1.png)
+![img](../img/about-app/about-app-img1.png)
 
 ---
 
@@ -57,13 +57,13 @@ AboutApp.show(activity, aboutAppConfig)
 If you want to show open source licenses activity, the configuration parameter `showOpenSourceLicenses` must be `true` and you must follow 
 [this guide](https://developers.google.com/android/guides/opensource) to show the licenses.
 
-![img](../img/rate-app/rate-app-img1.png)
+![img](../img/about-app/about-app-img2.png)
 
 ---
 
 ### Terms & Privacy Policy
 
-![img](../img/rate-app/rate-app-img1.png)
+![img](../img/about-app/about-app-img3.png)
 
 The activity show the terms and policy in a `WebView`, which are loaded from a URL `termsAndPrivacyPolicyLink` so that the most up-to-date version can 
 always be shown. In order to display the web page with the style of the theme that the app uses, two parameters are sent to the URL: `background-color` 
