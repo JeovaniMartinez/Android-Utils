@@ -5,7 +5,7 @@ title: Translucent Theme
 
 #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.html" target="_blank"><b>[ Reference ]</b></a>
 
-### Description
+## Description
 
 Style and base class that allows activities to have a completely transparent background, or a background with a certain opacity.
 
@@ -13,7 +13,7 @@ Style and base class that allows activities to have a completely transparent bac
 
 ---
 
-### Usage
+## Usage
 
 :::note
 In the layout file, activities that inherit from TranslucentActivity must have a fixed size or a RelativeLayout as the root element in so that 
@@ -48,7 +48,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ---
 
-### Considerations
+## Considerations
 
 To produce the best opacity effect in the activity, the `dimAmount` property of the window is used to control the opacity. In some cases (such as when a 
 dialog is displayed) it has its own dimAmount value, and when that value is less than the activityOpacity, an unwanted effect is generated in the view. 

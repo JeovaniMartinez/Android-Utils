@@ -5,7 +5,7 @@ title: RateApp
 
 #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.html" target="_blank"><b>[ Reference ]</b></a>
 
-### Description
+## Description
 
 Utility to direct the user to app details on Google Play, usually used to invite the user to rate the app.
 
@@ -17,7 +17,7 @@ If the Google Play app is not available in the device, the user is directed to a
 
 ---
 
-### Usage
+## Usage
 
 ```kotlin
 RateApp.goToRateInGooglePlay(activity)

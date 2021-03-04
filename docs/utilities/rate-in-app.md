@@ -5,7 +5,7 @@ title: RateInApp
 
 #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.html" target="_blank"><b>[ Reference ]</b></a>
 
-### Description
+## Description
 
 Utility to show a flow that invites the user to rate the app, based on certain conditions on the use of the app (how many days do it have installed, 
 how many times it has been launched, etc.). For Android 5.0 (API 21) and later, the [Google Play In-App Review API](https://developer.android.com/guide/playcore/in-app-review) 
@@ -18,7 +18,7 @@ accepts, they are directed to the app details on Google Play.
 
 ---
 
-### Usage
+## Usage
 
 Either In the `onCreate()` of the singleton or main activity you have to set the configuration values and initialize the utility by passing a context. 
 It is very important to do it only once in the app, since at that moment the times the user has launch the app  are counted.
@@ -54,9 +54,9 @@ You can modify the date of your device to be able to run simulate the course of 
 
 ---
 
-### Considerations
+## Considerations
 
-#### In-App Review API:
+### In-App Review API
 
 - The Google Play In-App Review API has a [limited quota](https://developer.android.com/guide/playcore/in-app-review#quotas) to be able to show the 
 flow to rate the app, so on certain occasions, all the conditions may be met, but the flow will be not displayed.

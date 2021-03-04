@@ -3,7 +3,7 @@ id: code-inspection-annotations
 title: Code Inspection Annotations
 ---
 
-### Description
+## Description
 
 These annotations are designed to guide the developer on the type of data or resource that can be assigned to a property or variable, the library has 
 the [lintcheck](https://github.com/JeovaniMartinez/Android-Utils/tree/master/lintcheck) module that tells the IDE how to verify the use of annotations 
