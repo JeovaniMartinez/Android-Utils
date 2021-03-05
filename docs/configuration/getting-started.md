@@ -9,7 +9,7 @@ Apply the next configuration in your Android project to start to use the Android
 
 ### Gradle Setup
 
-Add the following configuration in Gradle file at project level.
+Add the following line in Gradle file at project level.
 
 ```gradle {4}
 allprojects {
@@ -20,7 +20,7 @@ allprojects {
 }
 ```
 
-Add the following configuration in Gradle file at app level. Replace _VERSION_ to the [latest release version.](https://github.com/JeovaniMartinez/Android-Utils/releases)
+Add the following line in Gradle file at app level. Replace _VERSION_ to the [latest release version.](https://github.com/JeovaniMartinez/Android-Utils/releases)
 ```gradle {3}
 dependencies {
     ...
