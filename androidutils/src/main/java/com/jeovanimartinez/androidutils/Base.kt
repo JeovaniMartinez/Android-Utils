@@ -8,7 +8,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
 /**
- * Base class with common properties and functions
+ * Base class for the library utilities, with common properties and functions.
  * */
 abstract class Base<T : Base<T>> {
 
