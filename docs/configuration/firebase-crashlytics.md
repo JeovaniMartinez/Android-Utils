@@ -4,7 +4,7 @@ title: Firebase Crashlytics
 ---
 
 :::note
-Recoverable errors registry into Firebase Crashlytics is optional and is disabled by default.
+Recoverable errors registry into Firebase Crashlytics is **optional** and is disabled by default.
 :::
 
 ## Configuration

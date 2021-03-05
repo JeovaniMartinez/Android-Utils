@@ -18,7 +18,7 @@ export const Parameter = ({children}) => ( <span style={{
 }}>{children}</span> );
 
 :::note
-Event logging into Firebase Analytics is optional and is disabled by default.
+Event logging into Firebase Analytics is **optional** and is disabled by default.
 :::
 
 ## Configuration
