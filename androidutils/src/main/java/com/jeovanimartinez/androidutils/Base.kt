@@ -8,79 +8,73 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
 /**
- * Clase base con propiedades y funciones comunes
+ * Base class with common properties and functions
  * */
 abstract class Base<T : Base<T>> {
 
     companion object {
         /**
-         * Para habilitar o deshabilitar los mensajes del log de depuración, de manera predeterminada es según BuildConfig.DEBUG,
-         * esta configuración aplica para todas las clases que hereden de Base, es decir se activa o desactiva de manera global
+         * To enable or disable the debug log messages, by default it is configured by BuildConfig.DEBUG, this configuration
+         * applies to all classes that inherit from Base, that is, it is globally enabled or disabled.
          **/
         var logEnable = BuildConfig.DEBUG
 
         /**
-         * Instancia de Firebase Analytics, asignar solo si se requiere que la app que implementa la biblioteca registre
-         * los eventos de análisis, esta propiedad es global y se usa en todas las subclases de esta clase. Si se desea
-         * desactivar el registro de eventos para una clase en específico, hacerlo mediante la propiedad firebaseAnalyticsEnabled
-         * de la instancia de la clase
+         * Firebase Analytics instance, assign only if the app that implements the library should log analytics events, this property
+         * is global and is used in all subclasses of this class. If you want to disable event logging for a specific class, do so
+         * through the firebaseAnalyticsEnabled property of the class instance.
          * */
         var firebaseAnalyticsInstance: FirebaseAnalytics? = null
 
+        // Note: This exceptions are not logged into log functions, because sending events to Firebase Crashlytics is only required in certain cases.
         /**
-         * Instancia de Firebase Crashlytics, asignar solo si se requiere que la app que implementa la biblioteca registre
-         * errores en Firebase Crashlytics, esta propiedad es global y se usa en todas las subclases de esta clase. Asignarla
-         * solo una vez en el singleton de la app, teniendo en cuenta que la app debe tener configurado Firebase Crashlytics,
-         * o bien dejar en null si no se requiere o si no se usa Firebase Crashlytics en la app. El registro de errores se realiza
-         * solo en ciertos casos donde puede ser util, por lo que donde se dese usar en las subclases de Base, invocar
-         * firebaseCrashlyticsInstance?.recordException(e) para registrar la excepción, ya que no se hace en las funciones de log
-         * directamente porque solo se requiere registrar la excepción en ciertos casos.
+         * Firebase Crashlytics instance, assign only if the app implementing the library need to log library recoverable errors in
+         * Firebase Crashlytics, this property is global and is used in all subclasses of this class. Assign it only once within the
+         * app, taking into account that the app must have Firebase Crashlytics configured, or leave it as null if it is not required
+         * or if Firebase Crashlytics is not used in the app.
          * */
         var firebaseCrashlyticsInstance: FirebaseCrashlytics? = null
     }
 
     /**
-     * Determina si el registro de eventos en Firebase Analytics esta habilitado para la instancia de la clase, para el registro de eventos,
-     * la propiedad estática del companion object firebaseAnalyticsInstance también debe estar asignada, si esa propiedad es null, no se van
-     * a registrar eventos, ya que es requerida
+     * Determines if the event log in Firebase Analytics is enabled for the class instance, for the event log, the static property of the companion
+     * object firebaseAnalyticsInstance must also be assigned, if that property is null, no events will be logged, since what is required.
      * */
+    @Suppress("MemberVisibilityCanBePrivate")
     var firebaseAnalyticsEnabled = true
 
-    /** Etiqueta par el log */
+    /** Log tag */
     @Suppress("PropertyName")
     protected abstract val LOG_TAG: String
 
     /**
-     * Registra un evento en Firebase Analytics, siempre y cuando la clase base tenga una instancia de Firebase Analytics,
-     * y el registro de eventos este habilitado para la instancia de la clase
+     * Log an event in Firebase Analytics, as long as the base class has an instance of Firebase Analytics, and event logging is enabled for
+     * the instance of the class.
      *
-     * @param eventName Nombre del evento, debe estar entre 1 y 40 caracteres
-     * @param eventParams Parámetros para el evento (opcional)
+     * @param eventName Event name, must be between 1 and 40 characters.
+     * @param eventParams Event parameters (optional).
      * */
     internal fun firebaseAnalytics(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
 
-        // Registra el resultado del evento en el log, con el [message] que indica la acción que se realizó
+        // Records the result of the event in the log, with the [message] indicating the action that was performed.
         val logResult = { message: String ->
-            var params = "[N/A]" // Para informar en el log
+            var params = "[N/A]" // To report in the log
             eventParams.whenNotNull { params = it.toString().replace("Bundle", "") }
             log("Event emitted: [ $eventName ] Params: $params | $message")
         }
 
-        // Si no hay instancia de Firebase Analytics,
         if (firebaseAnalyticsInstance == null) return logResult("No need to log event into Firebase Analytics, firebaseAnalyticsInstance is null")
 
-        // Si el log esta deshabilitado para esta clase en específico
         if (!firebaseAnalyticsEnabled) return logResult("No need to log event into Firebase Analytics, this is disabled for this class instance")
 
-        // De otro modo, se procede a registrar el evento en Firebase Analytics
+        // Otherwise, the event is logged in Firebase Analytics.
         firebaseAnalyticsInstance?.logEvent(eventName, eventParams)
         logResult("Event logged into Firebase Analytics")
 
     }
 
     /**
-     * Muestra el [message] y el [throwable] en el log de DEPURACIÓN,
-     * usado para detallar el flujo de ejecución, se puede habilitar y deshabilitar con setLogEnable
+     * Show the [message] and the [throwable] into DEBUG log, used to detail the execution flow.
      **/
     internal fun log(message: Any, throwable: Throwable? = null) {
         if (!logEnable) return
@@ -88,13 +82,13 @@ abstract class Base<T : Base<T>> {
         else Log.d(LOG_TAG, message.toString())
     }
 
-    /** Muestra el [message] y el [throwable] en el log de ADVERTENCIA */
+    /** Show the [message] and the [throwable] into WARN log. */
     internal fun logw(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.w(LOG_TAG, message.toString(), throwable)
         else Log.w(LOG_TAG, message.toString())
     }
 
-    /** Muestra el [message] y el [throwable] en el log de ERROR */
+    /** Show the [message] and the [throwable] into ERROR log. */
     internal fun loge(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.e(LOG_TAG, message.toString(), throwable)
         else Log.e(LOG_TAG, message.toString())
