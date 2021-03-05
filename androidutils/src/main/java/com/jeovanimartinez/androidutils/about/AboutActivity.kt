@@ -30,32 +30,31 @@ import kotlinx.android.synthetic.main.activity_about.*
 import java.util.*
 
 
-/** Actividad de acerca de */
+/** About app activity */
 class AboutActivity : TranslucentActivity() {
 
     companion object {
         /*
-        * Auxiliar para permitir solo una instancia de esta actividad.
-        * Se usa de esta manera y no con android:launchMode="singleInstance" ya que debido al tema
-        * transparente y a la transición, usar esa configuración no funciona adecuadamente.
+        * Helper to allow only one instance of this activity. It is used this way and not with android:launchMode="singleInstance" as
+        * due to the transparent theme and transition, using that setting does not work properly.
         * */
         var aboutActivityRunning = false
         private const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
     }
 
-    private var activityIsRunning = true // Para mostrar toast solo si la actividad esta en ejecución
+    private var activityIsRunning = true // To show toast only if the activity is running and not paused
     private var loadingTermsAndPolicyInProgress = false
     private var termsAndPolicyVisible = false
-    private lateinit var aboutAppConfig: AboutAppConfig // Datos de configuración
+    private lateinit var aboutAppConfig: AboutAppConfig // Config data
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        aboutActivityRunning = true // Indica que la actividad esta en ejecución
+        aboutActivityRunning = true // Indicates that the activity is running
         super.activityOpacity = 0.9f
         super.onCreate(savedInstanceState)
         configureTransitions()
         setContentView(R.layout.activity_about)
 
-        aboutAppConfig = AboutApp.currentConfig!! // Se asigna el objeto de configuración para poder usarse
+        aboutAppConfig = AboutApp.currentConfig!! // The config object is assigned to be able to use it
 
         AboutApp.log("Started AboutActivity")
 
@@ -83,33 +82,33 @@ class AboutActivity : TranslucentActivity() {
     override fun onDestroy() {
         AboutApp.log("Activity onDestroy(), isFinishing: $isFinishing")
         /*
-        * Si esta finalizando, el objeto de AboutApp.currentConfig  se manda a null para liberarlo de la memoria, ya que no se requiere
-        * y cuando se vuelva a mostrar la actividad, el objeto se asigna antes de mostrarla.
+        * If it is ending, the AboutApp.currentConfig object is set to null to free it from memory, as it is not required and when
+        * the activity is shown again, the object is assigned before it is displayed.
         * */
         if (isFinishing) {
             AboutApp.currentConfig = null
-            aboutActivityRunning = false // Indica el fin de la actividad
+            aboutActivityRunning = false // Indicates the end of the activity
         }
         super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean(STATE_TERMS_AND_POLICY_VISIBLE, termsAndPolicyVisible) // Se guarda si están visibles, para el onRestoreInstanceState
+        outState.putBoolean(STATE_TERMS_AND_POLICY_VISIBLE, termsAndPolicyVisible) // Save if the terms are visible, for the onRestoreInstanceState
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        // Se muestran los términos y política si estaban visibles
+        // Terms and policy are shown if they are visible on onSaveInstanceState
         if (savedInstanceState.getBoolean(STATE_TERMS_AND_POLICY_VISIBLE)) {
             loadTermsAndPolicy(false)
         }
     }
 
-    /** Configuración inicial */
+    /** Initial setup */
     private fun initSetup() {
 
-        // Se configura el task description si es necesario
+        // Configure the task description (if it is necessary)
         if (aboutAppConfig.taskDescriptionTitle.isNotNull() && aboutAppConfig.taskDescriptionIcon.isNotNull() && aboutAppConfig.taskDescriptionColor.isNotNull()) {
             configureTaskDescription(aboutAppConfig.taskDescriptionTitle!!, aboutAppConfig.taskDescriptionIcon!!, aboutAppConfig.taskDescriptionColor!!)
             AboutApp.log("AboutActivity task description configured by AboutApp options")
@@ -124,7 +123,7 @@ class AboutActivity : TranslucentActivity() {
         about_termsAndPolicyWebView.visibility = View.GONE
         about_topActionCard.visibility = View.GONE
 
-        // Se ajusta para ocultar el elemento
+        // Adjusts to hide item
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             about_topActionCard.translationX = dp2px(48).toFloat()
         } else {
@@ -133,7 +132,7 @@ class AboutActivity : TranslucentActivity() {
 
         about_termsAndPolicy.setOnClickListener {
             loadTermsAndPolicy()
-            about_termsAndPolicy.isClickable = false // Se deshabilita el clic, para evitar acciones repetidas
+            about_termsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
         }
 
         about_closeTermsBtn.setOnClickListener {
@@ -151,7 +150,7 @@ class AboutActivity : TranslucentActivity() {
 
     }
 
-    /** Configura la actividad en base al objeto AboutApp  */
+    /** Configure the activity in base of AboutApp  */
     private fun configureByAboutApp() {
 
         about_appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
@@ -168,7 +167,7 @@ class AboutActivity : TranslucentActivity() {
 
         about_openSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
-        // En versiones anteriores a Android 4.4 se oculta siempre, ya que la actividad no funciona correctamente
+        // In versions prior to Android 4.4 it is always hidden, since the activity does not work correctly
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             about_openSourceLicenses.visibility = View.GONE
         }
@@ -176,7 +175,7 @@ class AboutActivity : TranslucentActivity() {
         about_topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
         about_contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
 
-        // Se asigna el color de los iconos, solo funciona de Android 5 en adelante
+        // Icon color is assigned, only works from Android 5 onwards
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_check_circle_outline)
             val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
