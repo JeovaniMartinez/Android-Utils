@@ -12,13 +12,13 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 
 /**
- * Extensión para para configurar el TaskDescription de las actividades
+ * Extension to configure activities TaskDescription
  * */
 
 /**
- * Configura la TaskDescription de la actividad, funciona desde Android 5 en adelante y ajusta la configuración
- * automáticamente para las diferentes versiones de Android.
- * @param title título para la descripción, string o id del recurso.
+ * Configure the activity TaskDescription, it works from Android 5 onwards and adjusts the config automatically
+ * for the different versions of Android.
+ * @param title Title for the description, string or resource ID.
  * @param icon ícono a mostrar (id del recurso), debe ser una imagen PNG, si el id del recurso es un SVG, no se va a aplicar
  *        y se va a mostrar el ícono de la app.
  * @param color color-int de fondo para la barra.
@@ -29,19 +29,19 @@ fun Activity.configureTaskDescription(@StringOrStringRes title: Any, @DrawableRe
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 
-        // Para Android Pie (9.0) API 28 y versiones posteriores
+        // For Android Pie (9.0) API 28 and later versions
         val taskDescription = ActivityManager.TaskDescription(finalTitle, icon, color)
         this.setTaskDescription(taskDescription)
 
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
-        // De Android 5.0 a Android 8.1
+        // From Android 5.0 to Android 8.1
         @Suppress("DEPRECATION")
         val taskDescription = ActivityManager.TaskDescription(finalTitle, BitmapFactory.decodeResource(resources, icon), color)
         this.setTaskDescription(taskDescription)
 
     }
 
-    // No hay soporte para versiones anteriores a Android 5
+    // No have support for versions prior to Android 5
 
 }
