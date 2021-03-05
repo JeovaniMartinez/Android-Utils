@@ -16,8 +16,7 @@ licenses, the license terms and the privacy policy. The activity is optimized to
 
 First you need to create a configuration object.
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.html#%5Bcom.jeovanimartinez.androidutils.about%2FAboutAppConfig%2FappIcon%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F371564532" target="_blank"><b>[ Configuration parameters  ]</b></a>
-
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.html#%5Bcom.jeovanimartinez.androidutils.about%2FAboutAppConfig%2FappIcon%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F371564532" target="_blank"><b>[ Configuration parameters  ]</b></a>
 
 ```kotlin
 val aboutAppConfig = AboutAppConfig(
@@ -71,8 +70,8 @@ and `text-color` to customize the background color of the page and the text colo
 
 The following template for the page is the one used in the example, and it already takes care of processing the parameters and adjusting the view:
 
-#### <a href="https://github.com/JeovaniMartinez/Android-Utils/tree/master/resources/terms-and-privacy-policy" target="_blank"><b>[ Template ]</b></a>
-#### <a href="https://jedemm.com/android-utils/terms-and-policy/license.html?background-color=212121&text-color=CFCFCF" target="_blank"><b>[ Demo ]</b></a>
+> #### <a href="https://github.com/JeovaniMartinez/Android-Utils/tree/master/resources/terms-and-privacy-policy" target="_blank"><b>[ Template ]</b></a>
+> #### <a href="https://jedemm.com/android-utils/terms-and-policy/license.html?background-color=212121&text-color=CFCFCF" target="_blank"><b>[ Demo ]</b></a>
 
 :::tip
 You can change the URL parameters `background-color=212121&text-color=CFCFCF` to customize the page style.

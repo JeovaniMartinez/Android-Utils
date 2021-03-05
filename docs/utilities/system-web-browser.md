@@ -15,7 +15,7 @@ Utility to interact with the system web browser.
 
 ### - openUrl()
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.web/-system-web-browser/open-url.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.web/-system-web-browser/open-url.html" target="_blank"><b>[ Reference ]</b></a>
 
 Open the system web browser at the specified URL.
 

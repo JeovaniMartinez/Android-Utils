@@ -23,7 +23,7 @@ accepts, they are directed to the app details on Google Play.
 Either In the `onCreate()` of the singleton or main activity you have to set the configuration values and initialize the utility by passing a context. 
 It is very important to do it only once in the app, since at that moment the times the user has launch the app  are counted.
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.html#%5Bcom.jeovanimartinez.androidutils.reviews.rateinapp%2FRateInApp%2FminInstallElapsedDays%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F371564532" target="_blank"><b>[ Configuration parameters  ]</b></a>
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.html#%5Bcom.jeovanimartinez.androidutils.reviews.rateinapp%2FRateInApp%2FminInstallElapsedDays%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F371564532" target="_blank"><b>[ Configuration parameters  ]</b></a>
 
 ```kotlin
 RateInApp.apply {
