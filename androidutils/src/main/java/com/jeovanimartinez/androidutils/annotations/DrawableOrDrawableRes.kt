@@ -1,8 +1,8 @@
 package com.jeovanimartinez.androidutils.annotations
 
 /**
- * Indica que el valor esperado debe ser un Drawable o el ID de un recuso de drawable.
- * Por ejemplo: drawableObject, R.drawable.demo.
+ * Indicates that the expected value or object should be a Drawable object or the ID of a drawable resource.
+ * For example: drawableObject, R.drawable.demo.
  * */
 @MustBeDocumented
 @Retention(AnnotationRetention.BINARY)

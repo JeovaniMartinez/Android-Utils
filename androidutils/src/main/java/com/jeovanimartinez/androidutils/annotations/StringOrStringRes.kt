@@ -1,8 +1,8 @@
 package com.jeovanimartinez.androidutils.annotations
 
 /**
- * Indica que el valor esperado debe ser un dato tipo String, Char (ya que se puede representar como String) o el ID de un recuso de string.
- * Por ejemplo: 'a', "Hola", R.string.demo.
+ * Indicates that the expected value or object must be a data type String, Char (since it can be represented as String)
+ * or the ID of a string resource. For example: 'a', "Hello", R.string.demo
  * */
 @MustBeDocumented
 @Retention(AnnotationRetention.BINARY)
