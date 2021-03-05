@@ -199,14 +199,14 @@ class AboutActivity : TranslucentActivity() {
 
     }
 
-    /** Configura la versión de la app y el copyright */
+    /** Set the app version and copyright */
     private fun configureData() {
         about_appVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         about_copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
     }
 
-    /** Configura la transición de entrada y salida */
+    /** Set the activity transitions */
     private fun configureTransitions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             with(window) {
@@ -218,14 +218,13 @@ class AboutActivity : TranslucentActivity() {
     }
 
     /**
-     * Inicia el proceso para obtener los términos y la política de privacidad en un el web view, ya que se obtienen desde el servidor para mostrar la
-     * versión más reciente
-     * @param animateShowTermsView determina si cuando se muestre la vista de los términos se va a hacer con una animación, esta vista solo se muestra
-     *        si se obtuvieron los datos correctamente del servidor
+     * Start the process to get the terms and privacy policy in a web view.
+     * @param animateShowTermsView Determines if when the terms view is shown it will be done with an animation,
+     *        this view is only shown if the data was obtained correctly from the server.
      * */
     private fun loadTermsAndPolicy(animateShowTermsView: Boolean = true) {
 
-        // Si ya están en proceso de carga, no es necesario hacerlo nuevamente
+        // If are already loading, it is not necessary to do it again
         if (loadingTermsAndPolicyInProgress) {
             AboutApp.log("loadTermsAndPolicy() is already in progress")
             return
@@ -233,35 +232,35 @@ class AboutActivity : TranslucentActivity() {
 
         AboutApp.log("loadTermsAndPolicy() Invoked")
 
-        loadingTermsAndPolicyInProgress = true // Se indica que se están cargando
-        about_progressBar.visibility = View.VISIBLE // Se muestra la barra de progreso, ya que puede demorar un tiempo
+        loadingTermsAndPolicyInProgress = true
+        about_progressBar.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
 
-        var pageLoadSuccessful = true // Auxiliar para saber si la página se cargo con éxito, solo se cambia a false si se produce algún error
+        var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
-        // Se obtiene el color de fondo y el color del texto para enviar los datos al servidor y obtener la vista adaptada al tema (el substring elimina el alpha ya que no se requiere)
+        // Get te background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
         val backgroundColor = Integer.toHexString(about_contentCard.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
         val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).toUpperCase(Locale.ROOT)
 
 
-        // Se genera un objeto WebViewClient para los eventos
+        // Generate WebViewClient for listening events
         about_termsAndPolicyWebView.webViewClient = object : WebViewClient() {
 
-            // Cuando finaliza la carga de la página (independientemente de si el resultado fue exitoso o no)
+            // When the page load finished (regardless of whether the result was successful or not)
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 AboutApp.log("WebViewClient onPageFinished() invoked")
 
-                view?.scrollTo(0, 0) // Se posiciona en el top de la vista
+                view?.scrollTo(0, 0) // Go to view's top
 
-                // Se espera un momento para evitar acciones repetidas
+                // Wait a moment to avoid repeated actions
                 Handler(Looper.getMainLooper()).postDelayed({
                     loadingTermsAndPolicyInProgress = false
                 }, 500)
 
-                about_progressBar.visibility = View.GONE // Se oculta al terminar la petición
-                if (pageLoadSuccessful) showTermsAndPolicy(animateShowTermsView) // Solo se muestran si la página se cargo correctamente
+                about_progressBar.visibility = View.GONE
+                if (pageLoadSuccessful) showTermsAndPolicy(animateShowTermsView) // They are only shown if the page loaded correctly
 
-                about_termsAndPolicy.isClickable = true // Se habilita nuevamente
+                about_termsAndPolicy.isClickable = true // It is enabled again
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
@@ -280,24 +279,24 @@ class AboutActivity : TranslucentActivity() {
         }
 
         @SuppressLint("SetJavaScriptEnabled")
-        about_termsAndPolicyWebView.settings.javaScriptEnabled = true // Se habilita javascript ya que es necesario para que se configure el estilo de la página con los parámetros de la URL
-        about_termsAndPolicyWebView.settings.domStorageEnabled = true // Se habilita para mejor compatibilidad
-        // Se carga la URL, pasando los parámetros de color de fondo y color de texto
+        about_termsAndPolicyWebView.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
+        about_termsAndPolicyWebView.settings.domStorageEnabled = true // For best compatibility
+        // The URL is loaded, passing the background color and text color parameters
         aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
             about_termsAndPolicyWebView.loadUrl("${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor")
         }
     }
 
-    /** Muestra los términos y la política de privacidad, llamar solo si se cargaron correctamente, [animate] determina si se muestran con una animación o no */
+    /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with an animation or not. */
     private fun showTermsAndPolicy(animate: Boolean = true) {
 
         AboutApp.log("showTermsAndPolicy() Invoked")
-        termsAndPolicyVisible = true // Indica que están visibles
+        termsAndPolicyVisible = true
         super.activityOpacity = 0.95f
 
         if (animate) {
 
-            // Visibilidad y animación del botón de atrás en los términos
+            // Set back button visibility and animation
             about_topActionCard.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 about_topActionCard.animate().translationX(0f).onAnimationEnd { }
@@ -307,17 +306,17 @@ class AboutActivity : TranslucentActivity() {
 
             about_termsAndPolicyWebView.visibility = View.VISIBLE
 
-            // Se manda al final de la vista para mostrar una animación
+            // Sent at the end of the view to show an animation
             about_termsAndPolicyWebView.translationX = about_contentCard.width.toFloat()
             about_termsAndPolicyWebView.visibility = View.VISIBLE
 
-            // Se muestra el web view y se oculta el contenedor de la tarjeta mediante una animación
+            // The web view is shown and the card container is hidden by means of an animation
             about_contentCardLayout.animate().translationX(-about_contentCard.width.toFloat()).start()
             about_termsAndPolicyWebView.animate().translationX(0f).start()
 
         } else {
 
-            // Visibilidad y animación del botón de atrás en los términos
+            // Set back button visibility and animation
             about_topActionCard.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 about_topActionCard.translationX = 0f
@@ -327,11 +326,11 @@ class AboutActivity : TranslucentActivity() {
 
             about_termsAndPolicyWebView.visibility = View.VISIBLE
 
-            // Se manda al final de la vista para la animación al salir de la vista
+            // Sent to end of view for animation when exiting view
             about_termsAndPolicyWebView.translationX = about_contentCard.width.toFloat()
             about_termsAndPolicyWebView.visibility = View.VISIBLE
 
-            // Se muestra el web view y se oculta el contenedor de la tarjeta
+            // The web view is shown and the card container is hidden
             about_contentCardLayout.translationX = -about_contentCard.width.toFloat()
             about_termsAndPolicyWebView.translationX = 0f
 
@@ -341,20 +340,20 @@ class AboutActivity : TranslucentActivity() {
 
     }
 
-    /** Oculta la vista de los términos y la política de privacidad */
+    /** Hide view of terms and privacy policy. */
     private fun hideTermsAndPolicy() {
         AboutApp.log("hideTermsAndPolicy() Invoked")
-        termsAndPolicyVisible = false // Se indica que ya no están visibles
-        super.activityOpacity = 0.9f // Se restaura al valor inicial
+        termsAndPolicyVisible = false
+        super.activityOpacity = 0.9f
 
-        // Visibilidad y animación del botón de atrás en los términos
+        // Set back button visibility and animation
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             about_topActionCard.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
         } else {
             about_topActionCard.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
         }
 
-        // Se muestra el contenedor de la tarjeta y se oculta el web view mediante una animación
+        // The card container is shown and the web view is hidden by means of an animation
         about_contentCardLayout.animate().translationX(0f).start()
         about_termsAndPolicyWebView.animate().translationX(about_contentCard.width.toFloat()).start()
     }
