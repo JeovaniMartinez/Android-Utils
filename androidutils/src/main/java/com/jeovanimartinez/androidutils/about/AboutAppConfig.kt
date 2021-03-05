@@ -6,28 +6,22 @@ import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 
 /**
- * Configuración para la actividad de acerca de.
- * @param backgroundColor Color de fondo de la actividad, si es null se usa el valor predeterminado que es el color de fondo del tema.
- * @param iconsColor Color para los iconos, si es null se usa el valor predeterminado que es el color de definido en el tema.
- * @param appIcon Ícono o logo de la aplicación.
- * @param appName Nombre de la aplicación.
- * @param appVersionName Version de la aplicación.
- * @param authorName Nombre del autor.
- * @param authorLink URL que se abre al dar clic al nombre del autor, null para no abrir ningún enlace.
- * @param companyLogo Logo de la empresa.
- * @param companyName Nombre de la empresa.
- * @param companyLink URL que se abre al dar clic al logo de la empresa, null para no abrir ningún enlace.
- * @param termsAndPrivacyPolicyLink URL de los términos de uso y política de privacidad, dejar en null si no se desea mostrarlos.
- * @param termsAndPrivacyPolicyTextColor Color del texto de los términos de uso y política de privacidad, si es null se usa el valor predeterminado que es el color definido en el tema.
- * @param showOpenSourceLicenses Determina si se muestra un botón para ver las licencias de código abierto de la app. En caso de ser afirmativo, el build.gradle
- *        del proyecto debe tener la dependencia 'com.google.android.gms:oss-licenses-plugin:VERSION' y el build.gradle del proyecto debe implementar el plugin
- *        'com.google.android.gms.oss-licenses-plugin', tal como se muestra en la documentación oficial: https://developers.google.com/android/guides/opensource
- * @param taskDescriptionTitle Título para la Task Description de la actividad. Se usa en conjunto con taskDescriptionIcon y taskDescriptionColor, ninguno de estos tres parámetros
- *        debe ser null para que se configure el Task Description.
- * @param taskDescriptionIcon Ícono para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionColor, ninguno de estos tres parámetros
- *        debe ser null para que se configure el Task Description.
- * @param taskDescriptionColor Color para la Task Description de la actividad. Se usa en conjunto con taskDescriptionTitle y taskDescriptionIcon, ninguno de estos tres parámetros
- *        debe ser null para que se configure el Task Description.
+ * Configuration for about activity.
+ * @param backgroundColor Background color for the activity, if null, the default value is used, which is the background color of the theme.
+ * @param iconsColor Color for icons, if null, the default value is used, which is the color defined in the theme.
+ * @param appIcon App icon or logo.
+ * @param appName App name.
+ * @param appVersionName App version.
+ * @param authorName App author name.
+ * @param authorLink URL that opens when clicking on the author's name, null to not open any link.
+ * @param companyLogo Developer company logo.
+ * @param companyName Developer company name.
+ * @param companyLink URL that opens when clicking on the company logo, null to not open any link.
+ * @param termsAndPrivacyPolicyLink URL of the terms of use and privacy policy, leave null if you do not want to show them.
+ * @param termsAndPrivacyPolicyTextColor Color for the text of the terms of use and privacy policy, if it is null, the default value is used, which is the color defined in the theme.
+ * @param showOpenSourceLicenses Determines whether a button is shown to view the app open source licenses. If true, these https://developers.google.com/android/guides/opensource
+ *        instructions must be followed in order to can shown open source licenses.
+ * PENDING CHANGE TASK DESCRIPTION PROPERTIES TO OBJECT
  * */
 data class AboutAppConfig(
     @ColorInt val backgroundColor: Int? = null,
