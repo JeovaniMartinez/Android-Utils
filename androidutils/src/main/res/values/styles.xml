@@ -3,17 +3,14 @@
     <!--########################################################################################################################################################################################## -->
 
     <!--
-        Base del tema, la aplicación que use la biblioteca debe declarar un estilo con el mismo nombre que herede del tema principal de la app,
-        esto para que la biblioteca conserve el estilo que usa la app
+       Base of the theme, the application that uses the library must declare a style with the same name that inherits from the main theme of the app,
+       this so that the library preserves the style that the app uses
     -->
     <style name="AndroidUtilsTheme" parent="Theme.MaterialComponents" />
 
     <!--########################################################################################################################################################################################## -->
 
-    <!--
-       Tema translúcido. Detalles de implementación en androidutils.themes.translucent.TranslucentActivity.
-       Se puede consultar un ejemplo de la vista en la carpeta del proyecto /resources/images/translucent-theme
-    -->
+    <!-- Translucent theme. Implementation details in android utils.themes.translucent.Translucent Activity. and in the documentation -->
     <style name="AndroidUtilsTheme.Translucent" parent="AndroidUtilsTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>

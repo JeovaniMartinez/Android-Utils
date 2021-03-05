@@ -6,13 +6,13 @@
     <!-- RateApp -->
     <string name="rate_app_unable_to_show_app_on_google_play">No disponible, por favor califica la aplicación en Google Play</string>
 
-    <!-- RateAppActivity - Actividad/Diálogo para calificar aplicación -->
+    <!-- RateAppActivity - Activity/Dialog to rate the app. -->
     <string name="rate_dialog_ask">¿Te gustaría calificar nuestra aplicación en Google Play?</string>
     <string name="rate_dialog_rate_now">Calificar Ahora</string>
     <string name="rate_dialog_no_thanks">No, gracias.\nYa la he calificado</string>
     <string name="rate_dialog_later">En otro momento</string>
 
-    <!-- AboutApp y AboutActivity - Para el acerca de de la aplicación -->
+    <!-- AboutApp and AboutActivity - For the app about. -->
     <string name="about_app_app_name">Utilidades Android</string>
     <string name="about_app_version">versión %1$s</string>
     <string name="about_app_author_title">Programación y Diseño por</string>
@@ -28,7 +28,7 @@
     <string name="about_app_terms_and_policy_link">https://jedemm.com/android-utils/terms-and-policy/license.html</string>
     <string name="about_app_open_source_licenses">Licencias de\nCódigo Abierto</string>
 
-    <!-- SystemWebBrowser - Utilidad para mostrar páginas en el navegador web del sistema -->
+    <!-- SystemWebBrowser - Utility to show web pages in the system web browser. -->
     <string name="system_web_browser_not_available">No hay ninguna aplicación instalada para mostrar la página web solicitada</string>
     <string name="system_web_browser_error">No disponible</string>
 

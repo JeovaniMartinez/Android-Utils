@@ -2,8 +2,8 @@
 <resources>
 
     <!--
-        Colores predeterminados del tema, si se reemplazan en la app, se van a usar los colores definidos en la app, ya que estos
-        archivos se mezclan y tiene prioridad el de la app
+        Default colors of the theme, if they are overridden in the app, the colors defined in the app will be used,
+        since these files are mixed and the app files has priority.
     -->
     <color name="colorPrimary">#00838f</color>
     <color name="colorAccent">#00838f</color>
@@ -20,10 +20,10 @@
     <color name="colorError">#B00020</color>
     <color name="colorOnError">#FFFFFF</color>
 
-    <!-- Color para los iconos -->
+    <!-- Color for the icons -->
     <color name="colorIcon">#707070</color>
 
-    <!-- Colores para la actividad de acerca de -->
+    <!-- Colors for about app activity -->
     <color name="colorTermsAndPrivacyPolicyText">#434343</color>
 
 </resources>
