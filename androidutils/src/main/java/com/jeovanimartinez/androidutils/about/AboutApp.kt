@@ -10,54 +10,54 @@ import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.nullability.isNull
 
 /**
- * Utilidad para mostrar una actividad de acerca de la aplicación.
+ * Utility to show an app about activity.
  * */
 object AboutApp : Base<AboutApp>() {
 
     override val LOG_TAG = "AboutApp"
 
     /**
-     * Se asigna antes de iniciar AboutActivity para poder usarlo en esa actividad, se usa de esta manera ya que
-     * AboutAppConfig contiene objetos no serializables, y poner el objeto en los extra del intent no es posible.
+     * It is assigned before starting AboutActivity to be able to use it in that activity, it is used in this way since
+     * AboutAppConfig contains non-serializable objects, and putting the object in intent extras is not possible.
      * */
     internal var currentConfig: AboutAppConfig? = null
 
     /**
-     * Muestra la actividad de acerca de.
-     * @param activity Actividad.
-     * @param aboutAppConfig Objeto de configuración para la actividad de acerca de.
+     * Shows about activity.
+     * @param activity Activity.
+     * @param aboutAppConfig Configuration object for the about activity.
      * */
     fun show(activity: Activity, aboutAppConfig: AboutAppConfig) {
 
-        // Si la actividad ya esta en ejecución
+        // If the activity is already launched
         if (AboutActivity.aboutActivityRunning) {
             log("AboutActivity is running and only one instance of this activity is allowed")
             return
         }
 
-        // Se obtiene el valor de los colores de la configuración
+        // Obtains the color from the config
         var backgroundColor = aboutAppConfig.backgroundColor
         var iconsColor = aboutAppConfig.iconsColor
         var termsAndPrivacyPolicyTextColor = aboutAppConfig.termsAndPrivacyPolicyTextColor
-        // aboutAppConfig.taskDescriptionColor no es necesario, ya que su valor no es obligatorio, y puede ser null
+        // aboutAppConfig.taskDescriptionColor It is not necessary, because it value not is mandatory, and it cant be null
 
-        // Para los colores en null, se obtiene su color predeterminado
+        // For the null colors, get the default color.
         if (backgroundColor.isNull()) backgroundColor = activity.getColorCompat(R.color.colorBackground)
         if (iconsColor.isNull()) iconsColor = activity.getColorCompat(R.color.colorIcon)
         if (termsAndPrivacyPolicyTextColor.isNull()) termsAndPrivacyPolicyTextColor = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText)
 
-        // Se genera el objeto final de configuración y se asigna al singleton para poder usar los datos en la AboutActivity
+        // The final configuration object is generated and assigned to the singleton to be able to use the data in the AboutActivity
         currentConfig = aboutAppConfig.copy(backgroundColor = backgroundColor, iconsColor = iconsColor, termsAndPrivacyPolicyTextColor = termsAndPrivacyPolicyTextColor)
 
-        AboutActivity.aboutActivityRunning = true // Se hace true ya que se va a iniciar la actividad
+        AboutActivity.aboutActivityRunning = true // It is true since the activity is going to start
 
-        // Se inicia la actividad de acerca de, currentConfig ya esta listo para usarse en dicha actividad
+        // Launch about activity, currentConfig is already assigned to be use
         activity.startActivity(
             Intent(activity, AboutActivity::class.java),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
         )
 
-        firebaseAnalytics("about_app_shown") // Se registra el evento aquí, para evitar registrarlos más de una vez en la actividad (en caso de que sea recreada)
+        firebaseAnalytics("about_app_shown") // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
         log("Launched AboutActivity")
     }
 
