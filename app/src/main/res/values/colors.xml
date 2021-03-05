@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Colores del tema de la app -->
+    <!-- Colors of the app theme -->
     <color name="colorPrimary">#00838f</color>
     <color name="colorAccent">#00838f</color>
     <color name="colorPrimaryDark">#00796B</color>
