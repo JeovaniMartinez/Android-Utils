@@ -14,7 +14,7 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.graphics.rotate
-import com.jeovanimartinez.androidutils.extensions.graphics.trimByEdgeColor
+import com.jeovanimartinez.androidutils.extensions.graphics.trimByBorderColor
 import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
@@ -154,7 +154,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
         textCanvas.drawText(text, absDx, fontHeightAscent + absDy, paint)
 
-        val finalTextBitmap = textBitmap.trimByEdgeColor()
+        val finalTextBitmap = textBitmap.trimByBorderColor()
 
         val c = Canvas(baseBitmap)
         c.drawText(text, 10f, fontHeightAscent + 10, paint)

@@ -8,13 +8,13 @@ import android.graphics.Matrix
 import androidx.annotation.ColorInt
 
 /**
- * Conjunto de extensiones para la clase Bitmap
+ * Set of extensions for the Bitmap class.
  * */
 
 /**
- * Gira un mapa de bits los grados indicados..
- * @param degrees Grados que se va a rotar el bitmap.
- * @return Un nuevo bitmap idéntico al original con la rotación aplicada.
+ * Rotate a bitmap the indicated degrees.
+ * @param degrees Degrees that the bitmap is to be rotated.
+ * @return A new bitmap with the rotation applied.
  * */
 fun Bitmap.rotate(degrees: Float): Bitmap {
     val matrix = Matrix()
@@ -22,13 +22,13 @@ fun Bitmap.rotate(degrees: Float): Bitmap {
     return Bitmap.createBitmap(this, 0, 0, this.width, this.height, matrix, true)
 }
 
-// Referencia: https://stackoverflow.com/a/49281542
+// Reference: https://stackoverflow.com/a/49281542
 /**
- * Recorta los bordes de un mapa de bits de un color determinado.
- * @param color Color de los bordes a recortar.
- * @return Un nuevo bitmap con los bordes recortados.
+ * Trims the borders of a bitmap of a specific color.
+ * @param color Color of the borders to be trimmed.
+ * @return A new bitmap with the borders trimmed.
  * */
-fun Bitmap.trimByEdgeColor(@ColorInt color: Int = Color.TRANSPARENT): Bitmap {
+fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT): Bitmap {
 
     var top = height
     var bottom = 0
