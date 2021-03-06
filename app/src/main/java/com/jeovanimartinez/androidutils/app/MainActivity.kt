@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.about.AboutAppConfig
+import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
-import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.filesystem.tempfiles.TempFiles
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
             //testViewToImage(this@MainActivity, viewDemo, R.font.fugaz_one_regular)
 
-            val d = WatermarkPosition.BOTTOM_CENTER
+            //val d = WatermarkPosition.BOTTOM_CENTER
             toggleTheme.alpha
         }, 200)
 
@@ -164,9 +164,7 @@ class MainActivity : AppCompatActivity() {
                 termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link,
                 termsAndPrivacyPolicyTextColor = getColorCompat(R.color.colorTermsAndPrivacyPolicyText),
                 showOpenSourceLicenses = true,
-                taskDescriptionTitle = R.string.app_name,
-                taskDescriptionIcon = R.mipmap.ic_launcher,
-                taskDescriptionColor = getColorCompat(R.color.colorBackground)
+                TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
             )
 
             AboutApp.show(this@MainActivity, aboutAppConfig)

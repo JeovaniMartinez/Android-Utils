@@ -20,7 +20,6 @@ import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
-import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
 import com.jeovanimartinez.androidutils.extensions.nullability.isNull
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
@@ -109,14 +108,8 @@ class AboutActivity : TranslucentActivity() {
     private fun initSetup() {
 
         // Configure the task description (if it is necessary)
-        if (aboutAppConfig.taskDescriptionTitle.isNotNull() && aboutAppConfig.taskDescriptionIcon.isNotNull() && aboutAppConfig.taskDescriptionColor.isNotNull()) {
-            configureTaskDescription(aboutAppConfig.taskDescriptionTitle!!, aboutAppConfig.taskDescriptionIcon!!, aboutAppConfig.taskDescriptionColor!!)
-            AboutApp.log("AboutActivity task description configured by AboutApp options")
-        } else {
-            AboutApp.log(
-                "Is not necessary configure task description " +
-                        "[title = ${aboutAppConfig.taskDescriptionTitle}; icon = ${aboutAppConfig.taskDescriptionIcon}; color = ${aboutAppConfig.taskDescriptionColor}]"
-            )
+        aboutAppConfig.taskDescriptionConfig.whenNotNull {
+            configureTaskDescription(it)
         }
 
         about_progressBar.visibility = View.GONE

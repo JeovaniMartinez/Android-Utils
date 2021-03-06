@@ -39,7 +39,6 @@ object AboutApp : Base<AboutApp>() {
         var backgroundColor = aboutAppConfig.backgroundColor
         var iconsColor = aboutAppConfig.iconsColor
         var termsAndPrivacyPolicyTextColor = aboutAppConfig.termsAndPrivacyPolicyTextColor
-        // aboutAppConfig.taskDescriptionColor It is not necessary, because it value not is mandatory, and it cant be null
 
         // For the null colors, get the default color.
         if (backgroundColor.isNull()) backgroundColor = activity.getColorCompat(R.color.colorBackground)

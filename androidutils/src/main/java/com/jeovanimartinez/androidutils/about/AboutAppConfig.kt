@@ -1,7 +1,7 @@
 package com.jeovanimartinez.androidutils.about
 
 import androidx.annotation.ColorInt
-import androidx.annotation.DrawableRes
+import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 
@@ -21,7 +21,7 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param termsAndPrivacyPolicyTextColor Color for the text of the terms of use and privacy policy, if it is null, the default value is used, which is the color defined in the theme.
  * @param showOpenSourceLicenses Determines whether a button is shown to view the app open source licenses. If true, these https://developers.google.com/android/guides/opensource
  *        instructions must be followed in order to can shown open source licenses.
- * PENDING CHANGE TASK DESCRIPTION PROPERTIES TO OBJECT
+ * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription.
  * */
 data class AboutAppConfig(
     @ColorInt val backgroundColor: Int? = null,
@@ -37,7 +37,5 @@ data class AboutAppConfig(
     @StringOrStringRes val termsAndPrivacyPolicyLink: Any?,
     @ColorInt val termsAndPrivacyPolicyTextColor: Int? = null,
     val showOpenSourceLicenses: Boolean,
-    @StringOrStringRes val taskDescriptionTitle: Any? = null,
-    @DrawableRes val taskDescriptionIcon: Int? = null,
-    @ColorInt val taskDescriptionColor: Int? = null
+    val taskDescriptionConfig: TaskDescriptionConfig? = null,
 )
