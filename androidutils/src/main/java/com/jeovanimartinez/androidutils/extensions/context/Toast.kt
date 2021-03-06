@@ -7,25 +7,25 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 
 /**
- * Conjunto de extensiones de Toast para el el context
+ * Extensions to show toast of short and long duration.
  * */
 
-/** Muestra un toast de corta duración con el [message] indicado (el mensaje debe ser el id del recurso) */
+/** Show a short toast with the indicated [message] (the message must be the string resource ID) */
 fun Context.shortToast(@StringRes message: Int) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-/** Muestra un toast de corta duración con el [message] indicado (el mensaje debe ser un string) */
+/** Show a short toast with the indicated [message] (the message must be a String) */
 fun Context.shortToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
-/** Muestra un toast de larga duración con el [message] indicado (el mensaje debe ser el id del recurso) */
+/** Show a long toast with the indicated [message] (the message must be the string resource ID) */
 fun Context.longToast(@StringRes message: Int) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
-/** Muestra un toast de larga duración con el [message] indicado (el mensaje debe ser un string) */
+/**  Show a long toast with the indicated [message] (the message must be a String) */
 fun Context.longToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
