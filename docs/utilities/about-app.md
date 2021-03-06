@@ -33,9 +33,7 @@ val aboutAppConfig = AboutAppConfig(
     termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link,
     termsAndPrivacyPolicyTextColor = getColorCompat(R.color.colorTermsAndPrivacyPolicyText),
     showOpenSourceLicenses = true,
-    taskDescriptionTitle = R.string.app_name,
-    taskDescriptionIcon = R.mipmap.ic_launcher,
-    taskDescriptionColor = getColorCompat(R.color.colorBackground)
+    TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
 )
 ```
 
