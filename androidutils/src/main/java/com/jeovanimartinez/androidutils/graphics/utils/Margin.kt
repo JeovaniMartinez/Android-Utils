@@ -3,24 +3,24 @@
 package com.jeovanimartinez.androidutils.graphics.utils
 
 /**
- * Configuración de márgenes.
- * @param top Margen superior.
- * @param right Margen derecho.
- * @param bottom Margen inferior.
- * @param left Margen izquierdo.
+ * Margin configuration.
+ * @param top Top margin.
+ * @param right Right margin.
+ * @param bottom Bottom margin.
+ * @param left Left margin.
  * */
 data class Margin(val top: Float, val right: Float, val bottom: Float, val left: Float) {
 
     /**
-     * Configuración de márgenes.
-     * @param all Valor para aplicar a todos los márgenes (superior, derecho, inferior e izquierdo).
+     * Margin configuration.
+     * @param all Value to apply to all margins (top, right, bottom e left).
      * */
     constructor(all: Float) : this(all, all, all, all)
 
     /**
-     * Configuración de márgenes.
-     * @param vertical Valor para el margen superior e inferior.
-     * @param horizontal Valor para el margen derecho e izquierdo.
+     * Margin configuration.
+     * @param vertical Value for the top and bottom margin.
+     * @param horizontal Value for the right and left margin.
      * */
     constructor(vertical: Float, horizontal: Float) : this(vertical, horizontal, vertical, horizontal)
 
