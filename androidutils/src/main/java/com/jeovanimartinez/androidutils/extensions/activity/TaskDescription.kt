@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 
@@ -44,4 +45,14 @@ fun Activity.configureTaskDescription(@StringOrStringRes title: Any, @DrawableRe
 
     // No have support for versions prior to Android 5
 
+}
+
+/**
+ * Configure the activity TaskDescription, it works from Android 5 onwards and adjusts the config automatically
+ * for the different versions of Android.
+ *
+ * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription.
+ * */
+fun Activity.configureTaskDescription(taskDescriptionConfig: TaskDescriptionConfig) {
+    configureTaskDescription(taskDescriptionConfig.title, taskDescriptionConfig.icon, taskDescriptionConfig.color)
 }
