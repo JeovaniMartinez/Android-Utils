@@ -3,47 +3,22 @@
 package com.jeovanimartinez.androidutils.extensions.nullability
 
 /**
- * Conjunto de extensiones para trabajar con la seguridad contra nulos
+ * Extensions to work with null values and with null safety.
  * */
 
-// Referencia: https://discuss.kotlinlang.org/t/let-vs-if-not-null/3542/2
+// Reference: https://discuss.kotlinlang.org/t/let-vs-if-not-null/3542/2
 /**
- * Ejecuta el código del bloque solo si la variable no es null. Dentro de la función, siempre usar it para hacer referencia al valor de la variable. Por ejemplo:
+ * Execute the code block only if the variable is not null. Inside the function, always use `it` to refer to the value of the variable.
  * ```
+ *  For example:
  *  demo.whenNotNull {
- *      // Usar siempre it en lugar del nombre de la variable, ya que la variable puede ser null, it nunca lo va a ser si entra al bloque
+ *      // Always use `it` instead of the variable name, since the variable can be null, `it` will never be null if it enters the code block.
  *      Log.d("Check Nullability", it)
  *  }
  *  ```
- * Funciona de igual manera si se llama con el operador de llamada segura (?) o sin el (demo.whenNotNull es equivalente a demo?.whenNotNull).
- * Para efectos prácticos, se recomienda llamar sin el aperador de llamada segura.
+ * It works the same whether it is called with the safe call operator (?) or without it (demo.whenNotNull is equivalent to demo?.whenNotNull).
+ * But it is always recommended to call without the safe call operator (demo.whenNotNull { ... })
  * */
 fun <T : Any> T?.whenNotNull(f: (it: T) -> Unit) {
     if (this != null) f(this)
-}
-
-/**
- * Verifica si la variable es null. Devuelve true si la variable es null, y false si la variable no es null.
- * Invocar siempre sin el operador de llamada segura (?).
- * ```
- * Ejemplos:
- *          val a: String? = null // a.isNull() = true
- *          val b: String? = "demo" // b.isNull() = false
- * ```
- * */
-fun Any?.isNull(): Boolean {
-    return this == null
-}
-
-/**
- * Verifica si la variable es null. Si la variable es null devuelve false, si no es null devuelve true.
- * Invocar siempre sin el operador de llamada segura (?).
- * ```
- * Ejemplos:
- *          val a: String? = null // a.isNotNull() = false
- *          val b: String? = "demo" // b.isNotNull() = true
- * ```
- * */
-fun Any?.isNotNull(): Boolean {
-    return this != null
 }
