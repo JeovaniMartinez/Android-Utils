@@ -10,7 +10,7 @@ import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.nullability.isNull
 
 /**
- * Utility to show an app about activity.
+ * Utility to show an about app activity.
  * */
 object AboutApp : Base<AboutApp>() {
 

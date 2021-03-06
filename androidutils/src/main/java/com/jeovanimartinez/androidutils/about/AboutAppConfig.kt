@@ -21,7 +21,7 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param termsAndPrivacyPolicyTextColor Color for the text of the terms of use and privacy policy, if it is null, the default value is used, which is the color defined in the theme.
  * @param showOpenSourceLicenses Determines whether a button is shown to view the app open source licenses. If true, these https://developers.google.com/android/guides/opensource
  *        instructions must be followed in order to can shown open source licenses.
- * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription.
+ * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription, leave null if it is not required.
  * */
 data class AboutAppConfig(
     @ColorInt val backgroundColor: Int? = null,
