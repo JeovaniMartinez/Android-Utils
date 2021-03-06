@@ -13,21 +13,21 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 
 /**
- * Conjunto de extensiones para trabajar con los recursos dentro del context.
+ * Set of extensions to work with resources within the context.
  * */
 
-/** Obtiene un color de los recursos en base a su id mediante ResourcesCompat.getColor() */
+/** Get a color from the resources based on their ID using ResourcesCompat.getColor() */
 @ColorInt
 fun Context.getColorCompat(@ColorRes id: Int): Int {
     return ResourcesCompat.getColor(this.resources, id, this.theme)
 }
 
-/** Obtiene un drawable de los recursos en base a su id mediante AppCompatResources.getDrawable() */
+/** Get a Drawable from the resources based on their ID using AppCompatResources.getDrawable() */
 fun Context.getDrawableCompat(@DrawableRes id: Int): Drawable? {
     return AppCompatResources.getDrawable(this, id)
 }
 
-/** Obtiene una fuente de los recursos en base a su id mediante ResourcesCompat.getFont() */
+/** Get a font from the resources based on their ID using ResourcesCompat.getFont() */
 fun Context.getFontCompat(@FontRes id: Int) : Typeface? {
     return ResourcesCompat.getFont(this, id)
 }
