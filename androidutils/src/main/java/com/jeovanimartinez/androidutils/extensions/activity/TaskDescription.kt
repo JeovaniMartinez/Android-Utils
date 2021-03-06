@@ -12,7 +12,7 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 
 /**
- * Extension to configure activities TaskDescription
+ * Extensions to configure activities TaskDescription
  * */
 
 /**
