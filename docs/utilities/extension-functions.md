@@ -43,7 +43,7 @@ Extensions to show toast of short and long duration.
 
 ### TypeOrResource.kt
 
-Set of extensions to parse a value as a data type, or to get the value of resources.
+Set of extensions to parse a value as a data type, or to get the value from resources.
 
 ---
 
