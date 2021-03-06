@@ -18,10 +18,10 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 /**
  * Configure the activity TaskDescription, it works from Android 5 onwards and adjusts the config automatically
  * for the different versions of Android.
- * @param title Title for the description, string or resource ID.
- * @param icon ícono a mostrar (id del recurso), debe ser una imagen PNG, si el id del recurso es un SVG, no se va a aplicar
- *        y se va a mostrar el ícono de la app.
- * @param color color-int de fondo para la barra.
+ *
+ * @param title Title for the task description, string or resource ID.
+ * @param icon Icon to show (resource id), it must be a PNG image, if the resource id is SVG, it will not be applied and the app icon will be shown.
+ * @param color Color-int for the background.
  * */
 fun Activity.configureTaskDescription(@StringOrStringRes title: Any, @DrawableRes icon: Int, @ColorInt color: Int) {
 
