@@ -20,7 +20,6 @@ import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
-import com.jeovanimartinez.androidutils.extensions.nullability.isNull
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
@@ -150,7 +149,7 @@ class AboutActivity : TranslucentActivity() {
         about_appName.text = typeAsString(aboutAppConfig.appName)
         about_authorName.text = typeAsString(aboutAppConfig.authorName)
         about_companyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
-        if (aboutAppConfig.termsAndPrivacyPolicyLink.isNull()) {
+        if (aboutAppConfig.termsAndPrivacyPolicyLink == null) {
             about_termsAndPolicy.visibility = View.GONE
             val openSourceLParams = about_openSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
             openSourceLParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT

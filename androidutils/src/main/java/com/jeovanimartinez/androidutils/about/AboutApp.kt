@@ -7,7 +7,6 @@ import android.os.Build
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
-import com.jeovanimartinez.androidutils.extensions.nullability.isNull
 
 /**
  * Utility to show an about app activity.
@@ -41,9 +40,9 @@ object AboutApp : Base<AboutApp>() {
         var termsAndPrivacyPolicyTextColor = aboutAppConfig.termsAndPrivacyPolicyTextColor
 
         // For the null colors, get the default color.
-        if (backgroundColor.isNull()) backgroundColor = activity.getColorCompat(R.color.colorBackground)
-        if (iconsColor.isNull()) iconsColor = activity.getColorCompat(R.color.colorIcon)
-        if (termsAndPrivacyPolicyTextColor.isNull()) termsAndPrivacyPolicyTextColor = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText)
+        if (backgroundColor == null) backgroundColor = activity.getColorCompat(R.color.colorBackground)
+        if (iconsColor == null) iconsColor = activity.getColorCompat(R.color.colorIcon)
+        if (termsAndPrivacyPolicyTextColor == null) termsAndPrivacyPolicyTextColor = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText)
 
         // The final configuration object is generated and assigned to the singleton to be able to use the data in the AboutActivity
         currentConfig = aboutAppConfig.copy(backgroundColor = backgroundColor, iconsColor = iconsColor, termsAndPrivacyPolicyTextColor = termsAndPrivacyPolicyTextColor)

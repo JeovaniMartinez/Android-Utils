@@ -15,7 +15,6 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.graphics.rotate
 import com.jeovanimartinez.androidutils.extensions.graphics.trimByBorderColor
-import com.jeovanimartinez.androidutils.extensions.nullability.isNotNull
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition.*
@@ -116,7 +115,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
         var watermarkShadow = watermark.shadow ?: WatermarkShadow(0f, 0f, 0f, Color.TRANSPARENT)
 
-        if (watermark.measurementDimension == Dimension.DP && watermark.shadow.isNotNull()) {
+        if (watermark.measurementDimension == Dimension.DP && watermark.shadow != null) {
             watermarkShadow = WatermarkShadow(
                 context.dp2px(watermarkShadow.radius).toFloat(),
                 context.dp2px(watermarkShadow.dx).toFloat(),
