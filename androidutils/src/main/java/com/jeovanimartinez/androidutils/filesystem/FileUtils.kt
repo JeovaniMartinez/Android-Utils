@@ -87,7 +87,10 @@ object FileUtils : Base<FileUtils>() {
      * @param context Context.
      * @param fileName Name for the file, must include the extension.
      * @param path Absolute path to create the file, if it is null, it is created in the temp files directory.
+     *
+     * @throws IOException If an I/O error occurs.
      * */
+    @Throws(IOException::class)
     private fun generateFile(context: Context, fileName: String, path: String?): File {
         // Generate file in the path
         val file = if (path == null) File(context.filesDir, "${TempFiles.TEMP_FILES_DIR}/$fileName") // If path is null, use the temp files dir
