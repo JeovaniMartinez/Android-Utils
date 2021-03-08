@@ -2,12 +2,17 @@ package com.jeovanimartinez.androidutils.reviews.rateinapp
 
 import android.app.Activity
 import android.app.ActivityOptions
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import com.jeovanimartinez.androidutils.reviews.RateApp
 import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -398,6 +403,45 @@ object RateInApp : Base<RateInApp>() {
 
         log("updatePreferencesOnFlowShown() Done")
 
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Utilidad alternativa para calificar la app, se encarga de dirigir al usuario a la página de la app en Google Play
+
+    // Referencia: https://stackoverflow.com/a/10816846
+    /**
+     * Dirige al usuario a los detalles de la aplicación en Google Play para que pueda calificar la aplicación.
+     * Si es posible, se abre la aplicación directamente en la app de Google Play, en caso de no ser posible, se abre
+     * en el navegador, si tampoco es posible, muestra un toast con un mensaje.
+     *
+     * @param activity actividad desde donde se llama, se usa para iniciar otras actividades
+     * */
+    fun goToRateInGooglePlay(activity: Activity) {
+        val marketUriString = "market://details?id=${activity.packageName}"
+        val uri = Uri.parse(marketUriString)
+        val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
+        googlePlayIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+        try {
+            activity.startActivity(googlePlayIntent) // Se intenta mostrar en la app de google play
+            RateApp.log("Sent user to view app details in google play app [$marketUriString]")
+            RateApp.firebaseAnalytics("rate_app_sent_to_google_play_app", null)
+        } catch (e1: ActivityNotFoundException) {
+            try {
+                // Si no se puede mostrar en la app de google play, se intenta abrir en el navegador web
+                val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
+                activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
+                RateApp.log("Sent user to view app details in google play on web browser [$webUriString]")
+                RateApp.firebaseAnalytics("rate_app_sent_to_google_play_web", null)
+            } catch (e2: ActivityNotFoundException) {
+                // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
+                activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
+                RateApp.logw("Unable to send user to app details, google play app and web browser are not available", e2)
+                RateApp.firebaseAnalytics("rate_app_unable_to_show_on_google_play", null)
+            }
+        }
     }
 
 }
