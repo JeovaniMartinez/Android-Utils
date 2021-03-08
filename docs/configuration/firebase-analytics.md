@@ -88,23 +88,6 @@ It is not possible to direct the user to the developer page, since the URL could
 ### RateApp
 
 ---
-<Event>rate_app_sent_to_google_play_app</Event><br/>
-The user is directed to the Google Play app to rate the application.
-
----
-<Event>rate_app_sent_to_google_play_web</Event><br/>
-The user is directed to the Google Play website to rate the app, as it was not possible to direct them to the Google Play app.
-
----
-<Event>rate_app_unable_to_show_on_google_play</Event><br/>
-The user cannot be directed to the Google Play app or the website to rate the app.
-
----
-<br/>
-
-### RateInApp
-
----
 <Event>rate_app_review_flow_successful</Event><br/>
 The flow to invite the user to rate the app was successfully obtained.
 
@@ -126,6 +109,18 @@ The dialog to rate the app was shown, it only applies in versions prior to Andro
 
 ---
 The count of flow requested can be calculated by summing the `rate_app_review_flow_successful`, `rate_app_request_review_flow_error` and `rate_app_review_flow_failure`.
+
+---
+<Event>rate_app_sent_to_google_play_app</Event><br/>
+The user is directed to the Google Play app to rate the application.
+
+---
+<Event>rate_app_sent_to_google_play_web</Event><br/>
+The user is directed to the Google Play website to rate the app, as it was not possible to direct them to the Google Play app.
+
+---
+<Event>rate_app_unable_to_show_on_google_play</Event><br/>
+The user cannot be directed to the Google Play app or the website to rate the app.
 
 ---
 <br/>
