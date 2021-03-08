@@ -1,4 +1,4 @@
-package com.jeovanimartinez.androidutils.reviews.rateinapp
+package com.jeovanimartinez.androidutils.reviews
 
 import android.content.Context
 import android.os.Build
@@ -9,7 +9,6 @@ import android.view.Window
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
 import com.jeovanimartinez.androidutils.R
-import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
 import kotlinx.android.synthetic.main.activity_rate_app.*
 
@@ -24,11 +23,11 @@ class RateAppActivity : TranslucentActivity() {
 
         initSetup()
 
-        RateInApp.log("Started RateAppActivity")
+        RateApp.log("Started RateAppActivity")
     }
 
     override fun onBackPressed() {
-        RateInApp.log("User clicked back button")
+        RateApp.log("User clicked back button")
         super.onBackPressed()
     }
 
@@ -36,31 +35,31 @@ class RateAppActivity : TranslucentActivity() {
     private fun initSetup() {
         configureTopShapeBackground()
 
-        rateApp_noThanks.visibility = if (RateInApp.showNeverAskAgainButton) View.VISIBLE else View.GONE
+        rateApp_noThanks.visibility = if (RateApp.showNeverAskAgainButton) View.VISIBLE else View.GONE
 
         rateApp_rateNow.setOnClickListener {
-            RateInApp.log("User clicked rateApp_rateNow button")
+            RateApp.log("User clicked rateApp_rateNow button")
             RateApp.goToRateInGooglePlay(this@RateAppActivity) // Se usa la utilidad para dirigir al usuario Google Play
             supportFinishAfterTransition() // Necesario para que se muestre la transición de salida
         }
 
         rateApp_later.setOnClickListener {
-            RateInApp.log("User clicked rateApp_later button")
+            RateApp.log("User clicked rateApp_later button")
             supportFinishAfterTransition()
         }
 
         rateApp_noThanks.setOnClickListener {
 
-            RateInApp.log("User clicked rateApp_noThanks button")
+            RateApp.log("User clicked rateApp_noThanks button")
 
             /*
             * Se guarda la preferencia de no mostrar nuevamente el diálogo
-            * Se debe usar las mismas claves que en RateInApp.Preferences, solo que aquí se usan directamente para evitar
-            * exponer RateInApp.Preferences y dejarlo privado. Si cambia alguna clave en el objeto RateInApp.Preferences, ajustarla aquí también
+            * Se debe usar las mismas claves que en RateApp.Preferences, solo que aquí se usan directamente para evitar
+            * exponer RateApp.Preferences y dejarlo privado. Si cambia alguna clave en el objeto RateApp.Preferences, ajustarla aquí también
             * */
             val sharedPreferences = getSharedPreferences("rate_in_app_preferences", Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
             sharedPreferences.edit().putBoolean("rate_in_app_never_show_again", true).apply()
-            RateInApp.log("Set rate_in_app_never_show_again to true and saved in preferences")
+            RateApp.log("Set rate_in_app_never_show_again to true and saved in preferences")
 
             supportFinishAfterTransition()
         }

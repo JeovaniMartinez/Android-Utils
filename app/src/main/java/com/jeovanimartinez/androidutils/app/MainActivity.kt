@@ -1,7 +1,9 @@
 package com.jeovanimartinez.androidutils.app
 
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -15,22 +17,21 @@ import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
-import com.jeovanimartinez.androidutils.filesystem.tempfiles.TempFiles
+import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
 import com.jeovanimartinez.androidutils.reviews.RateApp
-import com.jeovanimartinez.androidutils.reviews.rateinapp.RateInApp
 import com.jeovanimartinez.androidutils.watermark.Watermark
 import com.jeovanimartinez.androidutils.watermark.WatermarkUtils
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
-import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var rateInAppConfigured = false
+    private var rateAppConfigured = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,15 +41,33 @@ class MainActivity : AppCompatActivity() {
 
         initSetup()
 
+
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
 
         Handler(Looper.getMainLooper()).postDelayed({
+            try {
+                val bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888)
+                val c = Canvas(bitmap)
+                c.drawColor(Color.BLUE)
+                c.drawText("Nueva prueba", 100f, 100f, Paint().apply { color= Color.BLACK; textSize = 100f })
 
-            //testViewToImage(this@MainActivity, viewDemo, R.font.fugaz_one_regular)
 
-            //val d = WatermarkPosition.BOTTOM_CENTER
-            toggleTheme.alpha
-        }, 200)
+
+                FileUtils.saveBitmapToFile(
+                    this@MainActivity,
+                    bitmap,
+                    "test2",
+                     "/storage/emulated/0/",
+                    Bitmap.CompressFormat.PNG,
+                100
+                )
+            } catch (e: IOException) {
+                shortToast("ERROR")
+                e.printStackTrace()
+            }
+
+
+        }, 10)
 
 
         val shape = GradientDrawable()
@@ -85,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         WatermarkUtils.drawWatermarks(this@MainActivity, bitmap, arrayListOf(tw, watermark))
-        TempFiles.saveBitmapToFile(this@MainActivity, bitmap, "Test1")
+        //FileUtils.saveBitmapToFile(this@MainActivity, bitmap, "Test1")
 
     }
 
@@ -120,9 +139,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Iniciar y configurar la utilidad para mostrar el flujo para calificar la app
-        initRateInApp.setOnClickListener {
+        initRateApp.setOnClickListener {
 
-            RateInApp.apply {
+            RateApp.apply {
                 minInstallElapsedDays = 10
                 minInstallLaunchTimes = 10
                 minRemindElapsedDays = 2
@@ -131,19 +150,19 @@ class MainActivity : AppCompatActivity() {
                 showNeverAskAgainButton = true
             }.init(this@MainActivity)
 
-            rateInAppConfigured = true
+            rateAppConfigured = true
 
         }
 
         // Muestra el flujo para calificar la app (si se cumplen las condiciones de la configuración)
-        checkAndShowRateInApp.setOnClickListener {
+        checkAndShowRateApp.setOnClickListener {
 
-            if (!rateInAppConfigured) {
-                shortToast("Please initialize RateInApp before to click this button")
+            if (!rateAppConfigured) {
+                shortToast("Please initialize RateApp before to click this button")
                 return@setOnClickListener
             }
 
-            RateInApp.checkAndShow(this@MainActivity)
+            RateApp.checkAndShow(this@MainActivity)
 
         }
 
@@ -173,7 +192,14 @@ class MainActivity : AppCompatActivity() {
 
         openUrl.setOnClickListener {
 
-            SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com", "jedemm_website")
+            val bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888)
+            val c = Canvas(bitmap)
+            c.drawColor(Color.RED)
+            FileUtils.saveBitmapToFile(this@MainActivity, bitmap)
+
+            //FileUtils.saveBitmapToFile(this@MainActivity, bitmap, "jeo.jpeg", "/otro//")
+
+            //SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com", "jedemm_website")
 
             // Modo compacto
             //SystemWebBrowser.openUrl(this@MainActivity, "https://jedemm.com")

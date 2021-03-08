@@ -7,7 +7,7 @@
     android:layout_height="250dp"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".reviews.rateinapp.RateAppActivity">
+    tools:context=".reviews.RateAppActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rateApp_topShape"

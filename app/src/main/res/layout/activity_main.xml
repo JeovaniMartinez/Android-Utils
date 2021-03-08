@@ -40,19 +40,19 @@
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/initRateInApp"
+                android:id="@+id/initRateApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Init RateInApp"
+                android:text="Init RateApp"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/checkAndShowRateInApp"
+                android:id="@+id/checkAndShowRateApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Check and show RateInApp"
+                android:text="Check and show RateApp"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton

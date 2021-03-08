@@ -134,7 +134,7 @@ configureWindowDim(dialog.window)
 
 #
 
-### RateInApp 
+### RateApp 
 Utilidad para iniciar un flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación (Cantos días tiene instalada, cuantas veces se ha iniciado, etc.).
 Para Android 5.0 (API 21) y posteriores, se utiliza Google Play In-App Review API, por lo que se puede calificar dentro de la aplicación.
 Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es dirigido a los detalles de la aplicación en Google Play.
@@ -145,7 +145,7 @@ Ejemplo de uso:
 
 En el `onCreate()` del singleton de la app o de la actividad principal, hay que establecer los valores de configuración e inicializar la utilidad pasando un contexto. Es muy importante hacerlo solo una vez en la app, ya que en ese momento se contabilizan las veces que ha iniciado el usuario la aplicación. (Consultar la documentación para ver la función de cada parámetro de la configuración).
 ```Kotlin
-RateInApp.apply {
+RateApp.apply {
     minInstallElapsedDays = 10
     minInstallLaunchTimes = 10
     minRemindElapsedDays = 2
@@ -157,7 +157,7 @@ RateInApp.apply {
 
 Ya que se ha configurado la utilidad, llamar al siguiente método en el momento en el que se quiera mostrar el flujo para calificar, el flujo se mostrará solo si se cumplen las condiciones especificadas en la configuración.
 ```Kotlin
-RateInApp.checkAndShow(activity)
+RateApp.checkAndShow(activity)
 ```
 **[Documentación ](docs/androidutils/com.jeovanimartinez.androidutils.reviews.rateinapp/-rate-in-app/index.md)**
 
