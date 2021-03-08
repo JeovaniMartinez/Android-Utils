@@ -16,7 +16,7 @@ licenses, the license terms and the privacy policy. The activity is optimized to
 
 First you need to create a configuration object.
 
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.html#%5Bcom.jeovanimartinez.androidutils.about%2FAboutAppConfig%2FappIcon%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F371564532" target="_blank"><b>[ Configuration parameters  ]</b></a>
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
 
 ```kotlin
 val aboutAppConfig = AboutAppConfig(
