@@ -3,6 +3,7 @@ $dokka.linkExtension:html
 
 com.jeovanimartinez.androidutils
 com.jeovanimartinez.androidutils.about
+com.jeovanimartinez.androidutils.activity.config
 com.jeovanimartinez.androidutils.annotations
 com.jeovanimartinez.androidutils.extensions.activity
 com.jeovanimartinez.androidutils.extensions.basictypes
@@ -11,11 +12,10 @@ com.jeovanimartinez.androidutils.extensions.dimension
 com.jeovanimartinez.androidutils.extensions.graphics
 com.jeovanimartinez.androidutils.extensions.nullability
 com.jeovanimartinez.androidutils.extensions.view
-com.jeovanimartinez.androidutils.filesystem.tempfiles
+com.jeovanimartinez.androidutils.filesystem
 com.jeovanimartinez.androidutils.graphics.utils
 com.jeovanimartinez.androidutils.moreapps
 com.jeovanimartinez.androidutils.reviews
-com.jeovanimartinez.androidutils.reviews.rateinapp
 com.jeovanimartinez.androidutils.themes.translucent
 com.jeovanimartinez.androidutils.views.viewtoimage
 com.jeovanimartinez.androidutils.watermark

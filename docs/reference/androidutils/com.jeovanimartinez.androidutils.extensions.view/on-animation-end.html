@@ -25,7 +25,7 @@
         <div id="leftToggler"><span class="icon-toggler"></span></div>
         <script type="text/javascript" src="../../scripts/pages.js"></script>
         <script type="text/javascript" src="../../scripts/main.js"></script>
-        <div class="main-content" id="content" pageIds="com.jeovanimartinez.androidutils.extensions.view//onAnimationEnd/android.view.ViewPropertyAnimator#kotlin.Function1[android.animation.Animator,kotlin.Unit]/PointingToDeclaration//371564532">
+        <div class="main-content" id="content" pageIds="com.jeovanimartinez.androidutils.extensions.view//onAnimationEnd/android.view.ViewPropertyAnimator#kotlin.Function1[android.animation.Animator,kotlin.Unit]/PointingToDeclaration//140535929">
           <div class="navigation-wrapper" id="navigation-wrapper">
             <div class="breadcrumbs"><a href="../index.html">androidutils</a>/<a href="index.html">com.jeovanimartinez.androidutils.extensions.view</a>/<a href="on-animation-end.html">onAnimationEnd</a></div>
             <div class="pull-right d-flex">
@@ -41,7 +41,7 @@
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div class="symbol monospace">inline fun <a href="https://developer.android.com/reference/kotlin/android/view/ViewPropertyAnimator.html">ViewPropertyAnimator</a>.<a href="on-animation-end.html">onAnimationEnd</a>(crossinline continuation: (<a href="https://developer.android.com/reference/kotlin/android/animation/Animator.html">Animator</a>) -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<p class="paragraph">Callback para cuando finaliza la animación. Es importante llamar siempre a esta función cuando se modifique la animación de una vista, incluso si no se requiere hacer nada cuando finalize la animación, esto con el fin de reemplazar el callback existente y evitar que se ejecute el código de otro callback de una animación ejecutada anteriormente en la vista.</p></div>
+<p class="paragraph">Callback for when the animation ends.</p><p class="paragraph">It is very important to always call this function when the animation of a view is modified, even if nothing is required to be done when the animation ends, this in order to replace the existing callback and prevent the code of previous callback from being executed. For example:</p><div class="sample-container"><code class="" theme="idea"><pre>    // Show a toast on animation end.<br>    demo.animate().translationX(0f).onAnimationEnd {  shortToast(&quot;Hello&quot;) }<br><br>    // Don't do it this way, if you don't call .onAnimationEnd { }<br>    // The previous callback will be executed and the toast will be shown<br>    demo.animate().translationX(10f)<br><br>    // Correct way to animate again.<br>    demo.animate().translationX(10f).onAnimationEnd { }</pre></code></div></div>
         </div>
         <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
       </div>
