@@ -15,9 +15,13 @@ Utility to direct the user to the app developer page on Google Play, usually use
 
 ## Usage
 
+1.- Set the developer id.
+
 ```kotlin
-MoreAppsGPlay.apply { developerId = "GitHub" }.showAppList(activity)
+MoreAppsGPlay.apply { developerId = "GitHub" }
 ```
+
+2.- Go to Google Play to the list of apps from the developer.
 
 ```kotlin
 MoreAppsGPlay.showAppList(activity)
