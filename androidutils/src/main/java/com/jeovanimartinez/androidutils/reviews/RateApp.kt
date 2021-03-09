@@ -38,7 +38,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of days required since the app was installed to be able to show the flow, it is used in combination with minInstallLaunchTimes,
-     * and both conditions must be fulfilled to show the flow, the minimum value is 0 (it is shown from that same day).
+     * and both conditions must be met to show the flow, the minimum value is 0 (it is shown from that same day).
      * */
     var minInstallElapsedDays = 10
         set(value) {
@@ -47,7 +47,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of times the app must have been launched since it was installed to be able to show the flow, it is used in combination with
-     * minInstallElapsedDays, and both conditions must be fulfilled to show the flow, the minimum value is 1 (shown from first launch).
+     * minInstallElapsedDays, and both conditions must be met to show the flow, the minimum value is 1 (shown from first launch).
      * */
     var minInstallLaunchTimes = 10
         set(value) {
@@ -56,7 +56,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of days required since the flow was shown to show it again, it is used in combination with minRemindLaunchTimes, and both
-     * conditions must be fulfilled to show the flow, the minimum value is 0 (it is shown from that same day).
+     * conditions must be met to show the flow, the minimum value is 0 (it is shown from that same day).
      * */
     var minRemindElapsedDays = 2
         set(value) {
@@ -65,7 +65,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of times the app must have been launched since it showed the flow to show it again, it is used in combination with
-     * minRemindElapsedDays, and both conditions must be fulfilled to show the flow, the minimum value is 1 (it is shown from the first launch).
+     * minRemindElapsedDays, and both conditions must be met to show the flow, the minimum value is 1 (it is shown from the first launch).
      * */
     var minRemindLaunchTimes = 4
         set(value) {
@@ -130,7 +130,7 @@ object RateApp : Base<RateApp>() {
     }
 
     /**
-     * Checks if the all conditions to show the flow are fulfilled, and shows the flow only if the all conditions are fulfilled.
+     * Checks if the all conditions to show the flow are met, and shows the flow only if the all conditions are met.
      * @param activity Activity.
      * */
     fun checkAndShow(activity: Activity) {
@@ -224,11 +224,11 @@ object RateApp : Base<RateApp>() {
         )
 
         // Check app launches
-        val launchCounterFulfilled = if (launchCounter < minLaunchTimes) {
-            log("The condition of minimum required launches is not fulfilled, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
+        val launchCounterAreMet = if (launchCounter < minLaunchTimes) {
+            log("The condition of minimum required launches is not met, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
             false
         } else {
-            log("The condition of minimum required launches is fulfilled, current: $launchCounter | required: $minLaunchTimes")
+            log("The condition of minimum required launches is met, current: $launchCounter | required: $minLaunchTimes")
             true
         }
 
@@ -236,7 +236,7 @@ object RateApp : Base<RateApp>() {
         val elapsedDays = ((Date().time - lastShowDateValue) / TimeUnit.DAYS.toMillis(1)).toInt()
         log("Elapsed days between last date of flow to rate app showed and today is: $elapsedDays")
 
-        var elapsedDaysFulfilled = false // Initial value
+        var elapsedDaysAreMet = false // Initial value
 
         // If the elapsed days are negative, it indicates an alteration in the date of the device, so the value of LAST_SHOW_DATE is reset
         if (elapsedDays < 0) {
@@ -244,25 +244,25 @@ object RateApp : Base<RateApp>() {
             log("Elapsed days ($elapsedDays) value is negative and invalid, the value is restarted to current date")
         } else {
             // Check elapsed days
-            elapsedDaysFulfilled = if (elapsedDays < minElapsedDays) {
-                log("The condition of minimum elapsed days is not fulfilled, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
+            elapsedDaysAreMet = if (elapsedDays < minElapsedDays) {
+                log("The condition of minimum elapsed days is not met, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
                 false
             } else {
-                log("The condition of minimum elapsed days is fulfilled, current: $elapsedDays | required: $minElapsedDays")
+                log("The condition of minimum elapsed days is met, current: $elapsedDays | required: $minElapsedDays")
                 true
             }
         }
 
-        // If any of the conditions are not fulfilled
-        if (!launchCounterFulfilled || !elapsedDaysFulfilled) {
-            log("Not all conditions are fulfilled [launchCounterFulfilled = $launchCounterFulfilled] [elapsedDaysFulfilled = $elapsedDaysFulfilled], " +
+        // If any of the conditions are not met
+        if (!launchCounterAreMet || !elapsedDaysAreMet) {
+            log("Not all conditions are met [launchCounterAreMet = $launchCounterAreMet] [elapsedDaysAreMet = $elapsedDaysAreMet], " +
                          "It is not necessary to show flow to rate app")
             return
         }
 
-        // If all conditions are fulfilled, the flow to rate app must be shown
+        // If all conditions are met, the flow to rate app must be shown
 
-        log("All conditions are fulfilled, the flow to rate app must be shown")
+        log("All conditions are met, the flow to rate app must be shown")
 
         log("The SDK version currently running is: ${Build.VERSION.SDK_INT}")
 
