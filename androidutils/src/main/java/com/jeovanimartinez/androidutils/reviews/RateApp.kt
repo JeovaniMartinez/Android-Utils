@@ -38,7 +38,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of days required since the app was installed to be able to show the flow, it is used in combination with minInstallLaunchTimes,
-     * and both conditions must be met to show the flow, the minimum value is 0 (it is shown from that same day).
+     * and both conditions must be fulfilled to show the flow, the minimum value is 0 (it is shown from that same day).
      * */
     var minInstallElapsedDays = 10
         set(value) {
@@ -47,7 +47,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of times the app must have been launched since it was installed to be able to show the flow, it is used in combination with
-     * minInstallElapsedDays, and both conditions must be met to show the flow, the minimum value is 1 (shown from first launch).
+     * minInstallElapsedDays, and both conditions must be fulfilled to show the flow, the minimum value is 1 (shown from first launch).
      * */
     var minInstallLaunchTimes = 10
         set(value) {
@@ -56,7 +56,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of days required since the flow was shown to show it again, it is used in combination with minRemindLaunchTimes, and both
-     * conditions must be met to show the flow, the minimum value is 0 (it is shown from that same day).
+     * conditions must be fulfilled to show the flow, the minimum value is 0 (it is shown from that same day).
      * */
     var minRemindElapsedDays = 2
         set(value) {
@@ -65,7 +65,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Minimum number of times the app must have been launched since it showed the flow to show it again, it is used in combination with
-     * minRemindElapsedDays, and both conditions must be met to show the flow, the minimum value is 1 (it is shown from the first launch).
+     * minRemindElapsedDays, and both conditions must be fulfilled to show the flow, the minimum value is 1 (it is shown from the first launch).
      * */
     var minRemindLaunchTimes = 4
         set(value) {
@@ -130,7 +130,7 @@ object RateApp : Base<RateApp>() {
     }
 
     /**
-     * Checks if the all conditions to show the flow are met, and shows the flow only if the all conditions are met.
+     * Checks if the all conditions to show the flow are fulfilled, and shows the flow only if the all conditions are fulfilled.
      * @param activity Activity.
      * */
     fun checkAndShow(activity: Activity) {
@@ -150,15 +150,15 @@ object RateApp : Base<RateApp>() {
     }
 
     /**
-     * Genera la instancia para manipular las preferencias y configura las preferencias a los valores predeterminados en caso de que aún no estén configuradas
-     * @param context contexto
+     * Generate the instance to manipulate the preferences and set the preferences to the default values in case they are not already configured.
+     * @param context Context.
      * */
     private fun configurePreferences(context: Context) {
-        sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
+        sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
         if (!sharedPreferences.getBoolean(Preferences.CONFIGURED, false)) {
             with(sharedPreferences.edit()) {
                 putInt(Preferences.LAUNCH_COUNTER, 0)
-                putLong(Preferences.LAST_SHOW_DATE, Date().time) // Al inicio, se configura con la fecha actual, para tener un valor de referencia
+                putLong(Preferences.LAST_SHOW_DATE, Date().time) // In first time, it is set with the current date, to have a reference value
                 putInt(Preferences.FLOW_SHOWN_COUNTER, 0)
                 putBoolean(Preferences.NEVER_SHOW_AGAIN, false)
                 putBoolean(Preferences.CONFIGURED, true)
@@ -170,7 +170,7 @@ object RateApp : Base<RateApp>() {
         }
     }
 
-    /** Actualiza el contador de inicios de la app */
+    /** Update the app launch counter. */
     private fun updateLaunchCounter() {
         val currentValue = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 0)
         val newValue = currentValue + 1
@@ -179,15 +179,15 @@ object RateApp : Base<RateApp>() {
     }
 
     /**
-     * Ejecuta la verificación y muestra el flujo para calificar, llamar cuando se valide que se cumplen todas las condiciones de la configuración,
-     * llamar después de ejecutar las primeras verificaciones en CheckAndShow, las funciones se separaron para mejor estructura del código
-     * @param activity actividad
+     * Execute the verification and show the flow to rate the app, call after executing the first checks in checkAndShow(),
+     * the functions were separated for better code structure.
+     * @param activity Activity.
      * */
     private fun doCheckAndShow(activity: Activity) {
 
         log("doCheckAndShow() Invoked")
 
-        // Primero se carga el valor de cuantas veces se ha mostrado el flujo para calificar
+        // First, preferences for reference values are loaded
         val launchCounter = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 1)
         val lastShowDateValue = sharedPreferences.getLong(Preferences.LAST_SHOW_DATE, 0)
         val lastShowDate = Date(lastShowDateValue)
@@ -198,18 +198,18 @@ object RateApp : Base<RateApp>() {
         val minLaunchTimes: Int
 
         if (flowShowCounter == 0) {
-            // Si el flujo se no se ha mostrado ninguna vez, se asignan los valores según los valores de instalación
+            // If the flow has never shown, the values are assigned according to the installation values
             minElapsedDays = minInstallElapsedDays
             minLaunchTimes = minInstallLaunchTimes
             log("Values configured by install values")
         } else {
-            // Si el flujo ya se ha mostrado al menos una vez, se asignan los valores según los valores de recordatorio
+            // If the flow has already been shown at least once, the values are assigned based on the reminder values
             minElapsedDays = minRemindElapsedDays
             minLaunchTimes = minRemindLaunchTimes
             log("Values configured by remind values")
         }
 
-        // Se muestran los valores con fines de depuración, la fecha se muestra en formato local para su mejor comprensión
+        // Show values for debugging purposes, date is displayed in local format for better understanding
         log(
             """
             Current Values
@@ -223,56 +223,54 @@ object RateApp : Base<RateApp>() {
         """.trimIndent()
         )
 
-        // Se verifica si se cumplen los inicios mínimos requeridos
+        // Check app launches
         val launchCounterFulfilled = if (launchCounter < minLaunchTimes) {
             log("The condition of minimum required launches is not fulfilled, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
             false
         } else {
-            // Se cumplen los inicios requeridos
             log("The condition of minimum required launches is fulfilled, current: $launchCounter | required: $minLaunchTimes")
             true
         }
 
-        // Se calculan los dias transcurridos entre la última fecha que se mostró el mensaje y la fecha actual
+        // Calculate elapsed days between the last date the flow was shown and the current date
         val elapsedDays = ((Date().time - lastShowDateValue) / TimeUnit.DAYS.toMillis(1)).toInt()
         log("Elapsed days between last date of flow to rate app showed and today is: $elapsedDays")
 
-        var elapsedDaysFulfilled = false // Para determinar si se cumple la condición de días transcurridos
+        var elapsedDaysFulfilled = false // Initial value
 
-        // Si los días transcurridos son negativos, indica una alteración en la fecha del dispositivo, por lo que el valor de LAST_SHOW_DATE se restablece
+        // If the elapsed days are negative, it indicates an alteration in the date of the device, so the value of LAST_SHOW_DATE is reset
         if (elapsedDays < 0) {
             sharedPreferences.edit().putLong(Preferences.LAST_SHOW_DATE, Date().time).apply()
             log("Elapsed days ($elapsedDays) value is negative and invalid, the value is restarted to current date")
         } else {
-            // Se verifica si han transcurrido los días mínimos requeridos
+            // Check elapsed days
             elapsedDaysFulfilled = if (elapsedDays < minElapsedDays) {
                 log("The condition of minimum elapsed days is not fulfilled, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
                 false
             } else {
-                // Se cumplen los días transcurridos
                 log("The condition of minimum elapsed days is fulfilled, current: $elapsedDays | required: $minElapsedDays")
                 true
             }
         }
 
-        // Si alguna de las condiciones no se cumplen
+        // If any of the conditions are not fulfilled
         if (!launchCounterFulfilled || !elapsedDaysFulfilled) {
-            log("Not all conditions are fulfilled [launchCounterFulfilled = $launchCounterFulfilled] [elapsedDaysFulfilled = $elapsedDaysFulfilled], It is not necessary to show flow to rate app")
+            log("Not all conditions are fulfilled [launchCounterFulfilled = $launchCounterFulfilled] [elapsedDaysFulfilled = $elapsedDaysFulfilled], " +
+                         "It is not necessary to show flow to rate app")
             return
         }
 
-        // Si se cumplen todas las condiciones, se debe mostrar el flujo para calificar la aplicación
+        // If all conditions are fulfilled, the flow to rate app must be shown
 
         log("All conditions are fulfilled, the flow to rate app must be shown")
 
         log("The SDK version currently running is: ${Build.VERSION.SDK_INT}")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // Para Android 5 y posteriores, donde hay soporte para Google Play In-App Review API
+            // For Android 5 and later, where there is support for Google Play In-App Review API
             log("Let's go to rate with Google Play In-App Review API")
             rateWithInAppReviewApi(activity)
         } else {
-            // Para versiones anteriores a Android 5, donde Google Play In-App Review API no esta disponible
             log("Let's go to rate with Dialog")
             rateWithDialog(activity)
         }
