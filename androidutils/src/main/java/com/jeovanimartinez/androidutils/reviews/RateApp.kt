@@ -27,13 +27,13 @@ object RateApp : Base<RateApp>() {
     private const val RATE_FLOW_MIN_ELAPSED_TIME = 2000 // In milliseconds
 
     /** Object with constants for the preferences. */
-    private object Preferences {
-        const val KEY = "rate_in_app_preferences"
-        const val CONFIGURED = "configured"
-        const val LAUNCH_COUNTER = "rate_in_app_launch_counter"
-        const val LAST_SHOW_DATE = "rate_in_app_last_show_date"
-        const val FLOW_SHOWN_COUNTER = "flow_shown_counter"
-        const val NEVER_SHOW_AGAIN = "rate_in_app_never_show_again" // Applies only for the rate dialog of versions prior to Android 5
+    internal object Preferences {
+        const val KEY = "rate_app_preferences"
+        const val CONFIGURED = "rate_app_configured"
+        const val LAUNCH_COUNTER = "rate_app_launch_counter"
+        const val LAST_SHOW_DATE = "rate_app_last_show_date"
+        const val FLOW_SHOWN_COUNTER = "rate_app_flow_shown_counter"
+        const val NEVER_SHOW_AGAIN = "rate_app_never_show_again" // Applies only for the rate dialog of versions prior to Android 5
     }
 
     /**

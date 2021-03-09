@@ -52,14 +52,9 @@ class RateAppActivity : TranslucentActivity() {
 
             RateApp.log("User clicked rateApp_noThanks button")
 
-            /*
-            * Se guarda la preferencia de no mostrar nuevamente el diálogo
-            * Se debe usar las mismas claves que en RateApp.Preferences, solo que aquí se usan directamente para evitar
-            * exponer RateApp.Preferences y dejarlo privado. Si cambia alguna clave en el objeto RateApp.Preferences, ajustarla aquí también
-            * */
-            val sharedPreferences = getSharedPreferences("rate_in_app_preferences", Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
-            sharedPreferences.edit().putBoolean("rate_in_app_never_show_again", true).apply()
-            RateApp.log("Set rate_in_app_never_show_again to true and saved in preferences")
+            val sharedPreferences = getSharedPreferences(RateApp.Preferences.KEY, Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
+            sharedPreferences.edit().putBoolean(RateApp.Preferences.NEVER_SHOW_AGAIN, true).apply()
+            RateApp.log("Set rate_app_never_show_again to true and saved in preferences")
 
             supportFinishAfterTransition()
         }
