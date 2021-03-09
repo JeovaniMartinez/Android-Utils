@@ -68,7 +68,7 @@ abstract class Base<T : Base<T>> {
         if (!firebaseAnalyticsEnabled) return logResult("No need to log event into Firebase Analytics, this is disabled for this class instance")
 
         // Otherwise, the event is logged in Firebase Analytics.
-        firebaseAnalyticsInstance?.logEvent(eventName, eventParams)
+        firebaseAnalyticsInstance!!.logEvent(eventName, eventParams)
         logResult("Event logged into Firebase Analytics")
 
     }
