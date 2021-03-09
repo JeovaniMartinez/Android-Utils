@@ -348,31 +348,28 @@ object RateApp : Base<RateApp>() {
     }
 
     /**
-     * Muestra un mensaje para invitar al usuario a calificar la app, en caso de confirmación, el usuario
-     * es dirigido a los detalles de la app en Google Play para que pueda calificarla
-     *
-     * @param activity actividad
+     * Show a message to invite the user to rate the app, in case of confirmation, the user is directed to the app details on
+     * Google Play so that they can rate it.
+     * @param activity Activity
      * */
     private fun rateWithDialog(activity: Activity) {
         log("rateWithDialog() Invoked")
 
-        // Se verifica si aún hay que mostrar el diálogo
         val neverShowAgain = sharedPreferences.getBoolean(Preferences.NEVER_SHOW_AGAIN, false)
 
         if (!neverShowAgain) {
-            // Hay que mostrar el diálogo
+
             log("neverShowAgain = $neverShowAgain | The dialogue is shown")
-            updatePreferencesOnFlowShown() // Se actualizan las preferencias, ya que se muestro el diálogo
+            updatePreferencesOnFlowShown() // Preferences are updated because the dialog is shown
             firebaseAnalytics("rate_app_dialog_shown", null)
 
-            // Se muestra la actividad (estilo diálogo)
+            // Launch the activity (dialogue style)
             activity.startActivity(
                 Intent(activity, RateAppActivity::class.java),
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
             )
 
         } else {
-            // El usuario ya había indicado que no quiere ver el diálogo
             log("neverShowAgain = $neverShowAgain | No need to show dialogue anymore")
         }
 
