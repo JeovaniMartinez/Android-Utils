@@ -277,57 +277,58 @@ object RateApp : Base<RateApp>() {
 
     }
 
-    // Referencia: https://developer.android.com/guide/playcore/in-app-review
+    // Reference: https://developer.android.com/guide/playcore/in-app-review
     /**
-     * Muestra el flujo para calificar con Google Play In-App Review API.
-     * @param activity actividad
+     * Show the flow to rate app with Google Play In-App Review API.
+     * @param activity Activity.
      * */
     private fun rateWithInAppReviewApi(activity: Activity) {
         log("rateWithInAppReviewApi() Invoked")
         val reviewManager = ReviewManagerFactory.create(activity)
         val managerRequest = reviewManager.requestReviewFlow()
-        // Primero hay que crear la solicitud
+        // First it's necessary create the request
         managerRequest.addOnCompleteListener { request ->
             if (request.isSuccessful) {
-                // Si la solicitud se creo correctamente
-                var successfulReviewFlow = false // Determina si el flujo fue correcto
-                val flowObtainedTime = Date().time // Se almacena la fecha en que se obtuvo el flujo
+                // If the request was created successfully
+                var successfulReviewFlow = false // Determine if the flow was correct
+                val flowObtainedTime = Date().time // Assign the date was the flow is obtained
                 log("ReviewFlow successfully obtained")
-                val reviewInfo = request.result // Se obtiene el resultado
-                val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // Se lanza el flujo para calificar
-                // El proceso del flujo fue exitoso
+                val reviewInfo = request.result // Get the result
+                val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // The flow to rate app is launched
+                // The flow process was successful
                 reviewFlow.addOnSuccessListener {
                     /*
-                     * El flujo fue correcto, teniendo en cuenta que la API no informa si el usuario califico la app o no,
-                     * tampoco informa si se mostró el diálogo o no, por lo que solo indica que el proceso fue exitoso.
+                     * The flow was correct, taking into account that the API does not report if the user rated the app or not,
+                     * nor does it report if the flow was shown or not, so it only indicates that the process was successful.
                      *
-                     * Consideraciones:
-                     *   - No se puede saber si se mostró el flujo o no, ni el resultado (si se califico o no la app)
-                     *   - Si el usuario ya ha calificado la aplicación, el flujo no se muestra, pero se llama aquí
-                     *   - Si el usuario aun no califica la app, pero ya se supero la cuota para mostrar el mensaje, el mensaje no se muestra
+                     * Considerations:
+                     *   - It is not possible to know if the flow was shown or not, nor the result (if the app was rated or not)
+                     *   - If the user has already rated the app, the flow is not displayed, but is called here
+                     *   - If the user still does not rate the app, but the quota to show the flow has already been exceeded, the flow is not shown
                      */
-                    successfulReviewFlow = true // El flujo fue correcto
+                    successfulReviewFlow = true // The flow was correct
                     log("Successful review flow to rate app with Google Play In-App Review API")
-                    updatePreferencesOnFlowShown() // Se Actualizan las preferencias, ya que se completo el flujo
+                    updatePreferencesOnFlowShown() // Preferences are updated because the flow is complete
                     firebaseAnalytics("rate_app_review_flow_successful", null)
                 }
-                // Error en el flujo
+                // Flow error
                 reviewFlow.addOnFailureListener {
-                    validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
+                    validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                     log("Failure on ReviewFlow, can not show flow to rate app")
                     firebaseAnalytics("rate_app_review_flow_failure", null)
                 }
-                // Flujo completado
+                // Flow completed
                 reviewFlow.addOnCompleteListener {
                     log("Finished flow to rate app with Google Play In-App Review API")
                     /*
-                    * Si el el resultado del flujo fue correcto.
-                    * La API no informa si se mostró el flujo o no, pero según pruebas realizadas, esto se puede inferir determinando el tiempo desde que se
-                    * obtuvo el flujo hasta que se completo, si tarda un determinado tiempo, lo más probable es que el flujo se haya mostrado, no es una certeza
-                    * del 100%, pero se infiere por el tiempo transcurrido.
-                    * Registrar si se mostró o no el flujo es muy útil para los eventos de analytics, ya que permite ajustar la configuración de cada cuantos días
-                    * y cada cuantos inicios de la app es conveniente intentar mostrar el flujo para obtener el mayor número de revisiones en la app sin molestar
-                    * mucho al usuario.
+                    * If the flow result was correct.
+                    *
+                    * The API does not report if the flow was displayed or not, but according to tests performed, this can be inferred by determining the
+                    * time from when the flow was obtained until it was completed, if it takes a certain time, it is most likely that the flow has been
+                    * shown, it is not a 100% accurate, but it is inferred by the elapsed time.
+                    *
+                    * Registering whether the flow was shown or not is very useful for analytics events, since it allows you to analyze and adjust the settings
+                    * of when it is convenient to show the flow to obtain the highest number of reviews in the app without disturbing the user.
                     * */
                     if (successfulReviewFlow) {
                         val elapsedTime = Date().time - flowObtainedTime
@@ -339,7 +340,7 @@ object RateApp : Base<RateApp>() {
                     }
                 }
             } else {
-                validated = false // Se regresa a false, para intentarlo nuevamente en esta sesión, ya que no se pudo mostrar el flujo
+                validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                 log("Error on request ReviewFlow, can not show flow to rate app")
                 firebaseAnalytics("rate_app_request_review_flow_error", null)
             }
