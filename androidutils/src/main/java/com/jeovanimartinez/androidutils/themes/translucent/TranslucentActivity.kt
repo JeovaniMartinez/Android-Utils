@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.jeovanimartinez.androidutils.themes.translucent
 
 import android.graphics.Color
@@ -10,58 +12,64 @@ import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
 /**
- * Clase base para actividades con fondo translúcido.
- * Las actividades que hereden de esta clase deben tener el siguiente tema en el manifest:
+ * Base class for activities with a translucent background.
+ *
+ * Activities that inherit from this class must have the following theme in the manifest:
  * ```
  *     android:theme="@style/AndroidUtilsTheme.Translucent"
  * ```
- * En el diseño de las actividades que hereden de esta clase deben tener un RelativeLayout como elemento raíz en el diseño para que ocupen el espacio completo, o bien un tamaño fijo.
+ * In the layout file, activities that inherit from TranslucentActivity must have a fixed size or a
+ * RelativeLayout as the root element in so that they occupy the entire screen space.
  * */
 open class TranslucentActivity : AppCompatActivity() {
 
     /**
-     * Opacidad de la actividad, el valor debe estar en el rango de 0 a 1. Donde 0 es completamente transparente
-     * y 1 es completamente opaca. Puede cambiarse en cualquier momento durante la ejecución de la actividad, y la
-     * opacidad se vera reflejada inmediatamente. Se recomienda asignar inicialmente antes de llamar al
-     * super.onCreate(savedInstanceState) en el onCreate() de la actividad que herede de esta clase.
+     * Activity opacity, the value must be in the range of 0 to 1. Where 0 is completely transparent and 1 is
+     * completely opaque. It can be changed at any time during the execution of the activity, and the opacity
+     * will be apply immediately.
      * */
     var activityOpacity = 0f
         set(value) {
-            if (value < 0f || value > 1f) throw Exception("The opacity value must be between 0 and 1") // Se valida el valor
-            field = value // Se asigna el valor a la variable
-            window.setDimAmount(value) // Se ajusta la opacidad de la actividad
+            if (value < 0f || value > 1f) throw Exception("The opacity value must be between 0 and 1") // Validation
+            field = value
+            window.setDimAmount(value) // Adjust the activity opacity
         }
 
-    /** Cuando se crea la actividad, para asignar los valores iniciales */
+    /** When the activity is created, to assign the initial values */
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AndroidUtilsTheme_Translucent) // Se asigna el tema translúcido para poder usar la opacidad
-        window.setDimAmount(activityOpacity) // Se asigna la opacidad al iniciar la actividad
+        setTheme(R.style.AndroidUtilsTheme_Translucent)
+        window.setDimAmount(activityOpacity)
         super.onCreate(savedInstanceState)
     }
 
-    /** Al pausar la actividad, se agrega un fondo a la actividad para obtener una mejor vista en las animaciones */
+    /** On pausing activity, adds a background to the activity for a better view in animations */
     override fun onPause() {
-        window.setBackgroundDrawable(generateBackgroundDrawable(this.window.attributes.dimAmount)) // Se asigna el fondo a la ventana
+        // Adds a background to the activity for a better view in animations
+        window.setBackgroundDrawable(generateBackgroundDrawable(this.window.attributes.dimAmount))
         super.onPause()
     }
 
-    /** Al reanudar la actividad, se reasigna el fondo transparente, de modo que se mantenga la opacidad en base al valor de dimAmount */
+    /** On resuming activity, the activity background is set to transparent, so that opacity is keep based on the value of dimAmount */
     override fun onResume() {
-        window.setBackgroundDrawable(generateBackgroundDrawable(0f)) // Se asigna el fondo a la ventana
+        // The activity background is set to transparent, so that opacity is keep based on the value of dimAmount
+        window.setBackgroundDrawable(generateBackgroundDrawable(0f))
         super.onResume()
     }
 
     /**
-     * Configura el dim (atenuación) de una ventana (independiente a esta clase).
-     * Invocar a esta función cuando se vaya a mostrar una ventana encima de la actividad, para asegurarse que la atenuación
-     * de la ventana a mostrar sea igual o mayor que la opacidad de la actividad, ya que si no se hace se genera
-     * un efecto visual indeseable.
+     * Sets the dim (attenuation) of a window (independent of this class).
+     *
+     * Invoke this function when a window is to be shown above fo this activity, to ensure that the attenuation of the
+     * window to be shown is equal to or greater than the opacity of this activity, since if it is not done, an
+     * undesirable visual effect is generated.
+     *
      * ```
-     * Por ejemplo, para un diálogo:
-     *  val dialog = MaterialAlertDialogBuilder(this@AboutActivity).setTitle("DEMO").show();
-     *  configureWindowDim(dialog.window);
+     * For example, for a dialog:
+     *     val dialog = MaterialAlertDialogBuilder(this@AboutActivity).setTitle("DEMO").show();
+     *     configureWindowDim(dialog.window);
      * ```
-     * @param window ventana de la que se va a configurar el dim.
+     *
+     * @param window window to configure the dim of it.
      * */
     fun configureWindowDim(window: Window?) {
         val currentWindowDim = window?.attributes?.dimAmount
@@ -72,11 +80,11 @@ open class TranslucentActivity : AppCompatActivity() {
         }
     }
 
-    /** Genera un fondo negro para la actividad, con el [alpha] indicado (entre 0 y 1, que representa la opacidad) */
+    /** Generates a black background for the activity, with the indicated [alpha] (between 0 and 1, which represents the opacity) */
     private fun generateBackgroundDrawable(alpha: Float): GradientDrawable {
-        val drawable = GradientDrawable() // Se genera el fondo
+        val drawable = GradientDrawable()
         drawable.shape = GradientDrawable.RECTANGLE
-        // Se asigna el color, negro con la opacidad requerida
+        // The black color is assigned, with the required capacity
         drawable.setColor(Color.argb(alpha.mapValue(0f, 1f, 0f, 255f).toInt(), 0, 0, 0))
         return drawable
     }
