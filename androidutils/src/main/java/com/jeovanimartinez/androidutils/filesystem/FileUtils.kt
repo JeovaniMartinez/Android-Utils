@@ -10,13 +10,13 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 
-/** Set of utilities for working with files. */
+/** Set of utilities for working with file system. */
 object FileUtils : Base<FileUtils>() {
 
     override val LOG_TAG = "FileUtils"
 
     /**
-     * Save a bitmap object to a file.
+     * Save a bitmap object into image file.
      * @param context Context.
      * @param bitmap Bitmap to save.
      * @param fileName Filename for the image, if it is null or blank string, a UUID is used for the image file name.
