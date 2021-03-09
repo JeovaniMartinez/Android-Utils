@@ -398,15 +398,13 @@ object RateApp : Base<RateApp>() {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Utilidad alternativa para calificar la app, se encarga de dirigir al usuario a la página de la app en Google Play
+    // Alternative utility to rate the app, it is in charge of directing the user to the app page on Google Play
 
-    // Referencia: https://stackoverflow.com/a/10816846
+    // Reference: https://stackoverflow.com/a/10816846
     /**
-     * Dirige al usuario a los detalles de la aplicación en Google Play para que pueda calificar la aplicación.
-     * Si es posible, se abre la aplicación directamente en la app de Google Play, en caso de no ser posible, se abre
-     * en el navegador, si tampoco es posible, muestra un toast con un mensaje.
-     *
-     * @param activity actividad desde donde se llama, se usa para iniciar otras actividades
+     * Directs the user to the app details on Google Play so they can rate the app. If is possible, open the details directly in
+     * the Google Play app, if is not possible, open it in the browser, if it is not possible either, show a toast with a message.
+     * @param activity Activity.
      * */
     fun goToRateInGooglePlay(activity: Activity) {
         val marketUriString = "market://details?id=${activity.packageName}"
@@ -414,18 +412,18 @@ object RateApp : Base<RateApp>() {
         val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
         googlePlayIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
         try {
-            activity.startActivity(googlePlayIntent) // Se intenta mostrar en la app de google play
+            activity.startActivity(googlePlayIntent) // It tries to show in the Google Play app
             log("Sent user to view app details in google play app [$marketUriString]")
             firebaseAnalytics("rate_app_sent_to_google_play_app", null)
         } catch (e1: ActivityNotFoundException) {
             try {
-                // Si no se puede mostrar en la app de google play, se intenta abrir en el navegador web
+                // If it cannot be shown in the google play app, it tries to open in the web browser
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
                 log("Sent user to view app details in google play on web browser [$webUriString]")
                 firebaseAnalytics("rate_app_sent_to_google_play_web", null)
             } catch (e2: ActivityNotFoundException) {
-                // Si no se pudo mostrar en ninguna de las dos maneras anteriores, muestra un mensaje
+                // If it couldn't be displayed in either of the above two ways, show a toast
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
                 logw("Unable to send user to app details, google play app and web browser are not available", e2)
                 firebaseAnalytics("rate_app_unable_to_show_on_google_play", null)
