@@ -17,31 +17,28 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
- * Utilidad para iniciar el flujo que invita al usuario a calificar la aplicación, en base a ciertas condiciones sobre el uso de la aplicación.
- * Para Android 5.0 (API 21) y posteriores, se utiliza Google Play In-App Review API, por lo que se puede calificar dentro de la aplicación.
- * Para versiones anteriores a Android 5.0, se muestra un diálogo para invitar al usuario a calificar la aplicación, si el usuario acepta, es
- * dirigido a los detalles de la aplicación en Google Play.
+ * Set of utilities to invite the user to rate the app.
  * */
 object RateApp : Base<RateApp>() {
 
     override val LOG_TAG = "RateApp"
 
-    // Tiempo transcurrido desde que se obtuvo el flujo hasta que se completo para considerar que se mostró el flujo
-    private const val RATE_FLOW_MIN_ELAPSED_TIME = 2000 // Expresado en milisegundos
+    // Time elapsed from when the flow was obtained until it was completed to consider that the flow was displayed
+    private const val RATE_FLOW_MIN_ELAPSED_TIME = 2000 // In milliseconds
 
-    /** Objeto con las constantes para las preferencias */
+    /** Object with constants for the preferences. */
     private object Preferences {
         const val KEY = "rate_in_app_preferences"
         const val CONFIGURED = "configured"
         const val LAUNCH_COUNTER = "rate_in_app_launch_counter"
         const val LAST_SHOW_DATE = "rate_in_app_last_show_date"
         const val FLOW_SHOWN_COUNTER = "flow_shown_counter"
-        const val NEVER_SHOW_AGAIN = "rate_in_app_never_show_again" // Aplica solo para el mensaje de versiones anteriores a Android 5
+        const val NEVER_SHOW_AGAIN = "rate_in_app_never_show_again" // Applies only for the rate dialog of versions prior to Android 5
     }
 
     /**
-     * Número mínimo de días requeridos desde que se instalo la app para poder mostrar el flujo, se usa en combinación con minInstallLaunchTimes,
-     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
+     * Minimum number of days required since the app was installed to be able to show the flow, it is used in combination with minInstallLaunchTimes,
+     * and both conditions must be met to show the flow, the minimum value is 0 (it is shown from that same day).
      * */
     var minInstallElapsedDays = 10
         set(value) {
@@ -49,8 +46,8 @@ object RateApp : Base<RateApp>() {
         }
 
     /**
-     * Número mínimo de veces que se debe haber iniciado la app desde que se instalo para poder mostrar el flujo, se usa en combinación con minInstallElapsedDays,
-     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1 (se muestra a partir del primer inicio)
+     * Minimum number of times the app must have been launched since it was installed to be able to show the flow, it is used in combination with
+     * minInstallElapsedDays, and both conditions must be met to show the flow, the minimum value is 1 (shown from first launch).
      * */
     var minInstallLaunchTimes = 10
         set(value) {
@@ -58,8 +55,8 @@ object RateApp : Base<RateApp>() {
         }
 
     /**
-     * Número mínimo de días requeridos desde que se mostró el flujo para mostrarlo nuevamente, se usa en combinación con minRemindLaunchTimes,
-     * y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 0 (se muestra a partir de ese mismo dia)
+     * Minimum number of days required since the flow was shown to show it again, it is used in combination with minRemindLaunchTimes, and both
+     * conditions must be met to show the flow, the minimum value is 0 (it is shown from that same day).
      * */
     var minRemindElapsedDays = 2
         set(value) {
@@ -67,8 +64,8 @@ object RateApp : Base<RateApp>() {
         }
 
     /**
-     * Número mínimo de veces que se debe haber iniciado la app desde que mostró el flujo para mostrarlo nuevamente, se usa en combinación con
-     * minRemindElapsedDays, y se deben cumplir ambas condiciones para mostrar el flujo, el valor mínimo es 1 (se muestra a partir del primer inicio)
+     * Minimum number of times the app must have been launched since it showed the flow to show it again, it is used in combination with
+     * minRemindElapsedDays, and both conditions must be met to show the flow, the minimum value is 1 (it is shown from the first launch).
      * */
     var minRemindLaunchTimes = 4
         set(value) {
@@ -76,10 +73,11 @@ object RateApp : Base<RateApp>() {
         }
 
     /**
-     * Cuando se llama a checkAndShow() se va a mostrar el flujo si se cumplen las condiciones, setShowAtEvent permite modificar a las cuantas veces
-     * que se llama a checkAndShow() se muestre el flujo. Por ejemplo, se desea mostrar el flujo para calificar en el onResume() de la actividad principal,
-     * pero la tercer vez que se llame a ese método, en ese caso, establecer showAtEvent = 3, que hará que se muestre el flujo hasta la tercera vez que se llame
-     * a onResume(). Si de otro modo, showAtEvent fuera 1, el flujo se mostraría en la primera llamada a onResume(). El valor mínimo de showAtEvent es 1
+     * Indicates in which call to checkAndShow() the flow will be shown.
+     *
+     * For example, if you want to show the flow in the onResume() of the main activity:
+     * - RateApp.showAtEvent = 1: In this case, the flow will be shown in the first call to onResume(), which is when the activity is launched.
+     * - RateApp.showAtEvent = 2: In this case, the flow will be shown in the second call to the activity's onResume().
      * */
     var showAtEvent = 2
         set(value) {
@@ -87,36 +85,37 @@ object RateApp : Base<RateApp>() {
         }
 
     /**
-     * Para versiones anteriores a Android 5, donde se muestra el diálogo para invitar al usuario a calificar la app,
-     * permite establecer la visibilidad del botón de nunca volver a preguntar, en base a [showNeverAskAgainButton]
+     * For versions prior to Android 5, where the dialog to invite the user to rate app is showing, it allows setting the visibility of
+     * the never ask again button.
      * */
-    var showNeverAskAgainButton = true // De manera predeterminada si se muestra el botón
+    var showNeverAskAgainButton = true
 
 
-    /** Se asegura que el argumento de configuración [value] sea válido y devuelve el mismo valor para una asignación mas fácil */
+    /** Ensures that the config argument [value] is valid and returns the same value for easier assignment. */
     private fun validateConfigArgument(value: Int, minValue: Int): Int {
         if (value < minValue) throw IllegalArgumentException("Invalid config value, value ($value) must be equal to or greater than $minValue")
         return value
     }
 
-    private lateinit var sharedPreferences: SharedPreferences // Para manipular las preferencias
-    private var initialized = false // Auxiliar para determinar si ya se llamo a init
-    private var eventCount = 0 // Auxiliar para contar cuantas veces se ha llamado a checkAndShow
-    private var validated = false // Determina si ya se valido si se debe mostrar el flujo, para solo validarlo una vez por sesión
+    private lateinit var sharedPreferences: SharedPreferences // To manipulate preferences
+    private var initialized = false // Helper to determine if init was already called
+    private var eventCount = 0 // Helper to count how many times checkAndShow() has been called
+    private var validated = false // Determines if it has already been validated if the flow should be shown, to only validate it once per session.
 
     /**
-     * Inicializa y configura la utilidad, debe llamarse siempre solo una vez en la aplicación
-     * ya sea en el onCreate() de la app o de la actividad principal
-     * @param context contexto
+     * Initialize and configure the utility, it must always be called only once from the app.
+     * @param context Context.
      * */
     fun init(context: Context) {
         if (initialized) {
             log("RateApp is already initialized")
             return
         }
-        configurePreferences(context) // Se configuran las preferencias
-        updateLaunchCounter() // Se cuenta el nuevo inicio
+
+        configurePreferences(context)
+        updateLaunchCounter()
         initialized = true
+
         log(
             """
             RateApp initialized
@@ -131,24 +130,23 @@ object RateApp : Base<RateApp>() {
     }
 
     /**
-     * Verifica si se cumplen las condiciones para mostrar el flujo para calificar, y muestra el flujo solo si se cumplen las condiciones
-     * @param activity actividad desde donde se llama
+     * Checks if the all conditions to show the flow are met, and shows the flow only if the all conditions are met.
+     * @param activity Activity.
      * */
     fun checkAndShow(activity: Activity) {
-        if (!initialized) throw Exception("Need call init() before call this method") // Es necesario llamar a init antes de llamar a este método
+        if (!initialized) throw Exception("Need call init() before call this method") // It's necessary to call init before calling this method
 
-        if (validated) return log("The conditions have already been validated in this session") // Solo se valida una vez por sesión
+        if (validated) return log("The conditions have already been validated in this session")
 
-        eventCount++ // Se actualiza el contador de veces que se llama a este método
+        eventCount++
 
-        // Si no corresponde mostrar en esta llamada al evento
+        // If it does not apply to show in this call to the event
         if (showAtEvent != eventCount) return log("No need verify conditions in this call, showAtEvent: $showAtEvent | eventCount $eventCount")
 
-        // Al llegar a este punto, se debe validar si se va a mostrar el flujo
         log("We proceed to verify the conditions to show the flow to rate the app, event number: $showAtEvent")
-        doCheckAndShow(activity) // Se ejecuta la verificación
+        doCheckAndShow(activity) // Execute the full verification
 
-        validated = true // Al final, se indica que ya se valido, para solo hacerlo una vez por sesión
+        validated = true // At the end, it is indicated that it is already valid, to only do it once per session
     }
 
     /**
