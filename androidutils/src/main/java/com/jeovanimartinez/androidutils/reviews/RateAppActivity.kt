@@ -12,7 +12,7 @@ import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
 import kotlinx.android.synthetic.main.activity_rate_app.*
 
-/** Actividad que se muestra en forma de diálogo para invitar al usuario a calificar la aplicación */
+/** Activity to invite the user to rate the app */
 class RateAppActivity : TranslucentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class RateAppActivity : TranslucentActivity() {
         super.onBackPressed()
     }
 
-    /** Configuración inicial y configuración de eventos */
+    /** Initial setup */
     private fun initSetup() {
         configureTopShapeBackground()
 
@@ -39,8 +39,8 @@ class RateAppActivity : TranslucentActivity() {
 
         rateApp_rateNow.setOnClickListener {
             RateApp.log("User clicked rateApp_rateNow button")
-            RateApp.goToRateInGooglePlay(this@RateAppActivity) // Se usa la utilidad para dirigir al usuario Google Play
-            supportFinishAfterTransition() // Necesario para que se muestre la transición de salida
+            RateApp.goToRateInGooglePlay(this@RateAppActivity)
+            supportFinishAfterTransition()
         }
 
         rateApp_later.setOnClickListener {
@@ -52,7 +52,7 @@ class RateAppActivity : TranslucentActivity() {
 
             RateApp.log("User clicked rateApp_noThanks button")
 
-            val sharedPreferences = getSharedPreferences(RateApp.Preferences.KEY, Context.MODE_PRIVATE) // Se crea la instancia del objeto para manipular las preferencias
+            val sharedPreferences = getSharedPreferences(RateApp.Preferences.KEY, Context.MODE_PRIVATE)
             sharedPreferences.edit().putBoolean(RateApp.Preferences.NEVER_SHOW_AGAIN, true).apply()
             RateApp.log("Set rate_app_never_show_again to true and saved in preferences")
 
@@ -61,8 +61,8 @@ class RateAppActivity : TranslucentActivity() {
 
     }
 
-    // Referencia: https://stackoverflow.com/a/11376610
-    /**Asigna el color de fondo de la tarjeta al fondo de la forma superior, para mantener soporte para tema claro y oscuro */
+    // Reference: https://stackoverflow.com/a/11376610
+    /** Assign the background color of the card to the background of the top shape, to keep support for light and dark theme */
     private fun configureTopShapeBackground() {
         val topShapeBackground = AppCompatResources.getDrawable(this@RateAppActivity, R.drawable.rate_app_top_shape)
         val finalTopShapeBackground = DrawableCompat.wrap(topShapeBackground!!)
@@ -71,7 +71,7 @@ class RateAppActivity : TranslucentActivity() {
         rateApp_topShape.background = finalTopShapeBackground
     }
 
-    /** Configura la transición de entrada y salida */
+    /** Set the activity transitions */
     private fun configureTransitions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             with(window) {
