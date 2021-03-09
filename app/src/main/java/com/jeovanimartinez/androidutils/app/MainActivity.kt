@@ -19,7 +19,7 @@ import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
-import com.jeovanimartinez.androidutils.moreapps.MoreAppsGPlay
+import com.jeovanimartinez.androidutils.moreapps.MoreApps
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.watermark.Watermark
 import com.jeovanimartinez.androidutils.watermark.WatermarkUtils
@@ -46,21 +46,17 @@ class MainActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             try {
-                val bitmap = Bitmap.createBitmap(1000, 1000, Bitmap.Config.ARGB_8888)
-                val c = Canvas(bitmap)
-                c.drawColor(Color.BLUE)
-                c.drawText("Nueva prueba", 100f, 100f, Paint().apply { color= Color.BLACK; textSize = 100f })
+
+                // Create a bitmap object for test the utility and draw a color and text on it.
+                val bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                canvas.drawColor(Color.DKGRAY)
+                canvas.drawText("Android Utils", 35f, 60f, Paint().apply { color = Color.WHITE; textSize = 50f; isAntiAlias = true })
+
+// Use FileUtils to save bitmap into image file.
+                FileUtils.saveBitmapToFile(this@MainActivity, bitmap, "test", filesDir.absolutePath, Bitmap.CompressFormat.PNG, 100)
 
 
-
-                FileUtils.saveBitmapToFile(
-                    this@MainActivity,
-                    bitmap,
-                    "test2",
-                     "/storage/emulated/0/",
-                    Bitmap.CompressFormat.PNG,
-                100
-                )
             } catch (e: IOException) {
                 shortToast("ERROR")
                 e.printStackTrace()
@@ -131,7 +127,7 @@ class MainActivity : AppCompatActivity() {
         // Más aplicaciones
         moreApps.setOnClickListener {
 
-            MoreAppsGPlay.apply { developerId = "GitHub" }.showAppList(this@MainActivity)
+            MoreApps.apply { developerId = "GitHub" }.showAppListInGooglePlay(this@MainActivity)
 
             // Modo compacto
             // MoreAppsGPlay.showAppList(this@MainActivity)

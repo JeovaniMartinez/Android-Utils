@@ -9,22 +9,22 @@ import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 
 /**
- * Utility to direct the user to the app developer page on Google Play
- * Usually used to invite the user to install the developer apps.
+ * Utility to invite the user to install the developer apps.
  * */
-object MoreAppsGPlay : Base<MoreAppsGPlay>() {
+object MoreApps : Base<MoreApps>() {
 
-    override val LOG_TAG = "MoreAppsGPlay"
+    override val LOG_TAG = "MoreApps"
 
-    /** Developer ID whose list of apps is to be displayed when calling showAppList. */
+    /** Developer ID whose list of apps is to be displayed when calling showAppListInGooglePlay. */
     var developerId = "Jedemm+Technologies"
 
     /**
-     * Directs the user to the list of developer apps, based on their ID (developerId). If not possible, show a toast with a message.
+     * Directs the user to the developer's app list in Google Play, based on their ID (developerId).
+     * If not possible, show a toast with a message.
      *
      * @param activity Activity.
      * */
-    fun showAppList(activity: Activity) {
+    fun showAppListInGooglePlay(activity: Activity) {
         try {
             // An attempt is made to open the developer's page in the system web browser (if the user has Google Play app, it is shown there)
             val webUriString = "https://play.google.com/store/apps/developer?id=$developerId"
