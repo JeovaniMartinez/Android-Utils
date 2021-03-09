@@ -375,22 +375,18 @@ object RateApp : Base<RateApp>() {
 
     }
 
-    /**
-     * Actualiza las preferencias para indicar que se acaba de mostrar el flujo para calificar la aplicación,
-     * llamar solo en el reviewFlow.addOnCompleteListener (que indica que se completo el flujo) o llamar cuando
-     * se muestre el diálogo para calificar en versiones anteriores a Android 5
-     * */
+    /** Update the preferences to indicate that the flow to rate app has just been shown. */
     private fun updatePreferencesOnFlowShown() {
 
         log("updatePreferencesOnFlowShown() Invoked")
 
-        // Se carga el contador de veces que se ha mostrado el flujo, y se le incrementa uno, para contar esta vez que se mostró el flujo
+        // The counter of times the flow has been shown is loaded, and it is increased by one, to count this time the flow was shown
         val flowShowCounter = sharedPreferences.getInt(Preferences.FLOW_SHOWN_COUNTER, 0) + 1
 
         with(sharedPreferences.edit()) {
-            putInt(Preferences.LAUNCH_COUNTER, 0) // Se restablece el contador de inicios a cero
-            putLong(Preferences.LAST_SHOW_DATE, Date().time) // Se actualiza la fecha en que se mostró el flujo
-            putInt(Preferences.FLOW_SHOWN_COUNTER, flowShowCounter) // Se actualiza el contador de veces que se ha mostrado el flujo
+            putInt(Preferences.LAUNCH_COUNTER, 0) // Restore launch counter
+            putLong(Preferences.LAST_SHOW_DATE, Date().time)
+            putInt(Preferences.FLOW_SHOWN_COUNTER, flowShowCounter)
             apply()
         }
 
