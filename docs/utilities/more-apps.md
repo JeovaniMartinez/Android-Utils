@@ -7,22 +7,30 @@ title: More Apps
 
 ## Description
 
-Utility to direct the user to the app developer page on Google Play, usually used to invite the user to install the developer apps.
-
-![img](../img/more-apps/more-apps-img1.png)
+Utility to invite the user to install the developer apps.
 
 ---
 
-## Usage
+## Utilities
+
+### - showAppListInGooglePlay
+
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/show-app-list.html" target="_blank"><b>[ Reference ]</b></a>
+
+Direct the user to the app developer page on Google Play, usually used to invite the user to install the developer apps.
+
+![img](../img/more-apps/more-apps-img1.png)
+
+#### Usage
 
 1.- Set the developer id.
 
 ```kotlin
-MoreAppsGPlay.apply { developerId = "GitHub" }
+MoreApps.apply { developerId = "GitHub" }
 ```
 
-2.- Go to Google Play to the list of apps from the developer.
+2.- Go to Google Play to show the list of apps from the developer.
 
 ```kotlin
-MoreAppsGPlay.showAppList(activity)
+MoreApps.showAppListInGooglePlay(activity)
 ```

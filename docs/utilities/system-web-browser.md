@@ -13,7 +13,7 @@ Utility to interact with the system web browser.
 
 ## Utilities
 
-### - openUrl()
+### - openUrl
 
 > #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.web/-system-web-browser/open-url.html" target="_blank"><b>[ Reference ]</b></a>
 
