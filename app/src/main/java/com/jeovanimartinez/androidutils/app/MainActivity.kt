@@ -1,5 +1,8 @@
 package com.jeovanimartinez.androidutils.app
 
+import android.app.ActivityOptions
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.webkit.URLUtil
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     private fun initSetup() {
 
         toggleThemeSetup()
+        translucentThemeSetup()
         rateAppSetup()
         aboutAppSetup()
         moreAppsSetup()
@@ -85,6 +89,20 @@ class MainActivity : AppCompatActivity() {
 
         rateInGooglePlayBtn.setOnClickListener {
             RateApp.goToRateInGooglePlay(this@MainActivity)
+        }
+
+    }
+
+    private fun translucentThemeSetup() {
+
+        launchTranslucentActivityBtn.setOnClickListener {
+
+            val opacity = (translucentActivityOpacity.progress / 100.0).toFloat()
+
+            startActivity(
+                Intent(this@MainActivity, TranslucentThemeDemo::class.java).putExtra("opacity", opacity),
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(this@MainActivity).toBundle() else null
+            )
         }
 
     }
