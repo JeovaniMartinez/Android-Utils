@@ -29,7 +29,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
      * */
     fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String? = null) {
 
-        if (!URLUtil.isValidUrl(url)) return logw("The URL [$url] is not a valid URL")
+        if (!URLUtil.isValidUrl(url)) return loge("The URL [$url] is not a valid URL")
 
         try {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
