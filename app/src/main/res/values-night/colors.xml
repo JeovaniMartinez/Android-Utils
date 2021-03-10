@@ -17,4 +17,7 @@
     <color name="colorError">#CF6679</color>
     <color name="colorOnError">#000000</color>
 
+    <!-- App colors -->
+    <color name="colorSeparator">#DFDFDF</color>
+
 </resources>

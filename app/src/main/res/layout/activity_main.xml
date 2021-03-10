@@ -13,84 +13,188 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:orientation="vertical">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="@string/app_name"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/toggleTheme"
+                android:id="@+id/toggleThemeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Toggle Theme"
+                android:textAllCaps="false"
                 tools:ignore="HardcodedText" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fugaz_one_regular"
+                android:padding="14dp"
+                android:text="Translucent Theme"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/translucentActivityOpacity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:max="100"
+                android:min="0"
+                tools:ignore="UnusedAttribute" />
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/rateInGooglePlay"
+                android:id="@+id/launchTranslucentActivityBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Rate In Google Play"
+                android:text="Launch Translucent Activity"
+                android:textAllCaps="false"
                 tools:ignore="HardcodedText" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/moreApps"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="More Apps"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fugaz_one_regular"
+                android:padding="14dp"
+                android:text="Rate App"
+                android:textSize="14sp"
                 tools:ignore="HardcodedText" />
 
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/initRateApp"
+                android:id="@+id/initRateAppBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Init RateApp"
+                android:textAllCaps="false"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/checkAndShowRateApp"
+                android:id="@+id/checkAndShowRateAppBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Check and show RateApp"
+                android:text="Check And Show RateApp"
+                android:textAllCaps="false"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/about"
+                android:id="@+id/rateInGooglePlayBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="About"
+                android:text="Go To Rate In Google Play"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fugaz_one_regular"
+                android:padding="14dp"
+                android:text="About App"
+                android:textSize="14sp"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/openUrl"
+                android:id="@+id/aboutAppBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Open URL in System Web Browser"
+                android:text="Launch About Activity"
+                android:textAllCaps="false"
                 tools:ignore="HardcodedText" />
 
-            <LinearLayout
-                android:id="@+id/viewDemo"
-                android:orientation="vertical"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@color/colorAccent"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:background="@color/colorError"
-                    android:text="12sp P Ü"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12dp"
-                    android:text="12dp"/>
-            </LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fugaz_one_regular"
+                android:padding="14dp"
+                android:text="More Apps"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/moreAppsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Show More Apps In Google Play"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fugaz_one_regular"
+                android:padding="14dp"
+                android:text="System Web Browser"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/openUrlEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="URL"
+                android:text="https://jeovanimartinez.github.io/Android-Utils/"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/openUrlBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Open URL"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
