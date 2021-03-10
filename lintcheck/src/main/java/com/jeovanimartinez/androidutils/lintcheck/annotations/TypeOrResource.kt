@@ -11,22 +11,21 @@ import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.uast.*
 
 /*
-* Para debuggear esta clase:
-* - Asegurarse de que la app de prueba tenga una llamada a la anotación requerida.
-* - Colocar el punto de interrupción.
-* - En el panel de Gradle del IDE, expandir la opción de app (si la app, no la de lintcheck), ya que para ejecutar
-*   esta clase, se realiza mediante la verificación lint de la app.
-* - Dirigirse a Task > verification clic derecho en lint y seleccionar debug.
+* To debug this class:
+* - Make sure the test app has a call to the required annotation.
+* - Set the breakpoint.
+* - In the Gradle panel of the IDE, expand the app option, since to execute this class, it is done through the app's lint verification.
+* - Go to Task > Verification and right click on lint and select debug.
 * */
 
 /**
- * Lint check que se encarga de verificar las anotaciones de TypeOrResource y comprobar que la propiedad que usa la anotación
- * tenga un valor adecuado y advertir al usuario si no es asi.
+ * Lint check that is responsible for verifying the TypeOrResource annotations and verifying that the property or variable that
+ * the annotation uses has a suitable value and warning the user otherwise.
  */
 class TypeOrResource : AnnotationDetector() {
 
     companion object {
-        // Configuración y descripción del problema
+        // Configuration and problem description
         val ISSUE = Issue.create(
             id = "TypeOrResource",
             briefDescription = "Validate that the correct type or correct resource is received.",
@@ -45,14 +44,14 @@ class TypeOrResource : AnnotationDetector() {
 
     }
 
-    /** Enum auxiliar para determinar que tipo de verificación hay que realizar */
+    /** Auxiliary enum to determine what type of verification needs to be performed. */
     enum class CheckType {
         DATA_TYPE, RESOURCE_TYPE
     }
 
-    /** Se asignan las anotaciones que se encarga de comprobar esta clase */
+    /** The annotations that this class is responsible for checking are assigned. */
     override fun applicableAnnotations(): List<String> {
-        // Cada elemento debe contener el paquete completo y el nombre de la anotación
+        // Each element must contain the complete package and the name of the annotation
         return listOf(
             "com.jeovanimartinez.androidutils.annotations.ColorOrColorRes",
             "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes",
