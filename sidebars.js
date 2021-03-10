@@ -13,9 +13,9 @@ module.exports = {
             'annotations/code-inspection-annotations',
         ],
         "Library Utilities": [
-            'utilities/translucent-theme',
             'utilities/rate-app',
             'utilities/about-app',
+            'utilities/translucent-theme',
             'utilities/file-utils',
             'utilities/more-apps',
             'utilities/system-web-browser',
@@ -24,6 +24,6 @@ module.exports = {
         "Release Notes": [
             'release-notes/v1.0.0',
         ],
-        Docusaurus: ['docusaurus/style-guide', 'docusaurus/mdx'], // Temporally
+        /*Docusaurus: ['docusaurus/style-guide', 'docusaurus/mdx'],*/ // Temporally
     },
 };

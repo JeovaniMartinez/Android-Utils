@@ -15,9 +15,36 @@ Style and base class for creating activities with a translucent background.
 
 ## Usage
 
-:::note
-In the layout file, activities that inherit from TranslucentActivity must have a fixed size or a RelativeLayout as the root element in so that 
-they occupy the entire screen space.
+:::tip
+This is the recommended structure for the activity layout file.
+
+```xml
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!-- 
+            LinearLayout or any other layout.
+            You can use fixed or relative width and height.
+        -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"  
+            android:layout_height="300dp"
+            >
+            
+                <!-- ... -->
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
+```
+
 :::
 
 1.- In the `AndroidManifest` assign the theme `AndroidUtilsTheme.Translucent` to the desired activity.
