@@ -7,7 +7,7 @@ title: Translucent Theme
 
 ## Description
 
-Style and base class that allows activities to have a completely transparent background, or a background with a certain opacity.
+Style and base class for creating activities with a translucent background.
 
 ![img](../img/translucent-theme/translucent-theme-img1.png)
 
