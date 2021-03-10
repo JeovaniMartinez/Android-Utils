@@ -53,7 +53,6 @@ class TypeOrResource : AnnotationDetector() {
     override fun applicableAnnotations(): List<String> {
         // Each element must contain the complete package and the name of the annotation
         return listOf(
-            "com.jeovanimartinez.androidutils.annotations.ColorOrColorRes",
             "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes",
             "com.jeovanimartinez.androidutils.annotations.StringOrStringRes"
         )
@@ -92,7 +91,6 @@ class TypeOrResource : AnnotationDetector() {
             if (elementPrev == null && elementNext == null && elementType != KtTokens.IDENTIFIER) {
                 // Se ejecuta la verificación según la anotación encontrada
                 when (qualifiedName) {
-                    "com.jeovanimartinez.androidutils.annotations.ColorOrColorRes" -> checkColorOrColorRes(context, usage, elementType, text, CheckType.DATA_TYPE)
                     "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.DATA_TYPE)
                     "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.DATA_TYPE)
                 }
@@ -102,48 +100,12 @@ class TypeOrResource : AnnotationDetector() {
             if (elementType == DOT_QUALIFIED_EXPRESSION && text.contains("R.") && (text.startsWith("R.") || text.startsWith("android.R."))) {
                 // Se ejecuta la verificación según la anotación encontrada
                 when (qualifiedName) {
-                    "com.jeovanimartinez.androidutils.annotations.ColorOrColorRes" -> checkColorOrColorRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
                     "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
                     "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
                 }
             }
         }
 
-    }
-
-    /**
-     * Verifica el uso de la anotación ColorOrColorRes y reporta el problema (issue) si aplica
-     * @param context contexto
-     * @param usage referencia dentro del código donde se usa la anotación y donde se esta analizando el código
-     * @param elementType tipo de elemento
-     * @param text valor que se le asigna a la variable o propiedad de la anotación en string
-     * @param checkType tipo de verificación
-     * */
-    private fun checkColorOrColorRes(context: JavaContext, usage: UElement, elementType: IElementType, text: String, checkType: CheckType) {
-        when (checkType) {
-            CheckType.DATA_TYPE -> {
-                // Se reporta el problema si el tipo de dato que se asigna no es un entero
-                if (elementType != KtTokens.INTEGER_LITERAL) {
-                    context.report(
-                        issue = ISSUE,
-                        scope = usage,
-                        location = context.getLocation(usage),
-                        message = "Invalid type, expected color int or color resource"
-                    )
-                }
-            }
-            CheckType.RESOURCE_TYPE -> {
-                // Se reporta el reporta el problema si el recurso no es un color resource
-                if (text != "R.color" && text != "android.R.color") {
-                    return context.report(
-                        issue = ISSUE,
-                        scope = usage,
-                        location = context.getLocation(usage),
-                        message = "Invalid resource, expected color resource or color int"
-                    )
-                }
-            }
-        }
     }
 
     /**
