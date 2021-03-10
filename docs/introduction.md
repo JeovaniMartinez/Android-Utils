@@ -5,7 +5,48 @@ sidebar_label: Android Utils
 slug: /introduction
 ---
 
+export const MainImg = ({children}) => ( <span style={{
+    backgroundColor: '#005644',
+    borderRadius: '6px',
+    padding: '0.2rem 0.3rem',
+}}>{children}</span> );
+
+<p align="center">
+    <MainImg>
+        <img src="../static/img/site/logo.svg" alt="drawing" width="80"/>
+        <img src="../static/img/site/logo.svg" alt="drawing" width="80"/>
+        <img src="../static/img/site/logo.svg" alt="drawing" width="80"/>
+    </MainImg >
+</p>
+
+### Description
+
 Android utils is a library that groups a set of utilities for Android apps developing.
+
+---
+
+export const Feature = ({children}) => ( <span style={{
+    backgroundColor: '#005644',
+    borderRadius: '6px',
+    color: '#fff',
+    padding: '0.2rem 0.3rem',
+}}>{children}</span> );
+
+### Features
+
+- Compatible with Android <Feature>API 17+</Feature>
+
+- Source code written 100% in <Feature>Kotlin.</Feature>
+
+- UI with <Feature>light and dark theme</Feature> support.
+
+- UI with language support for: <Feature>English - Spanish</Feature>
+
+- Free and open-source. <Feature>License Apache 2.0</Feature>
+
+---
+
+### Motivation
 
 Some time ago I started developing Android apps, every time I went from one project to another, there were many parts of
 the code of an app that I needed to add to another app and I only needed to make a few minor adjustments, but doing it
