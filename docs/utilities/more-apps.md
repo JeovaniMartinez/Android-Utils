@@ -26,7 +26,7 @@ Direct the user to the app developer page on Google Play, usually used to invite
 1.- Set the developer id.
 
 ```kotlin
-MoreApps.apply { developerId = "GitHub" }
+MoreApps.apply { developerId = "Jedemm+Technologies" }
 ```
 
 2.- Go to Google Play to show the list of apps from the developer.
