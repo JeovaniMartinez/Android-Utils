@@ -23,7 +23,7 @@ object TempFiles : Base<TempFiles>() {
      * not to affect the app flow and can be called from anywhere.
      * */
     fun clearTempFilesFolder(context: Context) {
-        log("clearTempFilesFolder() invoked ")
+        log("clearTempFilesFolder() invoked")
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 makeTempDir(context) // If not exists, it is generated to be able to get the file list.
