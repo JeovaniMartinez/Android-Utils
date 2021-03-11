@@ -9,6 +9,7 @@ import android.webkit.URLUtil
 import androidx.annotation.Size
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import java.lang.Exception
 
@@ -35,20 +36,20 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             // The event is logged
             if (case != null && case.isNotBlank()) {
-                firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("open_url_case", case.trim()) })
+                firebaseAnalytics(Event.OPEN_URL_IN_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, case.trim()) })
             } else {
-                firebaseAnalytics("open_url_in_system_web_browser")
+                firebaseAnalytics(Event.OPEN_URL_IN_SYSTEM_WEB_BROWSER)
             }
             log("URL: [$url] opened, case: ${case?.trim()}")
         } catch (e: ActivityNotFoundException) {
             // There is no app that can open the URL
             context.shortToast(R.string.system_web_browser_not_available)
-            firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("open_url_case", "activity_not_found_exception") })
+            firebaseAnalytics(Event.OPEN_URL_IN_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, "activity_not_found_exception") })
             logw("Unable to open URL [$url], web browser not available", e)
         } catch (e: Exception) {
             // General exception
             context.shortToast(R.string.system_web_browser_error)
-            firebaseAnalytics("open_url_in_system_web_browser", Bundle().apply { putString("open_url_case", "exception") })
+            firebaseAnalytics(Event.OPEN_URL_IN_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, "exception") })
             loge("Error opening URL [$url]", e)
         }
     }
