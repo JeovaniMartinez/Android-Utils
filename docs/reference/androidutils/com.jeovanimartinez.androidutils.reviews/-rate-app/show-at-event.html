@@ -25,7 +25,7 @@
         <div id="leftToggler"><span class="icon-toggler"></span></div>
         <script type="text/javascript" src="../../../scripts/pages.js"></script>
         <script type="text/javascript" src="../../../scripts/main.js"></script>
-        <div class="main-content" id="content" pageIds="com.jeovanimartinez.androidutils.reviews/RateApp/showAtEvent/#/PointingToDeclaration//140535929">
+        <div class="main-content" id="content" pageIds="com.jeovanimartinez.androidutils.reviews/RateApp/showAtEvent/#/PointingToDeclaration//-240742365">
           <div class="navigation-wrapper" id="navigation-wrapper">
             <div class="breadcrumbs"><a href="../../index.html">androidutils</a>/<a href="../index.html">com.jeovanimartinez.androidutils.reviews</a>/<a href="index.html">RateApp</a>/<a href="show-at-event.html">showAtEvent</a></div>
             <div class="pull-right d-flex">
@@ -41,7 +41,7 @@
   <div>
     <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div class="symbol monospace">var <a href="show-at-event.html">showAtEvent</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> = 2<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
-<p class="paragraph">Cuando se llama a checkAndShow() se va a mostrar el flujo si se cumplen las condiciones, setShowAtEvent permite modificar a las cuantas veces que se llama a checkAndShow() se muestre el flujo. Por ejemplo, se desea mostrar el flujo para calificar en el onResume() de la actividad principal, pero la tercer vez que se llame a ese método, en ese caso, establecer showAtEvent = 3, que hará que se muestre el flujo hasta la tercera vez que se llame a onResume(). Si de otro modo, showAtEvent fuera 1, el flujo se mostraría en la primera llamada a onResume(). El valor mínimo de showAtEvent es 1</p></div>
+<p class="paragraph">Indicates in which call to checkAndShow() the flow will be shown.</p><p class="paragraph">For example, if you want to show the flow in the onResume() of the main activity:</p><ul><li><p class="paragraph">RateApp.showAtEvent = 1: In this case, the flow will be shown in the first call to onResume(), which is when the activity is launched.</p></li><li><p class="paragraph">RateApp.showAtEvent = 2: In this case, the flow will be shown in the second call to the activity's onResume().</p></li></ul></div>
         </div>
         <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
       </div>
