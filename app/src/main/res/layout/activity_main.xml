@@ -152,6 +152,39 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/fugaz_one_regular"
                 android:padding="14dp"
+                android:text="File Utils"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/saveBitmapToFileBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Save bitmap to file"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/clearTempFilesFolderBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Clear temp files folder content"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fugaz_one_regular"
+                android:padding="14dp"
                 android:text="More Apps"
                 android:textSize="14sp"
                 tools:ignore="HardcodedText" />

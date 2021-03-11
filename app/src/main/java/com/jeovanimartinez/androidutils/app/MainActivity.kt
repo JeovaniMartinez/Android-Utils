@@ -2,11 +2,16 @@ package com.jeovanimartinez.androidutils.app
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.webkit.URLUtil
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.about.AboutAppConfig
@@ -14,10 +19,13 @@ import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import com.jeovanimartinez.androidutils.filesystem.FileUtils
+import com.jeovanimartinez.androidutils.filesystem.TempFiles
 import com.jeovanimartinez.androidutils.moreapps.MoreApps
 import com.jeovanimartinez.androidutils.reviews.RateApp
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,9 +48,10 @@ class MainActivity : AppCompatActivity() {
     private fun initSetup() {
 
         toggleThemeSetup()
-        translucentThemeSetup()
         rateAppSetup()
         aboutAppSetup()
+        translucentThemeSetup()
+        fileUtilsSetup()
         moreAppsSetup()
         systemWebBrowserSetup()
 
@@ -104,19 +113,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun translucentThemeSetup() {
-
-        launchTranslucentActivityBtn.setOnClickListener {
-
-            val opacity = (translucentActivityOpacity.progress / 100.0).toFloat()
-
-            startActivity(
-                Intent(this@MainActivity, TranslucentThemeDemo::class.java).putExtra("opacity", opacity),
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(this@MainActivity).toBundle() else null
-            )
-        }
-
-    }
 
     private fun aboutAppSetup() {
 
@@ -141,6 +137,50 @@ class MainActivity : AppCompatActivity() {
 
             AboutApp.show(this@MainActivity, aboutAppConfig)
 
+        }
+
+    }
+
+    private fun translucentThemeSetup() {
+
+        launchTranslucentActivityBtn.setOnClickListener {
+
+            val opacity = (translucentActivityOpacity.progress / 100.0).toFloat()
+
+            startActivity(
+                Intent(this@MainActivity, TranslucentThemeDemo::class.java).putExtra("opacity", opacity),
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(this@MainActivity).toBundle() else null
+            )
+        }
+
+    }
+
+    private fun fileUtilsSetup() {
+
+        saveBitmapToFileBtn.setOnClickListener {
+            try {
+                // Create a bitmap object for test the utility and draw a color and text on it.
+                val bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                canvas.drawColor(Color.DKGRAY)
+                canvas.drawText("Android Utils", 35f, 60f, Paint().apply { color = Color.WHITE; textSize = 50f; isAntiAlias = true })
+
+                // Use FileUtils to save bitmap into image file.
+                val result = FileUtils.saveBitmapToFile(this@MainActivity, bitmap)
+
+                MaterialAlertDialogBuilder(this@MainActivity)
+                    .setMessage("File saved: ${result.absolutePath}")
+                    .setPositiveButton("Ok") { _, _ -> }
+                    .show()
+
+            } catch (e: IOException) {
+                shortToast("IOException")
+            }
+        }
+
+        clearTempFilesFolderBtn.setOnClickListener {
+            TempFiles.clearTempFilesFolder(this@MainActivity)
+            shortToast("clearTempFilesFolder() invoked")
         }
 
     }
