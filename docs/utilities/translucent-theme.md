@@ -19,24 +19,32 @@ Style and base class for creating activities with a translucent background.
 This is the recommended structure for the activity layout file.
 
 ```xml
-<RelativeLayout
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".ActivityName">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
-        <!-- 
+        <!--
             LinearLayout or any other layout.
             You can use fixed or relative width and height.
         -->
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"  
+            android:layout_width="match_parent"
             android:layout_height="300dp"
-            >
-            
-                <!-- ... -->
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- ... -->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
