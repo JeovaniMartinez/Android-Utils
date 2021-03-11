@@ -294,6 +294,7 @@ object RateApp : Base<RateApp>() {
                 var successfulReviewFlow = false // Determine if the flow was correct
                 val flowObtainedTime = Date().time // Assign the date was the flow is obtained
                 log("ReviewFlow successfully obtained")
+                firebaseAnalytics(Event.RATE_APP_REQUEST_REVIEW_FLOW_SUCCESSFUL)
                 val reviewInfo = request.result // Get the result
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // The flow to rate app is launched
                 // The flow process was successful
@@ -310,13 +311,13 @@ object RateApp : Base<RateApp>() {
                     successfulReviewFlow = true // The flow was correct
                     log("Successful review flow to rate app with Google Play In-App Review API")
                     updatePreferencesOnFlowShown() // Preferences are updated because the flow is complete
-                    firebaseAnalytics("rate_app_review_flow_successful", null)
+                    firebaseAnalytics(Event.RATE_APP_LAUNCH_REVIEW_FLOW_SUCCESSFUL)
                 }
                 // Flow error
                 reviewFlow.addOnFailureListener {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                     log("Failure on ReviewFlow, can not show flow to rate app")
-                    firebaseAnalytics("rate_app_review_flow_failure", null)
+                    firebaseAnalytics(Event.RATE_APP_LAUNCH_REVIEW_FLOW_ERROR)
                 }
                 // Flow completed
                 reviewFlow.addOnCompleteListener {
@@ -336,14 +337,14 @@ object RateApp : Base<RateApp>() {
                         log("Elapsed time in review flow ${elapsedTime / 1000.0} seconds ($elapsedTime milliseconds)")
                         if (elapsedTime >= RATE_FLOW_MIN_ELAPSED_TIME) {
                             log("Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${RATE_FLOW_MIN_ELAPSED_TIME / 1000.0}, it is considered that the flow was shown to user")
-                            firebaseAnalytics("rate_app_review_flow_showed", null)
+                            firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_SHOWN)
                         }
                     }
                 }
             } else {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                 log("Error on request ReviewFlow, can not show flow to rate app")
-                firebaseAnalytics("rate_app_request_review_flow_error", null)
+                firebaseAnalytics(Event.RATE_APP_REQUEST_REVIEW_FLOW_ERROR)
             }
         }
     }
