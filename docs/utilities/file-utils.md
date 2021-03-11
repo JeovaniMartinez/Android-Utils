@@ -28,7 +28,7 @@ val canvas = Canvas(bitmap)
 canvas.drawColor(Color.DKGRAY)
 canvas.drawText("Android Utils", 35f, 60f, Paint().apply { color = Color.WHITE; textSize = 50f; isAntiAlias = true })
 
-// Use FileUtils to save bitmap into image file.
+// Use FileUtils to save a bitmap into image file.
 FileUtils.saveBitmapToFile(context, bitmap, "test", context.filesDir.absolutePath, Bitmap.CompressFormat.PNG, 100)
 ```
 

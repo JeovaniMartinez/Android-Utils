@@ -3,11 +3,11 @@ id: more-apps
 title: More Apps
 ---
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ## Description
 
-Utility to invite the user to install the developer apps.
+Utility to invite the user to install the developer's apps.
 
 ---
 
@@ -15,7 +15,7 @@ Utility to invite the user to install the developer apps.
 
 ### - showAppListInGooglePlay
 
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps-g-play/show-app-list.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.moreapps/-more-apps/show-app-list-in-google-play.html" target="_blank"><b>[ Reference ]</b></a>
 
 Direct the user to the app developer page on Google Play, usually used to invite the user to install the developer apps.
 

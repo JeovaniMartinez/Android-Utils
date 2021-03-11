@@ -69,6 +69,8 @@ Set of extensions to parse a value as a data type, or to get the value from reso
 
 Extensions available for any view and any context, allow you to easily convert dp or sp to px and vice versa.
 
+---
+
 <br/>
 
 
