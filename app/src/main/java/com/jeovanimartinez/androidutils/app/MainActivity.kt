@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var rateAppConfigured = false
+    private var rateAppInitialized = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /** Initial setup */
     private fun initSetup() {
 
         toggleThemeSetup()
@@ -63,6 +64,11 @@ class MainActivity : AppCompatActivity() {
 
         initRateAppBtn.setOnClickListener {
 
+            if (rateAppInitialized) {
+                shortToast("RateApp it's already initialized")
+                return@setOnClickListener
+            }
+
             RateApp.apply {
                 minInstallElapsedDays = 10
                 minInstallLaunchTimes = 10
@@ -72,18 +78,23 @@ class MainActivity : AppCompatActivity() {
                 showNeverAskAgainButton = true
             }.init(this@MainActivity)
 
-            rateAppConfigured = true
+            rateAppInitialized = true
+
+            shortToast("RateApp successfully initialized")
 
         }
 
         checkAndShowRateAppBtn.setOnClickListener {
 
-            if (!rateAppConfigured) {
+            if (!rateAppInitialized) {
                 shortToast("Please initialize RateApp before to click this button")
                 return@setOnClickListener
-            }
+            } else {
 
-            RateApp.checkAndShow(this@MainActivity)
+                shortToast("Check logcat")
+                RateApp.checkAndShow(this@MainActivity)
+
+            }
 
         }
 

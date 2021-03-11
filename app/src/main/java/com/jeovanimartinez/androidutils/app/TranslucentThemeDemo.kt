@@ -12,6 +12,7 @@ class TranslucentThemeDemo : TranslucentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_translucent_demo)
 
+        // Example calling configureWindowDim()
         showDialogBtn1.setOnClickListener {
             val dialog = MaterialAlertDialogBuilder(this@TranslucentThemeDemo)
                 .setTitle("Android Utils")
@@ -20,6 +21,7 @@ class TranslucentThemeDemo : TranslucentActivity() {
             configureWindowDim(dialog.window)
         }
 
+        // Example without calling configureWindowDim()
         showDialogBtn2.setOnClickListener {
             MaterialAlertDialogBuilder(this@TranslucentThemeDemo)
                 .setTitle("Android Utils")
