@@ -11,6 +11,7 @@ import android.os.Build
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import java.text.DateFormat
 import java.util.*
@@ -361,7 +362,7 @@ object RateApp : Base<RateApp>() {
 
             log("neverShowAgain = $neverShowAgain | The dialogue is shown")
             updatePreferencesOnFlowShown() // Preferences are updated because the dialog is shown
-            firebaseAnalytics("rate_app_dialog_shown", null)
+            firebaseAnalytics(Event.RATE_APP_DIALOG_SHOWN)
 
             // Launch the activity (dialogue style)
             activity.startActivity(
@@ -414,19 +415,19 @@ object RateApp : Base<RateApp>() {
         try {
             activity.startActivity(googlePlayIntent) // It tries to show in the Google Play app
             log("Sent user to view app details in google play app [$marketUriString]")
-            firebaseAnalytics("rate_app_sent_to_google_play_app", null)
+            firebaseAnalytics(Event.RATE_APP_SENT_TO_GOOGLE_PLAY_APP)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // If it cannot be shown in the google play app, it tries to open in the web browser
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
                 log("Sent user to view app details in google play on web browser [$webUriString]")
-                firebaseAnalytics("rate_app_sent_to_google_play_web", null)
+                firebaseAnalytics(Event.RATE_APP_SENT_TO_GOOGLE_PLAY_WEB)
             } catch (e2: ActivityNotFoundException) {
                 // If it couldn't be displayed in either of the above two ways, show a toast
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
                 logw("Unable to send user to app details, google play app and web browser are not available", e2)
-                firebaseAnalytics("rate_app_unable_to_show_on_google_play", null)
+                firebaseAnalytics(Event.RATE_APP_UNABLE_TO_SEND_TO_GOOGLE_PLAY)
             }
         }
     }
