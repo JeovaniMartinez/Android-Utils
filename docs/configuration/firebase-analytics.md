@@ -85,7 +85,7 @@ It is not possible to direct the user to the developer page, since the URL could
 ---
 <br/>
 
-### RateApp
+### Rate App
 
 ---
 <Event>rate_app_request_review_flow_successful</Event><br/>
@@ -126,7 +126,7 @@ The user cannot be directed to the Google Play app or the website to rate the ap
 ---
 <br/>
 
-### SystemWebBrowser
+### System Web Browser
 
 ---
 <Event>open_url_in_system_web_browser</Event><br/>
