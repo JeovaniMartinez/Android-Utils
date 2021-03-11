@@ -55,7 +55,7 @@ or Google Analytics console.
 
 <br/>
 
-### AboutApp
+### About App
 
 ---
 <Event>about_app_shown</Event><br/>
@@ -72,14 +72,14 @@ The license terms and privacy policy are displayed in the about activity.
 ---
 <br/>
 
-### MoreAppsGPlay
+### More Apps
 
 ---
-<Event>more_apps_sent_to_google_play</Event><br/>
+<Event>more_apps_shown_on_google_play</Event><br/>
 The user is directed to the developer page, either in the web browser or on Google Play app.
 
 ---
-<Event>more_apps_unable_to_show_dev_page</Event><br/>
+<Event>more_apps_unable_to_show_on_google_play</Event><br/>
 It is not possible to direct the user to the developer page, since the URL could not be opened in the web browser or in Google Play.
 
 ---
@@ -88,7 +88,7 @@ It is not possible to direct the user to the developer page, since the URL could
 ### RateApp
 
 ---
-<Event>rate_app_review_flow_successful</Event><br/>
+<Event>rate_app_request_review_flow_successful</Event><br/>
 The flow to invite the user to rate the app was successfully obtained.
 
 ---
@@ -96,19 +96,20 @@ The flow to invite the user to rate the app was successfully obtained.
 There was an error getting the flow to invite the user to rate the app.
 
 ---
-<Event>rate_app_review_flow_showed</Event><br/>
+<Event>rate_app_launch_review_flow_successful</Event><br/>
 The flow to invite the user to rate the app was shown (the review API does not provide the result, but it can be inferred, although it is not 100% accurate).
 
 ---
-<Event>rate_app_review_flow_failure</Event><br/>
+<Event>rate_app_launch_review_flow_error</Event><br/>
 Event Description ...The flow could be fetched (rate_app_review_flow_successful) but could not be displayed.
+
+---
+<Event>rate_app_review_flow_shown</Event><br/>
+DSC
 
 ---
 <Event>rate_app_dialog_shown</Event><br/>
 The dialog to rate the app was shown, it only applies in versions prior to Android 5 where the revision API is not available.
-
----
-The count of flow requested can be calculated by summing the `rate_app_review_flow_successful`, `rate_app_request_review_flow_error` and `rate_app_review_flow_failure`.
 
 ---
 <Event>rate_app_sent_to_google_play_app</Event><br/>
@@ -119,7 +120,7 @@ The user is directed to the Google Play app to rate the application.
 The user is directed to the Google Play website to rate the app, as it was not possible to direct them to the Google Play app.
 
 ---
-<Event>rate_app_unable_to_show_on_google_play</Event><br/>
+<Event>rate_app_unable_to_send_to_google_play</Event><br/>
 The user cannot be directed to the Google Play app or the website to rate the app.
 
 ---
