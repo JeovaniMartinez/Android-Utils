@@ -17,6 +17,10 @@ Extensions to easily configure the activities task description.
 
 <br/>
 
+
+
+
+
 ## Basic Types
 
 > #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.extensions.basictypes/index.html" target="_blank"><b>[ Reference ]</b></a>
@@ -28,6 +32,10 @@ Extensions for Float data type.
 --- 
 
 <br/>
+
+
+
+
 
 ## Context
 
@@ -49,6 +57,10 @@ Set of extensions to parse a value as a data type, or to get the value from reso
 
 <br/>
 
+
+
+
+
 ## Dimension
 
 > #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.extensions.dimension/index.html" target="_blank"><b>[ Reference ]</b></a>
@@ -58,6 +70,30 @@ Set of extensions to parse a value as a data type, or to get the value from reso
 Extensions available for any view and any context, allow you to easily convert dp or sp to px and vice versa.
 
 <br/>
+
+
+
+
+
+## Graphics
+
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.extensions.graphics/index.html" target="_blank"><b>[ Reference ]</b></a>
+
+### Bitmap.kt
+
+Extensions for Bitmap class.
+
+### MarginAndPadding.kt
+
+Set of extensions for the Margin and Padding classes.
+
+--- 
+
+<br/>
+
+
+
+
 
 ## Nullability
 
@@ -70,6 +106,10 @@ Extensions to more easily work with null values and with null safety.
 --- 
 
 <br/>
+
+
+
+
 
 ## View
 
