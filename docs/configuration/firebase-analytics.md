@@ -38,9 +38,9 @@ Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(context)
 
 In case you want to disable the event log for a specific utility, it can be done by:
 ```kotlin
-MoreAppsGPlay.firebaseAnalyticsEnabled = false
+MoreApps.firebaseAnalyticsEnabled = false
 ```
-In the example, the `MoreAppsGPlay` utility does not log events to Firebase Analytics, but all the other utilities will.
+In the example, the `MoreApps` utility does not log events to Firebase Analytics, but all the other utilities will.
 
 ---
 
@@ -59,15 +59,15 @@ or Google Analytics console.
 
 ---
 <Event>about_app_shown</Event><br/>
-About activity is displayed.
+The about activity is shown to the user.
 
 ---
 <Event>about_app_open_source_licenses_shown</Event><br/>
-Open source licenses are displayed in the about activity.
+Open source licenses are shown in the about activity.
 
 ---
 <Event>about_app_terms_policy_shown</Event><br/>
-The license terms and privacy policy are displayed in the about activity.
+The license terms and privacy policy are shown in the about activity.
 
 ---
 <br/>
@@ -76,11 +76,11 @@ The license terms and privacy policy are displayed in the about activity.
 
 ---
 <Event>more_apps_shown_on_google_play</Event><br/>
-The user is directed to the developer page, either in the web browser or on Google Play app.
+The user is directed to Google Play, to the list of the developer apps.
 
 ---
 <Event>more_apps_unable_to_show_on_google_play</Event><br/>
-It is not possible to direct the user to the developer page, since the URL could not be opened in the web browser or in Google Play.
+It is not possible to direct the user to the developer apps list in Google Play.
 
 ---
 <br/>
@@ -89,23 +89,24 @@ It is not possible to direct the user to the developer page, since the URL could
 
 ---
 <Event>rate_app_request_review_flow_successful</Event><br/>
-The flow to invite the user to rate the app was successfully obtained.
+The request to get the review flow was successful.
 
 ---
 <Event>rate_app_request_review_flow_error</Event><br/>
-There was an error getting the flow to invite the user to rate the app.
+Error on get review flow request.
 
 ---
 <Event>rate_app_launch_review_flow_successful</Event><br/>
-The flow to invite the user to rate the app was shown (the review API does not provide the result, but it can be inferred, although it is not 100% accurate).
+The review flow to was launched successful.
 
 ---
 <Event>rate_app_launch_review_flow_error</Event><br/>
-Event Description ...The flow could be fetched (rate_app_review_flow_successful) but could not be displayed.
+Error on launch the review flow.
 
 ---
 <Event>rate_app_review_flow_shown</Event><br/>
-DSC
+The flow to invite the user to rate the app was shown (the review API does not provide the result, but it can be inferred, although it is not 
+100% accurate).
 
 ---
 <Event>rate_app_dialog_shown</Event><br/>
@@ -133,4 +134,4 @@ The user cannot be directed to the Google Play app or the website to rate the ap
 The user is directed to a web page in the system web browser.
 <br/><br/>
 <Parameter>open_url_case</Parameter><br/>
-Parameter that indicates the reason why the user was directed tosyste web browser, and also records when an error occurs.
+Parameter that indicates the reason why the user was directed to the system web browser, and also records when an error occurs.
