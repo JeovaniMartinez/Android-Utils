@@ -11,8 +11,8 @@ internal object Event {
     const val ABOUT_APP_OPEN_SOURCE_LICENSES_SHOWN = "about_app_open_source_licenses_shown"
     const val ABOUT_APP_TERMS_POLICY_SHOWN = "about_app_terms_policy_shown"
 
-    const val MORE_APPS_SENT_TO_GOOGLE_PLAY = "more_apps_sent_to_google_play"
-    const val MORE_APPS_UNABLE_TO_SHOW_DEV_PAGE = "more_apps_unable_to_show_dev_page"
+    const val MORE_APPS_SHOWN_ON_GOOGLE_PLAY = "more_apps_shown_on_google_play"
+    const val MORE_APPS_UNABLE_TO_SHOW_ON_GOOGLE_PLAY = "more_apps_unable_to_show_on_google_play"
 
     const val RATE_APP_REVIEW_FLOW_SUCCESSFUL = "rate_app_review_flow_successful"
     const val RATE_APP_REQUEST_REVIEW_FLOW_ERROR = "rate_app_request_review_flow_error"
