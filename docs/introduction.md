@@ -42,7 +42,7 @@ export const Feature = ({children}) => ( <span style={{
 
 - UI with language support for: <Feature>English - Spanish</Feature>
 
-- Free and open-source. <Feature>License Apache 2.0</Feature>
+- Free and open-source. <Feature>Apache License 2.0</Feature>
 
 ---
 
