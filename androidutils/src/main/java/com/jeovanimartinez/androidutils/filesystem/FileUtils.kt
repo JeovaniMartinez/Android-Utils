@@ -26,6 +26,8 @@ object FileUtils : Base<FileUtils>() {
      * @param format Format for the image. Default is PNG.
      * @param quality Quality for the image, between 0 and 100. Default is 100.
      *
+     * @return The created file.
+     *
      * @throws IOException If an I/O error occurs.
      * */
     @Throws(IOException::class)
