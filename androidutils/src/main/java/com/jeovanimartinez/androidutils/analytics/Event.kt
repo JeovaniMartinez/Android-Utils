@@ -21,7 +21,7 @@ internal object Event {
     const val RATE_APP_DIALOG_SHOWN = "rate_app_dialog_shown"
     const val RATE_APP_SENT_TO_GOOGLE_PLAY_APP = "rate_app_sent_to_google_play_app"
     const val RATE_APP_SENT_TO_GOOGLE_PLAY_WEB = "rate_app_sent_to_google_play_web"
-    const val RATE_APP_UNABLE_TO_SHOW_ON_GOOGLE_PLAY = "rate_app_unable_to_show_on_google_play"
+    const val RATE_APP_UNABLE_TO_SEND_TO_GOOGLE_PLAY = "rate_app_unable_to_send_to_google_play"
 
     const val OPEN_URL_IN_SYSTEM_WEB_BROWSER = "open_url_in_system_web_browser"
 
