@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Build
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 
 /**
@@ -55,7 +56,7 @@ object AboutApp : Base<AboutApp>() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
         )
 
-        firebaseAnalytics("about_app_shown") // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
+        firebaseAnalytics(Event.ABOUT_APP_SHOWN) // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
         log("Launched AboutActivity")
     }
 

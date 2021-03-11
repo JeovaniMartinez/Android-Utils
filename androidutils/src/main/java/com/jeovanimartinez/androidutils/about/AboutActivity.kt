@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
@@ -133,7 +134,7 @@ class AboutActivity : TranslucentActivity() {
 
         about_openSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
-            AboutApp.firebaseAnalytics("about_app_open_source_licenses_shown")
+            AboutApp.firebaseAnalytics(Event.ABOUT_APP_OPEN_SOURCE_LICENSES_SHOWN)
         }
 
         about_closeBtn.setOnClickListener {
@@ -328,7 +329,7 @@ class AboutActivity : TranslucentActivity() {
 
         }
 
-        AboutApp.firebaseAnalytics("about_app_terms_policy_shown")
+        AboutApp.firebaseAnalytics(Event.ABOUT_APP_TERMS_POLICY_SHOWN)
 
     }
 

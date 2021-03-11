@@ -26,6 +26,7 @@ internal object Event {
 
     const val OPEN_URL_IN_SYSTEM_WEB_BROWSER = "open_url_in_system_web_browser"
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Constants with the names of the parameters for the events.
