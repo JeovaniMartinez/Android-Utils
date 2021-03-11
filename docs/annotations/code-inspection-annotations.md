@@ -22,6 +22,8 @@ In some cases, the use of values of the wrong data type cannot be detected at co
 
 ### `@DrawableOrDrawableRes`
 
+#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html" target="_blank"><b>[ Reference ]</b></a>
+
 Indicates that the expected value or object should be a Drawable object or the ID of a drawable resource. For example: `drawableObject`, `R.drawable.demo`.
 
 _Detection example in Android Studio:_
@@ -29,6 +31,8 @@ _Detection example in Android Studio:_
 ![img](../img/annotations/annotations-img1.png)
 
 ### `@StringOrStringRes`
+
+#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 Indicates that the expected value or object must be a data type String, Char (since it can be represented as String) or the ID of a string resource. 
 For example: `'a'`, `"Hello"`, `R.string.demo`

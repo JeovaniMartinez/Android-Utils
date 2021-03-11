@@ -29,7 +29,7 @@ If you want to enable event logging, your project must have Firebase Analytics c
 :::
 
 The custom event log is very useful to understand how users interact with the app, the library utilities record useful events in Firebase Analytics.
-This is disabled by default, to enable it, you must define the Firebase Analytics instance, this must be done in in the `onCreate()` of the singleton or 
+This is disabled by default, to enable it, you must define the Firebase Analytics instance, this must be done in the `onCreate()` of the singleton or 
 main activity, when assigning the instance, the record of events will be enabled for all library utilities.
 
 ```kotlin
@@ -97,11 +97,11 @@ Error on get review flow request.
 
 ---
 <Event>rate_app_launch_review_flow_successful</Event><br/>
-The review flow to was launched successful.
+The review flow to rate app was launched successful.
 
 ---
 <Event>rate_app_launch_review_flow_error</Event><br/>
-Error on launch the review flow.
+Error on launch the review flow to rate app.
 
 ---
 <Event>rate_app_review_flow_shown</Event><br/>
@@ -114,7 +114,7 @@ The dialog to rate the app was shown, it only applies in versions prior to Andro
 
 ---
 <Event>rate_app_sent_to_google_play_app</Event><br/>
-The user is directed to the Google Play app to rate the application.
+The user is directed to the Google Play app to rate the app.
 
 ---
 <Event>rate_app_sent_to_google_play_web</Event><br/>
