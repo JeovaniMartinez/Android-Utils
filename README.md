@@ -1,33 +1,29 @@
-# Website
+# Android-Utils Docs
+
+Project with documentation for the Android Utils library
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
-## Installation
+---
 
-```console
-yarn install
-```
+## Commands
 
-## Local Development
+`npm run start` [Start in developer mode] <br/>
+`npm run build` [Generate build for production] <br/>
+`npm run serve` [Run build in local server] <br/>
 
-```console
-yarn start
-```
+---
 
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
+## Considerations
 
-## Build
+- The recommended size for the documentation images, to obtain the best quality, is a width of 807px and the desired height.
+- All the content of the documentation, including images, is in the docs folder, this for if the documentation is versioned in the future.
 
-```console
-yarn build
-```
+## Deploy Instructions
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+1. In the Android Studio project, generate the library documentation in HTML format, and place all the generated content inside the folder `docs/reference`
+2. Adjust references into docs to HTML documentation if its is necessary.
+3. Use the `npm run build` command to generate the build of the documentation for production.
+4. Copy the folder `docs/reference` into `build/docs` folder.
+5. Delete all content of gh-pages branch of the project (except .gitignore and README.md), and put all content of `build` folder in gh-pages branch.
+6. Create a compressed file of this documentation project (including source code and build) and add the file to the Github release assets.
