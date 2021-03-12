@@ -26,9 +26,9 @@ sealed class Watermark {
      * Definition for a drawable watermark (shape, image, etc.)
      * @param drawable Drawable resource or object for the watermark.
      * @param position Position for the watermark inside of the image.
-     * @param width Width for the watermark, if the value is zero or negative, the intrinsic width of the drawable will be used.
+     * @param width Width for the watermark, if the value is zero, the intrinsic width of the drawable will be used.
      *        If the drawable has no intrinsic width, such as a solid color, an exception will be thrown.
-     * @param height Height for the watermark, if the value is zero or negative, the intrinsic height of the drawable will be used.
+     * @param height Height for the watermark, if the value is zero, the intrinsic height of the drawable will be used.
      *        If the drawable has no intrinsic height, such as a solid color, an exception will be thrown.
      * @param dx Watermark offset for the x-axis.
      * @param dy Watermark offset for the y-axis.
