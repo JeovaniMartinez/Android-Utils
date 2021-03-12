@@ -1,18 +1,6 @@
 <resources>
 
-    <!-- MoreAppsGPlay -->
-    <string name="more_apps_unable_to_show_dev_page">Not available</string>
-
-    <!-- RateApp -->
-    <string name="rate_app_unable_to_show_app_on_google_play">Not available, please rate App on Google Play</string>
-
-    <!-- RateAppActivity - Activity/Dialog to rate the app. -->
-    <string name="rate_dialog_ask">Would you like to rate our app in Google Play?</string>
-    <string name="rate_dialog_rate_now">Rate Now</string>
-    <string name="rate_dialog_no_thanks">No, thanks.\nI have already rate</string>
-    <string name="rate_dialog_later">Later</string>
-
-    <!-- AboutApp and AboutActivity - For the app about. -->
+    <!-- About App -->
     <string name="about_app_app_name">Android Utils</string>
     <string name="about_app_version">version %1$s</string>
     <string name="about_app_author_title">Design and Programming by</string>
@@ -28,7 +16,17 @@
     <string name="about_app_terms_and_policy_link">https://jedemm.com/android-utils/terms-and-policy/license.html</string>
     <string name="about_app_open_source_licenses">Open Source\nLicenses</string>
 
-    <!-- SystemWebBrowser - Utility to show web pages in the system web browser. -->
+    <!-- More Apps -->
+    <string name="more_apps_unable_to_show_dev_page">Not available</string>
+
+    <!-- Rate App -->
+    <string name="rate_app_unable_to_show_app_on_google_play">Not available, please rate App on Google Play</string>
+    <string name="rate_dialog_ask">Would you like to rate our app in Google Play?</string>
+    <string name="rate_dialog_rate_now">Rate Now</string>
+    <string name="rate_dialog_no_thanks">No, thanks.\nI have already rate</string>
+    <string name="rate_dialog_later">Later</string>
+
+    <!-- System Web Browser -->
     <string name="system_web_browser_not_available">There is no app installed to display the requested web page</string>
     <string name="system_web_browser_error">Not available</string>
 
