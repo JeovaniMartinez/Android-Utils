@@ -5,19 +5,18 @@ sidebar_label: Android Utils
 slug: /introduction
 ---
 
-export const MainImg = ({children}) => ( <span style={{
-    backgroundColor: '#005644',
-    borderRadius: '6px',
-    padding: '0.2rem 0.3rem',
-}}>{children}</span> );
+<br/>
 
-<p align="center">
-    <MainImg>
-        <img src="../static/img/site/logo.svg" alt="drawing" width="80"/>
-        <img src="../static/img/site/logo.svg" alt="drawing" width="80"/>
-        <img src="../static/img/site/logo.svg" alt="drawing" width="80"/>
-    </MainImg >
-</p>
+<div style={{textAlign: 'center'}}>
+
+<div style={{'max-width': '450px', margin: '0 auto', position: 'relative'}}>
+
+![img](./img/introduction/introduction.svg)
+
+</div>
+
+</div>
+
 
 ### Description
 
