@@ -26,4 +26,4 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 3. Use the `npm run build` command to generate the build of the documentation for production.
 4. Copy the folder `docs/reference` into `build/docs` folder.
 5. Delete all content of gh-pages branch of the project (except .gitignore and README.md), and put all content of `build` folder in gh-pages branch.
-6. Create a compressed file of this documentation project (including source code and build) and add the file to the Github release assets.
+6. Create a compressed file of this documentation project (including source code and build) and add the file to the Github release assets for the library target release.
