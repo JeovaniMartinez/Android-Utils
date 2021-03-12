@@ -2,7 +2,7 @@ module.exports = {
     title: 'Android Utils',
     tagline: 'Set of utilities for Android app development',
     url: 'https://jeovanimartinez.github.io/Android-Utils/',
-    baseUrl: '/',
+    baseUrl: '/Android-Utils/',
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/site/favicon.ico',
