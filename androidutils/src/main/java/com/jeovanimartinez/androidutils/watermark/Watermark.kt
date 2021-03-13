@@ -1,9 +1,9 @@
 package com.jeovanimartinez.androidutils.watermark
 
 import android.graphics.Color
+import android.graphics.Typeface
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
-import androidx.annotation.FontRes
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
@@ -79,7 +79,7 @@ sealed class Watermark {
         override val dy: Float = 0f,
         override val rotation: Float = 0f,
         @FloatRange(from = 0.0, to = 1.0) override val opacity: Float = 1f,
-        @FontRes val typeface: Int? = null,
+        val typeface: Typeface? = null,
         val shadow: WatermarkShadow? = null,
         override val measurementDimension: Dimension = Dimension.PX
     ) : Watermark()
