@@ -14,6 +14,7 @@ module.exports = {
         ],
         "Library Utilities": [
             'utilities/rate-app',
+            'utilities/watermark',
             'utilities/about-app',
             'utilities/translucent-theme',
             'utilities/file-utils',
