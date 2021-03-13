@@ -38,7 +38,7 @@ sealed class Watermark {
      * @param measurementDimension Type of dimension to use to draw watermark, its apply for width, height, dx and dy.
      *        For example, if the value of width is 10f and measurementDimension is Dimension.PX, the width of the drawn watermark
      *        will be 10 px, but if measurementDimension is Dimension.DP, the the width of the drawn watermark will be calculate
-     *        according the screen density.
+     *        according the screen density. It is recommended to use only Dimension.PX or Dimension.DP for a Drawable watermark.
      * */
     data class Drawable(
         @DrawableOrDrawableRes val drawable: Any,
