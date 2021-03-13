@@ -28,10 +28,22 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
     override val LOG_TAG = "WatermarkUtils"
 
+    /**
+     * Draw a list of watermarks into [bitmap].
+     * @param context Context.
+     * @param bitmap Bitmap where the watermarks is to be drawn.
+     * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw into the [bitmap].
+     * */
     fun drawWatermarks(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
         watermarkList.forEach { drawWatermark(context, bitmap, it) }
     }
 
+    /**
+     * Draw a watermark into [bitmap].
+     * @param context Context.
+     * @param bitmap Bitmap where the watermark is to be drawn.
+     * @param watermark Watermark.Drawable or Watermark.Text to draw into the [bitmap].
+     * */
     fun drawWatermark(context: Context, bitmap: Bitmap, watermark: Watermark) {
         validateWatermark(watermark)
         when (watermark) {
@@ -40,12 +52,12 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         }
     }
 
+    /**
+     * Validate the properties of the [watermark] object, and generate an IllegalArgumentException in case of finding incorrect values.
+     * */
     private fun validateWatermark(watermark: Watermark) {
         require(watermark.opacity in 0f..1f) {
             "Opacity value for the watermark must be between 0 and 1, current value is ${watermark.opacity}"
-        }
-        require(watermark.measurementDimension == Dimension.PX || watermark.measurementDimension == Dimension.DP) {
-            "Watermark measurement dimension only accept Dimension.PX or Dimension.DP, current dimension is Dimension.${watermark.measurementDimension} "
         }
         if (watermark is Watermark.Drawable) {
             require(watermark.width >= 0f) {
@@ -53,6 +65,10 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             }
             require(watermark.height >= 0f) {
                 "Watermark height must be equal or greater than 0, current value is ${watermark.height}"
+            }
+        } else if (watermark is Watermark.Text) {
+            require(watermark.textSize > 0) {
+                "Watermark text size must be greater than 0, current value is ${watermark.textSize}"
             }
         }
     }
@@ -146,7 +162,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         val absDy = abs(watermarkShadow.dy)
 
         val textBitmapWidth = textWidth.toInt() + (absDx * 2).toInt() + 50
-        val textBitmapHeight= fontHeight.toInt() + (absDy * 2).toInt() + 50
+        val textBitmapHeight = fontHeight.toInt() + (absDy * 2).toInt() + 50
 
         val textBitmap = Bitmap.createBitmap(textBitmapWidth, textBitmapHeight, Bitmap.Config.ARGB_8888)
         val textCanvas = Canvas(textBitmap)
