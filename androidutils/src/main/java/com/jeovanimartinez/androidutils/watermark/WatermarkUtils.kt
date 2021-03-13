@@ -30,16 +30,6 @@ object WatermarkUtils : Base<WatermarkUtils>() {
     override val LOG_TAG = "WatermarkUtils"
 
     /**
-     * Draw a list of watermarks into [bitmap].
-     * @param context Context.
-     * @param bitmap Bitmap where the watermarks is to be drawn.
-     * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw into the [bitmap].
-     * */
-    fun drawWatermarks(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
-        watermarkList.forEach { drawWatermark(context, bitmap, it) }
-    }
-
-    /**
      * Draw a watermark into [bitmap].
      * @param context Context.
      * @param bitmap Bitmap where the watermark is to be drawn.
@@ -51,6 +41,16 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             is Watermark.Drawable -> drawDrawableWatermark(context, bitmap, watermark)
             is Watermark.Text -> drawTextWatermark(context, bitmap, watermark)
         }
+    }
+
+    /**
+     * Draw a list of watermarks into [bitmap].
+     * @param context Context.
+     * @param bitmap Bitmap where the watermarks is to be drawn.
+     * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw into the [bitmap].
+     * */
+    fun drawWatermarks(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
+        watermarkList.forEach { drawWatermark(context, bitmap, it) }
     }
 
     /**
@@ -173,28 +173,6 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
         // ** Prevent call watermarkBitmap.recycle(), in some cases generate an exception
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private fun drawTextWatermark(context: Context, baseBitmap: Bitmap, watermark: Watermark.Text) {
