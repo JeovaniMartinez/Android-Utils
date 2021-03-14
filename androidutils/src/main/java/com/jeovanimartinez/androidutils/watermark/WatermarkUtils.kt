@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
@@ -247,32 +248,42 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             }
         }
 
-        val textWidth = paint.measureText(text)
+        val textWidth = paint.measureText(text) // The width that the text will occupy is calculated
+        // For the height of the text, the height of the font must be considered, to contemplate all the characters that may appear
+        val fontHeight = abs(paint.fontMetrics.ascent) + abs(paint.fontMetrics.descent) // Total height
+        val fontHeightAscent = abs(paint.fontMetrics.ascent) // Height above line
+        val fontHeightDescent = abs(paint.fontMetrics.descent) // Height below line
 
-        val fontHeight = abs(paint.fontMetrics.ascent) + abs(paint.fontMetrics.descent)
-        val fontHeightAscent = abs(paint.fontMetrics.ascent)
-        val fontHeightDescent = abs(paint.fontMetrics.descent)
+        log("textWidth = $textWidth | fontHeightAscent = $fontHeightAscent | fontHeightDescent = $fontHeightDescent | fontHeight = $fontHeight" )
 
+        // Absolute value of shadow offset
         val absDx = abs(shadow.dx)
         val absDy = abs(shadow.dy)
 
-        val textBitmapWidth = textWidth.toInt() + (absDx * 2).toInt() + 50
-        val textBitmapHeight = fontHeight.toInt() + (absDy * 2).toInt() + 50
+        // To expand the size a bit and make sure everything fits on the bitmap (only if has a shadow)
+        val extraSize = if (watermark.shadow != null) 50 else 0
 
-        val textBitmap = Bitmap.createBitmap(textBitmapWidth, textBitmapHeight, Bitmap.Config.ARGB_8888)
-        val textCanvas = Canvas(textBitmap)
+        // The dimensions that the text can occupy are calculated, taking into account the offset
+        val textBitmapWidth = textWidth.toInt() + (absDx * 2).toInt() + extraSize
+        val textBitmapHeight = fontHeight.toInt() + (absDy * 2).toInt() + extraSize
 
+        val textBitmap = Bitmap.createBitmap(textBitmapWidth, textBitmapHeight, Bitmap.Config.ARGB_8888) // Create a bitmap for the text
+        val textCanvas = Canvas(textBitmap) // Canvas for draw the text
+
+        // The text is drawn with the offset. For the y-axis add fontHeightAscent since it is the point of origin
         textCanvas.drawText(text, absDx, fontHeightAscent + absDy, paint)
 
-        val finalTextBitmap = textBitmap.trimByBorderColor()
+        val finalTextBitmap = if (watermark.shadow != null) {
+            log("The text has a shadow, bitmap must be trimmed")
+            textBitmap.trimByBorderColor()
+        } else {
+            log("The text has no shadow, bitmap must be not trimmed")
+            textBitmap
+        }
 
-        val c = Canvas(targetBitmap)
-        c.drawText(text, 10f, fontHeightAscent + 10, paint)
+        log("Final text bitmap width = ${finalTextBitmap.width} | Final text height = ${finalTextBitmap.height}")
 
-        //val dx = if (watermark.measurementDimension == Dimension.DP) context.dp2px(watermark.dx).toFloat() else watermark.dx
-        //val dy = if (watermark.measurementDimension == Dimension.DP) context.dp2px(watermark.dy).toFloat() else watermark.dy
-
-        /*drawDrawableWatermark(
+        drawDrawableWatermark(
             context,
             targetBitmap,
             Watermark.Drawable(
@@ -283,10 +294,10 @@ object WatermarkUtils : Base<WatermarkUtils>() {
                 dx,
                 dy,
                 watermark.rotation,
-                1f,
-                Dimension.PX
+                watermark.opacity,
+                Dimension.PX // Always use PX
             )
-        )*/
+        )
 
     }
 
