@@ -1,4 +1,4 @@
-// Demo code used in Android Studio
+// Code
 
 private fun tmp() {
 
