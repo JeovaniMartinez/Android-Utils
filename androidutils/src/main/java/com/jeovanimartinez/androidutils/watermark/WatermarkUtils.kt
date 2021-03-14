@@ -269,7 +269,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         val textOffsetX = if (shadow.dx < 0) absDx else 0f
         val textOffsetY = if (shadow.dy < 0) absDy else 0f
 
-        // Draw the text, considering the offset and font height
+        // Draw the text, considering the offsets and font height
         textCanvas.drawText(text, textOffsetX, fontHeightAscent + textOffsetY, paint)
 
         log("A bitmap with the text watermark has been created, we proceed to draw it on the image using drawDrawableWatermark()")
