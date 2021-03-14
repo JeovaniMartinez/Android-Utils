@@ -14,7 +14,6 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.dimension.sp2px
 import com.jeovanimartinez.androidutils.extensions.graphics.rotate
-import com.jeovanimartinez.androidutils.extensions.graphics.trimByBorderColor
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition.*
@@ -74,7 +73,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
     }
 
     /**
-     * Draw a drawable object into bitmap.
+     * Draw a drawable watermark into bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
      * @param watermark Watermark.Drawable to draw into the [targetBitmap].
@@ -175,7 +174,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
 
     /**
-     * Draw a text into bitmap.
+     * Draw a text watermark into bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
      * @param watermark Watermark.Text to draw into the [targetBitmap].
@@ -235,6 +234,8 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         // The shadow values are also logged
         if (watermark.shadow != null) log("Shadow values: radius = ${shadow.radius} dx = ${shadow.dx} dy = ${shadow.dy}")
 
+        // Opacity and rotation are rendered last, when it is drawn as a drawable watermark
+
         // Paint object is created to apply the style
         val paint = Paint().apply {
             color = watermark.textColor
@@ -254,130 +255,42 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         val fontHeightAscent = abs(paint.fontMetrics.ascent) // Height above line
         val fontHeightDescent = abs(paint.fontMetrics.descent) // Height below line
 
-        log("textWidth = $textWidth | fontHeightAscent = $fontHeightAscent | fontHeightDescent = $fontHeightDescent | fontHeight = $fontHeight" )
+        log("textWidth = $textWidth | fontHeightAscent = $fontHeightAscent | fontHeightDescent = $fontHeightDescent | fontHeight = $fontHeight")
 
-        // Absolute value of shadow offset
+        // Absolute values of shadow offset
         val absDx = abs(shadow.dx)
         val absDy = abs(shadow.dy)
 
-        // To expand the size a bit and make sure everything fits on the bitmap (only if has a shadow)
-        val extraSize = if (watermark.shadow != null) 50 else 0
-
-        // The dimensions that the text can occupy are calculated, taking into account the offset
-        val textBitmapWidth = textWidth.toInt() + (absDx * 2).toInt() + extraSize
-        val textBitmapHeight = fontHeight.toInt() + (absDy * 2).toInt() + extraSize
-
-        val textBitmap = Bitmap.createBitmap(textBitmapWidth, textBitmapHeight, Bitmap.Config.ARGB_8888) // Create a bitmap for the text
+        // Create a bitmap for the text, considering the text size and the shadow
+        val textBitmap = Bitmap.createBitmap((textWidth + absDx).toInt(), (fontHeight + absDy).toInt(), Bitmap.Config.ARGB_8888) // Create a bitmap for the text
         val textCanvas = Canvas(textBitmap) // Canvas for draw the text
 
-        // The text is drawn with the offset. For the y-axis add fontHeightAscent since it is the point of origin
-        textCanvas.drawText(text, absDx, fontHeightAscent + absDy, paint)
+        // The internal offset of the text is calculated, according to the offset of the shadow
+        val textOffsetX = if (shadow.dx < 0) absDx else 0f
+        val textOffsetY = if (shadow.dy < 0) absDy else 0f
 
-        val finalTextBitmap = if (watermark.shadow != null) {
-            log("The text has a shadow, bitmap must be trimmed")
-            textBitmap.trimByBorderColor()
-        } else {
-            log("The text has no shadow, bitmap must be not trimmed")
-            textBitmap
-        }
+        // Draw the text, considering the offset and font height
+        textCanvas.drawText(text, textOffsetX, fontHeightAscent + textOffsetY, paint)
 
-        log("Final text bitmap width = ${finalTextBitmap.width} | Final text height = ${finalTextBitmap.height}")
+        log("A bitmap with the text watermark has been created, we proceed to draw it on the image using drawDrawableWatermark()")
 
+        // Since the text watermark is done, it is drawn as a drawable
         drawDrawableWatermark(
             context,
             targetBitmap,
             Watermark.Drawable(
-                finalTextBitmap.toDrawable(context.resources),
+                textBitmap.toDrawable(context.resources),
                 watermark.position,
-                finalTextBitmap.width.toFloat(),
-                finalTextBitmap.height.toFloat(),
+                textBitmap.width.toFloat(),
+                textBitmap.height.toFloat(),
                 dx,
                 dy,
                 watermark.rotation,
                 watermark.opacity,
-                Dimension.PX // Always use PX
+                Dimension.PX // Always use PX as the values have already been processed
             )
         )
 
     }
-
-//
-//        // Se valida el valor de la opacidad
-//        if (watermark.opacity < 0f || watermark.opacity > 1f) throw Exception("The opacity value for text watermark must be between 0 and 1")
-//
-//        val watermarkShadow = if (watermark.shadow.isNotNull()) watermark.shadow!! else WatermarkShadow(0f, 0f, 0f, Color.TRANSPARENT)
-//
-//        // Se genera un objeto Paint para aplicar el estilo
-//        val paint = Paint().apply {
-//            color = watermark.textColor
-//            textSize = context.dp2px(watermark.textSize).toFloat() // Se usa en dp, para evitar alteraciones si el dispositivo usa una fuente más grande o más pequeña
-//            isAntiAlias = true /// Para una buena calidad
-//            textAlign = Paint.Align.LEFT // Se alinea siempre a la izquierda y a partir de esa alineación se ajusta según la posición
-//            alpha = watermark.opacity.mapValue(0f, 1f, 0f, 255f).toInt() // Se mapea y asigna la opacidad
-//            // Se asigna la fuente en caso de recibirla
-//            watermark.typeface.whenNotNull {
-//                typeface = context.getFontCompat(it)
-//            }
-//            setShadowLayer(watermarkShadow.radius, watermarkShadow.dx, watermarkShadow.dy, watermarkShadow.shadowColor)
-//        }
-//
-//        // Para el ancho que va a ocupar el texto, paint.measureText es más exacto que paint.getTextBounds, referencia: https://stackoverflow.com/a/7579469
-//        val textWidth = paint.measureText(text) // Ancho del texto
-//
-//        // Para el alto del texto, se debe considerar el alto de la fuente, para contemplar todos los caracteres que pueden aparecer
-//
-//        /*
-//        * fontMetrics del objeto paint indica métricas sobre la fuente, donde se puede deducir los siguiente:
-//        * Supongamos una linea imaginaria (renglón) donde se va a dibujar el texto, el texto queda por encima del renglón, pero los caracteres como la
-//        * "y" tiene una parte que queda por debajo del renglón. La parte que queda encima del renglón es el valor de ascent (que es negativo porque es
-//        * del renglón hacia arriba) y la parte que queda por debajo del renglón es descent, y sumando el valor absoluto de estos valores, podemos determinar
-//        * el alto máximo que puede usar la fuente para dibujar el texto. En algunos casos, es necesario usar solo el valor absoluto de ascent cuando se
-//        * dibuja en el canvas, ya que en el eje Y se comienza a dibujar en el renglón (excluyendo el espacio que ocupan los caracteres debajo del renglón) y en
-//        * otros casos se requiere usar solo el valor absoluto de descent, para que se alcance a apreciar el texto port debajo del renglón.
-//        * Referencia: https://stackoverflow.com/a/42091739
-//        * */
-//
-//        val fontHeight = abs(paint.fontMetrics.ascent) + abs(paint.fontMetrics.descent) // Alto total de la fuente
-//        val fontHeightAscent = abs(paint.fontMetrics.ascent) // Alto por encima del renglón que puede ocupar la fuente
-//        val fontHeightDescent = abs(paint.fontMetrics.descent) // Alto por debajo del renglón que puede ocupar la fuente
-//
-//        // Se obtienen datos de la configuración
-//        val rotation = watermark.rotation
-//        val offsetX = context.dp2px(watermark.offsetX)
-//        val offsetY = context.dp2px(watermark.offsetY)
-//
-//        /*
-//        * El archivo view-to-image-helper.svg de los recursos del proyecto se uso para analizar y definir como generar la marca de agua
-//        * en las diferentes posiciones y en los diferentes ángulos.
-//        * */
-//
-//        val absX = abs(watermarkShadow.dx)
-//        val absY = abs(watermarkShadow.dy)
-//
-//        val textBitmap = Bitmap.createBitmap(textWidth.toInt() + (absX * 2).toInt(), fontHeight.toInt() + (absY * 2).toInt(), Bitmap.Config.ARGB_8888) // Se genera un bitmap para dibujar el texto
-//        val textCanvas = Canvas(textBitmap)
-//
-//        textCanvas.drawColor(Color.RED)
-//        textCanvas.drawText(text, absX, fontHeightAscent + absY, paint) // Se dibuja el texto en el bitmap mediante el canvas
-//
-//
-//        val trimed = textBitmap.trimByEdgeColor(Color.RED)
-//
-//        drawDrawableWatermark(
-//            context,
-//            canvas,
-//            DrawableWatermark(
-//                trimed.toDrawable(context.resources),
-//                watermark.position, trimed.width.toFloat(),
-//                trimed.height.toFloat(),
-//                watermark.offsetX,
-//                watermark.offsetY,
-//                watermark.rotation,
-//                1f // Se pasa siempre la opacidad de 1f, ya que este valor se aplicó en el paint del texto y no es necesario aplicarlo nuevamente
-//            )
-//        )
-//
-//        textBitmap.recycle()
-
 
 }
