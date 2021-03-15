@@ -128,8 +128,12 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             log("Watermark is rotate ${watermark.rotation} degrees")
             // Create a temporally bitmap, rotate and assign to watermark Bitmap
             bitmapTmp = drawable.toBitmap(watermarkWidth, watermarkHeight, Bitmap.Config.ARGB_8888)
+            bitmapTmp.density = targetBitmap.density
             bitmapTmp.rotate(watermark.rotation)
         }
+
+        // It must have the same density as the bitmap where it is going to be drawn, so that it is drawn with the correct size and scale
+        watermarkBitmap.density = targetBitmap.density
 
         log("Watermark opacity = ${watermark.opacity}")
 
@@ -263,6 +267,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
         // Create a bitmap for the text, considering the text size and the shadow
         val textBitmap = Bitmap.createBitmap((textWidth + absDx).toInt(), (fontHeight + absDy).toInt(), Bitmap.Config.ARGB_8888) // Create a bitmap for the text
+        textBitmap.density = targetBitmap.density // To scale appropriately according to the bitmap.
         val textCanvas = Canvas(textBitmap) // Canvas for draw the text
 
         // The internal offset of the text is calculated, according to the offset of the shadow
