@@ -5,9 +5,9 @@ title: Watermark
 
 ## Description
 
-Utility to draw a drawable or a text watermarks into images.
+Utility to draw a text watermark or a drawable watermark into images.
 
-![img](../img/pending-image.png)
+![img](../img/watermark/watermark-img1.jpeg)
 
 ---
 
