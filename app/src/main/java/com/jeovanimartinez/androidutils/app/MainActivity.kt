@@ -2,10 +2,8 @@ package com.jeovanimartinez.androidutils.app
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
 import android.webkit.URLUtil
@@ -18,11 +16,18 @@ import com.jeovanimartinez.androidutils.about.AboutAppConfig
 import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
+import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
+import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.filesystem.TempFiles
+import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.moreapps.MoreApps
 import com.jeovanimartinez.androidutils.reviews.RateApp
+import com.jeovanimartinez.androidutils.watermark.Watermark
+import com.jeovanimartinez.androidutils.watermark.WatermarkUtils
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
+import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
@@ -54,6 +59,54 @@ class MainActivity : AppCompatActivity() {
         fileUtilsSetup()
         moreAppsSetup()
         systemWebBrowserSetup()
+
+
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.watermark_base1, BitmapFactory.Options().apply { inMutable = true; inScaled = false; })
+
+        WatermarkUtils.drawWatermarks(
+            this@MainActivity, bitmap, arrayListOf(
+                Watermark.Drawable(
+                    drawable = R.drawable.library_logo,
+                    position = WatermarkPosition.MIDDLE_CENTER,
+                    width = 150f,
+                    height = 150f,
+                    dx = 0f,
+                    dy = -20f,
+                    rotation = 0f,
+                    opacity = 0.8f,
+                    measurementDimension = Dimension.PX
+                ),
+                Watermark.Text(
+                    text = "Android Utils",
+                    textSize = 40f,
+                    textColor = Color.WHITE,
+                    position = WatermarkPosition.MIDDLE_CENTER,
+                    dx = 0f,
+                    dy = 95f,
+                    rotation = 0f,
+                    opacity = 0.8f,
+                    typeface = getFontCompat(R.font.oi_regular),
+                    shadow = WatermarkShadow(2f, 3f, 3f, Color.BLACK),
+                    measurementDimension = Dimension.PX
+                ),
+                Watermark.Text(
+                    text = "Watermark Demo",
+                    textSize = 20f,
+                    textColor = Color.WHITE,
+                    position = WatermarkPosition.TOP_LEFT,
+                    dx = 10f,
+                    dy = 10f,
+                    rotation = 315f,
+                    opacity = 0.6f,
+                    typeface = null,
+                    shadow = WatermarkShadow(2f, 3f, 3f, Color.BLACK),
+                    measurementDimension = Dimension.PX
+                )
+            )
+        )
+
+        FileUtils.saveBitmapToFile(this@MainActivity, bitmap, "test", null, Bitmap.CompressFormat.JPEG)
+
 
     }
 
