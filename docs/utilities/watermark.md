@@ -5,7 +5,7 @@ title: Watermark
 
 ## Description
 
-Utility to draw a text watermarks or a drawable watermarks into images.
+Set of utilities to draw a text watermarks or a drawable watermarks into images.
 
 ![img](../img/watermark/watermark-img1-a.jpeg)
 
@@ -237,20 +237,42 @@ val textWatermark = Watermark.Text(
 
 ---
 
-TMP
+## Watermark Utils
 
-To draw one
+#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark-utils/index.html" target="_blank"><b>[ Reference ]</b></a>
+
+After defining the watermarks, this utility takes care of processing and drawing them on the images.
+
+### - drawWatermark
+
+> Allows to draw a watermark on an image.
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark-utils/draw-watermark.html" target="_blank"><b>[ Reference ]</b></a>
+
+#### Usage
 
 ```kotlin
 WatermarkUtils.drawWatermark(context, bitmap, drawableWatermark)
 WatermarkUtils.drawWatermark(context, bitmap, textWatermark)
+```
 
+:::tip
+You can use the copy function to copy a watermark object for changing only some of its properties, but keeping the rest unchanged.
+```kotlin
 WatermarkUtils.drawWatermark(
     context, bitmap,
     drawableWatermark.copy(dx = 95f, opacity = 0.5f)
 )
 ```
+:::
 
+---
+
+### - drawWatermarks
+
+> Allows you to draw multiple watermarks on an image.
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark-utils/draw-watermarks.html" target="_blank"><b>[ Reference ]</b></a>
+
+#### Usage
 
 ```kotlin
 WatermarkUtils.drawWatermarks(
