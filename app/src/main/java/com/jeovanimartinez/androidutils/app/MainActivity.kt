@@ -16,7 +16,6 @@ import com.jeovanimartinez.androidutils.about.AboutAppConfig
 import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
-import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.filesystem.FileUtils
@@ -60,52 +59,61 @@ class MainActivity : AppCompatActivity() {
         moreAppsSetup()
         systemWebBrowserSetup()
 
+        val context = this@MainActivity
 
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.watermark_base1, BitmapFactory.Options().apply { inMutable = true; inScaled = false; })
+        // Get the bitmap from image resource
+        val bitmap = BitmapFactory.decodeResource(
+            resources,
+            R.drawable.watermark_base2,
+            BitmapFactory.Options().apply { inMutable = true; inScaled = false }
+        )
 
+
+        val drawableWatermark = Watermark.Drawable(
+            drawable = R.drawable.library_logo,
+            position = WatermarkPosition.BOTTOM_LEFT,
+            width = 80f,
+            height = 80f,
+            dx = 10f,
+            dy = -5f,
+            rotation = 0f,
+            opacity = 0.8f,
+            measurementDimension = Dimension.PX
+        )
+
+        val textWatermark = Watermark.Text(
+            text = "Sample Watermark By Android Utils",
+            textSize = 30f,
+            textColor = Color.WHITE,
+            position = WatermarkPosition.TOP_RIGHT,
+            dx = -10f,
+            dy = 10f,
+            rotation = 0f,
+            opacity = 0.65f,
+            typeface = getFontCompat(R.font.fugaz_one_regular),
+            shadow = WatermarkShadow(2f, 10f, 20f, Color.parseColor("#1976D2")),
+            measurementDimension = Dimension.PX
+        )
+
+
+        // Draw the watermarks on the image
         WatermarkUtils.drawWatermarks(
-            this@MainActivity, bitmap, arrayListOf(
-                Watermark.Drawable(
-                    drawable = R.drawable.library_logo,
-                    position = WatermarkPosition.MIDDLE_CENTER,
-                    width = 150f,
-                    height = 150f,
-                    dx = 0f,
-                    dy = -20f,
-                    rotation = 0f,
-                    opacity = 0.8f,
-                    measurementDimension = Dimension.PX
-                ),
-                Watermark.Text(
-                    text = "Android Utils",
-                    textSize = 40f,
-                    textColor = Color.WHITE,
-                    position = WatermarkPosition.MIDDLE_CENTER,
-                    dx = 0f,
-                    dy = 95f,
-                    rotation = 0f,
-                    opacity = 0.8f,
-                    typeface = getFontCompat(R.font.oi_regular),
-                    shadow = WatermarkShadow(2f, 3f, 3f, Color.BLACK),
-                    measurementDimension = Dimension.PX
-                ),
-                Watermark.Text(
-                    text = "Watermark Demo",
-                    textSize = 20f,
-                    textColor = Color.WHITE,
-                    position = WatermarkPosition.TOP_LEFT,
-                    dx = 10f,
-                    dy = 10f,
-                    rotation = 315f,
-                    opacity = 0.6f,
-                    typeface = null,
-                    shadow = WatermarkShadow(2f, 3f, 3f, Color.BLACK),
-                    measurementDimension = Dimension.PX
-                )
+            context,
+            bitmap,
+            arrayListOf(
+                drawableWatermark,
+                drawableWatermark.copy(dx = 95f, opacity = 0.5f),
+                textWatermark,
             )
         )
 
-        FileUtils.saveBitmapToFile(this@MainActivity, bitmap, "test", null, Bitmap.CompressFormat.JPEG)
+        // Save into file using FileUtils
+        FileUtils.saveBitmapToFile(
+            context = context,
+            bitmap = bitmap,
+            fileName = "watermark-demo",
+            format = Bitmap.CompressFormat.JPEG
+        )
 
 
     }
