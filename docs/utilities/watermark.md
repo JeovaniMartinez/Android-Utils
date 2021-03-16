@@ -7,8 +7,104 @@ title: Watermark
 
 Utility to draw a text watermarks or a drawable watermarks into images.
 
-![img](../img/watermark/watermark-img1.jpeg)
+![img](../img/watermark/watermark-img1-a.jpeg)
 
+![img](../img/watermark/watermark-img1-b.svg)
+
+![img](../img/watermark/watermark-img1-c.jpg)
+
+#### Code
+
+```kotlin
+// Get the bitmap from image resource
+val bitmap = BitmapFactory.decodeResource(
+    resources,
+    R.drawable.watermark_base1,
+    BitmapFactory.Options().apply { inMutable = true; inScaled = false }
+)
+
+// Create a shape to draw into the watermark
+val shape = GradientDrawable()
+    .apply { shape = GradientDrawable.RECTANGLE; setColor(Color.BLACK) }
+
+// Draw the watermarks on the image
+WatermarkUtils.drawWatermarks(
+    context,
+    bitmap,
+    arrayListOf(
+        Watermark.Drawable(
+            drawable = R.drawable.library_logo,
+            position = WatermarkPosition.MIDDLE_CENTER,
+            width = 150f,
+            height = 150f,
+            dx = 0f,
+            dy = -20f,
+            rotation = 0f,
+            opacity = 0.85f,
+            measurementDimension = Dimension.PX
+        ),
+        Watermark.Drawable(
+            drawable = shape,
+            position = WatermarkPosition.MIDDLE_CENTER,
+            width = 807f,
+            height = 80f,
+            dx = 0f,
+            dy = 100f,
+            rotation = 0f,
+            opacity = 0.6f,
+            measurementDimension = Dimension.PX
+        ),
+        Watermark.Text(
+            text = "Android Utils",
+            textSize = 40f,
+            textColor = Color.WHITE,
+            position = WatermarkPosition.MIDDLE_CENTER,
+            dx = 0f,
+            dy = 108f,
+            rotation = 0f,
+            opacity = 0.9f,
+            typeface = getFontCompat(R.font.oi_regular),
+            shadow = WatermarkShadow(2f, 3f, 3f, Color.BLACK),
+            measurementDimension = Dimension.PX
+        ),
+        Watermark.Text(
+            text = "Watermark Demo",
+            textSize = 20f,
+            textColor = Color.WHITE,
+            position = WatermarkPosition.TOP_LEFT,
+            dx = 10f,
+            dy = 10f,
+            rotation = 315f,
+            opacity = 0.6f,
+            typeface = null,
+            shadow = WatermarkShadow(2f, 3f, 3f, Color.BLACK),
+            measurementDimension = Dimension.PX
+        ),
+        Watermark.Text(
+            text = "Watermark Demo",
+            textSize = 20f,
+            textColor = Color.WHITE,
+            position = WatermarkPosition.TOP_RIGHT,
+            dx = -10f,
+            dy = 10f,
+            rotation = 45f,
+            opacity = 0.6f,
+            typeface = null,
+            shadow = WatermarkShadow(2f, 3f, 3f, Color.BLACK),
+            measurementDimension = Dimension.PX
+        )
+    )
+)
+
+// Save into file using FileUtils
+FileUtils.saveBitmapToFile(
+    context = context,
+    bitmap = bitmap,
+    fileName = "watermark-demo",
+    format = Bitmap.CompressFormat.JPEG
+)
+```
+ 
 ---
 
 ## Basic Concepts
