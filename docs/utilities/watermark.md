@@ -179,3 +179,89 @@ Measurement dimension applies only to the following watermark properties:
 or smaller than the default, this will cause an unwanted change in the dimensions of the watermark. Even for the textSize property of the text watermark, 
 it is recommended to use Dimension.DP, since the size will depend on the density, but not on the scale of the text.
 :::
+
+---
+
+## Watermark
+
+#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark/index.html" target="_blank"><b>[ Reference ]</b></a>
+
+Before to draw the watermark on the image, is needed create an object with the watermark settings. The library defines two types of watermark, text 
+and drawable (image, shape, etc.).
+
+### Drawable
+
+> This type of watermark allows to draw any drawable on the image.
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark/-drawable/index.html" target="_blank"><b>[ Reference ]</b></a>
+
+#### Usage
+
+```kotlin
+val drawableWatermark = Watermark.Drawable(
+    drawable = R.drawable.library_logo,
+    position = WatermarkPosition.BOTTOM_LEFT,
+    width = 80f,
+    height = 80f,
+    dx = 10f,
+    dy = -5f,
+    rotation = 0f,
+    opacity = 0.8f,
+    measurementDimension = Dimension.PX
+)
+```
+
+---
+
+### Text
+
+> This type of watermark allows to draw any text on the image.
+> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark/-text/index.html" target="_blank"><b>[ Reference ]</b></a>
+
+#### Usage
+
+```kotlin
+val textWatermark = Watermark.Text(
+    text = "Sample Watermark By Android Utils",
+    textSize = 30f,
+    textColor = Color.WHITE,
+    position = WatermarkPosition.TOP_RIGHT,
+    dx = -10f,
+    dy = 10f,
+    rotation = 0f,
+    opacity = 0.65f,
+    typeface = getFontCompat(R.font.fugaz_one_regular),
+    shadow = WatermarkShadow(2f, 10f, 20f, Color.parseColor("#1976D2")),
+    measurementDimension = Dimension.PX
+)
+```
+
+---
+
+TMP
+
+To draw one
+
+```kotlin
+WatermarkUtils.drawWatermark(context, bitmap, drawableWatermark)
+WatermarkUtils.drawWatermark(context, bitmap, textWatermark)
+
+WatermarkUtils.drawWatermark(
+    context, bitmap,
+    drawableWatermark.copy(dx = 95f, opacity = 0.5f)
+)
+```
+
+
+```kotlin
+WatermarkUtils.drawWatermarks(
+    context,
+    bitmap,
+    arrayListOf(
+        drawableWatermark,
+        drawableWatermark.copy(dx = 95f, opacity = 0.5f),
+        textWatermark,
+    )
+)
+```
+
+![img](../img/watermark/watermark-img7.jpeg)
