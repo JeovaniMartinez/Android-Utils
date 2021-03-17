@@ -11,5 +11,5 @@
 
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/github/v/release/JeovaniMartinez/Android-Utils?color=orange&include_prereleases&style=flat-square" alt="Release"></a>
+  <a href="#" onclick="return false;"><img src="https://img.shields.io/github/v/release/JeovaniMartinez/Android-Utils?color=orange&include_prereleases&style=flat-square" alt="Release"></a>
 </p>
