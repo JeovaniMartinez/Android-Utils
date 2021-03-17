@@ -11,5 +11,5 @@
 
 
 <p align="center">
-  <a href="#" style="pointer-events: none; cursor: default; "><img src="https://img.shields.io/github/v/release/JeovaniMartinez/Android-Utils?color=orange&include_prereleases&style=flat-square" alt="Release"></a>
+  <a href="https://github.com/JeovaniMartinez/Android-Utils/releases/"><img src="https://img.shields.io/github/v/release/JeovaniMartinez/Android-Utils?color=orange&include_prereleases&style=flat-square" alt="Release"></a>
 </p>
