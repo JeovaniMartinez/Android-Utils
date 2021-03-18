@@ -1,11 +1,9 @@
-
-
-
-<p align="center">
     
 <a href="#"><img src="https://img.shields.io/badge/WARNING-blue?style=for-the-badge&label=%20&labelColor=gray&color=yellow&logoColor=FFFFFF" alt="WARNING">
 
-<p align="center">
+### This library is under development and under constant change. Its use for production is not recommended.
+
+---
 
 
 <h1 align="center">Android Utils</h2>
