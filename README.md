@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-<a href="https://jeovanimartinez.github.io/Android-Utils/docs/"><img src="https://img.shields.io/badge/DOCS-DOCUMENTATION-blue?style=for-the-badge&logo=read-the-docs&label=%20&labelColor=3F3F3F&color=008097&logoColor=FFFFFF" alt="DOCUMENTATION"></a>&nbsp;&nbsp;&nbsp;
-<a href="https://jeovanimartinez.github.io/Android-Utils/docs/reference/androidutils/index.html"><img src="https://img.shields.io/badge/API-REFERENCE-blue?style=for-the-badge&labelColor=3F3F3F&color=00996F" alt="API-REFERENCE"></a>&nbsp;&nbsp;&nbsp;
+<a href="https://jeovanimartinez.github.io/Android-Utils/docs/"><img src="https://img.shields.io/badge/DOCS-DOCUMENTATION-blue?style=for-the-badge&logo=read-the-docs&label=%20&labelColor=3F3F3F&color=008097&logoColor=FFFFFF" alt="DOCUMENTATION"></a>&nbsp;&nbsp;
+<a href="https://jeovanimartinez.github.io/Android-Utils/docs/reference/androidutils/index.html"><img src="https://img.shields.io/badge/API-REFERENCE-blue?style=for-the-badge&labelColor=3F3F3F&color=00996F" alt="API-REFERENCE"></a>&nbsp;&nbsp;
     <a href="https://jeovanimartinez.github.io/Android-Utils/"><img src="https://img.shields.io/badge/WEB-WEBSITE-blue?style=for-the-badge&logo=tor-browser&label=%20&labelColor=3F3F3F&color=DA5900&logoColor=FFFFFF" alt="WEBSITE"></a>
 <p align="center">
 
