@@ -1,4 +1,13 @@
 
+
+
+<p align="center">
+    
+<a href="#"><img src="https://img.shields.io/badge/WARNING-blue?style=for-the-badge&label=%20&labelColor=gray&color=yellow&logoColor=FFFFFF" alt="WARNING">
+
+<p align="center">
+
+
 <h1 align="center">Android Utils</h2>
 <p align="center"><a href="https://jeovanimartinez.github.io/Android-Utils/" target="_blank" rel="noopener noreferrer"><img width="400" src="https://github.com/JeovaniMartinez/Android-Utils/blob/master/resources/introduction.svg" alt="Android Utils Logo"></a></p>
 <h4 align="center">Set of utilities for Android app development.</h4>
