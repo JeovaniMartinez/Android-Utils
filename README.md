@@ -4,6 +4,7 @@
 ### This library is under development and under constant change. Its use for production is not recommended.
 
 ---
+<br/><br/><br/>
 
 
 <h1 align="center">Android Utils</h2>
