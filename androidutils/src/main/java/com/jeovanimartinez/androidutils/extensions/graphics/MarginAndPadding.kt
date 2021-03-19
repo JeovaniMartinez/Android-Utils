@@ -37,7 +37,7 @@ fun Margin.dp2px(context: Context): Margin {
 fun Padding.dp2px(context: Context): Padding {
     val top = this.top * context.resources.displayMetrics.density
     val right = this.right * context.resources.displayMetrics.density
-    val bottom = context.resources.displayMetrics.density
-    val left = context.resources.displayMetrics.density
+    val bottom = this.bottom * context.resources.displayMetrics.density
+    val left = this.left * context.resources.displayMetrics.density
     return Padding(top, right, bottom, left)
 }
