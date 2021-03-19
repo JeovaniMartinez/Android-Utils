@@ -4,7 +4,6 @@
 ### This library is under development and under constant change. Its use for production is not recommended.
 
 ---
-<br/><br/><br/>
 
 
 <h1 align="center">Android Utils</h2>
@@ -17,7 +16,7 @@
     <a href="https://github.com/JeovaniMartinez/Android-Utils/releases"><img src="https://img.shields.io/github/v/release/JeovaniMartinez/Android-Utils?color=orange&include_prereleases&style=flat-square" alt="Latest Release"></a>
     <a href="https://jitpack.io/#JeovaniMartinez/Android-Utils"><img src="https://img.shields.io/jitpack/v/github/JeovaniMartinez/Android-Utils?color=blue&style=flat-square" alt="JitPack"></a>
     <a href="#"><img src="https://img.shields.io/badge/API-17%2B-lightgrey?style=flat-square" alt="API 17+"></a>
-    <a href="/LICENSE"><img src="https://img.shields.io/github/license/JeovaniMartinez/Android-Utils?style=flat-square" alt="API 17+"></a>
+    <a href="/LICENSE"><img src="https://img.shields.io/github/license/JeovaniMartinez/Android-Utils?style=flat-square" alt="License"></a>
 </p>
 
 <p align="center">
@@ -42,9 +41,11 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 See the awesome apps are using Android Utils library.
 
-|<a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://play-lh.googleusercontent.com/AZNzUCmc7HU_qIp-QfjsZ7rvuzjwzynvg-dMDysjS1j2NOozfAif08evIddqT5EuAg=s180-rw" alt="Jeovani Martínez"> <a href="https://github.com/jeovanimartinez"><img  height="50" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Jeovani Martínez"></a> |
+|<a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer"><img width="100" src="https://play-lh.googleusercontent.com/AZNzUCmc7HU_qIp-QfjsZ7rvuzjwzynvg-dMDysjS1j2NOozfAif08evIddqT5EuAg=s180-rw" alt="RCCC - Resistor Color Code Calculator"> </a> 
+    <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator"><img  height="50" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play"></a> |
 |-|
-|RCCC - Resistor Color Code Calculator|
+| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer">RCCC - Resistor Color Code Calculator</a> 
+|
 
 ---
 
