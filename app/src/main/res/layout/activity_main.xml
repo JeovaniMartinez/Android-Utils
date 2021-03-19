@@ -103,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Text"
+                android:maxLines="1"
                 android:text="Demo"
                 tools:ignore="HardcodedText" />
 
