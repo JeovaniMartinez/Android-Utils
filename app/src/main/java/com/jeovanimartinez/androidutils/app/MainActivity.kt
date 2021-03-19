@@ -129,18 +129,31 @@ class MainActivity : AppCompatActivity() {
 
             WatermarkUtils.drawWatermark(
                 this@MainActivity, bitmap,
-                Watermark.Text(
-                    watermarkEt.text.toString(),
-                    textSize = 40f,
-                    textColor = Color.WHITE,
-                    position = WatermarkPosition.MIDDLE_CENTER,
-                    dx = 0f,
-                    dy = 0f,
-                    rotation = 0f,
-                    opacity = 0.9f,
-                    typeface = getFontCompat(R.font.fugaz_one_regular),
-                    shadow = WatermarkShadow(2f, 5f, 10f, Color.parseColor("#1976D2")),
-                    measurementDimension = Dimension.PX
+                arrayListOf(
+                    Watermark.Text(
+                        watermarkEt.text.toString(),
+                        textSize = 40f,
+                        textColor = Color.WHITE,
+                        position = WatermarkPosition.MIDDLE_CENTER,
+                        dx = 0f,
+                        dy = 0f,
+                        rotation = 0f,
+                        opacity = 0.9f,
+                        typeface = getFontCompat(R.font.fugaz_one_regular),
+                        shadow = WatermarkShadow(2f, 5f, 10f, Color.parseColor("#1976D2")),
+                        measurementDimension = Dimension.PX
+                    ),
+                    Watermark.Drawable(
+                        drawable = R.drawable.library_logo,
+                        position = WatermarkPosition.BOTTOM_LEFT,
+                        width = 80f,
+                        height = 80f,
+                        dx = 10f,
+                        dy = -5f,
+                        rotation = 0f,
+                        opacity = 0.8f,
+                        measurementDimension = Dimension.PX
+                    )
                 )
             )
 
