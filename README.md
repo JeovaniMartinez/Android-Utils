@@ -28,9 +28,13 @@
 
 ---
 
+## Description
+
 _The objective of this library is to provide a set of utilities that are commonly used in most Android apps, thus facilitating the development process of a new app._
 
 **You can consult the list of utilities and their respective documentation, as well as the instructions to implement the library on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)**
+
+## Contributors
 
 ## License
 
