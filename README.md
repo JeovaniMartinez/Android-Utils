@@ -41,11 +41,9 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 See the awesome apps are using Android Utils library.
 
-|<a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer"><img width="100" src="https://play-lh.googleusercontent.com/AZNzUCmc7HU_qIp-QfjsZ7rvuzjwzynvg-dMDysjS1j2NOozfAif08evIddqT5EuAg=s180-rw" alt="RCCC - Resistor Color Code Calculator"> </a> 
-    <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator"><img  height="50" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play"></a> |
+| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer"><img width="100" src="https://play-lh.googleusercontent.com/AZNzUCmc7HU_qIp-QfjsZ7rvuzjwzynvg-dMDysjS1j2NOozfAif08evIddqT5EuAg=s180-rw" alt="RCCC - Resistor Color Code Calculator"> </a> <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator"><img  height="50" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play"></a> |
 |-|
-| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer">RCCC - Resistor Color Code Calculator</a> 
-|
+| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer">RCCC - Resistor Color Code Calculator</a> |
 
 ---
 
