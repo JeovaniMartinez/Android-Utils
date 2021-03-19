@@ -28,7 +28,7 @@
 
 ---
 
-<br>
+
 
 ## Description
 
@@ -36,11 +36,11 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 **You can consult the list of utilities and their respective documentation, as well as the instructions to implement the library on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)**
 
-<br>
+
 
 ## Contributors
 
-<br>
+
 
 ## License
 
