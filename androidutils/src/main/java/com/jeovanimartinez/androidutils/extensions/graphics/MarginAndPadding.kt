@@ -18,7 +18,7 @@ import com.jeovanimartinez.androidutils.graphics.utils.Padding
  * @param context Context
  * @return A new Margin object with the converted values.
  * */
-fun Margin.dp2px(context: Context): Margin {
+fun Margin.asDpToPx(context: Context): Margin {
     val top = this.top * context.resources.displayMetrics.density
     val right = this.right * context.resources.displayMetrics.density
     val bottom = this.bottom * context.resources.displayMetrics.density
@@ -34,7 +34,7 @@ fun Margin.dp2px(context: Context): Margin {
  * @param context Context
  * @return A new Padding object with the converted values.
  * */
-fun Padding.dp2px(context: Context): Padding {
+fun Padding.asDpToPx(context: Context): Padding {
     val top = this.top * context.resources.displayMetrics.density
     val right = this.right * context.resources.displayMetrics.density
     val bottom = this.bottom * context.resources.displayMetrics.density
