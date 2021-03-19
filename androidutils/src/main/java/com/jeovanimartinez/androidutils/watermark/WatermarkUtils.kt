@@ -47,7 +47,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * @param bitmap Bitmap where the watermarks is to be drawn.
      * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw into the [bitmap].
      * */
-    fun drawWatermarks(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
+    fun drawWatermark(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
         watermarkList.forEach { drawWatermark(context, bitmap, it) }
     }
 
