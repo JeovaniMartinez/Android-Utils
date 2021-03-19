@@ -37,6 +37,13 @@ _The objective of this library is to provide a set of utilities that are commonl
 **You can consult the list of utilities and their respective documentation, as well as the instructions to implement the library on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)**
 
 
+## Showcase
+
+See the awesome apps are using Android Utils library.
+
+|<a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://play-lh.googleusercontent.com/AZNzUCmc7HU_qIp-QfjsZ7rvuzjwzynvg-dMDysjS1j2NOozfAif08evIddqT5EuAg=s180-rw" alt="Jeovani Martínez">|
+|-|
+|RCCC - Resistor Color Code Calculator|
 
 ## Contributors
 
