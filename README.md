@@ -40,9 +40,9 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ## Contributors
 
-| <a href="https://jeovanimartinez.github.io/Android-Utils/" target="_blank" rel="noopener noreferrer"><img width="100" src="https://avatars.githubusercontent.com/u/38060456?s=460&u=1b2ad28112d473cc8000958f655dc366482f5d30&v=4" alt="Android Utils Logo"></a> |
+| <a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://avatars.githubusercontent.com/u/38060456?s=460&u=1b2ad28112d473cc8000958f655dc366482f5d30&v=4" alt="Jeovani Martínez"></a> |
 |-|
-| Jeovani Martínez |
+|  <a href="https://github.com/jeovanimartinez"><img src="https://img.shields.io/badge/WEB-Jeovani%20Mart%C3%ADnez-blue?style=for-the-badge&label=%20&labelColor=3F3F3F&color=007DB0" alt="Jeovani Martínez"></a> |
 
 
 ## License
