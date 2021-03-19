@@ -40,10 +40,13 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ## Contributors
 
+| <a href="https://jeovanimartinez.github.io/Android-Utils/" target="_blank" rel="noopener noreferrer"><img width="100" src="https://avatars.githubusercontent.com/u/38060456?s=460&u=1b2ad28112d473cc8000958f655dc366482f5d30&v=4" alt="Android Utils Logo"></a> |
+|-|
+| Jeovani Martínez |
 
 
 ## License
 
 [Apache-2.0](/LICENSE)
 
-Copyright (©) 2020-Present, Jeovani Martínez.
+Copyright © 2020-Present, Jeovani Martínez.
