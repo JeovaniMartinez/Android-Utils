@@ -44,9 +44,12 @@ See the awesome apps are using Android Utils library.
 |<a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://play-lh.googleusercontent.com/AZNzUCmc7HU_qIp-QfjsZ7rvuzjwzynvg-dMDysjS1j2NOozfAif08evIddqT5EuAg=s180-rw" alt="Jeovani Martínez">|
 |-|
 |RCCC - Resistor Color Code Calculator|
+ | <p align="center"> <a href="https://github.com/jeovanimartinez"><img  width="100" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Jeovani Martínez"></a> </p> |
 
 ## Contributors
 
+
+    
 | <a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://avatars.githubusercontent.com/u/38060456?s=460&u=1b2ad28112d473cc8000958f655dc366482f5d30&v=4" alt="Jeovani Martínez"></a> |
 |-|
 |  <a href="https://github.com/jeovanimartinez"><img src="https://img.shields.io/badge/WEB-Jeovani%20Mart%C3%ADnez-blue?style=for-the-badge&label=%20&labelColor=3F3F3F&color=00658E" alt="Jeovani Martínez"></a> |
