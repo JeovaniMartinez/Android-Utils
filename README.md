@@ -41,7 +41,7 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 See the awesome apps are using Android Utils library.
 
-| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer"><img width="100" src="https://play-lh.googleusercontent.com/AZNzUCmc7HU_qIp-QfjsZ7rvuzjwzynvg-dMDysjS1j2NOozfAif08evIddqT5EuAg=s180-rw" alt="RCCC - Resistor Color Code Calculator"> </a> <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator"><img  height="50" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play"></a> |
+| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer"><img width="120" src="https://user-images.githubusercontent.com/38060456/111829494-61b8f680-88b2-11eb-8e87-047bd19e1a37.png" alt="RCCC - Resistor Color Code Calculator"></a> <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator"><img  height="50" src="https://user-images.githubusercontent.com/38060456/111829809-caa06e80-88b2-11eb-9587-d5120ace054c.png" alt="Get it on Google Play"></a> |
 |-|
 | <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer">RCCC - Resistor Color Code Calculator</a> |
 
@@ -49,7 +49,7 @@ See the awesome apps are using Android Utils library.
 
 ## Contributors
 
-| <a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://avatars.githubusercontent.com/u/38060456?s=460&u=1b2ad28112d473cc8000958f655dc366482f5d30&v=4" alt="Jeovani Martínez"></a> |
+| <a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/38060456/111829976-ffacc100-88b2-11eb-8288-4ce295c835a6.png" alt="Jeovani Martínez"></a> |
 |-|
 |  <a href="https://github.com/jeovanimartinez"><img src="https://img.shields.io/badge/WEB-Jeovani%20Mart%C3%ADnez-blue?style=for-the-badge&label=%20&labelColor=3F3F3F&color=00658E" alt="Jeovani Martínez"></a> |
 
