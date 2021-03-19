@@ -3,7 +3,6 @@ package com.jeovanimartinez.androidutils.app
 import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.*
-import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.os.Bundle
 import android.webkit.URLUtil
@@ -53,68 +52,12 @@ class MainActivity : AppCompatActivity() {
 
         toggleThemeSetup()
         rateAppSetup()
+        watermarkSetup()
         aboutAppSetup()
         translucentThemeSetup()
         fileUtilsSetup()
         moreAppsSetup()
         systemWebBrowserSetup()
-
-        val context = this@MainActivity
-
-        // Get the bitmap from image resource
-        val bitmap = BitmapFactory.decodeResource(
-            resources,
-            R.drawable.watermark_base2,
-            BitmapFactory.Options().apply { inMutable = true; inScaled = false }
-        )
-
-
-        val drawableWatermark = Watermark.Drawable(
-            drawable = R.drawable.library_logo,
-            position = WatermarkPosition.BOTTOM_LEFT,
-            width = 80f,
-            height = 80f,
-            dx = 10f,
-            dy = -5f,
-            rotation = 0f,
-            opacity = 0.8f,
-            measurementDimension = Dimension.PX
-        )
-
-        val textWatermark = Watermark.Text(
-            text = "Sample Watermark By Android Utils",
-            textSize = 30f,
-            textColor = Color.WHITE,
-            position = WatermarkPosition.TOP_RIGHT,
-            dx = -10f,
-            dy = 10f,
-            rotation = 0f,
-            opacity = 0.65f,
-            typeface = getFontCompat(R.font.fugaz_one_regular),
-            shadow = WatermarkShadow(2f, 10f, 20f, Color.parseColor("#1976D2")),
-            measurementDimension = Dimension.PX
-        )
-
-
-        // Draw the watermarks on the image
-        WatermarkUtils.drawWatermarks(
-            context,
-            bitmap,
-            arrayListOf(
-                drawableWatermark,
-                drawableWatermark.copy(dx = 95f, opacity = 0.5f),
-                textWatermark,
-            )
-        )
-
-        // Save into file using FileUtils
-        FileUtils.saveBitmapToFile(
-            context = context,
-            bitmap = bitmap,
-            fileName = "watermark-demo",
-            format = Bitmap.CompressFormat.JPEG
-        )
-
 
     }
 
@@ -174,6 +117,37 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun watermarkSetup() {
+        drawWatermarkBtn.setOnClickListener {
+
+            // Get the bitmap from image resource
+            val bitmap = BitmapFactory.decodeResource(
+                resources,
+                R.drawable.watermark_base2,
+                BitmapFactory.Options().apply { inMutable = true; inScaled = false }
+            )
+
+            WatermarkUtils.drawWatermark(
+                this@MainActivity, bitmap,
+                Watermark.Text(
+                    watermarkEt.text.toString(),
+                    textSize = 40f,
+                    textColor = Color.WHITE,
+                    position = WatermarkPosition.MIDDLE_CENTER,
+                    dx = 0f,
+                    dy = 0f,
+                    rotation = 0f,
+                    opacity = 0.9f,
+                    typeface = getFontCompat(R.font.fugaz_one_regular),
+                    shadow = WatermarkShadow(2f, 5f, 10f, Color.parseColor("#1976D2")),
+                    measurementDimension = Dimension.PX
+                )
+            )
+
+            watermarkIv.setImageBitmap(bitmap)
+
+        }
+    }
 
     private fun aboutAppSetup() {
 

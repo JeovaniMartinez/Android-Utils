@@ -94,6 +94,46 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/fugaz_one_regular"
                 android:padding="14dp"
+                android:text="Watermark"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/watermarkEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Text"
+                android:text="Demo"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/drawWatermarkBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Draw Watermark"
+                android:textAllCaps="false"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/watermarkIv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@null"
+                android:src="@drawable/watermark_base2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorSeparator" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fugaz_one_regular"
+                android:padding="14dp"
                 android:text="About App"
                 android:textSize="14sp"
                 tools:ignore="HardcodedText" />
