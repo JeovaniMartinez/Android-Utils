@@ -17,7 +17,7 @@ import com.jeovanimartinez.androidutils.watermark.Watermark
 
 
 /**
- * Utility class for converting views to images
+ * Utility class for converting views to images.
  * */
 object ViewToImage : Base<ViewToImage>() {
 
@@ -26,22 +26,27 @@ object ViewToImage : Base<ViewToImage>() {
     /**
      * Converts a view to a bitmap image.
      * @param context Context.
-     * @param view View from which the image will be generated.
+     * @param view View from which the image will be generated,.
      * @param backgroundColor Background color to apply to the image.
+     * @param trimBorders Determines whether before applying margin and padding the borders of the view are cropped.
+     *        To define the cropping area, use the background color of the view.
      * @param padding Padding between the view and the image edges.
      * @param margin Margin between the view and the image edges.
+     * @param viewsToExclude If the view is a view group and has a children views, it determines the children's views
+     *        to exclude when generating the image.
      * @param watermarks List of watermarks to draw on the image.
-     * @param viewsToExclude If the view has subviews, it determines the subviews to exclude when generating the image.
+     *
      * @return A bitmap of the view.
      * */
     fun convert(
         context: Context,
         view: View,
         backgroundColor: Int = Color.TRANSPARENT,
+        trimBorders: Boolean = false,
         padding: Padding = Padding(0f),
         margin: Margin = Margin(0f),
-        watermarks: ArrayList<Watermark> = arrayListOf(),
-        viewsToExclude: ArrayList<ExcludeView> = arrayListOf()
+        viewsToExclude: ArrayList<ExcludeView> = arrayListOf(),
+        watermarks: ArrayList<Watermark> = arrayListOf()
     ): Bitmap {
 
         log("Started process to convert a view to bitmap image")
@@ -88,9 +93,9 @@ object ViewToImage : Base<ViewToImage>() {
         FileUtils.saveBitmapToFile(context, b, "proceced")
 
 
-        val verticallyCrop = viewsToExclude.filter { it.excludeMode == ExcludeMode.CROP_VERTICALLY }.sortedBy { it.view.y }
+        val verticallyCrop = viewsToExclude.filter { it.mode == ExcludeMode.CROP_VERTICALLY }.sortedBy { it.view.y }
 
-        var croppedBitmap = Bitmap.createBitmap(viewBitmap.width,viewBitmap.height, Bitmap.Config.ARGB_8888)
+        var croppedBitmap = Bitmap.createBitmap(viewBitmap.width, viewBitmap.height, Bitmap.Config.ARGB_8888)
         Canvas(croppedBitmap).drawBitmap(viewBitmap, 0f, 0f, null)
 
         var ya = false
