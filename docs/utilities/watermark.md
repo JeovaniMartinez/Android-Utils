@@ -28,7 +28,7 @@ val shape = GradientDrawable()
     .apply { shape = GradientDrawable.RECTANGLE; setColor(Color.BLACK) }
 
 // Create and draw the watermarks on the image
-WatermarkUtils.drawWatermarks(
+WatermarkUtils.drawWatermark(
     context,
     bitmap,
     arrayListOf(
@@ -255,7 +255,7 @@ WatermarkUtils.drawWatermark(context, bitmap, drawableWatermark)
 WatermarkUtils.drawWatermark(context, bitmap, textWatermark)
 
 // To draw a list of watermarks
-WatermarkUtils.drawWatermarks(
+WatermarkUtils.drawWatermark(
     context,
     bitmap,
     arrayListOf(
