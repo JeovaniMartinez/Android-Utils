@@ -5,9 +5,12 @@ import android.content.Intent
 import android.graphics.*
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.webkit.URLUtil
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.drawToBitmap
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
@@ -17,11 +20,16 @@ import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescrip
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import com.jeovanimartinez.androidutils.extensions.graphics.asDpToPx
 import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.filesystem.TempFiles
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
+import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.moreapps.MoreApps
 import com.jeovanimartinez.androidutils.reviews.RateApp
+import com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImage
+import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
+import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
 import com.jeovanimartinez.androidutils.watermark.Watermark
 import com.jeovanimartinez.androidutils.watermark.WatermarkUtils
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
@@ -58,6 +66,18 @@ class MainActivity : AppCompatActivity() {
         fileUtilsSetup()
         moreAppsSetup()
         systemWebBrowserSetup()
+
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            val bitmap = ViewToImage.convert(this@MainActivity, mainLayout, Color.CYAN, viewsToExclude = arrayListOf(
+                //ExcludeView(TOP, ExcludeMode.CROP_VERTICALLY),
+                ExcludeView(toggleThemeBtn, ExcludeMode.CROP_VERTICALLY),
+                ExcludeView(ratetv,  ExcludeMode.CROP_VERTICALLY),
+                ExcludeView(watermarkIv,  ExcludeMode.CROP_VERTICALLY),
+                ))
+
+
+        }, 500)
 
     }
 

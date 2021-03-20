@@ -1,16 +1,18 @@
 package com.jeovanimartinez.androidutils.views.viewtoimage
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Color
+import android.graphics.*
 import android.view.View
 import androidx.core.graphics.applyCanvas
-import androidx.core.view.ViewCompat
-import androidx.core.view.drawToBitmap
+import androidx.core.view.*
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.extensions.graphics.trimByBorderColor
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
+import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
+import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
 import com.jeovanimartinez.androidutils.watermark.Watermark
 
 
@@ -20,14 +22,6 @@ import com.jeovanimartinez.androidutils.watermark.Watermark
 object ViewToImage : Base<ViewToImage>() {
 
     override val LOG_TAG = "ViewToImage"
-
-    /**
-     * Class with configuration to exclude subviews when converting a view to an image.
-     * @param view View to be hidden.
-     * @param cropImageVertically Determines whether hiding the view, will crop all the space it occupies vertically in the image.
-     * @param cropImageHorizontally Determines whether hiding the view, will crop all the space it occupies horizontally in the image.
-     * */
-    data class ExcludeView(val view: View, val cropImageVertically: Boolean = false, val cropImageHorizontally: Boolean = false)
 
     /**
      * Converts a view to a bitmap image.
@@ -52,19 +46,111 @@ object ViewToImage : Base<ViewToImage>() {
 
         log("Started process to convert a view to bitmap image")
 
-        // Converts the view to bitmap using the code of view.drawToBitmap()
-        if (!ViewCompat.isLaidOut(view)) {
-            throw IllegalStateException("View needs to be laid out before convert it to image")
-        }
-        val viewBitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888).applyCanvas {
-            translate(-view.scrollX.toFloat(), -view.scrollY.toFloat())
-            drawColor(backgroundColor)
-            view.draw(this)
+        val viewBitmap = view.drawToBitmap(Bitmap.Config.ARGB_8888)
+        val viewCanvas = Canvas(viewBitmap)
+
+        //val excludeViewPaint = Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
+        val excludeViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.RED; } // For development purposes only
+
+        var heExclude = 0f
+
+        // Replace the view location with transparent pixels, including margin and padding
+        viewsToExclude.forEach {
+            if (it.view.visibility == View.GONE) return@forEach
+            // NOTE: The padding is part of the view, so it is already included in the width or height
+            viewCanvas.drawRect(
+                0f,//it.view.x - it.view.marginLeft,
+                it.view.y - it.view.marginTop,
+                viewBitmap.width.toFloat(),//it.view.x + it.view.width + it.view.marginRight,
+                it.view.y + it.view.height + it.view.marginBottom,
+                excludeViewPaint
+            )
+
+            heExclude += it.view.height + it.view.marginTop + it.view.marginBottom
         }
 
-        FileUtils.saveBitmapToFile(context, viewBitmap, "test")
+        var colored = IntArray(viewBitmap.width) { Color.RED }
+        var buffer = IntArray(viewBitmap.width)
+
+        val b = Bitmap.createBitmap(viewBitmap.width, (viewBitmap.height - heExclude).toInt(), Bitmap.Config.ARGB_8888)
+
+        var y = 0
+
+        for (i in 0 until viewBitmap.height) {
+            viewBitmap.getPixels(buffer, 0, viewBitmap.width, 0, i, viewBitmap.width, 1)
+            if (!colored.contentEquals(buffer)) {
+                b.setPixels(buffer, 0, viewBitmap.width, 0, y, viewBitmap.width, 1)
+                y++
+            }
+        }
+
+        FileUtils.saveBitmapToFile(context, viewBitmap, "original")
+        FileUtils.saveBitmapToFile(context, b, "proceced")
+
+
+        val verticallyCrop = viewsToExclude.filter { it.excludeMode == ExcludeMode.CROP_VERTICALLY }.sortedBy { it.view.y }
+
+        var croppedBitmap = Bitmap.createBitmap(viewBitmap.width,viewBitmap.height, Bitmap.Config.ARGB_8888)
+        Canvas(croppedBitmap).drawBitmap(viewBitmap, 0f, 0f, null)
+
+        var ya = false
+
+        var h = 0
+
+        /*verticallyCrop.forEach {
+            if (!ya) {
+
+                var topBitmap: Bitmap? = null
+
+                var topBitmapHeight = (it.view.y - it.view.marginTop - h).toInt()
+                if (topBitmapHeight > 0) {
+                    topBitmap = Bitmap.createBitmap(croppedBitmap.width, topBitmapHeight, Bitmap.Config.ARGB_8888)
+                    Canvas(topBitmap).drawBitmap(croppedBitmap, 0f, 0f -h, null)
+
+                    FileUtils.saveBitmapToFile(context, topBitmap, "top")
+                }
+
+                if (topBitmapHeight < 0) topBitmapHeight = 0
+
+                var bottomBitmap: Bitmap? = null
+                var bottomBitmapHeight = croppedBitmap.height - topBitmapHeight - it.view.height - it.view.marginTop - it.view.marginBottom
+                if (bottomBitmapHeight > 0) {
+                    bottomBitmap = Bitmap.createBitmap(croppedBitmap.width, bottomBitmapHeight, Bitmap.Config.ARGB_8888)
+                    Canvas(bottomBitmap).drawBitmap(croppedBitmap, 0f, -(it.view.y + it.view.marginBottom + it.view.height), null)
+
+                    FileUtils.saveBitmapToFile(context, bottomBitmap, "bottom")
+                }
+
+                if (bottomBitmapHeight < 0) bottomBitmapHeight = 0
+
+                croppedBitmap = Bitmap.createBitmap(croppedBitmap.width, topBitmapHeight + bottomBitmapHeight, Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(croppedBitmap)
+
+                topBitmap.whenNotNull { bitmap ->
+                    canvas.drawBitmap(bitmap, 0f, 0f - h, null)
+                }
+
+                bottomBitmap.whenNotNull { bitmap ->
+                    canvas.drawBitmap(bitmap, 0f, topBitmapHeight.toFloat() - h, null)
+                }
+
+                h = it.view.height - it.view.marginTop - it.view.marginBottom
+
+                //ya = true
+            }
+        }*/
+
+
+        //val horizontallyCrop = viewsToExclude.filter { it.cropImageHorizontally }.sortedBy { it.view.x }
+
+
+        // TMPPP
+
 
         log("Finished process to convert a view to bitmap image")
+
+
+        //if (viewsToExclude.size > 0) log("We proceed to exclude ${viewsToExclude.size} views") else log("There are no views to exclude")
 
         /*
         val imageWidth = (view.width + padding.left + padding.right).toInt()
