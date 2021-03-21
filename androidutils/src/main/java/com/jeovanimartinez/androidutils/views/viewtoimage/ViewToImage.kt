@@ -15,7 +15,6 @@ import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
 import com.jeovanimartinez.androidutils.watermark.Watermark
-import java.io.IOException
 
 
 /**
@@ -66,44 +65,7 @@ object ViewToImage : Base<ViewToImage>() {
 
         val viewCanvas = Canvas(viewBitmap)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
 
 
         //val excludeViewPaint = Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
@@ -285,6 +247,8 @@ object ViewToImage : Base<ViewToImage>() {
             }
         }
 
+        val markColor = Color.RED // Color to mark the spaces to be removed from the image with cropping modes
+        val markPaint = Paint().apply { style = Paint.Style.FILL; color = markColor; } // Paint for cropping modes
         val extraPadding = 10 // Extra padding to add to be able to correctly remove the children views
 
         // Generate a bitmap from the view
@@ -308,6 +272,8 @@ object ViewToImage : Base<ViewToImage>() {
         }
         // val hideViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.parseColor("#B2CF0000"); } // For development purposes only
         hideViews.forEach {
+            if (it.view.visibility == View.GONE) return@forEach
+            // Use marginLeft and marginRight instead of marginStart and marginEnd to best results, even in RTL mode
             viewCanvas.drawRect(
                 it.view.x - it.view.marginLeft,
                 it.view.y - it.view.marginTop,
@@ -320,12 +286,51 @@ object ViewToImage : Base<ViewToImage>() {
 
         FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_1") // // For development purposes only
 
-        val markColor = Color.RED // Color to mark the spaces to be removed from the image with cropping modes
-
         // STEP 2, EXCLUDE VIEWS WITH CROP VERTICALLY
 
+        val cropVerticallyViews = viewsToExclude.filter { it.mode == ExcludeMode.CROP_VERTICALLY }.sortedBy { it.view.y }
+        // First the entire region to be deleted is marked
+        cropVerticallyViews.forEach {
+            if (it.view.visibility == View.GONE) return@forEach
+            // NOTE: The padding is part of the view, so it is already included in the width or height
+            viewCanvas.drawRect(
+                0f,
+                it.view.y - it.view.marginTop,
+                viewBitmap.width.toFloat(),
+                it.view.y + it.view.height + it.view.marginBottom,
+                markPaint
+            )
+        }
+        val horizontalColoredArray = IntArray(viewBitmap.width) { markColor } // To compare the mark color
+        val horizontalBuffer = IntArray(viewBitmap.width) // To read the pixels from the image and compare with horizontalColoredArray
+        val processedBitmap = Bitmap.createBitmap(viewBitmap.width, viewBitmap.height, Bitmap.Config.ARGB_8888)
+        var y = 0
+        var foundViews = 0
+        var found = false
+        for (i in 0 until viewBitmap.height) {
+            viewBitmap.getPixels(horizontalBuffer, 0, viewBitmap.width, 0, i, viewBitmap.width, 1)
+            if (!horizontalColoredArray.contentEquals(horizontalBuffer)) {
+                processedBitmap.setPixels(horizontalBuffer, 0, viewBitmap.width, 0, y, viewBitmap.width, 1)
+                y++
+                found = false
+            } else {
+                if (!found) {
+                    foundViews++
+                    val foundView = cropVerticallyViews[foundViews - 1]
+                    val padding = foundView.padding.toInt()
+                    if(padding > 0) {
+                        val col = IntArray(viewBitmap.width) { foundView.paddingFillColor }
+                        processedBitmap.setPixels(col, 0, viewBitmap.width, 0, y, viewBitmap.width, 1)
+                    }
+                    y += padding
+                }
+                found = true
+            }
+        }
+        log("Exclude ${cropVerticallyViews.size} view(s) from the image with mode crop vertically")
 
-
+        FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_2_A") // // For development purposes only
+        FileUtils.saveBitmapToFile(context, processedBitmap, "STEP_2_B") // // For development purposes only
 
         return viewBitmap
     }
