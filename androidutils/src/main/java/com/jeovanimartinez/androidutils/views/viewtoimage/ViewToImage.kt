@@ -3,17 +3,18 @@ package com.jeovanimartinez.androidutils.views.viewtoimage
 import android.content.Context
 import android.graphics.*
 import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.ColorInt
 import androidx.core.graphics.applyCanvas
 import androidx.core.view.*
 import com.jeovanimartinez.androidutils.Base
-import com.jeovanimartinez.androidutils.extensions.graphics.trimByBorderColor
-import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
 import com.jeovanimartinez.androidutils.watermark.Watermark
+import java.io.IOException
 
 
 /**
@@ -26,7 +27,7 @@ object ViewToImage : Base<ViewToImage>() {
     /**
      * Converts a view to a bitmap image.
      * @param context Context.
-     * @param view View from which the image will be generated,.
+     * @param view View from which the image will be generated.
      * @param backgroundColor Background color to apply to the image.
      * @param trimBorders Determines whether before applying margin and padding the borders of the view are cropped.
      *        To define the cropping area, use the background color of the view.
@@ -37,11 +38,13 @@ object ViewToImage : Base<ViewToImage>() {
      * @param watermarks List of watermarks to draw on the image.
      *
      * @return A bitmap of the view.
+     *
+     * @throws IllegalArgumentException If any child view of the view cannot be excluded from the image.
      * */
     fun convert(
         context: Context,
         view: View,
-        backgroundColor: Int = Color.TRANSPARENT,
+        @ColorInt backgroundColor: Int = Color.TRANSPARENT,
         trimBorders: Boolean = false,
         padding: Padding = Padding(0f),
         margin: Margin = Margin(0f),
@@ -49,10 +52,66 @@ object ViewToImage : Base<ViewToImage>() {
         watermarks: ArrayList<Watermark> = arrayListOf()
     ): Bitmap {
 
-        log("Started process to convert a view to bitmap image")
+        log("Started process to convert a view to a bitmap image")
 
-        val viewBitmap = view.drawToBitmap(Bitmap.Config.ARGB_8888)
+        if (!ViewCompat.isLaidOut(view)) {
+            throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
+        }
+
+        val markColor = Color.RED // Color to mark the spaces to be removed from the image
+        val extraPadding = 10 // Extra padding to add to be able to correctly remove the children views
+
+        // Generate a bitmap from the view
+        val viewBitmap = Bitmap.createBitmap(view.width + extraPadding, view.height + extraPadding, Bitmap.Config.ARGB_8888).applyCanvas {
+            translate(-view.scrollX.toFloat(), -view.scrollY.toFloat())
+            view.draw(this)
+        }
+
+        excludeChildrenViews(context, view, viewsToExclude)
+
+        FileUtils.saveBitmapToFile(context, viewBitmap, "step1")
+
         val viewCanvas = Canvas(viewBitmap)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //val excludeViewPaint = Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
         val excludeViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.RED; } // For development purposes only
@@ -152,7 +211,7 @@ object ViewToImage : Base<ViewToImage>() {
         // TMPPP
 
 
-        log("Finished process to convert a view to bitmap image")
+        //log("Finished process to convert a view to bitmap image")
 
 
         //if (viewsToExclude.size > 0) log("We proceed to exclude ${viewsToExclude.size} views") else log("There are no views to exclude")
@@ -200,6 +259,43 @@ object ViewToImage : Base<ViewToImage>() {
             )
         )
 */
+
+        return Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+    }
+
+    /**
+     * Exclude the list of secondary views of the image.
+     * @param context Context.
+     * @param view Main view (must be a view group).
+     * @param viewsToExclude List of children views to exclude.
+     *
+     * @return A bitmap of the [view] excluding the [viewsToExclude]. If viewsToExclude is empty, return a image representation of the view.
+     *
+     * @throws IllegalArgumentException If any child view of the view cannot be excluded from the image.
+     * */
+    private fun excludeChildrenViews(context: Context, view: View, viewsToExclude: ArrayList<ExcludeView>): Bitmap {
+
+        if (viewsToExclude.isEmpty()) {
+            log("There are no children views to exclude from the image")
+            return view.drawToBitmap(Bitmap.Config.ARGB_8888)
+        }
+
+        if (view !is ViewGroup) {
+            throw IllegalArgumentException("The view is not a instance of ViewGroup, children views cannot be excluded")
+        }
+
+        viewsToExclude.forEach {
+            if (!view.contains(it.view)) {
+                val viewName = context.resources.getResourceEntryName(view.id)
+                val viewChildName = context.resources.getResourceEntryName(it.view.id)
+                throw IllegalArgumentException("The $viewChildName child view cannot be excluded from the image because it does not belong to $viewName view")
+            }
+        }
+
+
+
+
+        log("OKKKKKKKKKKKKKKKKKKKKK")
 
         return Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
     }
