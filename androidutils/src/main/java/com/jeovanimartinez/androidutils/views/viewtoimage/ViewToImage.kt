@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.views.viewtoimage
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
@@ -58,16 +59,8 @@ object ViewToImage : Base<ViewToImage>() {
             throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
         }
 
-        val markColor = Color.RED // Color to mark the spaces to be removed from the image
-        val extraPadding = 10 // Extra padding to add to be able to correctly remove the children views
 
-        // Generate a bitmap from the view
-        val viewBitmap = Bitmap.createBitmap(view.width + extraPadding, view.height + extraPadding, Bitmap.Config.ARGB_8888).applyCanvas {
-            translate(-view.scrollX.toFloat(), -view.scrollY.toFloat())
-            view.draw(this)
-        }
-
-        excludeChildrenViews(context, view, viewsToExclude)
+        val viewBitmap = excludeChildrenViews(context, view, viewsToExclude)
 
         FileUtils.saveBitmapToFile(context, viewBitmap, "step1")
 
@@ -292,12 +285,49 @@ object ViewToImage : Base<ViewToImage>() {
             }
         }
 
+        val extraPadding = 10 // Extra padding to add to be able to correctly remove the children views
+
+        // Generate a bitmap from the view
+        val viewBitmap = Bitmap.createBitmap(view.width + extraPadding, view.height + extraPadding, Bitmap.Config.ARGB_8888).applyCanvas {
+            translate(-view.scrollX.toFloat(), -view.scrollY.toFloat())
+            view.draw(this)
+        }
+
+        val viewCanvas = Canvas(viewBitmap)
+
+        // STEP 1, EXCLUDE VIEWS WITH MODE HIDE
+
+        val hideViews = viewsToExclude.filter { it.mode == ExcludeMode.HIDE }
+        // If the view has a solid background color, that color is used, otherwise the pixels are cleared with alpha.
+        val hideViewPaint = if (view.background is ColorDrawable) {
+            log("hideViewPaint use color")
+            Paint().apply { style = Paint.Style.FILL; color = (view.background as ColorDrawable).color }
+        } else {
+            log("hideViewPaint use PorterDuff.Mode.CLEAR")
+            Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
+        }
+        // val hideViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.parseColor("#B2CF0000"); } // For development purposes only
+        hideViews.forEach {
+            viewCanvas.drawRect(
+                it.view.x - it.view.marginLeft,
+                it.view.y - it.view.marginTop,
+                it.view.x + it.view.width + it.view.marginRight,
+                it.view.y + it.view.height + it.view.marginBottom,
+                hideViewPaint
+            )
+        }
+        log("Exclude ${hideViews.size} view(s) from the image with mode ExcludeMode.HIDE")
+
+        FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_1") // // For development purposes only
+
+        val markColor = Color.RED // Color to mark the spaces to be removed from the image with cropping modes
+
+        // STEP 2, EXCLUDE VIEWS WITH CROP VERTICALLY
 
 
 
-        log("OKKKKKKKKKKKKKKKKKKKKK")
 
-        return Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+        return viewBitmap
     }
 
 
