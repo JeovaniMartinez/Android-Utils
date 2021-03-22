@@ -230,6 +230,10 @@ object ViewToImage : Base<ViewToImage>() {
      * */
     private fun excludeChildrenViews(context: Context, view: View, viewsToExclude: ArrayList<ExcludeView>): Bitmap {
 
+        if (!ViewCompat.isLaidOut(view)) {
+            throw IllegalStateException("View needs to be laid out before convert it to an image")
+        }
+
         if (viewsToExclude.isEmpty()) {
             log("There are no children views to exclude from the image")
             return view.drawToBitmap(Bitmap.Config.ARGB_8888)
@@ -247,85 +251,143 @@ object ViewToImage : Base<ViewToImage>() {
             }
         }
 
-        FileUtils.saveBitmapToFile(context, view.drawToBitmap(Bitmap.Config.ARGB_8888), "STEP_0") // // For development purposes only
+        FileUtils.saveBitmapToFile(context, view.drawToBitmap(Bitmap.Config.ARGB_8888), "STEP_0") // *** FOR DEVELOPMENT PURPOSES ONLY
+
+        log("Started process to exclude children views")
+
+        // Lists of children views to exclude, according to the exclusion mode
+        val hideViews = viewsToExclude.filter { it.mode == ExcludeMode.HIDE }
+        val cropVerticallyViews = viewsToExclude.filter { it.mode == ExcludeMode.CROP_VERTICALLY || it.mode == ExcludeMode.CROP_ALL }.sortedBy { it.view.y }
+        val cropHorizontallyViews = viewsToExclude.filter { it.mode == ExcludeMode.CROP_HORIZONTALLY || it.mode == ExcludeMode.CROP_ALL }.sortedBy { it.view.x }
+
+        log("Exclusion lists size: hideViews = ${hideViews.size} | cropVerticallyViews = ${cropVerticallyViews.size} | cropHorizontallyViews = ${cropHorizontallyViews.size} ")
 
         val markColor = Color.RED // Color to mark the spaces to be removed from the image with cropping modes
         val markPaint = Paint().apply { style = Paint.Style.FILL; color = markColor; } // Paint for cropping modes
-        val extraPadding = 10 // Extra padding to add to be able to correctly remove the children views
+
+        // Extra padding to add to be able to correctly remove the children views
+        // Padding right is added if vertical children views need to be cropped as the entire width is marked
+        val extraRightPadding = if (cropVerticallyViews.isNotEmpty()) 10 else 0
+        // Padding bottom is added if horizontal children views need to be cropped as the entire height is marked
+        val extraBottomPadding = if (cropHorizontallyViews.isNotEmpty()) 10 else 0
 
         // Generate a bitmap from the view
-        val viewBitmap = Bitmap.createBitmap(view.width + extraPadding, view.height + extraPadding, Bitmap.Config.ARGB_8888).applyCanvas {
+        val viewBitmap = Bitmap.createBitmap(view.width + extraRightPadding, view.height + extraBottomPadding, Bitmap.Config.ARGB_8888).applyCanvas {
             translate(-view.scrollX.toFloat(), -view.scrollY.toFloat())
             view.draw(this)
         }
+
+        log("View size: width = ${view.width} height = ${view.height} ")
+        log("viewBitmap size: width = ${viewBitmap.width} height = ${viewBitmap.height} ")
 
         val viewCanvas = Canvas(viewBitmap)
 
         // STEP 1, EXCLUDE VIEWS WITH MODE HIDE
 
-        val hideViews = viewsToExclude.filter { it.mode == ExcludeMode.HIDE }
-        // If the view has a solid background color, that color is used, otherwise the pixels are cleared with alpha.
-        val hideViewPaint = if (view.background is ColorDrawable) {
-            log("hideViewPaint use color")
-            Paint().apply { style = Paint.Style.FILL; color = (view.background as ColorDrawable).color }
-        } else {
-            log("hideViewPaint use PorterDuff.Mode.CLEAR")
-            Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
-        }
-        // val hideViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.parseColor("#B2CF0000"); } // For development purposes only
-        hideViews.forEach {
-            if (it.view.visibility == View.GONE) return@forEach
-            // Use marginLeft and marginRight instead of marginStart and marginEnd to best results, even in RTL mode
-            viewCanvas.drawRect(
-                it.view.x - it.view.marginLeft,
-                it.view.y - it.view.marginTop,
-                it.view.x + it.view.width + it.view.marginRight,
-                it.view.y + it.view.height + it.view.marginBottom,
-                hideViewPaint
-            )
-        }
-        log("Exclude ${hideViews.size} view(s) from the image with mode ExcludeMode.HIDE")
+        if (hideViews.isNotEmpty()) {
+            // If the view has a solid background color, that color is used, otherwise the pixels are cleared with alpha.
+            val hideViewPaint = if (view.background is ColorDrawable) {
+                log("Use view background color for hideViewPaint")
+                Paint().apply { style = Paint.Style.FILL; color = (view.background as ColorDrawable).color }
+            } else {
+                log("Use PorterDuff.Mode.CLEAR for hideViewPaint")
+                Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
+            }
+            // val hideViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.parseColor("#B2CF0000"); } // *** FOR DEVELOPMENT PURPOSES ONLY
+            hideViews.forEach {
+                if (it.view.visibility == View.GONE) return@forEach
+                // Use marginLeft and marginRight instead of marginStart and marginEnd to best results, even in RTL mode
+                viewCanvas.drawRect(
+                    it.view.x - it.view.marginLeft,
+                    it.view.y - it.view.marginTop,
+                    it.view.x + it.view.width + it.view.marginRight,
+                    it.view.y + it.view.height + it.view.marginBottom,
+                    hideViewPaint
+                )
+            }
+            log("Excluded ${hideViews.size} view(s) from the image with mode ExcludeMode.HIDE")
 
-        FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_1") // // For development purposes only
+            FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
+        }
 
         // STEP 2, EXCLUDE VIEWS WITH CROP VERTICALLY
 
-        val cropVerticallyViews = viewsToExclude.filter { it.mode == ExcludeMode.CROP_VERTICALLY }.sortedBy { it.view.y }
-        // First the entire region to be deleted is marked
-        cropVerticallyViews.forEach {
-            if (it.view.visibility == View.GONE) return@forEach
-            // NOTE: The padding is part of the view, so it is already included in the width or height
-            viewCanvas.drawRect(
-                0f,
-                it.view.y - it.view.marginTop,
-                viewBitmap.width.toFloat(),
-                it.view.y + it.view.height + it.view.marginBottom,
-                markPaint
-            )
-        }
-        val horizontalColoredArray = IntArray(viewBitmap.width) { markColor } // To compare to the mark color
-        val horizontalBuffer = IntArray(viewBitmap.width) // To read the pixels from the image and compare with horizontalColoredArray
-        var allCropHeight = 0 // To calculate the total pixels to be cropped vertically
-        cropVerticallyViews.forEach { allCropHeight += it.view.marginTop + it.view.height + it.view.marginBottom }
-        // To draw the pixels, excluding marked
-        val processedVerticallyBitmap = Bitmap.createBitmap(viewBitmap.width, viewBitmap.height - allCropHeight - extraPadding, Bitmap.Config.ARGB_8888)
-        var y = 0 // Position in y-axis for draw the pixels
-        for (i in 0 until viewBitmap.height) {
-            viewBitmap.getPixels(horizontalBuffer, 0, viewBitmap.width, 0, i, viewBitmap.width, 1) // It reads the entire width and one pixel height
-            // Determines if the row of pixels should be preserved, and adds it to the bitmap if so
-            if (!horizontalColoredArray.contentEquals(horizontalBuffer) && y <= processedVerticallyBitmap.height - 1) {
-                processedVerticallyBitmap.setPixels(horizontalBuffer, 0, viewBitmap.width, 0, y, viewBitmap.width, 1)
-                y++
-            }
-        }
-        log("Exclude ${cropVerticallyViews.size} view(s) from the image with mode crop vertically")
+        var bitmapProcessedVertically = viewBitmap // Assignation initial
 
-        FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_2_A") // // For development purposes only
-        FileUtils.saveBitmapToFile(context, processedVerticallyBitmap, "STEP_2_B") // // For development purposes only
+        if (cropVerticallyViews.isNotEmpty()) {
+            // First the entire region to be deleted is marked
+            cropVerticallyViews.forEach {
+                if (it.view.visibility == View.GONE) return@forEach
+                // NOTE: The padding is part of the view, so it is already included in the width or height
+                viewCanvas.drawRect(
+                    0f,
+                    it.view.y - it.view.marginTop,
+                    viewBitmap.width.toFloat(),
+                    it.view.y + it.view.height + it.view.marginBottom,
+                    markPaint
+                )
+            }
+            val horizontalColoredArray = IntArray(viewBitmap.width) { markColor } // To compare to the mark color
+            val horizontalBuffer = IntArray(viewBitmap.width) // To read the pixels from the image and compare with horizontalColoredArray
+            var allCropHeight = 0 // To calculate the total pixels to be cropped vertically
+            cropVerticallyViews.forEach { allCropHeight += it.view.marginTop + it.view.height + it.view.marginBottom }
+            bitmapProcessedVertically = Bitmap.createBitmap(viewBitmap.width - extraRightPadding, viewBitmap.height - allCropHeight, Bitmap.Config.ARGB_8888)
+            log("bitmapProcessedVertically size: width = ${bitmapProcessedVertically.width} height = ${bitmapProcessedVertically.height} (allCropHeight = $allCropHeight)")
+            var y = 0 // Position in y-axis for draw the pixels
+            for (i in 0 until viewBitmap.height) {
+                viewBitmap.getPixels(horizontalBuffer, 0, viewBitmap.width, 0, i, viewBitmap.width, 1) // It reads the entire width and one pixel height
+                // Determines if the row of pixels should be preserved, and adds it to the bitmap if so
+                if (!horizontalColoredArray.contentEquals(horizontalBuffer) && y <= bitmapProcessedVertically.height - 1) {
+                    bitmapProcessedVertically.setPixels(horizontalBuffer, 0, viewBitmap.width, 0, y, viewBitmap.width - extraRightPadding, 1)
+                    y++
+                }
+            }
+            log("Excluded ${cropVerticallyViews.size} view(s) from the image with mode crop vertically")
+
+            FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_2_A") // *** FOR DEVELOPMENT PURPOSES ONLY
+            FileUtils.saveBitmapToFile(context, bitmapProcessedVertically, "STEP_2_B") // *** FOR DEVELOPMENT PURPOSES ONLY
+        }
 
         // STEP 3, EXCLUDE VIEWS WITH CROP HORIZONTALLY
 
-        return viewBitmap
+        var bitmapProcessedHorizontally = bitmapProcessedVertically // Assignation initial
+        val bitmapProcessedVerticallyCanvas = Canvas(bitmapProcessedVertically)
+
+        if (cropHorizontallyViews.isNotEmpty()) {
+            // First the entire region to be deleted is marked
+            cropHorizontallyViews.forEach {
+                if (it.view.visibility == View.GONE) return@forEach
+                // NOTE: The padding is part of the view, so it is already included in the width or height
+                bitmapProcessedVerticallyCanvas.drawRect(
+                    it.view.x - it.view.marginLeft,
+                    0f,
+                    it.view.x + it.view.width + it.view.marginRight,
+                    bitmapProcessedVertically.height.toFloat(),
+                    markPaint
+                )
+            }
+            val verticalColoredArray = IntArray(bitmapProcessedVertically.height) { markColor } // To compare to the mark color
+            val verticalBuffer = IntArray(bitmapProcessedVertically.height) // To read the pixels from the image and compare with verticalColoredArray
+            var allCropWidth = 0 // To calculate the total pixels to be cropped horizontally
+            cropHorizontallyViews.forEach { allCropWidth += it.view.marginLeft + it.view.width + it.view.marginRight }
+            bitmapProcessedHorizontally = Bitmap.createBitmap(bitmapProcessedVertically.width - allCropWidth, bitmapProcessedVertically.height - extraBottomPadding, Bitmap.Config.ARGB_8888)
+            log("bitmapProcessedHorizontally size: width = ${bitmapProcessedHorizontally.width} (allCropWidth = $allCropWidth) height = ${bitmapProcessedHorizontally.height}")
+            var x = 0 // Position in x-axis for draw the pixels
+            for (i in 0 until bitmapProcessedVertically.width) {
+                bitmapProcessedVertically.getPixels(verticalBuffer, 0, 1, i, 0, 1, bitmapProcessedVertically.height) // It reads the entire width and one pixel height
+                // Determines if the row of pixels should be preserved, and adds it to the bitmap if so
+                if (!verticalColoredArray.contentEquals(verticalBuffer) && x <= bitmapProcessedHorizontally.width - 1) {
+                    bitmapProcessedHorizontally.setPixels(verticalBuffer, 0, 1, x, 0, 1, bitmapProcessedVertically.height - extraBottomPadding)
+                    x++
+                }
+            }
+            log("Excluded ${cropHorizontallyViews.size} view(s) from the image with mode crop horizontally")
+
+            FileUtils.saveBitmapToFile(context, bitmapProcessedVertically, "STEP_3_A") // *** FOR DEVELOPMENT PURPOSES ONLY
+            FileUtils.saveBitmapToFile(context, bitmapProcessedHorizontally, "STEP_3_B") // *** FOR DEVELOPMENT PURPOSES ONLY
+        }
+
+        return bitmapProcessedHorizontally
     }
 
 
