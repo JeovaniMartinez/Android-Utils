@@ -50,7 +50,8 @@ Set of utilities to invite the user to rate the app, certain conditions on the u
 <img src="https://user-images.githubusercontent.com/38060456/112034170-d0d95980-8b03-11eb-921a-d84db6037494.png" alt="">
 </p>
 
----
+
+
 
 ### > Watermark
 Set of utilities to draw a text watermarks or a drawable watermarks into images.
@@ -62,6 +63,19 @@ Set of utilities to draw a text watermarks or a drawable watermarks into images.
 <img src="https://user-images.githubusercontent.com/38060456/112035577-4a257c00-8b05-11eb-9cc9-91fe9eeb602f.png" alt="">
 <img src="https://user-images.githubusercontent.com/38060456/112035396-1cd8ce00-8b05-11eb-8f13-a55d842c30f0.jpg" alt="">
 </p>
+
+
+
+
+### > About App
+Utility to show an about app activity.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/38060456/112036695-902f0f80-8b06-11eb-9c4f-6b3aee94e053.png" alt="">
+</p>
+
 
 ---
 
