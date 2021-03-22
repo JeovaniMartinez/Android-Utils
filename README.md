@@ -37,6 +37,21 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ---
 
+## List of Library Utilities
+
+### Rate App
+
+Set of utilities to invite the user to rate the app.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app)
+
+![rate-app-img1](https://user-images.githubusercontent.com/38060456/112034155-cf0f9600-8b03-11eb-9c5d-350ceb4255fc.png)
+
+
+![rate-app-img2](https://user-images.githubusercontent.com/38060456/112034170-d0d95980-8b03-11eb-921a-d84db6037494.png)
+
+---
+
 ## Showcase
 
 See the awesome apps are using Android Utils library.
