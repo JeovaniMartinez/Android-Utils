@@ -39,16 +39,28 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ## List of Library Utilities
 
-### Rate App
+### > Rate App
 
-Set of utilities to invite the user to rate the app.
+Set of utilities to invite the user to rate the app, certain conditions on the use of the app (how many days do it have installed, how many times it has been launched, etc.)
 
 > [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app)
 
 ![rate-app-img1](https://user-images.githubusercontent.com/38060456/112034155-cf0f9600-8b03-11eb-9c5d-350ceb4255fc.png)
 
-
 ![rate-app-img2](https://user-images.githubusercontent.com/38060456/112034170-d0d95980-8b03-11eb-921a-d84db6037494.png)
+
+---
+
+### > Watermark
+Set of utilities to draw a text watermarks or a drawable watermarks into images.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark)
+
+![watermark-img1-a](https://user-images.githubusercontent.com/38060456/112035384-19dddd80-8b05-11eb-80f9-ad69ab019ebc.jpeg)
+
+![watermark-img1-b](https://user-images.githubusercontent.com/38060456/112035577-4a257c00-8b05-11eb-9cc9-91fe9eeb602f.png)
+
+![watermark-img1-c](https://user-images.githubusercontent.com/38060456/112035396-1cd8ce00-8b05-11eb-8f13-a55d842c30f0.jpg)
 
 ---
 
