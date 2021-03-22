@@ -56,7 +56,14 @@ Set of utilities to draw a text watermarks or a drawable watermarks into images.
 
 > [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark)
 
+
+<p align="center">
+    
 ![watermark-img1-a](https://user-images.githubusercontent.com/38060456/112035384-19dddd80-8b05-11eb-80f9-ad69ab019ebc.jpeg)
+
+<img src="https://user-images.githubusercontent.com/38060456/112035384-19dddd80-8b05-11eb-80f9-ad69ab019ebc.jpeg" alt="">
+
+</p>
 
 ![watermark-img1-b](https://user-images.githubusercontent.com/38060456/112035577-4a257c00-8b05-11eb-9cc9-91fe9eeb602f.png)
 
