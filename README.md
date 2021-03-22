@@ -39,10 +39,8 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ## List of Library Utilities
 
-### > Rate App
-
-Set of utilities to invite the user to rate the app, certain conditions on the use of the app (how many days do it have installed, how many times it has been launched, etc.)
-
+> ### - Rate App
+ > Set of utilities to invite the user to rate the app, certain conditions on the use of the app (how many days do it have installed, how many times it has been launched, etc.)
 > [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app)
 
 <p align="center">
