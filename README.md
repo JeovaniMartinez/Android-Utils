@@ -40,9 +40,10 @@ _The objective of this library is to provide a set of utilities that are commonl
 ## List of Library Utilities
 
 
-> ### - Rate App
-> Set of utilities to invite the user to rate the app, certain conditions on the use of the app (how many days do it have installed, how many times it has been launched, etc.)
-> <br>[Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app)
+### - Rate App
+Set of utilities to invite the user to rate the app, certain conditions on the use of the app (how many days do it have installed, how many times it has been launched, etc.)
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app)
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/38060456/112034155-cf0f9600-8b03-11eb-9c5d-350ceb4255fc.png" alt="">
@@ -52,9 +53,10 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 
 
-> ### - Watermark
-> Set of utilities to draw a text watermarks or a drawable watermarks into images.
-> <br>[Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark)
+### - Watermark
+Set of utilities to draw a text watermarks or a drawable watermarks into images.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark)
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/38060456/112035384-19dddd80-8b05-11eb-80f9-ad69ab019ebc.jpeg" alt="">
@@ -65,9 +67,10 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 
 
-> ### - About App
-> Utility to show an about app activity.
-> <br>[Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app)
+### - About App
+Utility to show an about app activity.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app)
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/38060456/112036695-902f0f80-8b06-11eb-9c4f-6b3aee94e053.png" alt="">
