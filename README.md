@@ -77,6 +77,36 @@ Utility to show an about app activity.
 </p>
 
 
+
+### - Translucent Theme
+Style and base class for creating activities with a translucent background.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/translucent-theme)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/38060456/112037796-ba350180-8b07-11eb-9b5c-1ec3b3c8d805.png" alt="">
+</p>
+
+
+
+### - File Utils
+Set of utilities for working with file system.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/file-utils)
+
+
+
+
+### - Extension Functions
+Set of extension functions to facilitate development.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/fextension-functions)
+
+
+
+### You can consult the complete list of utilities and their documentation on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)
+
+
 ---
 
 ## Showcase
