@@ -100,7 +100,7 @@ Set of utilities for working with file system.
 ### - Extension Functions
 Set of extension functions to facilitate development.
 
-> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/fextension-functions)
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/extension-functions)
 
 
 
