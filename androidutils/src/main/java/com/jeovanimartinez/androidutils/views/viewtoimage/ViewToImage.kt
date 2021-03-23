@@ -251,7 +251,7 @@ object ViewToImage : Base<ViewToImage>() {
             }
         }
 
-        FileUtils.saveBitmapToFile(context, view.drawToBitmap(Bitmap.Config.ARGB_8888), "STEP_0") // *** FOR DEVELOPMENT PURPOSES ONLY
+        // FileUtils.saveBitmapToFile(context, view.drawToBitmap(Bitmap.Config.ARGB_8888), "STEP_0") // *** FOR DEVELOPMENT PURPOSES ONLY
 
         log("Started process to exclude children views")
 
@@ -307,7 +307,7 @@ object ViewToImage : Base<ViewToImage>() {
             }
             log("Excluded ${hideViews.size} view(s) from the image with mode ExcludeMode.HIDE")
 
-            FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
+            // FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
 
         // STEP 2, EXCLUDE VIEWS WITH CROP VERTICALLY
@@ -347,8 +347,8 @@ object ViewToImage : Base<ViewToImage>() {
             }
             log("Excluded ${cropVerticallyViews.size} view(s) from the image with mode crop vertically")
 
-            FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_2_A") // *** FOR DEVELOPMENT PURPOSES ONLY
-            FileUtils.saveBitmapToFile(context, viewBitmap2, "STEP_2_B") // *** FOR DEVELOPMENT PURPOSES ONLY
+            // FileUtils.saveBitmapToFile(context, viewBitmap, "STEP_2_A") // *** FOR DEVELOPMENT PURPOSES ONLY
+            // FileUtils.saveBitmapToFile(context, viewBitmap2, "STEP_2_B") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
 
         // STEP 3, EXCLUDE VIEWS WITH CROP HORIZONTALLY
@@ -389,13 +389,13 @@ object ViewToImage : Base<ViewToImage>() {
             }
             log("Excluded ${cropHorizontallyViews.size} view(s) from the image with mode crop horizontally")
 
-            FileUtils.saveBitmapToFile(context, viewBitmap2, "STEP_3_A") // *** FOR DEVELOPMENT PURPOSES ONLY
-            FileUtils.saveBitmapToFile(context, viewBitmap3, "STEP_3_B") // *** FOR DEVELOPMENT PURPOSES ONLY
+            // FileUtils.saveBitmapToFile(context, viewBitmap2, "STEP_3_A") // *** FOR DEVELOPMENT PURPOSES ONLY
+            // FileUtils.saveBitmapToFile(context, viewBitmap3, "STEP_3_B") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
 
         // ExcludeMode.CROP_ALL its processed in cropVerticallyViews and cropHorizontallyViews
 
-        FileUtils.saveBitmapToFile(context, viewBitmap3, "STEP_NA_RESULT") // *** FOR DEVELOPMENT PURPOSES ONLY
+        // FileUtils.saveBitmapToFile(context, viewBitmap3, "STEP_NA_RESULT") // *** FOR DEVELOPMENT PURPOSES ONLY
 
         log("Finished process to exclude children views")
 
