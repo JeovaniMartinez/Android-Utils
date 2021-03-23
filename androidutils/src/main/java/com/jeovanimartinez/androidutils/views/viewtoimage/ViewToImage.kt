@@ -389,6 +389,8 @@ object ViewToImage : Base<ViewToImage>() {
 
         // ExcludeMode.CROP_ALL its processed in cropVerticallyViews and cropHorizontallyViews
 
+        FileUtils.saveBitmapToFile(context, viewBitmap3, "STEP_NA_RESULT") // *** FOR DEVELOPMENT PURPOSES ONLY
+
         return viewBitmap3
     }
 
