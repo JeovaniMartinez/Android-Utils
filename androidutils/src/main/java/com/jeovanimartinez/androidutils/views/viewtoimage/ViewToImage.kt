@@ -397,6 +397,8 @@ object ViewToImage : Base<ViewToImage>() {
 
         FileUtils.saveBitmapToFile(context, viewBitmap3, "STEP_NA_RESULT") // *** FOR DEVELOPMENT PURPOSES ONLY
 
+        log("Finished process to exclude children views")
+
         return viewBitmap3
     }
 
