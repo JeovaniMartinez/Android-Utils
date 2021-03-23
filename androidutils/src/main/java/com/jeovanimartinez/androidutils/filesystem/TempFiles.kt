@@ -13,7 +13,7 @@ import java.io.File
 object TempFiles : Base<TempFiles>() {
 
     /** Directory to store temporary files, the parent is context.filesDir */
-    const val TEMP_FILES_DIR = "androidutils_tempfiles"
+    const val TEMP_FILES_DIR = "androidutils/tempfiles"
 
     override val LOG_TAG = "TempFiles"
 
@@ -46,7 +46,7 @@ object TempFiles : Base<TempFiles>() {
      * temporary files directory.
      * */
     fun makeTempDir(context: Context) {
-        val result = File(context.filesDir, TEMP_FILES_DIR).mkdir() // Create the directory if it does not exist. If it exists, not take any action.
+        val result = File(context.filesDir, TEMP_FILES_DIR).mkdirs() // Create the directory if it does not exist. If it exists, not take any action.
         if (result) log("Directory for temporary files is created [${context.filesDir}/$TEMP_FILES_DIR]")
     }
 
