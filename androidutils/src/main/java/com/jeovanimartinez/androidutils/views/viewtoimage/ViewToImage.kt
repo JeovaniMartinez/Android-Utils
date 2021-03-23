@@ -298,10 +298,10 @@ object ViewToImage : Base<ViewToImage>() {
                 if (it.view.visibility == View.GONE) return@forEach
                 // Use marginLeft and marginRight instead of marginStart and marginEnd to best results, even in RTL mode
                 viewCanvas.drawRect(
-                    it.view.x - it.view.marginLeft,
-                    it.view.y - it.view.marginTop,
-                    it.view.x + it.view.width + it.view.marginRight,
-                    it.view.y + it.view.height + it.view.marginBottom,
+                    it.view.x - if (it.includeMargin) it.view.marginLeft else 0,
+                    it.view.y - if (it.includeMargin) it.view.marginTop else 0,
+                    it.view.x + it.view.width + if (it.includeMargin) it.view.marginRight else 0,
+                    it.view.y + it.view.height + if (it.includeMargin) it.view.marginBottom else 0,
                     hideViewPaint
                 )
             }
@@ -321,9 +321,9 @@ object ViewToImage : Base<ViewToImage>() {
                 // NOTE: The padding is part of the view, so it is already included in the width or height
                 viewCanvas.drawRect(
                     0f,
-                    it.view.y - it.view.marginTop,
+                    it.view.y - if (it.includeMargin) it.view.marginTop else 0,
                     viewBitmap.width.toFloat(),
-                    it.view.y + it.view.height + it.view.marginBottom,
+                    it.view.y + it.view.height + if (it.includeMargin) it.view.marginBottom else 0,
                     markPaint
                 )
             }
@@ -362,9 +362,9 @@ object ViewToImage : Base<ViewToImage>() {
                 if (it.view.visibility == View.GONE) return@forEach
                 // NOTE: The padding is part of the view, so it is already included in the width or height
                 viewBitmap2Canvas.drawRect(
-                    it.view.x - it.view.marginLeft,
+                    it.view.x - if (it.includeMargin) it.view.marginLeft else 0,
                     0f,
-                    it.view.x + it.view.width + it.view.marginRight,
+                    it.view.x + it.view.width + if (it.includeMargin) it.view.marginRight else 0,
                     viewBitmap2.height.toFloat(),
                     markPaint
                 )
