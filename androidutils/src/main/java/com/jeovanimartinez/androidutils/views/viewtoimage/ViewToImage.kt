@@ -329,8 +329,11 @@ object ViewToImage : Base<ViewToImage>() {
             }
             val horizontalColoredArray = IntArray(viewBitmap.width) { markColor } // To compare to the mark color
             val horizontalBuffer = IntArray(viewBitmap.width) // To read the pixels from the image and compare with horizontalColoredArray
-            var allCropHeight = 0 // To calculate the total pixels to be cropped vertically
-            cropVerticallyViews.forEach { allCropHeight += it.view.marginTop + it.view.height + it.view.marginBottom }
+            // Calculate the total pixels to be cropped vertically
+            var allCropHeight = 0
+            for (y in 0 until viewBitmap.height) {
+                if (viewBitmap.getPixel(0, y) == markColor) allCropHeight++
+            }
             viewBitmap2 = Bitmap.createBitmap(viewBitmap.width - extraRightPadding, viewBitmap.height - allCropHeight, Bitmap.Config.ARGB_8888)
             log("viewBitmap2 size: width = ${viewBitmap2.width} height = ${viewBitmap2.height} (allCropHeight = $allCropHeight)")
             var y = 0 // Position in y-axis for draw the pixels
@@ -368,8 +371,11 @@ object ViewToImage : Base<ViewToImage>() {
             }
             val verticalColoredArray = IntArray(viewBitmap2.height) { markColor } // To compare to the mark color
             val verticalBuffer = IntArray(viewBitmap2.height) // To read the pixels from the image and compare with verticalColoredArray
-            var allCropWidth = 0 // To calculate the total pixels to be cropped horizontally
-            cropHorizontallyViews.forEach { allCropWidth += it.view.marginLeft + it.view.width + it.view.marginRight }
+            // Calculate the total pixels to be cropped horizontally
+            var allCropWidth = 0
+            for (x in 0 until viewBitmap2.width) {
+                if (viewBitmap2.getPixel(x, 0) == markColor) allCropWidth++
+            }
             viewBitmap3 = Bitmap.createBitmap(viewBitmap2.width - allCropWidth, viewBitmap2.height - extraBottomPadding, Bitmap.Config.ARGB_8888)
             log("viewBitmap3 size: width = ${viewBitmap3.width} (allCropWidth = $allCropWidth) height = ${viewBitmap3.height}")
             var x = 0 // Position in x-axis for draw the pixels
