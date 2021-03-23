@@ -337,7 +337,7 @@ object ViewToImage : Base<ViewToImage>() {
             for (i in 0 until viewBitmap.height) {
                 viewBitmap.getPixels(horizontalBuffer, 0, viewBitmap.width, 0, i, viewBitmap.width, 1) // It reads the entire width and one pixel height
                 // Determines if the row of pixels should be preserved, and adds it to the bitmap if so
-                if (!horizontalColoredArray.contentEquals(horizontalBuffer) && y <= viewBitmap2.height - 1) {
+                if (!horizontalColoredArray.contentEquals(horizontalBuffer) && y < viewBitmap2.height) {
                     viewBitmap2.setPixels(horizontalBuffer, 0, viewBitmap.width, 0, y, viewBitmap.width - extraRightPadding, 1)
                     y++
                 }
@@ -376,7 +376,7 @@ object ViewToImage : Base<ViewToImage>() {
             for (i in 0 until viewBitmap2.width) {
                 viewBitmap2.getPixels(verticalBuffer, 0, 1, i, 0, 1, viewBitmap2.height) // It reads the entire width and one pixel height
                 // Determines if the row of pixels should be preserved, and adds it to the bitmap if so
-                if (!verticalColoredArray.contentEquals(verticalBuffer) && x <= viewBitmap3.width - 1) {
+                if (!verticalColoredArray.contentEquals(verticalBuffer) && x < viewBitmap3.width) {
                     viewBitmap3.setPixels(verticalBuffer, 0, 1, x, 0, 1, viewBitmap2.height - extraBottomPadding)
                     x++
                 }
@@ -386,6 +386,8 @@ object ViewToImage : Base<ViewToImage>() {
             FileUtils.saveBitmapToFile(context, viewBitmap2, "STEP_3_A") // *** FOR DEVELOPMENT PURPOSES ONLY
             FileUtils.saveBitmapToFile(context, viewBitmap3, "STEP_3_B") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
+
+        // ExcludeMode.CROP_ALL its processed in cropVerticallyViews and cropHorizontallyViews
 
         return viewBitmap3
     }
