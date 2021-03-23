@@ -33,7 +33,79 @@
 
 _The objective of this library is to provide a set of utilities that are commonly used in most Android apps, thus facilitating the development process of a new app._
 
-**You can consult the list of utilities and their respective documentation, as well as the instructions to implement the library on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)**
+**You can check all the documentation, as well as the instructions to implement the library on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)**
+
+---
+
+## List of Library Utilities
+
+
+### - Rate App
+Set of utilities to invite the user to rate the app, certain conditions on the use of the app (how many days do it have installed, how many times it has been launched, etc.)
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/38060456/112034155-cf0f9600-8b03-11eb-9c5d-350ceb4255fc.png" alt="">
+<img src="https://user-images.githubusercontent.com/38060456/112034170-d0d95980-8b03-11eb-921a-d84db6037494.png" alt="">
+</p>
+
+
+
+
+### - Watermark
+Set of utilities to draw a text watermarks or a drawable watermarks into images.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/38060456/112035384-19dddd80-8b05-11eb-80f9-ad69ab019ebc.jpeg" alt="">
+<img src="https://user-images.githubusercontent.com/38060456/112035577-4a257c00-8b05-11eb-9cc9-91fe9eeb602f.png" alt="">
+<img src="https://user-images.githubusercontent.com/38060456/112035396-1cd8ce00-8b05-11eb-8f13-a55d842c30f0.jpg" alt="">
+</p>
+
+
+
+
+### - About App
+Utility to show an about app activity.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/38060456/112036695-902f0f80-8b06-11eb-9c4f-6b3aee94e053.png" alt="">
+</p>
+
+
+
+### - Translucent Theme
+Style and base class for creating activities with a translucent background.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/translucent-theme)
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/38060456/112037796-ba350180-8b07-11eb-9b5c-1ec3b3c8d805.png" alt="">
+</p>
+
+
+
+### - File Utils
+Set of utilities for working with file system.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/file-utils)
+
+
+
+
+### - Extension Functions
+Set of extension functions to facilitate development.
+
+> [Documentation](https://jeovanimartinez.github.io/Android-Utils/docs/utilities/extension-functions)
+
+
+
+### You can consult the complete list of utilities and their documentation on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)
+
 
 ---
 
