@@ -35,7 +35,9 @@ object ViewToImage : Base<ViewToImage>() {
      *
      * @return A bitmap of the view.
      *
-     * @throws IllegalArgumentException If any child view of the view cannot be excluded from the image.
+     * @throws IllegalStateException If the view is not already laid out.
+     * @throws IllegalArgumentException If any child view of the view cannot be excluded from the image, or if the
+     *         padding or margin values are invalid.
      * */
     fun convert(
         view: View,
@@ -48,10 +50,13 @@ object ViewToImage : Base<ViewToImage>() {
 
         log("Started process to convert a view to a bitmap image")
 
+        // Validations
+        if (!ViewCompat.isLaidOut(view)) {
+            throw IllegalStateException("View needs to be laid out before convert it to an image")
+        }
         require(padding.top >= 0 && padding.right >= 0 && padding.bottom >= 0 && padding.left >= 0) {
             "Padding values must be equal to or greater than zero"
         }
-
         require(margin.top >= 0 && margin.right >= 0 && margin.bottom >= 0 && margin.left >= 0) {
             "Margin values must be equal to or greater than zero"
         }
@@ -127,10 +132,6 @@ object ViewToImage : Base<ViewToImage>() {
      * @throws IllegalArgumentException If any child view of the view cannot be excluded from the image.
      * */
     private fun excludeChildrenViews(context: Context, view: View, viewsToExclude: ArrayList<ExcludeView>): Bitmap {
-
-        if (!ViewCompat.isLaidOut(view)) {
-            throw IllegalStateException("View needs to be laid out before convert it to an image")
-        }
 
         if (viewsToExclude.isEmpty()) {
             log("There are no children views to exclude from the image")
