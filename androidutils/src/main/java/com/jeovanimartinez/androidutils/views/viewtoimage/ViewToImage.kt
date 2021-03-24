@@ -17,7 +17,6 @@ import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
 import com.jeovanimartinez.androidutils.watermark.Watermark
 
-
 /**
  * Utility class for converting views to images.
  * */
@@ -55,17 +54,31 @@ object ViewToImage : Base<ViewToImage>() {
 
         log("Started process to convert a view to a bitmap image")
 
-        if (!ViewCompat.isLaidOut(view)) {
-            throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
-        }
-
-        var viewBitmap = excludeChildrenViews(context, view, viewsToExclude)
+        val viewBitmap = excludeChildrenViews(context, view, viewsToExclude) // Exclude children views if it's necessary
 
         FileUtils.saveBitmapToFile(context, viewBitmap, "CONVERT_STEP_0") // *** FOR DEVELOPMENT PURPOSES ONLY
 
-        viewBitmap = viewBitmap.trimByBorderColor(Color.parseColor("#F0F000"))
+        val viewBitmap2 = if (trimBorders) {
+            when (view.background) {
+                is ColorDrawable -> {
+                    log("Image borders are trimmed based on the background color of the view")
+                    viewBitmap.trimByBorderColor((view.background as ColorDrawable).color)
+                }
+                null -> {
+                    log("Image borders are trimmed by Color.TRANSPARENT")
+                    viewBitmap.trimByBorderColor(Color.TRANSPARENT)
+                }
+                else -> {
+                    log("It's not possible trim the image borders, because view background is not an instance of color drawable")
+                    viewBitmap
+                }
+            }
+        } else {
+            log("No need to trim image borders")
+            viewBitmap
+        }
 
-        FileUtils.saveBitmapToFile(context, viewBitmap, "CONVERT_STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
+        FileUtils.saveBitmapToFile(context, viewBitmap2, "CONVERT_STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
 
         log("Finished process to convert a view to a bitmap image")
 
