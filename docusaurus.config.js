@@ -38,6 +38,10 @@ module.exports = {
             style: 'dark',
             copyright: `Copyright © ${new Date().getFullYear()} Jeovani Martínez. Built with Docusaurus.`,
         },
+        algolia: {
+            apiKey: '9fc267c3fe0d352c0ee781c7918d5511',
+            indexName: 'Android-Utils',
+        },
     },
     presets: [
         [
