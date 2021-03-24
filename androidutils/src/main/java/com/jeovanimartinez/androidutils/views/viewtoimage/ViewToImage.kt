@@ -332,7 +332,7 @@ object ViewToImage : Base<ViewToImage>() {
             // Calculate the total pixels to be cropped vertically
             var allCropHeight = 0
             for (y in 0 until viewBitmap.height) {
-                if (viewBitmap.getPixel(0, y) == markColor) allCropHeight++
+                if (viewBitmap.getPixel(viewBitmap.width - 1, y) == markColor) allCropHeight++
             }
             viewBitmap2 = Bitmap.createBitmap(viewBitmap.width - extraRightPadding, viewBitmap.height - allCropHeight, Bitmap.Config.ARGB_8888)
             log("viewBitmap2 size: width = ${viewBitmap2.width} height = ${viewBitmap2.height} (allCropHeight = $allCropHeight)")
@@ -374,7 +374,7 @@ object ViewToImage : Base<ViewToImage>() {
             // Calculate the total pixels to be cropped horizontally
             var allCropWidth = 0
             for (x in 0 until viewBitmap2.width) {
-                if (viewBitmap2.getPixel(x, 0) == markColor) allCropWidth++
+                if (viewBitmap2.getPixel(x, viewBitmap2.height - 1) == markColor) allCropWidth++
             }
             viewBitmap3 = Bitmap.createBitmap(viewBitmap2.width - allCropWidth, viewBitmap2.height - extraBottomPadding, Bitmap.Config.ARGB_8888)
             log("viewBitmap3 size: width = ${viewBitmap3.width} (allCropWidth = $allCropWidth) height = ${viewBitmap3.height}")
