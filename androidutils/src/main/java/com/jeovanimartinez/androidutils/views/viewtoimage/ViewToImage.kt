@@ -10,12 +10,10 @@ import androidx.core.graphics.applyCanvas
 import androidx.core.view.*
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.extensions.graphics.trimByBorderColor
-import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
-import com.jeovanimartinez.androidutils.watermark.Watermark
 
 /**
  * Utility class for converting views to images.
@@ -26,38 +24,45 @@ object ViewToImage : Base<ViewToImage>() {
 
     /**
      * Converts a view to a bitmap image.
-     * @param context Context.
      * @param view View from which the image will be generated.
      * @param backgroundColor Background color to apply to the image.
      * @param trimBorders Determines whether before applying margin and padding the borders of the view are cropped.
      *        To define the cropping area, use the background color of the view.
-     * @param padding Padding between the view and the image edges.
-     * @param margin Margin between the view and the image edges.
+     * @param padding Padding between the view edges and the margin internal edges. Values must be zero or positive.
+     * @param margin Margin between the padding external edges and the image edges. Values must be zero or positive.
      * @param viewsToExclude If the view is a view group and has a children views, it determines the children's views
      *        to exclude when generating the image.
-     * @param watermarks List of watermarks to draw on the image.
      *
      * @return A bitmap of the view.
      *
      * @throws IllegalArgumentException If any child view of the view cannot be excluded from the image.
      * */
     fun convert(
-        context: Context,
         view: View,
         @ColorInt backgroundColor: Int = Color.TRANSPARENT,
         trimBorders: Boolean = false,
         padding: Padding = Padding(0f),
         margin: Margin = Margin(0f),
-        viewsToExclude: ArrayList<ExcludeView> = arrayListOf(),
-        watermarks: ArrayList<Watermark> = arrayListOf()
+        viewsToExclude: ArrayList<ExcludeView> = arrayListOf()
     ): Bitmap {
 
         log("Started process to convert a view to a bitmap image")
 
+        require(padding.top >= 0 && padding.right >= 0 && padding.bottom >= 0 && padding.left >= 0) {
+            "Padding values must be equal to or greater than zero"
+        }
+
+        require(margin.top >= 0 && margin.right >= 0 && margin.bottom >= 0 && margin.left >= 0) {
+            "Margin values must be equal to or greater than zero"
+        }
+
+        val context = view.context
+
         val viewBitmap = excludeChildrenViews(context, view, viewsToExclude) // Exclude children views if it's necessary
 
-        FileUtils.saveBitmapToFile(context, viewBitmap, "CONVERT_STEP_0") // *** FOR DEVELOPMENT PURPOSES ONLY
+        // FileUtils.saveBitmapToFile(context, viewBitmap, "CONVERT_STEP_0") // *** FOR DEVELOPMENT PURPOSES ONLY
 
+        // Trim the image borders if it's necessary
         val viewBitmap2 = if (trimBorders) {
             when (view.background) {
                 is ColorDrawable -> {
@@ -78,11 +83,37 @@ object ViewToImage : Base<ViewToImage>() {
             viewBitmap
         }
 
-        FileUtils.saveBitmapToFile(context, viewBitmap2, "CONVERT_STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
+        // FileUtils.saveBitmapToFile(context, viewBitmap2, "CONVERT_STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
+
+        // Final image applying margin and padding
+        val viewBitmap3 = Bitmap.createBitmap(
+            (viewBitmap2.width + padding.left + padding.right + margin.left + margin.right).toInt(),
+            (viewBitmap2.height + padding.top + padding.bottom + margin.top + margin.bottom).toInt(),
+            Bitmap.Config.ARGB_8888
+        )
+
+        log("Final image size: width = ${viewBitmap3.width} height = ${viewBitmap3.height}")
+
+        val viewBitmap3Canvas = Canvas(viewBitmap3)
+
+        // Draw the background color if it's necessary
+        if (backgroundColor != Color.TRANSPARENT) {
+            viewBitmap3Canvas.drawRect(
+                margin.left,
+                margin.top,
+                padding.left + margin.left + viewBitmap2.width + padding.right,
+                padding.top + margin.top + viewBitmap2.height + padding.bottom,
+                Paint().apply { style = Paint.Style.FILL; color = backgroundColor }
+            )
+        }
+
+        viewBitmap3Canvas.drawBitmap(viewBitmap2, padding.left + margin.left, padding.top + margin.top, null)
+
+        // FileUtils.saveBitmapToFile(context, viewBitmap3, "CONVERT_RESULT") // *** FOR DEVELOPMENT PURPOSES ONLY
 
         log("Finished process to convert a view to a bitmap image")
 
-        return Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+        return viewBitmap3
     }
 
     /**
@@ -268,6 +299,5 @@ object ViewToImage : Base<ViewToImage>() {
 
         return viewBitmap3
     }
-
 
 }
