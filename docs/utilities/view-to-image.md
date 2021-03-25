@@ -45,7 +45,7 @@ val bitmap = ViewToImage.convert(
 When converting the view to an image, a margin and padding can be specified, the margin is completely independent, and the padding is applied within 
 the specified background, for example:
 
-![img](../img/pending-image.png)
+![img](../img/view-to-image/view-to-image-img2.png)
 
 ---
 
