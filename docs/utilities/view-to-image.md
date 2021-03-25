@@ -60,6 +60,11 @@ possible to pass a configuration to exclude certain children views in different 
 > ExcludeView define the configuration to exclude a child view from the image.
 > #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.views.viewtoimage.config/-exclude-view/index.html" target="_blank"><b>[ Reference ]</b></a>
 
+:::note
+The children views to exclude must belong directly to the view. For example, if the view is a Linear Layout, which has a Constraint Layout as child view, 
+the Constraint Layout can be excluded, but not its children views.
+:::
+
 To exemplify the ways in which a child view can be excluded, we will consider the following layout:
 
 ![img](../img/pending-image.png)
