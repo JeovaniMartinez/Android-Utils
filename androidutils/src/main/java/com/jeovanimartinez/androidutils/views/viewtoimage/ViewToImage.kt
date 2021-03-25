@@ -114,7 +114,7 @@ object ViewToImage : Base<ViewToImage>() {
             )
             val path = Path()
             path.addRoundRect(rect, backgroundCornerRadius.toRadii(), Path.Direction.CW)
-            viewBitmap3Canvas.drawPath(path, Paint().apply { style = Paint.Style.FILL; color = backgroundColor })
+            viewBitmap3Canvas.drawPath(path, Paint().apply { style = Paint.Style.FILL; color = backgroundColor; isAntiAlias = true })
         }
 
         viewBitmap3Canvas.drawBitmap(viewBitmap2, padding.left + margin.left, padding.top + margin.top, null)
