@@ -10,6 +10,7 @@ import androidx.core.graphics.applyCanvas
 import androidx.core.view.*
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.extensions.graphics.trimByBorderColor
+import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
@@ -26,6 +27,7 @@ object ViewToImage : Base<ViewToImage>() {
      * Converts a view to a bitmap image.
      * @param view View from which the image will be generated.
      * @param backgroundColor Background color to apply to the image.
+     * @param backgroundCornerRadius Corner radius for the background.
      * @param trimBorders Determines whether before applying margin and padding the borders of the view are cropped.
      *        To define the cropping area, use the background color of the view.
      * @param padding Padding between the view edges and the margin internal edges. Values must be zero or positive.
@@ -42,6 +44,7 @@ object ViewToImage : Base<ViewToImage>() {
     fun convert(
         view: View,
         @ColorInt backgroundColor: Int = Color.TRANSPARENT,
+        backgroundCornerRadius: CornerRadius = CornerRadius(0f),
         trimBorders: Boolean = false,
         padding: Padding = Padding(0f),
         margin: Margin = Margin(0f),
@@ -101,15 +104,17 @@ object ViewToImage : Base<ViewToImage>() {
 
         val viewBitmap3Canvas = Canvas(viewBitmap3)
 
-        // Draw the background color if it's necessary
+        // Draw the background color with the rounded corners if it's necessary
         if (backgroundColor != Color.TRANSPARENT) {
-            viewBitmap3Canvas.drawRect(
+            val rect = RectF(
                 margin.left,
                 margin.top,
                 padding.left + margin.left + viewBitmap2.width + padding.right,
-                padding.top + margin.top + viewBitmap2.height + padding.bottom,
-                Paint().apply { style = Paint.Style.FILL; color = backgroundColor }
+                padding.top + margin.top + viewBitmap2.height + padding.bottom
             )
+            val path = Path()
+            path.addRoundRect(rect, backgroundCornerRadius.toRadii(), Path.Direction.CW)
+            viewBitmap3Canvas.drawPath(path, Paint().apply { style = Paint.Style.FILL; color = backgroundColor })
         }
 
         viewBitmap3Canvas.drawBitmap(viewBitmap2, padding.left + margin.left, padding.top + margin.top, null)
