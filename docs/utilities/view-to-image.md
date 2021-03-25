@@ -9,7 +9,7 @@ title: View To Image
 
 Utility for convert views to images. Works for any view and view groups, including layouts with all their children views.
 
-![img](../img/pending-image.png)
+![img](../img/view-to-image/view-to-image-img1.png)
 
 ---
 
@@ -20,7 +20,20 @@ Call the following function of the utility passing the configuration to generate
 > #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
 
 ```kotlin
-    // CODE
+val bitmap = ViewToImage.convert(
+    view = about_contentCardLayout,
+    backgroundColor = getColorCompat(R.color.colorBackground),
+    backgroundCornerRadius = CornerRadius(10f).asDpToPx(context),
+    trimBorders = false,
+    padding = Padding(0f, 0f, 18f, 0f).asDpToPx(context),
+    margin = Margin(0f),
+    viewsToExclude = arrayListOf(
+        ExcludeView(about_BottomSeparator, ExcludeMode.CROP_VERTICALLY),
+        ExcludeView(about_termsAndPolicy, ExcludeMode.CROP_VERTICALLY),
+        ExcludeView(about_openSourceLicenses, ExcludeMode.CROP_VERTICALLY),
+        ExcludeView(about_closeBtn, ExcludeMode.CROP_VERTICALLY),
+    )
+)
 ```
 
 ---
