@@ -3,19 +3,38 @@
 package com.jeovanimartinez.androidutils.extensions.graphics
 
 import android.content.Context
+import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
 
 /**
- * Set of extensions for the Margin and Padding classes.
+ * Set of extensions for the graphics utils package.
  * */
+
+/**
+ * Converts all density-independent pixels (dp) corner radius values to pixels (px) and returns them to a new object.
+ * > For example, if the value of top left corner radius = 10, it will be assumed that this value is represented in dp, so
+ * the conversion to pixels is carried out according to the density of the screen, and the result of that conversion will
+ * be the top left corner radius of the returned object.
+ * @param context Context.
+ * @return A new CornerRadius object with the converted values.
+ * */
+fun CornerRadius.asDpToPx(context: Context): CornerRadius {
+    val density = context.resources.displayMetrics.density
+    return CornerRadius(
+        topLeftX * density, topLeftY * density,
+        topRightX * density, topRightY * density,
+        bottomRightX * density, bottomRightY * density,
+        bottomLeftX * density, bottomLeftY * density,
+    )
+}
 
 /**
  * Converts all density-independent pixels (dp) margin values to pixels (px) and returns them to a new object.
  * > For example, if the value of margin top = 10, it will be assumed that this value is represented in dp, so
  * the conversion to pixels is carried out according to the density of the screen, and the result of that
  * conversion will be the margin top of the returned object.
- * @param context Context
+ * @param context Context.
  * @return A new Margin object with the converted values.
  * */
 fun Margin.asDpToPx(context: Context): Margin {
@@ -31,7 +50,7 @@ fun Margin.asDpToPx(context: Context): Margin {
  * > For example, if the value of padding top = 10, it will be assumed that this value is represented in dp, so
  * the conversion to pixels is carried out according to the density of the screen, and the result of that
  * conversion will be the padding top of the returned object.
- * @param context Context
+ * @param context Context.
  * @return A new Padding object with the converted values.
  * */
 fun Padding.asDpToPx(context: Context): Padding {
