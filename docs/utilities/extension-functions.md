@@ -85,9 +85,9 @@ Extensions available for any view and any context, allow you to easily convert d
 
 Extensions for Bitmap class.
 
-### MarginAndPadding.kt
+### Utils.kt
 
-Set of extensions for the Margin and Padding classes.
+Set of extensions for the graphics utils package.
 
 --- 
 
