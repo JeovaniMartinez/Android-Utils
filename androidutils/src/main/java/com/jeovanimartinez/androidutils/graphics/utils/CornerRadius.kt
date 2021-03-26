@@ -2,6 +2,8 @@
 
 package com.jeovanimartinez.androidutils.graphics.utils
 
+import android.content.Context
+
 /**
  * Corner radius configuration.
  * @param topLeftX Top left radius for x-axis.
@@ -54,6 +56,26 @@ data class CornerRadius(
             bottomRightX, bottomRightY, // Bottom right radius
             bottomLeftX, bottomRightY   // Bottom left radius
         )
+    }
+
+    /**
+     * Interprets that the current values are expressed in density-independent pixels (dp) and converts them
+     * to pixels (px) according to the device screen density.
+     * @param context Context.
+     * @return This instance with the values already converted.
+     * */
+    fun asDpToPx(context: Context): CornerRadius {
+        val density = context.resources.displayMetrics.density
+        topLeftX *= density
+        topLeftY *= density
+        topRightX *= density
+        topRightY *= density
+        bottomRightX *= density
+        bottomRightY *= density
+        bottomLeftX *= density
+        bottomLeftY *= density
+
+        return this
     }
 
 }
