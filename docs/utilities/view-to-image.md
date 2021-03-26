@@ -77,7 +77,7 @@ In this mode, the space occupied by the child view is replaced by the background
 
 ```kotlin
 viewsToExclude = arrayListOf(
-    ExcludeView(demoButton, ExcludeMode.HIDE),
+    ExcludeView(demoButton, ExcludeMode.HIDE)
 )
 ```
 
