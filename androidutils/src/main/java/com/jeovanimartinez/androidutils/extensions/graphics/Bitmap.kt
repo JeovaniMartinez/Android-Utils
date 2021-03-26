@@ -3,9 +3,11 @@
 package com.jeovanimartinez.androidutils.extensions.graphics
 
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Matrix
 import androidx.annotation.ColorInt
+import com.jeovanimartinez.androidutils.graphics.utils.Margin
 
 /**
  * Set of extensions for the Bitmap class.
@@ -26,9 +28,10 @@ fun Bitmap.rotate(degrees: Float): Bitmap {
 /**
  * Trims the borders of a bitmap of a specific color.
  * @param color Color of the borders to be trimmed.
+ * @param trimMargin Optional margin in pixels to keep between the edges of the content and the bitmap borders.
  * @return A new bitmap with the borders trimmed.
  * */
-fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT): Bitmap {
+fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT, trimMargin: Margin? = null): Bitmap {
 
     var top = height
     var bottom = 0
@@ -74,6 +77,16 @@ fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT): Bitmap {
         }
     }
 
-    return Bitmap.createBitmap(this, left, bottom, right - left, top - bottom)
+    return if (trimMargin != null) {
+        val result = Bitmap.createBitmap(
+            right - left + (trimMargin.left + trimMargin.right).toInt(),
+            top - bottom + (trimMargin.top + trimMargin.bottom).toInt(),
+            Bitmap.Config.ARGB_8888
+        )
+        Canvas(result).drawBitmap(this, -left.toFloat() + trimMargin.left, -bottom.toFloat() + trimMargin.top, null)
+        result
+    } else {
+        Bitmap.createBitmap(this, left, bottom, right - left, top - bottom)
+    }
 
 }
