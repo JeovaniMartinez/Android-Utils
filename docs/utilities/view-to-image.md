@@ -67,7 +67,7 @@ the Constraint Layout can be excluded, but not its children views.
 
 To exemplify the ways in which a child view can be excluded, we will consider the following layout:
 
-![img](../img/pending-image.png)
+![img](../img/view-to-image/view-to-image-img3.png)
 
 ### - Hide
 
@@ -76,10 +76,12 @@ To exemplify the ways in which a child view can be excluded, we will consider th
 In this mode, the space occupied by the child view is replaced by the background color.
 
 ```kotlin
-    // CODE
+viewsToExclude = arrayListOf(
+    ExcludeView(demoButton, ExcludeMode.HIDE),
+)
 ```
 
-![img](../img/pending-image.png)
+![img](../img/view-to-image/view-to-image-img4.png)
 
 ### - Crop Vertically
 
@@ -87,7 +89,7 @@ In this mode, the space occupied by the child view is replaced by the background
 
 In this mode, the image of the view is cropped vertically, deleting all the space occupied by the child view.
 
-![img](../img/pending-image.png)
+![img](../img/view-to-image/view-to-image-img5.png)
 
 ### - Crop Horizontally
 
@@ -95,7 +97,7 @@ In this mode, the image of the view is cropped vertically, deleting all the spac
 
 In this mode, the image of the view is cropped horizontally, deleting all the space occupied by the child view.
 
-![img](../img/pending-image.png)
+![img](../img/view-to-image/view-to-image-img6.png)
 
 ### - Crop All
 
@@ -103,4 +105,4 @@ In this mode, the image of the view is cropped horizontally, deleting all the sp
 
 In this mode, the image of the view is cropped vertically and horizontally, deleting all the space occupied by the child view.
 
-![img](../img/pending-image.png)
+![img](../img/view-to-image/view-to-image-img7.png)
