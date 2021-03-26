@@ -2,6 +2,8 @@
 
 package com.jeovanimartinez.androidutils.graphics.utils
 
+import android.content.Context
+
 /**
  * Margin configuration.
  * @param top Top margin.
@@ -9,7 +11,7 @@ package com.jeovanimartinez.androidutils.graphics.utils
  * @param bottom Bottom margin.
  * @param left Left margin.
  * */
-data class Margin(val top: Float, val right: Float, val bottom: Float, val left: Float) {
+data class Margin(var top: Float, var right: Float, var bottom: Float, var left: Float) {
 
     /**
      * Margin configuration.
@@ -23,5 +25,21 @@ data class Margin(val top: Float, val right: Float, val bottom: Float, val left:
      * @param horizontal Value for the right and left margin.
      * */
     constructor(vertical: Float, horizontal: Float) : this(vertical, horizontal, vertical, horizontal)
+
+    /**
+     * Interprets that the current values are expressed in density-independent pixels (dp) and converts them
+     * to pixels (px) according to the device screen density.
+     * @param context Context.
+     * @return This instance with the values already converted.
+     * */
+    fun asDpToPx(context: Context): Margin {
+        val density = context.resources.displayMetrics.density
+        top *= density
+        right *= density
+        bottom *= density
+        left *= density
+
+        return this
+    }
 
 }
