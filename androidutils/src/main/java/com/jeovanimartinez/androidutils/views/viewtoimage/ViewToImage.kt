@@ -72,14 +72,16 @@ object ViewToImage : Base<ViewToImage>() {
 
         // Trim the image borders if it's necessary
         val viewBitmap2 = if (trimBorders) {
+            // Margin is added to trim process to prevent loss of semi-transparent pixels
+            val trimMargin = Margin(1f)
             when (view.background) {
                 is ColorDrawable -> {
                     log("Image borders are trimmed based on the background color of the view")
-                    viewBitmap.trimByBorderColor((view.background as ColorDrawable).color)
+                    viewBitmap.trimByBorderColor((view.background as ColorDrawable).color, trimMargin)
                 }
                 null -> {
                     log("Image borders are trimmed by Color.TRANSPARENT")
-                    viewBitmap.trimByBorderColor(Color.TRANSPARENT)
+                    viewBitmap.trimByBorderColor(Color.TRANSPARENT, trimMargin)
                 }
                 else -> {
                     log("It's not possible trim the image borders, because view background is not an instance of color drawable")
