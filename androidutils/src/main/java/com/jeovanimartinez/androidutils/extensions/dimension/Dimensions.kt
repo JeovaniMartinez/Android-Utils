@@ -11,44 +11,44 @@ import androidx.annotation.DimenRes
  * Reference: https://github.com/Kotlin/anko/blob/master/anko/library/static/commons/src/main/java/Dimensions.kt
  * */
 
-/** Converts dp to px */
+/** Converts dp to px. Return the result as Int */
 fun Context.dp2px(value: Int): Int = (value * resources.displayMetrics.density).toInt()
 
-/** Converts dp to px */
+/** Converts dp to px. Return the result as Int */
 fun View.dp2px(value: Int): Int = context.dp2px(value)
 
-/** Converts dp to px */
+/** Converts dp to px. Return the result as Int */
 fun Context.dp2px(value: Float): Int = (value * resources.displayMetrics.density).toInt()
 
-/** Converts dp to px */
+/** Converts dp to px. Return the result as Int */
 fun View.dp2px(value: Float): Int = context.dp2px(value)
 
-/** Converts sp to px */
+/** Converts sp to px. Return the result as Int */
 fun Context.sp2px(value: Int): Int = (value * resources.displayMetrics.scaledDensity).toInt()
 
-/** Converts sp to px */
+/** Converts sp to px. Return the result as Int */
 fun View.sp2px(value: Int): Int = context.sp2px(value)
 
-/** Converts sp to px */
+/** Converts sp to px. Return the result as Int */
 fun Context.sp2px(value: Float): Int = (value * resources.displayMetrics.scaledDensity).toInt()
 
-/** Converts sp to px */
+/** Converts sp to px. Return the result as Int */
 fun View.sp2px(value: Float): Int = context.sp2px(value)
 
-/** Converts px to dp */
+/** Converts px to dp. Return the result as Int */
 fun Context.px2dp(value: Int): Float = value.toFloat() / resources.displayMetrics.density
 
-/** Converts px to dp */
+/** Converts px to dp. Return the result as Int */
 fun View.px2dp(value: Int): Float = context.px2dp(value)
 
-/** Converts px to sp */
+/** Converts px to sp. Return the result as Int */
 fun Context.px2sp(value: Int): Float = value.toFloat() / resources.displayMetrics.scaledDensity
 
-/** Converts px to sp */
+/** Converts px to sp. Return the result as Int */
 fun View.px2sp(value: Int): Float = context.px2sp(value)
 
-/** Retrieve a dimensional for a particular resource ID for use as a size in raw pixels. */
+/** Retrieve a dimensional for a particular resource ID for use as a size in raw pixels. Return the result as Int */
 fun Context.dimen(@DimenRes resource: Int): Int = resources.getDimensionPixelSize(resource)
 
-/** Retrieve a dimensional for a particular resource ID for use as a size in raw pixels. */
+/** Retrieve a dimensional for a particular resource ID for use as a size in raw pixels. Return the result as Int */
 fun View.dimen(@DimenRes resource: Int): Int = context.dimen(resource)
