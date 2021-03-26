@@ -41,11 +41,23 @@ fun Context.px2dp(value: Int): Int = (value / resources.displayMetrics.density).
 /** Converts px to dp. Return the result as Int */
 fun View.px2dp(value: Int): Int = context.px2dp(value)
 
+/** Converts px to dp. Return the result as Int */
+fun Context.px2dp(value: Float): Int = (value / resources.displayMetrics.density).toInt()
+
+/** Converts px to dp. Return the result as Int */
+fun View.px2dp(value: Float): Int = context.px2dp(value)
+
 /** Converts px to sp. Return the result as Int */
 fun Context.px2sp(value: Int): Int = (value / resources.displayMetrics.scaledDensity).toInt()
 
 /** Converts px to sp. Return the result as Int */
 fun View.px2sp(value: Int): Int = context.px2sp(value)
+
+/** Converts px to sp. Return the result as Int */
+fun Context.px2sp(value: Float): Int = (value / resources.displayMetrics.scaledDensity).toInt()
+
+/** Converts px to sp. Return the result as Int */
+fun View.px2sp(value: Float): Int = context.px2sp(value)
 
 /** Retrieve a dimensional for a particular resource ID for use as a size in raw pixels. Return the result as Int */
 fun Context.dimen(@DimenRes resource: Int): Int = resources.getDimensionPixelSize(resource)
