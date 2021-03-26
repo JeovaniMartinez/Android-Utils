@@ -69,6 +69,14 @@ Set of extensions to parse a value as a data type, or to get the value from reso
 
 Extensions available for any view and any context, allow you to easily convert dp or sp to px and vice versa.
 
+The result of conversion is always returned as Int.
+
+### DimensionsF.kt
+
+Extensions available for any view and any context, allow you to easily convert dp or sp to px and vice versa.
+
+The result of conversion is always returned as Float.
+
 ---
 
 <br/>
@@ -84,10 +92,6 @@ Extensions available for any view and any context, allow you to easily convert d
 ### Bitmap.kt
 
 Extensions for Bitmap class.
-
-### Utils.kt
-
-Set of extensions for the graphics utils package.
 
 --- 
 
