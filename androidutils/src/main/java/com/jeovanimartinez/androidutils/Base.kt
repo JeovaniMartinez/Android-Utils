@@ -54,7 +54,7 @@ abstract class Base<T : Base<T>> {
      * @param eventName Event name, must be between 1 and 40 characters.
      * @param eventParams Event parameters (optional).
      * */
-    fun firebaseAnalytics(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
+    internal fun firebaseAnalytics(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
 
         // Records the result of the event in the log, with the [message] indicating the action that was performed.
         val logResult = { message: String ->
@@ -76,20 +76,20 @@ abstract class Base<T : Base<T>> {
     /**
      * Show the [message] and the [throwable] into DEBUG log, used to detail the execution flow.
      **/
-    fun log(message: Any, throwable: Throwable? = null) {
+    internal fun log(message: Any, throwable: Throwable? = null) {
         if (!logEnable) return
         if (throwable != null) Log.d(LOG_TAG, message.toString(), throwable)
         else Log.d(LOG_TAG, message.toString())
     }
 
     /** Show the [message] and the [throwable] into WARN log. */
-    fun logw(message: Any, throwable: Throwable? = null) {
+    internal fun logw(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.w(LOG_TAG, message.toString(), throwable)
         else Log.w(LOG_TAG, message.toString())
     }
 
     /** Show the [message] and the [throwable] into ERROR log. */
-    fun loge(message: Any, throwable: Throwable? = null) {
+    internal fun loge(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.e(LOG_TAG, message.toString(), throwable)
         else Log.e(LOG_TAG, message.toString())
     }
