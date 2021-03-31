@@ -26,6 +26,19 @@ internal object Event {
 
     const val OPEN_URL_IN_SYSTEM_WEB_BROWSER = "open_url_in_system_web_browser"
 
+    const val BILLING_CHECK_PREMIUM_PREFERENCES = "billing_check_premium_preferences"
+    const val BILLING_CHECK_PREMIUM_CLIENT = "billing_check_premium_client"
+    const val BILLING_CLIENT_CONNECTION_OK = "billing_client_connection_ok"
+    const val BILLING_CLIENT_CONNECTION_ERROR = "billing_client_connection_error"
+    const val BILLING_CLIENT_DISCONNECTED = "billing_client_disconnected"
+    const val BILLING_SKU_DETAILS_OK = "billing_sku_details_ok"
+    const val BILLING_SKU_DETAILS_ERROR = "billing_sku_details_error"
+    const val BILLING_FLOW_LAUNCH_OK = "billing_flow_launch_ok"
+    const val BILLING_FLOW_LAUNCH_ERROR = "billing_flow_launch_error"
+    const val BILLING_PURCHASE_CANCELLED = "billing_purchase_cancelled"
+    const val BILLING_PURCHASE_COMPLETED = "billing_purchase_completed"
+    const val BILLING_PURCHASE_ACKNOWLEDGE_ERROR = "billing_purchase_acknowledge_error"
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
