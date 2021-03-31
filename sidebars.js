@@ -18,6 +18,7 @@ module.exports = {
             'utilities/view-to-image',
             'utilities/about-app',
             'utilities/translucent-theme',
+            'utilities/premium-app',
             'utilities/file-utils',
             'utilities/more-apps',
             'utilities/system-web-browser',
