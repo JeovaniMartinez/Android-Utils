@@ -51,6 +51,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:17.3.1'
     implementation 'com.google.android.play:core-ktx:1.8.1'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation 'com.android.billingclient:billing-ktx:3.0.3'
 
     lintPublish project(':lintcheck')
 
