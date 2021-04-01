@@ -46,8 +46,11 @@ object Premium : Base<Premium>() {
         private lateinit var premiumSkus: List<String> // List of all ids that grant premium benefits of the app
 
         private var listener: Listener? = null // Listener to report events
-
         private var initialized = false // Helper to determine if init was already called
+        private var endedConnection = false // Helper to determine if the connection with the billing client has been ended
+
+        // Prevents the connection from being ended if there is an important process running with the background billing client
+        private var preventEndConnection = false
 
         /**
          * Verify that this utility is already initialized, and throw an exception if it is not.
@@ -73,6 +76,7 @@ object Premium : Base<Premium>() {
 
             sharedPreferences = context.getSharedPreferences(Preferences.NAME, Context.MODE_PRIVATE)
             billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+            endedConnection = false
 
             initialized = true
 
@@ -106,15 +110,17 @@ object Premium : Base<Premium>() {
 
         /**
          * Starts the process to get the details of products based on their sku (id).
+         * @param context Context.
          * @param skuList List with the skus (ids) of the products of which you want to obtain the details.
          * The result is informed by onSkuDetails() of the listener.
          * */
-        fun getSkuDetails(skuList: List<String>) {
+        fun getSkuDetails(context: Context, skuList: List<String>) {
             log("Called > getSkuDetails(skus = $skuList)")
             checkInitialization()
 
-            getSkuDetails(skuList) { skuDetails: List<SkuDetails>? ->
+            getSkuDetails(context, skuList) { skuDetails: List<SkuDetails>? ->
                 listener.whenNotNull { log("Listener function invoked > onSkuDetails()"); it.onSkuDetails(skuDetails) }
+                endConnection()
             }
         }
 
@@ -132,9 +138,9 @@ object Premium : Base<Premium>() {
                 throw IllegalArgumentException("Cannot start the purchase because the specified sku (id) is not in the premium skus list")
             }
 
-            connect { code ->
+            connect(activity) { code ->
                 if (code == BillingResponseCode.OK) {
-                    getSkuDetails(listOf(sku)) { skuDetails: List<SkuDetails>? ->
+                    getSkuDetails(activity, listOf(sku)) { skuDetails: List<SkuDetails>? ->
                         if (skuDetails != null) {
                             val billingFlowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails[0]).build()
                             billingClient.launchBillingFlow(activity, billingFlowParams)
@@ -144,6 +150,7 @@ object Premium : Base<Premium>() {
                             log("Unable to start the purchase flow because the product details could not be obtained")
                             firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_ERROR)
                             listener.whenNotNull { log("Listener function invoked > onStartPurchaseError()"); it.onStartPurchaseError() }
+                            endConnection()
                         }
                     }
                 } else {
@@ -160,8 +167,10 @@ object Premium : Base<Premium>() {
          * - If the billing client cannot report the result, the preferences result is reported.
          *
          * _Either the billing client or the preferences, the result is ALWAYS reported._
+         *
+         * @param context Context.
          * */
-        fun checkPremium() {
+        fun checkPremium(context: Context) {
             log("Called > checkPremium()")
             checkInitialization()
 
@@ -194,14 +203,16 @@ object Premium : Base<Premium>() {
                         firebaseAnalytics(Event.BILLING_CHECK_PREMIUM_CLIENT)
                         it.onCheckPremium(result)
                     }
+                    endConnection()
                 } else {
                     log("Error on getting purchases list. ${getResCodeDesc(purchases.responseCode)}. Premium state it will be verified with the preferences")
                     checkPremiumWithPreferences() // In case of error, the result is checked with the preferences
+                    endConnection()
                 }
             }
 
             // The connection is verified and connect it (if is necessary), based on the result, the appropriate function is invoked
-            connect { code ->
+            connect(context) { code ->
                 if (code == BillingResponseCode.OK) {
                     log("Billing client is ready to check premium state")
                     checkPremiumWithBillingClient()
@@ -259,14 +270,25 @@ object Premium : Base<Premium>() {
 
         /**
          * Initialize the connection with the billing client.
+         * @param context It is used to recreate the billing client instance if the connection has already been ended,
+         *        leave it as null if it is certain that the connection has not been ended.
          * @param result Asynchronous function to report the connection result, with the result code based on BillingResponseCode.
          * */
-        private fun connect(result: (code: Int) -> Unit) {
+        private fun connect(context: Context?, result: (code: Int) -> Unit) {
             log("Invoked > connect()")
 
             if (billingClient.isReady) {
                 log("Billing client is already connected")
                 return result(BillingResponseCode.OK)
+            }
+
+            // If the connection with the billing client has been ended, the instance of billing client is recreated to be able to connect it again
+            context.whenNotNull {
+                if (endedConnection) {
+                    billingClient = BillingClient.newBuilder(it).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+                    endedConnection = false // It is returned to false since the instance of billing client has been recreated
+                    log("Recreated billing client instance")
+                }
             }
 
             // Tries to connect billing client
@@ -292,14 +314,31 @@ object Premium : Base<Premium>() {
         }
 
         /**
+         * Ends the connection with the billing client.
+         * */
+        private fun endConnection() {
+            log("Called > endConnection()")
+            if (preventEndConnection) {
+                return log("No need to end the connection, preventEndConnection is true")
+            }
+            if (!billingClient.isReady) {
+                return log("No need to end the connection")
+            }
+            billingClient.endConnection()
+            endedConnection = true
+            log("The connection with the billing client was ended")
+        }
+
+        /**
          * Get the details of products based on their sku (id).
+         * @param context Context.
          * @param skuList List with the skus (ids) of the products of which you want to obtain the details.
          * @param result Asynchronous function to report the result, If the information cannot be obtained, skuDetails list will be null.
          * */
-        private fun getSkuDetails(skuList: List<String>, result: (skuDetails: List<SkuDetails>?) -> Unit) {
+        private fun getSkuDetails(context: Context, skuList: List<String>, result: (skuDetails: List<SkuDetails>?) -> Unit) {
             log("Invoked > getSkuDetails(skus = $skuList)")
 
-            connect { code ->
+            connect(context) { code ->
                 if (code == BillingResponseCode.OK) {
                     // Create and configure the query
                     val skuDetailsParams = SkuDetailsParams.newBuilder().setSkusList(skuList).setType(SkuType.INAPP).build()
@@ -408,7 +447,8 @@ object Premium : Base<Premium>() {
 
             log("The purchase is not yet recognized and state is ${PurchaseState.PURCHASED} PURCHASED, started process to acknowledged it")
 
-            connect { code ->
+            preventEndConnection = true
+            connect(null) { code ->
                 if (code == BillingResponseCode.OK) {
                     log("Billing client is ready to acknowledged the purchase")
                     val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.purchaseToken).build()
@@ -420,8 +460,12 @@ object Premium : Base<Premium>() {
                             log("Failed to acknowledge the purchase. ${getResCodeDesc(billingResult.responseCode)}")
                             firebaseAnalytics(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
                         }
+                        preventEndConnection = false
+                        // The connection is ended as the places from where acknowledgePurchase() is invoked no longer need the connection
+                        endConnection()
                     }
                 } else {
+                    preventEndConnection = false
                     log("Billing client is not ready to acknowledged the purchase")
                     firebaseAnalytics(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
                 }
@@ -458,6 +502,11 @@ object Premium : Base<Premium>() {
             currentState = result // Update the current state
             log("Result (Premium state) = $result")
             listener.whenNotNull { log("Listener function invoked > onPurchaseResult()"); it.onPurchaseResult(result) }
+
+            // If the result of the purchase is pending, the connection is not ended, to wait for the result, otherwise if it is terminated
+            if (result != State.PENDING_TRANSACTION) {
+                endConnection()
+            }
         }
 
     }
