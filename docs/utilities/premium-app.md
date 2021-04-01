@@ -201,4 +201,14 @@ If the purchase was made through a deferred payment, the listener function is in
 and it is invoked again when the transaction is completed, with the new result `State.NOT_PREMIUM` or `State.PREMIUM`.
 :::
 
+---
+
+### Considerations
+
+It is recommended to check the premium state in the `onResume()` of the main activity, and if the status is `State.PENDING_TRANSACTION`, check 
+the state again with the billing client, this in case the listener did not inform when the state of the pending transaction was updated.
+
+```kotlin
+ // CODE...
+```
 
