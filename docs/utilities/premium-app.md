@@ -286,3 +286,29 @@ if (Premium.getCurrentState() == Premium.State.PENDING_TRANSACTION) {
 }
 ```
 
+---
+
+## Testing
+
+It is recommended to perform out the following list of tests after implementing the utility, to verify that everything works correctly.
+
+:::tip
+- To perform multiple test purchases for the same product, you can [refund and revoke purchases using Google Play console.](https://support.google.com/googleplay/android-developer/answer/2741495)
+- To force the status of a purchase to be updated (for example, after a refund), go to the details of the Google Play and clear the data.
+- To simulate the billing client disconnection, go to the details of the Google Play and force app stop.
+:::
+
+### Test List
+
+|  | Description  |
+| ----------- | ----------- |
+| 1 | Try on a device that does not have Google Play (such as an emulator), the purchase flow should not start and a message or dialog should be displayed  to indicate to the user that the service is not available. | 
+| 2 | Start the purchase flow and complete with **_[ Test card, always declines ]_**, a message must be displayed in the flow, and when returning to the app nothing should happen, the user must not be premium. |
+| 3 | Start the purchase flow, and complete with **_[ DECLINE SLOW ]_**, the purchase flow is finalized (Premium rights should not be granted yet), if the user wants to buy the premium version, they must be told that the payment confirmation is waiting. During the wait, do not close the app, and wait for the rejection confirmation to be received, so the buy button is re-enabled. |
+| 4 | Do the same process as in test 3, but now, when returning from the purchase flow, close the app, wait a few minutes and open the app, as the purchase was rejected, the option to buy again should appear and the user should not be Premium. |
+| 5 | Start the purchase flow and complete with **_[ Test card, always approves ]_**, at the end of the purchase flow, a thank you message should be displayed, and from that moment the user is Premium. Wait a few hours, clear Google Play app data, close and open your app several times, the user must remain Premium. |
+| 6 | Start the purchase flow and complete with **_[ APROVES SLOW ]_**, the purchase flow is finished (Premium rights should not be granted yet), if the user wants to buy the premium version again, they must be told that the payment confirmation is waiting. During the wait, do not close the app, and wait for the confirmation to be received, at that moment a thank you message is displayed, and the Premium functions are enabled. In a few hours,  clear Google Play app data, close and open your app, the user must remain Premium. |
+| 7 | Do the same process as in test 6, but at the end of the purchase flow, close the app, open it again in a few minutes, and the user should already be Premium. |
+| 8 | If you have an older version of the app, make sure that the user is not premium, then update the app, as the user was not premium, it must remain a non-premium user. |
+| 9 | If you have an older version of the app, buy the product integrated in that previous version, update the app to the new version and make sure that the purchase and premium benefits are preserved. |
+| 10 | If you have an older version of the app, and the integrated product offering the premium benefits (sku) has changed in the new version, make sure that users who purchased previous integrated products keep the premium benefits. | 
