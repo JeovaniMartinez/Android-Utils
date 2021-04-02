@@ -53,15 +53,6 @@ object Premium : Base<Premium>() {
         private var preventEndConnection = false
 
         /**
-         * Verify that this utility is already initialized, and throw an exception if it is not.
-         * */
-        private val checkInitialization = fun() {
-            if (!initialized) {
-                throw IllegalStateException("It is necessary to call Premium.Controller.init() before call any another function of Premium.Controller")
-            }
-        }
-
-        /**
          * Initialize and configure the utility, it must always be called only once from the app.
          * @param context Context.
          * @param premiumSkus List of all ids that grant premium benefits of the app.
@@ -149,14 +140,17 @@ object Premium : Base<Premium>() {
                         } else {
                             log("Unable to start the purchase flow because the product details could not be obtained")
                             firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_ERROR)
-                            listener.whenNotNull { log("Listener function invoked > onStartPurchaseError()"); it.onStartPurchaseError() }
+                            listener.whenNotNull {
+                                log("Listener function invoked > onStartPurchaseError()")
+                                it.onStartPurchaseError(BillingResponseCode.ERROR)
+                            }
                             endConnection()
                         }
                     }
                 } else {
                     log("Unable to start the purchase flow because the billing client could not connect")
                     firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_ERROR)
-                    listener.whenNotNull { log("Listener function invoked > onStartPurchaseError()"); it.onStartPurchaseError() }
+                    listener.whenNotNull { log("Listener function invoked > onStartPurchaseError()"); it.onStartPurchaseError(code) }
                 }
             }
         }
@@ -220,6 +214,15 @@ object Premium : Base<Premium>() {
                     log("Billing client is not ready to check premium, premium state it will be verified with the preferences")
                     checkPremiumWithPreferences()
                 }
+            }
+        }
+
+        /**
+         * Verify that this utility is already initialized, and throw an exception if it is not.
+         * */
+        private fun checkInitialization() {
+            if (!initialized) {
+                throw IllegalStateException("It is necessary to call Premium.Controller.init() before call any another function of Premium.Controller")
             }
         }
 
@@ -503,10 +506,14 @@ object Premium : Base<Premium>() {
             log("Result (Premium state) = $result")
             listener.whenNotNull { log("Listener function invoked > onPurchaseResult()"); it.onPurchaseResult(result) }
 
-            // If the result of the purchase is pending, the connection is not ended, to wait for the result, otherwise if it is terminated
-            if (result != State.PENDING_TRANSACTION) {
+            // If a specific result is obtained, the connection is ended
+            if (result == State.PREMIUM || result == State.NOT_PREMIUM) {
                 endConnection()
+            } else {
+                // If the transaction is pending, the connection is not ended to wait for the result
+                preventEndConnection = true
             }
+
         }
 
     }
@@ -563,8 +570,9 @@ object Premium : Base<Premium>() {
         /**
          * It's invoked when an error occurs and it is not possible to start the purchase flow (generally it is a connection error
          * in the billing client).
+         * @param code Error code based on [BillingResponseCode]
          * */
-        fun onStartPurchaseError()
+        fun onStartPurchaseError(code: Int)
 
         /**
          * Reports the result of the purchase, and when the premium status changes.
