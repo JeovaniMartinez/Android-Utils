@@ -40,7 +40,7 @@ It is very important to do it only once in the app, since at that moment the tim
 > #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
 
 ```kotlin
-RateInApp.apply {
+RateApp.apply {
     minInstallElapsedDays = 10
     minInstallLaunchTimes = 10
     minRemindElapsedDays = 2
@@ -53,7 +53,7 @@ RateInApp.apply {
 Since the utility has been configured, call the next method at the time you want to show the flow to rate app, the flow will be launched only if the 
 all conditions specified in the configuration are met.
 ```kotlin
-RateInApp.checkAndShow(activity)
+RateApp.checkAndShow(activity)
 ```
 
 :::tip
