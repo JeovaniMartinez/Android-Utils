@@ -2,6 +2,11 @@
 
 buildscript {
     ext {
+
+        // Library version
+        androidUtilsVersionCode = 1
+        androidUtilsVersionName = "1.0.0-alpha"
+
         gradlePluginVersion = '4.1.2'
         lintVersion = '27.1.2' // If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z.
         kotlinVersion = '1.4.21'

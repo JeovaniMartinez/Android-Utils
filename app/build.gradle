@@ -1,3 +1,5 @@
+// App
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -13,8 +15,8 @@ android {
         applicationId "com.jeovanimartinez.androidutils.app"
         minSdkVersion 17
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0.0"
+        versionCode androidUtilsVersionCode
+        versionName androidUtilsVersionName
 
         vectorDrawables.useSupportLibrary = true
 
