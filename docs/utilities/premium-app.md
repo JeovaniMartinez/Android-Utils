@@ -23,12 +23,32 @@ such an implementation to be carried out easily and with few code lines.
 
 ---
 
+### Security
+
+:::warning
+Before implementing this utility in your app, please read the entire documentation to determine if it is the right option for your needs.
+:::
+
+As your app grows in popularity, it can also attract the unwanted attention of malicious users that might want to abuse your app. In this case, we are
+going to focus on analyzing the security of the implementation of this library utility.
+
+If you publish a free app with ads and limited features and, and a paid app with no ads and features unlocked, a malicious user can easily generate 
+an apk of your premium app and distribute it. But if you only have one app, and the premium features are limited by an in-app purchase (how this utility
+does it), a malicious user must use reverse engineer in your app in order to remove the restrictions, although this may be easy for hackers, it provides 
+a little more complexity than the previous example.
+
+Based on the above, if you only need to remove the ads from your app or unlock some features through in-app purchase, this utility may be the right 
+one for you. If, on the other hand, you need a more rigorous verification of the purchases in your app, you must carry out your own implementation by 
+performing the validations in your back end. You can read more information about security [here.](https://developer.android.com/google/play/billing/security)
+
+---
+
 ## Getting Ready
 
 Before we start, we need to prepare a few things to be able to use this library utility.
 
 :::tip
-Before starting, Is recommend you take a look at the [official documentation of Google Play's billing system,](https://developer.android.com/google/play/billing) 
+Before starting, is recommend you take a look at the [official documentation of Google Play's billing system,](https://developer.android.com/google/play/billing) 
 so that you can understand how it works and know the terminology.
 :::
 
@@ -40,6 +60,11 @@ In order to test the implementation in your app, you must have at least one lice
 ### 2. Setup The Project
 
 2.1.- Add the Google Play Billing Library implementation in Gradle file at app level.
+
+:::caution
+It is strongly recommended to add the indicated version `3.0.3`, to avoid conflicts with dependencies.
+:::
+
 ```gradle {3}
 dependencies {
     ...
@@ -47,7 +72,7 @@ dependencies {
 }
 ```
 
-2.2.- In the `AndroidManifest`, add billing permission
+2.2.- In the `AndroidManifest`, add billing permission.
 ```xml
  <uses-permission android:name="com.android.vending.BILLING" />
 ```
