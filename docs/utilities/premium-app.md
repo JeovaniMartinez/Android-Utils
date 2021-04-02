@@ -110,10 +110,26 @@ General implementation.
 Premium.Controller.init(context, listOf("premium_upgrade"))
 ```
 
-2.- Later we must set the listener in the place where we want to receive the events related to the components of the utility.
-```kotlin
-    // CODE...
+2.- Later we must set the listener in the place where we want to receive the events related to the app premium billing.
+```kotlin {8}
+val listener = object : Premium.Listener {
+    override fun onCheckPremium(state: Premium.State) {}
+    override fun onPurchaseResult(result: Premium.State) {}
+    override fun onSkuDetails(skuDetails: List<SkuDetails>?) {}
+    override fun onStartPurchaseError(code: Int) {}
+}
+
+Premium.Controller.setListener(listener)
 ```
+
+:::tip
+You can have several listeners in different places, just remember to set and remove them where required.
+```kotlin
+Premium.Controller.setListener(listener) // To set the listener
+
+Premium.Controller.removeListener() // To remove the listener
+```
+:::
 
 ---
 
@@ -126,9 +142,9 @@ content, for example:
 
 ```kotlin
 if (Premium.getCurrentState() == Premium.State.PREMIUM) {
-    showAds()
+    // Code to execute if the user is premium, for example, hide ads
 } else {
-    hideAds()
+    // Code to execute if the user is not premium, for example, show ads
 }
 ```
 
@@ -142,7 +158,13 @@ Premium.Controller.checkPremium(context)
 The verification is executed asynchronously, and the result is reported by the listener.
 
 ```kotlin
- // CODE...
+override fun onCheckPremium(state: Premium.State) {
+    if (state == Premium.State.PREMIUM) {
+        // Code to execute if the user is premium, for example, hide ads
+    } else {
+        // Code to execute if the user is not premium, for example, show ads
+    }
+}
 ```
 
 ---
@@ -155,13 +177,19 @@ user's currency, etc.).
 The request is performed as follows:
 
 ```kotlin
- // CODE...
+Premium.Controller.getSkuDetails(context, listOf("premium_upgrade"))
 ```
 
 And the result is reported by the listener.
 
 ```kotlin
- // CODE...
+override fun onSkuDetails(skuDetails: List<SkuDetails>?) {
+    if (skuDetails != null) {
+        // Show product details
+    } else {
+        // Show error message
+    }
+}
 ```
 
 ---
@@ -174,26 +202,38 @@ The purchase of the product is performed as follows.
 Before starting the purchase, check the current premium status, and start the purchase only if the user is not premium. For example:
 
 ```kotlin
- // CODE...
+when (Premium.getCurrentState()) {
+    Premium.State.NOT_PREMIUM -> Premium.Controller.startPurchase(activity, "premium_upgrade")
+    Premium.State.PENDING_TRANSACTION -> longToast("The purchase is pending...")
+    Premium.State.PREMIUM -> longToast("You are already a premium user...")
+}
 ```
 :::
 
 To start the purchase:
 
 ```kotlin
- // CODE...
+Premium.Controller.startPurchase(activity, "premium_upgrade")
 ```
 
 In case of an error, it is reported by the listener.
 
 ```kotlin
- // CODE...
+override fun onStartPurchaseError(code: Int) {
+    longToast("Service unavailable, please try again later")
+}
 ```
 
 If the purchase flow was shown successfully, the result (the purchase was completed, its canceled, its pending, etc.) is reported through the listener.
 
 ```kotlin
- // CODE...
+override fun onPurchaseResult(result: Premium.State) {
+    if (result == Premium.State.PREMIUM) {
+        // Code to execute if the user is premium, for example, hide ads
+    } else {
+        // Code to execute if the user is not premium, for example, show ads
+    }
+}
 ```
 
 :::note
@@ -209,6 +249,8 @@ It is recommended to check the premium state in the `onResume()` of the main act
 the state again with the billing client, this in case the listener did not inform when the state of the pending transaction was updated.
 
 ```kotlin
- // CODE...
+if (Premium.getCurrentState() == Premium.State.PENDING_TRANSACTION) {
+    Premium.Controller.checkPremium(context)
+}
 ```
 
