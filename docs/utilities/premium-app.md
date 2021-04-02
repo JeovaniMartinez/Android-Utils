@@ -62,7 +62,7 @@ In order to test the implementation in your app, you must have at least one lice
 2.1.- Add the Google Play Billing Library implementation in Gradle file at app level.
 
 :::caution
-It is strongly recommended to add the indicated version `3.0.3`, to avoid conflicts with dependencies.
+It is strongly recommended to add the indicated version `(3.0.3)`, to avoid conflicts with dependencies.
 :::
 
 ```gradle {3}
@@ -162,7 +162,7 @@ Premium.Controller.removeListener() // To remove the listener
 
 We must verify whether the user has premium privileges at least on the following occasions.
 
-1.- On launch main activity: we must do a quick check of the current status, to know if the user is premium or not, and show the appropriate
+1.- On launch main activity, we must do a quick check of the current status, to know if the user is premium or not, and show the appropriate
 content, for example:
 
 ```kotlin
@@ -174,7 +174,7 @@ if (Premium.getCurrentState() == Premium.State.PREMIUM) {
 ```
 
 2.- The previous verification, aims to show the appropriate content at the launch the app, now we must do a direct verification with the billing client, 
-to update the premium status, this can be done as follows:
+to update the premium state, this can be done as follows:
 
 ```kotlin
 Premium.Controller.checkPremium(context)
@@ -257,6 +257,13 @@ override fun onPurchaseResult(result: Premium.State) {
         // Code to execute if the user is premium, for example, hide ads
     } else {
         // Code to execute if the user is not premium, for example, show ads
+    }
+
+    // This is a good time to indicate to the user the result of the purchase
+    when (result) {
+        Premium.State.NOT_PREMIUM -> longToast("Purchase canceled")
+        Premium.State.PENDING_TRANSACTION -> longToast("Thanks, the purchase is pending...")
+        Premium.State.PREMIUM -> longToast("Thank you for purchasing the premium version...")
     }
 }
 ```
