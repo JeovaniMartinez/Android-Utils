@@ -28,15 +28,15 @@ class TypeOrResource : AnnotationDetector() {
         // Configuration and problem description
         val ISSUE = Issue.create(
             id = "TypeOrResource",
-            briefDescription = "Validate that the correct type or correct resource is received.",
+            briefDescription = "Validate that the correct type or correct resource is received",
             explanation = """
                 When using this annotation, different types of data are generally accepted, so this verification is in charge of validating 
-                that the correct data type is received according to the annotation. For example, the @StringOrStringRes annotation is
+                that the correct data type is received according to the annotation. For example, the `@StringOrStringRes` annotation is
                 expected to receive a string value, such as "Hello" or an ID of a string resource, such as R.string.demo. If a String 
                 is received, the data is treated as is, if a string ID is received, the value is obtained and it is treated as a String, 
                 but if an incorrect data type is received like a Float or an incorrect resource like R.color.demo app will throw an 
                 exception at runtime. For this reason, this check helps to assign a correct value according to the annotation.
-            """.trimIndent(),
+            """,
             category = Category.CORRECTNESS,
             severity = Severity.ERROR,
             implementation = Implementation(TypeOrResource::class.java, Scope.JAVA_FILE_SCOPE)
@@ -130,7 +130,7 @@ class TypeOrResource : AnnotationDetector() {
                         issue = ISSUE,
                         scope = usage,
                         location = context.getLocation(usage),
-                        message = "Invalid resource, expected drawable resource or drawable object."
+                        message = "Invalid resource, expected drawable resource or drawable object"
                     )
                 }
             }
@@ -154,7 +154,7 @@ class TypeOrResource : AnnotationDetector() {
                         issue = ISSUE,
                         scope = usage,
                         location = context.getLocation(usage),
-                        message = "Invalid type, expected string object or string resource."
+                        message = "Invalid type, expected string object or string resource"
                     )
                 }
             }
@@ -165,7 +165,7 @@ class TypeOrResource : AnnotationDetector() {
                         issue = ISSUE,
                         scope = usage,
                         location = context.getLocation(usage),
-                        message = "Invalid resource, expected string resource or string object."
+                        message = "Invalid resource, expected string resource or string object"
                     )
                 }
             }
