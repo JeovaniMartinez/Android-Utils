@@ -1,32 +1,107 @@
 module.exports = {
-    someSidebar: {
-        Introduction: [
-            'introduction'
-        ],
-        Configuration: [
-            'configuration/getting-started',
-            'configuration/log',
-            'configuration/firebase-analytics',
-            'configuration/firebase-crashlytics',
-        ],
-        Annotations: [
-            'annotations/code-inspection-annotations',
-        ],
-        "Library Utilities": [
-            'utilities/rate-app',
-            'utilities/watermark',
-            'utilities/view-to-image',
-            'utilities/about-app',
-            'utilities/translucent-theme',
-            'utilities/premium-app',
-            'utilities/file-utils',
-            'utilities/more-apps',
-            'utilities/system-web-browser',
-            'utilities/extension-functions',
-        ],
-        "Release Notes": [
-            'release-notes/v1.0.0',
-        ],
-        /*Docusaurus: ['docusaurus/style-guide', 'docusaurus/mdx'],*/ // Temporally
-    },
+    "mainSidebar": [
+        {
+            "collapsed": true,
+            "type": "category",
+            "label": "Introduction",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "introduction"
+                }
+            ]
+        },
+        {
+            "collapsed": true,
+            "type": "category",
+            "label": "Configuration",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "configuration/getting-started"
+                },
+                {
+                    "type": "doc",
+                    "id": "configuration/log"
+                },
+                {
+                    "type": "doc",
+                    "id": "configuration/firebase-analytics"
+                },
+                {
+                    "type": "doc",
+                    "id": "configuration/firebase-crashlytics"
+                }
+            ]
+        },
+        {
+            "collapsed": true,
+            "type": "category",
+            "label": "Annotations",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "annotations/code-inspection-annotations"
+                }
+            ]
+        },
+        {
+            "collapsed": false,
+            "type": "category",
+            "label": "Library Utilities",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "utilities/rate-app"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/watermark"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/view-to-image"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/about-app"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/translucent-theme"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/premium-app"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/file-utils"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/more-apps"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/system-web-browser"
+                },
+                {
+                    "type": "doc",
+                    "id": "utilities/extension-functions"
+                }
+            ]
+        },
+        {
+            "collapsed": true,
+            "type": "category",
+            "label": "Release Notes",
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "release-notes/v1.0.0"
+                }
+            ]
+        }
+    ]
 };
