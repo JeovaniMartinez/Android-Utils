@@ -40,21 +40,33 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Mandatory
+    implementation 'androidx.core:core-ktx:1.3.2' // Set of Kotlin extensions for Android Jetpack and other Android libraries
+    implementation 'androidx.appcompat:appcompat:1.2.0' // Allows access to new APIs on older API versions of the platform
+    implementation 'com.google.android.material:material:1.2.1' // Material Components for Android
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4' // Constraint Layout (position and size widgets in a flexible way with relative positioning)
 
-    implementation 'com.google.firebase:firebase-analytics:18.0.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.3.1'
+
+    // OK
     implementation 'com.google.android.play:core-ktx:1.8.1'
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
     implementation 'com.android.billingclient:billing-ktx:3.0.3'
 
+
+    // !!Check...
+
+    compileOnly  'com.google.firebase:firebase-analytics:18.0.0'
+    compileOnly  'com.google.firebase:firebase-crashlytics:17.3.1'
+
+
+    // Lint check
     lintPublish project(':lintcheck')
+
+    // Testing
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
 
 }
 
