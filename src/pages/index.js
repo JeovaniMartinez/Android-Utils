@@ -8,11 +8,15 @@ import styles from './styles.module.css';
 
 const features = [
     {
+        title: 'Compatible with API 17+',
+        imageUrl: 'img/site/android.png',
+    },
+    {
         title: 'Written in Kotlin',
         imageUrl: 'img/site/kotlin-android-logo.svg',
     },
     {
-        title: 'Free and open-source',
+        title: 'Free and Open-source',
         imageUrl: 'img/site/parchment.svg',
     },
 ];
@@ -20,7 +24,7 @@ const features = [
 function Feature({imageUrl, title, description}) {
     const imgUrl = useBaseUrl(imageUrl);
     return (
-        <div className={clsx('col col--6', styles.feature)}>
+        <div className={clsx('col col--4', styles.feature)}>
             {imgUrl && (
                 <div className="text--center">
                     <img className={styles.featureImage} src={imgUrl} alt={title}/>
