@@ -40,33 +40,38 @@ android {
 
 dependencies {
 
-    // Mandatory
-    implementation 'androidx.core:core-ktx:1.3.2' // Set of Kotlin extensions for Android Jetpack and other Android libraries
-    implementation 'androidx.appcompat:appcompat:1.2.0' // Allows access to new APIs on older API versions of the platform
-    implementation 'com.google.android.material:material:1.2.1' // Material Components for Android
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4' // Constraint Layout (position and size widgets in a flexible way with relative positioning)
+    // Allows access to new APIs on older API versions of the platform
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
+    // Set of Kotlin extensions for Android Jetpack and other Android libraries
+    implementation 'androidx.core:core-ktx:1.3.2'
 
-    // OK
-    implementation 'com.google.android.play:core-ktx:1.8.1'
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
-    implementation 'com.android.billingclient:billing-ktx:3.0.3'
+    // Material Components for Android
+    implementation 'com.google.android.material:material:1.2.1' // Required for design the layouts
 
+    // Constraint Layout (position and size widgets in a flexible way with relative positioning)
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4' // Required for design the layouts
 
-    // !!Check...
+    // Runtime interface to interact with the Google Play Store
+    implementation 'com.google.android.play:core-ktx:1.8.1' // Required for use Google Play In-App review API
 
-    compileOnly  'com.google.firebase:firebase-analytics:18.0.0'
-    compileOnly  'com.google.firebase:firebase-crashlytics:17.3.1'
+    // Set of tools to express the open source software notices of libraries used in their apps
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0' // Required to display open source licenses in AboutApp
 
+    // Google Play's billing system to enables to sell digital products and content in the apps
+    implementation 'com.android.billingclient:billing-ktx:3.0.3' // Required for the premium utilities
 
-    // Lint check
-    lintPublish project(':lintcheck')
+    // Libraries required only for references. If they are used in the destination app, it must declare the dependencies
+    compileOnly 'com.google.firebase:firebase-analytics:18.0.0' // Used to reference Firebase Analytics
+    compileOnly 'com.google.firebase:firebase-crashlytics:17.3.1' // Used to reference Firebase Crashlytics
 
-    // Testing
+    // Utilities for testing
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // Lint check
+    lintPublish project(':lintcheck') // The library includes the lintcheck module for verifications
 
 }
 
