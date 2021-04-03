@@ -123,6 +123,10 @@ The utility is made up of the following components:
 
 Since we have all the above steps covered, we can now implement the utility as shown below.
 
+:::tip
+The library provides a detailed flow In the logcat, that you can consult to see a detailed flow of what is being done.
+:::
+
 ### General
 
 General implementation.
