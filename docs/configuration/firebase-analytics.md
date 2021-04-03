@@ -7,14 +7,14 @@ export const Event = ({children}) => ( <span style={{
     backgroundColor: '#004234',
     borderRadius: '6px',
     color: '#fff',
-    padding: '0.2rem',
+    padding: '0.2rem 0.8rem',
 }}>{children}</span> );
 
 export const Parameter = ({children}) => ( <span style={{
     backgroundColor: '#807300',
     borderRadius: '6px',
     color: '#fff',
-    padding: '0.2rem',
+   padding: '0.2rem 0.8rem',
 }}>{children}</span> );
 
 :::note
@@ -49,11 +49,54 @@ In the example, the `MoreApps` utility does not log events to Firebase Analytics
 The following list shows the events that the library can log and their description.
 
 :::note
-Some events have <Parameter>parameters</Parameter>, for the correct analysis of these events it is necessary to configure them in the Firebase console 
+Some events have <Parameter>parameters</Parameter> for the correct analysis of these events it is necessary to configure them in the Firebase console 
 or Google Analytics console.
 :::
 
 <br/>
+
+### Premium App
+
+---
+<Event>billing_check_premium_client</Event><br/><br/>
+The premium state of the app is verified directly with the Google Play billing client.
+
+---
+<Event>billing_check_premium_preferences</Event><br/><br/>
+The premium state of the app is verified through the preferences, since it was not possible to do so through the Google Play billing client.
+
+---
+<Event>billing_client_connection_ok</Event><br/><br/>
+<Event>billing_client_connection_error</Event><br/><br/>
+<Event>billing_client_disconnected</Event><br/><br/>
+They indicate if the connection with the Google Play billing client could be established, and if the connection was lost at any time.
+
+---
+<Event>billing_sku_details_ok</Event><br/><br/>
+<Event>billing_sku_details_error</Event><br/><br/>
+They indicate whether or not the details of a product could be obtained.
+
+---
+<Event>billing_flow_launch_ok</Event><br/><br/>
+<Event>billing_flow_launch_error</Event><br/><br/>
+They indicate if the purchase flow could or could not be started.
+
+---
+<Event>billing_purchase_cancelled</Event><br/><br/>
+The purchase was canceled, either by the user or because the payment method was rejected or an error occurred.
+
+---
+<Event>billing_purchase_completed</Event><br/><br/>
+<Event>billing_purchase_acknowledge_error</Event><br/><br/>
+Indicates if the purchase was completed successfully or if there was an error on acknowledged it. These events are always emitted after the 
+payment is approved.
+
+
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+# Pending to adjust
+
 
 ### About App
 
@@ -135,3 +178,6 @@ The user is directed to a web page in the system web browser.
 <br/><br/>
 <Parameter>open_url_case</Parameter><br/>
 Parameter that indicates the reason why the user was directed to the system web browser, and also records when an error occurs.
+
+---
+<br/>
