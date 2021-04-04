@@ -51,10 +51,33 @@ AboutApp.show(activity, aboutAppConfig)
 
 ### Open Source Licenses
 
-If you want to show open source licenses activity, the configuration parameter `showOpenSourceLicenses` must be `true` and you must follow 
-[this guide](https://developers.google.com/android/guides/opensource) to show the licenses.
-
 ![img](../img/about-app/about-app-img2.png)
+
+If you want to display button to show open source licenses activity, the configuration parameter `showOpenSourceLicenses` must be `tru`e and you need 
+to apply the following configuration in your project.
+
+Add the following line in Gradle file at project level.
+
+```gradle {4}
+buildscript {
+    dependencies {
+        ...
+        classpath "com.google.android.gms:oss-licenses-plugin:0.10.2"
+    }
+}
+```
+
+Add the following line in Gradle file at app level.
+```gradle {3}
+plugins {
+    ...
+    id 'com.google.android.gms.oss-licenses-plugin'
+}
+```
+
+:::caution
+If you do not apply the indicated configuration, the activity that shows open source licenses will not display any content.
+:::
 
 ---
 
