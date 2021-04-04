@@ -276,7 +276,9 @@ class AboutActivity : TranslucentActivity() {
         about_termsAndPolicyWebView.settings.domStorageEnabled = true // For best compatibility
         // The URL is loaded, passing the background color and text color parameters
         aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
-            about_termsAndPolicyWebView.loadUrl("${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor")
+            val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
+            AboutApp.log("Terms and Privacy Policy URL = $url")
+            about_termsAndPolicyWebView.loadUrl(url)
         }
     }
 
