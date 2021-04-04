@@ -61,11 +61,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/about_app_app_name"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/about_verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/about_appIcon" />
+                    app:layout_constraintTop_toBottomOf="@id/about_appIcon"
+                    tools:ignore="SpUsage" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/about_appVersion"
@@ -73,9 +74,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="@string/about_app_version"
+                    android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="@+id/about_verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/about_appName" />
+                    app:layout_constraintTop_toBottomOf="@id/about_appName"
+                    tools:ignore="SpUsage" />
 
                 <View
                     android:id="@+id/about_topSeparator"
@@ -93,10 +96,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/about_app_author_title"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     app:layout_constraintEnd_toEndOf="@+id/about_verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/about_topSeparator" />
+                    app:layout_constraintTop_toBottomOf="@id/about_topSeparator"
+                    tools:ignore="SpUsage" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/about_authorName"
@@ -104,11 +108,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="@string/about_app_author_name"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/about_verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/about_authorTitle" />
+                    app:layout_constraintTop_toBottomOf="@id/about_authorTitle"
+                    tools:ignore="SpUsage" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/about_verticalGuideline"
@@ -145,11 +150,11 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center"
                     android:text="@string/about_app_copyright"
-                    android:textSize="9sp"
+                    android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/about_verticalGuideline"
                     app:layout_constraintTop_toBottomOf="@id/about_companyLogo"
-                    tools:ignore="SmallSp" />
+                    tools:ignore="SmallSp,SpUsage" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/about_rightsReserved"
@@ -157,11 +162,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/about_app_all_rights_reserved"
-                    android:textSize="9sp"
+                    android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/about_verticalGuideline"
                     app:layout_constraintTop_toBottomOf="@id/about_copyright"
-                    tools:ignore="SmallSp" />
+                    tools:ignore="SmallSp,SpUsage" />
 
                 <View
                     android:id="@+id/about_BottomSeparator"
@@ -181,10 +186,10 @@
                     android:layout_marginTop="10.5dp"
                     android:gravity="center"
                     android:text="@string/about_app_terms_and_policy"
-                    android:textSize="9sp"
+                    android:textSize="9dp"
                     app:layout_constraintStart_toStartOf="@id/about_verticalGuideline"
                     app:layout_constraintTop_toBottomOf="@id/about_BottomSeparator"
-                    tools:ignore="SmallSp" />
+                    tools:ignore="SmallSp,SpUsage" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/about_closeBtn"
@@ -204,10 +209,10 @@
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
                     android:text="@string/about_app_open_source_licenses"
-                    android:textSize="9sp"
+                    android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/about_BottomSeparator"
-                    tools:ignore="SmallSp" />
+                    tools:ignore="SmallSp,SpUsage" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
