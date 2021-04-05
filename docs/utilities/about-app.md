@@ -86,8 +86,8 @@ If you do not apply the indicated configuration, the activity that shows open so
 ![img](../img/about-app/about-app-img3.png)
 
 The activity show the terms and policy in a `WebView`, which are loaded from a URL `termsAndPrivacyPolicyLink` so that the most up-to-date version can 
-always be shown. In order to display the web page with the style of the theme that the app uses, three parameters are sent to the URL: `background-color`,
-`text-color` and `lang` to customize the background color of the page, the text color and the language respectively.
+always be shown. In order to display the web page with the style of the theme that the app uses, two parameters are sent to the URL: `background-color` 
+and `text-color` to customize the background color of the page and the text color respectively.
 
 The following template for the page is the one used in the example, and it already takes care of processing the parameters and adjusting the view:
 
@@ -99,6 +99,10 @@ You can change the URL parameters `background-color=212121&text-color=CFCFCF` to
 :::
 
 :::note
-At the moment, the template does not process the language parameter, so if you need to show the terms & policy in different languages you must adjust 
-the code.
+Additionally, when generating the url for the terms & policy, the library also adds the lang parameter with the user's current language code.
+
+Parameter example: `lang=en`
+
+You can use that parameter to display the terms in multiple languages, or if you have different urls for each language, put each url in the 
+corresponding strings.xml file and ignore the parameter.
 :::
