@@ -125,6 +125,8 @@ See the awesome apps are using Android Utils library.
 
 ![showcase](https://user-images.githubusercontent.com/38060456/113601127-8f1dd800-9606-11eb-8b71-16ced9814308.png)
 
+![showcase2](https://user-images.githubusercontent.com/38060456/113601833-795ce280-9607-11eb-9f3a-58cd4b16e84b.png)
+
 
 ---
 
