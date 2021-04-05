@@ -117,9 +117,9 @@ See the awesome apps are using Android Utils library.
 
 ## Contributors
 
-| <a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/38060456/111829976-ffacc100-88b2-11eb-8288-4ce295c835a6.png" alt="Jeovani Martínez"></a> |
-|-|
-|  <a href="https://github.com/jeovanimartinez"><img src="https://img.shields.io/badge/WEB-Jeovani%20Mart%C3%ADnez-blue?style=for-the-badge&label=%20&labelColor=3F3F3F&color=00658E" alt="Jeovani Martínez"></a> |
+Meet the developers who make this project possible.
+
+[<img src="https://user-images.githubusercontent.com/38060456/113611113-ae6f3200-9613-11eb-9f56-05565b244292.png">](https://github.com/jeovanimartinez)
 
 ---
 
