@@ -60,7 +60,7 @@ Set of utilities to draw a text watermarks or a drawable watermarks into images.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/38060456/112035384-19dddd80-8b05-11eb-80f9-ad69ab019ebc.jpeg" alt="">
-<img src="https://user-images.githubusercontent.com/38060456/112035577-4a257c00-8b05-11eb-9cc9-91fe9eeb602f.png" alt="">
+
 <img src="https://user-images.githubusercontent.com/38060456/112035396-1cd8ce00-8b05-11eb-8f13-a55d842c30f0.jpg" alt="">
 </p>
 
