@@ -117,6 +117,9 @@ See the awesome apps are using Android Utils library.
 |-|
 | <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer">RCCC - Resistor Color Code Calculator</a> |
 
+![showcase](https://user-images.githubusercontent.com/38060456/113599732-a3f96c00-9604-11eb-936d-9eb9911e2972.png)
+
+![showcase](https://user-images.githubusercontent.com/38060456/113599732-a3f96c00-9604-11eb-936d-9eb9911e2972.png)
 ---
 
 ## Contributors
