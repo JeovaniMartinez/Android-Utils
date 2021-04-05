@@ -113,18 +113,9 @@ Set of extension functions to facilitate development.
 
 See the awesome apps are using Android Utils library.
 
-| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer"><img width="120" src="https://user-images.githubusercontent.com/38060456/111829494-61b8f680-88b2-11eb-8e87-047bd19e1a37.png" alt="RCCC - Resistor Color Code Calculator"></a> <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator"><img  height="50" src="https://user-images.githubusercontent.com/38060456/111829809-caa06e80-88b2-11eb-9587-d5120ace054c.png" alt="Get it on Google Play"></a> |
-|-|
-| <a href="https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator" target="_blank" rel="noopener noreferrer">RCCC - Resistor Color Code Calculator</a> |
 
-![showcase](https://user-images.githubusercontent.com/38060456/113599732-a3f96c00-9604-11eb-936d-9eb9911e2972.png)
-
-![showcase](https://user-images.githubusercontent.com/38060456/113599732-a3f96c00-9604-11eb-936d-9eb9911e2972.png)
-
-![aurora-1197753_1920](https://user-images.githubusercontent.com/38060456/113600042-1407f200-9605-11eb-97b2-986f7f837556.jpg)
-
-![showcase](https://user-images.githubusercontent.com/38060456/113601127-8f1dd800-9606-11eb-8b71-16ced9814308.png)
-
+![showcase2](https://user-images.githubusercontent.com/38060456/113601833-795ce280-9607-11eb-9f3a-58cd4b16e84b.png)
+![showcase2](https://user-images.githubusercontent.com/38060456/113601833-795ce280-9607-11eb-9f3a-58cd4b16e84b.png)
 ![showcase2](https://user-images.githubusercontent.com/38060456/113601833-795ce280-9607-11eb-9f3a-58cd4b16e84b.png)
 
 
