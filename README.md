@@ -113,14 +113,10 @@ Set of extension functions to facilitate development.
 
 See the awesome apps are using Android Utils library.
 
-![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
-![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
-![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
-![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
-![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
-![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
-![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
-
+[<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png">](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
+[<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png">](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
+[<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png">](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
+[<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png">](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
 
 ## Contributors
 
