@@ -113,32 +113,13 @@ Set of extension functions to facilitate development.
 
 See the awesome apps are using Android Utils library.
 
-
-![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
-![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
-![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
-![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
-![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
-![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
-![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
-
-
----
-
-![showcase4](https://user-images.githubusercontent.com/38060456/113603126-22f0a380-9609-11eb-80d8-e361048bdb63.png)
-![showcase4](https://user-images.githubusercontent.com/38060456/113603126-22f0a380-9609-11eb-80d8-e361048bdb63.png)
-![showcase4](https://user-images.githubusercontent.com/38060456/113603126-22f0a380-9609-11eb-80d8-e361048bdb63.png)
-![showcase4](https://user-images.githubusercontent.com/38060456/113603126-22f0a380-9609-11eb-80d8-e361048bdb63.png)
-
-
----
-
-![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
-![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
-![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
-![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
-![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
-![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
+![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
+![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
+![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
+![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
+![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
+![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
+![showcase](https://user-images.githubusercontent.com/38060456/113607519-e7f16e80-960e-11eb-9202-bf60f6c163be.png)
 
 
 ## Contributors
