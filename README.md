@@ -121,6 +121,18 @@ Meet the developers who make this project possible.
 
 [<img src="https://user-images.githubusercontent.com/38060456/113614207-cf398680-9617-11eb-9e09-dd43edf57d50.png" alt="Jeovani Martinez">](https://github.com/jeovanimartinez)
 
+![1-jm](https://user-images.githubusercontent.com/38060456/113636383-0cae0c00-9638-11eb-80ee-a7271e306e83.png)
+
+![1-jm](https://user-images.githubusercontent.com/38060456/113636475-47b03f80-9638-11eb-94e2-b49024f583c0.png)
+
+![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
+
+![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
+![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
+![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
+![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
+
+
 ---
 
 ## License
