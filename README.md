@@ -113,13 +113,13 @@ Set of extension functions to facilitate development.
 
 See the awesome apps are using Android Utils library.
 
-[<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png">](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
+[<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png" alt="Resistor Color Code Calculator">](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
 
 ## Contributors
 
 Meet the developers who make this project possible.
 
-[<img src="https://user-images.githubusercontent.com/38060456/113611113-ae6f3200-9613-11eb-9f56-05565b244292.png">](https://github.com/jeovanimartinez)
+[<img src="https://user-images.githubusercontent.com/38060456/113614207-cf398680-9617-11eb-9e09-dd43edf57d50.png" alt="Jeovani Martinez">](https://github.com/jeovanimartinez)
 
 ---
 
