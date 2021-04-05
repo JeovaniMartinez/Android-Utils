@@ -86,14 +86,19 @@ If you do not apply the indicated configuration, the activity that shows open so
 ![img](../img/about-app/about-app-img3.png)
 
 The activity show the terms and policy in a `WebView`, which are loaded from a URL `termsAndPrivacyPolicyLink` so that the most up-to-date version can 
-always be shown. In order to display the web page with the style of the theme that the app uses, two parameters are sent to the URL: `background-color` 
-and `text-color` to customize the background color of the page and the text color respectively.
+always be shown. In order to display the web page with the style of the theme that the app uses, three parameters are sent to the URL: `background-color`,
+`text-color` and `lang` to customize the background color of the page, the text color and the language respectively.
 
 The following template for the page is the one used in the example, and it already takes care of processing the parameters and adjusting the view:
 
 > #### <a href="https://github.com/JeovaniMartinez/Android-Utils/tree/master/resources/terms-and-privacy-policy" target="_blank"><b>[ Template ]</b></a>
-> #### <a href="https://jedemm.com/android-utils/terms-and-policy/license.html?background-color=212121&text-color=CFCFCF" target="_blank"><b>[ Demo ]</b></a>
+> #### <a href="https://jedemm.com/android-utils/terms-and-policy/license.html?background-color=212121&text-color=CFCFCF&lang=en" target="_blank"><b>[ Demo ]</b></a>
 
 :::tip
 You can change the URL parameters `background-color=212121&text-color=CFCFCF` to customize the page style.
+:::
+
+:::note
+At the moment, the template does not process the language parameter, so if you need to show the terms & policy in different languages you must adjust 
+the code.
 :::
