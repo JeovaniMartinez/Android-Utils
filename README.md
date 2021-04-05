@@ -133,6 +133,14 @@ See the awesome apps are using Android Utils library.
 
 ---
 
+![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
+![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
+![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
+![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
+![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
+![showcase5](https://user-images.githubusercontent.com/38060456/113603720-e5d8e100-9609-11eb-8568-a3c6ecff2551.png)
+
+
 ## Contributors
 
 | <a href="https://github.com/jeovanimartinez" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/38060456/111829976-ffacc100-88b2-11eb-8288-4ce295c835a6.png" alt="Jeovani Martínez"></a> |
