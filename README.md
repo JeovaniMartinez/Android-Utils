@@ -114,9 +114,14 @@ Set of extension functions to facilitate development.
 See the awesome apps are using Android Utils library.
 
 
-![showcase2](https://user-images.githubusercontent.com/38060456/113601833-795ce280-9607-11eb-9f3a-58cd4b16e84b.png)
-![showcase2](https://user-images.githubusercontent.com/38060456/113601833-795ce280-9607-11eb-9f3a-58cd4b16e84b.png)
-![showcase2](https://user-images.githubusercontent.com/38060456/113601833-795ce280-9607-11eb-9f3a-58cd4b16e84b.png)
+![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
+![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
+![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
+![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
+![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
+![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
+![showcase3](https://user-images.githubusercontent.com/38060456/113602748-9e9e2080-9608-11eb-8b3f-66be958a1dd7.png)
+
 
 
 ---
