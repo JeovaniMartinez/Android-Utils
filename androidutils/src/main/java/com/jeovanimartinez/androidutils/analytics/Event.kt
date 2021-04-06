@@ -5,14 +5,14 @@ package com.jeovanimartinez.androidutils.analytics
  * */
 internal object Event {
 
-    // Check the library docs for a parameters description.
+    // Check the library docs for a events and parameters description.
 
     const val ABOUT_APP_SHOWN = "about_app_shown"
-    const val ABOUT_APP_OPEN_SOURCE_LICENSES_SHOWN = "about_app_open_source_licenses_shown"
+    const val ABOUT_APP_OSL_SHOWN = "about_app_osl_shown"
     const val ABOUT_APP_TERMS_POLICY_SHOWN = "about_app_terms_policy_shown"
 
-    const val MORE_APPS_SHOWN_ON_GOOGLE_PLAY = "more_apps_shown_on_google_play"
-    const val MORE_APPS_UNABLE_TO_SHOW_ON_GOOGLE_PLAY = "more_apps_unable_to_show_on_google_play"
+    const val MORE_APPS_SHOWN_GOOGLE_PLAY = "more_apps_shown_google_play"
+    const val MORE_APPS_SHOWN_GOOGLE_PLAY_ERROR = "more_apps_shown_google_play_error"
 
 
     const val RATE_APP_FLOW_REQUEST_OK = "rate_app_flow_request_ok"
