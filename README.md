@@ -7,7 +7,7 @@
 
 
 <h1 align="center">Android Utils</h2>
-<p align="center"><a href="https://jeovanimartinez.github.io/Android-Utils/" target="_blank" rel="noopener noreferrer"><img width="400" src="https://github.com/JeovaniMartinez/Android-Utils/blob/master/resources/introduction.svg" alt="Android Utils Logo"></a></p>
+<p align="center"><a href="https://jeovanimartinez.github.io/Android-Utils/" target="_blank" rel="noopener noreferrer"><img width="400" src="https://github.com/JeovaniMartinez/Android-Utils/blob/master/resources/readme/introduction.svg" alt="Android Utils Logo"></a></p>
 <h4 align="center">Set of utilities for Android app development.</h4>
 
 ---
@@ -41,11 +41,13 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 
 <p align="center">
-<img src="" alt="">
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app"><img src="https://user-images.githubusercontent.com/38060456/113655130-e18ae300-965e-11eb-975f-3ee65ed89986.png" alt="Rate App"></a>
 </p>
 
+---
+
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app"><img src="https://user-images.githubusercontent.com/38060456/113655130-e18ae300-965e-11eb-975f-3ee65ed89986.png" alt="Rate App"></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark"><img src="https://user-images.githubusercontent.com/38060456/113656639-e9985200-9661-11eb-8324-59b4817d1222.png" alt="Watermark"></a>
 </p>
 
 ---
