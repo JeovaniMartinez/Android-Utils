@@ -24,7 +24,7 @@ internal object Event {
     const val BILLING_PURCHASE_COMPLETED = "billing_purchase_completed"
     const val BILLING_PURCHASE_ACKNOWLEDGE_ERROR = "billing_purchase_acknowledge_error"
 
-    const val MORE_APPS_SHOWN_GOOGLE_PLAY = "more_apps_shown_google_play"
+    const val MORE_APPS_SHOWN_GOOGLE_PLAY_OK = "more_apps_shown_google_play_ok"
     const val MORE_APPS_SHOWN_GOOGLE_PLAY_ERROR = "more_apps_shown_google_play_error"
 
     const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
