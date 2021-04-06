@@ -14,15 +14,16 @@ internal object Event {
     const val MORE_APPS_SHOWN_ON_GOOGLE_PLAY = "more_apps_shown_on_google_play"
     const val MORE_APPS_UNABLE_TO_SHOW_ON_GOOGLE_PLAY = "more_apps_unable_to_show_on_google_play"
 
-    const val RATE_APP_REQUEST_REVIEW_FLOW_SUCCESSFUL = "rate_app_request_review_flow_successful"
-    const val RATE_APP_REQUEST_REVIEW_FLOW_ERROR = "rate_app_request_review_flow_error"
-    const val RATE_APP_LAUNCH_REVIEW_FLOW_SUCCESSFUL = "rate_app_launch_review_flow_successful"
-    const val RATE_APP_LAUNCH_REVIEW_FLOW_ERROR = "rate_app_launch_review_flow_error"
-    const val RATE_APP_REVIEW_FLOW_SHOWN = "rate_app_review_flow_shown"
+
+    const val RATE_APP_FLOW_REQUEST_OK = "rate_app_flow_request_ok"
+    const val RATE_APP_FLOW_REQUEST_ERROR = "rate_app_flow_request_error"
+    const val RATE_APP_FLOW_LAUNCH_OK = "rate_app_flow_launch_ok"
+    const val RATE_APP_FLOW_LAUNCH_ERROR = "rate_app_flow_launch_error"
+    const val RATE_APP_FLOW_SHOWN = "rate_app_flow_shown"
     const val RATE_APP_DIALOG_SHOWN = "rate_app_dialog_shown"
-    const val RATE_APP_SENT_TO_GOOGLE_PLAY_APP = "rate_app_sent_to_google_play_app"
-    const val RATE_APP_SENT_TO_GOOGLE_PLAY_WEB = "rate_app_sent_to_google_play_web"
-    const val RATE_APP_UNABLE_TO_SEND_TO_GOOGLE_PLAY = "rate_app_unable_to_send_to_google_play"
+    const val RATE_APP_SENT_GOOGLE_PLAY_APP = "rate_app_sent_google_play_app"
+    const val RATE_APP_SENT_GOOGLE_PLAY_WEB = "rate_app_sent_google_play_web"
+    const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
     const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
 
