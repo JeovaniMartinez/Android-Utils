@@ -294,7 +294,7 @@ object RateApp : Base<RateApp>() {
                 var successfulReviewFlow = false // Determine if the flow was correct
                 val flowObtainedTime = Date().time // Assign the date was the flow is obtained
                 log("ReviewFlow successfully obtained")
-                firebaseAnalytics(Event.RATE_APP_REQUEST_REVIEW_FLOW_SUCCESSFUL)
+                firebaseAnalytics(Event.RATE_APP_FLOW_REQUEST_OK)
                 val reviewInfo = request.result // Get the result
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // The flow to rate app is launched
                 // The flow process was successful
@@ -311,13 +311,13 @@ object RateApp : Base<RateApp>() {
                     successfulReviewFlow = true // The flow was correct
                     log("Successful review flow to rate app with Google Play In-App Review API")
                     updatePreferencesOnFlowShown() // Preferences are updated because the flow is complete
-                    firebaseAnalytics(Event.RATE_APP_LAUNCH_REVIEW_FLOW_SUCCESSFUL)
+                    firebaseAnalytics(Event.RATE_APP_FLOW_LAUNCH_OK)
                 }
                 // Flow error
                 reviewFlow.addOnFailureListener {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                     log("Failure on ReviewFlow, can not show flow to rate app")
-                    firebaseAnalytics(Event.RATE_APP_LAUNCH_REVIEW_FLOW_ERROR)
+                    firebaseAnalytics(Event.RATE_APP_FLOW_LAUNCH_ERROR)
                 }
                 // Flow completed
                 reviewFlow.addOnCompleteListener {
@@ -337,14 +337,14 @@ object RateApp : Base<RateApp>() {
                         log("Elapsed time in review flow ${elapsedTime / 1000.0} seconds ($elapsedTime milliseconds)")
                         if (elapsedTime >= RATE_FLOW_MIN_ELAPSED_TIME) {
                             log("Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${RATE_FLOW_MIN_ELAPSED_TIME / 1000.0}, it is considered that the flow was shown to user")
-                            firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_SHOWN)
+                            firebaseAnalytics(Event.RATE_APP_FLOW_SHOWN)
                         }
                     }
                 }
             } else {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                 log("Error on request ReviewFlow, can not show flow to rate app")
-                firebaseAnalytics(Event.RATE_APP_REQUEST_REVIEW_FLOW_ERROR)
+                firebaseAnalytics(Event.RATE_APP_FLOW_REQUEST_ERROR)
             }
         }
     }
@@ -416,19 +416,19 @@ object RateApp : Base<RateApp>() {
         try {
             activity.startActivity(googlePlayIntent) // It tries to show in the Google Play app
             log("Sent user to view app details in google play app [$marketUriString]")
-            firebaseAnalytics(Event.RATE_APP_SENT_TO_GOOGLE_PLAY_APP)
+            firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_APP)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // If it cannot be shown in the google play app, it tries to open in the web browser
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
                 log("Sent user to view app details in google play on web browser [$webUriString]")
-                firebaseAnalytics(Event.RATE_APP_SENT_TO_GOOGLE_PLAY_WEB)
+                firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_WEB)
             } catch (e2: ActivityNotFoundException) {
                 // If it couldn't be displayed in either of the above two ways, show a toast
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
                 logw("Unable to send user to app details, google play app and web browser are not available", e2)
-                firebaseAnalytics(Event.RATE_APP_UNABLE_TO_SEND_TO_GOOGLE_PLAY)
+                firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_ERROR)
             }
         }
     }

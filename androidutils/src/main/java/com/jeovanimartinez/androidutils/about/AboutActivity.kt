@@ -134,7 +134,7 @@ class AboutActivity : TranslucentActivity() {
 
         about_openSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
-            AboutApp.firebaseAnalytics(Event.ABOUT_APP_OPEN_SOURCE_LICENSES_SHOWN)
+            AboutApp.firebaseAnalytics(Event.ABOUT_APP_OSL_SHOWN)
         }
 
         about_closeBtn.setOnClickListener {
