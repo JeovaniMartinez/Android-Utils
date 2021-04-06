@@ -39,26 +39,16 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ## List of Library Utilities
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/38060456/113645441-82bc6e00-964c-11eb-8ea0-e410f3795034.png" alt="">
-<img src="https://user-images.githubusercontent.com/38060456/113645441-82bc6e00-964c-11eb-8ea0-e410f3795034.png" alt="">
-<img src="https://user-images.githubusercontent.com/38060456/113643923-18ee9500-9649-11eb-9da0-6acfaafb0957.jpg" alt="">
-</p>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/38060456/113645441-82bc6e00-964c-11eb-8ea0-e410f3795034.png" alt="">
+<img src="https://user-images.githubusercontent.com/38060456/113648857-f06b9880-9652-11eb-8e4f-e0d78ed0e3bb.png" alt="">
 </p>
+
 
 ---
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/38060456/113645441-82bc6e00-964c-11eb-8ea0-e410f3795034.png" alt="">
-</p>
-
----
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/38060456/113645441-82bc6e00-964c-11eb-8ea0-e410f3795034.png" alt="">
+<img src="https://user-images.githubusercontent.com/38060456/113648898-08dbb300-9653-11eb-8439-bc1195f556d5.jpg" alt="">
 </p>
 
 
