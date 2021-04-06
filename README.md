@@ -47,7 +47,7 @@ _The objective of this library is to provide a set of utilities that are commonl
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark"><img src="https://user-images.githubusercontent.com/38060456/113656907-6fb49880-9662-11eb-951a-22075c5d04c5.png" alt="Watermark"></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark"><img src="https://user-images.githubusercontent.com/38060456/113791767-fa040780-9709-11eb-9bbb-3e3c3c4c82f8.png" alt="Watermark"></a>
 </p>
 
 
