@@ -1,0 +1,4 @@
+Recommended size for images:
+
+Width: max = 838 px
+Height: the required
