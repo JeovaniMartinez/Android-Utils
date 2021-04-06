@@ -55,6 +55,40 @@ or Google Analytics console.
 
 <br/>
 
+### About App
+
+---
+<Event>about_app_shown</Event><br/><br/>
+The about activity is shown to the user.
+
+---
+<Event>about_app_osl_shown</Event><br/><br/>
+The open source licenses are shown in the about activity.
+
+---
+<Event>about_app_terms_policy_shown</Event><br/><br/>
+The license terms and privacy policy are shown in the about activity.
+
+---
+<br/>
+
+
+
+### More Apps
+
+---
+<Event>more_apps_shown_google_play_ok</Event><br/><br/>
+The user is directed to Google Play, to the list of the developer apps.
+
+---
+<Event>more_apps_shown_google_play_error</Event><br/><br/>
+It is not possible to direct the user to the developer apps list in Google Play.
+
+---
+<br/>
+
+
+
 ### Premium App
 
 ---
@@ -91,72 +125,41 @@ The purchase was canceled, either by the user or because the payment method was 
 Indicates if the purchase was completed successfully or if there was an error on acknowledged it. These events are always emitted after the 
 payment is approved.
 
-
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-# Pending to adjust
-
-
-### About App
-
----
-<Event>about_app_shown</Event><br/><br/>
-The about activity is shown to the user.
-
----
-<Event>about_app_osl_shown</Event><br/><br/>
-The open source licenses are shown in the about activity.
-
----
-<Event>about_app_terms_policy_shown</Event><br/><br/>
-The license terms and privacy policy are shown in the about activity.
-
 ---
 <br/>
 
-### More Apps
 
----
-<Event>more_apps_shown_google_play</Event><br/><br/>
-The user is directed to Google Play, to the list of the developer apps.
-
----
-<Event>more_apps_shown_google_play_error</Event><br/><br/>
-It is not possible to direct the user to the developer apps list in Google Play.
-
----
-<br/>
 
 ### Rate App
 
 ---
 <Event>rate_app_flow_request_ok</Event><br/><br/>
 <Event>rate_app_flow_request_error</Event><br/><br/>
-They indicate if the purchase flow could or could not be started.
+They indicate whether or not the review flow could be obtained.
 
 ---
+<Event>rate_app_flow_launch_ok</Event><br/><br/>
+<Event>rate_app_flow_launch_error</Event><br/><br/>
+Indicates whether or not the review flow could be launched (show to the user).
 
+---
+<Event>rate_app_flow_shown</Event><br/><br/>
+The flow to invite the user to rate the app was shown (the review API does not provide the result, but it can be inferred, although it is not 
+100% accurate).
 
+---
+<Event>rate_app_dialog_shown</Event><br/><br/>
+The dialog to rate the app was shown, it only applies in versions prior to Android 5 where the revision API is not available.
 
+---
+<Event>rate_app_sent_google_play_app</Event><br/><br/>
+<Event>rate_app_sent_google_play_web</Event><br/><br/>
+<Event>rate_app_sent_google_play_error</Event><br/><br/>
+They indicate where the user was directed to rate the app. And the last event indicates that the user could not be directed to either the Google Play 
+app or the website.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
+<br/>
 
 
 
