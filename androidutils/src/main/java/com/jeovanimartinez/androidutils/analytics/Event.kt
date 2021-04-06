@@ -11,8 +11,8 @@ internal object Event {
     const val ABOUT_APP_OSL_SHOWN = "about_app_osl_shown"
     const val ABOUT_APP_TERMS_POLICY_SHOWN = "about_app_terms_policy_shown"
 
-    const val BILLING_CHECK_PREMIUM_PREFERENCES = "billing_check_premium_preferences"
     const val BILLING_CHECK_PREMIUM_CLIENT = "billing_check_premium_client"
+    const val BILLING_CHECK_PREMIUM_PREFERENCES = "billing_check_premium_preferences"
     const val BILLING_CLIENT_CONNECTION_OK = "billing_client_connection_ok"
     const val BILLING_CLIENT_CONNECTION_ERROR = "billing_client_connection_error"
     const val BILLING_CLIENT_DISCONNECTED = "billing_client_disconnected"
