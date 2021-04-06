@@ -101,15 +101,15 @@ payment is approved.
 ### About App
 
 ---
-<Event>about_app_shown</Event><br/>
+<Event>about_app_shown</Event><br/><br/>
 The about activity is shown to the user.
 
 ---
-<Event>about_app_open_source_licenses_shown</Event><br/>
-Open source licenses are shown in the about activity.
+<Event>about_app_osl_shown</Event><br/><br/>
+The open source licenses are shown in the about activity.
 
 ---
-<Event>about_app_terms_policy_shown</Event><br/>
+<Event>about_app_terms_policy_shown</Event><br/><br/>
 The license terms and privacy policy are shown in the about activity.
 
 ---
@@ -118,11 +118,11 @@ The license terms and privacy policy are shown in the about activity.
 ### More Apps
 
 ---
-<Event>more_apps_shown_on_google_play</Event><br/>
+<Event>more_apps_shown_google_play</Event><br/><br/>
 The user is directed to Google Play, to the list of the developer apps.
 
 ---
-<Event>more_apps_unable_to_show_on_google_play</Event><br/>
+<Event>more_apps_shown_google_play_error</Event><br/><br/>
 It is not possible to direct the user to the developer apps list in Google Play.
 
 ---
@@ -131,52 +131,42 @@ It is not possible to direct the user to the developer apps list in Google Play.
 ### Rate App
 
 ---
-<Event>rate_app_request_review_flow_successful</Event><br/>
-The request to get the review flow was successful.
+<Event>rate_app_flow_request_ok</Event><br/><br/>
+<Event>rate_app_flow_request_error</Event><br/><br/>
+They indicate if the purchase flow could or could not be started.
 
 ---
-<Event>rate_app_request_review_flow_error</Event><br/>
-Error on get review flow request.
 
----
-<Event>rate_app_launch_review_flow_successful</Event><br/>
-The review flow to rate app was launched successful.
 
----
-<Event>rate_app_launch_review_flow_error</Event><br/>
-Error on launch the review flow to rate app.
 
----
-<Event>rate_app_review_flow_shown</Event><br/>
-The flow to invite the user to rate the app was shown (the review API does not provide the result, but it can be inferred, although it is not 
-100% accurate).
 
----
-<Event>rate_app_dialog_shown</Event><br/>
-The dialog to rate the app was shown, it only applies in versions prior to Android 5 where the revision API is not available.
 
----
-<Event>rate_app_sent_to_google_play_app</Event><br/>
-The user is directed to the Google Play app to rate the app.
 
----
-<Event>rate_app_sent_to_google_play_web</Event><br/>
-The user is directed to the Google Play website to rate the app, as it was not possible to direct them to the Google Play app.
 
----
-<Event>rate_app_unable_to_send_to_google_play</Event><br/>
-The user cannot be directed to the Google Play app or the website to rate the app.
 
----
-<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### System Web Browser
 
 ---
-<Event>open_url_in_system_web_browser</Event><br/>
+<Event>open_url_system_web_browser</Event><br/><br/>
 The user is directed to a web page in the system web browser.
 <br/><br/>
-<Parameter>open_url_case</Parameter><br/>
+<Parameter>open_url_case</Parameter><br/><br/>
 Parameter that indicates the reason why the user was directed to the system web browser, and also records when an error occurs.
 
 ---
