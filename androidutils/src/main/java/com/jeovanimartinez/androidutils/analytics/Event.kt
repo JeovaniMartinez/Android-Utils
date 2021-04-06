@@ -24,7 +24,7 @@ internal object Event {
     const val RATE_APP_SENT_TO_GOOGLE_PLAY_WEB = "rate_app_sent_to_google_play_web"
     const val RATE_APP_UNABLE_TO_SEND_TO_GOOGLE_PLAY = "rate_app_unable_to_send_to_google_play"
 
-    const val OPEN_URL_IN_SYSTEM_WEB_BROWSER = "open_url_in_system_web_browser"
+    const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
 
     const val BILLING_CHECK_PREMIUM_PREFERENCES = "billing_check_premium_preferences"
     const val BILLING_CHECK_PREMIUM_CLIENT = "billing_check_premium_client"
