@@ -115,28 +115,42 @@ See the awesome apps are using Android Utils library.
 
 [<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png" alt="Resistor Color Code Calculator">](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
 
+[<img src="https://user-images.githubusercontent.com/38060456/113640928-25232400-9642-11eb-9d81-013216dd7916.png" alt="Secure Notes">](https://play.google.com/store/apps/details?id=com.jedemm.securenotes)
+
+--- 
+
 ## Contributors
 
-Meet the developers who make this project possible.
+Meet the developers and contributors of the Android Utils project.
 
-[<img src="https://user-images.githubusercontent.com/38060456/113614207-cf398680-9617-11eb-9e09-dd43edf57d50.png" alt="Jeovani Martinez">](https://github.com/jeovanimartinez)
+[<img src="https://user-images.githubusercontent.com/38060456/113641090-83e89d80-9642-11eb-8852-8a278739a5ac.png" alt="Jeovani Martinez">](https://github.com/jeovanimartinez)
 
-![1-jm](https://user-images.githubusercontent.com/38060456/113636383-0cae0c00-9638-11eb-80ee-a7271e306e83.png)
+---
 
-![1-jm](https://user-images.githubusercontent.com/38060456/113636475-47b03f80-9638-11eb-94e2-b49024f583c0.png)
+## Sponsors
 
-![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
+People, organizations and companies that support Android Utils project.
 
-![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
-![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
-![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
-![1-jedemm](https://user-images.githubusercontent.com/38060456/113637997-7d0a5c80-963b-11eb-814b-61a543f2f33f.png)
-
+[<img src="https://user-images.githubusercontent.com/38060456/113641249-e5a90780-9642-11eb-9af7-8c39d800a79b.png" alt="Jedemm Technologies">](https://jedemm.com/)
 
 ---
 
 ## License
 
-[Apache-2.0](/LICENSE)
+[Apache License, Version 2.0](/LICENSE)
 
-Copyright © 2020-Present, Jeovani Martínez.
+````
+Copyright © 2020-Present Jeovani Martinez
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
