@@ -41,14 +41,17 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/38060456/113648857-f06b9880-9652-11eb-8e4f-e0d78ed0e3bb.png" alt="">
+<img src="" alt="">
 </p>
 
+<p align="center">
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app"><img src="https://user-images.githubusercontent.com/38060456/113655130-e18ae300-965e-11eb-975f-3ee65ed89986.png" alt="Rate App"></a>
+</p>
 
 ---
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/38060456/113648898-08dbb300-9653-11eb-8439-bc1195f556d5.jpg" alt="">
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/"><img src="https://user-images.githubusercontent.com/38060456/113648898-08dbb300-9653-11eb-8439-bc1195f556d5.jpg" alt=""></a>
 </p>
 
 
