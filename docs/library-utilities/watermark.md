@@ -9,7 +9,7 @@ Set of utilities to draw a text watermarks or a drawable watermarks into images.
 
 <p align="center"><img src={require('@site/docs/img/watermark/watermark-img1-a.jpeg').default} alt="" /></p>
 
-<p align="center"><img src={require('@site/docs/img/watermark/watermark-img1-b.svg').default} alt="" /></p>
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img1-b.png').default} alt="" /></p>
 
 <p align="center"><img src={require('@site/docs/img/watermark/watermark-img1-c.jpg').default} alt="" /></p>
 
