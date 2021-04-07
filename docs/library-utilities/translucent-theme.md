@@ -9,7 +9,7 @@ title: Translucent Theme
 
 Style and base class for creating activities with a translucent background.
 
-![img](../img/translucent-theme/translucent-theme-img1.png)
+![img]../img/translucent-theme/translucent-theme-img1.png)
 
 ---
 

@@ -11,7 +11,7 @@ slug: /introduction
 
 <div style={{'max-width': '450px', margin: '0 auto', position: 'relative'}}>
 
-![img](./img/introduction/introduction.svg)
+![img](img/introduction/introduction.svg)
 
 </div>
 

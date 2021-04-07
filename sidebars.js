@@ -52,43 +52,43 @@ module.exports = {
             "items": [
                 {
                     "type": "doc",
-                    "id": "utilities/rate-app"
+                    "id": "library-utilities/rate-app"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/watermark"
+                    "id": "library-utilities/watermark"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/view-to-image"
+                    "id": "library-utilities/view-to-image"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/about-app"
+                    "id": "library-utilities/about-app"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/translucent-theme"
+                    "id": "library-utilities/translucent-theme"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/premium-app"
+                    "id": "library-utilities/premium-app"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/file-utils"
+                    "id": "library-utilities/file-utils"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/more-apps"
+                    "id": "library-utilities/more-apps"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/system-web-browser"
+                    "id": "library-utilities/system-web-browser"
                 },
                 {
                     "type": "doc",
-                    "id": "utilities/extension-functions"
+                    "id": "library-utilities/extension-functions"
                 }
             ]
         },
