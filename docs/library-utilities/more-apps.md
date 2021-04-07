@@ -19,7 +19,7 @@ Utility to invite the user to install the developer's apps.
 
 Direct the user to the app developer page on Google Play, usually used to invite the user to install the developer apps.
 
-![img](../img/more-apps/more-apps-img1.png)
+<p align="center"><img src={require('@site/docs/img/more-apps/more-apps-img1.png').default} alt="" /></p>
 
 #### Usage
 

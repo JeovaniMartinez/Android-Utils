@@ -8,7 +8,7 @@ title: About App
 Utility to show an about app activity, which includes the information of the app, the author, the company, the copyright, as well as the open source 
 licenses, the license terms and the privacy policy. The activity is optimized to adjust elements in portrait and landscape screen modes.
 
-![img](../img/about-app/about-app-img1.png)
+<p align="center"><img src={require('@site/docs/img/about-app/about-app-img1.png').default} alt="" /></p>
 
 ---
 
@@ -51,7 +51,7 @@ AboutApp.show(activity, aboutAppConfig)
 
 ### Open Source Licenses
 
-![img](../img/about-app/about-app-img2.png)
+<p align="center"><img src={require('@site/docs/img/about-app/about-app-img2.png').default} alt="" /></p>
 
 If you want to display button to show open source licenses activity, the configuration parameter `showOpenSourceLicenses` must be `tru`e and you need 
 to apply the following configuration in your project.
@@ -83,7 +83,7 @@ If you do not apply the indicated configuration, the activity that shows open so
 
 ### Terms & Privacy Policy
 
-![img](../img/about-app/about-app-img3.png)
+<p align="center"><img src={require('@site/docs/img/about-app/about-app-img3.png').default} alt="" /></p>
 
 The activity show the terms and policy in a `WebView`, which are loaded from a URL `termsAndPrivacyPolicyLink` so that the most up-to-date version can 
 always be shown. In order to display the web page with the style of the theme that the app uses, two parameters are sent to the URL: `background-color` 

@@ -7,11 +7,11 @@ title: Watermark
 
 Set of utilities to draw a text watermarks or a drawable watermarks into images.
 
-![img](../img/watermark/watermark-img1-a.jpeg)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img1-a.jpeg').default} alt="" /></p>
 
-![img](../img/watermark/watermark-img1-b.svg)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img1-b.svg').default} alt="" /></p>
 
-![img](../img/watermark/watermark-img1-c.jpg)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img1-c.jpg').default} alt="" /></p>
 
 #### Code required to process the image as in the example:
 
@@ -120,14 +120,14 @@ To create a watermark it is necessary to define the position that it will have w
 
 The enum defines 9 fixed positions for the watermark, as shown in the following image:
 
-![img](../img/watermark/watermark-img2.png)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img2.png').default} alt="" /></p>
 
 #### Absolute Position
 
 Additionally, the enum has an `ABSOLUTE` position, which allows the watermark to be placed freely within the image. The origin or pivot of the watermark 
 is the center of it.
 
-![img](../img/watermark/watermark-img3.png)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img3.png').default} alt="" /></p>
 
 ---
 
@@ -140,13 +140,13 @@ its interpretation is according to the position of the watermark.
 
 The offset in the fixed positions allows to set a margin for the watermark, and its value must be assigned according to the position, for example:
 
-![img](../img/watermark/watermark-img4.png)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img4.png').default} alt="" /></p>
 
 #### Offset For Absolute Position
 
 The offset in the absolute position, sets the position of the watermark within the image, for example:
 
-![img](../img/watermark/watermark-img5.png)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img5.png').default} alt="" /></p>
 
 ---
 
@@ -162,7 +162,7 @@ For example, in the following image we define a text watermark, in the `BOTTOM_C
 we must set dy to -50. But if we use `Dimension.DP`, we must set dy to -25, since the density of the screen is 2.0 and that -25 will be converted to pixels 
 at the moment of drawing the watermark.
 
-![img](../img/watermark/watermark-img6.png)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img6.png').default} alt="" /></p>
 
 :::note
 Measurement dimension applies only to the following watermark properties:
@@ -278,4 +278,4 @@ WatermarkUtils.drawWatermark(
 
 #### Result
 
-![img](../img/watermark/watermark-img7.jpeg)
+<p align="center"><img src={require('@site/docs/img/watermark/watermark-img7.jpeg').default} alt="" /></p>

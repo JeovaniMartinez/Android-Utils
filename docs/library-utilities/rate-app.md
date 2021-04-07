@@ -26,9 +26,9 @@ how many times it has been launched, etc.). For Android 5.0 (API 21) and later, 
 is used, so it can be rated within the app. For versions prior to Android 5.0, a dialog is displayed to invite the user to rate the app, if the user 
 accepts, they are directed to the app details on Google Play.
 
-![img](../img/rate-app/rate-app-img1.png)
+<p align="center"><img src={require('@site/docs/img/rate-app/rate-app-img1.png').default} alt="" /></p>
 
-![img](../img/rate-app/rate-app-img2.png)
+<p align="center"><img src={require('@site/docs/img/rate-app/rate-app-img2.png').default} alt="" /></p>
 
 ---
 
@@ -59,7 +59,7 @@ RateApp.checkAndShow(activity)
 :::tip
 The library provides a detailed flow In the logcat, that you can consult to see the validation of the conditions and perform tests.
 
-![img](../img/rate-app/rate-app-img3.png)
+<p align="center"><img src={require('@site/docs/img/rate-app/rate-app-img3.png').default} alt="" /></p>
 :::
 
 :::tip
@@ -89,7 +89,7 @@ flow shown again.
 
 Utility to direct the user to app details on Google Play, usually used to invite the user to rate the app.
 
-![img](../img/rate-app/rate-app-img4.png)
+<p align="center"><img src={require('@site/docs/img/rate-app/rate-app-img4.png').default} alt="" /></p>
 
 :::note
 If the Google Play app is not available in the device, the user is directed to app details to Google Play website on the system web browser.

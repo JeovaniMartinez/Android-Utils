@@ -9,7 +9,7 @@ title: View To Image
 
 Utility for convert views to images. Works for any view and view groups, including layouts with all their children views.
 
-![img](../img/view-to-image/view-to-image-img1.png)
+<p align="center"><img src={require('@site/docs/img/view-to-image/view-to-image-img1.png').default} alt="" /></p>
 
 ---
 
@@ -45,7 +45,7 @@ val bitmap = ViewToImage.convert(
 When converting the view to an image, a margin and padding can be specified, the margin is completely independent (and it will always be transparent), 
 and the padding is applied within the specified background, for example:
 
-![img](../img/view-to-image/view-to-image-img2.png)
+<p align="center"><img src={require('@site/docs/img/view-to-image/view-to-image-img2.png').default} alt="" /></p>
 
 ---
 
@@ -67,7 +67,7 @@ the Constraint Layout can be excluded, but not its children views.
 
 To exemplify the ways in which a child view can be excluded, we will consider the following layout:
 
-![img](../img/view-to-image/view-to-image-img3.png)
+<p align="center"><img src={require('@site/docs/img/view-to-image/view-to-image-img3.png').default} alt="" /></p>
 
 ### - Hide
 
@@ -81,7 +81,7 @@ viewsToExclude = arrayListOf(
 )
 ```
 
-![img](../img/view-to-image/view-to-image-img4.png)
+<p align="center"><img src={require('@site/docs/img/view-to-image/view-to-image-img4.png').default} alt="" /></p>
 
 ### - Crop Vertically
 
@@ -89,7 +89,7 @@ viewsToExclude = arrayListOf(
 
 In this mode, the image of the view is cropped vertically, deleting all the space occupied by the child view.
 
-![img](../img/view-to-image/view-to-image-img5.png)
+<p align="center"><img src={require('@site/docs/img/view-to-image/view-to-image-img5.png').default} alt="" /></p>
 
 ### - Crop Horizontally
 
@@ -97,7 +97,7 @@ In this mode, the image of the view is cropped vertically, deleting all the spac
 
 In this mode, the image of the view is cropped horizontally, deleting all the space occupied by the child view.
 
-![img](../img/view-to-image/view-to-image-img6.png)
+<p align="center"><img src={require('@site/docs/img/view-to-image/view-to-image-img6.png').default} alt="" /></p>
 
 ### - Crop All
 
@@ -105,4 +105,4 @@ In this mode, the image of the view is cropped horizontally, deleting all the sp
 
 In this mode, the image of the view is cropped vertically and horizontally, deleting all the space occupied by the child view.
 
-![img](../img/view-to-image/view-to-image-img7.png)
+<p align="center"><img src={require('@site/docs/img/view-to-image/view-to-image-img7.png').default} alt="" /></p>
