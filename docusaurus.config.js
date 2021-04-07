@@ -36,7 +36,7 @@ module.exports = {
         },
         footer: {
             style: 'dark',
-            copyright: `Copyright © ${new Date().getFullYear()} Jeovani Martínez. Built with Docusaurus.`,
+            copyright: `Copyright © ${new Date().getFullYear()} Jeovani Martinez. Built with Docusaurus.`,
         },
         hideableSidebar: true,
         algolia: {
