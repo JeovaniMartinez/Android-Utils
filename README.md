@@ -58,6 +58,11 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ---
 
+<p align="center"> <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app"><img src="https://user-images.githubusercontent.com/38060456/113794309-de036480-970f-11eb-93b4-b712593665c0.png" alt="About App"></a>
+</p>
+
+---
+
 <p align="center">
     <a href="https://jeovanimartinez.github.io/Android-Utils/docs/"><img src="https://user-images.githubusercontent.com/38060456/113648898-08dbb300-9653-11eb-8439-bc1195f556d5.jpg" alt=""></a>
 </p>
