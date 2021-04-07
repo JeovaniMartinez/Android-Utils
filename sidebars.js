@@ -3,11 +3,11 @@ module.exports = {
         {
             "collapsed": true,
             "type": "category",
-            "label": "Introduction",
+            "label": "Android Utils",
             "items": [
                 {
                     "type": "doc",
-                    "id": "introduction"
+                    "id": "android-utils/introduction"
                 }
             ]
         },
