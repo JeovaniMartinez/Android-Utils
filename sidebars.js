@@ -8,6 +8,10 @@ module.exports = {
                 {
                     "type": "doc",
                     "id": "android-utils/introduction"
+                },
+                {
+                    "type": "doc",
+                    "id": "android-utils/motivation"
                 }
             ]
         },
