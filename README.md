@@ -47,16 +47,30 @@ _The objective of this library is to provide a set of utilities that are commonl
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark"><img src="https://user-images.githubusercontent.com/38060456/113656907-6fb49880-9662-11eb-951a-22075c5d04c5.png" alt="Watermark"></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark"><img src="https://user-images.githubusercontent.com/38060456/113791767-fa040780-9709-11eb-9bbb-3e3c3c4c82f8.png" alt="Watermark"></a>
 </p>
-
 
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/"><img src="https://user-images.githubusercontent.com/38060456/113648898-08dbb300-9653-11eb-8439-bc1195f556d5.jpg" alt=""></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/view-to-image"><img src="https://user-images.githubusercontent.com/38060456/113793244-6d5b4880-970d-11eb-8236-68f6c57b709b.png" alt="View To Image"></a>
 </p>
 
+---
+
+<p align="center"> <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app"><img src="https://user-images.githubusercontent.com/38060456/113794569-7a2d6b80-9710-11eb-8998-c4b196c68473.png" alt="About App"></a>
+</p>
+
+---
+
+<p align="center"> <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/premium-app"><img src="https://user-images.githubusercontent.com/38060456/113799145-232c9400-971a-11eb-840f-0f1a2d682887.png" alt="Premium App"></a>
+</p>
+
+---
+
+<p align="center">
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/"><img src="https://user-images.githubusercontent.com/38060456/113796085-02f9d680-9714-11eb-8faf-fe0df296b627.jpg" alt="DOCUMENTATION"></a>
+</p>
 
 ---
 
