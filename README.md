@@ -63,7 +63,7 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ---
 
-<p align="center"> <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/premium-app"><img src="https://user-images.githubusercontent.com/38060456/113798849-94b81280-9719-11eb-916d-5211749b1a1c.png" alt="Premium App"></a>
+<p align="center"> <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/premium-app"><img src="https://user-images.githubusercontent.com/38060456/113799145-232c9400-971a-11eb-840f-0f1a2d682887.png" alt="Premium App"></a>
 </p>
 
 ---
