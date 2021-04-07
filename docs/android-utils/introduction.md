@@ -31,7 +31,17 @@ title: Introduction
 
 _The objective of this library is to provide a set of utilities that are commonly used in most Android apps, thus facilitating the app's development process._
 
-**You can check all the documentation, as well as the instructions to implement the library on the [library website.](https://jeovanimartinez.github.io/Android-Utils/docs/)**
+#### Main Features
+
+- Compatible with Android `API 17+`
+- Source code written 100% in `Kotlin`
+- UI with `light and dark` theme support.
+- UI with language support for: `English - Spanish`
+- Free and open-source. `Apache License, Version 2.0`
+- The library has more than `9` main utilities.
+- The library has more than `23` extension functions.
+
+<h3>You can check all the documentation, as well as the instructions to implement the library <a href="https://jeovanimartinez.github.io/Android-Utils/docs/" target="_self">here.</a></h3>
 
 ---
 
@@ -39,35 +49,37 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app"><img src="https://user-images.githubusercontent.com/38060456/113655130-e18ae300-965e-11eb-975f-3ee65ed89986.png" alt="Rate App" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113655130-e18ae300-965e-11eb-975f-3ee65ed89986.png" alt="Rate App" /></a>
 </p>
 
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark"><img src="https://user-images.githubusercontent.com/38060456/113791767-fa040780-9709-11eb-9bbb-3e3c3c4c82f8.png" alt="Watermark" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113791767-fa040780-9709-11eb-9bbb-3e3c3c4c82f8.png" alt="Watermark" /></a>
 </p>
 
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/view-to-image"><img src="https://user-images.githubusercontent.com/38060456/113793244-6d5b4880-970d-11eb-8236-68f6c57b709b.png" alt="View To Image" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/view-to-image" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113793244-6d5b4880-970d-11eb-8236-68f6c57b709b.png" alt="View To Image" /></a>
 </p>
 
 ---
 
-<p align="center"> <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app"><img src="https://user-images.githubusercontent.com/38060456/113794569-7a2d6b80-9710-11eb-8998-c4b196c68473.png" alt="About App" /></a>
+<p align="center"> 
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113794569-7a2d6b80-9710-11eb-8998-c4b196c68473.png" alt="About App" /></a>
 </p>
 
 ---
 
-<p align="center"> <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/premium-app"><img src="https://user-images.githubusercontent.com/38060456/113799145-232c9400-971a-11eb-840f-0f1a2d682887.png" alt="Premium App" /></a>
+<p align="center"> 
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/premium-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113799145-232c9400-971a-11eb-840f-0f1a2d682887.png" alt="Premium App" /></a>
 </p>
 
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/"><img src="https://user-images.githubusercontent.com/38060456/113796085-02f9d680-9714-11eb-8faf-fe0df296b627.jpg" alt="DOCUMENTATION" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/" target="_blank"><img src="https://user-images.githubusercontent.com/38060456/113796085-02f9d680-9714-11eb-8faf-fe0df296b627.jpg" alt="DOCUMENTATION" /></a>
 </p>
 
 ---
@@ -76,8 +88,8 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 See the awesome apps are using Android Utils library.
 
-[<img src="https://user-images.githubusercontent.com/38060456/113607949-7c5bd100-960f-11eb-9f3b-1a0cd8ffebb4.png" alt="Resistor Color Code Calculator" />](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
-[<img src="https://user-images.githubusercontent.com/38060456/113640928-25232400-9642-11eb-9d81-013216dd7916.png" alt="Secure Notes" />](https://play.google.com/store/apps/details?id=com.jedemm.securenotes)
+[<img src="https://user-images.githubusercontent.com/38060456/113939209-4d855c80-97c1-11eb-8937-1b93a5948a7f.png" alt="Resistor Color Code Calculator" />](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
+[<img src="https://user-images.githubusercontent.com/38060456/113939215-4fe7b680-97c1-11eb-8bff-c02d8ae1e0e0.png" alt="Secure Notes" />](https://play.google.com/store/apps/details?id=com.jedemm.securenotes)
 
 --- 
 
@@ -99,7 +111,7 @@ People, organizations and companies that support Android Utils project.
 
 ## License
 
-[Apache License, Version 2.0](/LICENSE)
+[Apache License, Version 2.0](https://github.com/JeovaniMartinez/Android-Utils/blob/master/LICENSE)
 
 ```
 Copyright © 2020-Present. Jeovani Martinez
@@ -116,5 +128,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-
