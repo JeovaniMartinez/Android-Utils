@@ -47,6 +47,12 @@ _The objective of this library is to provide a set of utilities that are commonl
 ---
 
 <p align="center">
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/view-to-image"><img src="https://user-images.githubusercontent.com/38060456/113793021-f1610080-970c-11eb-8004-a66916596a32.png" alt="View To Image"></a>
+</p>
+
+---
+
+<p align="center">
     <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark"><img src="https://user-images.githubusercontent.com/38060456/113791767-fa040780-9709-11eb-9bbb-3e3c3c4c82f8.png" alt="Watermark"></a>
 </p>
 
