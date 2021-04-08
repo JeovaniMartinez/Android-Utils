@@ -21,6 +21,7 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 
 ## Deploy Instructions
 
+0. Make sure to update the name and version number of the library in the Android Studio project and adding the release notes in the documentation.
 1. In the Android Studio project, generate the library documentation in HTML format, and place all the generated content inside the folder `docs/reference`
 2. Adjust references into docs to HTML documentation if its is necessary.
 3. In the file `docusaurus.config.js` change `baseUrl: '/'` to `baseUrl: '/Android-Utils/'`
