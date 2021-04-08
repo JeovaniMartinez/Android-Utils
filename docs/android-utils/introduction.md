@@ -61,7 +61,7 @@ _The objective of this library is to provide a set of utilities that are commonl
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/view-to-image" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113793244-6d5b4880-970d-11eb-8236-68f6c57b709b.png" alt="View To Image" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/view-to-image" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113956809-bd0c4380-97e3-11eb-9acd-0fc7d1009364.png" alt="View To Image" /></a>
 </p>
 
 ---
