@@ -21,17 +21,17 @@ Call the following function of the utility passing the configuration to generate
 
 ```kotlin
 val bitmap = ViewToImage.convert(
-    view = about_contentCardLayout,
+    view = binding.rootLayout,
     backgroundColor = getColorCompat(R.color.colorBackground),
     backgroundCornerRadius = CornerRadius(10f).asDpToPx(context),
     trimBorders = false,
     padding = Padding(0f, 0f, 18f, 0f).asDpToPx(context),
     margin = Margin(0f),
     viewsToExclude = arrayListOf(
-        ExcludeView(about_BottomSeparator, ExcludeMode.CROP_VERTICALLY),
-        ExcludeView(about_termsAndPolicy, ExcludeMode.CROP_VERTICALLY),
-        ExcludeView(about_openSourceLicenses, ExcludeMode.CROP_VERTICALLY),
-        ExcludeView(about_closeBtn, ExcludeMode.CROP_VERTICALLY),
+        ExcludeView(binding.bottomSeparator, ExcludeMode.CROP_VERTICALLY),
+        ExcludeView(binding.termsAndPolicy, ExcludeMode.CROP_VERTICALLY),
+        ExcludeView(binding.openSourceLicenses, ExcludeMode.CROP_VERTICALLY),
+        ExcludeView(binding.closeBtn, ExcludeMode.CROP_VERTICALLY)
     )
 )
 ```
