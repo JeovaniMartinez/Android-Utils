@@ -13,6 +13,7 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.about.AboutAppConfig
 import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
+import com.jeovanimartinez.androidutils.app.databinding.ActivityMainBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
@@ -27,17 +28,19 @@ import com.jeovanimartinez.androidutils.watermark.WatermarkUtils
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     private var rateAppInitialized = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         Base.logEnable = BuildConfig.DEBUG // Configure log
 
@@ -63,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun toggleThemeSetup() {
 
-        toggleThemeBtn.setOnClickListener {
+        binding.toggleThemeBtn.setOnClickListener {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             } else {
@@ -75,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun rateAppSetup() {
 
-        initRateAppBtn.setOnClickListener {
+        binding.initRateAppBtn.setOnClickListener {
 
             if (rateAppInitialized) {
                 shortToast("RateApp it's already initialized")
@@ -97,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        checkAndShowRateAppBtn.setOnClickListener {
+        binding.checkAndShowRateAppBtn.setOnClickListener {
 
             if (!rateAppInitialized) {
                 shortToast("Please initialize RateApp before to click this button")
@@ -111,14 +114,14 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        rateInGooglePlayBtn.setOnClickListener {
+        binding.rateInGooglePlayBtn.setOnClickListener {
             RateApp.goToRateInGooglePlay(this@MainActivity)
         }
 
     }
 
     private fun watermarkSetup() {
-        drawWatermarkBtn.setOnClickListener {
+        binding.drawWatermarkBtn.setOnClickListener {
 
             // Get the bitmap from image resource
             val bitmap = BitmapFactory.decodeResource(
@@ -131,7 +134,7 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity, bitmap,
                 arrayListOf(
                     Watermark.Text(
-                        watermarkEt.text.toString(),
+                        binding.watermarkEt.text.toString(),
                         textSize = 40f,
                         textColor = Color.WHITE,
                         position = WatermarkPosition.MIDDLE_CENTER,
@@ -157,14 +160,14 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            watermarkIv.setImageBitmap(bitmap)
+            binding.watermarkIv.setImageBitmap(bitmap)
 
         }
     }
 
     private fun aboutAppSetup() {
 
-        aboutAppBtn.setOnClickListener {
+        binding.aboutAppBtn.setOnClickListener {
 
             val aboutAppConfig = AboutAppConfig(
                 backgroundColor = getColorCompat(R.color.colorBackground),
@@ -191,9 +194,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun translucentThemeSetup() {
 
-        launchTranslucentActivityBtn.setOnClickListener {
+        binding.launchTranslucentActivityBtn.setOnClickListener {
 
-            val opacity = (translucentActivityOpacity.progress / 100.0).toFloat()
+            val opacity = (binding.translucentActivityOpacity.progress / 100.0).toFloat()
 
             startActivity(
                 Intent(this@MainActivity, TranslucentThemeDemo::class.java).putExtra("opacity", opacity),
@@ -205,7 +208,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun fileUtilsSetup() {
 
-        saveBitmapToFileBtn.setOnClickListener {
+        binding.saveBitmapToFileBtn.setOnClickListener {
             try {
                 // Create a bitmap object for test the utility and draw a color and text on it.
                 val bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888)
@@ -226,7 +229,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        clearTempFilesFolderBtn.setOnClickListener {
+        binding.clearTempFilesFolderBtn.setOnClickListener {
             TempFiles.clearTempFilesFolder(this@MainActivity)
             shortToast("clearTempFilesFolder() invoked")
         }
@@ -235,7 +238,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun moreAppsSetup() {
 
-        moreAppsBtn.setOnClickListener {
+        binding.moreAppsBtn.setOnClickListener {
 
             MoreApps.apply { developerId = "Jedemm+Technologies" }.showAppListInGooglePlay(this@MainActivity)
 
@@ -245,9 +248,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun systemWebBrowserSetup() {
 
-        openUrlBtn.setOnClickListener {
+        binding.openUrlBtn.setOnClickListener {
 
-            val url = openUrlEt.text.toString()
+            val url = binding.openUrlEt.text.toString()
 
             if (!URLUtil.isValidUrl(url)) {
                 shortToast("Please enter a valid URL")
