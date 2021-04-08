@@ -9,17 +9,20 @@ import android.view.Window
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.databinding.ActivityRateAppBinding
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
-import kotlinx.android.synthetic.main.activity_rate_app.*
 
 /** Activity to invite the user to rate the app */
 class RateAppActivity : TranslucentActivity() {
+
+    private lateinit var binding: ActivityRateAppBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.activityOpacity = 0.83f
         super.onCreate(savedInstanceState)
         configureTransitions()
-        setContentView(R.layout.activity_rate_app)
+        binding = ActivityRateAppBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initSetup()
 
@@ -35,20 +38,20 @@ class RateAppActivity : TranslucentActivity() {
     private fun initSetup() {
         configureTopShapeBackground()
 
-        noThanks.visibility = if (RateApp.showNeverAskAgainButton) View.VISIBLE else View.GONE
+        binding.noThanks.visibility = if (RateApp.showNeverAskAgainButton) View.VISIBLE else View.GONE
 
-        rateNow.setOnClickListener {
+        binding.rateNow.setOnClickListener {
             RateApp.log("User clicked rateNow button")
             RateApp.goToRateInGooglePlay(this@RateAppActivity)
             supportFinishAfterTransition()
         }
 
-        later.setOnClickListener {
+        binding.later.setOnClickListener {
             RateApp.log("User clicked later button")
             supportFinishAfterTransition()
         }
 
-        noThanks.setOnClickListener {
+        binding.noThanks.setOnClickListener {
 
             RateApp.log("User clicked noThanks button")
 
@@ -66,9 +69,9 @@ class RateAppActivity : TranslucentActivity() {
     private fun configureTopShapeBackground() {
         val topShapeBackground = AppCompatResources.getDrawable(this@RateAppActivity, R.drawable.rate_app_top_shape)
         val finalTopShapeBackground = DrawableCompat.wrap(topShapeBackground!!)
-        DrawableCompat.setTint(finalTopShapeBackground, card.cardBackgroundColor.defaultColor)
+        DrawableCompat.setTint(finalTopShapeBackground, binding.card.cardBackgroundColor.defaultColor)
 
-        topShape.background = finalTopShapeBackground
+        binding.topShape.background = finalTopShapeBackground
     }
 
     /** Set the activity transitions */
