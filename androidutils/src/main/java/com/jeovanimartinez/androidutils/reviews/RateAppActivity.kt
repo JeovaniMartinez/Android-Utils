@@ -35,22 +35,22 @@ class RateAppActivity : TranslucentActivity() {
     private fun initSetup() {
         configureTopShapeBackground()
 
-        rateApp_noThanks.visibility = if (RateApp.showNeverAskAgainButton) View.VISIBLE else View.GONE
+        noThanks.visibility = if (RateApp.showNeverAskAgainButton) View.VISIBLE else View.GONE
 
-        rateApp_rateNow.setOnClickListener {
-            RateApp.log("User clicked rateApp_rateNow button")
+        rateNow.setOnClickListener {
+            RateApp.log("User clicked rateNow button")
             RateApp.goToRateInGooglePlay(this@RateAppActivity)
             supportFinishAfterTransition()
         }
 
-        rateApp_later.setOnClickListener {
-            RateApp.log("User clicked rateApp_later button")
+        later.setOnClickListener {
+            RateApp.log("User clicked later button")
             supportFinishAfterTransition()
         }
 
-        rateApp_noThanks.setOnClickListener {
+        noThanks.setOnClickListener {
 
-            RateApp.log("User clicked rateApp_noThanks button")
+            RateApp.log("User clicked noThanks button")
 
             val sharedPreferences = getSharedPreferences(RateApp.Preferences.KEY, Context.MODE_PRIVATE)
             sharedPreferences.edit().putBoolean(RateApp.Preferences.NEVER_SHOW_AGAIN, true).apply()
@@ -66,9 +66,9 @@ class RateAppActivity : TranslucentActivity() {
     private fun configureTopShapeBackground() {
         val topShapeBackground = AppCompatResources.getDrawable(this@RateAppActivity, R.drawable.rate_app_top_shape)
         val finalTopShapeBackground = DrawableCompat.wrap(topShapeBackground!!)
-        DrawableCompat.setTint(finalTopShapeBackground, rateApp_card.cardBackgroundColor.defaultColor)
+        DrawableCompat.setTint(finalTopShapeBackground, card.cardBackgroundColor.defaultColor)
 
-        rateApp_topShape.background = finalTopShapeBackground
+        topShape.background = finalTopShapeBackground
     }
 
     /** Set the activity transitions */
