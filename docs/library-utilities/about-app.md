@@ -91,7 +91,7 @@ and `text-color` to customize the background color of the page and the text colo
 
 The following template for the page is the one used in the example, and it already takes care of processing the parameters and adjusting the view:
 
-> #### <a href="https://github.com/JeovaniMartinez/Android-Utils/tree/master/resources/terms-and-privacy-policy" target="_blank"><b>[ Template ]</b></a>
+> #### <a href="https://github.com/JeovaniMartinez/Android-Utils/blob/master/resources/terms-and-privacy-policy/terms-and-privacy-policy-template.rar" target="_blank"><b>[ Template ]</b></a>
 > #### <a href="https://jedemm.com/android-utils/terms-and-policy/license.html?background-color=212121&text-color=CFCFCF&lang=en" target="_blank"><b>[ Demo ]</b></a>
 
 :::tip
