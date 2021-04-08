@@ -20,16 +20,19 @@ import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.filesystem.FileUtils
 import com.jeovanimartinez.androidutils.filesystem.TempFiles
+import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
+import com.jeovanimartinez.androidutils.graphics.utils.Margin
+import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.moreapps.MoreApps
 import com.jeovanimartinez.androidutils.reviews.RateApp
+import com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImage
 import com.jeovanimartinez.androidutils.watermark.Watermark
 import com.jeovanimartinez.androidutils.watermark.WatermarkUtils
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkShadow
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import java.io.IOException
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         toggleThemeSetup()
         rateAppSetup()
         watermarkSetup()
+        viewToImageSetup()
         aboutAppSetup()
         translucentThemeSetup()
         fileUtilsSetup()
@@ -163,6 +167,38 @@ class MainActivity : AppCompatActivity() {
             binding.watermarkIv.setImageBitmap(bitmap)
 
         }
+    }
+
+    private fun viewToImageSetup() {
+
+        binding.viewToImageBtn.setOnClickListener {
+
+            try {
+
+                val bitmap = ViewToImage.convert(
+                    view = binding.mainLayout,
+                    backgroundColor = getColorCompat(R.color.colorBackground),
+                    backgroundCornerRadius = CornerRadius(10f).asDpToPx(this@MainActivity),
+                    trimBorders = false,
+                    padding = Padding(0f, 0f, 18f, 0f).asDpToPx(this@MainActivity),
+                    margin = Margin(0f),
+                    viewsToExclude = arrayListOf()
+                )
+
+                // Use FileUtils to save bitmap into image file.
+                val result = FileUtils.saveBitmapToFile(this@MainActivity, bitmap)
+
+                MaterialAlertDialogBuilder(this@MainActivity)
+                    .setMessage("File saved: ${result.absolutePath}")
+                    .setPositiveButton("Ok") { _, _ -> }
+                    .show()
+
+            } catch (e: IOException) {
+                shortToast("IOException")
+            }
+
+        }
+
     }
 
     private fun aboutAppSetup() {
