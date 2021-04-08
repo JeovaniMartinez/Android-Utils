@@ -112,32 +112,32 @@ class AboutActivity : TranslucentActivity() {
             configureTaskDescription(it)
         }
 
-        about_progressBar.visibility = View.GONE
-        about_termsAndPolicyWebView.visibility = View.GONE
-        about_topActionCard.visibility = View.GONE
+        progressBar.visibility = View.GONE
+        termsAndPolicyWebView.visibility = View.GONE
+        topActionCard.visibility = View.GONE
 
         // Adjusts to hide item
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            about_topActionCard.translationX = dp2px(48).toFloat()
+            topActionCard.translationX = dp2px(48).toFloat()
         } else {
-            about_topActionCard.translationY = dp2px(48).toFloat()
+            topActionCard.translationY = dp2px(48).toFloat()
         }
 
-        about_termsAndPolicy.setOnClickListener {
+        termsAndPolicy.setOnClickListener {
             loadTermsAndPolicy()
-            about_termsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
+            termsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
         }
 
-        about_closeTermsBtn.setOnClickListener {
+        closeTermsBtn.setOnClickListener {
             hideTermsAndPolicy()
         }
 
-        about_openSourceLicenses.setOnClickListener {
+        openSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
             AboutApp.firebaseAnalytics(Event.ABOUT_APP_OSL_SHOWN)
         }
 
-        about_closeBtn.setOnClickListener {
+        closeBtn.setOnClickListener {
             supportFinishAfterTransition()
         }
 
@@ -146,27 +146,27 @@ class AboutActivity : TranslucentActivity() {
     /** Configure the activity in base of AboutApp  */
     private fun configureByAboutApp() {
 
-        about_appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
-        about_appName.text = typeAsString(aboutAppConfig.appName)
-        about_authorName.text = typeAsString(aboutAppConfig.authorName)
-        about_companyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
+        appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
+        appName.text = typeAsString(aboutAppConfig.appName)
+        authorName.text = typeAsString(aboutAppConfig.authorName)
+        companyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
         if (aboutAppConfig.termsAndPrivacyPolicyLink == null) {
-            about_termsAndPolicy.visibility = View.GONE
-            val openSourceLParams = about_openSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
+            termsAndPolicy.visibility = View.GONE
+            val openSourceLParams = openSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
             openSourceLParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
             openSourceLParams.endToStart = ConstraintLayout.LayoutParams.UNSET
-            about_openSourceLicenses.layoutParams = openSourceLParams
+            openSourceLicenses.layoutParams = openSourceLParams
         }
 
-        about_openSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
+        openSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
         // In versions prior to Android 4.4 it is always hidden, since the activity does not work correctly
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            about_openSourceLicenses.visibility = View.GONE
+            openSourceLicenses.visibility = View.GONE
         }
 
-        about_topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
-        about_contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
+        topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
+        contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
 
         // Icon color is assigned, only works from Android 5 onwards
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -174,18 +174,18 @@ class AboutActivity : TranslucentActivity() {
             val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
             closeDrawable?.setTint(aboutAppConfig.iconsColor!!)
             closeTermsDrawable?.setTint(aboutAppConfig.iconsColor!!)
-            about_closeBtn.setImageDrawable(closeDrawable)
-            about_closeTermsBtn.setImageDrawable(closeTermsDrawable)
+            closeBtn.setImageDrawable(closeDrawable)
+            closeTermsBtn.setImageDrawable(closeTermsDrawable)
         }
 
         aboutAppConfig.authorLink.whenNotNull { link ->
-            about_authorName.setOnClickListener {
+            authorName.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_author_link")
             }
         }
 
         aboutAppConfig.companyLink.whenNotNull { link ->
-            about_companyLogo.setOnClickListener {
+            companyLogo.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_company_link")
             }
         }
@@ -194,9 +194,9 @@ class AboutActivity : TranslucentActivity() {
 
     /** Set the app version and copyright */
     private fun configureData() {
-        about_appVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
+        appVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        about_copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
+        copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
     }
 
     /** Set the activity transitions */
@@ -226,17 +226,17 @@ class AboutActivity : TranslucentActivity() {
         AboutApp.log("loadTermsAndPolicy() Invoked")
 
         loadingTermsAndPolicyInProgress = true
-        about_progressBar.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
+        progressBar.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
 
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
         // Get te background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(about_contentCard.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
+        val backgroundColor = Integer.toHexString(contentCard.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
         val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).toUpperCase(Locale.ROOT)
 
 
         // Generate WebViewClient for listening events
-        about_termsAndPolicyWebView.webViewClient = object : WebViewClient() {
+        termsAndPolicyWebView.webViewClient = object : WebViewClient() {
 
             // When the page load finished (regardless of whether the result was successful or not)
             override fun onPageFinished(view: WebView?, url: String?) {
@@ -250,10 +250,10 @@ class AboutActivity : TranslucentActivity() {
                     loadingTermsAndPolicyInProgress = false
                 }, 500)
 
-                about_progressBar.visibility = View.GONE
+                progressBar.visibility = View.GONE
                 if (pageLoadSuccessful) showTermsAndPolicy(animateShowTermsView) // They are only shown if the page loaded correctly
 
-                about_termsAndPolicy.isClickable = true // It is enabled again
+                termsAndPolicy.isClickable = true // It is enabled again
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
@@ -272,13 +272,13 @@ class AboutActivity : TranslucentActivity() {
         }
 
         @SuppressLint("SetJavaScriptEnabled")
-        about_termsAndPolicyWebView.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
-        about_termsAndPolicyWebView.settings.domStorageEnabled = true // For best compatibility
+        termsAndPolicyWebView.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
+        termsAndPolicyWebView.settings.domStorageEnabled = true // For best compatibility
         // The URL is loaded, passing the background color and text color parameters
         aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
             val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
             AboutApp.log("Terms and Privacy Policy URL = $url")
-            about_termsAndPolicyWebView.loadUrl(url)
+            termsAndPolicyWebView.loadUrl(url)
         }
     }
 
@@ -292,42 +292,42 @@ class AboutActivity : TranslucentActivity() {
         if (animate) {
 
             // Set back button visibility and animation
-            about_topActionCard.visibility = View.VISIBLE
+            topActionCard.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                about_topActionCard.animate().translationX(0f).onAnimationEnd { }
+                topActionCard.animate().translationX(0f).onAnimationEnd { }
             } else {
-                about_topActionCard.animate().translationY(0f).onAnimationEnd { }
+                topActionCard.animate().translationY(0f).onAnimationEnd { }
             }
 
-            about_termsAndPolicyWebView.visibility = View.VISIBLE
+            termsAndPolicyWebView.visibility = View.VISIBLE
 
             // Sent at the end of the view to show an animation
-            about_termsAndPolicyWebView.translationX = about_contentCard.width.toFloat()
-            about_termsAndPolicyWebView.visibility = View.VISIBLE
+            termsAndPolicyWebView.translationX = contentCard.width.toFloat()
+            termsAndPolicyWebView.visibility = View.VISIBLE
 
             // The web view is shown and the card container is hidden by means of an animation
-            about_contentCardLayout.animate().translationX(-about_contentCard.width.toFloat()).start()
-            about_termsAndPolicyWebView.animate().translationX(0f).start()
+            contentCardLayout.animate().translationX(-contentCard.width.toFloat()).start()
+            termsAndPolicyWebView.animate().translationX(0f).start()
 
         } else {
 
             // Set back button visibility and animation
-            about_topActionCard.visibility = View.VISIBLE
+            topActionCard.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                about_topActionCard.translationX = 0f
+                topActionCard.translationX = 0f
             } else {
-                about_topActionCard.translationY = 0f
+                topActionCard.translationY = 0f
             }
 
-            about_termsAndPolicyWebView.visibility = View.VISIBLE
+            termsAndPolicyWebView.visibility = View.VISIBLE
 
             // Sent to end of view for animation when exiting view
-            about_termsAndPolicyWebView.translationX = about_contentCard.width.toFloat()
-            about_termsAndPolicyWebView.visibility = View.VISIBLE
+            termsAndPolicyWebView.translationX = contentCard.width.toFloat()
+            termsAndPolicyWebView.visibility = View.VISIBLE
 
             // The web view is shown and the card container is hidden
-            about_contentCardLayout.translationX = -about_contentCard.width.toFloat()
-            about_termsAndPolicyWebView.translationX = 0f
+            contentCardLayout.translationX = -contentCard.width.toFloat()
+            termsAndPolicyWebView.translationX = 0f
 
         }
 
@@ -343,14 +343,14 @@ class AboutActivity : TranslucentActivity() {
 
         // Set back button visibility and animation
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            about_topActionCard.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
+            topActionCard.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { topActionCard.visibility = View.GONE }
         } else {
-            about_topActionCard.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { about_topActionCard.visibility = View.GONE }
+            topActionCard.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { topActionCard.visibility = View.GONE }
         }
 
         // The card container is shown and the web view is hidden by means of an animation
-        about_contentCardLayout.animate().translationX(0f).start()
-        about_termsAndPolicyWebView.animate().translationX(about_contentCard.width.toFloat()).start()
+        contentCardLayout.animate().translationX(0f).start()
+        termsAndPolicyWebView.animate().translationX(contentCard.width.toFloat()).start()
     }
 
 }
