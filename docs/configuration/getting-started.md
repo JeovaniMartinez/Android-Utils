@@ -20,11 +20,12 @@ allprojects {
 }
 ```
 
-Add the following line in Gradle file at app level. Replace _VERSION_ to the [latest release version.](https://github.com/JeovaniMartinez/Android-Utils/releases)
+Add the following line in Gradle file at app level. 
+
 ```gradle {3}
 dependencies {
     ...
-    implementation 'com.github.JeovaniMartinez:Android-Utils:VERSION'
+    implementation 'com.github.JeovaniMartinez:Android-Utils:v0.9.0-beta'
 }
 ```
 
