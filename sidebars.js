@@ -103,7 +103,7 @@ module.exports = {
             "items": [
                 {
                     "type": "doc",
-                    "id": "release-notes/v1.0.0-beta"
+                    "id": "release-notes/v0.9.0-beta"
                 }
             ]
         }
