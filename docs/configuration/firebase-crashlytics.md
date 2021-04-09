@@ -7,6 +7,11 @@ title: Firebase Crashlytics
 Recoverable errors registry into Firebase Crashlytics is **optional** and is disabled by default.
 :::
 
+:::warning
+If you enable error logging, the logs will be visible on your firebase account, so it is only recommended that you enable it if you plan to contribute 
+to the development of the library.
+:::
+
 ## Configuration
 
 :::important
@@ -14,14 +19,8 @@ If you want to enable errors registry, your project must have Firebase Crashlyti
 [Guide](https://firebase.google.com/docs/crashlytics/get-started?platform=android)
 :::
 
-The library can register some recoverable error streams in Firebase Crashlytics, for this it is necessary to assign the crashlytics instance to the 
-library, this must be done in the `onCreate()` of the singleton or main activity.
+To enable recoverable errors register, put the following line of code in the `onCreate()` of the singleton or main activity:
 
-To enable recoverable errors register:
 ```kotlin
 Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 ```
-
-:::note
-<a href="../reference/androidutils/com.jeovanimartinez.androidutils/-base/index.html" target="_blank"><b>Base</b></a> is the superclass of  most utilities.
-:::
