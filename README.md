@@ -1,3 +1,4 @@
+
 <h1 align="center">Android Utils</h1>
 <p align="center"><a href="https://jeovanimartinez.github.io/Android-Utils/" target="_self"><img width="400" src="https://raw.githubusercontent.com/JeovaniMartinez/Android-Utils/master/resources/library-logo/intro-img.svg" alt="Android Utils Logo" /></a></p>
 <h4 align="center">Set of utilities for Android app development.</h4>
@@ -42,31 +43,31 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/rate-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113655130-e18ae300-965e-11eb-975f-3ee65ed89986.png" alt="Rate App" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/library-utilities/rate-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113655130-e18ae300-965e-11eb-975f-3ee65ed89986.png" alt="Rate App" /></a>
 </p>
 
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/watermark" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113791767-fa040780-9709-11eb-9bbb-3e3c3c4c82f8.png" alt="Watermark" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/library-utilities/watermark" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113791767-fa040780-9709-11eb-9bbb-3e3c3c4c82f8.png" alt="Watermark" /></a>
 </p>
 
 ---
 
 <p align="center">
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/view-to-image" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113956809-bd0c4380-97e3-11eb-9acd-0fc7d1009364.png" alt="View To Image" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/library-utilities/view-to-image" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113956809-bd0c4380-97e3-11eb-9acd-0fc7d1009364.png" alt="View To Image" /></a>
 </p>
 
 ---
 
 <p align="center"> 
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/about-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113794569-7a2d6b80-9710-11eb-8998-c4b196c68473.png" alt="About App" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/library-utilities/about-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113794569-7a2d6b80-9710-11eb-8998-c4b196c68473.png" alt="About App" /></a>
 </p>
 
 ---
 
 <p align="center"> 
-    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/utilities/premium-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113799145-232c9400-971a-11eb-840f-0f1a2d682887.png" alt="Premium App" /></a>
+    <a href="https://jeovanimartinez.github.io/Android-Utils/docs/library-utilities/premium-app" target="_self"><img src="https://user-images.githubusercontent.com/38060456/113799145-232c9400-971a-11eb-840f-0f1a2d682887.png" alt="Premium App" /></a>
 </p>
 
 ---
