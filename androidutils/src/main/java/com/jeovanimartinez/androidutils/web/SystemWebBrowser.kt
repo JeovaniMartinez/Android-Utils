@@ -28,19 +28,14 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
      *        When a URL is loaded in the browser the event is registered, this event contains a parameter that
      *        helps determine which website was shown.
      * */
-    fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String? = null) {
+    fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
 
         if (!URLUtil.isValidUrl(url)) return loge("The URL [$url] is not a valid URL")
-
         try {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-            // The event is logged
-            if (case != null && case.isNotBlank()) {
-                firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, case.trim()) })
-            } else {
-                firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER)
-            }
-            log("URL: [$url] opened, case: ${case?.trim()}")
+            val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
+            firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, finalCase) })
+            log("URL: [$url] opened, case: $finalCase")
         } catch (e: ActivityNotFoundException) {
             // There is no app that can open the URL
             context.shortToast(R.string.system_web_browser_not_available)
