@@ -44,7 +44,13 @@ object ShareUtils : Base<ShareUtils>() {
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
      *        the share event is register and contains a parameter with share case.
      * */
-    fun shareFile(activity: Activity, file: File, chooserTitle: Any, errorMessage: Any, case: String) {
+    fun shareFile(
+        activity: Activity,
+        file: File,
+        @StringOrStringRes chooserTitle: Any = R.string.share,
+        @StringOrStringRes errorMessage: Any = R.string.sharing_failed,
+        case: String? = null
+    ) {
         doShare(activity, activity.typeAsString(chooserTitle), file, activity.typeAsString(errorMessage), case)
     }
 
