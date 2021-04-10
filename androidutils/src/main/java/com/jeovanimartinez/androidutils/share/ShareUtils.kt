@@ -1,18 +1,31 @@
 package com.jeovanimartinez.androidutils.share
 
 import android.app.Activity
+import android.content.Intent
+import android.webkit.MimeTypeMap
+import androidx.core.content.FileProvider
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import java.io.File
 
+// Reference: https://developer.android.com/training/sharing/send
 /**
  * Utility to share text and files with other apps
  * */
 object ShareUtils : Base<ShareUtils>() {
 
     override val LOG_TAG = "ShareUtils"
+
+    /**
+     * Provider to share files
+     * */
+    var fileProviderAuthority = ""
+        set(value) {
+            log("File Provider Authority = $value")
+            field = value
+        }
 
     /**
      * Share text with other apps.
@@ -51,6 +64,9 @@ object ShareUtils : Base<ShareUtils>() {
         @StringOrStringRes errorMessage: Any = R.string.sharing_failed,
         case: String? = null
     ) {
+        if (fileProviderAuthority.isBlank()) {
+            throw IllegalStateException("You must specify the file provider (ShareUtils.fileProviderAuthority) before calling this function")
+        }
         doShare(activity, activity.typeAsString(chooserTitle), file, activity.typeAsString(errorMessage), case)
     }
 
@@ -75,6 +91,28 @@ object ShareUtils : Base<ShareUtils>() {
             Error message: $errorMessage
         """.trimIndent()
         )
+
+        val sendIntent = Intent(Intent.ACTION_SEND)
+
+        when (content) {
+            is String -> {
+                sendIntent.type = "text/plain"
+                sendIntent.putExtra(Intent.EXTRA_TEXT, content.toString())
+            }
+            is File -> {
+                val extension = MimeTypeMap.getFileExtensionFromUrl(content.name)
+                val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+                log("File extension: $extension | Mime type: $mimeType")
+                sendIntent.type = mimeType
+                sendIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(activity, fileProviderAuthority, content))
+            }
+            else -> {
+                throw IllegalArgumentException("content must be a String or File object")
+            }
+        }
+
+        //val intentChooser = Intent.createChooser(sendIntent, chooserTitle)
+        //activity.startActivity(intentChooser)
 
     }
 
