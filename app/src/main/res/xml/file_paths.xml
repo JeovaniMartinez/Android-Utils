@@ -1,0 +1,17 @@
+<paths>
+    <files-path
+        name="files"
+        path="." />
+    <external-files-path
+        name="external_files"
+        path="." />
+    <external-path
+        name="external_files"
+        path="." />
+    <cache-path
+        name="cached_files"
+        path="." />
+    <external-cache-path
+        name="cached_files"
+        path="." />
+</paths>

@@ -21,6 +21,16 @@
         <activity
             android:name=".TranslucentThemeDemo"
             android:theme="@style/AndroidUtilsTheme.Translucent" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.jeovanimartinez.androidutils.app.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
