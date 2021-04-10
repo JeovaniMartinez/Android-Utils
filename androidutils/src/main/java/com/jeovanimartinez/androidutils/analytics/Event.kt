@@ -50,4 +50,13 @@ internal object Event {
 
     }
 
+    /**
+     * Default values that can be applied to parameters values.
+     * */
+    object ParameterValue {
+
+        const val N_A = "N/A"
+
+    }
+
 }
