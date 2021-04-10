@@ -26,6 +26,10 @@
     <string name="rate_dialog_no_thanks">No, thanks.\nI have already rate</string>
     <string name="rate_dialog_later">Later</string>
 
+    <!-- ShareUtils -->
+    <string name="share">Share</string>
+    <string name="sharing_failed">Sharing failed</string>
+
     <!-- System Web Browser -->
     <string name="system_web_browser_not_available">There is no app installed to display the requested web page</string>
     <string name="system_web_browser_error">Not available</string>
