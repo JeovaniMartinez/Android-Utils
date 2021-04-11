@@ -39,6 +39,11 @@ internal object Event {
     const val RATE_APP_SENT_GOOGLE_PLAY_WEB = "rate_app_sent_google_play_web"
     const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
+    const val SHARE_LAUNCHED = "share_launched"
+    const val SHARE_COMPLETED = "share_completed"
+    const val SHARE_ERROR = "share_error"
+    const val SHARE_OLD_API = "share_old_api"
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -47,6 +52,9 @@ internal object Event {
     object Parameter {
 
         const val OPEN_URL_CASE = "open_url_case"
+
+        const val SHARE_CASE = "share_case"
+        const val SHARE_TARGET_APP = "share_target_app"
 
     }
 
