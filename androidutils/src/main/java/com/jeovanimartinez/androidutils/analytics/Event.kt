@@ -41,7 +41,6 @@ internal object Event {
 
     const val SHARE_LAUNCHED = "share_launched"
     const val SHARE_COMPLETED = "share_completed"
-    const val SHARE_ERROR = "share_error"
     const val SHARE_OLD_API = "share_old_api"
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
