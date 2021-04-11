@@ -53,7 +53,7 @@ internal object Event {
         const val OPEN_URL_CASE = "open_url_case"
 
         const val SHARE_CASE = "share_case"
-        const val SHARE_TARGET_APP = "share_target_app"
+        const val SHARE_SELECTED_APP = "share_selected_app"
 
     }
 
