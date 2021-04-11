@@ -28,7 +28,6 @@
 
     <!-- ShareUtils -->
     <string name="share">Compartir</string>
-    <string name="sharing_failed">Error al compartir</string>
 
     <!-- System Web Browser -->
     <string name="system_web_browser_not_available">No hay ninguna aplicación instalada para mostrar la página web solicitada</string>

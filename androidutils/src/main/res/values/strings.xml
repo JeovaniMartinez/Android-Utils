@@ -28,7 +28,6 @@
 
     <!-- ShareUtils -->
     <string name="share">Share</string>
-    <string name="sharing_failed">Sharing failed</string>
 
     <!-- System Web Browser -->
     <string name="system_web_browser_not_available">There is no app installed to display the requested web page</string>
