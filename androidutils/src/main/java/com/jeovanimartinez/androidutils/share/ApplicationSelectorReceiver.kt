@@ -17,15 +17,24 @@ import java.util.*
  * */
 internal class ApplicationSelectorReceiver : BroadcastReceiver() {
 
+    companion object {
+        const val EXTRA_SHARE_CASE_KEY = "case" // Key for the extra of the intent
+    }
+
     /**
      * It is received when the user selects an app to share the content.
      * */
     override fun onReceive(context: Context, intent: Intent) {
         ShareUtils.log("Invoked > ApplicationSelectorReceiver > onReceive")
-        ShareUtils.firebaseAnalytics(Event.SHARE_COMPLETED, Bundle().apply {
-            putString(Event.Parameter.SHARE_CASE, intent.extras!!.getString("case"))
-            putString(Event.Parameter.SHARE_SELECTED_APP, getSelectedAppName(context, intent))
-        })
+        val case = intent.extras?.getString(EXTRA_SHARE_CASE_KEY)
+        if (case != null) {
+            ShareUtils.firebaseAnalytics(Event.SHARE_COMPLETED, Bundle().apply {
+                putString(Event.Parameter.SHARE_CASE, case)
+                putString(Event.Parameter.SHARE_SELECTED_APP, getSelectedAppName(context, intent))
+            })
+        } else {
+            ShareUtils.log("case is null")
+        }
     }
 
     // Reference: https://stackoverflow.com/a/50288268
