@@ -1,11 +1,15 @@
 package com.jeovanimartinez.androidutils.share
 
 import android.app.Activity
+import android.app.PendingIntent
 import android.content.Intent
+import android.os.Build
 import android.webkit.MimeTypeMap
+import androidx.annotation.Size
 import androidx.core.content.FileProvider
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import java.io.File
@@ -32,8 +36,6 @@ object ShareUtils : Base<ShareUtils>() {
      * @param activity Activity.
      * @param content Text to share, it can be a string or an id of a string resource.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
-     * @param errorMessage Error message to display in a toast in case of the content cannot be shared,
-     *        it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
      *        the share event is register and contains a parameter with share case.
      * */
@@ -41,10 +43,9 @@ object ShareUtils : Base<ShareUtils>() {
         activity: Activity,
         @StringOrStringRes content: Any,
         @StringOrStringRes chooserTitle: Any = R.string.share,
-        @StringOrStringRes errorMessage: Any = R.string.sharing_failed,
-        case: String? = null
+        @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
-        doShare(activity, activity.typeAsString(chooserTitle), activity.typeAsString(content), activity.typeAsString(errorMessage), case)
+        doShare(activity, activity.typeAsString(chooserTitle), activity.typeAsString(content), case)
     }
 
     /**
@@ -52,8 +53,6 @@ object ShareUtils : Base<ShareUtils>() {
      * @param activity Activity.
      * @param file File to share.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
-     * @param errorMessage Error message to display in a toast in case of the content cannot be shared,
-     *        it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
      *        the share event is register and contains a parameter with share case.
      * */
@@ -61,13 +60,12 @@ object ShareUtils : Base<ShareUtils>() {
         activity: Activity,
         file: File,
         @StringOrStringRes chooserTitle: Any = R.string.share,
-        @StringOrStringRes errorMessage: Any = R.string.sharing_failed,
-        case: String? = null
+        @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
         if (fileProviderAuthority.isBlank()) {
             throw IllegalStateException("You must specify the file provider (ShareUtils.fileProviderAuthority) before calling this function")
         }
-        doShare(activity, activity.typeAsString(chooserTitle), file, activity.typeAsString(errorMessage), case)
+        doShare(activity, activity.typeAsString(chooserTitle), file, case)
     }
 
     /**
@@ -75,25 +73,25 @@ object ShareUtils : Base<ShareUtils>() {
      * @param activity Activity.
      * @param content Content to share, must be type String or File.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
-     * @param errorMessage Error message to display in a toast in case of the content cannot be shared,
-     *        it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
      *        the share event is register and contains a parameter with share case.
      * */
-    private fun doShare(activity: Activity, chooserTitle: String, content: Any, errorMessage: String, case: String?) {
+    private fun doShare(activity: Activity, chooserTitle: String, content: Any, case: String) {
+
+        val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
 
         log(
             """
             Share invoked.
             Title: $chooserTitle
             Content: $content
-            Case: $case
-            Error message: $errorMessage
+            Case: $finalCase
         """.trimIndent()
         )
 
         val sendIntent = Intent(Intent.ACTION_SEND)
 
+        // The type of content to share is determined
         when (content) {
             is String -> {
                 sendIntent.type = "text/plain"
@@ -111,8 +109,16 @@ object ShareUtils : Base<ShareUtils>() {
             }
         }
 
-        //val intentChooser = Intent.createChooser(sendIntent, chooserTitle)
-        //activity.startActivity(intentChooser)
+        // The intent chooser is assigned, since in Android 5.1 and higher it is possible to determine which app the user choose, Reference https://stackoverflow.com/a/50288268
+        val intentChooser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            val intentReceiver = Intent(activity, ApplicationSelectorReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(activity, 0, intentReceiver, PendingIntent.FLAG_UPDATE_CURRENT)
+            Intent.createChooser(sendIntent, chooserTitle, pendingIntent.intentSender)
+        } else {
+            Intent.createChooser(sendIntent, chooserTitle)
+        }
+
+        activity.startActivity(intentChooser) // Launch the chooser to share
 
     }
 
