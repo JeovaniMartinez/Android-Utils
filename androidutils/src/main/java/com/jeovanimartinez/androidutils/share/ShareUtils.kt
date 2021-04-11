@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Build
+import android.os.Bundle
 import android.webkit.MimeTypeMap
 import androidx.annotation.Size
 import androidx.core.content.FileProvider
@@ -91,7 +92,7 @@ object ShareUtils : Base<ShareUtils>() {
 
         val sendIntent = Intent(Intent.ACTION_SEND)
 
-        // The type of content to share is determined
+        // The type of content to share is determined and added to the intent
         when (content) {
             is String -> {
                 sendIntent.type = "text/plain"
@@ -112,6 +113,7 @@ object ShareUtils : Base<ShareUtils>() {
         // The intent chooser is assigned, since in Android 5.1 and higher it is possible to determine which app the user choose, Reference https://stackoverflow.com/a/50288268
         val intentChooser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             val intentReceiver = Intent(activity, ApplicationSelectorReceiver::class.java)
+            intentReceiver.putExtra(ApplicationSelectorReceiver.EXTRA_SHARE_CASE_KEY, finalCase) // In order to determine the case in the broadcast
             val pendingIntent = PendingIntent.getBroadcast(activity, 0, intentReceiver, PendingIntent.FLAG_UPDATE_CURRENT)
             Intent.createChooser(sendIntent, chooserTitle, pendingIntent.intentSender)
         } else {
@@ -119,6 +121,13 @@ object ShareUtils : Base<ShareUtils>() {
         }
 
         activity.startActivity(intentChooser) // Launch the chooser to share
+
+        // Register the event
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            firebaseAnalytics(Event.SHARE_LAUNCHED, Bundle().apply { putString(Event.Parameter.SHARE_CASE, finalCase) })
+        } else {
+            firebaseAnalytics(Event.SHARE_OLD_API, Bundle().apply { putString(Event.Parameter.SHARE_CASE, finalCase) })
+        }
 
     }
 
