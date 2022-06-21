@@ -9,7 +9,7 @@ buildscript {
 
         gradlePluginVersion = '7.2.1'
         lintVersion = '30.2.1' // If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z.
-        kotlinVersion = '1.4.21'
+        kotlinVersion = '1.7.0'
         dokkaVersion = '1.4.20'
         ossLicensesPlugin = '0.10.4'
     }
