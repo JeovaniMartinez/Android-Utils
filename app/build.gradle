@@ -7,13 +7,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "com.jeovanimartinez.androidutils.app"
         minSdkVersion 17
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode androidUtilsVersionCode
         versionName androidUtilsVersionName
 
