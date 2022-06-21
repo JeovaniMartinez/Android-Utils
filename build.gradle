@@ -12,7 +12,6 @@ buildscript {
         kotlinVersion = '1.4.21'
         dokkaVersion = '1.4.20'
         ossLicensesPlugin = '0.10.2'
-        kotlin_version = '1.4.21'
     }
     repositories {
         google()

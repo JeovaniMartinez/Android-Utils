@@ -62,7 +62,6 @@ dependencies {
 
     // Google Play's billing system to enables to sell digital products and content in the apps
     implementation 'com.android.billingclient:billing-ktx:3.0.3' // Required for the premium utilities
-    //implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // Libraries required only for references. If they are used in the destination app, it must declare the dependencies
     compileOnly 'com.google.firebase:firebase-analytics:18.0.2' // Used to reference Firebase Analytics
