@@ -10,13 +10,7 @@ import org.jetbrains.uast.*
 
 // Custom Lint Rules Example: https://github.com/googlesamples/android-custom-lint-rules
 
-/*
-* To debug this class:
-* - Make sure the test app has a call to the required annotation.
-* - Set the breakpoint.
-* - In the Gradle panel of the IDE, expand the app option, since to execute this class, it is done through the app's lint verification.
-* - Go to Task > Verification and right click on lint and select debug.
-* */
+// Debugging instructions, bug fixes and general notes about this class: see documentation at the end of this file.
 
 /**
  * Lint check that is responsible for verifying the TypeOrResource annotations and verifying that the property or variable that
@@ -172,3 +166,35 @@ class TypeOrResource : Detector(), Detector.UastScanner {
     }
 
 }
+
+/*
+
+Debugging instructions, bug fixes and general notes.
+
+General:
+- The library must be include "lintPublish project(':lintcheck')" in the gradle file, and the test app should be include "implementation project(":androidutils")" in the gradle file.
+- To debug and test this file, is need to reference one of the annotations being checked somewhere in the test project, for example in the MainActivity add the following code:
+    private fun showMessage(@StringOrStringRes message: Any) {
+
+    }
+- Then invoke the function somewhere in the code:
+    showMessage(R.color.colorAccent)
+
+Debugging:
+- Preferably only have this file open, avoid having the file open where the annotations are used (MainActivity).
+- Place the desired breakpoints.
+- In the IDE settings in Experimental > "Do not build Gradle task list during Gradle sync" make sure the option is unchecked, otherwise the gradle task list for the project is not generated.
+- Sync gradle again to generate the task list for the project.
+- In the gradle panel inside the IDE, expand Android-Utils > app > verification (in the app since this is where the annotations are used and this is where the verification will be executed).
+    - To run the verification, right-click on lint option and select Run.
+    - To debug the file, right click on lint option and select Debug.
+- Then, in the file where the annotations were used, the errors (if applicable) should appear.
+
+Bug fixes:
+- To make sure that the lint check module is compiled with the latest changes and the test app is checked with those changes, go to Build > Clean Project before compiling or debugging.
+    - If the IDE throws an error saying it can't delete the files, close the IDE and manually delete the folder ~\Android-Utils\androidutils\build\
+        - If the folder cannot be deleted because it indicates that it is still in use, open the task manager and end the "OpenJDK Platform Binary" tasks.
+        - After this the folder should be able to be deleted.
+    - Open the IDE and go to Build > Clean Project, later compile/debug again.
+
+**/
