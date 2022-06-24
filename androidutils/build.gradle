@@ -67,11 +67,6 @@ dependencies {
     compileOnly 'com.google.firebase:firebase-analytics:18.0.2' // Used to reference Firebase Analytics
     compileOnly 'com.google.firebase:firebase-crashlytics:17.4.1' // Used to reference Firebase Crashlytics
 
-    // Utilities for testing
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
     // Lint check
     lintPublish project(':lintcheck') // The library includes the lintcheck module for verifications
 
