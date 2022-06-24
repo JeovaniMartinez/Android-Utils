@@ -2,13 +2,13 @@
 
 package com.jeovanimartinez.androidutils.lintcheck.annotations
 
-import com.android.tools.lint.checks.AnnotationDetector
 import com.android.tools.lint.detector.api.*
-import com.intellij.psi.*
 import com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.uast.*
+
+// Custom Lint Rules Example: https://github.com/googlesamples/android-custom-lint-rules
 
 /*
 * To debug this class:
@@ -22,7 +22,7 @@ import org.jetbrains.uast.*
  * Lint check that is responsible for verifying the TypeOrResource annotations and verifying that the property or variable that
  * the annotation uses has a suitable value and warning the user otherwise.
  */
-class TypeOrResource : AnnotationDetector() {
+class TypeOrResource : Detector(), Detector.UastScanner {
 
     companion object {
         // Configuration and problem description
@@ -36,8 +36,9 @@ class TypeOrResource : AnnotationDetector() {
                 is received, the data is treated as is, if a string ID is received, the value is obtained and it is treated as a String, 
                 but if an incorrect data type is received like a Float or an incorrect resource like R.color.demo app will throw an 
                 exception at runtime. For this reason, this check helps to assign a correct value according to the annotation.
-            """,
+            """, // No need to .trimIndent(), lint does that automatically
             category = Category.CORRECTNESS,
+            priority = 8,
             severity = Severity.ERROR,
             implementation = Implementation(TypeOrResource::class.java, Scope.JAVA_FILE_SCOPE)
         )
@@ -59,18 +60,15 @@ class TypeOrResource : AnnotationDetector() {
     }
 
     /** When annotation usage is detected */
-    override fun visitAnnotationUsage(
-        context: JavaContext, usage: UElement, type: AnnotationUsageType, annotation: UAnnotation, qualifiedName: String,
-        method: PsiMethod?, annotations: List<UAnnotation>, allMemberAnnotations: List<UAnnotation>, allClassAnnotations: List<UAnnotation>, allPackageAnnotations: List<UAnnotation>
-    ) {
+    override fun visitAnnotationUsage(context: JavaContext, element: UElement, annotationInfo: AnnotationInfo, usageInfo: AnnotationUsageInfo) {
 
         // Get the item type with its debug name, for example REGULAR_STRING_PART for a String
-        val elementType = usage.sourcePsi?.node?.firstChildNode?.elementType
+        val elementType = element.sourcePsi?.node?.firstChildNode?.elementType
         // Get the value in text
-        val text = usage.sourcePsi?.node?.firstChildNode?.text
+        val text = element.sourcePsi?.node?.firstChildNode?.text
 
-        val elementPrev = usage.sourcePsi?.node?.firstChildNode?.treePrev // Next item
-        val elementNext = usage.sourcePsi?.node?.firstChildNode?.treeNext // Previous item
+        val elementPrev = element.sourcePsi?.node?.firstChildNode?.treePrev // Next item
+        val elementNext = element.sourcePsi?.node?.firstChildNode?.treeNext // Previous item
 
         /*
         * It is validated that there is content to verify, otherwise no problem is reported.
@@ -90,34 +88,35 @@ class TypeOrResource : AnnotationDetector() {
             * */
             if (elementPrev == null && elementNext == null && elementType != KtTokens.IDENTIFIER) {
                 // Verification is executed according to the annotation found
-                when (qualifiedName) {
-                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.DATA_TYPE)
-                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.DATA_TYPE)
+                when (annotationInfo.qualifiedName) {
+                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, element, elementType, text, CheckType.DATA_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, element, elementType, text, CheckType.DATA_TYPE)
                 }
             }
 
             // Now it is verified if the value corresponds to a value of the resources.
             if (elementType == DOT_QUALIFIED_EXPRESSION && text.contains("R.") && (text.startsWith("R.") || text.startsWith("android.R."))) {
                 // Verification is executed according to the annotation found
-                when (qualifiedName) {
-                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
-                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
+                when (annotationInfo.qualifiedName) {
+                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, element, elementType, text, CheckType.RESOURCE_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, element, elementType, text, CheckType.RESOURCE_TYPE)
                 }
             }
         }
 
+        super.visitAnnotationUsage(context, element, annotationInfo, usageInfo)
     }
 
     /**
      * Check the use of the DrawableOrDrawableRes annotation and report the issue if applicable.
      * @param context Context.
-     * @param usage Reference within the code where the annotation is used and where the code is being parsed.
+     * @param element The AST node scope the error applies to (reference within the code where the annotation is used and where the code is being parsed).
      * @param elementType Element type.
      * @param text Value assigned to the variable or property of the annotation in String.
      * @param checkType Type of verification.
      * */
     @Suppress("UNUSED_PARAMETER")
-    private fun checkDrawableOrDrawableRes(context: JavaContext, usage: UElement, elementType: IElementType, text: String, checkType: CheckType) {
+    private fun checkDrawableOrDrawableRes(context: JavaContext, element: UElement, elementType: IElementType, text: String, checkType: CheckType) {
         when (checkType) {
             CheckType.DATA_TYPE -> {
                 // Drawable is not a primitive data type, so identifiers or references are received, and in this case nothing problem is reported
@@ -128,9 +127,9 @@ class TypeOrResource : AnnotationDetector() {
                 if (text != "R.drawable" && text != "android.R.drawable") {
                     return context.report(
                         issue = ISSUE,
-                        scope = usage,
-                        location = context.getLocation(usage),
-                        message = "Invalid resource, expected drawable resource or drawable object"
+                        scope = element,
+                        location = context.getLocation(element),
+                        message = "**Invalid resource.** Expected drawable resource or drawable object."
                     )
                 }
             }
@@ -140,21 +139,21 @@ class TypeOrResource : AnnotationDetector() {
     /**
      * Check the use of the StringOrStringRes annotation and report the issue if applicable.
      * @param context Context.
-     * @param usage Reference within the code where the annotation is used and where the code is being parsed.
+     * @param element The AST node scope the error applies to (reference within the code where the annotation is used and where the code is being parsed).
      * @param elementType Element type.
      * @param text Value assigned to the variable or property of the annotation in String.
      * @param checkType Type of verification.
      * */
-    private fun checkStringOrStringRes(context: JavaContext, usage: UElement, elementType: IElementType, text: String, checkType: CheckType) {
+    private fun checkStringOrStringRes(context: JavaContext, element: UElement, elementType: IElementType, text: String, checkType: CheckType) {
         when (checkType) {
             CheckType.DATA_TYPE -> {
                 // The problem is reported if the type of data assigned is not a String or a Char
                 if (elementType != KtTokens.CHARACTER_LITERAL && elementType != KtTokens.REGULAR_STRING_PART && elementType != KtTokens.OPEN_QUOTE) {
                     context.report(
                         issue = ISSUE,
-                        scope = usage,
-                        location = context.getLocation(usage),
-                        message = "Invalid type, expected string object or string resource"
+                        scope = element,
+                        location = context.getLocation(element),
+                        message = "**Invalid type.** Expected string object or string resource."
                     )
                 }
             }
@@ -163,9 +162,9 @@ class TypeOrResource : AnnotationDetector() {
                 if (text != "R.string" && text != "android.R.string") {
                     return context.report(
                         issue = ISSUE,
-                        scope = usage,
-                        location = context.getLocation(usage),
-                        message = "Invalid resource, expected string resource or string object"
+                        scope = element,
+                        location = context.getLocation(element),
+                        message = "**Invalid resource.** Expected string resource or string object."
                     )
                 }
             }
