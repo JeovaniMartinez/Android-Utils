@@ -1,35 +1,56 @@
-// Project
+// Project [ Gradle Script ]
 
 buildscript {
+
     ext {
 
-        // Library version
+        // ** Android Utils Library Version **
         androidUtilsVersionCode = 1
         androidUtilsVersionName = "0.9.0-beta"
 
+        // Gradle build tool version
         gradlePluginVersion = '7.2.1'
-        lintVersion = '30.2.1' // If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z.
+
+        // Lint tool version
+        lintVersion = '30.2.1' // The version depends of the gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
+
+        // Kotlin version
         kotlinVersion = '1.7.0'
+
+        // Dokka version (documentation engine for Kotlin)
         dokkaVersion = '1.4.20'
-        ossLicensesPlugin = '0.10.4'
+
+        // OSS Licenses Plugin version
+        ossLicensesPlugin = '0.10.5'
+
     }
+
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+
+        //noinspection JcenterRepositoryObsolete
+        jcenter() // Keep at the end, as a fallback of maven Central
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:$gradlePluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
         classpath "com.google.android.gms:oss-licenses-plugin:$ossLicensesPlugin"
     }
+
 }
 
 allprojects {
+
     repositories {
         google()
-        jcenter()
+
+        //noinspection JcenterRepositoryObsolete
+        jcenter() // Keep at the end, as a fallback of maven Central
     }
+
 }
 
 task clean(type: Delete) {
