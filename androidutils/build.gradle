@@ -77,9 +77,17 @@ dependencies {
 dokkaHtml.configure {
     dokkaSourceSets {
         named("main") {
-            outputDirectory.set(file("../docs"))
+            moduleName.set("Android Utils")
+            outputDirectory.set(file("../docs/android-utils-api-reference"))
             noAndroidSdkLink.set(true)
             skipDeprecated.set(false)
         }
     }
+    pluginsMapConfiguration.set(
+        [
+            "org.jetbrains.dokka.base.DokkaBase": """{
+                "footerMessage": "Copyright © 2020-Present. Jeovani Martinez"
+            }"""
+        ]
+    )
 }
