@@ -75,6 +75,11 @@ dependencies {
 
 // Documentation
 dokkaHtml.configure {
+    doFirst {
+        // Current documentation is deleted before generating the new one
+        delete rootProject.projectDir.toString() + "/docs/android-utils-api-reference"
+        println 'Deleted android-utils-api-reference directory'
+    }
     dokkaSourceSets {
         named("main") {
             moduleName.set("Android Utils")
@@ -86,8 +91,17 @@ dokkaHtml.configure {
     pluginsMapConfiguration.set(
         [
             "org.jetbrains.dokka.base.DokkaBase": """{
-                "footerMessage": "Copyright © 2020-Present. Jeovani Martinez"
+                "footerMessage": "Copyright © 2020 - Present. Jeovani Martinez"
             }"""
         ]
     )
+    doLast {
+        // The library logo is copied to the documentation
+        copy {
+            from(rootProject.projectDir.toString() + "/resources/docs-images/dokka/logo-icon.svg")
+            into(rootProject.projectDir.toString() + "/docs/android-utils-api-reference/images")
+        }
+        println 'Adjusted documentation logo'
+    }
+    // Documentation example: https://www.raywenderlich.com/30067669-documenting-kotlin-code-for-android-using-kdoc-and-dokka
 }
