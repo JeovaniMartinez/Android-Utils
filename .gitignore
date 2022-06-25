@@ -211,4 +211,8 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+# Documentation #
+
+/docs/android-utils-api-reference/
+
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio
