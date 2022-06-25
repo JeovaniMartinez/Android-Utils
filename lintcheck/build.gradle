@@ -1,4 +1,4 @@
-// Lintcheck
+// Lint Check [ Gradle Script ]
 
 plugins {
     id 'java-library'
