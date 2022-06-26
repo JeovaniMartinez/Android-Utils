@@ -8,8 +8,6 @@ import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.uast.*
 
-// Custom Lint Rules Example: https://github.com/googlesamples/android-custom-lint-rules
-
 // Debugging instructions, bug fixes and general notes about this class: see documentation at the end of this file.
 
 /**

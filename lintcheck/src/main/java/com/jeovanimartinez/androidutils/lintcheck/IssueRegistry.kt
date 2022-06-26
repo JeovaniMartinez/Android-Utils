@@ -5,8 +5,6 @@ import com.android.tools.lint.client.api.Vendor
 import com.android.tools.lint.detector.api.CURRENT_API
 import com.jeovanimartinez.androidutils.lintcheck.annotations.TypeOrResource
 
-// Custom Lint Rules Example: https://github.com/googlesamples/android-custom-lint-rules
-
 /**
  * Register the class for the lint check.
  *
