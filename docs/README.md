@@ -8,4 +8,4 @@ Steps to generate the API reference documentation:
 - Execute dokkaHtml task in androidutils > documentation task of gradle.
 - Add the generated folder into new RAR file named docs[library-version].rar
 - Add RAR file to the repository and delete the old documentation file.
-- Copy the folder android-utils-api-reference content into gh-pages branch into folder docs > reference.
+- Copy the folder android-utils-api-reference content into gh-pages branch into folder docs/reference/
