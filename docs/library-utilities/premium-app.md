@@ -101,19 +101,19 @@ The utility is made up of the following components:
 
 ### Premium.State
 > Enum defining the possible states when checking if a user has premium privileges in the app.
-> <a href="../reference/androidutils/com.jeovanimartinez.androidutils.billing.premium/-premium/-state/index.html" target="_blank"><b>[ Reference ]</b></a>
+> <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.billing.premium/-premium/-state/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ### Premium.Listener
 > Listener for events relating to app premium billing.
-> <a href="../reference/androidutils/com.jeovanimartinez.androidutils.billing.premium/-premium/-listener/index.html" target="_blank"><b>[ Reference ]</b></a>
+> <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.billing.premium/-premium/-listener/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ### Premium.Controller
 > Controller for the purchase and verification process of the premium version of the app.
-> <a href="../reference/androidutils/com.jeovanimartinez.androidutils.billing.premium/-premium/-controller/index.html" target="_blank"><b>[ Reference ]</b></a>
+> <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.billing.premium/-premium/-controller/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ### Premium.getCurrentState()
 > Function that returns the current premium state. It value must be used in all conditions within the app where it is necessary to verify the premium state.
-> <a href="../reference/androidutils/com.jeovanimartinez.androidutils.billing.premium/-premium/get-current-state.html" target="_blank"><b>[ Reference ]</b></a>
+> <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.billing.premium/-premium/get-current-state.html" target="_blank"><b>[ Reference ]</b></a>
 
 
 ---
@@ -133,7 +133,7 @@ General implementation.
 
 1.- In the `onCreate()` of the singleton or main activity, the utility should be initialized.
 
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.billing.premium/-premium/-controller/init.html" target="_blank"><b>[ Configuration Parameters ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.billing.premium/-premium/-controller/init.html" target="_blank"><b>[ Configuration Parameters ]</b></a>
 
 ```kotlin
 Premium.Controller.init(context, listOf("premium_upgrade"))

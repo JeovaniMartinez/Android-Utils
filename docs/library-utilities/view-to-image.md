@@ -3,7 +3,7 @@ id: view-to-image
 title: View To Image
 ---
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.views.viewtoimage/-view-to-image/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.views.viewtoimage/-view-to-image/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ## Description
 
@@ -17,7 +17,7 @@ Utility for convert views to images. Works for any view and view groups, includi
 
 Call the following function of the utility passing the configuration to generate the image of the view.
 
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.views.viewtoimage/-view-to-image/convert.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.views.viewtoimage/-view-to-image/convert.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
 
 ```kotlin
 val bitmap = ViewToImage.convert(
@@ -55,10 +55,10 @@ If the view to be converted to an image is a view group as a layout, by default 
 possible to pass a configuration to exclude certain children views in different ways.
 
 > ExcludeMode enum defines the ways in which the child view can be excluded from the image.
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.views.viewtoimage.config/-exclude-mode/index.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.views.viewtoimage.config/-exclude-mode/index.html" target="_blank"><b>[ Reference ]</b></a>
 > ---
 > ExcludeView define the configuration to exclude a child view from the image.
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.views.viewtoimage.config/-exclude-view/index.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.views.viewtoimage.config/-exclude-view/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 :::note
 The children views to exclude must belong directly to the view. For example, if the view is a Linear Layout, which has a Constraint Layout as child view, 

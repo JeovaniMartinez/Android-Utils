@@ -3,7 +3,7 @@ id: file-utils
 title: File Utils
 ---
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.filesystem/-file-utils/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.filesystem/-file-utils/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ## Description
 
@@ -15,7 +15,7 @@ Set of utilities for working with file system.
 
 ### - saveBitmapToFile
 
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.filesystem/-file-utils/save-bitmap-to-file.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.filesystem/-file-utils/save-bitmap-to-file.html" target="_blank"><b>[ Reference ]</b></a>
 
 Save a bitmap object into image file.
 
@@ -39,7 +39,7 @@ FileUtils.saveBitmapToFile(context, bitmap, "test", context.filesDir.absolutePat
 
 ## Temporary Files
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.filesystem/-temp-files/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.filesystem/-temp-files/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 Utility to work with temporary files.
 
@@ -51,7 +51,7 @@ created file will be saved in a private temporary folder of the app. These files
 
 When we need to clean the temporary files folder we can do it by:
 
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.filesystem/-temp-files/clear-temp-files-folder.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.filesystem/-temp-files/clear-temp-files-folder.html" target="_blank"><b>[ Reference ]</b></a>
 
 ```kotlin
 TempFiles.clearTempFilesFolder(context)

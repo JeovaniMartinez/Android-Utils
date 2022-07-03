@@ -114,7 +114,7 @@ FileUtils.saveBitmapToFile(
 To create a watermark it is necessary to define the position that it will have within the image.
 
 > WatermarkPosition enum defines the position where the watermark can be place within the image.
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark.config/-watermark-position/index.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.watermark.config/-watermark-position/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 #### Fixed Positions
 
@@ -156,7 +156,7 @@ When set the properties for the watermark, you can specify the `measurementDimen
 use density-independent pixels (DP).
 
 > Dimension enum defines the allowed dimensions for a watermark.
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.graphics.utils/-dimension/index.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.graphics.utils/-dimension/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 For example, in the following image we define a text watermark, in the `BOTTOM_CENTER` position, if we want a margin in y-axis of 50 px, for `Dimension.PX`
 we must set dy to -50. But if we use `Dimension.DP`, we must set dy to -25, since the density of the screen is 2.0 and that -25 will be converted to pixels 
@@ -184,7 +184,7 @@ it is recommended to use Dimension.DP, since the size will depend on the density
 
 ## Watermark
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.watermark/-watermark/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 Before to draw the watermark on the image, is needed create an object with the watermark configuration. The library defines two types of watermark, text 
 and drawable (image, shape, etc.).
@@ -192,7 +192,7 @@ and drawable (image, shape, etc.).
 ### Drawable
 
 > This type of watermark allows to draw any drawable on the image.
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark/-drawable/index.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.watermark/-watermark/-drawable/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 #### Usage
 
@@ -215,7 +215,7 @@ val drawableWatermark = Watermark.Drawable(
 ### Text
 
 > This type of watermark allows to draw any text on the image.
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark/-text/index.html" target="_blank"><b>[ Reference ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.watermark/-watermark/-text/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 #### Usage
 
@@ -239,7 +239,7 @@ val textWatermark = Watermark.Text(
 
 ## Watermark Utils
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.watermark/-watermark-utils/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.watermark/-watermark-utils/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 After defining the watermarks, this utility takes care of processing and drawing them on the images.
 

@@ -16,7 +16,7 @@ licenses, the license terms and the privacy policy. The activity is optimized to
 
 First you need to create a configuration object.
 
-> #### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.about/-about-app-config/index.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
+> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.about/-about-app-config/index.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
 
 ```kotlin
 val aboutAppConfig = AboutAppConfig(
@@ -39,7 +39,7 @@ val aboutAppConfig = AboutAppConfig(
 
 Then to display the screen you have to call the following function passing the configuration object and an activity as arguments.
 
-#### <a href="../reference/androidutils/com.jeovanimartinez.androidutils.about/-about-app/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.about/-about-app/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ```kotlin
 AboutApp.show(activity, aboutAppConfig)
