@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AboutAppConfig</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>Android Utils</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="Android Utils::com.jeovanimartinez.androidutils.about/AboutAppConfig///PointingToDeclaration//929993300">
+  <div class="breadcrumbs"><a href="../../../index.html">Android Utils</a><span class="delimiter">/</span><a href="../index.html">com.jeovanimartinez.androidutils.about</a><span class="delimiter">/</span><a href="index.html">AboutAppConfig</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>About</span><wbr></wbr><span>App</span><wbr></wbr><span><span>Config</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">AboutAppConfig</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/ColorInt.html"><span class="token annotation">ColorInt</span></a> </span><span class="token keyword">val </span>backgroundColor<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/ColorInt.html"><span class="token annotation">ColorInt</span></a> </span><span class="token keyword">val </span>iconsColor<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html"><span class="token annotation">DrawableOrDrawableRes</span></a> </span><span class="token keyword">val </span>appIcon<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span><span class="token keyword">val </span>appName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span><span class="token keyword">val </span>appVersionName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span><span class="token keyword">val </span>authorName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span><span class="token keyword">val </span>authorLink<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html"><span class="token annotation">DrawableOrDrawableRes</span></a> </span><span class="token keyword">val </span>companyLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span><span class="token keyword">val </span>companyName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span><span class="token keyword">val </span>companyLink<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span><span class="token keyword">val </span>termsAndPrivacyPolicyLink<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/ColorInt.html"><span class="token annotation">ColorInt</span></a> </span><span class="token keyword">val </span>termsAndPrivacyPolicyTextColor<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>showOpenSourceLicenses<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>taskDescriptionConfig<span class="token operator">: </span><a href="../../com.jeovanimartinez.androidutils.activity.config/-task-description-config/index.html">TaskDescriptionConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Configuration for about activity.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Parameters</h2>
+      <div data-togglable="Parameters">
+        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>background</span><wbr></wbr><span><span>Color</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Background color for the activity, if null, the default value is used, which is the background color of the theme.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>icons</span><wbr></wbr><span><span>Color</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Color for icons, if null, the default value is used, which is the color defined in the theme.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>app</span><wbr></wbr><span><span>Icon</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">App icon or logo.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>app</span><wbr></wbr><span><span>Name</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">App name.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>app</span><wbr></wbr><span>Version</span><wbr></wbr><span><span>Name</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">App version.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>author</span><wbr></wbr><span><span>Name</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">App author name.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>author</span><wbr></wbr><span><span>Link</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">URL that opens when clicking on the author's name, null to not open any link.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>company</span><wbr></wbr><span><span>Logo</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Developer company logo.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>company</span><wbr></wbr><span><span>Name</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Developer company name.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>company</span><wbr></wbr><span><span>Link</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">URL that opens when clicking on the company logo, null to not open any link.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>terms</span><wbr></wbr><span>And</span><wbr></wbr><span>Privacy</span><wbr></wbr><span>Policy</span><wbr></wbr><span><span>Link</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">URL of the terms of use and privacy policy, leave null if you do not want to show them.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>terms</span><wbr></wbr><span>And</span><wbr></wbr><span>Privacy</span><wbr></wbr><span>Policy</span><wbr></wbr><span>Text</span><wbr></wbr><span><span>Color</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Color for the text of the terms of use and privacy policy, if it is null, the default value is used, which is the color defined in the theme.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>show</span><wbr></wbr><span>Open</span><wbr></wbr><span>Source</span><wbr></wbr><span><span>Licenses</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Determines whether a button is shown to view the app open source licenses. If true, these https://developers.google.com/android/guides/opensource     instructions must be followed in order to can shown open source licenses.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>task</span><wbr></wbr><span>Description</span><wbr></wbr><span><span>Config</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Object with the configuration for the activity TaskDescription, leave null if it is not required.</p></div></div></div></div></div></div></div></div></div>
+      </div>
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-2071298832%2FConstructors%2F929993300" anchor-label="AboutAppConfig" id="-2071298832%2FConstructors%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-about-app-config.html"><span>About</span><wbr></wbr><span>App</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2071298832%2FConstructors%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-about-app-config.html"><span class="token function">AboutAppConfig</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/ColorInt.html"><span class="token annotation">ColorInt</span></a> </span>backgroundColor<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/ColorInt.html"><span class="token annotation">ColorInt</span></a> </span>iconsColor<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html"><span class="token annotation">DrawableOrDrawableRes</span></a> </span>appIcon<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span>appName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span>appVersionName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span>authorName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span>authorLink<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html"><span class="token annotation">DrawableOrDrawableRes</span></a> </span>companyLogo<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span>companyName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span>companyLink<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html"><span class="token annotation">StringOrStringRes</span></a> </span>termsAndPrivacyPolicyLink<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/ColorInt.html"><span class="token annotation">ColorInt</span></a> </span>termsAndPrivacyPolicyTextColor<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;showOpenSourceLicenses<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;taskDescriptionConfig<span class="token operator">: </span><a href="../../com.jeovanimartinez.androidutils.activity.config/-task-description-config/index.html">TaskDescriptionConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="-1813192865%2FProperties%2F929993300" anchor-label="appIcon" id="-1813192865%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="app-icon.html"><span>app</span><wbr></wbr><span><span>Icon</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1813192865%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-1813192865%2FProperties%2F929993300" anchor-label="appIcon" id="-1813192865%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="app-icon.html">appIcon</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-40617587%2FProperties%2F929993300" anchor-label="appName" id="-40617587%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="app-name.html"><span>app</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-40617587%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-40617587%2FProperties%2F929993300" anchor-label="appName" id="-40617587%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="app-name.html">appName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1345183551%2FProperties%2F929993300" anchor-label="appVersionName" id="1345183551%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="app-version-name.html"><span>app</span><wbr></wbr><span>Version</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1345183551%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="1345183551%2FProperties%2F929993300" anchor-label="appVersionName" id="1345183551%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="app-version-name.html">appVersionName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-364007140%2FProperties%2F929993300" anchor-label="authorLink" id="-364007140%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="author-link.html"><span>author</span><wbr></wbr><span><span>Link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-364007140%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-364007140%2FProperties%2F929993300" anchor-label="authorLink" id="-364007140%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="author-link.html">authorLink</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1912355755%2FProperties%2F929993300" anchor-label="authorName" id="1912355755%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="author-name.html"><span>author</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1912355755%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="1912355755%2FProperties%2F929993300" anchor-label="authorName" id="1912355755%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="author-name.html">authorName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1423086372%2FProperties%2F929993300" anchor-label="backgroundColor" id="1423086372%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="background-color.html"><span>background</span><wbr></wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1423086372%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="1423086372%2FProperties%2F929993300" anchor-label="backgroundColor" id="1423086372%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="background-color.html">backgroundColor</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="304557090%2FProperties%2F929993300" anchor-label="companyLink" id="304557090%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="company-link.html"><span>company</span><wbr></wbr><span><span>Link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="304557090%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="304557090%2FProperties%2F929993300" anchor-label="companyLink" id="304557090%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="company-link.html">companyLink</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="758853521%2FProperties%2F929993300" anchor-label="companyLogo" id="758853521%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="company-logo.html"><span>company</span><wbr></wbr><span><span>Logo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="758853521%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="758853521%2FProperties%2F929993300" anchor-label="companyLogo" id="758853521%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="company-logo.html">companyLogo</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1714047311%2FProperties%2F929993300" anchor-label="companyName" id="-1714047311%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="company-name.html"><span>company</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1714047311%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-1714047311%2FProperties%2F929993300" anchor-label="companyName" id="-1714047311%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="company-name.html">companyName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2091646632%2FProperties%2F929993300" anchor-label="iconsColor" id="-2091646632%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="icons-color.html"><span>icons</span><wbr></wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2091646632%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-2091646632%2FProperties%2F929993300" anchor-label="iconsColor" id="-2091646632%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="icons-color.html">iconsColor</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-252353075%2FProperties%2F929993300" anchor-label="showOpenSourceLicenses" id="-252353075%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="show-open-source-licenses.html"><span>show</span><wbr></wbr><span>Open</span><wbr></wbr><span>Source</span><wbr></wbr><span><span>Licenses</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-252353075%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-252353075%2FProperties%2F929993300" anchor-label="showOpenSourceLicenses" id="-252353075%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="show-open-source-licenses.html">showOpenSourceLicenses</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1891882528%2FProperties%2F929993300" anchor-label="taskDescriptionConfig" id="1891882528%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="task-description-config.html"><span>task</span><wbr></wbr><span>Description</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1891882528%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="1891882528%2FProperties%2F929993300" anchor-label="taskDescriptionConfig" id="1891882528%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="task-description-config.html">taskDescriptionConfig</a><span class="token operator">: </span><a href="../../com.jeovanimartinez.androidutils.activity.config/-task-description-config/index.html">TaskDescriptionConfig</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-126902059%2FProperties%2F929993300" anchor-label="termsAndPrivacyPolicyLink" id="-126902059%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="terms-and-privacy-policy-link.html"><span>terms</span><wbr></wbr><span>And</span><wbr></wbr><span>Privacy</span><wbr></wbr><span>Policy</span><wbr></wbr><span><span>Link</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-126902059%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-126902059%2FProperties%2F929993300" anchor-label="termsAndPrivacyPolicyLink" id="-126902059%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="terms-and-privacy-policy-link.html">termsAndPrivacyPolicyLink</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1874054731%2FProperties%2F929993300" anchor-label="termsAndPrivacyPolicyTextColor" id="-1874054731%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="terms-and-privacy-policy-text-color.html"><span>terms</span><wbr></wbr><span>And</span><wbr></wbr><span>Privacy</span><wbr></wbr><span>Policy</span><wbr></wbr><span>Text</span><wbr></wbr><span><span>Color</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1874054731%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-1874054731%2FProperties%2F929993300" anchor-label="termsAndPrivacyPolicyTextColor" id="-1874054731%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="terms-and-privacy-policy-text-color.html">termsAndPrivacyPolicyTextColor</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>Copyright © 2020 - Present. Jeovani Martinez</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>

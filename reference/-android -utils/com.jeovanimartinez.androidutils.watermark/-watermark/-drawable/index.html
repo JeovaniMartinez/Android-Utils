@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Drawable</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../../index.html">
+                    <span>Android Utils</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="Android Utils::com.jeovanimartinez.androidutils.watermark/Watermark.Drawable///PointingToDeclaration//929993300">
+  <div class="breadcrumbs"><a href="../../../../index.html">Android Utils</a><span class="delimiter">/</span><a href="../../index.html">com.jeovanimartinez.androidutils.watermark</a><span class="delimiter">/</span><a href="../index.html">Watermark</a><span class="delimiter">/</span><a href="index.html">Drawable</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Drawable</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">Drawable</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../../com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html"><span class="token annotation">DrawableOrDrawableRes</span></a> </span><span class="token keyword">val </span>drawable<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>position<span class="token operator">: </span><a href="../../../com.jeovanimartinez.androidutils.watermark.config/-watermark-position/index.html">WatermarkPosition</a><span class="token operator"> = </span>WatermarkPosition.MIDDLE_CENTER<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>width<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>height<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>dx<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>dy<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>rotation<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/FloatRange.html"><span class="token annotation">FloatRange</span></a><span class="token punctuation">(</span><span>from<span class="token operator"> = </span><span class="breakable-word"><span class="token constant">0.0</span></span><span class="token punctuation">, </span></span><wbr></wbr><span>to<span class="token operator"> = </span><span class="breakable-word"><span class="token constant">1.0</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword">val </span>opacity<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">1.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>measurementDimension<span class="token operator">: </span><a href="../../../com.jeovanimartinez.androidutils.graphics.utils/-dimension/index.html">Dimension</a><span class="token operator"> = </span>Dimension.PX</span></span><span class="token punctuation">)</span> : <a href="../index.html">Watermark</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Definition for a drawable watermark (shape, image, etc.)</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Parameters</h2>
+      <div data-togglable="Parameters">
+        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>drawable</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Drawable resource or object for the watermark.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>position</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Position for the watermark inside of the image.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>width</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Width for the watermark, if the value is zero, the intrinsic width of the drawable will be used.     If the drawable has no intrinsic width, such as a solid color, an exception will be thrown.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>height</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Height for the watermark, if the value is zero, the intrinsic height of the drawable will be used.     If the drawable has no intrinsic height, such as a solid color, an exception will be thrown.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>dx</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Watermark offset for the x-axis.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>dy</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Watermark offset for the y-axis.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>rotation</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Rotation in degrees for the watermark.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>opacity</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Opacity of the watermark. This is a value from 0 to 1, where 0 means the watermark is completely     transparent and 1 means the watermark is completely opaque.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>measurement</span><wbr></wbr><span><span>Dimension</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Type of dimension to use to draw watermark, its apply for width, height, dx and dy.     For example, if the value of width is 10f and measurementDimension is Dimension.PX, the width of the drawn watermark     will be 10 px, but if measurementDimension is Dimension.DP, the the width of the drawn watermark will be calculate     according the screen density. It is recommended to use only Dimension.PX or Dimension.DP for a Drawable watermark.</p></div></div></div></div></div></div></div></div></div>
+      </div>
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="2128437598%2FConstructors%2F929993300" anchor-label="Drawable" id="2128437598%2FConstructors%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-drawable.html"><span><span>Drawable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2128437598%2FConstructors%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-drawable.html"><span class="token function">Drawable</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="../../../com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html"><span class="token annotation">DrawableOrDrawableRes</span></a> </span>drawable<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;position<span class="token operator">: </span><a href="../../../com.jeovanimartinez.androidutils.watermark.config/-watermark-position/index.html">WatermarkPosition</a><span class="token operator"> = </span>WatermarkPosition.MIDDLE_CENTER<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;width<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;height<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;dx<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;dy<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;rotation<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/FloatRange.html"><span class="token annotation">FloatRange</span></a><span class="token punctuation">(</span><span>from<span class="token operator"> = </span><span class="breakable-word"><span class="token constant">0.0</span></span><span class="token punctuation">, </span></span><wbr></wbr><span>to<span class="token operator"> = </span><span class="breakable-word"><span class="token constant">1.0</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span>opacity<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">1.0f</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;measurementDimension<span class="token operator">: </span><a href="../../../com.jeovanimartinez.androidutils.graphics.utils/-dimension/index.html">Dimension</a><span class="token operator"> = </span>Dimension.PX</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="2096137758%2FProperties%2F929993300" anchor-label="drawable" id="2096137758%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="drawable.html"><span><span>drawable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2096137758%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="2096137758%2FProperties%2F929993300" anchor-label="drawable" id="2096137758%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="drawable.html">drawable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1896994344%2FProperties%2F929993300" anchor-label="dx" id="1896994344%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="dx.html"><span><span>dx</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1896994344%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="1896994344%2FProperties%2F929993300" anchor-label="dx" id="1896994344%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="dx.html">dx</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1928014151%2FProperties%2F929993300" anchor-label="dy" id="1928014151%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="dy.html"><span><span>dy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1928014151%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="1928014151%2FProperties%2F929993300" anchor-label="dy" id="1928014151%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="dy.html">dy</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1185297781%2FProperties%2F929993300" anchor-label="height" id="1185297781%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="height.html"><span><span>height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1185297781%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="1185297781%2FProperties%2F929993300" anchor-label="height" id="1185297781%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="height.html">height</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1282175822%2FProperties%2F929993300" anchor-label="measurementDimension" id="-1282175822%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="measurement-dimension.html"><span>measurement</span><wbr></wbr><span><span>Dimension</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1282175822%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-1282175822%2FProperties%2F929993300" anchor-label="measurementDimension" id="-1282175822%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="measurement-dimension.html">measurementDimension</a><span class="token operator">: </span><a href="../../../com.jeovanimartinez.androidutils.graphics.utils/-dimension/index.html">Dimension</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-602798861%2FProperties%2F929993300" anchor-label="opacity" id="-602798861%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="opacity.html"><span><span>opacity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-602798861%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-602798861%2FProperties%2F929993300" anchor-label="opacity" id="-602798861%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="opacity.html">opacity</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">1.0f</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1666871309%2FProperties%2F929993300" anchor-label="position" id="-1666871309%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="position.html"><span><span>position</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1666871309%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-1666871309%2FProperties%2F929993300" anchor-label="position" id="-1666871309%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="position.html">position</a><span class="token operator">: </span><a href="../../../com.jeovanimartinez.androidutils.watermark.config/-watermark-position/index.html">WatermarkPosition</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1478986946%2FProperties%2F929993300" anchor-label="rotation" id="-1478986946%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="rotation.html"><span><span>rotation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1478986946%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-1478986946%2FProperties%2F929993300" anchor-label="rotation" id="-1478986946%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="rotation.html">rotation</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-753439784%2FProperties%2F929993300" anchor-label="width" id="-753439784%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a>
+        <div class="table-row" data-filterable-current=":androidutils:dokkaHtml/release" data-filterable-set=":androidutils:dokkaHtml/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="width.html"><span><span>width</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-753439784%2FProperties%2F929993300"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":androidutils:dokkaHtml/release"><a data-name="-753439784%2FProperties%2F929993300" anchor-label="width" id="-753439784%2FProperties%2F929993300" data-filterable-set=":androidutils:dokkaHtml/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="width.html">width</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="token operator"> = </span><span class="token constant">0.0f</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>Copyright © 2020 - Present. Jeovani Martinez</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
