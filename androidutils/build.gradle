@@ -91,7 +91,7 @@ dokkaHtml.configure {
     pluginsMapConfiguration.set(
         [
             "org.jetbrains.dokka.base.DokkaBase": """{
-                "footerMessage": "Copyright © 2020 - Present. Jeovani Martinez"
+                "footerMessage": "Copyright © 2020 - Present by Jeovani Martinez"
             }"""
         ]
     )
