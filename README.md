@@ -18,3 +18,9 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/)
 
 - The recommended size for the documentation images, to obtain the best quality, is a width of 807px and the desired height.
 - All the content of the documentation, including images, is in the docs' folder, this for if the documentation is versioned in the future.
+
+---
+
+## Deploy Instructions
+
+The deployment instructions are available on `docs/New Release.md` file into project develop branch.
