@@ -1,6 +1,7 @@
 ---
 id: motivation
 title: Motivation
+description: Motivation to develop this library.
 ---
 
 Some time ago I started developing Android apps, every time I went from one project to another, there were many parts of
@@ -15,4 +16,4 @@ base that is easier to maintain and optimize.
 I know that my code is not perfect (neither is my english) but I am sure that this library will be very useful to many developers, 
 and of course the comments and contributions to the code in the [GitHub](https://github.com/JeovaniMartinez/Android-Utils) repository are welcome.
 
-Sincerely, [Jeovani Martínez](https://github.com/jeovanimartinez)
+Sincerely, [Jeovani Martinez](https://github.com/jeovanimartinez)

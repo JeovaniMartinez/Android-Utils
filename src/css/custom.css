@@ -1,9 +1,12 @@
-/* stylelint-disable docusaurus/copyright-header */
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
+
+/*
+* Admonition theme reference: https://github.com/reduxjs/redux/blob/master/website/src/css/custom.css
+*/
 
 /* You can override the default Infima variables here. */
 :root {
@@ -15,72 +18,85 @@
     --ifm-color-primary-lighter: rgb(102, 212, 189);
     --ifm-color-primary-lightest: rgb(146, 224, 208);
     --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+    --ifm-alert-color: black;
 
     --ra-admonition-color: #ecf4f9;
-    --ra-admonition-color-border: #2a98b9;
+    --ra-admonition-color-dark: #2a98b9;
 
-    --ra-admonition-color-note: #f2f2f2;
-    --ra-admonition-color-note-border: #6b6b6b;
+    --ra-admonition-color-important: #2a98b9;
 
     --ra-admonition-color-success: #f1fdf9;
-    --ra-admonition-color-success-border: #00bf88;
+    --ra-admonition-color-success-dark: #00bf88;
 
     --ra-admonition-color-caution: #fffbf5;
-    --ra-admonition-color-caution-border: #f0ad4e;
+    --ra-admonition-color-caution-dark: #f0ad4e;
 
     --ra-admonition-color-error: #fff2f2;
-    --ra-admonition-color-error-border: #d9534f;
+    --ra-admonition-color-error-dark: #d9534f;
 
     --ra-admonition-icon-color: black !important;
-
-    /* Alert text color */
-    --ifm-alert-color: #000000;
-
 }
 
-.docusaurus-highlight-code-line {
-    background-color: rgb(72, 77, 91);
-    display: block;
-    margin: 0 calc(-1 * var(--ifm-pre-padding));
-    padding: 0 var(--ifm-pre-padding);
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+    --ifm-color-primary: #00897b;
+    --ifm-color-primary-dark: rgb(33, 175, 144);
+    --ifm-color-primary-darker: rgb(31, 165, 136);
+    --ifm-color-primary-darkest: rgb(26, 136, 112);
+    --ifm-color-primary-light: rgb(70, 203, 174);
+    --ifm-color-primary-lighter: rgb(102, 212, 189);
+    --ifm-color-primary-lightest: rgb(146, 224, 208);
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/*
-* Admonition theme reference: https://github.com/reduxjs/redux/blob/master/website/src/css/custom.css
-*/
+blockquote {
+    /*noinspection CssUnresolvedCustomProperty*/
+    border-left: 6px solid var(--ifm-color-emphasis-300);
+    padding: 1rem;
+}
+
+.admonition a {
+    color: black;
+    text-decoration: underline;
+}
+
+.admonition a:hover {
+    /*noinspection CssUnresolvedCustomProperty*/
+    color: var(--blockquote-text-color);
+}
 
 .admonition {
     color: black;
+    /*noinspection CssUnresolvedCustomProperty*/
     border-radius: var(--ifm-global-radius);
-    border-left: 12px solid var(--ra-admonition-color-border);
+    border-left: 6px solid var(--ra-admonition-color-dark);
 }
 
+.admonition.admonition-note,
 .admonition.admonition-info,
 .admonition.admonition-important,
 .admonition.admonition-secondary {
+    --ra-admonition-color: #ecf4f9;
     background-color: var(--ra-admonition-color);
-}
-
-.admonition.admonition-note {
-    background-color: var(--ra-admonition-color-note);
-    border-color: var(--ra-admonition-color-note-border);
 }
 
 .admonition.admonition-success,
 .admonition.admonition-tip {
     background-color: var(--ra-admonition-color-success);
-    border-color: var(--ra-admonition-color-success-border);
+    border-left-color: var(--ra-admonition-color-success-dark);
 }
 
 .admonition.admonition-caution {
     background-color: var(--ra-admonition-color-caution);
-    border-color: var(--ra-admonition-color-caution-border);
+    border-left-color: var(--ra-admonition-color-caution-dark);
 }
 
 .admonition.admonition-warning,
 .admonition.admonition-danger {
     background-color: var(--ra-admonition-color-error);
-    border-color: var(--ra-admonition-color-error-border);
+    border-left-color: var(--ra-admonition-color-error-dark);
 }
 
 .admonition .admonition-icon svg {

@@ -1,9 +1,10 @@
 ---
 id: translucent-theme
 title: Translucent Theme
+description: Style and base class for creating activities with a translucent background.
 ---
 
-#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.themes.translucent/-translucent-activity/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ## Description
 

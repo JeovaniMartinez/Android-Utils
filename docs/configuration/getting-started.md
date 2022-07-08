@@ -3,6 +3,7 @@ id: getting-started
 title: Getting Started
 sidebar_label: Getting Started
 slug: /
+description: How to include and configure the library in your project.
 ---
 
 Apply the next configuration in your Android project to start to use the Android Utils library.

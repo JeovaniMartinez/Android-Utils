@@ -1,9 +1,10 @@
 ---
 id: rate-app
 title: Rate App
+description: Set of utilities to invite the user to rate the app.
 ---
 
-#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 ## Description
 
@@ -37,7 +38,7 @@ accepts, they are directed to the app details on Google Play.
 Either In the `onCreate()` of the singleton or main activity you have to set the configuration values and initialize the utility by passing a context. 
 It is very important to do it only once in the app, since at that moment the times the user has launch the app  are counted.
 
-> #### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
+> #### <a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.reviews/-rate-app/index.html" target="_blank"><b>[ Configuration Parameters  ]</b></a>
 
 ```kotlin
 RateApp.apply {

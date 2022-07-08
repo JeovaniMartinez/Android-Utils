@@ -1,6 +1,7 @@
 ---
 id: code-inspection-annotations
 title: Code Inspection Annotations
+description: Annotations designed to guide the developer on the type of data or resource that can be assigned to a property or variable.
 ---
 
 ## Description
@@ -22,7 +23,7 @@ In some cases, the use of values of the wrong data type cannot be detected at co
 
 ### `@DrawableOrDrawableRes`
 
-#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.annotations/-drawable-or-drawable-res/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 Indicates that the expected value or object should be a Drawable object or the ID of a drawable resource. For example: `drawableObject`, `R.drawable.demo`.
 
@@ -32,7 +33,7 @@ _Detection example in Android Studio:_
 
 ### `@StringOrStringRes`
 
-#### <a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html" target="_blank"><b>[ Reference ]</b></a>
+#### <a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html" target="_blank"><b>[ Reference ]</b></a>
 
 Indicates that the expected value or object must be a data type String, Char (since it can be represented as String) or the ID of a string resource. 
 For example: `'a'`, `"Hello"`, `R.string.demo`
@@ -56,7 +57,7 @@ private fun showMessage(@StringOrStringRes message: Any) { ... }
 
 Then, to process the value, the library has extension functions to get the value easily:
 
-> `typeAsDrawable`<br/>It is a context extension function, allows you to parse the data type and always treat it as a Drawable.<br/><a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-drawable.html" target="_blank"><b>[ Reference ]</b></a>
+> `typeAsDrawable`<br/>It is a context extension function, allows you to parse the data type and always treat it as a Drawable.<br/><a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-drawable.html" target="_blank"><b>[ Reference ]</b></a>
 
 ```kotlin
 private fun showImage(@DrawableOrDrawableRes image: Any) {
@@ -64,7 +65,7 @@ private fun showImage(@DrawableOrDrawableRes image: Any) {
 }
 ```
 
-> `typeAsString`<br/>It is a context extension function, allows you to parse the data type and always treat it as a String.<br/><a href="../reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-string.html" target="_blank"><b>[ Reference ]</b></a>
+> `typeAsString`<br/>It is a context extension function, allows you to parse the data type and always treat it as a String.<br/><a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-string.html" target="_blank"><b>[ Reference ]</b></a>
 
 ```kotlin
 private fun showMessage(@StringOrStringRes message: Any) {
