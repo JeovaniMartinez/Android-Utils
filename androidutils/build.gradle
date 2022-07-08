@@ -77,13 +77,13 @@ dependencies {
 dokkaHtml.configure {
     doFirst {
         // Current documentation is deleted before generating the new one
-        delete rootProject.projectDir.toString() + "/docs/android-utils-api-reference"
+        delete rootProject.projectDir.toString() + "/docs/api-reference/android-utils-api-reference"
         println 'Deleted android-utils-api-reference directory'
     }
     dokkaSourceSets {
         named("main") {
             moduleName.set("Android Utils")
-            outputDirectory.set(file("../docs/android-utils-api-reference"))
+            outputDirectory.set(file("../docs/api-reference/android-utils-api-reference"))
             noAndroidSdkLink.set(true)
             skipDeprecated.set(false)
         }
@@ -99,7 +99,7 @@ dokkaHtml.configure {
         // The library logo is copied to the documentation
         copy {
             from(rootProject.projectDir.toString() + "/resources/docs-images/dokka/logo-icon.svg")
-            into(rootProject.projectDir.toString() + "/docs/android-utils-api-reference/images")
+            into(rootProject.projectDir.toString() + "/docs/api-reference/android-utils-api-reference/images")
         }
         println 'Adjusted documentation logo'
     }

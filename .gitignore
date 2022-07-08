@@ -213,6 +213,6 @@ fabric.properties
 
 # Documentation #
 
-/docs/android-utils-api-reference/
+/docs/api-reference/android-utils-api-reference/
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio
