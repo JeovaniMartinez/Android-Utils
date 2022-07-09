@@ -50,26 +50,26 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.8.0'
 
     // Material Components for Android
-    implementation 'com.google.android.material:material:1.6.1' // Required for design the layouts
+    implementation 'com.google.android.material:material:1.6.1' // Required for designing the layouts
 
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Required for design the layouts
 
     // Runtime interface to interact with the Google Play Store
-    implementation 'com.google.android.play:core-ktx:1.8.1' // Required for use Google Play In-App review API
+    implementation 'com.google.android.play:core-ktx:1.8.1' // Required for using Google Play In-App review API
 
     // Set of tools to express the open source software notices of libraries used in the apps
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0' // Required to display open source licenses in AboutApp
 
-    // Google Play's billing system, to enables to sell digital products and content in the apps
+    // Google Play's billing system, enables to sell digital products and content in the apps
     implementation 'com.android.billingclient:billing-ktx:3.0.3' // Required for the premium utilities ** PENDING VERSION UPDATE **
 
-    // Libraries required only for references. If they are used in the destination app, it must declare the dependencies
+    // Libraries are required only for references. If they are used in the destination app, it must declare the dependencies
     compileOnly 'com.google.firebase:firebase-analytics:21.0.0' // Used to reference Firebase Analytics
     compileOnly 'com.google.firebase:firebase-crashlytics:18.2.11' // Used to reference Firebase Crashlytics
 
     // Lint check
-    lintPublish project(':lintcheck') // The library includes the lintcheck module for verifications
+    lintPublish project(':lintcheck') // The library includes the lint check module for verifications
 
 }
 

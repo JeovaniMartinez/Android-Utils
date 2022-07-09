@@ -3,7 +3,7 @@
     <!--########################################################################################################################################################################################## -->
 
     <!--
-       Base of the theme, the application that uses the library must declare a style with the same name that inherits from the main theme of the app,
+       Base of the library theme, the application that uses the library must declare a style with the same name that inherits from the main theme of the app,
        this so that the library preserves the style that the app uses.
     -->
     <style name="AndroidUtilsTheme" parent="Theme.MaterialComponents" />

@@ -3,7 +3,7 @@
 
     <!--
         Default colors of the theme, if they are overridden in the app, the colors defined in the app will be used,
-        since these files are mixed and the app files has priority.
+        since these files are mixed and the app files have priority.
     -->
     <color name="colorPrimary">#00838f</color>
     <color name="colorAccent">#00838f</color>
