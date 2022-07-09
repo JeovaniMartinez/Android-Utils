@@ -54,7 +54,7 @@ class TypeOrResource : Detector(), Detector.UastScanner {
     /** When annotation usage is detected */
     override fun visitAnnotationUsage(context: JavaContext, element: UElement, annotationInfo: AnnotationInfo, usageInfo: AnnotationUsageInfo) {
 
-        // Get the item type with its debug name, for example REGULAR_STRING_PART for a String
+        // Get the item type with its debug name, for example, REGULAR_STRING_PART for a String
         val elementType = element.sourcePsi?.node?.firstChildNode?.elementType
         // Get the value in text
         val text = element.sourcePsi?.node?.firstChildNode?.text
@@ -63,7 +63,7 @@ class TypeOrResource : Detector(), Detector.UastScanner {
         val elementNext = element.sourcePsi?.node?.firstChildNode?.treeNext // Previous item
 
         /*
-        * It is validated that there is content to verify, otherwise no problem is reported.
+        * It is validated that it is content to verify, otherwise, no problem is reported.
         * It is also validated that the value of the text is not "null", since this indicates that the value
         * of the element is null, for the purposes of this validation if null values can be accepted.
         * */
