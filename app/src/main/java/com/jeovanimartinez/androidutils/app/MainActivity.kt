@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         binding.checkAndShowRateAppBtn.setOnClickListener {
 
             if (!rateAppInitialized) {
-                shortToast("Please initialize RateApp before to click this button")
+                shortToast("Please initialize RateApp before clicking this button")
                 return@setOnClickListener
             } else {
 
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
                     viewsToExclude = arrayListOf()
                 )
 
-                // Use FileUtils to save bitmap into image file.
+                // Use FileUtils to save bitmap to an image file.
                 val result = FileUtils.saveBitmapToFile(this@MainActivity, bitmap)
 
                 MaterialAlertDialogBuilder(this@MainActivity)
@@ -246,7 +246,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.saveBitmapToFileBtn.setOnClickListener {
             try {
-                // Create a bitmap object for test the utility and draw a color and text on it.
+                // Create a bitmap object to test the utility and draw color and text on it.
                 val bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888)
                 val canvas = Canvas(bitmap)
                 canvas.drawColor(Color.DKGRAY)
