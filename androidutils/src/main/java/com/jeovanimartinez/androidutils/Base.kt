@@ -26,9 +26,9 @@ abstract class Base<T : Base<T>> {
          * */
         var firebaseAnalyticsInstance: FirebaseAnalytics? = null
 
-        // Note: This exceptions are not logged into log functions, because sending events to Firebase Crashlytics is only required in certain cases.
+        // Note: These exceptions are not logged into log functions, because sending events to Firebase Crashlytics is only required in certain cases.
         /**
-         * Firebase Crashlytics instance, assign only if the app implementing the library need to log library recoverable errors in
+         * Firebase Crashlytics instance, assign only if the app implementing the library needs to log library recoverable errors in
          * Firebase Crashlytics, this property is global and is used in all subclasses of this class. Assign it only once within the
          * app, taking into account that the app must have Firebase Crashlytics configured, or leave it as null if it is not required
          * or if Firebase Crashlytics is not used in the app.
@@ -63,9 +63,9 @@ abstract class Base<T : Base<T>> {
             log("Event emitted: [ $eventName ] Params: $params | $message")
         }
 
-        if (firebaseAnalyticsInstance == null) return logResult("No need to log event into Firebase Analytics, firebaseAnalyticsInstance is null")
+        if (firebaseAnalyticsInstance == null) return logResult("No need to log the event into Firebase Analytics, firebaseAnalyticsInstance is null")
 
-        if (!firebaseAnalyticsEnabled) return logResult("No need to log event into Firebase Analytics, this is disabled for this class instance")
+        if (!firebaseAnalyticsEnabled) return logResult("No need to log the event into Firebase Analytics, this is disabled for this class instance")
 
         // Otherwise, the event is logged in Firebase Analytics.
         firebaseAnalyticsInstance!!.logEvent(eventName, eventParams)
@@ -82,13 +82,13 @@ abstract class Base<T : Base<T>> {
         else Log.d(LOG_TAG, message.toString())
     }
 
-    /** Show the [message] and the [throwable] into WARN log. */
+    /** Show the [message] and the [throwable] in the WARN log. */
     internal fun logw(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.w(LOG_TAG, message.toString(), throwable)
         else Log.w(LOG_TAG, message.toString())
     }
 
-    /** Show the [message] and the [throwable] into ERROR log. */
+    /** Show the [message] and the [throwable] in the ERROR log. */
     internal fun loge(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.e(LOG_TAG, message.toString(), throwable)
         else Log.e(LOG_TAG, message.toString())

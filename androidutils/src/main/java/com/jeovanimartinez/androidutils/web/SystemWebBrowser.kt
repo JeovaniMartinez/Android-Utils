@@ -23,21 +23,21 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
     /**
      * Open the system web browser at the specified [url].
      * @param context Context.
-     * @param url URL to show, it must be a complete URL, including http or https, otherwise it will not pass the validation
-     * @param case Reason that the URL was opens in the browser. This applies only if Firebase Analytics is enabled.
+     * @param url URL to show, it must be a complete URL, including HTTP or HTTPS, otherwise, it will not pass the validation.
+     * @param case Reason that the URL was opened in the browser. This applies only if Firebase Analytics is enabled.
      *        When a URL is loaded in the browser the event is registered, this event contains a parameter that
      *        helps determine which website was shown.
      * */
     fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
 
-        if (!URLUtil.isValidUrl(url)) return loge("The URL [$url] is not a valid URL")
+        if (!URLUtil.isValidUrl(url)) return loge("The URL [$url] is not valid")
         try {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
             firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, finalCase) })
             log("URL: [$url] opened, case: $finalCase")
         } catch (e: ActivityNotFoundException) {
-            // There is no app that can open the URL
+            // No app can open the URL
             context.shortToast(R.string.system_web_browser_not_available)
             firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, "activity_not_found_exception") })
             logw("Unable to open URL [$url], web browser not available", e)

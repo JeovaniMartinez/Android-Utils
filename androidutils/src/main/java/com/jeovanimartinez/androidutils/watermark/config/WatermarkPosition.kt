@@ -4,7 +4,7 @@ package com.jeovanimartinez.androidutils.watermark.config
 
 /**
  * Enum for watermark position.
- * Use ABSOLUTE for custom position, or any other for fixed position.
+ * Use ABSOLUTE for a custom position, or any other for a fixed position.
  * */
 enum class WatermarkPosition {
     ABSOLUTE,

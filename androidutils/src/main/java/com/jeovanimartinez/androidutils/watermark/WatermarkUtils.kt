@@ -28,7 +28,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
     override val LOG_TAG = "WatermarkUtils"
 
     /**
-     * Draw a watermark into [bitmap].
+     * Draw a watermark inside the [bitmap].
      * @param context Context.
      * @param bitmap Bitmap where the watermark is to be drawn.
      * @param watermark Watermark.Drawable or Watermark.Text to draw into the [bitmap].
@@ -42,9 +42,9 @@ object WatermarkUtils : Base<WatermarkUtils>() {
     }
 
     /**
-     * Draw a list of watermarks into [bitmap].
+     * Draw a list of watermarks inside the [bitmap].
      * @param context Context.
-     * @param bitmap Bitmap where the watermarks is to be drawn.
+     * @param bitmap Bitmap where the watermarks are to be drawn.
      * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw into the [bitmap].
      * */
     fun drawWatermark(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
@@ -56,14 +56,14 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * */
     private fun validateWatermark(watermark: Watermark) {
         require(watermark.opacity in 0f..1f) {
-            "Opacity value for the watermark must be between 0 and 1, current value is ${watermark.opacity}"
+            "The opacity value for the watermark must be between 0 and 1, current value is ${watermark.opacity}"
         }
         if (watermark is Watermark.Drawable) {
             require(watermark.width >= 0f) {
-                "Watermark width must be equal or greater than 0, current value is ${watermark.width} "
+                "Watermark width must be equal to or greater than 0, current value is ${watermark.width} "
             }
             require(watermark.height >= 0f) {
-                "Watermark height must be equal or greater than 0, current value is ${watermark.height}"
+                "Watermark height must be equal to or greater than 0, current value is ${watermark.height}"
             }
         } else if (watermark is Watermark.Text) {
             require(watermark.textSize > 0) {
@@ -73,7 +73,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
     }
 
     /**
-     * Draw a drawable watermark into bitmap.
+     * Draw a drawable watermark inside a bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
      * @param watermark Watermark.Drawable to draw into the [targetBitmap].
@@ -119,14 +119,14 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             }
         }
 
-        val bitmapTmp: Bitmap? // Auxiliary in if it is necessary rotate the watermark
+        val bitmapTmp: Bitmap? // Auxiliary in if it is necessary to rotate the watermark
         // The final watermark is generated as a bitmap
         val watermarkBitmap = if (watermark.rotation == 0f) {
-            log("No need rotate the watermark, rotation = ${watermark.rotation} degrees")
+            log("No need to rotate the watermark, rotation = ${watermark.rotation} degrees")
             drawable.toBitmap(watermarkWidth, watermarkHeight, Bitmap.Config.ARGB_8888)
         } else {
-            log("Watermark is rotate ${watermark.rotation} degrees")
-            // Create a temporally bitmap, rotate and assign to watermark Bitmap
+            log("Watermark is rotated ${watermark.rotation} degrees")
+            // A temporary bitmap is created, it is rotated and assigned to the watermark bitmap
             bitmapTmp = drawable.toBitmap(watermarkWidth, watermarkHeight, Bitmap.Config.ARGB_8888)
             bitmapTmp.density = targetBitmap.density
             bitmapTmp.rotate(watermark.rotation)
@@ -143,7 +143,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             isAntiAlias = true // For best quality
         }
 
-        // Calculate the position in x and y axis
+        // Calculate the position on the x and y axes
 
         val positionX = when (watermark.position) {
             ABSOLUTE -> -(watermarkWidth / 2).toFloat()
@@ -159,13 +159,13 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> (targetBitmap.height - watermarkBitmap.height).toFloat()
         }
 
-        log("Watermark position = ${watermark.position} | Position in x-axis = $positionX | Position in y-axis = $positionY ")
+        log("Watermark position = ${watermark.position} | Position in x-axis = $positionX | Position in y-axis = $positionY")
 
         // Calculate the final position
         val finalPositionX = positionX + dx
         val finalPositionY = positionY + dy
 
-        // Draw the watermark into target target bitmap
+        // Draw the watermark into target bitmap
         val canvas = Canvas(targetBitmap)
         canvas.drawBitmap(watermarkBitmap, finalPositionX, finalPositionY, paint)
 
@@ -176,9 +176,8 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         // ** Prevent call watermarkBitmap.recycle(), in some cases generate an exception
     }
 
-
     /**
-     * Draw a text watermark into bitmap.
+     * Draw a text watermark inside a bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
      * @param watermark Watermark.Text to draw into the [targetBitmap].
@@ -194,7 +193,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             log("Use defined watermark shadow")
             watermark.shadow
         } else {
-            log("Watermark shadow is null, no need to be apply it")
+            log("Watermark shadow is null, no need to apply it")
             WatermarkShadow(0f, 0f, 0f, Color.TRANSPARENT)
         }
 
@@ -204,7 +203,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         var textSize = watermark.textSize
 
         // Processing the values according to the measurement dimension
-        log("Watermark measurement dimension is ${watermark.measurementDimension}")
+        log("The watermark measurement dimension is ${watermark.measurementDimension}")
         when (watermark.measurementDimension) {
             Dimension.PX -> {
                 log("The original values are kept, text size = $textSize | dx = $dx dy = $dy")
@@ -248,7 +247,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             isAntiAlias = true // For best quality
             watermark.typeface.whenNotNull { typeface = it }
             watermark.shadow.whenNotNull {
-                // Use shadow instead of 'it' because shadow contain the processed values
+                // Use shadow instead of 'it' because shadow contains the processed values
                 setShadowLayer(shadow.radius, shadow.dx, shadow.dy, shadow.shadowColor)
             }
         }
@@ -268,7 +267,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         // Create a bitmap for the text, considering the text size and the shadow
         val textBitmap = Bitmap.createBitmap((textWidth + absDx).toInt(), (fontHeight + absDy).toInt(), Bitmap.Config.ARGB_8888) // Create a bitmap for the text
         textBitmap.density = targetBitmap.density // To scale appropriately according to the bitmap.
-        val textCanvas = Canvas(textBitmap) // Canvas for draw the text
+        val textCanvas = Canvas(textBitmap) // Canvas for drawing the text
 
         // The internal offset of the text is calculated, according to the offset of the shadow
         val textOffsetX = if (shadow.dx < 0) absDx else 0f
