@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
 import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.uast.*
 
-// Debugging instructions, bug fixes and general notes about this class: see documentation at the end of this file.
+// Debugging instructions, bug fixes, and general notes about this class: see documentation at the end of this file.
 
 /**
  * Lint check that is responsible for verifying the TypeOrResource annotations and verifying that the property or variable that
@@ -64,14 +64,14 @@ class TypeOrResource : Detector(), Detector.UastScanner {
 
         /*
         * It is validated that there is content to verify, otherwise no problem is reported.
-        * It is also validated that the value of text is not "null", since this indicates that the value
+        * It is also validated that the value of the text is not "null", since this indicates that the value
         * of the element is null, for the purposes of this validation if null values can be accepted.
         * */
         if (elementType != null && text != null && text != "null") {
 
             /*
             * For the data type, it is only validated if elementPrev && elementNext are null, this indicates that there
-            * is nothing before the value or after, for example if the value where it is invoked is:
+            * is nothing before the value or after, for example, if the value where it is invoked is:
             *   5 = if it enters to validate, since there is nothing before or after.
             *   5f = if it enters to validate, since f is considered part of the value.
             *   5.toString() = does not enter to validate, since after the value there is a point.
@@ -167,10 +167,10 @@ class TypeOrResource : Detector(), Detector.UastScanner {
 
 /*
 
-Debugging instructions, bug fixes and general notes.
+Debugging instructions, bug fixes, and general notes.
 
 General:
-- The library must be include "lintPublish project(':lintcheck')" in the gradle file, and the test app should be include "implementation project(":androidutils")" in the gradle file.
+- The library must include "lintPublish project(':lintcheck')" in the Gradle file, and the test app should include "implementation project(":androidutils")" in the Gradle file.
 - To debug and test this file, is need to reference one of the annotations being checked somewhere in the test project, for example in the MainActivity add the following code:
     private fun showMessage(@StringOrStringRes message: Any) {
 
@@ -181,18 +181,18 @@ General:
 Debugging:
 - Preferably only have this file open, avoid having the file open where the annotations are used (MainActivity).
 - Place the desired breakpoints.
-- In the IDE settings in Experimental > "Do not build Gradle task list during Gradle sync" make sure the option is unchecked, otherwise the gradle task list for the project is not generated.
-- Sync gradle again to generate the task list for the project.
-- In the gradle panel inside the IDE, expand Android-Utils > app > verification (in the app since this is where the annotations are used and this is where the verification will be executed).
-    - To run the verification, right-click on lint option and select Run.
-    - To debug the file, right click on lint option and select Debug.
+- In the IDE settings in Experimental > "Do not build Gradle task list during Gradle sync" make sure the option is unchecked, otherwise the Gradle task list for the project is not generated.
+- Sync Gradle again to generate the task list for the project.
+- In the Gradle panel inside the IDE, expand Android-Utils > app > verification (in the app since this is where the annotations are used and this is where the verification will be executed).
+    - To run the verification, right-click on the lint option and select Run.
+    - To debug the file, right-click on the lint option and select Debug.
 - Then, in the file where the annotations were used, the errors (if applicable) should appear.
 
 Bug fixes:
 - To make sure that the lint check module is compiled with the latest changes and the test app is checked with those changes, go to Build > Clean Project before compiling or debugging.
     - If the IDE throws an error saying it can't delete the files, close the IDE and manually delete the folder ~\Android-Utils\androidutils\build\
         - If the folder cannot be deleted because it indicates that it is still in use, open the task manager and end the "OpenJDK Platform Binary" tasks.
-        - After this the folder should be able to be deleted.
+        - After this, the folder should be able to be deleted.
     - Open the IDE and go to Build > Clean Project, later compile/debug again.
 
 **/

@@ -6,6 +6,6 @@ Notes:
 - This folder contains only a backup from the documentation, and the file is stored in RAR format to prevent that GitHub include the files in the languages statistics.
 
 Steps to generate the API reference documentation:
-- Execute dokkaHtml task in androidutils > documentation task of gradle.
+- Execute dokkaHtml task in androidutils > documentation task of Gradle.
 - Add the generated folder into new RAR file named api-reference[library-version].rar
 - Add RAR file to the repository and delete the old documentation file.

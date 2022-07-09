@@ -97,7 +97,7 @@ Meet the developers and contributors of the Android Utils project.
 
 ## Sponsors
 
-People, organizations and companies that support Android Utils project.
+People, organizations, and companies that support Android Utils project.
 
 [<img src="https://user-images.githubusercontent.com/38060456/113641249-e5a90780-9642-11eb-9af7-8c39d800a79b.png" alt="Jedemm Technologies" />](https://jedemm.com/)
 
