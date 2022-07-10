@@ -3,7 +3,7 @@
 package com.jeovanimartinez.androidutils.extensions.basictypes
 
 /**
- * Extensions for Float data type.
+ * Extensions for the Float data type.
  * */
 
 // Reference: https://www.arduino.cc/reference/en/language/functions/math/map/
@@ -13,7 +13,7 @@ package com.jeovanimartinez.androidutils.extensions.basictypes
  *
  * > For example, inMin = 0, inMax = 1, outMin = 0, outMin = 255 - In this case, the input value
  * must be between 0 and 1, and it will be mapped to an output between 0 and 255. If the value
- * input is 0.5, output is 127.5. In this same example, a value of 2 would result in 510, since
+ * input is 0.5, the output is 127.5. In this same example, a value of 2 would result in 510, since
  * it is double according to the established values.
  *
  * @param inMin The lower bound of the value’s current range.

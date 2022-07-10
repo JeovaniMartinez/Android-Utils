@@ -18,7 +18,7 @@ import java.lang.Exception
  * - If the data type is String, it returns it as is, without processing.
  * - If the data type is char, it returns it as a String.
  * - If the data type is an integer, it is assumed to be a resource ID, so the String is obtained from resources and returned. If the resource does not exist, it throws an exception.
- * - For any another data type, it throws an exception, since the data type cannot be parse directly as a String.
+ * - For any other data type, it throws an exception, since the data type cannot be parsed directly as a String.
  * */
 fun Context.typeAsString(@StringOrStringRes stringOrStringRes: Any): String {
     return when (stringOrStringRes) {
@@ -34,7 +34,7 @@ fun Context.typeAsString(@StringOrStringRes stringOrStringRes: Any): String {
  * - If the data type is null, it returns null.
  * - If the data type is a Drawable, it returns it as is, without processing.
  * - If the data type is an integer, it is assumed to be a resource ID, so the Drawable is obtained from resources and returned. If the resource does not exist, it throws an exception.
- * - For any another data type, it throws an exception, since the data type cannot be parse as a Drawable.
+ * - For any other data type, it throws an exception, since the data type cannot be parsed as a Drawable.
  *
  * The parameter and return value can be null according to the definition of AppCompatResources.getDrawable()
  * */

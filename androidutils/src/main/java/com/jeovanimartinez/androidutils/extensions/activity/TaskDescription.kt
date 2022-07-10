@@ -21,7 +21,7 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsString
  * for the different versions of Android.
  *
  * @param title Title for the task description, String or string resource ID.
- * @param icon Icon to show (resource id), it must be a PNG image, if the resource id is a SVG, it will not be applied and the app icon will be shown.
+ * @param icon Icon to show (resource id), it must be a PNG image, if the resource id is an SVG, it will not be applied and the app icon will be shown.
  * @param color Color-int for the background.
  * */
 fun Activity.configureTaskDescription(@StringOrStringRes title: Any, @DrawableRes icon: Int, @ColorInt color: Int) {

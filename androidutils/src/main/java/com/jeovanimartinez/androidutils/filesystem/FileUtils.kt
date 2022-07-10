@@ -10,7 +10,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 
-/** Set of utilities for working with file system. */
+/** Set of utilities for working with the file system. */
 object FileUtils : Base<FileUtils>() {
 
     override val LOG_TAG = "FileUtils"
@@ -19,11 +19,11 @@ object FileUtils : Base<FileUtils>() {
      * Save a bitmap object in an image file.
      * @param context Context.
      * @param bitmap Bitmap to save.
-     * @param fileName Filename for the image, if it is null or blank string, a UUID is used for the image file name.
+     * @param fileName Filename for the image, if it is null or a blank string, a UUID is used for the image file name.
      *        If the file name does not contain the file extension, it is automatically added. So it is recommended
      *        that it be the file name without the extension.
      * @param path Absolute path to save the image file, if it is null, it is saved in the temp files directory.
-     * @param format Format for the image. Default is PNG.
+     * @param format Format for the image. The default is PNG.
      * @param quality Quality for the image, between 0 and 100. Default is 100.
      *
      * @return The created file.
@@ -79,7 +79,7 @@ object FileUtils : Base<FileUtils>() {
     private fun normalizeFileName(fileName: String?, fileExtension: String): String {
         return if (fileName == null || fileName.trim().isBlank()) "${UUID.randomUUID()}.$fileExtension" // Default, use UUID
         else {
-            if (fileName.trim().toLowerCase(Locale.ROOT).endsWith(fileExtension)) fileName // If already contains file extension
+            if (fileName.trim().toLowerCase(Locale.ROOT).endsWith(fileExtension)) fileName // If already contains a file extension
             else "${fileName.trim()}.$fileExtension" // Add the file extension
         }
     }
@@ -95,13 +95,13 @@ object FileUtils : Base<FileUtils>() {
     @Throws(IOException::class)
     private fun generateFile(context: Context, fileName: String, path: String?): File {
         // Generate file in the path
-        val file = if (path == null) File(context.filesDir, "${TempFiles.TEMP_FILES_DIR}/$fileName") // If path is null, use the temp files dir
+        val file = if (path == null) File(context.filesDir, "${TempFiles.TEMP_FILES_DIR}/$fileName") // If the path is null, use the temp files dir
         else File(path, fileName) // Otherwise uses the defined path
 
         if (path == null) TempFiles.makeTempDir(context) // If uses temp file dir, should be created it if doesn't exist
         else {
-            // If use a custom path, the directories are created if they don't exist
-            val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path exclude filename
+            // If using a custom path, the directories are created if they don't exist
+            val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path, exclude the filename
             log("Make directory [$dirPath]")
             File(dirPath).mkdirs()
         }

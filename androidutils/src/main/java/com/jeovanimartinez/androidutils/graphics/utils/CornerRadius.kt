@@ -30,7 +30,7 @@ data class CornerRadius(
 
     /**
      * Corner radius configuration.
-     * @param radius Radius for all corners, in the pair values, first is for x-axis and second is for y-axis.
+     * @param radius Radius for all corners, in the pair values, first is for the x-axis and second is for the y-axis.
      * */
     constructor(radius: Pair<Float, Float>)
             : this(radius.first, radius.second, radius.first, radius.second, radius.first, radius.second, radius.first, radius.second)

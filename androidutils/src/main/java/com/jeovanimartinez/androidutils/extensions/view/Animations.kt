@@ -15,8 +15,8 @@ import android.view.ViewPropertyAnimator
  * Callback for when the animation ends.
  *
  * It is very important to always call this function when the animation of a view is modified,
- * even if nothing is required to be done when the animation ends, this in order to replace the
- * existing callback and prevent the code of previous callback from being executed. For example:
+ * even if nothing is required to be done when the animation ends, this is in order to replace the
+ * existing callback and prevent the code of the previous callback from being executed. For example:
  *```
  *     // Show a toast on animation end.
  *     demo.animate().translationX(0f).onAnimationEnd {  shortToast("Hello") }
@@ -25,7 +25,7 @@ import android.view.ViewPropertyAnimator
  *     // The previous callback will be executed and the toast will be shown
  *     demo.animate().translationX(10f)
  *
- *     // Correct way to animate again.
+ *     // The correct way to animate again.
  *     demo.animate().translationX(10f).onAnimationEnd { }
  *```
  * */
