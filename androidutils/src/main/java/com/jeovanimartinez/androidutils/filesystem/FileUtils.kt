@@ -16,7 +16,7 @@ object FileUtils : Base<FileUtils>() {
     override val LOG_TAG = "FileUtils"
 
     /**
-     * Save a bitmap object into image file.
+     * Save a bitmap object in an image file.
      * @param context Context.
      * @param bitmap Bitmap to save.
      * @param fileName Filename for the image, if it is null or blank string, a UUID is used for the image file name.
@@ -51,7 +51,7 @@ object FileUtils : Base<FileUtils>() {
 
         val file = generateFile(context, finalFileName, path) // Generate the file
 
-        log("Saving bitmap [$finalFileName] into [$file]")
+        log("Saving bitmap [$finalFileName] in [$file]")
 
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, quality, stream) // Adjust bitmap

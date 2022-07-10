@@ -26,11 +26,11 @@ abstract class Base<T : Base<T>> {
          * */
         var firebaseAnalyticsInstance: FirebaseAnalytics? = null
 
-        // Note: These exceptions are not logged into log functions, because sending events to Firebase Crashlytics is only required in certain cases.
+        // Note: These exceptions are not logged in the logging functions, because sending events to Firebase Crashlytics is only required in certain cases.
         /**
          * Firebase Crashlytics instance, assign only if the app implementing the library needs to log library recoverable errors in
          * Firebase Crashlytics, this property is global and is used in all subclasses of this class. Assign it only once within the
-         * app, taking into account that the app must have Firebase Crashlytics configured, or leave it as null if it is not required
+         * app, keeping in mind that the app must have Firebase Crashlytics configured, or leave it as null if it is not required
          * or if Firebase Crashlytics is not used in the app.
          * */
         var firebaseCrashlyticsInstance: FirebaseCrashlytics? = null
@@ -63,18 +63,18 @@ abstract class Base<T : Base<T>> {
             log("Event emitted: [ $eventName ] Params: $params | $message")
         }
 
-        if (firebaseAnalyticsInstance == null) return logResult("No need to log the event into Firebase Analytics, firebaseAnalyticsInstance is null")
+        if (firebaseAnalyticsInstance == null) return logResult("No need to log the event in Firebase Analytics, firebaseAnalyticsInstance is null")
 
-        if (!firebaseAnalyticsEnabled) return logResult("No need to log the event into Firebase Analytics, this is disabled for this class instance")
+        if (!firebaseAnalyticsEnabled) return logResult("No need to log the event in Firebase Analytics, this is disabled for this class instance")
 
         // Otherwise, the event is logged in Firebase Analytics.
         firebaseAnalyticsInstance!!.logEvent(eventName, eventParams)
-        logResult("Event logged into Firebase Analytics")
+        logResult("Event logged in Firebase Analytics")
 
     }
 
     /**
-     * Show the [message] and the [throwable] into DEBUG log, used to detail the execution flow.
+     * Show the [message] and the [throwable] in the DEBUG log, used to detail the execution flow.
      **/
     internal fun log(message: Any, throwable: Throwable? = null) {
         if (!logEnable) return

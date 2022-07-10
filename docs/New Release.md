@@ -7,9 +7,9 @@
 - Update library version code and version name in `build.gradle` (at the project level).
     - Commit and push changes.
 - Update `README.md` (at root project folder) if necessary.
-    - Update also in the documentation branch into docs/android-utils/introduction.md
+    - Update also in the documentation branch in docs/android-utils/introduction.md
 - Generate API reference docs (instructions in api-reference/README.md).
-    - Copy the generated docs to the documentation branch into api_reference/reference folder.
+    - Copy the generated docs to the documentation branch inside api_reference/reference folder.
 - Update documentation as required.
     - Add new release notes.
 - Build new documentation (in documentation project):

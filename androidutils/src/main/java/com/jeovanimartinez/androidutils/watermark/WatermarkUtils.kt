@@ -31,7 +31,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a watermark inside the [bitmap].
      * @param context Context.
      * @param bitmap Bitmap where the watermark is to be drawn.
-     * @param watermark Watermark.Drawable or Watermark.Text to draw into the [bitmap].
+     * @param watermark Watermark.Drawable or Watermark.Text to draw inside the [bitmap].
      * */
     fun drawWatermark(context: Context, bitmap: Bitmap, watermark: Watermark) {
         validateWatermark(watermark)
@@ -45,7 +45,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a list of watermarks inside the [bitmap].
      * @param context Context.
      * @param bitmap Bitmap where the watermarks are to be drawn.
-     * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw into the [bitmap].
+     * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw inside the [bitmap].
      * */
     fun drawWatermark(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
         watermarkList.forEach { drawWatermark(context, bitmap, it) }
@@ -76,11 +76,11 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a drawable watermark inside a bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
-     * @param watermark Watermark.Drawable to draw into the [targetBitmap].
+     * @param watermark Watermark.Drawable to draw inside the [targetBitmap].
      * */
     private fun drawDrawableWatermark(context: Context, targetBitmap: Bitmap, watermark: Watermark.Drawable) {
 
-        log("Started process to draw a drawable watermark into bitmap")
+        log("Started process to draw a drawable watermark inside the bitmap")
         log("Target bitmap size: width = ${targetBitmap.width} height = ${targetBitmap.height}")
 
         val drawable = context.typeAsDrawable(watermark.drawable)!! // Get the drawable object
@@ -165,11 +165,11 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         val finalPositionX = positionX + dx
         val finalPositionY = positionY + dy
 
-        // Draw the watermark into target bitmap
+        // Draw the watermark in target bitmap
         val canvas = Canvas(targetBitmap)
         canvas.drawBitmap(watermarkBitmap, finalPositionX, finalPositionY, paint)
 
-        log("Watermark drawn into target bitmap at x = $finalPositionX y = $finalPositionY")
+        log("Watermark drawn in target bitmap at x = $finalPositionX y = $finalPositionY")
 
         log("Watermark drawing done")
 
@@ -180,11 +180,11 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a text watermark inside a bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
-     * @param watermark Watermark.Text to draw into the [targetBitmap].
+     * @param watermark Watermark.Text to draw in the [targetBitmap].
      * */
     private fun drawTextWatermark(context: Context, targetBitmap: Bitmap, watermark: Watermark.Text) {
 
-        log("Started process to draw a text watermark into bitmap")
+        log("Started process to draw a text watermark inside the bitmap")
 
         val text = context.typeAsString(watermark.text) // Get the text
 

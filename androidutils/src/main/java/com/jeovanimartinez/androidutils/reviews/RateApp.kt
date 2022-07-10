@@ -300,7 +300,7 @@ object RateApp : Base<RateApp>() {
                 // The flow process was successful
                 reviewFlow.addOnSuccessListener {
                     /*
-                     * The flow was correct, taking into account that the API does not report if the user rated the app or not,
+                     * The flow was correct, considering that the API does not report if the user rated the app or not,
                      * nor does it report if the flow was shown or not, so it only indicates that the process was successful.
                      *
                      * Considerations:
