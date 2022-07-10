@@ -16,6 +16,7 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import java.io.File
 
 // Reference: https://developer.android.com/training/sharing/send
+
 /**
  * Utility to share text and files with other apps
  * */
@@ -38,7 +39,7 @@ object ShareUtils : Base<ShareUtils>() {
      * @param content Text to share, it can be a string or an id of a string resource.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
-     *        the share event is register and contains a parameter with share case.
+     *        the share event is registered and contains a parameter with the share case.
      * */
     fun shareText(
         activity: Activity,
@@ -55,7 +56,7 @@ object ShareUtils : Base<ShareUtils>() {
      * @param file File to share.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
-     *        the share event is register and contains a parameter with share case.
+     *        the share event is registered and contains a parameter with the share case.
      * */
     fun shareFile(
         activity: Activity,
@@ -75,7 +76,7 @@ object ShareUtils : Base<ShareUtils>() {
      * @param content Content to share, must be type String or File.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
-     *        the share event is register and contains a parameter with share case.
+     *        the share event is registered and contains a parameter with the share case.
      * */
     private fun doShare(activity: Activity, chooserTitle: String, content: Any, case: String) {
 
@@ -110,7 +111,7 @@ object ShareUtils : Base<ShareUtils>() {
             }
         }
 
-        // The intent chooser is assigned, since in Android 5.1 and higher it is possible to determine which app the user choose, Reference https://stackoverflow.com/a/50288268
+        // The intent chooser is assigned, since in Android 5.1 and higher it is possible to determine which app the user chooses, Reference https://stackoverflow.com/a/50288268
         val intentChooser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             val intentReceiver = Intent(activity, ApplicationSelectorReceiver::class.java)
             intentReceiver.putExtra(ApplicationSelectorReceiver.EXTRA_SHARE_CASE_KEY, finalCase) // In order to determine the case in the broadcast

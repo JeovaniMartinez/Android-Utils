@@ -32,7 +32,7 @@ object ViewToImage : Base<ViewToImage>() {
      *        To define the cropping area, use the background color of the view.
      * @param padding Padding between the view edges and the margin internal edges. Values must be zero or positive.
      * @param margin Margin between the padding external edges and the image edges. Values must be zero or positive.
-     * @param viewsToExclude If the view is a view group and has a children views, it determines the children's views
+     * @param viewsToExclude If the view is a view group and has children views, it determines the children views
      *        to exclude when generating the image.
      *
      * @return A bitmap of the view.
@@ -55,7 +55,7 @@ object ViewToImage : Base<ViewToImage>() {
 
         // Validations
         if (!ViewCompat.isLaidOut(view)) {
-            throw IllegalStateException("View needs to be laid out before convert it to an image")
+            throw IllegalStateException("The view needs to be laid out before converting it to an image")
         }
         require(padding.top >= 0 && padding.right >= 0 && padding.bottom >= 0 && padding.left >= 0) {
             "Padding values must be equal to or greater than zero"
@@ -84,7 +84,7 @@ object ViewToImage : Base<ViewToImage>() {
                     viewBitmap.trimByBorderColor(Color.TRANSPARENT, trimMargin)
                 }
                 else -> {
-                    log("It's not possible trim the image borders, because view background is not an instance of color drawable")
+                    log("It's not possible to trim the image borders, because the view background is not an instance of color drawable")
                     viewBitmap
                 }
             }
@@ -134,7 +134,7 @@ object ViewToImage : Base<ViewToImage>() {
      * @param view Main view (must be a view group).
      * @param viewsToExclude List of children views to exclude.
      *
-     * @return A bitmap of the [view] excluding the [viewsToExclude]. If viewsToExclude is empty, return a image representation of the view.
+     * @return A bitmap of the [view] excluding the [viewsToExclude]. If viewsToExclude is empty, return an image representation of the view.
      *
      * @throws IllegalArgumentException If any child view of the view cannot be excluded from the image.
      * */
@@ -146,7 +146,7 @@ object ViewToImage : Base<ViewToImage>() {
         }
 
         if (view !is ViewGroup) {
-            throw IllegalArgumentException("The view is not a instance of ViewGroup, children views cannot be excluded")
+            throw IllegalArgumentException("The view is not an instance of ViewGroup, children views cannot be excluded")
         }
 
         viewsToExclude.forEach {
@@ -191,7 +191,7 @@ object ViewToImage : Base<ViewToImage>() {
         // STEP 1, EXCLUDE VIEWS WITH MODE HIDE
 
         if (hideViews.isNotEmpty()) {
-            // If the view has a solid background color, that color is used, otherwise the pixels are cleared with alpha.
+            // If the view has a solid background color, that color is used, otherwise, the pixels are cleared with alpha.
             val hideViewPaint = if (view.background is ColorDrawable) {
                 log("Use view background color for hideViewPaint")
                 Paint().apply { style = Paint.Style.FILL; color = (view.background as ColorDrawable).color }
@@ -202,7 +202,7 @@ object ViewToImage : Base<ViewToImage>() {
             // val hideViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.parseColor("#B2CF0000"); } // *** FOR DEVELOPMENT PURPOSES ONLY
             hideViews.forEach {
                 if (it.view.visibility == View.GONE) return@forEach
-                // Use marginLeft and marginRight instead of marginStart and marginEnd to best results, even in RTL mode
+                // Use marginLeft and marginRight instead of marginStart and marginEnd for best results, even in RTL mode
                 viewCanvas.drawRect(
                     it.view.x - if (it.includeMargin) it.view.marginLeft else 0,
                     it.view.y - if (it.includeMargin) it.view.marginTop else 0,
@@ -221,7 +221,7 @@ object ViewToImage : Base<ViewToImage>() {
         var viewBitmap2 = viewBitmap // Assignation initial
 
         if (cropVerticallyViews.isNotEmpty()) {
-            // First the entire region to be deleted is marked
+            // First, the entire region to be deleted is marked
             cropVerticallyViews.forEach {
                 if (it.view.visibility == View.GONE) return@forEach
                 // NOTE: The padding is part of the view, so it is already included in the width or height
@@ -234,7 +234,7 @@ object ViewToImage : Base<ViewToImage>() {
                 )
             }
             val horizontalColoredArray = IntArray(viewBitmap.width) { markColor } // To compare to the mark color
-            val horizontalBuffer = IntArray(viewBitmap.width) // To read the pixels from the image and compare with horizontalColoredArray
+            val horizontalBuffer = IntArray(viewBitmap.width) // To read the pixels from the image and compare them with horizontalColoredArray
             // Calculate the total pixels to be cropped vertically
             var allCropHeight = 0
             for (y in 0 until viewBitmap.height) {
@@ -262,8 +262,8 @@ object ViewToImage : Base<ViewToImage>() {
         var viewBitmap3 = viewBitmap2 // Assignation initial
 
         if (cropHorizontallyViews.isNotEmpty()) {
-            val viewBitmap2Canvas = Canvas(viewBitmap2) // To mark the area to be remove
-            // First the entire region to be deleted is marked
+            val viewBitmap2Canvas = Canvas(viewBitmap2) // To mark the area to be removed
+            // First, the entire region to be deleted is marked
             cropHorizontallyViews.forEach {
                 if (it.view.visibility == View.GONE) return@forEach
                 // NOTE: The padding is part of the view, so it is already included in the width or height
@@ -276,7 +276,7 @@ object ViewToImage : Base<ViewToImage>() {
                 )
             }
             val verticalColoredArray = IntArray(viewBitmap2.height) { markColor } // To compare to the mark color
-            val verticalBuffer = IntArray(viewBitmap2.height) // To read the pixels from the image and compare with verticalColoredArray
+            val verticalBuffer = IntArray(viewBitmap2.height) // To read the pixels from the image and compare them with verticalColoredArray
             // Calculate the total pixels to be cropped horizontally
             var allCropWidth = 0
             for (x in 0 until viewBitmap2.width) {
@@ -284,7 +284,7 @@ object ViewToImage : Base<ViewToImage>() {
             }
             viewBitmap3 = Bitmap.createBitmap(viewBitmap2.width - allCropWidth, viewBitmap2.height - extraBottomPadding, Bitmap.Config.ARGB_8888)
             log("viewBitmap3 size: width = ${viewBitmap3.width} (allCropWidth = $allCropWidth) height = ${viewBitmap3.height}")
-            var x = 0 // Position in x-axis for draw the pixels
+            var x = 0 // Position in x-axis to draw the pixels
             for (i in 0 until viewBitmap2.width) {
                 viewBitmap2.getPixels(verticalBuffer, 0, 1, i, 0, 1, viewBitmap2.height) // It reads the entire width and one pixel height
                 // Determines if the row of pixels should be preserved, and adds it to the bitmap if so

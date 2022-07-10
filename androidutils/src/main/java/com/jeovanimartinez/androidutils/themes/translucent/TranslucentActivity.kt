@@ -19,14 +19,14 @@ import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
  *     android:theme="@style/AndroidUtilsTheme.Translucent"
  * ```
  * In the layout file, activities that inherit from TranslucentActivity must have a fixed size or a
- * RelativeLayout as the root element in so that they occupy the entire screen space.
+ * RelativeLayout as the root element so that they occupy the entire screen space.
  * */
 open class TranslucentActivity : AppCompatActivity() {
 
     /**
      * Activity opacity, the value must be in the range of 0 to 1. Where 0 is completely transparent and 1 is
      * completely opaque. It can be changed at any time during the execution of the activity, and the opacity
-     * will be apply immediately.
+     * will be applied immediately.
      * */
     var activityOpacity = 0f
         set(value) {
@@ -42,16 +42,16 @@ open class TranslucentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
     }
 
-    /** On pausing activity, adds a background to the activity for a better view in animations */
+    /** On pausing the activity, adds a background to the activity for a better view in animations */
     override fun onPause() {
-        // Adds a background to the activity for a better view in animations
+        // Adds background to the activity for a better view in animations
         window.setBackgroundDrawable(generateBackgroundDrawable(this.window.attributes.dimAmount))
         super.onPause()
     }
 
     /** On resuming activity, the activity background is set to transparent, so that opacity is keep based on the value of dimAmount */
     override fun onResume() {
-        // The activity background is set to transparent, so that opacity is keep based on the value of dimAmount
+        // The activity background is set to transparent, so that opacity is kept based on the value of dimAmount
         window.setBackgroundDrawable(generateBackgroundDrawable(0f))
         super.onResume()
     }
@@ -59,7 +59,7 @@ open class TranslucentActivity : AppCompatActivity() {
     /**
      * Sets the dim (attenuation) of a window (independent of this class).
      *
-     * Invoke this function when a window is to be shown above fo this activity, to ensure that the attenuation of the
+     * Invoke this function when a window is to be shown above to this activity, to ensure that the attenuation of the
      * window to be shown is equal to or greater than the opacity of this activity, since if it is not done, an
      * undesirable visual effect is generated.
      *

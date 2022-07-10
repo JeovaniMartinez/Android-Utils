@@ -27,15 +27,15 @@ object MoreApps : Base<MoreApps>() {
      * */
     fun showAppListInGooglePlay(activity: Activity) {
         try {
-            // An attempt is made to open the developer's page in the system web browser (if the user has Google Play app, it is shown there)
+            // An attempt is made to open the developer's page in the system web browser (if the user has the Google Play app, it is shown there)
             val webUriString = "https://play.google.com/store/apps/developer?id=$developerId"
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
             log("Sent user to view developer page in google play [$webUriString]")
             firebaseAnalytics(Event.MORE_APPS_SHOWN_GOOGLE_PLAY_OK)
         } catch (e: ActivityNotFoundException) {
-            // If it couldn't be shown developer's app list, a message is displayed in a toast
+            // If it couldn't be shown developer's app list, a message is displayed on a toast
             activity.shortToast(R.string.more_apps_unable_to_show_dev_page)
-            logw("Unable to send user to developer page on google play", e)
+            logw("Unable to send the user to developer page on google play", e)
             firebaseAnalytics(Event.MORE_APPS_SHOWN_GOOGLE_PLAY_ERROR)
         }
     }
