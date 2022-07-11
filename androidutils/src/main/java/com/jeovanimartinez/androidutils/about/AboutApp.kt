@@ -50,7 +50,7 @@ object AboutApp : Base<AboutApp>() {
 
         AboutActivity.aboutActivityRunning = true // It is true since the activity is going to start
 
-        // Launch about activity, currentConfig is already assigned to be use
+        // Launch about activity, currentConfig is already assigned to be used
         activity.startActivity(
             Intent(activity, AboutActivity::class.java),
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null

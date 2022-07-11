@@ -58,7 +58,7 @@ internal object Event {
     }
 
     /**
-     * Default values that can be applied to parameters values.
+     * Default values that can be applied to parameter values.
      * */
     object ParameterValue {
 

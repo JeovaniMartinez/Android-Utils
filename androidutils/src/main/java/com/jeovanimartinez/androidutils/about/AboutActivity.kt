@@ -145,7 +145,7 @@ class AboutActivity : TranslucentActivity() {
 
     }
 
-    /** Configure the activity in base of AboutApp  */
+    /** Configure the activity based on AboutApp */
     private fun configureByAboutApp() {
 
         binding.appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
@@ -214,7 +214,7 @@ class AboutActivity : TranslucentActivity() {
 
     /**
      * Start the process to get the terms and privacy policy in a web view.
-     * @param animateShowTermsView Determines if when the terms view is shown it will be done with an animation,
+     * @param animateShowTermsView Determines if when the terms view is shown it will be done with animation,
      *        this view is only shown if the data was obtained correctly from the server.
      * */
     private fun loadTermsAndPolicy(animateShowTermsView: Boolean = true) {
@@ -232,7 +232,7 @@ class AboutActivity : TranslucentActivity() {
 
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
-        // Get te background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
+        // Get the background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
         val backgroundColor = Integer.toHexString(binding.contentCard.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
         val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).toUpperCase(Locale.ROOT)
 
@@ -284,7 +284,7 @@ class AboutActivity : TranslucentActivity() {
         }
     }
 
-    /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with an animation or not. */
+    /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with animation or not. */
     private fun showTermsAndPolicy(animate: Boolean = true) {
 
         AboutApp.log("showTermsAndPolicy() Invoked")

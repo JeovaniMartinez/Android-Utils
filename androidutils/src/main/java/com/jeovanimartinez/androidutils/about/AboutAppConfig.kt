@@ -19,7 +19,7 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param companyLink URL that opens when clicking on the company logo, null to not open any link.
  * @param termsAndPrivacyPolicyLink URL of the terms of use and privacy policy, leave null if you do not want to show them.
  * @param termsAndPrivacyPolicyTextColor Color for the text of the terms of use and privacy policy, if it is null, the default value is used, which is the color defined in the theme.
- * @param showOpenSourceLicenses Determines whether a button is shown to view the app open source licenses. If true, these https://developers.google.com/android/guides/opensource
+ * @param showOpenSourceLicenses Determines whether a button is shown to view the open source licenses of the app. If true, these https://developers.google.com/android/guides/opensource
  *        instructions must be followed in order to can shown open source licenses.
  * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription, leave null if it is not required.
  * */
