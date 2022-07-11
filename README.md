@@ -14,7 +14,7 @@
 
 <p align="center">
 <a href="https://jeovanimartinez.github.io/Android-Utils/docs/" target="_self"><img src="https://img.shields.io/badge/DOCS-DOCUMENTATION-blue?style=for-the-badge&logo=read-the-docs&label=%20&labelColor=3F3F3F&color=008097&logoColor=FFFFFF" alt="DOCUMENTATION" /></a>&nbsp;&nbsp;
-<a href="https://jeovanimartinez.github.io/Android-Utils/docs/reference/androidutils/index.html"><img src="https://img.shields.io/badge/API-REFERENCE-blue?style=for-the-badge&labelColor=3F3F3F&color=00996F" alt="API-REFERENCE" /></a>&nbsp;&nbsp;
+<a href="https://jeovanimartinez.github.io/Android-Utils/reference/index.html"><img src="https://img.shields.io/badge/API-REFERENCE-blue?style=for-the-badge&labelColor=3F3F3F&color=00996F" alt="API-REFERENCE" /></a>&nbsp;&nbsp;
     <a href="https://jeovanimartinez.github.io/Android-Utils/" target="_self"><img src="https://img.shields.io/badge/WEB-WEBSITE-blue?style=for-the-badge&logo=tor-browser&label=%20&labelColor=3F3F3F&color=DA5900&logoColor=FFFFFF" alt="WEBSITE" /></a>
 </p>
 
@@ -27,8 +27,8 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 #### Main Features
 
-- Compatible with Android `API 17+`
-- Source code written 100% in `Kotlin`
+- Compatible with Android `API 21+`
+- Source code is written 100% in `Kotlin`
 - UI with `light and dark` theme support.
 - UI with language support for: `English - Spanish`
 - Free and open-source. `Apache License, Version 2.0`
@@ -80,7 +80,7 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 ## Showcase
 
-See the awesome apps are using Android Utils library.
+See the awesome apps are using the Android Utils library.
 
 [<img src="https://user-images.githubusercontent.com/38060456/113939209-4d855c80-97c1-11eb-8937-1b93a5948a7f.png" alt="Resistor Color Code Calculator" />](https://play.google.com/store/apps/details?id=com.jedemm.resistorcalculator)
 [<img src="https://user-images.githubusercontent.com/38060456/113939215-4fe7b680-97c1-11eb-8bff-c02d8ae1e0e0.png" alt="Secure Notes" />](https://play.google.com/store/apps/details?id=com.jedemm.securenotes)
@@ -97,7 +97,7 @@ Meet the developers and contributors of the Android Utils project.
 
 ## Sponsors
 
-People, organizations, and companies that support Android Utils project.
+People, organizations, and companies that support the Android Utils project.
 
 [<img src="https://user-images.githubusercontent.com/38060456/113641249-e5a90780-9642-11eb-9af7-8c39d800a79b.png" alt="Jedemm Technologies" />](https://jedemm.com/)
 
