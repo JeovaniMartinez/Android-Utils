@@ -31,7 +31,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a watermark inside the [bitmap].
      * @param context Context.
      * @param bitmap Bitmap where the watermark is to be drawn.
-     * @param watermark Watermark.Drawable or Watermark.Text to draw inside the [bitmap].
+     * @param watermark [Watermark.Drawable] or [Watermark.Text] to draw inside the [bitmap].
      * */
     fun drawWatermark(context: Context, bitmap: Bitmap, watermark: Watermark) {
         validateWatermark(watermark)
@@ -45,14 +45,14 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a list of watermarks inside the [bitmap].
      * @param context Context.
      * @param bitmap Bitmap where the watermarks are to be drawn.
-     * @param watermarkList List of Watermark.Drawable or Watermark.Text to draw inside the [bitmap].
+     * @param watermarkList List of [Watermark.Drawable] or [Watermark.Text] to draw inside the [bitmap].
      * */
     fun drawWatermark(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
         watermarkList.forEach { drawWatermark(context, bitmap, it) }
     }
 
     /**
-     * Validate the properties of the [watermark] object, and generate an IllegalArgumentException in case of finding incorrect values.
+     * Validate the properties of the [watermark] object, and generate an [IllegalArgumentException] in case of finding incorrect values.
      * */
     private fun validateWatermark(watermark: Watermark) {
         require(watermark.opacity in 0f..1f) {
@@ -76,7 +76,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a drawable watermark inside a bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
-     * @param watermark Watermark.Drawable to draw inside the [targetBitmap].
+     * @param watermark [Watermark.Drawable] to draw inside the [targetBitmap].
      * */
     private fun drawDrawableWatermark(context: Context, targetBitmap: Bitmap, watermark: Watermark.Drawable) {
 
@@ -180,7 +180,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * Draw a text watermark inside a bitmap.
      * @param context Context.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
-     * @param watermark Watermark.Text to draw in the [targetBitmap].
+     * @param watermark [Watermark.Text] to draw in the [targetBitmap].
      * */
     private fun drawTextWatermark(context: Context, targetBitmap: Bitmap, watermark: Watermark.Text) {
 

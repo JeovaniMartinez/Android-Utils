@@ -103,7 +103,7 @@ object Premium : Base<Premium>() {
          * Starts the process to get the details of products based on their sku (id).
          * @param context Context.
          * @param skuList List with the skus (ids) of the products of which you want to obtain the details.
-         * The result is informed by onSkuDetails() of the listener.
+         * The result is informed by [Premium.Listener.onSkuDetails].
          * */
         fun getSkuDetails(context: Context, skuList: List<String>) {
             log("Called > getSkuDetails(skus = $skuList)")
@@ -156,7 +156,7 @@ object Premium : Base<Premium>() {
         }
 
         /**
-         * Check if the user has premium privileges, and report the result using the listener's onCheckPremium().
+         * Check if the user has premium privileges, and reports the result by [Premium.Listener.onCheckPremium].
          * - It is first verified on the billing client, and that result is reported.
          * - If the billing client cannot report the result, the preferences result is reported.
          *
@@ -554,7 +554,7 @@ object Premium : Base<Premium>() {
     interface Listener {
 
         /**
-         * Informs if the user has premium rights to the app. It's invoked after calling checkPremium function of Premium.Controller.
+         * Informs if the user has premium rights to the app. It's invoked after calling [Premium.Controller.checkPremium].
          * The reported [state] is the one obtained directly from the billing client, and in the event that it is not possible to
          * obtain that value, the value of the preferences is reported.
          * */
@@ -562,7 +562,7 @@ object Premium : Base<Premium>() {
 
         /**
          * Informs the details of the products (title, price, description, etc.). It's invoked after requesting products details
-         * with Premium.Controller.getSkuDetails().
+         * with [Premium.Controller.getSkuDetails].
          * @param skuDetails List with details of the products, or null if products details could not be obtained.
          * */
         fun onSkuDetails(skuDetails: List<SkuDetails>?)

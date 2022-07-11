@@ -38,7 +38,7 @@ abstract class Base<T : Base<T>> {
 
     /**
      * Determines if the event log in Firebase Analytics is enabled for the class instance, for the event log, the static property of the companion
-     * object firebaseAnalyticsInstance must also be assigned, if that property is null, no events will be logged, since what is required.
+     * object [firebaseAnalyticsInstance] must also be assigned, if that property is null, no events will be logged, since what is required.
      * */
     @Suppress("MemberVisibilityCanBePrivate")
     var firebaseAnalyticsEnabled = true
