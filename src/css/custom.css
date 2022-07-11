@@ -51,6 +51,8 @@
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+/* Admonitions */
+
 blockquote {
     /*noinspection CssUnresolvedCustomProperty*/
     border-left: 6px solid var(--ifm-color-emphasis-300);

@@ -9,7 +9,7 @@ import styles from './index.module.css';
 
 const features = [
     {
-        title: 'Compatible with API 17+',
+        title: 'Compatible with API 21+',
         imageUrl: 'img/site/android.png',
     },
     {
