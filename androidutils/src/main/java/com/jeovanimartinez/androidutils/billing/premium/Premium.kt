@@ -30,7 +30,7 @@ object Premium : Base<Premium>() {
     /**
      * Returns the current premium state.
      *
-     * **It value must be used in all conditions within the app where it is necessary to verify the premium state.**
+     * **Its value must be used in all conditions within the app where it is necessary to verify the premium state.**
      * */
     fun getCurrentState(): State {
         return currentState
@@ -75,7 +75,7 @@ object Premium : Base<Premium>() {
 
             currentState = getPremiumStateFromPreferences() // To load the current state
 
-            // It's not necessary call connect function here.
+            // It's not necessary to call connect function here
         }
 
         /**
@@ -175,7 +175,7 @@ object Premium : Base<Premium>() {
                 val result = getPremiumStateFromPreferences()
                 currentState = result // Update the current state
                 listener.whenNotNull {
-                    log("Listener function invoked > onCheckPremium() | The result is informed from the preferences")
+                    log("Listener function invoked > onCheckPremium() | The result is informed by the preferences")
                     firebaseAnalytics(Event.BILLING_CHECK_PREMIUM_PREFERENCES)
                     it.onCheckPremium(result)
                 }
@@ -193,7 +193,7 @@ object Premium : Base<Premium>() {
                     val result = handlePurchase(purchases.purchasesList) // The status of purchases is validated
                     currentState = result // Update the current state
                     listener.whenNotNull {
-                        log("Listener function invoked > onCheckPremium() | The result is informed from the billing client")
+                        log("Listener function invoked > onCheckPremium() | The result is informed by the billing client")
                         firebaseAnalytics(Event.BILLING_CHECK_PREMIUM_CLIENT)
                         it.onCheckPremium(result)
                     }
@@ -205,13 +205,13 @@ object Premium : Base<Premium>() {
                 }
             }
 
-            // The connection is verified and connect it (if is necessary), based on the result, the appropriate function is invoked
+            // The connection is verified and connected (if necessary), and based on the result, the appropriate function is invoked
             connect(context) { code ->
                 if (code == BillingResponseCode.OK) {
                     log("Billing client is ready to check premium state")
                     checkPremiumWithBillingClient()
                 } else {
-                    log("Billing client is not ready to check premium, premium state it will be verified with the preferences")
+                    log("Billing client is not ready to check premium, premium state will be verified with the preferences")
                     checkPremiumWithPreferences()
                 }
             }
@@ -222,7 +222,7 @@ object Premium : Base<Premium>() {
          * */
         private fun checkInitialization() {
             if (!initialized) {
-                throw IllegalStateException("It is necessary to call Premium.Controller.init() before call any another function of Premium.Controller")
+                throw IllegalStateException("It is necessary to call Premium.Controller.init() before calling any other function of Premium.Controller")
             }
         }
 
@@ -259,7 +259,7 @@ object Premium : Base<Premium>() {
         }
 
         /**
-         * Gets and return the current premium state from the preferences.
+         * Gets and returns the current premium state based on preferences.
          * */
         private fun getPremiumStateFromPreferences(): State {
             val state = when (sharedPreferences.getInt(Preferences.PREMIUM_STATE, State.NOT_PREMIUM.id)) {
@@ -350,12 +350,12 @@ object Premium : Base<Premium>() {
                     billingClient.querySkuDetailsAsync(skuDetailsParams) { billingResult, skuDetailsList ->
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             if (skuDetailsList != null && skuDetailsList.isNotEmpty()) {
-                                log("Sku details list were successfully obtained. Size = ${skuDetailsList.size} Expected size = ${skuList.size}")
+                                log("Sku details list was successfully obtained. Size = ${skuDetailsList.size} Expected size = ${skuList.size}")
                                 log("$skuDetailsList")
                                 firebaseAnalytics(Event.BILLING_SKU_DETAILS_OK)
                                 result(skuDetailsList)
                             } else {
-                                log("Error on get the sku details, the result list is empty.")
+                                log("Error on getting the sku details, the result list is empty.")
                                 firebaseAnalytics(Event.BILLING_SKU_DETAILS_ERROR)
                                 result(null) // The result is null because it could not be obtained the details of the product
                             }
@@ -404,16 +404,16 @@ object Premium : Base<Premium>() {
                         }
                         log("Premium Skus list does contain ${it.sku}")
                         log("Current result based on all validations: $result")
-                        // It is verified if the purchase has already been acknowledged, if it is not already acknowledged, it acknowledge it (this process is independent)
+                        // It is verified if the purchase has already been acknowledged. If it is not already acknowledged, it acknowledges it (this process is independent)
                         acknowledgePurchase(it)
                     } else {
-                        log("Premium Skus list not contains ${it.sku} | No need to handle the purchase")
+                        log("Premium Skus list does not contains ${it.sku} | No need to handle the purchase")
                     }
                 }
             } else {
                 // The State.NOT_PREMIUM result is kept, since there are no purchases
                 result = State.NOT_PREMIUM
-                log("Purchases list is null or empty")
+                log("The purchases list is null or empty")
             }
 
             log("handlePurchase final result (Premium state) = $result")
@@ -422,16 +422,16 @@ object Premium : Base<Premium>() {
         }
 
         /**
-         * Verifies if the [purchase] has already been acknowledge, and if not, it is acknowledge.
+         * Verifies if the [purchase] has already been acknowledged, and if not, it is acknowledged.
          * This process is independent, runs in the background and does not affect any other process.
-         * The acknowledge of the purchase is mandatory, because if it is not done after a while, Google will refund the purchase.
+         * The acknowledgment of the purchase is mandatory, because if it is not done after a while, Google will refund the purchase.
          * */
         private fun acknowledgePurchase(purchase: Purchase) {
             log("Invoked > acknowledgePurchase(purchase = $purchase)")
 
             when {
                 !premiumSkus.contains(purchase.sku) -> {
-                    log("The purchase cannot be acknowledged because it sku is not on the premiumSkus list")
+                    log("The purchase cannot be acknowledged because its sku is not on the premiumSkus list")
                     return
                 }
                 purchase.isAcknowledged -> {
@@ -439,21 +439,21 @@ object Premium : Base<Premium>() {
                     return
                 }
                 purchase.purchaseState == PurchaseState.UNSPECIFIED_STATE -> {
-                    log("No need acknowledge purchase, because purchase state is ${PurchaseState.UNSPECIFIED_STATE} UNSPECIFIED_STATE")
+                    log("No need to acknowledge the purchase, because the purchase state is ${PurchaseState.UNSPECIFIED_STATE} UNSPECIFIED_STATE")
                     return
                 }
                 purchase.purchaseState == PurchaseState.PENDING -> {
-                    log("No need acknowledge purchase, because purchase state is ${PurchaseState.PENDING} PENDING")
+                    log("No need to acknowledge the purchase, because the purchase state is ${PurchaseState.PENDING} PENDING")
                     return
                 }
             }
 
-            log("The purchase is not yet recognized and state is ${PurchaseState.PURCHASED} PURCHASED, started process to acknowledged it")
+            log("The purchase is not yet recognized and the state is ${PurchaseState.PURCHASED} PURCHASED, started the process to acknowledge it")
 
             preventEndConnection = true
             connect(null) { code ->
                 if (code == BillingResponseCode.OK) {
-                    log("Billing client is ready to acknowledged the purchase")
+                    log("The billing client is ready to acknowledge the purchase")
                     val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.purchaseToken).build()
                     billingClient.acknowledgePurchase(acknowledgePurchaseParams) { billingResult ->
                         if (billingResult.responseCode == BillingResponseCode.OK) {
@@ -469,7 +469,7 @@ object Premium : Base<Premium>() {
                     }
                 } else {
                     preventEndConnection = false
-                    log("Billing client is not ready to acknowledged the purchase")
+                    log("The billing client is not ready to acknowledge the purchase")
                     firebaseAnalytics(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
                 }
             }
@@ -491,14 +491,14 @@ object Premium : Base<Premium>() {
                     result = handlePurchase(purchases) // Purchase status is validated
                 }
                 BillingResponseCode.ITEM_ALREADY_OWNED -> {
-                    // If this code is obtained, it is that the user already had the product, and purchases is null, so the data is updated to indicate that the user is already premium
+                    // If this code is obtained, it is that the user already had the product, and purchases are null, so the data is updated to indicate that the user is already premium
                     result = State.PREMIUM
                     savePremiumStateInPreferences(result)
                 }
                 else -> {
-                    // The purchase was canceled, an error occurred or the payment method was rejected, the purchase was not complete
+                    // The purchase was canceled, an error occurred or the payment method was rejected. The purchase was not completed
                     result = State.NOT_PREMIUM
-                    log("Purchase cancelled")
+                    log("Purchase canceled")
                     firebaseAnalytics(Event.BILLING_PURCHASE_CANCELLED)
                 }
             }
@@ -525,15 +525,15 @@ object Premium : Base<Premium>() {
     enum class State(val id: Int) {
 
         /**
-         * User does not have premium privileges.
+         * The user does not have premium privileges.
          * This indicates that the user has never purchased a premium version of the app, so
          * should be denied access to premium features.
          * */
         NOT_PREMIUM(0),
 
         /**
-         * User has premium privileges.
-         * This indicates that at some point the user have already paid for the purchase of a
+         * The user has premium privileges.
+         * This indicates that at some point the user has already paid for the purchase of a
          * premium version of the app, so should be granted access to premium features.
          * */
         PREMIUM(1),
@@ -578,7 +578,7 @@ object Premium : Base<Premium>() {
          * Reports the result of the purchase, and when the premium status changes.
          *
          * Can be invoked in the following cases:
-         * - When launch the billing flow, this function is invoked at the end of the flow to report the [result].
+         * - When launching the billing flow, this function is invoked at the end of the flow to report the [result].
          * - When the status of a pending transaction changes, it is invoked to report the [result].
          * */
         fun onPurchaseResult(result: State)
