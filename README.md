@@ -107,7 +107,7 @@ People, organizations, and companies that support the Android Utils project.
 
 [Apache License, Version 2.0](https://github.com/JeovaniMartinez/Android-Utils/blob/master/LICENSE)
 
-```
+```text
 Copyright © 2020-Present. Jeovani Martinez
 
 Licensed under the Apache License, Version 2.0 (the "License");
