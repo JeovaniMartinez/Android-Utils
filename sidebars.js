@@ -123,6 +123,11 @@ const sidebars = {
                     "id": "release-notes/v0.9.0-beta"
                 }
             ]
+        },
+        {
+            "type": "doc",
+            "label": "Older Docs",
+            "id": "older-docs/older-docs",
         }
     ]
 };
