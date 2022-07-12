@@ -13,4 +13,4 @@ Docs:
 - android-utils > Motivation
 
 - configuration > index and items descriptions
-- 
+- configuration > Getting Started
