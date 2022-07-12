@@ -12,6 +12,7 @@
     - Copy the generated docs to the documentation branch inside api_reference/reference folder.
 - Update documentation as required.
     - Add new release notes.
+    - Update Getting Started > implementation 'com.github.JeovaniMartinez:Android-Utils:version' to set the new library version.
 - Build new documentation (in documentation project):
     - Adjust the version in `package.json` to match the library version.
     - Execute the `npm run build` command to generate the build of the documentation for production.
