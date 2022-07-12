@@ -19,5 +19,6 @@
 
     <!-- App colors -->
     <color name="colorSeparator">#DFDFDF</color>
+    <color name="icons1">#BDBDBD</color>
 
 </resources>
