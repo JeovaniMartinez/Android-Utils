@@ -9,6 +9,7 @@ import com.jeovanimartinez.androidutils.app.constants.Preferences
 import com.jeovanimartinez.androidutils.app.databinding.ActivityMainBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
+import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 
 /** MainActivity */
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,14 @@ class MainActivity : AppCompatActivity() {
 
     /** Initial setup */
     private fun initialSetup() {
+
+        binding.btnWebSite.setOnClickListener {
+            SystemWebBrowser.openUrl(this, "https://jeovanimartinez.github.io/Android-Utils/")
+        }
+
+        binding.btnGitHub.setOnClickListener {
+            SystemWebBrowser.openUrl(this, "https://github.com/JeovaniMartinez/Android-Utils")
+        }
 
         binding.btnToggleTheme.setOnClickListener {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
