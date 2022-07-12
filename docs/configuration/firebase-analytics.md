@@ -1,7 +1,7 @@
 ---
 id: firebase-analytics
 title: Firebase Analytics
-description: Optional event logging into Firebase Analytics.
+description: Optional event logging in Firebase Analytics.
 ---
 
 export const Event = ({children}) => ( <span style={{

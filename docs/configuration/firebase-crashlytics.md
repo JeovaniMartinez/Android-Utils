@@ -1,7 +1,7 @@
 ---
 id: firebase-crashlytics
 title: Firebase Crashlytics
-description: Optional recoverable error's registry into Firebase Crashlytics.
+description: Optional recoverable errors registry in Firebase Crashlytics.
 ---
 
 :::note

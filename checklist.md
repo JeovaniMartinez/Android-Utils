@@ -8,6 +8,9 @@ General:
 
 Docs:
 
-- Android Utils index and items descriptions
-- Android Utils > Introduction (PENDING, Adjust when done checking library)
-- Android Utils > Motivation
+- android-utils > index and items descriptions
+- android-utils > Introduction (PENDING, Adjust when done checking library)
+- android-utils > Motivation
+
+- configuration > index and items descriptions
+- 
