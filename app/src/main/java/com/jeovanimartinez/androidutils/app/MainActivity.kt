@@ -232,12 +232,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.launchTranslucentActivityBtn.setOnClickListener {
 
-            val opacity = (binding.translucentActivityOpacity.progress / 100.0).toFloat()
-
-            startActivity(
-                Intent(this@MainActivity, TranslucentThemeDemo::class.java).putExtra("opacity", opacity),
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(this@MainActivity).toBundle() else null
-            )
+//            val opacity = (binding.translucentActivityOpacity.progress / 100.0).toFloat()
+//
+//            startActivity(
+//                Intent(this@MainActivity, TranslucentThemeDemo::class.java).putExtra("opacity", opacity),
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(this@MainActivity).toBundle() else null
+//            )
         }
 
     }
