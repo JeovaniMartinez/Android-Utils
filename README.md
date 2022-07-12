@@ -1,5 +1,5 @@
 
-<h1 align="center">Android Utils</h1>
+<h1 align="center">Android Utils Library</h1>
 <p align="center"><a href="https://jeovanimartinez.github.io/Android-Utils/" target="_self"><img width="400" src="https://raw.githubusercontent.com/JeovaniMartinez/Android-Utils/master/resources/library-logo/intro-img.svg" alt="Android Utils Logo" /></a></p>
 <h4 align="center">Set of utilities for Android app development.</h4>
 
