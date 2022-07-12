@@ -4,8 +4,7 @@
 
 - Make sure everything is ready and documented in the library and the test app.
 - Run the necessary tests and verify that everything works correctly.
-- Update library version code and version name in `build.gradle` (at the project level).
-    - Commit and push changes.
+- Update library version code and version name in `build.gradle` (at the project level), if it hasn't been done yet.
 - Update `README.md` (at root project folder) if necessary.
     - Update also in the documentation branch in docs/android-utils/introduction.md
 - Generate API reference docs (instructions in api-reference/README.md).
