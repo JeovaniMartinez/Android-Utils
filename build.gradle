@@ -5,8 +5,8 @@ buildscript {
     ext {
 
         // ** Android Utils Library Version **
-        androidUtilsVersionCode = 1
-        androidUtilsVersionName = "0.9.0-beta"
+        androidUtilsVersionCode = 2
+        androidUtilsVersionName = "1.0.0"
 
         // Gradle build tool version
         gradlePluginVersion = '7.2.1'
