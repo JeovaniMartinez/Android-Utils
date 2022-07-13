@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- In Android API 23+ can be used windowLightStatusBar, so the same color as the background of the app is used for the Status Bar background -->
+    <color name="statusBarColor">@color/colorBackground</color>
+
+</resources>

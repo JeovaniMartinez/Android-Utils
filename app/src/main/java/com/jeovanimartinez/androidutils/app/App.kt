@@ -17,6 +17,11 @@ class App : MultiDexApplication() {
 
         Log.d(LOG_TAG, "Started Android Utils App")
 
+        // Tests, to appreciate the splash screen
+        for (i in 1..100000) {
+            Log.d(LOG_TAG, i.toString())
+        }
+
         themeSetup()
     }
 

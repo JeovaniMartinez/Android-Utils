@@ -1,4 +1,14 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/colorBackground</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+
+        <item name="postSplashScreenTheme">@style/AppTheme</item>
+
+        <!-- Reference: https://developer.android.com/guide/topics/ui/splash-screen -->
+        <!-- Reference: https://itnext.io/a-comprehensive-guide-to-android-12s-splash-screen-api-644609c811fa -->
+    </style>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -15,6 +25,12 @@
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorError">@color/colorError</item>
         <item name="colorOnError">@color/colorOnError</item>
+
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 
     <!-- Android Utils library theme, used to preserve the app style. -->

@@ -17,6 +17,9 @@
     <color name="colorError">#B00020</color>
     <color name="colorOnError">#FFFFFF</color>
 
+    <color name="statusBarColor">#212121</color>
+    <color name="navigationBarColor">#212121</color>
+
     <!-- App colors -->
     <color name="colorSeparator">#7E7E7E</color>
     <color name="icons1">#737373</color>
