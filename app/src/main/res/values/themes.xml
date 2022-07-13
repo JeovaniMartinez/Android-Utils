@@ -2,11 +2,19 @@
 
     <style name="SplashScreenTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/colorBackground</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen_logo</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
 
         <item name="postSplashScreenTheme">@style/AppTheme</item>
 
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
         <!-- Reference: https://developer.android.com/guide/topics/ui/splash-screen -->
+        <!-- Reference: https://developer.android.com/reference/kotlin/androidx/core/splashscreen/SplashScreen -->
         <!-- Reference: https://itnext.io/a-comprehensive-guide-to-android-12s-splash-screen-api-644609c811fa -->
     </style>
 
