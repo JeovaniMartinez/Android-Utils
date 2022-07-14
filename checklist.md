@@ -14,5 +14,6 @@ Docs:
 
 - configuration > index and items descriptions
 - configuration > Getting Started
+- configuration > Log
 
 - older-docs> Older Docs
