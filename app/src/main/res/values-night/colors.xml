@@ -21,6 +21,7 @@
     <color name="navigationBarColor">#212121</color>
 
     <!-- App colors -->
+    <color name="logoTextColor">#BDBDBD</color>
     <color name="colorSeparator">#DFDFDF</color>
     <color name="icons1">#BDBDBD</color>
 

@@ -3,7 +3,7 @@
     <style name="SplashScreenTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/colorBackground</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen_logo</item>
-        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="31">@drawable/logo_text</item>
 
         <item name="postSplashScreenTheme">@style/AppTheme</item>
 
