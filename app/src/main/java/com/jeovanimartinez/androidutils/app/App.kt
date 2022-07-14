@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
+import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.app.constants.Preferences
 
 /** App Singleton */
@@ -17,10 +18,12 @@ class App : MultiDexApplication() {
 
         Log.d(LOG_TAG, "Started Android Utils App")
 
+        Base.logEnable = BuildConfig.DEBUG
+
         // Tests, to appreciate the splash screen
-        for (i in 1..100000) {
-            Log.d(LOG_TAG, i.toString())
-        }
+        // for (i in 1..100000) {
+        //    Log.d(LOG_TAG, i.toString())
+        // }
 
         themeSetup()
     }
