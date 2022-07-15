@@ -8,20 +8,11 @@ buildscript {
         androidUtilsVersionCode = 2
         androidUtilsVersionName = "1.0.0"
 
-        // Gradle build tool version
-        gradlePluginVersion = '7.2.1'
-
         // Lint tool version
         lintVersion = '30.2.1' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
 
         // Kotlin version
         kotlinVersion = '1.7.0'
-
-        // Dokka version (documentation engine for Kotlin)
-        dokkaVersion = '1.7.0'
-
-        // OSS Licenses Plugin version
-        ossLicensesPlugin = '0.10.5'
 
     }
 
@@ -34,10 +25,11 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
-        classpath "com.google.android.gms:oss-licenses-plugin:$ossLicensesPlugin"
+        classpath "com.android.tools.build:gradle:7.2.1"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.0"
+        classpath "com.google.android.gms:oss-licenses-plugin:0.10.5"
+        classpath 'com.google.gms:google-services:4.3.13'
     }
 
 }
