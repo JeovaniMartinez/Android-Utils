@@ -13,4 +13,4 @@ Thank you for being interested in improving this library, follow these steps to 
    - Follow the coding style used in the library.
 4. **Test** your changes and add example if necessary in the library test app.
 5. **Create** a pull request.
-    - Include a detailed description of the changes you have made or features you have added to the library.
+   - Include a detailed description of the changes you have made or features you have added to the library.
