@@ -9,4 +9,4 @@ Parts of the library of the first version of the library already revised
 - layout folder (all files)
 - drawable folder. NOTE: pending to delete logo_jedemm_com and unused resources
 - AndroidManifest.xml
-- Base (only log part)
+- Base (only log and FirebaseAnalytics)
