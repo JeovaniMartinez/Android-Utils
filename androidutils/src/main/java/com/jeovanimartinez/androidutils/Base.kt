@@ -37,7 +37,7 @@ abstract class Base<T : Base<T>> {
     }
 
     /**
-     * Determines if the event log in Firebase Analytics is enabled for the class instance, for the event log, the static property of the companion
+     * Determines if the event log in Firebase Analytics is enabled for this class instance, for the event log, the static property of the companion
      * object [firebaseAnalyticsInstance] must also be assigned, if that property is null, no events will be logged, since what is required.
      * */
     @Suppress("MemberVisibilityCanBePrivate")
@@ -56,6 +56,11 @@ abstract class Base<T : Base<T>> {
      * */
     internal fun firebaseAnalytics(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
 
+        // No need to log the event in Firebase Analytics or show debug info, firebaseAnalyticsInstance is null
+        if (firebaseAnalyticsInstance == null) return
+
+        // If there is an assigned Firebase Analytics instance
+
         // Records the result of the event in the log, with the [message] indicating the action that was performed.
         val logResult = { message: String ->
             var params = "[N/A]" // To report in the log
@@ -63,13 +68,12 @@ abstract class Base<T : Base<T>> {
             log("Event emitted: [ $eventName ] Params: $params | $message")
         }
 
-        if (firebaseAnalyticsInstance == null) return logResult("No need to log the event in Firebase Analytics, firebaseAnalyticsInstance is null")
-
-        if (!firebaseAnalyticsEnabled) return logResult("No need to log the event in Firebase Analytics, this is disabled for this class instance")
-
-        // Otherwise, the event is logged in Firebase Analytics.
-        firebaseAnalyticsInstance!!.logEvent(eventName, eventParams)
-        logResult("Event logged in Firebase Analytics")
+        if (firebaseAnalyticsEnabled) {
+            firebaseAnalyticsInstance!!.logEvent(eventName, eventParams)
+            logResult("Event logged in Firebase Analytics")
+        } else {
+            logResult("No need to log the event in Firebase Analytics, this is disabled for this class instance")
+        }
 
     }
 
