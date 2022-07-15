@@ -25,7 +25,8 @@
     --ra-admonition-color: #ecf4f9;
     --ra-admonition-color-dark: #2a98b9;
 
-    --ra-admonition-color-important: #2a98b9;
+    --ra-admonition-color-important: #ecf0ff;
+    --ra-admonition-color-important-dark: #3c2ece;
 
     --ra-admonition-color-success: #f1fdf9;
     --ra-admonition-color-success-dark: #00bf88;
@@ -82,6 +83,11 @@ blockquote {
 .admonition.admonition-secondary {
     --ra-admonition-color: #ecf4f9;
     background-color: var(--ra-admonition-color);
+}
+
+.admonition.admonition-important {
+    background-color: var(--ra-admonition-color-important);
+    border-left-color: var(--ra-admonition-color-important-dark);
 }
 
 .admonition.admonition-success,
