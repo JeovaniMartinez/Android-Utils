@@ -17,4 +17,6 @@ Docs:
 - configuration > Log
 - configuration > Analytics (Until note: Some events have... Check and update events and event descriptions as utilities are checked)
 
-- older-docs> Older Docs
+- older-docs > Older Docs
+
+- contributing > Contribution Guide
