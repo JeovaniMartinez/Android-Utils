@@ -128,7 +128,19 @@ const sidebars = {
             "type": "doc",
             "label": "Older Docs",
             "id": "older-docs/older-docs",
-        }
+        },
+        {
+            "collapsed": true,
+            "type": "category",
+            "label": "Contributing",
+            "link": {"type": "doc", "id": 'contributing/index'},
+            "items": [
+                {
+                    "type": "doc",
+                    "id": "contributing/contribution-guide"
+                }
+            ]
+        },
     ]
 };
 
