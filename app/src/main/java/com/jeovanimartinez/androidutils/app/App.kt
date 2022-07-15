@@ -1,3 +1,5 @@
+@file:Suppress("UnusedImport")
+
 package com.jeovanimartinez.androidutils.app
 
 import android.content.Context
@@ -6,6 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.app.constants.Preferences
+import com.google.firebase.analytics.FirebaseAnalytics
 
 /** App Singleton */
 class App : MultiDexApplication() {
@@ -18,14 +21,24 @@ class App : MultiDexApplication() {
 
         Log.d(LOG_TAG, "Started Android Utils App")
 
-        Base.logEnable = BuildConfig.DEBUG
+        themeSetup()
 
         // Tests, to appreciate the splash screen
         // for (i in 1..100000) {
         //    Log.d(LOG_TAG, i.toString())
         // }
 
-        themeSetup()
+
+        Base.logEnable = BuildConfig.DEBUG // Adjust the debug log
+
+        /**
+         * Assigning the Firebase Analytics instance to test event logging.
+         *
+         * Enable Analytics debug mode: adb shell setprop debug.firebase.analytics.app com.jeovanimartinez.androidutils.app
+         * Disable Analytics debug mode: adb shell setprop debug.firebase.analytics.app .none.
+         * */
+        // Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(this)
+
     }
 
     /** Theme Setup */
