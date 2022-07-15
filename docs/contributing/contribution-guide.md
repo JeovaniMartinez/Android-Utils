@@ -11,6 +11,7 @@ Thank you for being interested in improving this library, follow these steps to 
 2. **Create** a new branch based on `master`, and name it according to your changes.
 3. **Add** your commits.
    - Follow the coding style used in the library.
+   - Document the code.
 4. **Test** your changes and add example if necessary in the library test app.
 5. **Create** a pull request.
    - Include a detailed description of the changes you have made or features you have added to the library.
