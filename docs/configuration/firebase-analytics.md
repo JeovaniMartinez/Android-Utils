@@ -1,6 +1,7 @@
 ---
 id: firebase-analytics
-title: Firebase Analytics
+title: Firebase And Google Analytics
+sidebar_label: Analytics
 description: Optional event logging in Firebase Analytics.
 ---
 
@@ -18,20 +19,26 @@ export const Parameter = ({children}) => ( <span style={{
    padding: '0.2rem 0.8rem',
 }}>{children}</span> );
 
+## Description
+
+The custom event log is very useful to understand how users interact with the app. Some library utilities can record useful events in Firebase and
+Google Analytics.
+
 :::note
-Event logging into Firebase Analytics is **optional** and is disabled by default.
+Event logging in Firebase And Google Analytics is **optional** and is disabled by default.
 :::
+
+---
 
 ## Configuration
 
 :::important
-If you want to enable event logging, your project must have Firebase Analytics configured.<br/>
+If you want to enable event logging, your project must have Firebase Analytics configured and optionally Google Analytics enabled.<br/>
 [Guide](https://firebase.google.com/docs/analytics/get-started?platform=android)
 :::
 
-The custom event log is very useful to understand how users interact with the app, the library utilities record useful events in Firebase Analytics.
-This is disabled by default, to enable it, you must define the Firebase Analytics instance, this must be done in the `onCreate()` of the singleton or 
-main activity, when assigning the instance, the record of events will be enabled for all library utilities.
+To enable library custom event log, you must define the Firebase Analytics instance, this must be done in the `onCreate()` of the
+application class or on the main activity. When assigning the instance, the record of events will be enabled for all library utilities.
 
 ```kotlin
 Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(context)
@@ -50,8 +57,9 @@ In the example, the `MoreApps` utility does not log events to Firebase Analytics
 The following list shows the events that the library can log and their description.
 
 :::note
-Some events have <Parameter>parameters</Parameter> for the correct analysis of these events it is necessary to configure them in the Firebase console 
-or Google Analytics console.
+Some events have <Parameter>parameters.</Parameter> For an analysis of these parameters, 
+[custom dimensions and metrics](https://support.google.com/analytics/answer/10075209?hl=en)
+can be created in Firebase or Google Analytics console.
 :::
 
 <br/>
