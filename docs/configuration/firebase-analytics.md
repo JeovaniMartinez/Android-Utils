@@ -25,7 +25,12 @@ The custom event log is very useful to understand how users interact with the ap
 Google Analytics.
 
 :::note
-Event logging in Firebase And Google Analytics is **optional** and is disabled by default.
+Event logging in Firebase and Google Analytics is **optional** and is disabled by default.
+:::
+
+:::important
+If you enable custom event logging, all logs will be visible in your Firebase or Google Analytics project. This event log is intended for 
+you to analyze how the user interacts with your application. Events are only sent to the Firebase account you have configured in your project.
 :::
 
 ---
@@ -33,8 +38,8 @@ Event logging in Firebase And Google Analytics is **optional** and is disabled b
 ## Configuration
 
 :::important
-If you want to enable event logging, your project must have Firebase Analytics configured and optionally Google Analytics enabled.<br/>
-[Guide](https://firebase.google.com/docs/analytics/get-started?platform=android)
+If you want to enable event logging, your project must have Firebase Analytics configured and optionally Google Analytics enabled.
+**[Guide.](https://firebase.google.com/docs/analytics/get-started?platform=android)**
 :::
 
 To enable library custom event log, you must define the Firebase Analytics instance, this must be done in the `onCreate()` of the
