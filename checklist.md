@@ -15,8 +15,10 @@ Docs:
 - configuration > index and items descriptions
 - configuration > Getting Started
 - configuration > Log
-- configuration > Analytics (Until note: Some events have... Check and update events and event descriptions as utilities are checked)
+- configuration > *** Analytics (Until note: Some events have... Check and update events and event descriptions as utilities are checked)
 
 - older-docs > Older Docs
 
+- contributing > index and items descriptions
 - contributing > Contribution Guide
+- contributing > Firebase Crashlytics

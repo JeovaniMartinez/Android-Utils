@@ -45,10 +45,6 @@ const sidebars = {
                 {
                     "type": "doc",
                     "id": "configuration/firebase-analytics"
-                },
-                {
-                    "type": "doc",
-                    "id": "configuration/firebase-crashlytics"
                 }
             ]
         },
@@ -125,11 +121,6 @@ const sidebars = {
             ]
         },
         {
-            "type": "doc",
-            "label": "Older Docs",
-            "id": "older-docs/older-docs",
-        },
-        {
             "collapsed": true,
             "type": "category",
             "label": "Contributing",
@@ -138,8 +129,17 @@ const sidebars = {
                 {
                     "type": "doc",
                     "id": "contributing/contribution-guide"
+                },
+                {
+                    "type": "doc",
+                    "id": "contributing/firebase-crashlytics"
                 }
             ]
+        },
+        {
+            "type": "doc",
+            "label": "Older Docs",
+            "id": "older-docs/older-docs",
         },
     ]
 };
