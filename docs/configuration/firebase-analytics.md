@@ -43,7 +43,7 @@ If you want to enable event logging, your project must have Firebase Analytics c
 :::
 
 To enable library custom event log, you must define the Firebase Analytics instance, this must be done in the `onCreate()` of the
-application class or on the main activity. When assigning the instance, the record of events will be enabled for all library utilities.
+application class or in the main activity. When assigning the instance, the record of events will be enabled for all library utilities.
 
 ```kotlin
 Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(context)

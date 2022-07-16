@@ -12,7 +12,7 @@ The debug log describes in detail the execution flow of the library utilities.
 
 The debug log can be globally enabled or disabled, and affects all utilities in the library. It is recommended to use the following configuration to
 enable it in development and disable it in production, it is only necessary to adjust it once within the app, either in the `onCreate()` of the 
-application class or on the main activity.
+application class or in the main activity.
 ```kotlin
 Base.logEnable = BuildConfig.DEBUG
 ```
