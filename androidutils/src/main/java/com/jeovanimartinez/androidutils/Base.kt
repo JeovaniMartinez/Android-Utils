@@ -28,7 +28,7 @@ abstract class Base<T : Base<T>> {
 
         // Note: These exceptions are not logged in the logging functions, because sending events to Firebase Crashlytics is only required in certain cases.
         /**
-         * Firebase Crashlytics instance, assign only if the app implementing the library needs to log library recoverable errors in
+         * Firebase Crashlytics instance, assign only if the app implementing the library needs to send library crash reports to
          * Firebase Crashlytics, this property is global and is used in all subclasses of this class. Assign it only once within the
          * app, keeping in mind that the app must have Firebase Crashlytics configured, or leave it as null if it is not required
          * or if Firebase Crashlytics is not used in the app.
