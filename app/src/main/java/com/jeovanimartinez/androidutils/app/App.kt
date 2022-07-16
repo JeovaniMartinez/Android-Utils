@@ -9,6 +9,7 @@ import androidx.multidex.MultiDexApplication
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.app.constants.Preferences
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 /** App Singleton */
 class App : MultiDexApplication() {
@@ -30,6 +31,8 @@ class App : MultiDexApplication() {
 
 
         Base.logEnable = BuildConfig.DEBUG // Adjust the debug log
+
+        Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 
         /**
          * Assigning the Firebase Analytics instance to test event logging.
