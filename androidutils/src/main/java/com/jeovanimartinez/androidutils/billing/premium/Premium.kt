@@ -59,7 +59,7 @@ object Premium : Base<Premium>() {
          * */
         fun init(context: Context, premiumSkus: List<String>) {
             if (initialized) {
-                log("Premium.Controller is already initialized")
+                logw("Premium.Controller is already initialized")
                 return
             }
 
@@ -138,7 +138,7 @@ object Premium : Base<Premium>() {
                             log("Started billing flow")
                             firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_OK)
                         } else {
-                            log("Unable to start the purchase flow because the product details could not be obtained")
+                            logw("Unable to start the purchase flow because the product details could not be obtained")
                             firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_ERROR)
                             listener.whenNotNull {
                                 log("Listener function invoked > onStartPurchaseError()")
@@ -148,7 +148,7 @@ object Premium : Base<Premium>() {
                         }
                     }
                 } else {
-                    log("Unable to start the purchase flow because the billing client could not connect")
+                    logw("Unable to start the purchase flow because the billing client could not connect")
                     firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_ERROR)
                     listener.whenNotNull { log("Listener function invoked > onStartPurchaseError()"); it.onStartPurchaseError(code) }
                 }
@@ -302,7 +302,7 @@ object Premium : Base<Premium>() {
                         log("Billing client successfully connected")
                         firebaseAnalytics(Event.BILLING_CLIENT_CONNECTION_OK)
                     } else {
-                        log("Failed to connect the Billing Client. ${getResCodeDesc(billingResult.responseCode)}")
+                        logw("Failed to connect the Billing Client. ${getResCodeDesc(billingResult.responseCode)}")
                         firebaseAnalytics(Event.BILLING_CLIENT_CONNECTION_ERROR)
                     }
                     result(billingResult.responseCode) // The result is reported
@@ -355,7 +355,7 @@ object Premium : Base<Premium>() {
                                 firebaseAnalytics(Event.BILLING_SKU_DETAILS_OK)
                                 result(skuDetailsList)
                             } else {
-                                log("Error on getting the sku details, the result list is empty.")
+                                logw("Error on getting the sku details, the result list is empty.")
                                 firebaseAnalytics(Event.BILLING_SKU_DETAILS_ERROR)
                                 result(null) // The result is null because it could not be obtained the details of the product
                             }
@@ -367,7 +367,7 @@ object Premium : Base<Premium>() {
                     }
 
                 } else {
-                    log("Unable to get sku details list because the billing client could not connect")
+                    logw("Unable to get sku details list because the billing client could not connect")
                     firebaseAnalytics(Event.BILLING_SKU_DETAILS_ERROR)
                     result(null) // The result is null because it could not be obtained the details of the product
                 }
@@ -460,7 +460,7 @@ object Premium : Base<Premium>() {
                             log("The purchase has been acknowledged successfully")
                             firebaseAnalytics(Event.BILLING_PURCHASE_COMPLETED) // The purchase is completed until acknowledged it
                         } else {
-                            log("Failed to acknowledge the purchase. ${getResCodeDesc(billingResult.responseCode)}")
+                            logw("Failed to acknowledge the purchase. ${getResCodeDesc(billingResult.responseCode)}")
                             firebaseAnalytics(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
                         }
                         preventEndConnection = false

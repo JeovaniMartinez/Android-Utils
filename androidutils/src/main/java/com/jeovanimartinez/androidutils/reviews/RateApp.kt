@@ -109,7 +109,7 @@ object RateApp : Base<RateApp>() {
      * */
     fun init(context: Context) {
         if (initialized) {
-            log("RateApp is already initialized")
+            logw("RateApp is already initialized")
             return
         }
 
@@ -316,7 +316,7 @@ object RateApp : Base<RateApp>() {
                 // Flow error
                 reviewFlow.addOnFailureListener {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
-                    log("Failure on ReviewFlow, can not show flow to rate the app")
+                    logw("Failure on ReviewFlow, can not show flow to rate the app")
                     firebaseAnalytics(Event.RATE_APP_FLOW_LAUNCH_ERROR)
                 }
                 // Flow completed
@@ -343,7 +343,7 @@ object RateApp : Base<RateApp>() {
                 }
             } else {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
-                log("Error on request ReviewFlow, can not show flow to rate the app")
+                logw("Error on request ReviewFlow, can not show flow to rate the app")
                 firebaseAnalytics(Event.RATE_APP_FLOW_REQUEST_ERROR)
             }
         }
