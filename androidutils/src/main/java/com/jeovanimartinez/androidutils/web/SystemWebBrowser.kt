@@ -30,7 +30,11 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
      * */
     fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
 
-        if (!URLUtil.isValidUrl(url)) return loge("The URL [$url] is not valid")
+        // URL validation
+        require(URLUtil.isValidUrl(url)) {
+            "The URL [$url] is not a valid URL"
+        }
+
         try {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
@@ -45,7 +49,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
             // General exception
             context.shortToast(R.string.system_web_browser_error)
             firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, "exception") })
-            loge("Error opening URL [$url]", e)
+            logw("Error opening URL [$url]", e)
         }
     }
 
