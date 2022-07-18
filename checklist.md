@@ -17,8 +17,8 @@ Docs:
 - configuration > Log
 - configuration > *** Analytics (Until note: Some events have... Check and update events and event descriptions as utilities are checked)
 
-- older-docs > Older Docs
-
 - contributing > index and items descriptions
 - contributing > Contribution Guide
 - contributing > Firebase Crashlytics
+
+- older-docs > Older Docs
