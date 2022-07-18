@@ -32,7 +32,7 @@ dependencies {
 
 :::tip
 Depending on your needs, you can use any other version of the [library releases,](https://github.com/JeovaniMartinez/Android-Utils/releases) the 
-short commit hash, or 'master-SNAPSHOT'.
+short commit hash, 'master-SNAPSHOT' or 'documentation-SNAPSHOT'.
 :::
 
 ---
