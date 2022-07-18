@@ -82,8 +82,8 @@ abstract class Base<T : Base<T>> {
      **/
     internal fun log(message: Any, throwable: Throwable? = null) {
         if (!logEnable) return
-        if (throwable != null) Log.d(LOG_TAG, message.toString(), throwable)
-        else Log.d(LOG_TAG, message.toString())
+        if (throwable != null) Log.v(LOG_TAG, message.toString(), throwable)
+        else Log.v(LOG_TAG, message.toString())
     }
 
     /** Show the [message] and the [throwable] in the WARN log. */
