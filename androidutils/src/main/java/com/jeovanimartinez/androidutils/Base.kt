@@ -78,22 +78,22 @@ abstract class Base<T : Base<T>> {
     }
 
     /**
-     * Show the [message] and the [throwable] in the DEBUG log, used to detail the execution flow.
+     * Show the [message] and the [throwable] in the VERBOSE log, used to detail the execution flow.
      **/
-    internal fun log(message: Any, throwable: Throwable? = null) {
+    fun log(message: Any, throwable: Throwable? = null) {
         if (!logEnable) return
         if (throwable != null) Log.v(LOG_TAG, message.toString(), throwable)
         else Log.v(LOG_TAG, message.toString())
     }
 
     /** Show the [message] and the [throwable] in the WARN log. */
-    internal fun logw(message: Any, throwable: Throwable? = null) {
+    fun logw(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.w(LOG_TAG, message.toString(), throwable)
         else Log.w(LOG_TAG, message.toString())
     }
 
     /** Show the [message] and the [throwable] in the ERROR log. */
-    internal fun loge(message: Any, throwable: Throwable? = null) {
+    fun loge(message: Any, throwable: Throwable? = null) {
         if (throwable != null) Log.e(LOG_TAG, message.toString(), throwable)
         else Log.e(LOG_TAG, message.toString())
     }
