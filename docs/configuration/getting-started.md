@@ -10,7 +10,20 @@ Apply the following configuration in your Android project to start using the And
 
 ### Gradle Setup
 
-Add the following line in the Gradle file at the project level.
+**1.** Add the following line in the `settings.gradle` file.
+
+```gradle {6}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+_If your project uses an old version of Gradle, the line must be added in the Gradle file `build.gradle` at the project level._
 
 ```gradle {4}
 allprojects {
@@ -21,7 +34,7 @@ allprojects {
 }
 ```
 
-Add the following line in the Gradle file at the app level.
+**2.** Add the following line in the Gradle file `build.gradle` at the app level.
 
 ```gradle {3}
 dependencies {
@@ -32,7 +45,7 @@ dependencies {
 
 :::tip
 Depending on your needs, you can use any other version of the [library releases,](https://github.com/JeovaniMartinez/Android-Utils/releases) the 
-short commit hash, 'master-SNAPSHOT' or 'documentation-SNAPSHOT'.
+short commit hash, 'master-SNAPSHOT' or 'develop-SNAPSHOT'.
 :::
 
 ---
@@ -41,7 +54,7 @@ short commit hash, 'master-SNAPSHOT' or 'documentation-SNAPSHOT'.
 
 The library can show some views, which follow the style of the app theme and have support for the light and dark theme, 
 for these views to be shown with the app style it is necessary to declare the following style in the resources, which must 
-inherit from the main app theme.
+inherit from the main app theme. The style must be added in the file `themes.xml` or `styles.xml`.
 
 ```xml
 <!-- Android Utils library theme, used to preserve the app style. -->
