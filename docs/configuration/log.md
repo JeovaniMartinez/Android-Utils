@@ -63,7 +63,7 @@ The general log can enable and disable as follows:
 Base.logEnable = true // or false
 ```
 
-The recommended configuration for the general log is the following, use it the `onCreate()` of the application class or in the main activity.
+The recommended configuration (and default) for the general log is the following, use it the `onCreate()` of the application class or in the main activity.
 
 ```kotlin
 Base.logEnable = BuildConfig.DEBUG
