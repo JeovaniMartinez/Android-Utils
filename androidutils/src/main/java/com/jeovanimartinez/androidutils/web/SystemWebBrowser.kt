@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.webkit.URLUtil
 import androidx.annotation.Size
 import com.jeovanimartinez.androidutils.Base
@@ -30,17 +29,6 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
      *        helps determine which website was shown.
      * */
     fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
-
-        // ******************************************************************************
-        // TMP for ProGuard Test
-        log("Android-Utils - Verbose FUNCTION **")
-        logw("Android-Utils - Warning FUNCTION **")
-        loge("Android-Utils - Error FUNCTION **")
-        // TMP for ProGuard Test
-        Log.v("SystemWebBrowser", "Android-Utils - Verbose direct >>")
-        Log.w("SystemWebBrowser", "Android-Utils - Warning direct >>")
-        Log.e("SystemWebBrowser", "Android-Utils - Error direct >>")
-        // ******************************************************************************
 
         // URL validation
         require(URLUtil.isValidUrl(url)) {
