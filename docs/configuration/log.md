@@ -33,6 +33,11 @@ The library uses different logging levels to report errors, warnings, useful mes
 You can use **[these instructions](https://gist.github.com/JeovaniMartinez/386fa7cd5a9c1afdc12b64c9706fd5fe)** to show the logcat messages colored.
 :::
 
+:::note
+If you have configured `minifyEnabled true` in android > buildTypes > release on your app Gradle file, all log messages emitted by the library will be 
+removed from the APK or App Bundle you generate for production, as they are not considered useful or necessary for this environment.
+:::
+
 ---
 
 ## Logging Levels
