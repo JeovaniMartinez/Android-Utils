@@ -16,6 +16,7 @@ Docs:
 - configuration > Getting Started
 - configuration > Log
 - configuration > *** Analytics (Until note: Some events have... Check and update events and event descriptions as utilities are checked)
+- configuration > Prepare For Release
 
 - contributing > index and items descriptions
 - contributing > Contribution Guide

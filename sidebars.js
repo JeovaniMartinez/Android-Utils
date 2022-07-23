@@ -45,6 +45,10 @@ const sidebars = {
                 {
                     "type": "doc",
                     "id": "configuration/firebase-analytics"
+                },
+                {
+                    "type": "doc",
+                    "id": "configuration/prepare-for-release"
                 }
             ]
         },
