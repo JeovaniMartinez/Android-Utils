@@ -1,4 +1,4 @@
-Additional ancillary resources for documentation
+Additional auxiliary resources for documentation
 
 code > Code used in documentation examples
 docusaurus > Markdown style examples
@@ -17,4 +17,4 @@ Badges
 [![](https://img.shields.io/badge/-REMOVED-%23546E7A?style=for-the-badge)](#)
 
 
-** File is save in .txt to prevent to prevent it from being indexed on algolia.
+** This file is saved in .txt to prevent it from being indexed on algolia.
