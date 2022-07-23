@@ -52,26 +52,26 @@ private fun demo() {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // OK
+    /** Ok, using a String. **/
     showMessage("Hello")
 
-    // OK: The char literal can be interpreted as string
+    /** Ok, the char literal can be interpreted as a String. **/
     showMessage('h')
 
-    // OK
+    /** Ok, using a string resource. **/
     showMessage(R.string.app_name)
 
-    // ERROR: Invalid resource, expected string resource or string object
+    /** ERROR: Invalid resource. Expected string resource or string object. **/
     showMessage(R.color.colorAccent)
 
-    // ERROR: Invalid type, expected string object or string resource
+    /** ERROR: Invalid type. Expected string object or string resource. **/
     showMessage(55)
 
-    /*
-    * In some cases, the data type cannot be detected at compile time, so an
-    * exception will be thrown at runtime to indicate the error if the data
-    * type is wrong.
-    */
-    showMessage(this@MainActivity)
+    /**
+     * In some cases, the data type cannot be detected at compile time, so an
+     * exception will be thrown at runtime to indicate the error if the data
+     * type is wrong.
+     **/
+    showMessage(activity)
 
 }
