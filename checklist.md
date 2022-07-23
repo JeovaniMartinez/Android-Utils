@@ -10,3 +10,4 @@ Parts of the library of the first version of the library already revised
 - drawable folder. NOTE: pending to delete logo_jedemm_com and unused resources
 - AndroidManifest.xml
 - Base
+- consumerProguardFiles
