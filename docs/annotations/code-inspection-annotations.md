@@ -1,19 +1,19 @@
 ---
 id: code-inspection-annotations
 title: Code Inspection Annotations
-description: Annotations designed to guide the developer on the type of data or resource that can be assigned to a property or variable.
+description: Annotations to assist the development process.
 ---
 
 ## Description
 
 These annotations are designed to guide the developer on the type of data or resource that can be assigned to a property or variable, the library has 
-the [lintcheck](https://github.com/JeovaniMartinez/Android-Utils/tree/master/lintcheck) module that tells the IDE how to verify the use of annotations 
+the [Lint Check](https://github.com/JeovaniMartinez/Android-Utils/tree/master/lintcheck) module that tells the IDE how to verify the use of annotations 
 and display warnings in case an incorrect value is detected.
 
-Generally, in these annotations, the expected data type is Any, to give you the flexibility to accept different data types. For example, in some cases 
-a String data type is expected, which is processed as is, but an Int data type (which represents the ID) can also be expected and in this case the String 
-is obtained from the resources by means of its ID. The library allows this flexibility and is in charge of identifying the type of data and treating it 
-appropriately, and if it is an incorrect type of data, an exception is thrown.
+Generally, when these annotations are used, the expected data type is `Any` to give you the flexibility to accept different data types. For example, in some cases, 
+a `String` data type is expected, which is processed as is, but an `Int` data type (which represents the resource ID) can also be expected and in this case 
+the String is obtained from the resources by means of its ID. The library allows this flexibility and is in charge of identifying and treating the data 
+type appropriately, and in case the data type cannot be properly treated, an exception is thrown.
 
 In some cases, the use of values of the wrong data type cannot be detected at compile time, but an exception will be thrown at runtime if it is detected.
 
@@ -35,7 +35,7 @@ _Detection example in Android Studio:_
 
 #### <a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.annotations/-string-or-string-res/index.html" target="_blank"><b>[ Reference ]</b></a>
 
-Indicates that the expected value or object must be a data type String, Char (since it can be represented as String) or the ID of a string resource. 
+Indicates that the expected value or object must be a data type String, Char (since it can be represented as String), or the ID of a string resource. 
 For example: `'a'`, `"Hello"`, `R.string.demo`
 
 _Detection example in Android Studio:_
@@ -57,7 +57,7 @@ private fun showMessage(@StringOrStringRes message: Any) { ... }
 
 Then, to process the value, the library has extension functions to get the value easily:
 
-> `typeAsDrawable`<br/>It is a context extension function, allows you to parse the data type and always treat it as a Drawable.<br/><a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-drawable.html" target="_blank"><b>[ Reference ]</b></a>
+> `typeAsDrawable`<br/>It is a context extension function, that allows you to parse the data type and always treat it as a `Drawable`.<br/><a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-drawable.html" target="_blank"><b>[ Reference ]</b></a>
 
 ```kotlin
 private fun showImage(@DrawableOrDrawableRes image: Any) {
@@ -65,7 +65,7 @@ private fun showImage(@DrawableOrDrawableRes image: Any) {
 }
 ```
 
-> `typeAsString`<br/>It is a context extension function, allows you to parse the data type and always treat it as a String.<br/><a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-string.html" target="_blank"><b>[ Reference ]</b></a>
+> `typeAsString`<br/>It is a context extension function, that allows you to parse the data type and always treat it as a `String`.<br/><a href="/reference/-android%20-utils/com.jeovanimartinez.androidutils.extensions.context/type-as-string.html" target="_blank"><b>[ Reference ]</b></a>
 
 ```kotlin
 private fun showMessage(@StringOrStringRes message: Any) {

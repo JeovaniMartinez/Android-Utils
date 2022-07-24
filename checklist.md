@@ -22,4 +22,7 @@ Docs:
 - contributing > Contribution Guide
 - contributing > Firebase Crashlytics
 
+- annotations > index and items descriptions
+- annotations > Code Inspection Annotations
+
 - older-docs > Older Docs
