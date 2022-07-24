@@ -66,6 +66,17 @@
                     app:srcCompat="@drawable/ic_github" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnInfo"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/actionBarItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnToggleTheme"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_information_outline" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnToggleTheme"
                     android:layout_width="48dp"
                     android:layout_height="48dp"

@@ -1,6 +1,1 @@
-<resources>
-
-    <string name="app_name" translatable="false">Android Utils</string>
-    <string name="app_name_2" translatable="false">Android Utils Library</string>
-
-</resources>
+<resources xmlns:tools="http://schemas.android.com/tools">    <string name="app_name" translatable="false">Android Utils</string>    <string name="app_name_2" translatable="false">Android Utils Library</string>    <!-- General Use -->    <string name="ok" translatable="false" tools:ignore="ButtonCase,Typos">Ok</string>    <!-- Main Activity -->    <string name="app_description" translatable="false">        This app is intended to test the library utilities during the development process and to show a preview of the main utilities to the developers.        You can check the complete documentation for all library utilities on the library\'s website.    </string>    <string name="app_author" translatable="false">Android Utils by Jeovani Martinez</string>    <string name="library_docs" translatable="false">Library Docs</string></resources>
