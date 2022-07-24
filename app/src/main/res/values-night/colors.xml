@@ -21,6 +21,7 @@
     <color name="navigationBarColor">#212121</color>
 
     <!-- App colors -->
+    <color name="ic_launcher_background">#E4E4E4</color>
     <color name="logoTextColor">#BDBDBD</color>
     <color name="colorSeparator">#DFDFDF</color>
     <color name="icons1">#BDBDBD</color>
