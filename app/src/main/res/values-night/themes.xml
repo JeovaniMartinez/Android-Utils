@@ -39,6 +39,22 @@
         <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
         <item name="android:navigationBarColor">@color/navigationBarColor</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+
+        <!-- Style for the dialogs -->
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
+
+    <style name="MaterialAlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/DialogTitleTextStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/DialogBodyTextStyle</item>
+    </style>
+
+    <style name="DialogTitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textSize">@dimen/dialog_title_text_size</item>
+    </style>
+
+    <style name="DialogBodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textSize">@dimen/dialog_body_text_size</item>
     </style>
 
     <!-- Android Utils library theme, used to preserve the app style. -->
