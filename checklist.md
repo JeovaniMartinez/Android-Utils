@@ -2,7 +2,7 @@
 
 Parts of the library of the first version of the library already revised
 
-* Excluding androidutils and app folders, and README.md, everything else is ready.
+* Excluding androidutils, app folders, and README.md, everything else is ready.
 * The test app is developed and tested together with the utilities, so it is excluded from this list.
 
 - values folder (all files)
@@ -11,3 +11,13 @@ Parts of the library of the first version of the library already revised
 - AndroidManifest.xml
 - Base
 - consumerProguardFiles
+
+** Packages **
+
+- annotations
+  - DrawableOrDrawableRes
+  - StringOrStringRes
+
+- extensions
+  - context
+    - TypeOrResource.kt
