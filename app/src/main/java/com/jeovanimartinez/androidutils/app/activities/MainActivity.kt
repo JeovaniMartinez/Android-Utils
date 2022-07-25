@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.app.activities
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnInfo.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.app_name)
-                .setMessage("${getString(R.string.app_description)}\n\n${getString(R.string.app_author)}")
+                .setMessage("${getString(R.string.app_description)}\n\n${getString(R.string.app_name_author)}")
                 .setPositiveButton(R.string.ok, null)
                 .setNeutralButton(R.string.library_docs) { _, _ ->
                     SystemWebBrowser.openUrl(this, "https://jeovanimartinez.github.io/Android-Utils/docs/")
@@ -59,6 +60,17 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 getSharedPreferences(Preferences.THEME_PREFERENCES_FILE, Context.MODE_PRIVATE).edit().putBoolean(Preferences.THEME_DARK_THEME_ENABLED, true).apply()
             }
+        }
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.library_utilities_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            binding.spLibraryUtilities.adapter = adapter
         }
 
     }

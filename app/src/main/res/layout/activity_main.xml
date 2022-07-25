@@ -94,6 +94,12 @@
                 android:layout_height="2dp"
                 android:background="@color/colorSeparator" />
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:layout_marginTop="20dp"
+                android:id="@+id/spLibraryUtilities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
