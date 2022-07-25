@@ -6,8 +6,8 @@
     <color name="app_background">#212121</color>
 
     <!-- Status bar and navigation bar colors -->
-    <color name="statusBarColor">#212121</color>
-    <color name="navigationBarColor">#212121</color>
+    <color name="app_status_bar">#212121</color>
+    <color name="app_navigation_bar">#212121</color>
 
     <!-- General app colors -->
     <color name="ic_launcher_background">#E4E4E4</color>

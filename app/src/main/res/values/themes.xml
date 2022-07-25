@@ -8,9 +8,9 @@
         <item name="postSplashScreenTheme">@style/AppTheme</item>
 
         <!-- Status bar and navigation bar -->
-        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:statusBarColor">@color/app_status_bar</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
-        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+        <item name="android:navigationBarColor">@color/app_navigation_bar</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
 
         <!-- Reference: https://developer.android.com/guide/topics/ui/splash-screen -->
@@ -23,9 +23,9 @@
         <item name="android:colorBackground">@color/app_background</item>
 
         <!-- Status bar and navigation bar -->
-        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:statusBarColor">@color/app_status_bar</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
-        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+        <item name="android:navigationBarColor">@color/app_navigation_bar</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
 
         <!-- Style for the dialogs -->
