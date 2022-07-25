@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="15dp"
-                android:background="@color/colorSeparator" />
+                android:background="@color/separator_1" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -92,13 +92,26 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorSeparator" />
+                android:background="@color/separator_1" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:layout_marginTop="20dp"
                 android:id="@+id/spLibraryUtilities"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/app_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

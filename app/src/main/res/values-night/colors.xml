@@ -11,8 +11,8 @@
 
     <!-- General app colors -->
     <color name="ic_launcher_background">#E4E4E4</color>
-    <color name="logoTextColor">#BDBDBD</color>
-    <color name="colorSeparator">#DFDFDF</color>
-    <color name="icons1">#BDBDBD</color>
+    <color name="logo_text_color">#BDBDBD</color>
+    <color name="separator_1">#DFDFDF</color>
+    <color name="icons_1">#BDBDBD</color>
 
 </resources>
