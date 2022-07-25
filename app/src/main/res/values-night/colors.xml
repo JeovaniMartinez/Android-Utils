@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Colors of the app theme -->
-    <color name="colorPrimary">#4DB6AC</color>
-    <color name="colorAccent">#4DB6AC</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorPrimaryVariant">#80CBC4</color>
-    <color name="colorOnPrimary">#121212</color>
-    <color name="colorSecondary">#2196F3</color>
-    <color name="colorSecondaryVariant">#1976D2</color>
-    <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorBackground">#212121</color>
-    <color name="colorOnBackground">#FFFFFF</color>
-    <color name="colorSurface">#212121</color>
-    <color name="colorOnSurface">#FFFFFF</color>
-    <color name="colorError">#CF6679</color>
-    <color name="colorOnError">#000000</color>
+    <!-- App theme colors -->
+    <color name="app_primary">#4DB6AC</color>
+    <color name="app_background">#212121</color>
 
+    <!-- Status bar and navigation bar colors -->
     <color name="statusBarColor">#212121</color>
     <color name="navigationBarColor">#212121</color>
 
-    <!-- App colors -->
+    <!-- General app colors -->
     <color name="ic_launcher_background">#E4E4E4</color>
     <color name="logoTextColor">#BDBDBD</color>
     <color name="colorSeparator">#DFDFDF</color>

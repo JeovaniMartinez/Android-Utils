@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
+        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.app_background))
 
         initialSetup()
 
