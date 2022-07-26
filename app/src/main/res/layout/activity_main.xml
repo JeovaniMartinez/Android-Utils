@@ -12,12 +12,12 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
@@ -94,24 +94,30 @@
                 android:layout_height="2dp"
                 android:background="@color/separator_1" />
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:layout_marginTop="20dp"
-                android:id="@+id/spLibraryUtilities"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
+                android:id="@+id/menuLibraryUtilities"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/app_name">
+                android:layout_marginTop="12dp"
+                android:hint="@string/library_utilities">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:inputType="none"
+                    tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnGoToUtility"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:text="@string/go_to_utility" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

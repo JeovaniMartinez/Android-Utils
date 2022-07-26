@@ -2,16 +2,19 @@ package com.jeovanimartinez.androidutils.app.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.ArrayAdapter
+import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.jeovanimartinez.androidutils.app.BuildConfig
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.constants.Preferences
 import com.jeovanimartinez.androidutils.app.databinding.ActivityMainBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
+import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 
 /** MainActivity */
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.app_background))
 
         initialSetup()
+        libraryUtilitiesMenuSetup()
 
     }
 
@@ -44,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnInfo.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.app_name)
-                .setMessage("${getString(R.string.app_description)}\n\n${getString(R.string.app_name_author)}")
+                .setMessage("${getString(R.string.app_description)}\n\n${getString(R.string.app_credits, BuildConfig.VERSION_NAME)}")
                 .setPositiveButton(R.string.ok, null)
                 .setNeutralButton(R.string.library_docs) { _, _ ->
                     SystemWebBrowser.openUrl(this, "https://jeovanimartinez.github.io/Android-Utils/docs/")
@@ -62,15 +66,50 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.library_utilities_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            binding.spLibraryUtilities.adapter = adapter
+        binding.btnGoToUtility.setOnClickListener {
+
+            when (getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)) {
+                0 -> {
+                    shortToast("Rate App")
+                }
+                1 -> {
+                    shortToast("Watermark")
+                }
+                2 -> {
+                    shortToast("View To Image")
+                }
+                3 -> {
+                    shortToast("About App")
+                }
+                4 -> {
+                    shortToast("Premium App")
+                }
+            }
+        }
+
+    }
+
+    /** Library Utilities Menu Setup */
+    private fun libraryUtilitiesMenuSetup() {
+
+        val libraryUtilitiesList = resources.getStringArray(R.array.library_utilities_array) // Get the list from string resources
+        val libraryUtilitiesMenu = binding.menuLibraryUtilities.editText as MaterialAutoCompleteTextView // Object to manipulate the menu
+
+        // Set selected item
+        try {
+            // If the index exists in the preferences and it is within the range of the array
+            val index = getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)
+            libraryUtilitiesMenu.setText(libraryUtilitiesList[index])
+        } catch (e: Exception) {
+            libraryUtilitiesMenu.setText(libraryUtilitiesList[0]) // Default
+        }
+
+        // The list is assigned, always after indicating the selected element
+        libraryUtilitiesMenu.setSimpleItems(libraryUtilitiesList)
+
+        // When the selected item changes
+        libraryUtilitiesMenu.onItemClickListener = OnItemClickListener { _, _, position, _ ->
+            getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).edit().putInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, position).apply()
         }
 
     }
