@@ -18,7 +18,7 @@
         <!-- Reference: https://itnext.io/a-comprehensive-guide-to-android-12s-splash-screen-api-644609c811fa -->
     </style>
 
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/app_primary</item>
         <item name="android:colorBackground">@color/app_background</item>
 
@@ -32,17 +32,28 @@
         <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
     </style>
 
-    <style name="MaterialAlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+    <style name="MaterialAlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="materialAlertDialogTitleTextStyle">@style/DialogTitleTextStyle</item>
         <item name="materialAlertDialogBodyTextStyle">@style/DialogBodyTextStyle</item>
+        <item name="alertDialogStyle">@style/DialogStyle</item>
     </style>
 
-    <style name="DialogTitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+    <style name="DialogTitleTextStyle" parent="MaterialAlertDialog.Material3.Title.Text">
         <item name="android:textSize">@dimen/dialog_title_text_size</item>
     </style>
 
-    <style name="DialogBodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+    <style name="DialogBodyTextStyle" parent="MaterialAlertDialog.Material3.Body.Text">
         <item name="android:textSize">@dimen/dialog_body_text_size</item>
+    </style>
+
+    <style name="DialogStyle" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/DialogShapeAppearance</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="DialogShapeAppearance" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
     <!-- Android Utils library theme, used to preserve the app style. -->
