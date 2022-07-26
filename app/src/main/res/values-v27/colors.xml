@@ -2,6 +2,6 @@
 <resources>
 
     <!-- In Android API 27+ can be used windowLightNavigationBar, so the same color as the background of the app is used for the Navigation Bar background -->
-    <color name="app_navigation_bar">@color/app_background</color>
+    <color name="app_navigation_bar">@color/md_theme_background</color>
 
 </resources>

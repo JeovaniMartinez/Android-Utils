@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- App theme colors -->
-    <color name="app_primary">#4DB6AC</color>
-    <color name="app_background">#212121</color>
-
+    <!-- App theme colors https://material-foundation.github.io/material-theme-builder/#/custom -->
+    <color name="md_theme_primary">#00897B</color>
+    <color name="md_theme_onPrimary">#00363C</color>
+    <color name="md_theme_primaryContainer">#004F56</color>
+    <color name="md_theme_onPrimaryContainer">#8FF2FF</color>
+    <color name="md_theme_secondary">#73D1FF</color>
+    <color name="md_theme_onSecondary">#003548</color>
+    <color name="md_theme_secondaryContainer">#004D67</color>
+    <color name="md_theme_onSecondaryContainer">#C1E8FF</color>
+    <color name="md_theme_tertiary">#B9C6EA</color>
+    <color name="md_theme_onTertiary">#23304D</color>
+    <color name="md_theme_tertiaryContainer">#3A4664</color>
+    <color name="md_theme_onTertiaryContainer">#D9E2FF</color>
+    <color name="md_theme_error">#FFB4AB</color>
+    <color name="md_theme_errorContainer">#93000A</color>
+    <color name="md_theme_onError">#690005</color>
+    <color name="md_theme_onErrorContainer">#FFDAD6</color>
+    <color name="md_theme_background">#1B1B1D</color>
+    <color name="md_theme_onBackground">#E0E3E3</color>
+    <color name="md_theme_surface">#191C1D</color>
+    <color name="md_theme_onSurface">#E0E3E3</color>
+    <color name="md_theme_surfaceVariant">#3F484A</color>
+    <color name="md_theme_onSurfaceVariant">#BEC8CA</color>
+    <color name="md_theme_outline">#899294</color>
+    <color name="md_theme_inverseOnSurface">#191C1D</color>
+    <color name="md_theme_inverseSurface">#E0E3E3</color>
+    <color name="md_theme_inversePrimary">#006972</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_surfaceTint">#4ED8E9</color>
+    <color name="md_theme_surfaceTintColor">#4ED8E9</color>
+    
     <!-- Status bar and navigation bar colors -->
     <color name="app_status_bar">#212121</color>
     <color name="app_navigation_bar">#212121</color>
