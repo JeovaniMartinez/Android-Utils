@@ -1,6 +1,7 @@
 package com.jeovanimartinez.androidutils.app.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
             when (getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)) {
                 0 -> {
-                    shortToast("Rate App")
+                    startActivity(Intent(this, RateAppActivity::class.java))
                 }
                 1 -> {
                     shortToast("Watermark")
