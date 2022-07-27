@@ -10,6 +10,7 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.app.constants.Preferences
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.jeovanimartinez.androidutils.reviews.RateApp
 
 /** App Singleton */
 class App : MultiDexApplication() {
@@ -23,12 +24,12 @@ class App : MultiDexApplication() {
         Log.d(LOG_TAG, "Started Android Utils App")
 
         themeSetup()
+        rateInAppSetup()
 
         // Tests, to appreciate the splash screen
         // for (i in 1..100000) {
         //    Log.d(LOG_TAG, i.toString())
         // }
-
 
         Base.logEnable = BuildConfig.DEBUG // Adjust the debug log
 
@@ -52,6 +53,18 @@ class App : MultiDexApplication() {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
+    }
+
+    /** Rate In App */
+    private fun rateInAppSetup() {
+        RateApp.apply {
+            minInstallElapsedDays = 0
+            minInstallLaunchTimes = 1
+            minRemindElapsedDays = 0
+            minRemindLaunchTimes = 1
+            showAtEvent = 1
+            showNeverAskAgainButton = true
+        }.init(this)
     }
 
 }

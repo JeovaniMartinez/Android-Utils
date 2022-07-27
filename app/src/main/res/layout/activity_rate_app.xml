@@ -37,6 +37,7 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoToRateInGooglePlay"
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,6 +65,109 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_general_space"
                 android:text="@string/rate_app_msg_config" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_general_space"
+                android:text="@string/rate_app_msg_log" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_general_space"
+                android:text="@string/rate_app_current_configuration_values"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:stretchColumns="1">
+
+                <TableRow>
+
+                    <TextView
+                        android:text="minInstallElapsedDays"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tvMinInstallElapsedDays"
+                        android:paddingStart="20dp"
+                        android:text="0"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:text="minInstallLaunchTimes"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tvMinInstallLaunchTimes"
+                        android:paddingStart="20dp"
+                        android:text="0"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:text="minRemindElapsedDays"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tvMinRemindElapsedDays"
+                        android:paddingStart="20dp"
+                        android:text="0"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:text="minRemindLaunchTimes"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tvMinRemindLaunchTimes"
+                        android:paddingStart="20dp"
+                        android:text="0"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:text="showAtEvent"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/tvShowAtEvent"
+                        android:paddingStart="20dp"
+                        android:text="0"
+                        tools:ignore="HardcodedText,RtlSymmetry" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckAndShow"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/view_general_space"
+                android:text="@string/rate_app_check_and_show" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
