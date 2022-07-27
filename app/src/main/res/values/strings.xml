@@ -29,5 +29,8 @@
     <!-- Rate App Activity -->
     <string name="rate_app_title" translatable="false">Rate App</string>
     <string name="rate_app_rate_in_google_play" translatable="false">Rate In Google Play</string>
+    <string name="rate_app_go_rate_in_google_play" translatable="false">Go To Rate In Google Play</string>
+    <string name="rate_app_rate_in_app" translatable="false">Rate In App</string>
+    <string name="rate_app_msg_config" translatable="false">Configuration values have been set in App class.</string>
 
 </resources>

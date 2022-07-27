@@ -59,7 +59,7 @@
                     android:id="@+id/btnGitHub"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="@dimen/view_general_space"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btnWebSite"
@@ -70,7 +70,7 @@
                     android:id="@+id/btnInfo"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="@dimen/view_general_space"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnToggleTheme"
@@ -81,7 +81,7 @@
                     android:id="@+id/btnToggleTheme"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="@dimen/view_general_space"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/view_general_space"
                 android:text="@string/go_to_utility" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
