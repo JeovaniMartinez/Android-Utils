@@ -5,4 +5,11 @@
     <dimen name="dialog_title_text_size">16sp</dimen>
     <dimen name="dialog_body_text_size">15sp</dimen>
 
+    <!-- App Bar -->
+    <dimen name="app_bar_height">48dp</dimen>
+
+    <!-- General dimensions -->
+    <dimen name="activity_container_space">12sp</dimen>
+    <dimen name="image_button_size">48dp</dimen>
+
 </resources>

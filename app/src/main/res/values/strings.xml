@@ -27,6 +27,7 @@
     </string-array>
 
     <!-- Rate App Activity -->
+    <string name="rate_app_title" translatable="false">Rate App</string>
     <string name="rate_app_rate_in_google_play" translatable="false">Rate In Google Play</string>
 
 </resources>

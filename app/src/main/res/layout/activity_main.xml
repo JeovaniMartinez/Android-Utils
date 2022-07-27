@@ -14,16 +14,17 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/activity_container_space"
+            android:layout_marginEnd="@dimen/activity_container_space"
             android:orientation="vertical"
-            android:paddingBottom="10dp">
+            android:paddingTop="@dimen/activity_container_space"
+            android:paddingBottom="@dimen/activity_container_space">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/app_name_2"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -46,8 +47,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnWebSite"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +57,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnGitHub"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
                     android:layout_marginStart="10dp"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -67,8 +68,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnInfo"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
                     android:layout_marginEnd="10dp"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -78,8 +79,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnToggleTheme"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
                     android:layout_marginStart="10dp"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
