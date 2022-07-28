@@ -34,5 +34,6 @@
     <string name="rate_app_msg_log" translatable="false">Check the Logcat for the details of the execution flow of this utility.</string>
     <string name="rate_app_check_and_show" translatable="false">Check And Show</string>
     <string name="rate_app_current_configuration_values" translatable="false">Current Configuration Values</string>
+    <string name="rate_app_check_the_logcat" translatable="false">>> Check the Logcat &lt;&lt;</string>
 
 </resources>

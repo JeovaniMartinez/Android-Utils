@@ -160,13 +160,23 @@
 
             </TableLayout>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCheckLogcat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="2dp"
+                android:text="@string/rate_app_check_the_logcat"
+                android:textColor="@color/md_theme_primary"
+                android:textStyle="bold" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCheckAndShow"
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="@dimen/view_general_space"
                 android:text="@string/rate_app_check_and_show" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

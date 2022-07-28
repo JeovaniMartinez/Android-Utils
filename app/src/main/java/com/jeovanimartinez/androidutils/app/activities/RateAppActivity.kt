@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityRateAppBinding
+import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import com.jeovanimartinez.androidutils.reviews.RateApp
 
 /** RateAppActivity */
@@ -38,7 +39,17 @@ class RateAppActivity : AppCompatActivity() {
         binding.tvMinRemindLaunchTimes.text = RateApp.minRemindLaunchTimes.toString()
         binding.tvShowAtEvent.text = RateApp.showAtEvent.toString()
 
+        binding.tvCheckLogcat.alpha = 0f
+
         binding.btnCheckAndShow.setOnClickListener {
+
+            binding.tvCheckLogcat.animate().alpha(1f).onAnimationEnd {
+                binding.tvCheckLogcat.alpha = 0f
+                binding.tvCheckLogcat.animate().alpha(1f).onAnimationEnd {
+                    binding.tvCheckLogcat.alpha = 0f
+                }
+            }
+
             RateApp.checkAndShow(this)
         }
     }
