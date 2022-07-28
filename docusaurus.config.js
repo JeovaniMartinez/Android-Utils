@@ -16,7 +16,7 @@ const config = {
     organizationName: 'Jeovani Martinez',
     projectName: 'Android Utils',
 
-    staticDirectories: ['static', 'api_reference'],
+    staticDirectories: ['static', 'api_reference', 'license'],
 
     // Internalization
     i18n: {
