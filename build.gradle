@@ -6,7 +6,7 @@ buildscript {
 
         // ** Android Utils Library Version **
         androidUtilsVersionCode = 2
-        androidUtilsVersionName = "1.0.0"
+        androidUtilsVersionName = "0.9.5-beta"
 
         // Lint tool version
         lintVersion = '30.2.1' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
