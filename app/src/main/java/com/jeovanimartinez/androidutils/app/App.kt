@@ -48,7 +48,7 @@ class App : MultiDexApplication() {
     /** Theme Setup */
     private fun themeSetup() {
         // The preferences theme is loaded and configured
-        if (!getSharedPreferences(Preferences.THEME_PREFERENCES_FILE, Context.MODE_PRIVATE).getBoolean(Preferences.THEME_DARK_THEME_ENABLED, false)) {
+        if (!getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).getBoolean(Preferences.DARK_THEME_ENABLED, false)) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
