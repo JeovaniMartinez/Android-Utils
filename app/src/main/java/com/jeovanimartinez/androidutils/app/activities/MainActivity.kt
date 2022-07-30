@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.app.activities
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen() // Required for show the splash screen
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
+
+        preferences = getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE)
 
         initialSetup()
         libraryUtilitiesMenuSetup()
@@ -47,29 +51,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnInfo.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.app_name)
-                .setMessage("${getString(R.string.app_description)}\n\n${getString(R.string.app_credits, BuildConfig.VERSION_NAME)}")
-                .setPositiveButton(R.string.ok, null)
-                .setNeutralButton(R.string.library_docs) { _, _ ->
-                    SystemWebBrowser.openUrl(this, "https://jeovanimartinez.github.io/Android-Utils/docs/")
-                }
-                .show()
+            showInfoDialog()
         }
 
         binding.btnToggleTheme.setOnClickListener {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                getSharedPreferences(Preferences.THEME_PREFERENCES_FILE, Context.MODE_PRIVATE).edit().putBoolean(Preferences.THEME_DARK_THEME_ENABLED, false).apply()
+                preferences.edit().putBoolean(Preferences.DARK_THEME_ENABLED, false).apply()
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                getSharedPreferences(Preferences.THEME_PREFERENCES_FILE, Context.MODE_PRIVATE).edit().putBoolean(Preferences.THEME_DARK_THEME_ENABLED, true).apply()
+                preferences.edit().putBoolean(Preferences.DARK_THEME_ENABLED, true).apply()
             }
         }
 
         binding.btnGoToUtility.setOnClickListener {
 
-            when (getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)) {
+            when (preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)) {
                 0 -> {
                     startActivity(Intent(this, RateAppActivity::class.java))
                 }
@@ -88,6 +85,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        if (!preferences.getBoolean(Preferences.INFO_DIALOG_SHOWN_ON_APP_FIRST_LAUNCH, false)) {
+            preferences.edit().putBoolean(Preferences.INFO_DIALOG_SHOWN_ON_APP_FIRST_LAUNCH, true).apply()
+            showInfoDialog()
+        }
+
     }
 
     /** Library Utilities Menu Setup */
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         // Set selected item
         try {
             // If the index exists in the preferences and it is within the range of the array
-            val index = getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)
+            val index = preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)
             libraryUtilitiesMenu.setText(libraryUtilitiesList[index])
         } catch (e: Exception) {
             libraryUtilitiesMenu.setText(libraryUtilitiesList[0]) // Default
@@ -110,9 +112,21 @@ class MainActivity : AppCompatActivity() {
 
         // When the selected item changes
         libraryUtilitiesMenu.onItemClickListener = OnItemClickListener { _, _, position, _ ->
-            getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE).edit().putInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, position).apply()
+            preferences.edit().putInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, position).apply()
         }
 
+    }
+
+    /** Show the info dialog */
+    private fun showInfoDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.app_name)
+            .setMessage("${getString(R.string.app_description)}\n\n${getString(R.string.app_credits, BuildConfig.VERSION_NAME)}")
+            .setPositiveButton(R.string.ok, null)
+            .setNeutralButton(R.string.library_docs) { _, _ ->
+                SystemWebBrowser.openUrl(this, "https://jeovanimartinez.github.io/Android-Utils/docs/")
+            }
+            .show()
     }
 
 }
