@@ -134,7 +134,7 @@ object RateApp : Base<RateApp>() {
         // If it does not apply to show in this call to the event
         if (showAtEvent != checkShowEventCount) return log("No need verify conditions in this call, showAtEvent: $showAtEvent | checkShowEventCount  $checkShowEventCount ")
 
-        log("We proceed to verify the conditions to show the flow to rate the app, event number: $showAtEvent")
+        log("We proceed to verify the conditions to show the flow to rate the app, check and show event: $showAtEvent")
         doCheckAndShow(activity) // Execute the full verification
 
         validated = true // In the end, it is indicated that it is already valid, to only do it once per session
