@@ -29,11 +29,9 @@ internal object Event {
 
     const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
 
-    const val RATE_APP_FLOW_REQUEST_OK = "rate_app_flow_request_ok"
-    const val RATE_APP_FLOW_REQUEST_ERROR = "rate_app_flow_request_error"
-    const val RATE_APP_FLOW_LAUNCH_OK = "rate_app_flow_launch_ok"
-    const val RATE_APP_FLOW_LAUNCH_ERROR = "rate_app_flow_launch_error"
-    const val RATE_APP_FLOW_SHOWN = "rate_app_flow_shown"
+    const val RATE_APP_REVIEW_FLOW_OK = "rate_app_review_flow_ok"
+    const val RATE_APP_REVIEW_FLOW_ERROR = "rate_app_review_flow_error"
+    const val RATE_APP_REVIEW_FLOW_SHOWN = "rate_app_review_flow_shown"
     const val RATE_APP_SENT_GOOGLE_PLAY = "rate_app_sent_google_play"
     const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
