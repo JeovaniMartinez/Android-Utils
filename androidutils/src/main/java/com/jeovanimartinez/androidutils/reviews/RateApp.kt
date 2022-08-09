@@ -273,15 +273,15 @@ object RateApp : Base<RateApp>() {
         managerRequest.addOnCompleteListener { request ->
 
             if (request.isSuccessful) {
+
                 // If the request was created successfully
                 var successfulReviewFlow = false // Determine if the flow was correct
                 val flowObtainedTime = Date().time // Assign the date was the flow is obtained
-                log("ReviewFlow successfully obtained")
-                firebaseAnalytics(Event.RATE_APP_FLOW_REQUEST_OK)
+                log("requestReviewFlow() > Success")
                 val reviewInfo = request.result // Get the result
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // The flow to rate the app is launched
 
-                // The flow process was successful
+                // The review flow process was successful
                 reviewFlow.addOnSuccessListener {
                     /*
                      * The flow was correct, considering that the API does not report if the user rated the app or not,
@@ -293,21 +293,21 @@ object RateApp : Base<RateApp>() {
                      *   - If the user still does not rate the app, but the quota to show the flow has already been exceeded, the flow is not shown
                      */
                     successfulReviewFlow = true // The flow was correct
-                    log("Successful review flow to rate app with Google Play In-App Review API")
+                    log("launchReviewFlow() > Success")
                     updatePreferencesOnFlowShown() // Preferences are updated because the flow is complete
-                    firebaseAnalytics(Event.RATE_APP_FLOW_LAUNCH_OK)
+                    firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_OK)
                 }
 
-                // Flow error
+                // Review flow error
                 reviewFlow.addOnFailureListener {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
-                    logw("Failure on ReviewFlow, can not show flow to rate the app")
-                    firebaseAnalytics(Event.RATE_APP_FLOW_LAUNCH_ERROR)
+                    loge("launchReviewFlow() > Error", it)
+                    firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_ERROR)
                 }
 
                 // Flow completed
                 reviewFlow.addOnCompleteListener {
-                    log("Finished flow to rate the app with Google Play In-App Review API")
+                    log("Finished process to rate the app with Google Play In-App Review API")
                     /*
                     * If the flow result was correct.
                     *
@@ -326,7 +326,7 @@ object RateApp : Base<RateApp>() {
                                 "Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
                                         "it is considered that the flow was shown to the user"
                             )
-                            firebaseAnalytics(Event.RATE_APP_FLOW_SHOWN)
+                            firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_SHOWN)
                         } else {
                             log(
                                 "Elapsed time ${elapsedTime / 1000.0} is less than ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
@@ -338,8 +338,8 @@ object RateApp : Base<RateApp>() {
 
             } else {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
-                logw("Error on request ReviewFlow, can not show flow to rate the app")
-                firebaseAnalytics(Event.RATE_APP_FLOW_REQUEST_ERROR)
+                loge("requestReviewFlow() > Error", request.exception)
+                firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_ERROR)
             }
         }
 
