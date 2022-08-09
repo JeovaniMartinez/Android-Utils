@@ -1,18 +1,17 @@
 package com.jeovanimartinez.androidutils.reviews
 
 import android.app.Activity
-import android.app.ActivityOptions
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import android.os.Build
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import java.lang.IllegalStateException
 import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -24,17 +23,16 @@ object RateApp : Base<RateApp>() {
 
     override val LOG_TAG = "RateApp"
 
-    // Time elapsed from when the flow was obtained until it was completed to consider that the flow was displayed
-    private const val RATE_FLOW_MIN_ELAPSED_TIME = 2000 // In milliseconds
+    // Time elapsed from when the flow was obtained until it was completed to consider that the flow was shown
+    private const val REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME = 2000 // In milliseconds
 
     /** Object with constants for the preferences. */
     internal object Preferences {
-        const val KEY = "rate_app_preferences"
+        const val KEY = "rate_app_preferences" // Filename
         const val CONFIGURED = "rate_app_configured"
         const val LAUNCH_COUNTER = "rate_app_launch_counter"
-        const val LAST_SHOW_DATE = "rate_app_last_show_date"
+        const val LAST_SHOW_DATE = "rate_app_last_show_date" // Time in milliseconds since January 1, 1970, 00:00:00 GMT
         const val FLOW_SHOWN_COUNTER = "rate_app_flow_shown_counter"
-        const val NEVER_SHOW_AGAIN = "rate_app_never_show_again" // Applies only for the rating dialog of versions prior to Android 5
     }
 
     /**
@@ -43,7 +41,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minInstallElapsedDays = 10
         set(value) {
-            field = validateConfigArgument(value, 0)
+            field = validateConfigValue(value, 0)
         }
 
     /**
@@ -52,7 +50,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minInstallLaunchTimes = 10
         set(value) {
-            field = validateConfigArgument(value, 1)
+            field = validateConfigValue(value, 1)
         }
 
     /**
@@ -61,7 +59,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minRemindElapsedDays = 2
         set(value) {
-            field = validateConfigArgument(value, 0)
+            field = validateConfigValue(value, 0)
         }
 
     /**
@@ -70,7 +68,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minRemindLaunchTimes = 4
         set(value) {
-            field = validateConfigArgument(value, 1)
+            field = validateConfigValue(value, 1)
         }
 
     /**
@@ -82,26 +80,19 @@ object RateApp : Base<RateApp>() {
      * */
     var showAtEvent = 2
         set(value) {
-            field = validateConfigArgument(value, 1)
+            field = validateConfigValue(value, 1)
         }
 
-    /**
-     * For versions prior to Android 5, where the dialog to invite the user to rate the app is showing, it allows setting the visibility of
-     * the never ask again button.
-     * */
-    var showNeverAskAgainButton = true
-
-
-    /** Ensures that the config argument [value] is valid and returns the same value for the easier assignment. */
-    private fun validateConfigArgument(value: Int, minValue: Int): Int {
+    /** Ensures that the config [value] is valid and returns the same value for the easier assignment. */
+    private fun validateConfigValue(value: Int, minValue: Int): Int {
         if (value < minValue) throw IllegalArgumentException("Invalid config value, value ($value) must be equal to or greater than $minValue")
         return value
     }
 
     private lateinit var sharedPreferences: SharedPreferences // To manipulate preferences
     private var initialized = false // Helper to determine if init was already called
-    private var eventCount = 0 // Helper to count how many times checkAndShow() has been called
-    private var validated = false // Determines if it has already been validated if the flow should be shown, to only validate it once per session.
+    private var checkShowEventCount = 0 // Helper to count how many times checkAndShow() has been called
+    private var validated = false // Determines if it has already been validated if the flow should be shown, to only validate it once per session
 
     /**
      * Initialize and configure the utility, it must always be called only once from the app.
@@ -125,8 +116,7 @@ object RateApp : Base<RateApp>() {
             minRemindElapsedDays: $minRemindElapsedDays
             minRemindLaunchTimes: $minRemindLaunchTimes
             showAtEvent: $showAtEvent
-            showNeverAskAgainButton: $showNeverAskAgainButton
-        """.trimIndent()
+            """.trimIndent()
         )
     }
 
@@ -135,14 +125,14 @@ object RateApp : Base<RateApp>() {
      * @param activity Activity.
      * */
     fun checkAndShow(activity: Activity) {
-        if (!initialized) throw Exception("Need call init() before calling this method") // It's necessary to call init before calling this method
+        if (!initialized) throw IllegalStateException("Need to call init() before calling this method") // It's necessary to call init before calling this method
 
         if (validated) return log("The conditions have already been validated in this session")
 
-        eventCount++
+        checkShowEventCount++
 
         // If it does not apply to show in this call to the event
-        if (showAtEvent != eventCount) return log("No need verify conditions in this call, showAtEvent: $showAtEvent | eventCount $eventCount")
+        if (showAtEvent != checkShowEventCount) return log("No need verify conditions in this call, showAtEvent: $showAtEvent | checkShowEventCount  $checkShowEventCount ")
 
         log("We proceed to verify the conditions to show the flow to rate the app, event number: $showAtEvent")
         doCheckAndShow(activity) // Execute the full verification
@@ -161,7 +151,6 @@ object RateApp : Base<RateApp>() {
                 putInt(Preferences.LAUNCH_COUNTER, 0)
                 putLong(Preferences.LAST_SHOW_DATE, Date().time) // In the first time, it is set with the current date, to have a reference value
                 putInt(Preferences.FLOW_SHOWN_COUNTER, 0)
-                putBoolean(Preferences.NEVER_SHOW_AGAIN, false)
                 putBoolean(Preferences.CONFIGURED, true)
                 apply()
             }
@@ -193,7 +182,6 @@ object RateApp : Base<RateApp>() {
         val lastShowDateValue = sharedPreferences.getLong(Preferences.LAST_SHOW_DATE, 0)
         val lastShowDate = Date(lastShowDateValue)
         val flowShowCounter = sharedPreferences.getInt(Preferences.FLOW_SHOWN_COUNTER, 0)
-        val neverShowAgain = sharedPreferences.getBoolean(Preferences.NEVER_SHOW_AGAIN, false)
 
         val minElapsedDays: Int
         val minLaunchTimes: Int
@@ -210,7 +198,7 @@ object RateApp : Base<RateApp>() {
             log("Values configured by remind values")
         }
 
-        // Show values for debugging purposes, the date is displayed in a local format for better understanding
+        // Show values for development purposes, the date is displayed in a local format for better understanding
         log(
             """
             Current Values
@@ -218,10 +206,9 @@ object RateApp : Base<RateApp>() {
             lastShowDateValue $lastShowDateValue
             lastShowDate: ${DateFormat.getDateTimeInstance().format(lastShowDate)}
             flowShowCounter: $flowShowCounter
-            neverShowAgain: $neverShowAgain
             minElapsedDays: $minElapsedDays
             minLaunchTimes: $minLaunchTimes
-        """.trimIndent()
+            """.trimIndent()
         )
 
         // Check app launches
@@ -235,7 +222,7 @@ object RateApp : Base<RateApp>() {
 
         // Calculate elapsed days between the last date the flow was shown and the current date
         val elapsedDays = ((Date().time - lastShowDateValue) / TimeUnit.DAYS.toMillis(1)).toInt()
-        log("Elapsed days between the last date of flow to rate app showed and today is: $elapsedDays")
+        log("Elapsed days between the last date of the review flow showed and today is: $elapsedDays")
 
         var elapsedDaysAreMet = false // Initial value
 
@@ -256,25 +243,18 @@ object RateApp : Base<RateApp>() {
 
         // If any of the conditions are not met
         if (!launchCounterAreMet || !elapsedDaysAreMet) {
-            log("Not all conditions are met [launchCounterAreMet = $launchCounterAreMet] [elapsedDaysAreMet = $elapsedDaysAreMet], " +
-                         "It is not necessary to show flow to rate app")
+            log(
+                "Not all conditions are met [launchCounterAreMet = $launchCounterAreMet] [elapsedDaysAreMet = $elapsedDaysAreMet], " +
+                        "It is not necessary to show flow to rate the app"
+            )
             return
         }
 
         // If all conditions are met, the flow to rate app must be shown
 
-        log("All conditions are met, the flow to rate app must be shown")
+        log("All conditions are met, the flow to rate the app must be shown")
 
-        log("The SDK version currently running is: ${Build.VERSION.SDK_INT}")
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // For Android 5 and later, where there is support for Google Play In-App Review API
-            log("Let's go to rate with Google Play In-App Review API")
-            rateWithInAppReviewApi(activity)
-        } else {
-            log("Let's go to rate with Dialog")
-            rateWithDialog(activity)
-        }
+        rateWithInAppReviewApi(activity)
 
     }
 
@@ -284,11 +264,14 @@ object RateApp : Base<RateApp>() {
      * @param activity Activity.
      * */
     private fun rateWithInAppReviewApi(activity: Activity) {
+
         log("rateWithInAppReviewApi() Invoked")
         val reviewManager = ReviewManagerFactory.create(activity)
         val managerRequest = reviewManager.requestReviewFlow()
+
         // First, it's necessary to create the request
         managerRequest.addOnCompleteListener { request ->
+
             if (request.isSuccessful) {
                 // If the request was created successfully
                 var successfulReviewFlow = false // Determine if the flow was correct
@@ -297,6 +280,7 @@ object RateApp : Base<RateApp>() {
                 firebaseAnalytics(Event.RATE_APP_FLOW_REQUEST_OK)
                 val reviewInfo = request.result // Get the result
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // The flow to rate the app is launched
+
                 // The flow process was successful
                 reviewFlow.addOnSuccessListener {
                     /*
@@ -313,15 +297,17 @@ object RateApp : Base<RateApp>() {
                     updatePreferencesOnFlowShown() // Preferences are updated because the flow is complete
                     firebaseAnalytics(Event.RATE_APP_FLOW_LAUNCH_OK)
                 }
+
                 // Flow error
                 reviewFlow.addOnFailureListener {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                     logw("Failure on ReviewFlow, can not show flow to rate the app")
                     firebaseAnalytics(Event.RATE_APP_FLOW_LAUNCH_ERROR)
                 }
+
                 // Flow completed
                 reviewFlow.addOnCompleteListener {
-                    log("Finished flow to rate app with Google Play In-App Review API")
+                    log("Finished flow to rate the app with Google Play In-App Review API")
                     /*
                     * If the flow result was correct.
                     *
@@ -335,44 +321,26 @@ object RateApp : Base<RateApp>() {
                     if (successfulReviewFlow) {
                         val elapsedTime = Date().time - flowObtainedTime
                         log("Elapsed time in review flow ${elapsedTime / 1000.0} seconds ($elapsedTime milliseconds)")
-                        if (elapsedTime >= RATE_FLOW_MIN_ELAPSED_TIME) {
-                            log("Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${RATE_FLOW_MIN_ELAPSED_TIME / 1000.0}, it is considered that the flow was shown to the user")
+                        if (elapsedTime >= REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME) {
+                            log(
+                                "Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
+                                        "it is considered that the flow was shown to the user"
+                            )
                             firebaseAnalytics(Event.RATE_APP_FLOW_SHOWN)
+                        } else {
+                            log(
+                                "Elapsed time ${elapsedTime / 1000.0} is less than ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
+                                        "it is considered that the flow NO was shown to the user"
+                            )
                         }
                     }
                 }
+
             } else {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                 logw("Error on request ReviewFlow, can not show flow to rate the app")
                 firebaseAnalytics(Event.RATE_APP_FLOW_REQUEST_ERROR)
             }
-        }
-    }
-
-    /**
-     * Show a message to invite the user to rate the app, in case of confirmation, the user is directed to the app details on
-     * Google Play so that they can rate it.
-     * @param activity Activity
-     * */
-    private fun rateWithDialog(activity: Activity) {
-        log("rateWithDialog() Invoked")
-
-        val neverShowAgain = sharedPreferences.getBoolean(Preferences.NEVER_SHOW_AGAIN, false)
-
-        if (!neverShowAgain) {
-
-            log("neverShowAgain = $neverShowAgain | The dialogue is shown")
-            updatePreferencesOnFlowShown() // Preferences are updated because the dialog is shown
-            firebaseAnalytics(Event.RATE_APP_DIALOG_SHOWN)
-
-            // Launch the activity (dialogue style)
-            activity.startActivity(
-                Intent(activity, RateAppActivity::class.java),
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
-            )
-
-        } else {
-            log("neverShowAgain = $neverShowAgain | No need to show dialogue anymore")
         }
 
     }
@@ -409,20 +377,22 @@ object RateApp : Base<RateApp>() {
      * @param activity Activity.
      * */
     fun goToRateInGooglePlay(activity: Activity) {
+
         val marketUriString = "market://details?id=${activity.packageName}"
         val uri = Uri.parse(marketUriString)
         val googlePlayIntent = Intent(Intent.ACTION_VIEW, uri)
         googlePlayIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+
         try {
             activity.startActivity(googlePlayIntent) // It tries to show in the Google Play app
-            log("Sent user to view app details in the google play app [$marketUriString]")
+            log("User is sent to view app details in the google play app [$marketUriString]")
             firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_APP)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // If it cannot be shown in the google play app, it tries to open in the web browser
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
-                log("Sent user to view app details in google play on web browser [$webUriString]")
+                log("User is sent to view app details in google play on web browser [$webUriString]")
                 firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_WEB)
             } catch (e2: ActivityNotFoundException) {
                 // If it couldn't be displayed in either of the above two ways, show a toast
@@ -431,6 +401,7 @@ object RateApp : Base<RateApp>() {
                 firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_ERROR)
             }
         }
+
     }
 
 }

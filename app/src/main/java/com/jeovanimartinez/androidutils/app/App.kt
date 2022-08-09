@@ -63,7 +63,6 @@ class App : MultiDexApplication() {
             minRemindElapsedDays = 0
             minRemindLaunchTimes = 1
             showAtEvent = 1
-            showNeverAskAgainButton = true
         }.init(this)
     }
 

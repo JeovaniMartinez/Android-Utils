@@ -20,11 +20,7 @@
     <string name="more_apps_unable_to_show_dev_page">Not available</string>
 
     <!-- Rate App -->
-    <string name="rate_app_unable_to_show_app_on_google_play">Not available, please rate App on Google Play</string>
-    <string name="rate_dialog_ask">Would you like to rate our app in Google Play?</string>
-    <string name="rate_dialog_rate_now">Rate Now</string>
-    <string name="rate_dialog_no_thanks">No, thanks.\nI have already rate</string>
-    <string name="rate_dialog_later">Later</string>
+    <string name="rate_app_unable_to_show_app_on_google_play">Not available, please rate the App on Google Play</string>
 
     <!-- ShareUtils -->
     <string name="share">Share</string>

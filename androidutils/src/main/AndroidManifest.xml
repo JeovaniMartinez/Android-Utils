@@ -12,11 +12,6 @@
             android:name=".about.AboutActivity"
             android:theme="@style/AndroidUtilsTheme.Translucent" />
 
-        <activity
-            android:name=".reviews.RateAppActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AndroidUtilsTheme.Translucent" />
-
         <!-- Receiver for ShareUtils -->
         <receiver android:name=".share.ApplicationSelectorReceiver" />
 
