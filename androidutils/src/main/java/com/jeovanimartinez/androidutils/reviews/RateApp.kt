@@ -386,14 +386,14 @@ object RateApp : Base<RateApp>() {
         try {
             activity.startActivity(googlePlayIntent) // It tries to show in the Google Play app
             log("User is sent to view app details in the google play app [$marketUriString]")
-            firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_APP)
+            firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // If it cannot be shown in the google play app, it tries to open in the web browser
                 val webUriString = "http://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
                 log("User is sent to view app details in google play on web browser [$webUriString]")
-                firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_WEB)
+                firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY)
             } catch (e2: ActivityNotFoundException) {
                 // If it couldn't be displayed in either of the above two ways, show a toast
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)

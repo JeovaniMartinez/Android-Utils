@@ -34,9 +34,7 @@ internal object Event {
     const val RATE_APP_FLOW_LAUNCH_OK = "rate_app_flow_launch_ok"
     const val RATE_APP_FLOW_LAUNCH_ERROR = "rate_app_flow_launch_error"
     const val RATE_APP_FLOW_SHOWN = "rate_app_flow_shown"
-    const val RATE_APP_DIALOG_SHOWN = "rate_app_dialog_shown"
-    const val RATE_APP_SENT_GOOGLE_PLAY_APP = "rate_app_sent_google_play_app"
-    const val RATE_APP_SENT_GOOGLE_PLAY_WEB = "rate_app_sent_google_play_web"
+    const val RATE_APP_SENT_GOOGLE_PLAY = "rate_app_sent_google_play"
     const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
     const val SHARE_LAUNCHED = "share_launched"
