@@ -14,6 +14,10 @@ Parts of the library of the first version of the library already revised
 
 ** Packages **
 
+- analytics
+  - Event (content)
+    - RateApp events
+
 - annotations
   - DrawableOrDrawableRes
   - StringOrStringRes
@@ -21,3 +25,6 @@ Parts of the library of the first version of the library already revised
 - extensions
   - context
     - TypeOrResource.kt
+
+- reviews
+  - RateApp
