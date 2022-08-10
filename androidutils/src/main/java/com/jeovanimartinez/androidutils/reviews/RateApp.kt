@@ -258,7 +258,13 @@ object RateApp : Base<RateApp>() {
 
     }
 
-    // Reference: https://developer.android.com/guide/playcore/in-app-review
+    /*
+    *
+    * Reference: https://developer.android.com/guide/playcore/in-app-review
+    *
+    * To test failure event, disable the Google Play Store app on the test device.
+    *
+    * */
     /**
      * Show the flow to rate the app with Google Play In-App Review API.
      * @param activity Activity.
@@ -301,6 +307,7 @@ object RateApp : Base<RateApp>() {
                 // Review flow error
                 reviewFlow.addOnFailureListener {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
+                    checkShowEventCount = showAtEvent - 1 // Adjust to try again on the next event
                     loge("launchReviewFlow() > Error", it)
                     firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_ERROR)
                 }
@@ -338,6 +345,7 @@ object RateApp : Base<RateApp>() {
 
             } else {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
+                checkShowEventCount = showAtEvent - 1 // Adjust to try again on the next event
                 loge("requestReviewFlow() > Error", request.exception)
                 firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_ERROR)
             }
