@@ -264,6 +264,14 @@ object RateApp : Base<RateApp>() {
     *
     * To test failure event, disable the Google Play Store app on the test device.
     *
+    * To force the review flow to be shown if it was just shown (for testing):
+    *   - Turn off the internet.
+    *   - Clear data and cache of the Google Play Store app.
+    *   - Open the test app and invoke the flow (it won't be shown).
+    *   - Close the test app.
+    *   - Turn on the internet.
+    *   - Open the test app again and invoke the flow (it should be shown).
+    *
     * */
     /**
      * Show the flow to rate the app with Google Play In-App Review API.
