@@ -161,30 +161,21 @@ payment is approved.
 ### Rate App
 
 ---
-<Event>rate_app_flow_request_ok</Event><br/><br/>
-<Event>rate_app_flow_request_error</Event><br/><br/>
-They indicate whether or not the review flow could be obtained.
+<Event>rate_app_review_flow_ok</Event><br/><br/>
+<Event>rate_app_review_flow_error</Event><br/><br/>
+Once all conditions are met to show the app rating flow to the user, they indicate whether the app review flow could be successfully obtained from 
+the Google Play In-App Review API.
 
 ---
-<Event>rate_app_flow_launch_ok</Event><br/><br/>
-<Event>rate_app_flow_launch_error</Event><br/><br/>
-Indicates whether or not the review flow could be launched (show to the user).
 
----
-<Event>rate_app_flow_shown</Event><br/><br/>
+<Event>rate_app_review_flow_shown</Event><br/><br/>
 The flow to invite the user to rate the app was shown (the review API does not provide the result, but it can be inferred, although it is not 
 100% accurate).
 
 ---
-<Event>rate_app_dialog_shown</Event><br/><br/>
-The dialog to rate the app was shown, it only applies in versions prior to Android 5 where the revision API is not available.
-
----
-<Event>rate_app_sent_google_play_app</Event><br/><br/>
-<Event>rate_app_sent_google_play_web</Event><br/><br/>
+<Event>rate_app_sent_google_play</Event><br/><br/>
 <Event>rate_app_sent_google_play_error</Event><br/><br/>
-They indicate where the user was directed to rate the app. And the last event indicates that the user could not be directed to either the Google Play 
-app or the website.
+Indicates if the user was directed successfully to the Google Play Store to rate the app or if an error occurred.
 
 ---
 

@@ -18,6 +18,8 @@ Docs:
 - configuration > *** Analytics (Until note: Some events have... Check and update events and event descriptions as utilities are checked)
 - configuration > Prepare For Release
 
+- Library Utilities > Rate App (with Analytics events)
+
 - contributing > index and items descriptions
 - contributing > Contribution Guide
 - contributing > Firebase Crashlytics
