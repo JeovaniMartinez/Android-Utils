@@ -27,7 +27,7 @@ class RateAppActivity : AppCompatActivity() {
     /** Rate In Google Play Setup */
     private fun rateInGooglePlaySetup() {
         binding.btnGoToRateInGooglePlay.setOnClickListener {
-            RateApp.goToRateInGooglePlay(this)
+            RateApp.goToRateInGooglePlay(this@RateAppActivity)
         }
     }
 
@@ -50,7 +50,7 @@ class RateAppActivity : AppCompatActivity() {
                 }
             }
 
-            RateApp.checkAndShow(this)
+            RateApp.checkAndShow(this@RateAppActivity)
         }
     }
 
