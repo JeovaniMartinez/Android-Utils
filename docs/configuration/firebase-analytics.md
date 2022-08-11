@@ -16,8 +16,17 @@ export const Parameter = ({children}) => ( <span style={{
     backgroundColor: '#807300',
     borderRadius: '6px',
     color: '#fff',
-   padding: '0.2rem 0.8rem',
+    padding: '0.2rem 0.8rem',
 }}>{children}</span> );
+
+export const Separator = ({children}) => ( <div style={{
+    backgroundColor: '#008091',
+    borderRadius: '6px',
+    color: '#008091',
+    padding: '2px',
+    width: '100%',
+    height: '6px',
+}}>{children}</div> );
 
 ## Description
 
@@ -69,6 +78,8 @@ can be created in Firebase or Google Analytics console.
 
 <br/>
 
+<Separator></Separator>
+
 ### About App
 
 ---
@@ -84,9 +95,10 @@ The open source licenses are shown in the about activity.
 The license terms and privacy policy are shown in the about activity.
 
 ---
+
 <br/>
 
-
+<Separator></Separator>
 
 ### More Apps
 
@@ -99,9 +111,10 @@ The user is directed to Google Play, to the list of the developer apps.
 It is not possible to direct the user to the developer apps list in Google Play.
 
 ---
+
 <br/>
 
-
+<Separator></Separator>
 
 ### Premium App
 
@@ -140,9 +153,10 @@ Indicates if the purchase was completed successfully or if there was an error on
 payment is approved.
 
 ---
+
 <br/>
 
-
+<Separator></Separator>
 
 ### Rate App
 
@@ -173,9 +187,10 @@ They indicate where the user was directed to rate the app. And the last event in
 app or the website.
 
 ---
+
 <br/>
 
-
+<Separator></Separator>
 
 ### System Web Browser
 
@@ -187,4 +202,7 @@ The user is directed to a web page in the system web browser.
 Parameter that indicates the reason why the user was directed to the system web browser, and also records when an error occurs.
 
 ---
+
 <br/>
+
+<Separator></Separator>
