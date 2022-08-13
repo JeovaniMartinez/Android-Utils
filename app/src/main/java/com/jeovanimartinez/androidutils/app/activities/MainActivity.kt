@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, RateAppActivity::class.java))
                 }
                 1 -> {
-                    shortToast("Watermark")
+                    startActivity(Intent(this, WatermarkActivity::class.java))
                 }
                 2 -> {
                     shortToast("View To Image")
@@ -101,10 +101,10 @@ class MainActivity : AppCompatActivity() {
         // Set selected item
         try {
             // If the index exists in the preferences and it is within the range of the array
-            val index = preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)
+            val index = preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 1)
             libraryUtilitiesMenu.setText(libraryUtilitiesList[index])
         } catch (e: Exception) {
-            libraryUtilitiesMenu.setText(libraryUtilitiesList[0]) // Default
+            libraryUtilitiesMenu.setText(libraryUtilitiesList[1]) // Default (watermark)
         }
 
         // The list is assigned, always after indicating the selected element

@@ -36,4 +36,7 @@
     <string name="rate_app_current_configuration_values" translatable="false">Current Configuration Values</string>
     <string name="rate_app_check_the_logcat" translatable="false">>> Check the Logcat &lt;&lt;</string>
 
+    <!-- Watermark Activity -->
+    <string name="watermark_title" translatable="false">Watermark</string>
+
 </resources>
