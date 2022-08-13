@@ -66,7 +66,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnGoToUtility.setOnClickListener {
 
-            when (preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 0)) {
+            // The default option is watermark, position 1
+            when (preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 1)) {
                 0 -> {
                     startActivity(Intent(this, RateAppActivity::class.java))
                 }
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         // Set selected item
         try {
             // If the index exists in the preferences and it is within the range of the array
-            val index = preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 1)
+            val index = preferences.getInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, 1) // Default (watermark)
             libraryUtilitiesMenu.setText(libraryUtilitiesList[index])
         } catch (e: Exception) {
             libraryUtilitiesMenu.setText(libraryUtilitiesList[1]) // Default (watermark)
