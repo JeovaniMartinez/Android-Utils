@@ -1,30 +1,14 @@
 ## Checklist for v1.0.0
 
-Parts of the library of the first version of the library already revised
+* Solo este archivo esta en español.
 
-* Excluding androidutils, app folders, and README.md, everything else is ready.
-* The test app is developed and tested together with the utilities, so it is excluded from this list.
+* Lista de verificación de partes de la biblioteca que ya se terminaron de desarrollar.
 
-- values folder (all files)
-- layout folder (all files)
-- drawable folder. NOTE: pending to delete logo_jedemm_com and unused resources
-- AndroidManifest.xml
-- Base
-- consumerProguardFiles
+* Hasta este punto, lo que aparece en este archivo ya esta listo, solo van a quedar pendientes las pruebas en diversas versiones de Android,
+  ya que por el momento se desarrolla y prueba en un celular físico con Android 8.1.0.
 
-** Packages **
+***************************************************************************************************************************************************
 
-- analytics
-  - Event (content)
-    - RateApp events
+Gradle Scripts
 
-- annotations
-  - DrawableOrDrawableRes
-  - StringOrStringRes
-
-- extensions
-  - context
-    - TypeOrResource.kt
-
-- reviews
-  - RateApp
+***************************************************************************************************************************************************
