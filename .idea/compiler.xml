@@ -2,6 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
+      <module name="android-utils-library.Android-Utils.androidutils" target="17" />
+      <module name="android-utils-library.Android-Utils.app" target="17" />
       <module name="Android-Utils.androidutils" target="11" />
       <module name="Android-Utils.app" target="11" />
     </bytecodeTargetLevel>

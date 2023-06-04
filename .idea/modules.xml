@@ -3,17 +3,17 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android-Utils.iml" filepath="$PROJECT_DIR$/.idea/modules/Android-Utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/Android-Utils.androidutils.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-Utils.app.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.iml" filepath="$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.test.iml" filepath="$PROJECT_DIR$/.idea/modules/lintcheck/Android-Utils.lintcheck.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/androidutils/android-utils-library.Android-Utils.androidutils.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-utils-library.Android-Utils.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lintcheck/android-utils-library.Android-Utils.lintcheck.iml" filepath="$PROJECT_DIR$/.idea/modules/lintcheck/android-utils-library.Android-Utils.lintcheck.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lintcheck/android-utils-library.Android-Utils.lintcheck.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lintcheck/android-utils-library.Android-Utils.lintcheck.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lintcheck/android-utils-library.Android-Utils.lintcheck.test.iml" filepath="$PROJECT_DIR$/.idea/modules/lintcheck/android-utils-library.Android-Utils.lintcheck.test.iml" />
     </modules>
   </component>
 </project>
