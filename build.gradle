@@ -5,14 +5,14 @@ buildscript {
     ext {
 
         // ** Android Utils Library Version **
-        androidUtilsVersionCode = 2
-        androidUtilsVersionName = "0.9.5-beta"
+        androidUtilsVersionCode = 3
+        androidUtilsVersionName = "1.0.0-beta"
 
-        // Lint tool version
-        lintVersion = '30.2.1' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
+        // Lint tool version (Current version of Gradle plugin is 8.0.2)
+        lintVersion = '31.0.2' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
 
         // Kotlin version
-        kotlinVersion = '1.7.0'
+        kotlinVersion = '1.8.10'
 
     }
 
@@ -28,9 +28,9 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath 'com.android.tools.build:gradle:8.0.2'
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.0"
-        classpath "com.google.android.gms:oss-licenses-plugin:0.10.5"
-        classpath 'com.google.gms:google-services:4.3.13'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
+        classpath "com.google.android.gms:oss-licenses-plugin:0.10.6"
+        classpath 'com.google.gms:google-services:4.3.15'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.5'
     }
 
 }
@@ -46,6 +46,6 @@ allprojects {
 
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
