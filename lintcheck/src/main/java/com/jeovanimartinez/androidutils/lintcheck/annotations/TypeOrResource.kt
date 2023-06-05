@@ -194,5 +194,9 @@ Bug fixes:
         - If the folder cannot be deleted because it indicates that it is still in use, open the task manager and end the "OpenJDK Platform Binary" tasks.
         - After this, the folder should be able to be deleted.
     - Open the IDE and go to Build > Clean Project, later compile/debug again.
+- If get an error like this when synchronizing Gradle files: lintcheck:main: Could not resolve com.android.tools.build:manifest-merger:31.0.2 It can be solved by using another version of
+  Gradle, changing the version in:
+    - classpath 'com.android.tools.build:gradle:8.0.1'
+    - lintVersion = '30.0.1'
 
 **/

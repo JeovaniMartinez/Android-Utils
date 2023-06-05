@@ -8,8 +8,8 @@ buildscript {
         androidUtilsVersionCode = 3
         androidUtilsVersionName = "1.0.0-beta"
 
-        // Lint tool version (Current version of Gradle plugin is 8.0.2)
-        lintVersion = '31.0.2' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
+        // Lint tool version (Current version of Gradle plugin is 8.0.1)
+        lintVersion = '30.0.1' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
 
         // Kotlin version
         kotlinVersion = '1.8.10'
@@ -26,7 +26,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'com.android.tools.build:gradle:8.0.2'
+        classpath 'com.android.tools.build:gradle:8.0.1'
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.7.0"
         classpath "com.google.android.gms:oss-licenses-plugin:0.10.6"
         classpath 'com.google.gms:google-services:4.3.15'
