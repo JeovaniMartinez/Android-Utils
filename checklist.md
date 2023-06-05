@@ -19,12 +19,11 @@
 ***************************************************************************************************************************************************
 
 - Verificar que las nuevas versiones de analytics y crashlytics funciones correctamente
-- Ajustar y probar módulo de lint check
 - Verificar que la documentación se genere correctamente, ajustar si es requerido
 
 ***************************************************************************************************************************************************
 
-Gradle Scripts
+Gradle Scripts (Todo terminado, solo los 2 pequeños ajustes de billingclient pendientes)
   > build.gradle (Project: Android-Utils) ✔✔
   > build.gradle (Module :androidutils) ✔⚠⚠
     - Actualizar la dependencia 'com.android.billingclient:billing-ktx' cuando se actualice la utilidad
@@ -38,5 +37,26 @@ Gradle Scripts
   > gradle-wrapper.properties ✔✔
   > local.properties ✔✔
   > settings.gradle ✔✔
+
+***************************************************************************************************************************************************
+
+lintcheck [Módulo] ✔✔ (Todo terminado, módulo listo)
+  > main ✔✔
+    > java ✔✔
+      > com.jeovanimartinez.androidutils.lintcheck.annotations ✔✔
+        > annotations ✔✔
+          > TypeOrResource ✔✔
+        > IssueRegistry ✔✔
+    > resources ✔✔
+      > META-INF ✔✔
+        > services ✔✔
+          > com.android.tools.lint.client.api.IssueRegistry ✔✔
+    
+***************************************************************************************************************************************************
+
+app [Módulo]
+  > java
+    > annotations
+      > CodeInspectionAnnotations.kt ✔✔
 
 ***************************************************************************************************************************************************

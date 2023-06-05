@@ -3,6 +3,8 @@
 package com.jeovanimartinez.androidutils.lintcheck.annotations
 
 import com.android.tools.lint.detector.api.*
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiMethod
 import com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.KtNodeTypes.DOT_QUALIFIED_EXPRESSION
 import org.jetbrains.kotlin.lexer.KtTokens
@@ -52,15 +54,27 @@ class TypeOrResource : Detector(), Detector.UastScanner {
     }
 
     /** When annotation usage is detected */
-    override fun visitAnnotationUsage(context: JavaContext, element: UElement, annotationInfo: AnnotationInfo, usageInfo: AnnotationUsageInfo) {
+    override fun visitAnnotationUsage(
+        context: JavaContext,
+        usage: UElement,
+        type: AnnotationUsageType,
+        annotation: UAnnotation,
+        qualifiedName: String,
+        method: PsiMethod?,
+        referenced: PsiElement?,
+        annotations: List<UAnnotation>,
+        allMemberAnnotations: List<UAnnotation>,
+        allClassAnnotations: List<UAnnotation>,
+        allPackageAnnotations: List<UAnnotation>
+    ) {
 
         // Get the item type with its debug name, for example, REGULAR_STRING_PART for a String
-        val elementType = element.sourcePsi?.node?.firstChildNode?.elementType
+        val elementType = usage.sourcePsi?.node?.firstChildNode?.elementType
         // Get the value in text
-        val text = element.sourcePsi?.node?.firstChildNode?.text
+        val text = usage.sourcePsi?.node?.firstChildNode?.text
 
-        val elementPrev = element.sourcePsi?.node?.firstChildNode?.treePrev // Next item
-        val elementNext = element.sourcePsi?.node?.firstChildNode?.treeNext // Previous item
+        val elementPrev = usage.sourcePsi?.node?.firstChildNode?.treePrev // Next item
+        val elementNext = usage.sourcePsi?.node?.firstChildNode?.treeNext // Previous item
 
         /*
         * It is validated that it is content to verify, otherwise, no problem is reported.
@@ -80,23 +94,23 @@ class TypeOrResource : Detector(), Detector.UastScanner {
             * */
             if (elementPrev == null && elementNext == null && elementType != KtTokens.IDENTIFIER) {
                 // Verification is executed according to the annotation found
-                when (annotationInfo.qualifiedName) {
-                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, element, elementType, text, CheckType.DATA_TYPE)
-                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, element, elementType, text, CheckType.DATA_TYPE)
+                when (annotation.qualifiedName) {
+                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.DATA_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.DATA_TYPE)
                 }
             }
 
             // Now it is verified if the value corresponds to a value of the resources.
             if (elementType == DOT_QUALIFIED_EXPRESSION && text.contains("R.") && (text.startsWith("R.") || text.startsWith("android.R."))) {
                 // Verification is executed according to the annotation found
-                when (annotationInfo.qualifiedName) {
-                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, element, elementType, text, CheckType.RESOURCE_TYPE)
-                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, element, elementType, text, CheckType.RESOURCE_TYPE)
+                when (annotation.qualifiedName) {
+                    "com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes" -> checkDrawableOrDrawableRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
+                    "com.jeovanimartinez.androidutils.annotations.StringOrStringRes" -> checkStringOrStringRes(context, usage, elementType, text, CheckType.RESOURCE_TYPE)
                 }
             }
         }
 
-        super.visitAnnotationUsage(context, element, annotationInfo, usageInfo)
+        super.visitAnnotationUsage(context, usage, type, annotation, qualifiedName, method, referenced, annotations, allMemberAnnotations, allClassAnnotations, allPackageAnnotations)
     }
 
     /**
@@ -114,6 +128,7 @@ class TypeOrResource : Detector(), Detector.UastScanner {
                 // Drawable is not a primitive data type, so identifiers or references are received, and in this case nothing problem is reported
                 // Invalid type, expected drawable object or drawable resource
             }
+
             CheckType.RESOURCE_TYPE -> {
                 // The problem is reported if the resource is not a drawable resource
                 if (text != "R.drawable" && text != "android.R.drawable") {
@@ -149,6 +164,7 @@ class TypeOrResource : Detector(), Detector.UastScanner {
                     )
                 }
             }
+
             CheckType.RESOURCE_TYPE -> {
                 // The problem is reported if the resource is not a string resource
                 if (text != "R.string" && text != "android.R.string") {
@@ -194,7 +210,7 @@ Bug fixes:
         - If the folder cannot be deleted because it indicates that it is still in use, open the task manager and end the "OpenJDK Platform Binary" tasks.
         - After this, the folder should be able to be deleted.
     - Open the IDE and go to Build > Clean Project, later compile/debug again.
-- If get an error like this when synchronizing Gradle files: lintcheck:main: Could not resolve com.android.tools.build:manifest-merger:31.0.2 It can be solved by using another version of
+- If get an error like this when synchronizing Gradle files: `lintcheck:main: Could not resolve com.android.tools.build:manifest-merger:31.0.2` It can be solved by using another version of
   Gradle, changing the version in:
     - classpath 'com.android.tools.build:gradle:8.0.1'
     - lintVersion = '30.0.1'

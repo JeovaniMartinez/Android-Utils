@@ -17,6 +17,11 @@ lintOptions {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+
+    // To fix error: compileJava' task (current target is 1.8) and 'compileKotlin' task (current target is 17) jvm target compatibility should be set to the same Java version.
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
 }
 
 dependencies {
