@@ -19,7 +19,6 @@
 ***************************************************************************************************************************************************
 
 - Verificar que las nuevas versiones de analytics y crashlytics funciones correctamente
-- Verificar que la documentación se genere correctamente, ajustar si es requerido
 
 ***************************************************************************************************************************************************
 
