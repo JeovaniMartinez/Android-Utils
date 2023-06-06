@@ -18,10 +18,6 @@
 
 ***************************************************************************************************************************************************
 
-- Verificar que las nuevas versiones de analytics y crashlytics funciones correctamente
-
-***************************************************************************************************************************************************
-
 Gradle Scripts (Todo terminado, solo los 2 pequeños ajustes de billingclient pendientes)
   > build.gradle (Project: Android-Utils) ✔✔
   > build.gradle (Module :androidutils) ✔⚠⚠

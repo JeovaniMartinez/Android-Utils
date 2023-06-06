@@ -41,7 +41,7 @@ class App : MultiDexApplication() {
          * Enable Analytics debug mode: adb shell setprop debug.firebase.analytics.app com.jeovanimartinez.androidutils.app
          * Disable Analytics debug mode: adb shell setprop debug.firebase.analytics.app .none.
          * */
-        // Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(this)
+        Base.firebaseAnalyticsInstance = FirebaseAnalytics.getInstance(this)
 
     }
 
