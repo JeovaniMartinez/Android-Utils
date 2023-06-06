@@ -41,6 +41,7 @@ fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT, trimMargi
     var colored = IntArray(width) { color }
     var buffer = IntArray(width)
 
+    @Suppress("KotlinConstantConditions")
     for (y in bottom until top) {
         getPixels(buffer, 0, width, 0, y, width, 1)
         if (!colored.contentEquals(buffer)) {
@@ -61,6 +62,7 @@ fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT, trimMargi
     colored = IntArray(heightRemaining) { color }
     buffer = IntArray(heightRemaining)
 
+    @Suppress("KotlinConstantConditions")
     for (x in left until right) {
         getPixels(buffer, 0, 1, x, bottom, 1, heightRemaining)
         if (!colored.contentEquals(buffer)) {
