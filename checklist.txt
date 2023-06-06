@@ -1,5 +1,7 @@
 ## Checklist for v1.0.0
 
+* IMPORTANTE: Cuando se finalice el desarrollo, verificar que todos los archivos estén en esta lista y estén listos.
+
 * Solo este archivo esta en español.
 
 * Lista de verificación de partes de la biblioteca que ya se terminaron de desarrollar.
@@ -8,13 +10,13 @@
   ya que por el momento se desarrolla y prueba en un celular físico con Android 8.1.0.
 
 * En el caso de las dependencias de Gradle, para la versión 1.0.0 de la biblioteca ya no actualizar ninguna (a menos que se especifique lo contrario) 
-  ya que las que se tienen ya se van a probar en el desarrollo, y para evitar poribles conflictos ya dejarlas como están, ya que se actualizaron
+  ya que las que se tienen ya se van a probar en el desarrollo, y para evitar posibles conflictos ya dejarlas como están, ya que se actualizaron
   el 04/06/2023.
 
 * ✔✔ Indica que el archivo/utilidad ya esta lista.
 
 * ✔⚠⚠ Indica que el archivo/utilidad ya casi esta lista, solo requiere pequeños ajustes que se van a realizar después ya que dependen de otra cosa,
-  y abajo se agrega una anotación indicando lo que está pendiende de ajustar.
+  y abajo se agrega una anotación indicando lo que está pendiente de ajustar.
 
 ***************************************************************************************************************************************************
 
@@ -74,6 +76,15 @@ androidutils [Módulo]
                 > DimensionsF.kt ✔✔
             > graphics ✔✔
                 > Bitmap.kt ✔✔
-
+            > nullability ✔✔
+                > NullSafety.kt ✔✔
+            > view ✔✔
+                > Animations.kt ✔✔
+        > graphics ✔✔
+            > utils ✔✔
+                > CornerRadius ✔✔
+                > Dimension ✔✔
+                > Margin ✔✔
+                > Padding ✔✔
 
 ***************************************************************************************************************************************************
