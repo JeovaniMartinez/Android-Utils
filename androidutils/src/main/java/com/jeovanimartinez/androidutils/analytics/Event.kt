@@ -41,6 +41,13 @@ internal object Event {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /*
+    * IMPORTANT
+    * The above events are still not fully verified and may change and be adjusted. The events below this comment are
+    * fully ready for the first final version of the library and are being moved from top to bottom as they are reviewed,
+    * validated, and tested.
+    * */
+
     /**
      * Constants with the names of the parameters for the events.
      * */
