@@ -18,6 +18,7 @@
     - Delete all content of the `gh-pages` branch of the project (except .gitignore and README.md), and put all content of the `build` folder in the `gh-pages` branch.
     - Generate a RAR file named `documentation.rar` with all content of the documentation project including the build folder (exclude only .docusaurus, .git, .idea, and node_modules folders).
 - Create a pull request and merge develop branch into the master branch.
-- Create a new release in GitHub and attach the `documentation.rar` file.
+- Generate the App Bundle and update the app in Google Play.
+- Create a new release in GitHub and attach the `documentation.rar` file and the generated App Bundle.
     - In the release description add a link to release notes of the documentation website.
 - Test the library in some app and check documentation and API reference on the library website.
