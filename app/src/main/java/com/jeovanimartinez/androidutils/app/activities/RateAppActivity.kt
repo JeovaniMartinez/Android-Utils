@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityRateAppBinding
+import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
+import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import com.jeovanimartinez.androidutils.reviews.RateApp
 
@@ -16,6 +18,7 @@ class RateAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRateAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
 
         binding.appBar.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.appBar.tvTitle.text = getString(R.string.rate_app_title)
