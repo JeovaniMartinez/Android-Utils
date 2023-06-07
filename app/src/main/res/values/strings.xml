@@ -10,7 +10,7 @@
 
     <!-- Main Activity -->
     <string name="app_description" translatable="false">
-        This app is intended to test the library utilities during the development process and to show a preview of the main utilities to the developers.
+        This app is intended to test the library utilities during the development process and to provide a preview of the main utilities to the developers.
         You can check the complete documentation for all library utilities on the library\'s website.
     </string>
     <string name="app_credits" translatable="false">&app_name; v%1$s\nBy Jeovani Martinez</string>
