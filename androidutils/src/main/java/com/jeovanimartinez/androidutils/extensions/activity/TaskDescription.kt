@@ -31,10 +31,8 @@ fun Activity.configureTaskDescription(@StringOrStringRes title: Any, @DrawableRe
     // From Android Lollipop (5.0 API 21, minSdkVersion of the library) to Android Oreo (8.1 API 27)
     if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
 
-        val finalTitle = typeAsString(title)
-
         @Suppress("DEPRECATION")
-        val taskDescription = TaskDescription(finalTitle, BitmapFactory.decodeResource(resources, icon), color)
+        val taskDescription = TaskDescription(typeAsString(title), BitmapFactory.decodeResource(resources, icon), color)
         this.setTaskDescription(taskDescription)
 
     }
