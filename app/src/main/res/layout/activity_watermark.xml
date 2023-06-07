@@ -51,7 +51,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_arrow_left_circle" />
+                    app:srcCompat="@drawable/ic_arrow_left_circle"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnNextImage"
@@ -62,7 +63,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btnPreviousImage"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_arrow_right_circle" />
+                    app:srcCompat="@drawable/ic_arrow_right_circle"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnRestoreImage"
@@ -73,7 +75,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btnNextImage"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_restore" />
+                    app:srcCompat="@drawable/ic_restore"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnShareImage"
@@ -84,7 +87,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnSaveImage"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_share" />
+                    app:srcCompat="@drawable/ic_share"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnSaveImage"
@@ -95,7 +99,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_save" />
+                    app:srcCompat="@drawable/ic_save"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

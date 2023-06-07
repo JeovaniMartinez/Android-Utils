@@ -55,7 +55,7 @@ class App : MultiDexApplication() {
         }
     }
 
-    /** Rate In App */
+    /** Rate In App Setup */
     private fun rateInAppSetup() {
         RateApp.apply {
             minInstallElapsedDays = 0

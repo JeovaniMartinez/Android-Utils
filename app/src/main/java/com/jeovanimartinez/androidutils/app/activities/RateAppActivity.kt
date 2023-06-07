@@ -17,7 +17,7 @@ class RateAppActivity : AppCompatActivity() {
         binding = ActivityRateAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.appBar.btnBack.setOnClickListener { super.onBackPressed() }
+        binding.appBar.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.appBar.tvTitle.text = getString(R.string.rate_app_title)
 
         rateInGooglePlaySetup()

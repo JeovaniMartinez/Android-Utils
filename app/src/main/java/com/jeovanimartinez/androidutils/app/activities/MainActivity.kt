@@ -71,15 +71,19 @@ class MainActivity : AppCompatActivity() {
                 0 -> {
                     startActivity(Intent(this, RateAppActivity::class.java))
                 }
+
                 1 -> {
                     startActivity(Intent(this, WatermarkActivity::class.java))
                 }
+
                 2 -> {
                     shortToast("View To Image")
                 }
+
                 3 -> {
                     shortToast("About App")
                 }
+
                 4 -> {
                     shortToast("Premium App")
                 }
