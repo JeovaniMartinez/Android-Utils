@@ -60,10 +60,15 @@ app [Módulo]
 androidutils [Módulo]
     > java
         > Base ✔✔
+        > activity ✔✔
+            > config ✔✔
+                > TaskDescriptionConfig ✔✔
         > annotations ✔✔
             > DrawableOrDrawableRes ✔✔
             > StringOrStringRes ✔✔
-        > extensions
+        > extensions ✔✔
+            > activity ✔✔
+                > TaskDescription.kt ✔✔
             > basictypes ✔✔
                 > Float.kt ✔✔
             > context ✔✔
