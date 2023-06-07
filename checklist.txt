@@ -52,9 +52,8 @@ lintcheck [Módulo] ✔✔ (Todo terminado, módulo listo)
 ***************************************************************************************************************************************************
 
 app [Módulo]
-    > java
-        > annotations
-            > CodeInspectionAnnotations.kt ✔✔
+    > 06/06/2023: Revisión general de todo el código, archivos y recursos. Todo esta bien, solo ir ajustando lo que se requiera conforme se
+    desarrolle la app. Al final hacer nuevamente una revisión general de todos los archivos del proyecto.
 
 ***************************************************************************************************************************************************
 
