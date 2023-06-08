@@ -27,8 +27,6 @@ internal object Event {
     const val MORE_APPS_SHOWN_GOOGLE_PLAY_OK = "more_apps_shown_google_play_ok"
     const val MORE_APPS_SHOWN_GOOGLE_PLAY_ERROR = "more_apps_shown_google_play_error"
 
-    const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
-
     const val RATE_APP_REVIEW_FLOW_OK = "rate_app_review_flow_ok"
     const val RATE_APP_REVIEW_FLOW_ERROR = "rate_app_review_flow_error"
     const val RATE_APP_REVIEW_FLOW_SHOWN = "rate_app_review_flow_shown"
@@ -48,13 +46,18 @@ internal object Event {
     * validated, and tested.
     * */
 
+    // System Web Browser
+    const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
+
     /**
      * Constants with the names of the parameters for the events.
      * */
     object Parameter {
 
+        // System Web Browser
         const val OPEN_URL_CASE = "open_url_case"
 
+        // To be verified...
         const val SHARE_CASE = "share_case"
         const val SHARE_SELECTED_APP = "share_selected_app"
 
