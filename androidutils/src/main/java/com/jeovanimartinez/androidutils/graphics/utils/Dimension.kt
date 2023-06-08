@@ -3,7 +3,7 @@
 package com.jeovanimartinez.androidutils.graphics.utils
 
 /**
- * Enum of dimension
+ * Enum of the main and most used dimensions in Android app development.
  * */
 enum class Dimension {
     PX, // Pixels

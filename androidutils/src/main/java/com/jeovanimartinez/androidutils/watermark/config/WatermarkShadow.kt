@@ -3,7 +3,7 @@ package com.jeovanimartinez.androidutils.watermark.config
 import androidx.annotation.ColorInt
 
 /**
- * Configuration to create a shadow for a watermark.
+ * Configuration to create a shadow for a text watermark.
  * @param radius Shadow blur radius.
  * @param dx Shadow offset for the x-axis.
  * @param dy Shadow offset for the y-axis.

@@ -92,6 +92,12 @@ androidutils [Módulo]
                 > Padding ✔✔
         > reviews ✔✔
             > RateApp ✔✔
+        > watermark
+            > config ✔✔
+                > WatermarkPosition ✔✔
+                > WatermarkShadow ✔✔
+            > Watermark ✔✔
+            > WatermarkUtils ⚠⚠
         > web ✔✔
             > SystemWebBrowser ✔✔
 
