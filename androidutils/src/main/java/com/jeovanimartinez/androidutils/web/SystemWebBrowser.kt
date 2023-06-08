@@ -40,17 +40,17 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             @Suppress("ReplaceIsEmptyWithIfEmpty")
             val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
-            firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, finalCase) })
+            firebaseAnalytics(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, finalCase) })
             log("URL: [$url] opened, case: $finalCase")
         } catch (e: ActivityNotFoundException) {
             // No app can open the URL
             context.shortToast(R.string.system_web_browser_not_available)
-            firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, "activity_not_found_exception") })
+            firebaseAnalytics(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, "activity_not_found_exception") })
             logw("Unable to open URL [$url], web browser not available", e)
         } catch (e: Exception) {
             // General exception
             context.shortToast(R.string.system_web_browser_error)
-            firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, "exception") })
+            firebaseAnalytics(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, "exception") })
             logw("Error opening URL [$url]", e)
         }
     }

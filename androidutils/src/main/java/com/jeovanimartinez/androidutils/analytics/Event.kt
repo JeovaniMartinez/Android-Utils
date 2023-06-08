@@ -48,7 +48,7 @@ internal object Event {
     const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
     // System Web Browser
-    const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
+    const val SYSTEM_WEB_BROWSER_OPEN_URL = "system_web_browser_open_url"
 
     /**
      * Constants with the names of the parameters for the events.
@@ -56,7 +56,7 @@ internal object Event {
     object Parameter {
 
         // System Web Browser
-        const val OPEN_URL_CASE = "open_url_case"
+        const val SYSTEM_WEB_BROWSER_OPEN_URL_CASE = "open_url_case"
 
         // To be verified...
         const val SHARE_CASE = "share_case"
