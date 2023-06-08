@@ -27,12 +27,6 @@ internal object Event {
     const val MORE_APPS_SHOWN_GOOGLE_PLAY_OK = "more_apps_shown_google_play_ok"
     const val MORE_APPS_SHOWN_GOOGLE_PLAY_ERROR = "more_apps_shown_google_play_error"
 
-    const val RATE_APP_REVIEW_FLOW_OK = "rate_app_review_flow_ok"
-    const val RATE_APP_REVIEW_FLOW_ERROR = "rate_app_review_flow_error"
-    const val RATE_APP_REVIEW_FLOW_SHOWN = "rate_app_review_flow_shown"
-    const val RATE_APP_SENT_GOOGLE_PLAY = "rate_app_sent_google_play"
-    const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
-
     const val SHARE_LAUNCHED = "share_launched"
     const val SHARE_COMPLETED = "share_completed"
     const val SHARE_OLD_API = "share_old_api"
@@ -45,6 +39,13 @@ internal object Event {
     * fully ready for the first final version of the library and are being moved from top to bottom as they are reviewed,
     * validated, and tested.
     * */
+
+    // Rate App
+    const val RATE_APP_REVIEW_FLOW_OK = "rate_app_review_flow_ok"
+    const val RATE_APP_REVIEW_FLOW_ERROR = "rate_app_review_flow_error"
+    const val RATE_APP_REVIEW_FLOW_SHOWN = "rate_app_review_flow_shown"
+    const val RATE_APP_SENT_GOOGLE_PLAY = "rate_app_sent_google_play"
+    const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
     // System Web Browser
     const val OPEN_URL_SYSTEM_WEB_BROWSER = "open_url_system_web_browser"
