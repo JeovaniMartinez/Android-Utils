@@ -23,10 +23,11 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
     /**
      * Open the system web browser at the specified [url].
      * @param context Context.
-     * @param url URL to show, it must be a complete URL, including HTTP or HTTPS, otherwise, it will not pass the validation.
+     * @param url URL to be opened, it must be a complete URL, including HTTP or HTTPS, otherwise, it will not pass the validation.
      * @param case Reason that the URL was opened in the browser. This applies only if Firebase Analytics is enabled.
      *        When a URL is loaded in the browser the event is registered, this event contains a parameter that
-     *        helps determine which website was shown.
+     *        helps determine which website was opened.
+     * @throws IllegalArgumentException If the provided URL is not a valid URL.
      * */
     fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
 
@@ -37,6 +38,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
 
         try {
             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            @Suppress("ReplaceIsEmptyWithIfEmpty")
             val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
             firebaseAnalytics(Event.OPEN_URL_SYSTEM_WEB_BROWSER, Bundle().apply { putString(Event.Parameter.OPEN_URL_CASE, finalCase) })
             log("URL: [$url] opened, case: $finalCase")
