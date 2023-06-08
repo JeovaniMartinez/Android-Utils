@@ -84,6 +84,7 @@
                     android:layout_height="@dimen/image_button_size"
                     android:layout_marginEnd="@dimen/view_general_space"
                     android:background="?attr/actionBarItemBackground"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btnSaveImage"
                     app:layout_constraintTop_toTopOf="parent"
@@ -96,6 +97,7 @@
                     android:layout_height="@dimen/image_button_size"
                     android:layout_marginStart="@dimen/view_general_space"
                     android:background="?attr/actionBarItemBackground"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -110,6 +112,311 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="15dp"
                 android:background="@color/md_theme_primary" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_border_1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp"
+                        tools:ignore="UselessParent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position"
+                            android:textAlignment="center"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_border_1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp"
+                        tools:ignore="UselessParent">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionAbsolute"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:labelFor="@id/rbPositionAbsolute"
+                            android:text="@string/watermark_position_absolute"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/table_border_1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionTopLeft"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_top_left"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_border_1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionTopCenter"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_top_center"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionTopRight"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_top_right"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/table_border_1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionMiddleLeft"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_middle_left"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_border_1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionMiddleCenter"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_middle_center"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionMiddleRight"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_middle_right"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/table_border_1">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionBottomLeft"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_bottom_left"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_border_1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionBottomCenter"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_bottom_center"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="8dp">
+
+                        <RadioButton
+                            android:id="@+id/rbPositionBottomRight"
+                            android:layout_width="28dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/watermark_position_bottom_right"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                </TableRow>
+
+            </TableLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

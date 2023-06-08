@@ -41,5 +41,6 @@
     <color name="logo_text_color">#BDBDBD</color>
     <color name="separator_1">#DFDFDF</color>
     <color name="icons_1">#BDBDBD</color>
+    <color name="table_border_1">#BDBDBD</color>
 
 </resources>

@@ -41,5 +41,6 @@
     <color name="logo_text_color">#737373</color>
     <color name="separator_1">#7E7E7E</color>
     <color name="icons_1">#737373</color>
+    <color name="table_border_1">#737373</color>
 
 </resources>

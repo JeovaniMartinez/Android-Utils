@@ -38,5 +38,18 @@
 
     <!-- Watermark Activity -->
     <string name="watermark_title" translatable="false">Watermark</string>
+    <string name="watermark_text_watermark" translatable="false">Text Watermark</string>
+    <string name="watermark_drawable_watermark" translatable="false">Drawable Watermark</string>
+    <string name="watermark_position" translatable="false">Position</string>
+    <string name="watermark_position_absolute" translatable="false">Absolute</string>
+    <string name="watermark_position_top_left" translatable="false">Top Left</string>
+    <string name="watermark_position_top_center" translatable="false">Top Center</string>
+    <string name="watermark_position_top_right" translatable="false">Top Right</string>
+    <string name="watermark_position_middle_left" translatable="false">Middle Left</string>
+    <string name="watermark_position_middle_center" translatable="false">Middle Center</string>
+    <string name="watermark_position_middle_right" translatable="false">Middle Right</string>
+    <string name="watermark_position_bottom_left" translatable="false">Bottom Left</string>
+    <string name="watermark_position_bottom_center" translatable="false">Bottom Center</string>
+    <string name="watermark_position_bottom_right" translatable="false">Bottom Right</string>
 
 </resources>
