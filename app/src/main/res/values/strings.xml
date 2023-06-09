@@ -40,7 +40,7 @@
     <string name="watermark_title" translatable="false">Watermark</string>
     <string name="watermark_text_watermark" translatable="false">Text Watermark</string>
     <string name="watermark_drawable_watermark" translatable="false">Drawable Watermark</string>
-    <string name="watermark_configuration_general" translatable="false">Configuration General</string>
+    <string name="watermark_general_configuration" translatable="false">General Configuration</string>
     <string name="watermark_position" translatable="false">Position</string>
     <string name="watermark_measurement_dimension" translatable="false">Measurement Dimension</string>
     <string-array name="watermark_positions_array">
