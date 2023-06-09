@@ -2,8 +2,11 @@ package com.jeovanimartinez.androidutils.app.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.widget.doAfterTextChanged
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityWatermarkBinding
@@ -23,9 +26,19 @@ class WatermarkActivity : AppCompatActivity() {
     )
     private var currentImage = 0
 
+    /*
+    * ** IMPORTANT **
+    * Numeric properties for the watermark are stored as String for easier assignment. During the
+    * watermark drawing process, they are converted to the appropriate data type.
+    * */
+
     // Common watermark properties
     private var watermarkPosition = WatermarkPosition.ABSOLUTE
     private var watermarkMeasurementDimension = Dimension.PX
+    private var watermarkDx = "0"
+    private var watermarkDy = "0"
+    private var watermarkRotation = "0"
+    private var watermarkOpacity = "1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +49,37 @@ class WatermarkActivity : AppCompatActivity() {
         binding.appBar.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.appBar.tvTitle.text = getString(R.string.watermark_title)
 
+        uiSetup()
         imageActionsSetup()
         commonWatermarkPropertiesSetup()
+    }
+
+    /** User interface setup */
+    private fun uiSetup() {
+
+        // Default
+        binding.layoutDrawableWatermark.visibility = View.VISIBLE
+        binding.layoutTextWatermark.visibility = View.GONE
+
+        binding.tabLayoutWatermarkType.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> {
+                        binding.layoutDrawableWatermark.visibility = View.VISIBLE
+                        binding.layoutTextWatermark.visibility = View.GONE
+                    }
+
+                    1 -> {
+                        binding.layoutDrawableWatermark.visibility = View.GONE
+                        binding.layoutTextWatermark.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+
     }
 
     /** Image actions setup */
@@ -74,6 +116,22 @@ class WatermarkActivity : AppCompatActivity() {
         measurementDimensionMenu.setText(measurementDimensionAdapter.getItem(0).toString(), false)
         measurementDimensionMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             watermarkMeasurementDimension = Dimension.values()[position]
+        }
+
+        binding.etDx.doAfterTextChanged {
+            watermarkDx = it.toString()
+        }
+
+        binding.etDy.doAfterTextChanged {
+            watermarkDy = it.toString()
+        }
+
+        binding.etRotation.doAfterTextChanged {
+            watermarkRotation = it.toString()
+        }
+
+        binding.etOpacity.doAfterTextChanged {
+            watermarkOpacity = it.toString()
         }
 
     }

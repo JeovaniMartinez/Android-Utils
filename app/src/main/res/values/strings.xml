@@ -60,5 +60,12 @@
         <item>DP</item>
         <item>SP</item>
     </string-array>
+    <string name="watermark_dx" translatable="false">x-axis offset</string>
+    <string name="watermark_dy" translatable="false">y-axis offset</string>
+    <string name="watermark_rotation" translatable="false">Rotation</string>
+    <string name="watermark_opacity" translatable="false">Opacity</string>
+    <string name="watermark_width" translatable="false">Width</string>
+    <string name="watermark_height" translatable="false">Height</string>
+    <string name="watermark_Text" translatable="false">Text</string>
 
 </resources>
