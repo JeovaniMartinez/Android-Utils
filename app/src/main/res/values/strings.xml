@@ -40,16 +40,25 @@
     <string name="watermark_title" translatable="false">Watermark</string>
     <string name="watermark_text_watermark" translatable="false">Text Watermark</string>
     <string name="watermark_drawable_watermark" translatable="false">Drawable Watermark</string>
+    <string name="watermark_configuration_general" translatable="false">Configuration General</string>
     <string name="watermark_position" translatable="false">Position</string>
-    <string name="watermark_position_absolute" translatable="false">Absolute</string>
-    <string name="watermark_position_top_left" translatable="false">Top Left</string>
-    <string name="watermark_position_top_center" translatable="false">Top Center</string>
-    <string name="watermark_position_top_right" translatable="false">Top Right</string>
-    <string name="watermark_position_middle_left" translatable="false">Middle Left</string>
-    <string name="watermark_position_middle_center" translatable="false">Middle Center</string>
-    <string name="watermark_position_middle_right" translatable="false">Middle Right</string>
-    <string name="watermark_position_bottom_left" translatable="false">Bottom Left</string>
-    <string name="watermark_position_bottom_center" translatable="false">Bottom Center</string>
-    <string name="watermark_position_bottom_right" translatable="false">Bottom Right</string>
+    <string name="watermark_measurement_dimension" translatable="false">Measurement Dimension</string>
+    <string-array name="watermark_positions_array">
+        <item>Absolute</item>
+        <item>Top Left</item>
+        <item>Top Center</item>
+        <item>Top Right</item>
+        <item>Middle Left</item>
+        <item>Middle Center</item>
+        <item>Middle Right</item>
+        <item>Bottom Left</item>
+        <item>Bottom Center</item>
+        <item>Bottom Right</item>
+    </string-array>
+    <string-array name="watermark_dimensions_array">
+        <item>PX</item>
+        <item>DP</item>
+        <item>SP</item>
+    </string-array>
 
 </resources>

@@ -10,6 +10,7 @@
 
     <!-- General dimensions -->
     <dimen name="activity_container_space">12sp</dimen>
+    <dimen name="activity_container_space_half">6sp</dimen>
     <dimen name="image_button_size">48dp</dimen>
     <dimen name="view_general_space">10dp</dimen>
 
