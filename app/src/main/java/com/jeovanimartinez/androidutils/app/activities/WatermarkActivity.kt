@@ -20,11 +20,11 @@ class WatermarkActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWatermarkBinding
 
-    private val imageList = arrayListOf(
-        R.drawable.watermark_img1, R.drawable.watermark_img2, R.drawable.watermark_img3,
-        R.drawable.watermark_img4, R.drawable.watermark_img5
+    private val baseImageList = arrayListOf(
+        R.drawable.watermark_base_image_1, R.drawable.watermark_base_image_2, R.drawable.watermark_base_image_3,
+        R.drawable.watermark_base_image_4, R.drawable.watermark_base_image_5
     )
-    private var currentImage = 0
+    private var currentBaseImage = 0
 
     /*
     * ** IMPORTANT **
@@ -86,15 +86,15 @@ class WatermarkActivity : AppCompatActivity() {
     private fun imageActionsSetup() {
 
         binding.btnPreviousImage.setOnClickListener {
-            if (currentImage <= 0) currentImage = imageList.size - 1
-            else currentImage--
-            binding.ivWatermark.setImageResource(imageList[currentImage])
+            if (currentBaseImage <= 0) currentBaseImage = baseImageList.size - 1
+            else currentBaseImage--
+            binding.ivBaseImage.setImageResource(baseImageList[currentBaseImage])
         }
 
         binding.btnNextImage.setOnClickListener {
-            if (currentImage >= imageList.size - 1) currentImage = 0
-            else currentImage++
-            binding.ivWatermark.setImageResource(imageList[currentImage])
+            if (currentBaseImage >= baseImageList.size - 1) currentBaseImage = 0
+            else currentBaseImage++
+            binding.ivBaseImage.setImageResource(baseImageList[currentBaseImage])
         }
 
     }
