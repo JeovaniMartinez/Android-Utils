@@ -42,5 +42,6 @@
     <color name="separator_1">#DFDFDF</color>
     <color name="icons_1">#BDBDBD</color>
     <color name="table_border_1">#BDBDBD</color>
+    <color name="watermark_shape1">#93000A</color>
 
 </resources>
