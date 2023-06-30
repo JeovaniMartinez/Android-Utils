@@ -43,6 +43,18 @@
     <string name="watermark_general_configuration" translatable="false">General Configuration</string>
     <string name="watermark_position" translatable="false">Position</string>
     <string name="watermark_measurement_dimension" translatable="false">Measurement Dimension</string>
+    <string name="watermark_dx" translatable="false">x-axis offset</string>
+    <string name="watermark_dy" translatable="false">y-axis offset</string>
+    <string name="watermark_rotation" translatable="false">Rotation</string>
+    <string name="watermark_opacity" translatable="false">Opacity</string>
+    <string name="watermark_width" translatable="false">Width</string>
+    <string name="watermark_height" translatable="false">Height</string>
+    <string name="watermark_Text" translatable="false">Text</string>
+    <string name="watermark_watermark_1" translatable="false">Image 1</string>
+    <string name="watermark_watermark_2" translatable="false">Image 2</string>
+    <string name="watermark_watermark_3" translatable="false">Shape</string>
+    <string name="watermark_draw_drawable_watermark" translatable="false">Draw Drawable Watermark</string>
+    <string name="watermark_draw_text_watermark" translatable="false">Draw Text Watermark</string>
     <string-array name="watermark_positions_array">
         <item>Absolute</item>
         <item>Top Left</item>
@@ -60,12 +72,5 @@
         <item>DP</item>
         <item>SP</item>
     </string-array>
-    <string name="watermark_dx" translatable="false">x-axis offset</string>
-    <string name="watermark_dy" translatable="false">y-axis offset</string>
-    <string name="watermark_rotation" translatable="false">Rotation</string>
-    <string name="watermark_opacity" translatable="false">Opacity</string>
-    <string name="watermark_width" translatable="false">Width</string>
-    <string name="watermark_height" translatable="false">Height</string>
-    <string name="watermark_Text" translatable="false">Text</string>
 
 </resources>
