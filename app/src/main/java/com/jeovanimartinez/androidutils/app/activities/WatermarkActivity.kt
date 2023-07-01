@@ -1,7 +1,9 @@
 package com.jeovanimartinez.androidutils.app.activities
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -40,6 +42,11 @@ class WatermarkActivity : AppCompatActivity() {
     private var watermarkRotation = "0"
     private var watermarkOpacity = "1"
 
+    // Drawable watermark properties
+    private var watermarkDrawable: Drawable? = null
+    private var watermarkWidth = "100"
+    private var watermarkHeight = "100"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWatermarkBinding.inflate(layoutInflater)
@@ -52,6 +59,7 @@ class WatermarkActivity : AppCompatActivity() {
         uiSetup()
         imageActionsSetup()
         commonWatermarkPropertiesSetup()
+        drawableWatermarkSetup()
     }
 
     /** User interface setup */
@@ -60,6 +68,8 @@ class WatermarkActivity : AppCompatActivity() {
         // Default
         binding.layoutDrawableWatermark.visibility = View.VISIBLE
         binding.layoutTextWatermark.visibility = View.GONE
+        binding.btnDrawDrawableWatermark.visibility = View.VISIBLE
+        binding.btnDrawTextWatermark.visibility = View.GONE
 
         binding.tabLayoutWatermarkType.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -67,11 +77,15 @@ class WatermarkActivity : AppCompatActivity() {
                     0 -> {
                         binding.layoutDrawableWatermark.visibility = View.VISIBLE
                         binding.layoutTextWatermark.visibility = View.GONE
+                        binding.btnDrawDrawableWatermark.visibility = View.VISIBLE
+                        binding.btnDrawTextWatermark.visibility = View.GONE
                     }
 
                     1 -> {
                         binding.layoutDrawableWatermark.visibility = View.GONE
                         binding.layoutTextWatermark.visibility = View.VISIBLE
+                        binding.btnDrawDrawableWatermark.visibility = View.GONE
+                        binding.btnDrawTextWatermark.visibility = View.VISIBLE
                     }
                 }
             }
@@ -132,6 +146,67 @@ class WatermarkActivity : AppCompatActivity() {
 
         binding.etOpacity.doAfterTextChanged {
             watermarkOpacity = it.toString()
+        }
+
+    }
+
+    /** Drawable watermark setup */
+    private fun drawableWatermarkSetup() {
+
+        watermarkDrawable = binding.ivWatermark1.drawable
+        binding.rbWatermark1.isChecked = true
+        binding.rbWatermark2.isChecked = false
+        binding.rbWatermark3.isChecked = false
+
+        binding.rbWatermark1.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                watermarkDrawable = binding.ivWatermark1.drawable
+                binding.rbWatermark1.isChecked = true
+                binding.rbWatermark2.isChecked = false
+                binding.rbWatermark3.isChecked = false
+            }
+        }
+
+        binding.rbWatermark2.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                watermarkDrawable = binding.ivWatermark2.drawable
+                binding.rbWatermark1.isChecked = false
+                binding.rbWatermark2.isChecked = true
+                binding.rbWatermark3.isChecked = false
+            }
+        }
+
+        binding.rbWatermark3.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                watermarkDrawable = binding.ivWatermark3.drawable
+                binding.rbWatermark1.isChecked = false
+                binding.rbWatermark2.isChecked = false
+                binding.rbWatermark3.isChecked = true
+            }
+        }
+
+        binding.etWidth.doAfterTextChanged {
+            watermarkWidth = it.toString()
+        }
+
+        binding.etHeight.doAfterTextChanged {
+            watermarkHeight = it.toString()
+        }
+
+        binding.btnDrawDrawableWatermark.setOnClickListener {
+            Log.d(
+                "WatermarkActivityTVal", """
+                watermarkDrawable $watermarkDrawable
+                watermarkWidth $watermarkWidth
+                watermarkHeight $watermarkHeight
+                watermarkPosition $watermarkPosition
+                watermarkMeasurementDimension $watermarkMeasurementDimension
+                watermarkDx $watermarkDx
+                watermarkDy $watermarkDy
+                watermarkRotation $watermarkRotation
+                watermarkOpacity $watermarkOpacity
+            """.trimIndent()
+            )
         }
 
     }

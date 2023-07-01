@@ -173,7 +173,7 @@
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/activity_container_space_half"
                         android:layout_marginEnd="@dimen/activity_container_space_half"
                         android:layout_weight="1"
@@ -187,7 +187,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/library_logo"
+                            app:srcCompat="@drawable/watermark_base_image_2"
                             tools:ignore="ImageContrastCheck" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
