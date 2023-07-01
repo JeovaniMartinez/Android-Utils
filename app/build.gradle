@@ -64,6 +64,9 @@ dependencies {
     // Required for test premium utilities ** PENDING VERSION UPDATE **
     implementation 'com.android.billingclient:billing-ktx:3.0.3'
 
+    // Library for using a color selector
+    implementation 'com.jaredrummler:colorpicker:1.1.0'
+
     // Android Utils Library
     implementation project(":androidutils")
 

@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.jaredrummler.android.colorpicker.ColorPickerDialog
+import com.jaredrummler.android.colorpicker.ColorPickerDialog.TYPE_CUSTOM
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityWatermarkBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
@@ -18,7 +21,7 @@ import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.watermark.config.WatermarkPosition
 
 /** WatermarkActivity */
-class WatermarkActivity : AppCompatActivity() {
+class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
 
     private lateinit var binding: ActivityWatermarkBinding
 
@@ -47,6 +50,11 @@ class WatermarkActivity : AppCompatActivity() {
     private var watermarkWidth = "100"
     private var watermarkHeight = "100"
 
+    // Text watermark properties
+    private lateinit var watermarkText: String
+    private var watermarkTextSize = "40"
+    private lateinit var watermarkTextColor: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWatermarkBinding.inflate(layoutInflater)
@@ -60,6 +68,7 @@ class WatermarkActivity : AppCompatActivity() {
         imageActionsSetup()
         commonWatermarkPropertiesSetup()
         drawableWatermarkSetup()
+        textWatermarkSetup()
     }
 
     /** User interface setup */
@@ -210,5 +219,79 @@ class WatermarkActivity : AppCompatActivity() {
         }
 
     }
+
+    /** Text watermark setup */
+    private fun textWatermarkSetup() {
+
+        watermarkText = getString(R.string.app_name)
+        watermarkTextColor = getColorCompat(R.color.watermark_default_text_color).toString()
+
+        binding.etText.doAfterTextChanged {
+            watermarkText = it.toString()
+        }
+
+        binding.etTextSize.doAfterTextChanged {
+            watermarkTextSize = it.toString()
+        }
+
+        binding.btnTextColor.setOnClickListener {
+            showColorPickerDialog(0)
+        }
+
+        binding.btnDrawTextWatermark.setOnClickListener {
+            Log.d(
+                "WatermarkActivityTVal", """
+                watermarkText $watermarkText
+                watermarkTextSize $watermarkTextSize
+                watermarkTextColor $watermarkTextColor
+                watermarkPosition $watermarkPosition
+                watermarkMeasurementDimension $watermarkMeasurementDimension
+                watermarkDx $watermarkDx
+                watermarkDy $watermarkDy
+                watermarkRotation $watermarkRotation
+                watermarkOpacity $watermarkOpacity
+            """.trimIndent()
+            )
+        }
+
+    }
+
+    /**
+     * Show a dialog to select a color.
+     * @param id Identifier to determine what the dialog is displayed for. Use 0 for select the watermark text color or 1
+     *        for select the text shadow color.
+     * */
+    private fun showColorPickerDialog(id: Int) {
+
+        var selectedColor = -1
+
+        if (id == 0) selectedColor = watermarkTextColor.toInt()
+        // if (id == 1) selectedColor = watermarkTextColor.toInt()
+
+        ColorPickerDialog.newBuilder().apply {
+            setDialogType(TYPE_CUSTOM)
+            setDialogTitle(R.string.watermark_text_color)
+            setColor(selectedColor)
+            setShowAlphaSlider(true)
+            setAllowPresets(false)
+            setAllowCustom(true)
+            setSelectedButtonText(R.string.select)
+            setDialogId(id)
+        }.show(this@WatermarkActivity)
+    }
+
+    /** ColorPickerDialog on color selected */
+    override fun onColorSelected(dialogId: Int, color: Int) {
+
+        if (dialogId == 0) {
+            watermarkTextColor = color.toString()
+            binding.btnTextColor.setBackgroundColor(color)
+            //binding.layoutTextWatermark.setBackgroundColor(color)
+        }
+
+    }
+
+    /** ColorPickerDialog on dialog dismissed */
+    override fun onDialogDismissed(dialogId: Int) {}
 
 }

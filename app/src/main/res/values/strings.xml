@@ -7,6 +7,7 @@
 
     <!-- General Use -->
     <string name="ok" translatable="false" tools:ignore="ButtonCase,Typos">Ok</string>
+    <string name="select" translatable="false">Select</string>
 
     <!-- Main Activity -->
     <string name="app_description" translatable="false">
@@ -55,6 +56,8 @@
     <string name="watermark_watermark_3" translatable="false">Shape</string>
     <string name="watermark_draw_drawable_watermark" translatable="false">Draw Drawable Watermark</string>
     <string name="watermark_draw_text_watermark" translatable="false">Draw Text Watermark</string>
+    <string name="watermark_text_size" translatable="false">Text Size</string>
+    <string name="watermark_text_color" translatable="false">Text Color</string>
     <string-array name="watermark_positions_array">
         <item>Absolute</item>
         <item>Top Left</item>

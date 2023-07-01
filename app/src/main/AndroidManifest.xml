@@ -41,7 +41,7 @@
         <activity
             android:name=".activities.WatermarkActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme" />
 
         <provider
