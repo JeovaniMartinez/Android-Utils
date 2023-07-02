@@ -245,7 +245,7 @@
                             android:id="@+id/etWidth"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal|numberSigned"
+                            android:inputType="numberDecimal"
                             android:text="100"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
@@ -263,7 +263,7 @@
                             android:id="@+id/etHeight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal|numberSigned"
+                            android:inputType="numberDecimal"
                             android:text="100"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
@@ -325,7 +325,7 @@
                             android:id="@+id/etTextSize"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal|numberSigned"
+                            android:inputType="numberDecimal"
                             android:text="40"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
@@ -416,7 +416,7 @@
                                 android:id="@+id/etShadowRadius"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal|numberSigned"
+                                android:inputType="numberDecimal"
                                 android:text="2"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
@@ -632,7 +632,7 @@
                         android:id="@+id/etOpacity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal|numberSigned"
+                        android:inputType="numberDecimal"
                         android:text="1"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
