@@ -245,8 +245,8 @@
                             android:id="@+id/etWidth"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
                             android:imeOptions="actionNext"
+                            android:inputType="numberDecimal"
                             android:nextFocusForward="@+id/etHeight"
                             android:text="100"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
@@ -265,10 +265,10 @@
                             android:id="@+id/etHeight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
-                            android:text="100"
                             android:imeOptions="actionNext"
+                            android:inputType="numberDecimal"
                             android:nextFocusForward="@+id/etDx"
+                            android:text="100"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -302,10 +302,10 @@
                             android:id="@+id/etText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:text="@string/app_name"
                             android:imeOptions="actionNext"
+                            android:inputType="text"
                             android:nextFocusForward="@+id/etTextSize"
+                            android:text="@string/app_name"
                             tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -331,8 +331,8 @@
                             android:id="@+id/etTextSize"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
                             android:imeOptions="actionNext"
+                            android:inputType="numberDecimal"
                             android:nextFocusForward="@+id/etDx"
                             android:text="40"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
@@ -424,8 +424,8 @@
                                 android:id="@+id/etShadowRadius"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal"
                                 android:imeOptions="actionNext"
+                                android:inputType="numberDecimal"
                                 android:nextFocusForward="@+id/etShadowDx"
                                 android:text="2"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize" />
@@ -477,8 +477,8 @@
                                 android:id="@+id/etShadowDx"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal|numberSigned"
                                 android:imeOptions="actionNext"
+                                android:inputType="numberDecimal|numberSigned"
                                 android:nextFocusForward="@+id/etShadowDy"
                                 android:text="0"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
@@ -497,8 +497,8 @@
                                 android:id="@+id/etShadowDy"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberDecimal|numberSigned"
                                 android:imeOptions="actionNext"
+                                android:inputType="numberDecimal|numberSigned"
                                 android:nextFocusForward="@+id/etDx"
                                 android:text="0"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
@@ -583,10 +583,10 @@
                         android:id="@+id/etDx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal|numberSigned"
-                        android:text="0"
                         android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
                         android:nextFocusForward="@+id/etDy"
+                        android:text="0"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -603,8 +603,8 @@
                         android:id="@+id/etDy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal|numberSigned"
                         android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
                         android:nextFocusForward="@+id/etRotation"
                         android:text="0"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
@@ -632,10 +632,10 @@
                         android:id="@+id/etRotation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal|numberSigned"
-                        android:text="0"
                         android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
                         android:nextFocusForward="@+id/etOpacity"
+                        android:text="0"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -652,8 +652,8 @@
                         android:id="@+id/etOpacity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
                         android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
                         android:text="1"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
