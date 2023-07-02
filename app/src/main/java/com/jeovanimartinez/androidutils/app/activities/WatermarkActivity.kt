@@ -15,6 +15,7 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialog.TYPE_CUSTOM
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityWatermarkBinding
+import com.jeovanimartinez.androidutils.app.enums.TextWatermarkTypeface
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
@@ -54,6 +55,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
     private lateinit var watermarkText: String
     private var watermarkTextSize = "40"
     private lateinit var watermarkTextColor: String
+    private var watermarkTypeface = TextWatermarkTypeface.DEFAULT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -226,6 +228,14 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
         watermarkText = getString(R.string.app_name)
         watermarkTextColor = getColorCompat(R.color.watermark_default_text_color).toString()
 
+        val typefacesMenu = binding.menuTypeface.editText as MaterialAutoCompleteTextView
+        val typefacesAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, resources.getStringArray(R.array.watermark_typefaces_array))
+        typefacesMenu.setAdapter(typefacesAdapter)
+        typefacesMenu.setText(typefacesAdapter.getItem(0).toString(), false)
+        typefacesMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            watermarkTypeface = TextWatermarkTypeface.values()[position]
+        }
+
         binding.etText.doAfterTextChanged {
             watermarkText = it.toString()
         }
@@ -244,6 +254,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
                 watermarkText $watermarkText
                 watermarkTextSize $watermarkTextSize
                 watermarkTextColor $watermarkTextColor
+                watermarkTypeface $watermarkTypeface
                 watermarkPosition $watermarkPosition
                 watermarkMeasurementDimension $watermarkMeasurementDimension
                 watermarkDx $watermarkDx

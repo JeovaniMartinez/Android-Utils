@@ -58,6 +58,12 @@
     <string name="watermark_draw_text_watermark" translatable="false">Draw Text Watermark</string>
     <string name="watermark_text_size" translatable="false">Text Size</string>
     <string name="watermark_text_color" translatable="false">Text Color</string>
+    <string name="watermark_typeface" translatable="false">Typeface (Font)</string>
+    <string name="watermark_shadow" translatable="false">Shadow</string>
+    <string name="watermark_shadow_radius" translatable="false">Shadow Radius</string>
+    <string name="watermark_shadow_dx" translatable="false">Shadow x-axis offset</string>
+    <string name="watermark_shadow_dy" translatable="false">Shadow y-axis offset</string>
+    <string name="watermark_shadow_color" translatable="false">Shadow Color</string>
     <string-array name="watermark_positions_array">
         <item>Absolute</item>
         <item>Top Left</item>
@@ -74,6 +80,13 @@
         <item>PX</item>
         <item>DP</item>
         <item>SP</item>
+    </string-array>
+    <string-array name="watermark_typefaces_array">
+        <item>Default</item>
+        <item>Ballet</item>
+        <item>Fugaz One</item>
+        <item>Karla</item>
+        <item>Oi</item>
     </string-array>
 
 </resources>

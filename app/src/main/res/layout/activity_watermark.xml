@@ -344,7 +344,7 @@
                             android:layout_height="wrap_content"
                             android:text="0"
                             android:visibility="invisible"
-                            tools:ignore="HardcodedText" />
+                            tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:id="@+id/btnTextColor"
@@ -355,6 +355,31 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:weightSum="1">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/menuTypeface"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="@dimen/activity_container_space_half"
+                        android:layout_weight="1"
+                        android:hint="@string/watermark_typeface">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            tools:ignore="SpeakableTextPresentCheck, LabelFor,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -434,7 +459,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal|numberSigned"
                         android:text="0"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -452,7 +477,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal|numberSigned"
                         android:text="0"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -510,7 +535,7 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/view_general_space"
                 android:text="@string/watermark_draw_drawable_watermark"
-                tools:ignore="VisualLintButtonSize" />
+                tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDrawTextWatermark"
@@ -519,7 +544,7 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/view_general_space"
                 android:text="@string/watermark_draw_text_watermark"
-                tools:ignore="VisualLintButtonSize" />
+                tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
