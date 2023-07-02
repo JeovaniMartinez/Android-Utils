@@ -246,6 +246,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
+                            android:imeOptions="actionNext"
+                            android:nextFocusForward="@+id/etHeight"
                             android:text="100"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
@@ -265,6 +267,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:text="100"
+                            android:imeOptions="actionNext"
+                            android:nextFocusForward="@+id/etDx"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -300,6 +304,8 @@
                             android:layout_height="wrap_content"
                             android:inputType="text"
                             android:text="@string/app_name"
+                            android:imeOptions="actionNext"
+                            android:nextFocusForward="@+id/etTextSize"
                             tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -326,6 +332,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
+                            android:imeOptions="actionNext"
+                            android:nextFocusForward="@+id/etDx"
                             android:text="40"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
@@ -417,6 +425,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal"
+                                android:imeOptions="actionNext"
+                                android:nextFocusForward="@+id/etShadowDx"
                                 android:text="2"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
@@ -468,6 +478,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal|numberSigned"
+                                android:imeOptions="actionNext"
+                                android:nextFocusForward="@+id/etShadowDy"
                                 android:text="0"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
@@ -486,6 +498,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberDecimal|numberSigned"
+                                android:imeOptions="actionNext"
+                                android:nextFocusForward="@+id/etDx"
                                 android:text="0"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
@@ -571,6 +585,8 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal|numberSigned"
                         android:text="0"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/etDy"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -588,6 +604,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal|numberSigned"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/etRotation"
                         android:text="0"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
@@ -616,6 +634,8 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal|numberSigned"
                         android:text="0"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@+id/etOpacity"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -633,6 +653,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:imeOptions="actionDone"
                         android:text="1"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 

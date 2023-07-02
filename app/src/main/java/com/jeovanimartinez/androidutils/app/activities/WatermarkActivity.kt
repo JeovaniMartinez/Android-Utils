@@ -308,13 +308,20 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
     private fun showColorPickerDialog(id: Int) {
 
         var selectedColor = -1
+        var titleResourceId = -1
 
-        if (id == 0) selectedColor = watermarkTextColor.toInt()
-        if (id == 1) selectedColor = watermarkShadowColor.toInt()
+        if (id == 0) {
+            selectedColor = watermarkTextColor.toInt()
+            titleResourceId = R.string.watermark_text_color
+        }
+        if (id == 1) {
+            selectedColor = watermarkShadowColor.toInt()
+            titleResourceId = R.string.watermark_shadow_color
+        }
 
         ColorPickerDialog.newBuilder().apply {
             setDialogType(TYPE_CUSTOM)
-            setDialogTitle(R.string.watermark_text_color)
+            setDialogTitle(titleResourceId)
             setColor(selectedColor)
             setShowAlphaSlider(true)
             setAllowPresets(false)
