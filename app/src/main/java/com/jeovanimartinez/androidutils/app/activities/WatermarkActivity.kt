@@ -56,6 +56,11 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
     private var watermarkTextSize = "40"
     private lateinit var watermarkTextColor: String
     private var watermarkTypeface = TextWatermarkTypeface.DEFAULT
+    private var watermarkShadow = false
+    private var watermarkShadowRadius = "2"
+    private lateinit var watermarkShadowColor: String
+    private var watermarkShadowDx = "0"
+    private var watermarkShadowDy = "0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -227,14 +232,8 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
 
         watermarkText = getString(R.string.app_name)
         watermarkTextColor = getColorCompat(R.color.watermark_default_text_color).toString()
-
-        val typefacesMenu = binding.menuTypeface.editText as MaterialAutoCompleteTextView
-        val typefacesAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, resources.getStringArray(R.array.watermark_typefaces_array))
-        typefacesMenu.setAdapter(typefacesAdapter)
-        typefacesMenu.setText(typefacesAdapter.getItem(0).toString(), false)
-        typefacesMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            watermarkTypeface = TextWatermarkTypeface.values()[position]
-        }
+        watermarkShadowColor = getColorCompat(R.color.watermark_default_text_shadow_color).toString()
+        binding.layoutShadow.visibility = View.GONE
 
         binding.etText.doAfterTextChanged {
             watermarkText = it.toString()
@@ -248,6 +247,35 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
             showColorPickerDialog(0)
         }
 
+        val typefacesMenu = binding.menuTypeface.editText as MaterialAutoCompleteTextView
+        val typefacesAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, resources.getStringArray(R.array.watermark_typefaces_array))
+        typefacesMenu.setAdapter(typefacesAdapter)
+        typefacesMenu.setText(typefacesAdapter.getItem(0).toString(), false)
+        typefacesMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            watermarkTypeface = TextWatermarkTypeface.values()[position]
+        }
+
+        binding.swShadow.setOnCheckedChangeListener { _, isChecked ->
+            binding.layoutShadow.visibility = if (isChecked) View.VISIBLE else View.GONE
+            watermarkShadow = isChecked
+        }
+
+        binding.etShadowRadius.doAfterTextChanged {
+            watermarkShadowRadius = it.toString()
+        }
+
+        binding.etShadowDx.doAfterTextChanged {
+            watermarkShadowDx = it.toString()
+        }
+
+        binding.etShadowDy.doAfterTextChanged {
+            watermarkShadowDy = it.toString()
+        }
+
+        binding.btnShadowColor.setOnClickListener {
+            showColorPickerDialog(1)
+        }
+
         binding.btnDrawTextWatermark.setOnClickListener {
             Log.d(
                 "WatermarkActivityTVal", """
@@ -255,6 +283,11 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
                 watermarkTextSize $watermarkTextSize
                 watermarkTextColor $watermarkTextColor
                 watermarkTypeface $watermarkTypeface
+                watermarkShadow $watermarkShadow
+                watermarkShadowRadius $watermarkShadowRadius
+                watermarkShadowDx $watermarkShadowDx
+                watermarkShadowDy $watermarkShadowDy
+                watermarkShadowColor $watermarkShadowColor
                 watermarkPosition $watermarkPosition
                 watermarkMeasurementDimension $watermarkMeasurementDimension
                 watermarkDx $watermarkDx
@@ -277,7 +310,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
         var selectedColor = -1
 
         if (id == 0) selectedColor = watermarkTextColor.toInt()
-        // if (id == 1) selectedColor = watermarkTextColor.toInt()
+        if (id == 1) selectedColor = watermarkShadowColor.toInt()
 
         ColorPickerDialog.newBuilder().apply {
             setDialogType(TYPE_CUSTOM)
@@ -297,7 +330,9 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
         if (dialogId == 0) {
             watermarkTextColor = color.toString()
             binding.btnTextColor.setBackgroundColor(color)
-            //binding.layoutTextWatermark.setBackgroundColor(color)
+        } else if (dialogId == 1) {
+            watermarkShadowColor = color.toString()
+            binding.btnShadowColor.setBackgroundColor(color)
         }
 
     }

@@ -383,6 +383,118 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swShadow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/activity_container_space_half"
+                    android:checked="false"
+                    android:text="@string/watermark_shadow" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutShadow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_container_space"
+                        android:baselineAligned="false"
+                        android:weightSum="2">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/activity_container_space_half"
+                            android:layout_weight="1"
+                            android:hint="@string/watermark_shadow_radius">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etShadowRadius"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal|numberSigned"
+                                android:text="2"
+                                tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/activity_container_space_half"
+                            android:layout_weight="1"
+                            android:hint="@string/watermark_shadow_color">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:visibility="invisible"
+                                tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/btnShadowColor"
+                                android:layout_width="match_parent"
+                                android:layout_height="42dp"
+                                android:layout_marginTop="-43dp"
+                                android:background="@color/watermark_default_text_shadow_color" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_container_space"
+                        android:baselineAligned="false"
+                        android:weightSum="2">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/activity_container_space_half"
+                            android:layout_weight="1"
+                            android:hint="@string/watermark_shadow_dx">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etShadowDx"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal|numberSigned"
+                                android:text="0"
+                                tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/activity_container_space_half"
+                            android:layout_weight="1"
+                            android:hint="@string/watermark_shadow_dy">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etShadowDy"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal|numberSigned"
+                                android:text="0"
+                                tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <com.google.android.material.textview.MaterialTextView
@@ -504,7 +616,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal|numberSigned"
                         android:text="0"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -522,7 +634,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal|numberSigned"
                         android:text="1"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
