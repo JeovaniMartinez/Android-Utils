@@ -119,12 +119,18 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
             if (currentBaseImage <= 0) currentBaseImage = baseImageList.size - 1
             else currentBaseImage--
             binding.ivBaseImage.setImageResource(baseImageList[currentBaseImage])
+            binding.svMain.smoothScrollTo(0, -1)
         }
 
         binding.btnNextImage.setOnClickListener {
             if (currentBaseImage >= baseImageList.size - 1) currentBaseImage = 0
             else currentBaseImage++
             binding.ivBaseImage.setImageResource(baseImageList[currentBaseImage])
+            binding.svMain.smoothScrollTo(0, -1)
+        }
+
+        binding.btnRestoreImage.setOnClickListener {
+            binding.svMain.smoothScrollTo(0, -1)
         }
 
     }
@@ -223,6 +229,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
                 watermarkOpacity $watermarkOpacity
             """.trimIndent()
             )
+            binding.svMain.smoothScrollTo(0, -1)
         }
 
     }
@@ -230,6 +237,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
     /** Text watermark setup */
     private fun textWatermarkSetup() {
 
+        binding.etText.requestFocus()
         watermarkText = getString(R.string.app_name)
         watermarkTextColor = getColorCompat(R.color.watermark_default_text_color).toString()
         watermarkShadowColor = getColorCompat(R.color.watermark_default_text_shadow_color).toString()
@@ -296,6 +304,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
                 watermarkOpacity $watermarkOpacity
             """.trimIndent()
             )
+            binding.svMain.smoothScrollTo(0, -1)
         }
 
     }
