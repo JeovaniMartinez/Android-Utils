@@ -248,7 +248,7 @@
                             android:inputType="numberDecimal"
                             android:nextFocusForward="@+id/etHeight"
                             android:text="100"
-                            tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                            tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -268,7 +268,7 @@
                             android:inputType="numberDecimal"
                             android:nextFocusForward="@+id/etDx"
                             android:text="100"
-                            tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                            tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -428,7 +428,7 @@
                                 android:inputType="numberDecimal"
                                 android:nextFocusForward="@+id/etShadowDx"
                                 android:text="2"
-                                tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                                tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
