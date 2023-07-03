@@ -12,9 +12,9 @@
         layout="@layout/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_container_space"
-        android:layout_marginTop="@dimen/activity_container_space"
-        android:layout_marginEnd="@dimen/activity_container_space" />
+        android:layout_marginStart="@dimen/general_spacing"
+        android:layout_marginTop="@dimen/general_spacing"
+        android:layout_marginEnd="@dimen/general_spacing" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,11 +23,11 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_container_space"
-            android:layout_marginEnd="@dimen/activity_container_space"
+            android:layout_marginStart="@dimen/general_spacing"
+            android:layout_marginEnd="@dimen/general_spacing"
             android:orientation="vertical"
-            android:paddingTop="@dimen/activity_container_space"
-            android:paddingBottom="@dimen/activity_container_space">
+            android:paddingTop="@dimen/general_spacing"
+            android:paddingBottom="@dimen/general_spacing">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivBaseImage"
@@ -135,20 +135,20 @@
                 android:id="@+id/layoutDrawableWatermark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_container_space_half"
+                android:layout_marginTop="@dimen/general_spacing_half"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_container_space"
+                    android:layout_marginTop="@dimen/general_spacing"
                     android:baselineAligned="false"
                     android:weightSum="3">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_container_space_half"
+                        android:layout_marginEnd="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -174,8 +174,8 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/activity_container_space_half"
-                        android:layout_marginEnd="@dimen/activity_container_space_half"
+                        android:layout_marginStart="@dimen/general_spacing_half"
+                        android:layout_marginEnd="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -201,7 +201,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_container_space_half"
+                        android:layout_marginStart="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -229,7 +229,7 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_container_space_half"
+                    android:layout_marginTop="@dimen/general_spacing_half"
                     android:baselineAligned="false"
                     android:weightSum="2">
 
@@ -237,7 +237,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_container_space_half"
+                        android:layout_marginEnd="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:hint="@string/watermark_width">
 
@@ -257,7 +257,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_container_space_half"
+                        android:layout_marginStart="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:hint="@string/watermark_height">
 
@@ -281,13 +281,13 @@
                 android:id="@+id/layoutTextWatermark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_container_space_half"
+                android:layout_marginTop="@dimen/general_spacing_half"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_container_space"
+                    android:layout_marginTop="@dimen/general_spacing"
                     android:baselineAligned="false"
                     android:weightSum="1">
 
@@ -315,7 +315,7 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_container_space"
+                    android:layout_marginTop="@dimen/general_spacing"
                     android:baselineAligned="false"
                     android:weightSum="2">
 
@@ -323,7 +323,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/activity_container_space_half"
+                        android:layout_marginEnd="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:hint="@string/watermark_text_size">
 
@@ -343,7 +343,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_container_space_half"
+                        android:layout_marginStart="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:hint="@string/watermark_text_color">
 
@@ -377,7 +377,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:layout_marginEnd="@dimen/activity_container_space_half"
+                        android:layout_marginEnd="@dimen/general_spacing_half"
                         android:layout_weight="1"
                         android:hint="@string/watermark_typeface">
 
@@ -395,7 +395,7 @@
                     android:id="@+id/swShadow"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/activity_container_space_half"
+                    android:layout_marginTop="@dimen/general_spacing_half"
                     android:checked="false"
                     android:text="@string/watermark_shadow" />
 
@@ -408,7 +408,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_container_space"
+                        android:layout_marginTop="@dimen/general_spacing"
                         android:baselineAligned="false"
                         android:weightSum="2">
 
@@ -416,7 +416,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/activity_container_space_half"
+                            android:layout_marginEnd="@dimen/general_spacing_half"
                             android:layout_weight="1"
                             android:hint="@string/watermark_shadow_radius">
 
@@ -436,7 +436,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/activity_container_space_half"
+                            android:layout_marginStart="@dimen/general_spacing_half"
                             android:layout_weight="1"
                             android:hint="@string/watermark_shadow_color">
 
@@ -461,7 +461,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_container_space"
+                        android:layout_marginTop="@dimen/general_spacing"
                         android:baselineAligned="false"
                         android:weightSum="2">
 
@@ -469,7 +469,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/activity_container_space_half"
+                            android:layout_marginEnd="@dimen/general_spacing_half"
                             android:layout_weight="1"
                             android:hint="@string/watermark_shadow_dx">
 
@@ -489,7 +489,7 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/activity_container_space_half"
+                            android:layout_marginStart="@dimen/general_spacing_half"
                             android:layout_weight="1"
                             android:hint="@string/watermark_shadow_dy">
 
@@ -515,7 +515,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/activity_container_space"
+                android:layout_marginTop="@dimen/general_spacing"
                 android:text="@string/watermark_general_configuration"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -532,7 +532,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="@dimen/activity_container_space_half"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
                     android:layout_weight="1"
                     android:hint="@string/watermark_position">
 
@@ -549,7 +549,7 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_container_space_half"
+                    android:layout_marginStart="@dimen/general_spacing_half"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:hint="@string/watermark_measurement_dimension">
@@ -567,7 +567,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_container_space"
+                android:layout_marginTop="@dimen/general_spacing"
                 android:baselineAligned="false"
                 android:weightSum="2">
 
@@ -575,7 +575,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/activity_container_space_half"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
                     android:layout_weight="1"
                     android:hint="@string/watermark_dx">
 
@@ -595,7 +595,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_container_space_half"
+                    android:layout_marginStart="@dimen/general_spacing_half"
                     android:layout_weight="1"
                     android:hint="@string/watermark_dy">
 
@@ -616,7 +616,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_container_space"
+                android:layout_marginTop="@dimen/general_spacing"
                 android:baselineAligned="false"
                 android:weightSum="2">
 
@@ -624,7 +624,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/activity_container_space_half"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
                     android:layout_weight="1"
                     android:hint="@string/watermark_rotation">
 
@@ -644,7 +644,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/activity_container_space_half"
+                    android:layout_marginStart="@dimen/general_spacing_half"
                     android:layout_weight="1"
                     android:hint="@string/watermark_opacity">
 

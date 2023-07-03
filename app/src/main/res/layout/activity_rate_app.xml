@@ -11,9 +11,9 @@
         layout="@layout/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_container_space"
-        android:layout_marginTop="@dimen/activity_container_space"
-        android:layout_marginEnd="@dimen/activity_container_space" />
+        android:layout_marginStart="@dimen/general_spacing"
+        android:layout_marginTop="@dimen/general_spacing"
+        android:layout_marginEnd="@dimen/general_spacing" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,11 +22,11 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_container_space"
-            android:layout_marginEnd="@dimen/activity_container_space"
+            android:layout_marginStart="@dimen/general_spacing"
+            android:layout_marginEnd="@dimen/general_spacing"
             android:orientation="vertical"
-            android:paddingTop="@dimen/activity_container_space"
-            android:paddingBottom="@dimen/activity_container_space">
+            android:paddingTop="@dimen/general_spacing"
+            android:paddingBottom="@dimen/general_spacing">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"

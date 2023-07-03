@@ -9,9 +9,12 @@
     <dimen name="app_bar_height">48dp</dimen>
 
     <!-- General dimensions -->
-    <dimen name="activity_container_space">12sp</dimen>
-    <dimen name="activity_container_space_half">6sp</dimen>
     <dimen name="image_button_size">48dp</dimen>
     <dimen name="view_general_space">10dp</dimen>
+
+    <!-- Represents the recommended general spacing between two interface elements and between the screen edge and the interface elements -->
+    <dimen name="general_spacing">12dp</dimen>
+    <!-- Represents half of the general spacing -->
+    <dimen name="general_spacing_half">6dp</dimen>
 
 </resources>
