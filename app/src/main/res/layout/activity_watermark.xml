@@ -238,7 +238,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/general_spacing_half"
                         android:layout_weight="1"
-                        android:hint="@string/watermark_width">
+                        android:hint="@string/watermark_width"
+                        app:endIconMode="clear_text">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etWidth"
@@ -258,7 +259,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/general_spacing_half"
                         android:layout_weight="1"
-                        android:hint="@string/watermark_height">
+                        android:hint="@string/watermark_height"
+                        app:endIconMode="clear_text">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etHeight"
@@ -295,7 +297,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="@string/watermark_Text">
+                        android:hint="@string/watermark_Text"
+                        app:endIconMode="clear_text">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etText"
@@ -316,7 +319,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/general_spacing"
                     android:baselineAligned="false"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -324,7 +328,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/general_spacing_half"
                         android:layout_weight="1"
-                        android:hint="@string/watermark_text_size">
+                        android:hint="@string/watermark_text_size"
+                        app:endIconMode="clear_text">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etTextSize"
@@ -410,7 +415,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/general_spacing"
                         android:baselineAligned="false"
-                        android:weightSum="2">
+                        android:weightSum="2"
+                        app:endIconMode="clear_text">
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -418,7 +424,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/general_spacing_half"
                             android:layout_weight="1"
-                            android:hint="@string/watermark_shadow_radius">
+                            android:hint="@string/watermark_shadow_radius"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etShadowRadius"
@@ -428,7 +435,7 @@
                                 android:inputType="numberDecimal"
                                 android:nextFocusForward="@+id/etShadowDx"
                                 android:text="2"
-                                tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+                                tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -471,7 +478,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/general_spacing_half"
                             android:layout_weight="1"
-                            android:hint="@string/watermark_shadow_dx">
+                            android:hint="@string/watermark_shadow_dx"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etShadowDx"
@@ -491,7 +499,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/general_spacing_half"
                             android:layout_weight="1"
-                            android:hint="@string/watermark_shadow_dy">
+                            android:hint="@string/watermark_shadow_dy"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etShadowDy"
@@ -577,7 +586,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/general_spacing_half"
                     android:layout_weight="1"
-                    android:hint="@string/watermark_dx">
+                    android:hint="@string/watermark_dx"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etDx"
@@ -597,7 +607,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/general_spacing_half"
                     android:layout_weight="1"
-                    android:hint="@string/watermark_dy">
+                    android:hint="@string/watermark_dy"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etDy"
@@ -626,7 +637,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/general_spacing_half"
                     android:layout_weight="1"
-                    android:hint="@string/watermark_rotation">
+                    android:hint="@string/watermark_rotation"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etRotation"
@@ -646,7 +658,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/general_spacing_half"
                     android:layout_weight="1"
-                    android:hint="@string/watermark_opacity">
+                    android:hint="@string/watermark_opacity"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etOpacity"
