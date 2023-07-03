@@ -10,7 +10,6 @@
 
     <!-- General dimensions -->
     <dimen name="image_button_size">48dp</dimen>
-    <dimen name="view_general_space">10dp</dimen>
 
     <!-- Represents the recommended general spacing between two interface elements and between the screen edge and the interface elements -->
     <dimen name="general_spacing">12dp</dimen>
