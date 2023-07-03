@@ -345,10 +345,10 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
 
         if (dialogId == 0) {
             watermarkTextColor = color.toString()
-            binding.btnTextColor.setBackgroundColor(color)
+            binding.btnTextColor.setCardBackgroundColor(color)
         } else if (dialogId == 1) {
             watermarkShadowColor = color.toString()
-            binding.btnShadowColor.setBackgroundColor(color)
+            binding.btnShadowColor.setCardBackgroundColor(color)
         }
 
     }

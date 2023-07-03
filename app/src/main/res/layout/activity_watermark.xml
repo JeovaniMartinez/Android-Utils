@@ -359,12 +359,15 @@
                             android:visibility="invisible"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
-                        <androidx.appcompat.widget.LinearLayoutCompat
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btnTextColor"
                             android:layout_width="match_parent"
                             android:layout_height="42dp"
                             android:layout_marginTop="-43dp"
-                            android:background="@color/watermark_default_text_color" />
+                            android:clickable="true"
+                            android:focusable="true"
+                            app:cardBackgroundColor="@color/watermark_default_text_color"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -455,12 +458,15 @@
                                 android:visibility="invisible"
                                 tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
-                            <androidx.appcompat.widget.LinearLayoutCompat
+                            <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/btnShadowColor"
                                 android:layout_width="match_parent"
                                 android:layout_height="42dp"
                                 android:layout_marginTop="-43dp"
-                                android:background="@color/watermark_default_text_shadow_color" />
+                                android:clickable="true"
+                                android:focusable="true"
+                                app:cardBackgroundColor="@color/watermark_default_text_shadow_color"
+                                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
