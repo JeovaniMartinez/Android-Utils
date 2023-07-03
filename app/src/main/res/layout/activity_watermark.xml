@@ -59,7 +59,7 @@
                     android:id="@+id/btnNextImage"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
-                    android:layout_marginStart="@dimen/view_general_space"
+                    android:layout_marginStart="@dimen/general_spacing"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btnPreviousImage"
@@ -71,7 +71,7 @@
                     android:id="@+id/btnRestoreImage"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
-                    android:layout_marginStart="@dimen/view_general_space"
+                    android:layout_marginStart="@dimen/general_spacing"
                     android:background="?attr/actionBarItemBackground"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btnNextImage"
@@ -83,7 +83,7 @@
                     android:id="@+id/btnShareImage"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
-                    android:layout_marginEnd="@dimen/view_general_space"
+                    android:layout_marginEnd="@dimen/general_spacing"
                     android:background="?attr/actionBarItemBackground"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
                     android:id="@+id/btnSaveImage"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
-                    android:layout_marginStart="@dimen/view_general_space"
+                    android:layout_marginStart="@dimen/general_spacing"
                     android:background="?attr/actionBarItemBackground"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -397,7 +397,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/general_spacing_half"
                     android:checked="false"
-                    android:text="@string/watermark_shadow" />
+                    android:text="@string/watermark_shadow"
+                    tools:ignore="TextContrastCheck" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/layoutShadow"
@@ -666,7 +667,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="@dimen/view_general_space"
+                android:layout_marginTop="@dimen/general_spacing"
                 android:text="@string/watermark_draw_drawable_watermark"
                 tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
@@ -675,7 +676,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="@dimen/view_general_space"
+                android:layout_marginTop="@dimen/general_spacing"
                 android:text="@string/watermark_draw_text_watermark"
                 tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 

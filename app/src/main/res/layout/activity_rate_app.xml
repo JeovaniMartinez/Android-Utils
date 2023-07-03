@@ -42,14 +42,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginTop="@dimen/view_general_space"
+                android:layout_marginTop="@dimen/general_spacing"
                 android:text="@string/rate_app_go_rate_in_google_play" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_marginBottom="@dimen/general_spacing"
                 android:background="@color/md_theme_primary" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -63,19 +63,20 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/view_general_space"
-                android:text="@string/rate_app_msg_config" />
+                android:layout_marginTop="@dimen/general_spacing"
+                android:text="@string/rate_app_msg_config"
+                tools:ignore="VisualLintLongText" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/view_general_space"
+                android:layout_marginTop="@dimen/general_spacing_half"
                 android:text="@string/rate_app_msg_log" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/view_general_space"
+                android:layout_marginTop="@dimen/general_spacing"
                 android:text="@string/rate_app_current_configuration_values"
                 android:textStyle="bold" />
 
