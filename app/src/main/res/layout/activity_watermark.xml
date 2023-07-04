@@ -172,7 +172,7 @@
                             android:layout_height="100dp"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/library_logo"
+                            app:srcCompat="@drawable/watermark_img_1"
                             tools:ignore="ImageContrastCheck" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
