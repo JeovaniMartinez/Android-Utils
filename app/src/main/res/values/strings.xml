@@ -67,7 +67,7 @@
     <string name="watermark_convert_values_error_title" translatable="false">Incorrect values</string>
     <string name="watermark_convert_values_error_msg" translatable="false">Please make sure that all inputs have a value.</string>
     <string name="watermark_information" translatable="false">Information</string>
-    <string name="watermark_info_current_device" translatable="false">Current Device Info\n1dp = %1$s px\n1sp = %2$s px</string>
+    <string name="watermark_info_current_device" translatable="false">Current Device Info\n1 dp = %1$s px\n1 sp = %2$s px</string>
     <string name="watermark_info_current_base_image" translatable="false">Current Base Image\nWidth: %1$s px\nHeight: %2$s px</string>
     <string-array name="watermark_positions_array">
         <item>Absolute</item>
