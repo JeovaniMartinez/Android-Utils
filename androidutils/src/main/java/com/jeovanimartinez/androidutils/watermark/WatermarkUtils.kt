@@ -216,7 +216,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
                     context.dp2px(shadow.radius).toFloat(),
                     context.dp2px(shadow.dx).toFloat(),
                     context.dp2px(shadow.dy).toFloat(),
-                    shadow.shadowColor
+                    shadow.color
                 )
                 log("The watermark values are converted to DP, text size = $textSize | dx = $dx dy = $dy")
             }
@@ -228,7 +228,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
                     context.sp2px(shadow.radius).toFloat(),
                     context.sp2px(shadow.dx).toFloat(),
                     context.sp2px(shadow.dy).toFloat(),
-                    shadow.shadowColor
+                    shadow.color
                 )
                 logw("It is not recommended to use SP as the dimension of measure in a text watermark")
                 log("The watermark values are converted to SP, text size = $textSize | dx = $dx dy = $dy")
@@ -248,7 +248,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             watermark.typeface.whenNotNull { typeface = it }
             watermark.shadow.whenNotNull {
                 // Use shadow instead of 'it' because shadow contains the processed values
-                setShadowLayer(shadow.radius, shadow.dx, shadow.dy, shadow.shadowColor)
+                setShadowLayer(shadow.radius, shadow.dx, shadow.dy, shadow.color)
             }
         }
 
