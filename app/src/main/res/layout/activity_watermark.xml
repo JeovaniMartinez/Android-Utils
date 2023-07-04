@@ -199,7 +199,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/watermark_base_image_2"
+                            app:srcCompat="@drawable/watermark_img_2"
                             tools:ignore="ImageContrastCheck" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
