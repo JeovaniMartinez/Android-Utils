@@ -64,6 +64,8 @@
     <string name="watermark_shadow_dx" translatable="false">Shadow x-axis offset</string>
     <string name="watermark_shadow_dy" translatable="false">Shadow y-axis offset</string>
     <string name="watermark_shadow_color" translatable="false">Shadow Color</string>
+    <string name="watermark_convert_values_error_title" translatable="false">Incorrect values</string>
+    <string name="watermark_convert_values_error_msg" translatable="false">Please make sure that all inputs have a value.</string>
     <string-array name="watermark_positions_array">
         <item>Absolute</item>
         <item>Top Left</item>
