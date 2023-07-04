@@ -139,6 +139,10 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
             binding.svMain.smoothScrollTo(0, 0)
         }
 
+        binding.btnInfo.setOnClickListener {
+            showInfoDialog()
+        }
+
     }
 
     /** Common watermark properties setup */
@@ -466,5 +470,24 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
 
     /** ColorPickerDialog on dialog dismissed */
     override fun onDialogDismissed(dialogId: Int) {}
+
+    /** Show a dialog with device information, the base image, and the watermark */
+    private fun showInfoDialog() {
+        var message = getString(
+            R.string.watermark_info_current_device,
+            resources.displayMetrics.density.toString(),
+            resources.displayMetrics.scaledDensity.toString()
+        )
+
+        val baseImageBitmap = binding.ivBaseImage.drawToBitmap()
+        message += "\n\n" +
+                getString(R.string.watermark_info_current_base_image, baseImageBitmap.width.toString(), baseImageBitmap.height.toString())
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.watermark_information)
+            .setMessage(message)
+            .setPositiveButton(R.string.ok, null)
+            .show()
+    }
 
 }
