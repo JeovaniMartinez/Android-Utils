@@ -43,7 +43,7 @@
     <color name="icons_1">#737373</color>
     <color name="table_border_1">#737373</color>
     <color name="watermark_shape_1">#FFDAD6</color>
-    <color name="watermark_default_text_color">#000000</color>
-    <color name="watermark_default_text_shadow_color">#969696</color>
+    <color name="watermark_default_text_color">#D5D5D5</color>
+    <color name="watermark_default_text_shadow_color">#93000A</color>
 
 </resources>

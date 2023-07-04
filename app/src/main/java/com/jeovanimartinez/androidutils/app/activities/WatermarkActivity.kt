@@ -44,7 +44,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
     * */
 
     // Common watermark properties
-    private var watermarkPosition = WatermarkPosition.ABSOLUTE
+    private var watermarkPosition = WatermarkPosition.MIDDLE_CENTER
     private var watermarkMeasurementDimension = Dimension.PX
     private var watermarkDx = "0"
     private var watermarkDy = "0"
@@ -58,7 +58,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
 
     // Text watermark properties
     private lateinit var watermarkText: String
-    private var watermarkTextSize = "40"
+    private var watermarkTextSize = "50"
     private lateinit var watermarkTextColor: String
     private var watermarkTypeface = TextWatermarkTypeface.DEFAULT
     private var watermarkShadow = false
@@ -147,7 +147,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
         val positionsMenu = binding.menuPosition.editText as MaterialAutoCompleteTextView
         val positionsAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, resources.getStringArray(R.array.watermark_positions_array))
         positionsMenu.setAdapter(positionsAdapter)
-        positionsMenu.setText(positionsAdapter.getItem(0).toString(), false)
+        positionsMenu.setText(positionsAdapter.getItem(5).toString(), false)
         positionsMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             watermarkPosition = WatermarkPosition.values()[position]
         }

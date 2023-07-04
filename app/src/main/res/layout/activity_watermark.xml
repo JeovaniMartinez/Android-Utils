@@ -339,7 +339,7 @@
                             android:imeOptions="actionNext"
                             android:inputType="numberDecimal"
                             android:nextFocusForward="@+id/etDx"
-                            android:text="40"
+                            android:text="50"
                             tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
                     </com.google.android.material.textfield.TextInputLayout>
