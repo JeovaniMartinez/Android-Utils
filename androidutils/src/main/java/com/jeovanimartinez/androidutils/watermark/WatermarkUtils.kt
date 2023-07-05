@@ -136,9 +136,8 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             bitmapTmp = drawable.toBitmap(watermarkWidth.toInt(), watermarkHeight.toInt(), Bitmap.Config.ARGB_8888)
             bitmapTmp.density = targetBitmap.density
             /*
-            * If the watermark is an image that does not support transparency (such as a jpeg) and is rotated in a
-            * position that is not straight (such as 45 degrees) the background will not be transparent, so it is
-            * always recommended to use an image format that supports transparency.
+            * With some image formats, when rotated in a non-straight position (such as 45 degrees) the background
+            * may not appear transparent. If this happens, convert the image to another image profile.
             * */
             bitmapTmp.rotate(watermark.rotation)
         }
