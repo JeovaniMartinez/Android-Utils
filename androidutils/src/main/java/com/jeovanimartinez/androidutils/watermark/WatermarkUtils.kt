@@ -12,7 +12,9 @@ import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.extensions.dimension.dp2pxF
 import com.jeovanimartinez.androidutils.extensions.dimension.sp2px
+import com.jeovanimartinez.androidutils.extensions.dimension.sp2pxF
 import com.jeovanimartinez.androidutils.extensions.graphics.rotate
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.Dimension
@@ -90,13 +92,13 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
         val drawable = context.typeAsDrawable(watermark.drawable)!! // Get the drawable object
 
-        // Set the final size of the watermark
-        var watermarkWidth = if (watermark.width == null) drawable.intrinsicWidth else watermark.width.toInt()
-        var watermarkHeight = if (watermark.height == null) drawable.intrinsicHeight else watermark.height.toInt()
+        // Set the initial size of the watermark
+        var watermarkWidth = watermark.width ?: drawable.intrinsicWidth.toFloat()
+        var watermarkHeight = watermark.height ?: drawable.intrinsicHeight.toFloat()
 
-        // If use the intrinsic values, are validated that they are greater than zero
-        require(watermarkWidth > 0) { "Current drawable no has an intrinsic width, please specify the desired width" }
-        require(watermarkHeight > 0) { "Current drawable no has an intrinsic height, please specify the desired height" }
+        // If use the intrinsic values, are validated that they converted to int are greater than zero
+        require(watermarkWidth.toInt() > 0) { "Current drawable no has an intrinsic width, please specify the desired width" }
+        require(watermarkHeight.toInt() > 0) { "Current drawable no has an intrinsic height, please specify the desired height" }
 
         // Initial offsets
         var dx = watermark.dx
@@ -108,18 +110,18 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         when (watermark.measurementDimension) {
             Dimension.PX -> log("The original values are kept, final size: width = $watermarkWidth height = $watermarkHeight | dx = $dx dy = $dy")
             Dimension.DP -> {
-                watermarkWidth = context.dp2px(watermarkWidth)
-                watermarkHeight = context.dp2px(watermarkHeight)
-                dx = context.dp2px(watermark.dx).toFloat()
-                dy = context.dp2px(watermark.dy).toFloat()
+                watermarkWidth = context.dp2pxF(watermarkWidth)
+                watermarkHeight = context.dp2pxF(watermarkHeight)
+                dx = context.dp2pxF(watermark.dx)
+                dy = context.dp2pxF(watermark.dy)
                 log("The watermark values are converted to DP, final size: width = $watermarkWidth height = $watermarkHeight | dx = $dx dy = $dy")
             }
 
             Dimension.SP -> {
-                watermarkWidth = context.sp2px(watermarkWidth)
-                watermarkHeight = context.sp2px(watermarkHeight)
-                dx = context.sp2px(watermark.dx).toFloat()
-                dy = context.sp2px(watermark.dy).toFloat()
+                watermarkWidth = context.sp2pxF(watermarkWidth)
+                watermarkHeight = context.sp2pxF(watermarkHeight)
+                dx = context.sp2pxF(watermark.dx)
+                dy = context.sp2pxF(watermark.dy)
                 log("The watermark values are converted to SP, final size: width = $watermarkWidth height = $watermarkHeight | dx = $dx dy = $dy")
                 logw("It is not recommended to use SP as the dimension of measure in a drawable watermark")
             }
@@ -129,11 +131,11 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         // The final watermark is generated as a bitmap
         val watermarkBitmap = if (watermark.rotation == 0f) {
             log("No need to rotate the watermark, rotation = ${watermark.rotation} degrees")
-            drawable.toBitmap(watermarkWidth, watermarkHeight, Bitmap.Config.ARGB_8888)
+            drawable.toBitmap(watermarkWidth.toInt(), watermarkHeight.toInt(), Bitmap.Config.ARGB_8888)
         } else {
             log("Watermark is rotated ${watermark.rotation} degrees")
             // A temporary bitmap is created, it is rotated and assigned to the watermark bitmap
-            bitmapTmp = drawable.toBitmap(watermarkWidth, watermarkHeight, Bitmap.Config.ARGB_8888)
+            bitmapTmp = drawable.toBitmap(watermarkWidth.toInt(), watermarkHeight.toInt(), Bitmap.Config.ARGB_8888)
             bitmapTmp.density = targetBitmap.density
             bitmapTmp.rotate(watermark.rotation)
         }
@@ -152,14 +154,14 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         // Calculate the position on the x and y axes
 
         val positionX = when (watermark.position) {
-            ABSOLUTE -> -(watermarkWidth / 2).toFloat()
+            ABSOLUTE -> -(watermarkBitmap.width / 2).toFloat()
             TOP_LEFT, MIDDLE_LEFT, BOTTOM_LEFT -> 0f
             TOP_CENTER, MIDDLE_CENTER, BOTTOM_CENTER -> ((targetBitmap.width / 2) - (watermarkBitmap.width / 2)).toFloat()
             TOP_RIGHT, MIDDLE_RIGHT, BOTTOM_RIGHT -> (targetBitmap.width - watermarkBitmap.width).toFloat()
         }
 
         val positionY = when (watermark.position) {
-            ABSOLUTE -> -(watermarkHeight / 2).toFloat()
+            ABSOLUTE -> -(watermarkBitmap.height / 2).toFloat()
             TOP_LEFT, TOP_CENTER, TOP_RIGHT -> 0f
             MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT -> ((targetBitmap.height / 2) - (watermarkBitmap.height / 2)).toFloat()
             BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT -> (targetBitmap.height - watermarkBitmap.height).toFloat()
