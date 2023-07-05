@@ -60,11 +60,15 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             "The opacity value for the watermark must be between 0 and 1, current value is ${watermark.opacity}"
         }
         if (watermark is Watermark.Drawable) {
-            require(watermark.width >= 0f) {
-                "Watermark width must be equal to or greater than 0, current value is ${watermark.width} "
+            if (watermark.width != null) {
+                require(watermark.width >= 1f) {
+                    "Watermark width must be equal to or greater than 1, current value is ${watermark.width} "
+                }
             }
-            require(watermark.height >= 0f) {
-                "Watermark height must be equal to or greater than 0, current value is ${watermark.height}"
+            if (watermark.height != null) {
+                require(watermark.height >= 1f) {
+                    "Watermark height must be equal to or greater than 1, current value is ${watermark.height}"
+                }
             }
         } else if (watermark is Watermark.Text) {
             require(watermark.textSize > 0) {
@@ -87,8 +91,8 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         val drawable = context.typeAsDrawable(watermark.drawable)!! // Get the drawable object
 
         // Set the final size of the watermark
-        var watermarkWidth = if (watermark.width == 0f) drawable.intrinsicWidth else watermark.width.toInt()
-        var watermarkHeight = if (watermark.height == 0f) drawable.intrinsicHeight else watermark.height.toInt()
+        var watermarkWidth = if (watermark.width == null) drawable.intrinsicWidth else watermark.width.toInt()
+        var watermarkHeight = if (watermark.height == null) drawable.intrinsicHeight else watermark.height.toInt()
 
         // If use the intrinsic values, are validated that they are greater than zero
         require(watermarkWidth > 0) { "Current drawable no has an intrinsic width, please specify the desired width" }
