@@ -11,9 +11,7 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
-import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2pxF
-import com.jeovanimartinez.androidutils.extensions.dimension.sp2px
 import com.jeovanimartinez.androidutils.extensions.dimension.sp2pxF
 import com.jeovanimartinez.androidutils.extensions.graphics.rotate
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
@@ -218,30 +216,30 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             }
 
             Dimension.DP -> {
-                textSize = context.dp2px(textSize).toFloat()
-                dx = context.dp2px(watermark.dx).toFloat()
-                dy = context.dp2px(watermark.dy).toFloat()
+                textSize = context.dp2pxF(textSize)
+                dx = context.dp2pxF(watermark.dx)
+                dy = context.dp2pxF(watermark.dy)
                 shadow = WatermarkShadow(
-                    context.dp2px(shadow.radius).toFloat(),
-                    context.dp2px(shadow.dx).toFloat(),
-                    context.dp2px(shadow.dy).toFloat(),
+                    context.dp2pxF(shadow.radius),
+                    context.dp2pxF(shadow.dx),
+                    context.dp2pxF(shadow.dy),
                     shadow.color
                 )
                 log("The watermark values are converted to DP, text size = $textSize | dx = $dx dy = $dy")
             }
 
             Dimension.SP -> {
-                textSize = context.sp2px(textSize).toFloat()
-                dx = context.sp2px(watermark.dx).toFloat()
-                dy = context.sp2px(watermark.dy).toFloat()
+                textSize = context.sp2pxF(textSize)
+                dx = context.sp2pxF(watermark.dx)
+                dy = context.sp2pxF(watermark.dy)
                 shadow = WatermarkShadow(
-                    context.sp2px(shadow.radius).toFloat(),
-                    context.sp2px(shadow.dx).toFloat(),
-                    context.sp2px(shadow.dy).toFloat(),
+                    context.sp2pxF(shadow.radius),
+                    context.sp2pxF(shadow.dx),
+                    context.sp2pxF(shadow.dy),
                     shadow.color
                 )
-                logw("It is not recommended to use SP as the dimension of measure in a text watermark")
                 log("The watermark values are converted to SP, text size = $textSize | dx = $dx dy = $dy")
+                logw("It is not recommended to use SP as the dimension of measure in a text watermark")
             }
         }
         // The shadow values are also logged
