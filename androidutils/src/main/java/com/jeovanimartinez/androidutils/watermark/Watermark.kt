@@ -72,7 +72,7 @@ sealed class Watermark {
      * */
     data class Text(
         @StringOrStringRes val text: Any,
-        val textSize: Float = 12f,
+        @FloatRange(from = 0.1) val textSize: Float = 12f,
         @ColorInt val textColor: Int = Color.BLACK,
         override val position: WatermarkPosition = WatermarkPosition.MIDDLE_CENTER,
         override val dx: Float = 0f,
