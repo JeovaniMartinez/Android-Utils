@@ -47,6 +47,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * @param bitmap Bitmap where the watermarks are to be drawn.
      * @param watermarkList List of [Watermark.Drawable] or [Watermark.Text] to draw inside the [bitmap].
      * */
+    @Suppress("unused")
     fun drawWatermark(context: Context, bitmap: Bitmap, watermarkList: ArrayList<Watermark>) {
         watermarkList.forEach { drawWatermark(context, bitmap, it) }
     }
@@ -109,6 +110,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
                 dy = context.dp2px(watermark.dy).toFloat()
                 log("The watermark values are converted to DP, final size: width = $watermarkWidth height = $watermarkHeight | dx = $dx dy = $dy")
             }
+
             Dimension.SP -> {
                 watermarkWidth = context.sp2px(watermarkWidth)
                 watermarkHeight = context.sp2px(watermarkHeight)
@@ -208,6 +210,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
             Dimension.PX -> {
                 log("The original values are kept, text size = $textSize | dx = $dx dy = $dy")
             }
+
             Dimension.DP -> {
                 textSize = context.dp2px(textSize).toFloat()
                 dx = context.dp2px(watermark.dx).toFloat()
@@ -220,6 +223,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
                 )
                 log("The watermark values are converted to DP, text size = $textSize | dx = $dx dy = $dy")
             }
+
             Dimension.SP -> {
                 textSize = context.sp2px(textSize).toFloat()
                 dx = context.sp2px(watermark.dx).toFloat()
