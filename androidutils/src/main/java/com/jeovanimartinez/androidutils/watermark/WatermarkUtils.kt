@@ -103,7 +103,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
         var dy = watermark.dy
 
         // Processing the values according to the measurement dimension
-        log("Original watermark values: width = $watermarkWidth | weight = $watermarkHeight")
+        log("Original watermark values = width: ${watermark.width} = $watermarkWidth | height: ${watermark.height} = $watermarkHeight")
         log("Watermark measurement dimension is ${watermark.measurementDimension}")
         when (watermark.measurementDimension) {
             Dimension.PX -> log("The original values are kept, final size: width = $watermarkWidth height = $watermarkHeight | dx = $dx dy = $dy")
