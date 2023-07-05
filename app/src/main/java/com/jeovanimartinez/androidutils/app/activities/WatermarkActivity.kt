@@ -237,8 +237,8 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
                 drawableWatermark = Watermark.Drawable(
                     drawable = watermarkDrawable,
                     position = watermarkPosition,
-                    width = watermarkWidth.toFloat(),
-                    height = watermarkHeight.toFloat(),
+                    width = if (watermarkWidth.toFloat() < 1) null else watermarkWidth.toFloat(),
+                    height = if (watermarkHeight.toFloat() < 1) null else watermarkHeight.toFloat(),
                     dx = watermarkDx.toFloat(),
                     dy = watermarkDy.toFloat(),
                     rotation = watermarkRotation.toFloat(),
