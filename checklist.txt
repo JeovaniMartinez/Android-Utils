@@ -54,6 +54,7 @@ lintcheck [Módulo] ✔✔ (Todo terminado, módulo listo)
 app [Módulo]
     > 06/06/2023: Revisión general de todo el código, archivos y recursos. Todo esta bien, solo ir ajustando lo que se requiera conforme se
     desarrolle la app. Al final hacer nuevamente una revisión general de todos los archivos del proyecto.
+        > En la actividad de Watermark agregar los botones de guardar y compartir la imagen. ✔⚠⚠
 
 ***************************************************************************************************************************************************
 
@@ -92,12 +93,12 @@ androidutils [Módulo]
                 > Padding ✔✔
         > reviews ✔✔
             > RateApp ✔✔
-        > watermark
+        > watermark ✔✔
             > config ✔✔
                 > WatermarkPosition ✔✔
                 > WatermarkShadow ✔✔
             > Watermark ✔✔
-            > WatermarkUtils ⚠⚠
+            > WatermarkUtils ✔✔
         > web ✔✔
             > SystemWebBrowser ✔✔
 
