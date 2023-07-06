@@ -34,7 +34,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
      * @param watermark [Watermark.Drawable] or [Watermark.Text] to draw inside the [bitmap].
      * */
     fun drawWatermark(context: Context, bitmap: Bitmap, watermark: Watermark) {
-        validateWatermark(watermark)
+        validateWatermark(watermark, context)
         when (watermark) {
             is Watermark.Drawable -> drawDrawableWatermark(context, bitmap, watermark)
             is Watermark.Text -> drawTextWatermark(context, bitmap, watermark)
@@ -54,8 +54,10 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
     /**
      * Validate the properties of the [watermark] object, and generate an [IllegalArgumentException] in case of finding incorrect values.
+     * @param watermark The watermark object.
+     * @param context Context.
      * */
-    private fun validateWatermark(watermark: Watermark) {
+    private fun validateWatermark(watermark: Watermark, context: Context) {
         require(watermark.opacity in 0f..1f) {
             "The opacity value for the watermark must be between 0 and 1, current value is ${watermark.opacity}"
         }
@@ -71,6 +73,9 @@ object WatermarkUtils : Base<WatermarkUtils>() {
                 }
             }
         } else if (watermark is Watermark.Text) {
+            require(context.typeAsString(watermark.text).isNotEmpty()) {
+                "The watermark text should not be empty"
+            }
             require(watermark.textSize > 0) {
                 "Watermark text size must be greater than 0, current value is ${watermark.textSize}"
             }
