@@ -29,11 +29,14 @@ object ViewToImage : Base<ViewToImage>() {
      * @param backgroundColor Background color to apply to the image.
      * @param backgroundCornerRadius Corner radius for the background.
      * @param trimBorders Determines whether before applying margin and padding the borders of the view are cropped.
-     *        To define the cropping area, use the background color of the view.
-     * @param padding Padding between the view edges and the margin internal edges. Values must be zero or positive.
-     * @param margin Margin between the padding external edges and the image edges. Values must be zero or positive.
+     *        To define the cropping area, the background color of the view is used.
+     * @param padding Padding between the view edges and the margin internal edges. Values must be zero or positive,
+     *        specified in pixels.
+     * @param margin Margin between the padding external edges and the image edges. Values must be zero or positive,
+     *        specified in pixels.
      * @param viewsToExclude If the view is a view group and has children views, it determines the children views
-     *        to exclude when generating the image.
+     *        to exclude when generating the image. The child views to be excluded must belong directly to the view.
+     *        Child views within other child views cannot be excluded directly.
      *
      * @return A bitmap of the view.
      *
@@ -171,7 +174,7 @@ object ViewToImage : Base<ViewToImage>() {
         val markColor = Color.RED // Color to mark the spaces to be removed from the image with cropping modes
         val markPaint = Paint().apply { style = Paint.Style.FILL; color = markColor; } // Paint for cropping modes
 
-        // Extra padding to add to be able to correctly remove the children views
+        /* Extra auxiliary padding to be added in order to correctly remove child views. */
         // Padding right is added if vertical children views need to be cropped as the entire width is marked
         val extraRightPadding = if (cropVerticallyViews.isNotEmpty()) 10 else 0
         // Padding bottom is added if horizontal children views need to be cropped as the entire height is marked
@@ -188,7 +191,7 @@ object ViewToImage : Base<ViewToImage>() {
 
         val viewCanvas = Canvas(viewBitmap)
 
-        // STEP 1, EXCLUDE VIEWS WITH MODE HIDE
+        /* STEP 1, EXCLUDE VIEWS WITH MODE HIDE */
 
         if (hideViews.isNotEmpty()) {
             // If the view has a solid background color, that color is used, otherwise, the pixels are cleared with alpha.
@@ -216,7 +219,7 @@ object ViewToImage : Base<ViewToImage>() {
             // FileUtils.saveBitmapToFile(context, viewBitmap, "EXCLUDE_VIEWS_STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
 
-        // STEP 2, EXCLUDE VIEWS WITH CROP VERTICALLY
+        /* STEP 2, EXCLUDE VIEWS WITH CROP VERTICALLY */
 
         var viewBitmap2 = viewBitmap // Assignation initial
 
@@ -257,7 +260,7 @@ object ViewToImage : Base<ViewToImage>() {
             // FileUtils.saveBitmapToFile(context, viewBitmap2, "EXCLUDE_VIEWS_STEP_2_B") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
 
-        // STEP 3, EXCLUDE VIEWS WITH CROP HORIZONTALLY
+        /* STEP 3, EXCLUDE VIEWS WITH CROP HORIZONTALLY */
 
         var viewBitmap3 = viewBitmap2 // Assignation initial
 
