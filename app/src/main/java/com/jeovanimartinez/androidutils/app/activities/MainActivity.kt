@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     /** Library Utilities Menu Setup */
     private fun libraryUtilitiesMenuSetup() {
 
-        val libraryUtilitiesList = resources.getStringArray(R.array.library_utilities_array) // Get the list from string resources
+        val libraryUtilitiesList = resources.getStringArray(R.array.main_activity_library_utilities_array) // Get the list from string resources
         val libraryUtilitiesMenu = binding.menuLibraryUtilities.editText as MaterialAutoCompleteTextView // Object to manipulate the menu
 
         // Set selected item
@@ -126,9 +126,9 @@ class MainActivity : AppCompatActivity() {
     private fun showInfoDialog() {
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.app_name)
-            .setMessage("${getString(R.string.app_description)}\n\n${getString(R.string.app_credits, BuildConfig.VERSION_NAME)}")
+            .setMessage("${getString(R.string.main_activity_app_description)}\n\n${getString(R.string.main_activity_app_credits, BuildConfig.VERSION_NAME)}")
             .setPositiveButton(R.string.ok, null)
-            .setNeutralButton(R.string.library_docs) { _, _ ->
+            .setNeutralButton(R.string.main_activity_library_docs) { _, _ ->
                 SystemWebBrowser.openUrl(this, "https://jeovanimartinez.github.io/Android-Utils/docs/")
             }
             .show()

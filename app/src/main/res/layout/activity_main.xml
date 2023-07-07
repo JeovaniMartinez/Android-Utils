@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="@string/library_utilities">
+                android:hint="@string/main_activity_library_utilities">
 
                 <AutoCompleteTextView
                     android:layout_width="match_parent"
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/general_spacing"
-                android:text="@string/go_to_utility"
+                android:text="@string/main_activity_go_to_utility"
                 tools:ignore="TextContrastCheck" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

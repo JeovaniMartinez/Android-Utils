@@ -10,15 +10,15 @@
     <string name="select" translatable="false">Select</string>
 
     <!-- Main Activity -->
-    <string name="app_description" translatable="false">
+    <string name="main_activity_app_description" translatable="false">
         This app is intended to test the library utilities during the development process and to provide a preview of the main utilities to the developers.
         You can check the complete documentation for all library utilities on the library\'s website.
     </string>
-    <string name="app_credits" translatable="false">&app_name; v%1$s\nBy Jeovani Martinez</string>
-    <string name="library_docs" translatable="false">Library Docs</string>
-    <string name="library_utilities" translatable="false">Library Utilities</string>
-    <string name="go_to_utility" translatable="false">Go To Selected Utility</string>
-    <string-array name="library_utilities_array">
+    <string name="main_activity_app_credits" translatable="false">&app_name; v%1$s\nBy Jeovani Martinez</string>
+    <string name="main_activity_library_docs" translatable="false">Library Docs</string>
+    <string name="main_activity_library_utilities" translatable="false">Library Utilities</string>
+    <string name="main_activity_go_to_utility" translatable="false">Go To Selected Utility</string>
+    <string-array name="main_activity_library_utilities_array">
         <item>Rate App</item>
         <item>Watermark</item>
         <item>View To Image</item>
@@ -31,7 +31,8 @@
     <string name="rate_app_rate_in_google_play" translatable="false">Rate In Google Play</string>
     <string name="rate_app_go_rate_in_google_play" translatable="false">Go To Rate In Google Play</string>
     <string name="rate_app_rate_in_app" translatable="false">Rate In App</string>
-    <string name="rate_app_msg_config" translatable="false">The configuration values and the initialization of the utility have been done in the function rateInAppSetup() in the App class.</string>
+    <string name="rate_app_msg_config" translatable="false">The configuration values and the initialization of the utility have been done in the function rateInAppSetup()
+        in the App class.</string>
     <string name="rate_app_msg_log" translatable="false">Check the Logcat for the details of the execution flow of this utility.</string>
     <string name="rate_app_check_and_show" translatable="false">Check And Show</string>
     <string name="rate_app_current_configuration_values" translatable="false">Current Configuration Values</string>
@@ -104,8 +105,8 @@
     <string name="view_to_image_background_corner_radius" translatable="false">Background Corner Radius</string>
     <string name="view_to_image_background_corner_all_equal" translatable="false">All Equal</string>
     <string name="view_to_image_background_corner_all_equal_msg" translatable="false">The corner radius value will be applied to all corners of the background</string>
-    <string name="view_to_image_background_corner_not_all_equal_msg" translatable="false">Specify the value for each corner radius. There should be 8 values separated by commas for the positions:
-        topLeftX, topLeftY, topRightX, topRightY, bottomRightX, bottomRightY, bottomLeftX, bottomLeftY. For Example: 10,10,10,10,10,10,10,10</string>
+    <string name="view_to_image_background_corner_not_all_equal_msg" translatable="false">Specify the value for each corner radius. There should be 8 values separated by
+        commas for the positions: topLeftX, topLeftY, topRightX, topRightY, bottomRightX, bottomRightY, bottomLeftX, bottomLeftY. For Example: 10,10,10,10,10,10,10,10</string>
     <string name="view_to_image_background_corner_not_all_equal_err_msg" translatable="false">The values for the background corner radius are incorrect.</string>
     <string name="view_to_image_incorrect_values_title" translatable="false">Incorrect Values</string>
     <string name="view_to_image_incorrect_values_msg" translatable="false">Please make sure that all inputs have a value.</string>
