@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,8 +30,121 @@
             android:paddingTop="@dimen/general_spacing"
             android:paddingBottom="@dimen/general_spacing">
 
-            <!-- Base activity for a new utility -->
-            <!-- Content Here -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/general_spacing">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvLayoutBaseText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_to_image_base_layout_text_1"
+                        android:textAlignment="center" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivLayoutBaseImage1"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="@dimen/general_spacing_half"
+                        app:srcCompat="@drawable/intro_img" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutBaseInput1"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/general_spacing_half"
+                        android:hint="@string/view_to_image_base_layout_input_1"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etLayoutBaseInput1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:text=""
+                            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDrawDrawableWatermark"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/general_spacing"
+                        android:text="@string/view_to_image_base_layout_button_1"
+                        tools:ignore="TextContrastCheck" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="0dp"
+                android:background="@color/md_theme_primary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_marginBottom="@dimen/general_spacing"
+                android:text="@string/view_to_image_configuration"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing_half"
+                android:baselineAligned="false">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_background_corner_radius"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBackgroundCornerRadius"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:text="10"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swBackgroundCornerAllEqual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:checked="true"
+                    android:text="@string/view_to_image_background_corner_all_equal"
+                    tools:ignore="TextContrastCheck" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
