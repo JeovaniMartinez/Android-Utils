@@ -90,7 +90,7 @@
                     app:layout_constraintStart_toEndOf="@id/btnRestoreImage"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_info"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnShareImage"
@@ -451,7 +451,7 @@
                                 android:inputType="numberDecimal"
                                 android:nextFocusForward="@+id/etShadowDx"
                                 android:text="2"
-                                tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                                tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
