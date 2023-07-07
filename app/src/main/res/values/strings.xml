@@ -64,7 +64,7 @@
     <string name="watermark_shadow_dx" translatable="false">Shadow x-axis offset</string>
     <string name="watermark_shadow_dy" translatable="false">Shadow y-axis offset</string>
     <string name="watermark_shadow_color" translatable="false">Shadow Color</string>
-    <string name="watermark_convert_values_error_title" translatable="false">Incorrect values</string>
+    <string name="watermark_convert_values_error_title" translatable="false">Incorrect Values</string>
     <string name="watermark_convert_values_error_msg" translatable="false">Please make sure that all inputs have a value.</string>
     <string name="watermark_information" translatable="false">Information</string>
     <string name="watermark_info_current_device" translatable="false">Current Device Info\n1 dp = %1$s px\n1 sp = %2$s px</string>
@@ -92,6 +92,44 @@
         <item>Fugaz One</item>
         <item>Karla</item>
         <item>Oi</item>
+    </string-array>
+
+    <!-- ViewToImage Activity -->
+    <string name="view_to_image_title" translatable="false">View To Image</string>
+    <string name="view_to_image_base_layout" translatable="false">Base Layout</string>
+    <string name="view_to_image_base_layout_text_1" translatable="false">&app_name;</string>
+    <string name="view_to_image_base_layout_input_1" translatable="false">Message</string>
+    <string name="view_to_image_base_layout_button_1" translatable="false">Say Hello</string>
+    <string name="view_to_image_configuration" translatable="false">Configuration</string>
+    <string name="view_to_image_background_corner_radius" translatable="false">Background Corner Radius</string>
+    <string name="view_to_image_background_corner_all_equal" translatable="false">All Equal</string>
+    <string name="view_to_image_background_corner_all_equal_msg" translatable="false">The corner radius value will be applied to all corners of the background</string>
+    <string name="view_to_image_background_corner_not_all_equal_msg" translatable="false">Specify the value for each corner radius. There should be 8 values separated by commas for the positions:
+        topLeftX, topLeftY, topRightX, topRightY, bottomRightX, bottomRightY, bottomLeftX, bottomLeftY. For Example: 10,10,10,10,10,10,10,10</string>
+    <string name="view_to_image_background_corner_not_all_equal_err_msg" translatable="false">The values for the background corner radius are incorrect.</string>
+    <string name="view_to_image_incorrect_values_title" translatable="false">Incorrect Values</string>
+    <string name="view_to_image_incorrect_values_msg" translatable="false">Please make sure that all inputs have a value.</string>
+    <string name="view_to_image_background_color" translatable="false">Background Color</string>
+    <string name="view_to_image_trim_borders" translatable="false">Trim Borders</string>
+    <string name="view_to_image_padding" translatable="false">Padding</string>
+    <string name="view_to_image_margin" translatable="false">Margin</string>
+    <string name="view_to_image_padding_margin_top" translatable="false">Top</string>
+    <string name="view_to_image_padding_margin_bottom" translatable="false">Bottom</string>
+    <string name="view_to_image_padding_margin_left" translatable="false">Left</string>
+    <string name="view_to_image_padding_margin_right" translatable="false">Right</string>
+    <string name="view_to_image_exclude_views" translatable="false">Exclude Views</string>
+    <string name="view_to_image_exclude_view_text" translatable="false">Text</string>
+    <string name="view_to_image_exclude_view_image" translatable="false">Image</string>
+    <string name="view_to_image_exclude_view_input" translatable="false">Input</string>
+    <string name="view_to_image_exclude_view_button" translatable="false">Button</string>
+    <string name="view_to_image_convert" translatable="false">Convert</string>
+    <string name="view_to_image_result" translatable="false">Result</string>
+    <string-array name="view_to_image_exclude_mode_array">
+        <item>Do Not Exclude</item>
+        <item>Hide</item>
+        <item>Crop Vertically</item>
+        <item>Crop Horizontally</item>
+        <item>Crop All</item>
     </string-array>
 
 </resources>
