@@ -143,153 +143,130 @@
 
             </com.google.android.material.tabs.TabLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutDrawableWatermark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/general_spacing_half"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/general_spacing">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivWatermark1"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:adjustViewBounds="true"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".33"
+                    app:srcCompat="@drawable/watermark_img_1"
+                    tools:ignore="ImageContrastCheck" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbWatermark1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/general_spacing"
-                    android:baselineAligned="false"
-                    android:weightSum="3">
+                    android:text="@string/watermark_watermark_1"
+                    app:layout_constraintEnd_toEndOf="@id/ivWatermark1"
+                    app:layout_constraintStart_toStartOf="@id/ivWatermark1"
+                    app:layout_constraintTop_toBottomOf="@id/ivWatermark1" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/general_spacing_half"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:textAlignment="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivWatermark2"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:adjustViewBounds="true"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintStart_toEndOf="@id/ivWatermark1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".33"
+                    app:srcCompat="@drawable/watermark_img_2"
+                    tools:ignore="ImageContrastCheck" />
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivWatermark1"
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/watermark_img_1"
-                            tools:ignore="ImageContrastCheck" />
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbWatermark2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/watermark_watermark_2"
+                    app:layout_constraintEnd_toEndOf="@id/ivWatermark2"
+                    app:layout_constraintStart_toEndOf="@id/ivWatermark1"
+                    app:layout_constraintTop_toBottomOf="@id/ivWatermark2" />
 
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/rbWatermark1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/watermark_watermark_1" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivWatermark3"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:adjustViewBounds="true"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintStart_toEndOf="@id/ivWatermark2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".33"
+                    app:srcCompat="@drawable/watermark_shape_1"
+                    tools:ignore="ImageContrastCheck" />
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbWatermark3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/watermark_watermark_3"
+                    app:layout_constraintEnd_toEndOf="@id/ivWatermark3"
+                    app:layout_constraintStart_toEndOf="@id/ivWatermark2"
+                    app:layout_constraintTop_toBottomOf="@id/ivWatermark3" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/general_spacing_half"
-                        android:layout_marginEnd="@dimen/general_spacing_half"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:textAlignment="center">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivWatermark2"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/watermark_img_2"
-                            tools:ignore="ImageContrastCheck" />
-
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/rbWatermark2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/watermark_watermark_2" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/general_spacing_half"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:textAlignment="center">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivWatermark3"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/watermark_shape_1"
-                            tools:ignore="ImageContrastCheck" />
-
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/rbWatermark3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/watermark_watermark_3" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/general_spacing_half"
-                    android:baselineAligned="false"
-                    android:weightSum="2">
+                    android:hint="@string/watermark_width"
+                    android:paddingEnd="@dimen/general_spacing_half"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rbWatermark1"
+                    app:layout_constraintWidth_percent=".5"
+                    tools:ignore="RtlSymmetry">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etWidth"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/general_spacing_half"
-                        android:layout_weight="1"
-                        android:hint="@string/watermark_width"
-                        app:endIconMode="clear_text">
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etHeight"
+                        android:text="100"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etWidth"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:imeOptions="actionNext"
-                            android:inputType="numberDecimal"
-                            android:nextFocusForward="@+id/etHeight"
-                            android:text="100"
-                            tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:hint="@string/watermark_height"
+                    android:paddingStart="@dimen/general_spacing_half"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rbWatermark1"
+                    app:layout_constraintWidth_percent=".5"
+                    tools:ignore="RtlSymmetry">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etHeight"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/general_spacing_half"
-                        android:layout_weight="1"
-                        android:hint="@string/watermark_height"
-                        app:endIconMode="clear_text">
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etDx"
+                        android:text="100"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etHeight"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:imeOptions="actionNext"
-                            android:inputType="numberDecimal"
-                            android:nextFocusForward="@+id/etDx"
-                            android:text="100"
-                            tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layoutTextWatermark"
