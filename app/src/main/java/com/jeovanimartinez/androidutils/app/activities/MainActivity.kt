@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 2 -> {
-                    shortToast("View To Image")
+                    startActivity(Intent(this, ViewToImageActivity::class.java))
                 }
 
                 3 -> {

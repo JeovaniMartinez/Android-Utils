@@ -41,6 +41,13 @@
         <activity
             android:name=".activities.WatermarkActivity"
             android:configChanges="orientation|screenSize"
+            android:exported="false"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.ViewToImageActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
