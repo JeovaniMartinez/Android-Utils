@@ -344,9 +344,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="0"
                             android:visibility="invisible"
-                            tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                            tools:ignore="VisualLintTextFieldSize" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btnTextColor"
@@ -443,9 +442,8 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="0"
                                 android:visibility="invisible"
-                                tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+                                tools:ignore="VisualLintTextFieldSize" />
 
                             <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/btnShadowColor"
