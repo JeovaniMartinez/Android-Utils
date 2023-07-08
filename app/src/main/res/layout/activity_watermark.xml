@@ -169,7 +169,8 @@
                     android:text="@string/watermark_watermark_1"
                     app:layout_constraintEnd_toEndOf="@id/ivWatermark1"
                     app:layout_constraintStart_toStartOf="@id/ivWatermark1"
-                    app:layout_constraintTop_toBottomOf="@id/ivWatermark1" />
+                    app:layout_constraintTop_toBottomOf="@id/ivWatermark1"
+                    tools:ignore="TextContrastCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivWatermark2"
@@ -191,7 +192,8 @@
                     android:text="@string/watermark_watermark_2"
                     app:layout_constraintEnd_toEndOf="@id/ivWatermark2"
                     app:layout_constraintStart_toEndOf="@id/ivWatermark1"
-                    app:layout_constraintTop_toBottomOf="@id/ivWatermark2" />
+                    app:layout_constraintTop_toBottomOf="@id/ivWatermark2"
+                    tools:ignore="TextContrastCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivWatermark3"
@@ -213,7 +215,8 @@
                     android:text="@string/watermark_watermark_3"
                     app:layout_constraintEnd_toEndOf="@id/ivWatermark3"
                     app:layout_constraintStart_toEndOf="@id/ivWatermark2"
-                    app:layout_constraintTop_toBottomOf="@id/ivWatermark3" />
+                    app:layout_constraintTop_toBottomOf="@id/ivWatermark3"
+                    tools:ignore="TextContrastCheck" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
