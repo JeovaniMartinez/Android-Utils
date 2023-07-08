@@ -293,7 +293,10 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
         watermarkText = getString(R.string.app_name)
         watermarkTextColor = getColorCompat(R.color.watermark_default_text_color).toString()
         watermarkShadowColor = getColorCompat(R.color.watermark_default_text_shadow_color).toString()
-        binding.layoutShadow.visibility = View.GONE
+        binding.layoutShadowRadius.visibility = View.GONE
+        binding.layoutShadowColor.visibility = View.GONE
+        binding.layoutShadowDx.visibility = View.GONE
+        binding.layoutShadowDy.visibility = View.GONE
 
         binding.etText.doAfterTextChanged {
             watermarkText = it.toString()
@@ -316,7 +319,10 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
 
         binding.swShadow.setOnCheckedChangeListener { _, isChecked ->
-            binding.layoutShadow.visibility = if (isChecked) View.VISIBLE else View.GONE
+            binding.layoutShadowRadius.visibility = if (isChecked) View.VISIBLE else View.GONE
+            binding.layoutShadowColor.visibility = if (isChecked) View.VISIBLE else View.GONE
+            binding.layoutShadowDx.visibility = if (isChecked) View.VISIBLE else View.GONE
+            binding.layoutShadowDy.visibility = if (isChecked) View.VISIBLE else View.GONE
             watermarkShadow = isChecked
         }
 

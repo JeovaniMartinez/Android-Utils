@@ -60,7 +60,7 @@
     <string name="watermark_text_size" translatable="false">Text Size</string>
     <string name="watermark_text_color" translatable="false">Text Color</string>
     <string name="watermark_typeface" translatable="false">Typeface (Font)</string>
-    <string name="watermark_shadow" translatable="false">Shadow</string>
+    <string name="watermark_text_shadow" translatable="false">Text Shadow</string>
     <string name="watermark_shadow_radius" translatable="false">Shadow Radius</string>
     <string name="watermark_shadow_dx" translatable="false">Shadow x-axis offset</string>
     <string name="watermark_shadow_dy" translatable="false">Shadow y-axis offset</string>
