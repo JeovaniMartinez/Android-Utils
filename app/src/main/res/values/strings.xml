@@ -102,8 +102,9 @@
     <string name="view_to_image_base_layout_input_1" translatable="false">Message</string>
     <string name="view_to_image_base_layout_button_1" translatable="false">Show Message</string>
     <string name="view_to_image_configuration" translatable="false">Configuration</string>
-    <string name="view_to_image_background_color" translatable="false">Background Color</string>
-    <string name="view_to_image_background_corner_radius" translatable="false">Background Corner Radius</string>
+    <string name="view_to_image_background" translatable="false">Background</string>
+    <string name="view_to_image_background_color" translatable="false">Color</string>
+    <string name="view_to_image_background_corner_radius" translatable="false">Corner Radius</string>
     <string name="view_to_image_background_corner_all_equal" translatable="false">All Equal</string>
     <string name="view_to_image_background_corner_all_equal_msg" translatable="false">The corner radius value will be applied to all corners of the background</string>
     <string name="view_to_image_background_corner_not_all_equal_msg" translatable="false">Specify the value for each corner radius. There should be 8 values separated by
@@ -119,11 +120,14 @@
     <string name="view_to_image_padding_margin_left" translatable="false">Left</string>
     <string name="view_to_image_padding_margin_right" translatable="false">Right</string>
     <string name="view_to_image_exclude_views" translatable="false">Exclude Views</string>
+    <string name="view_to_image_view" translatable="false">View</string>
+    <string name="view_to_image_include_margin" translatable="false">Include\nMargin</string>
+    <string name="view_to_image_exclude_mode" translatable="false">Exclude Mode</string>
     <string name="view_to_image_exclude_view_text" translatable="false">Text</string>
     <string name="view_to_image_exclude_view_image" translatable="false">Image</string>
     <string name="view_to_image_exclude_view_input" translatable="false">Input</string>
     <string name="view_to_image_exclude_view_button" translatable="false">Button</string>
-    <string name="view_to_image_convert" translatable="false">Convert</string>
+    <string name="view_to_image_convert" translatable="false">Convert View To Image</string>
     <string name="view_to_image_result" translatable="false">Result</string>
     <string-array name="view_to_image_exclude_mode_array">
         <item>Do Not Exclude</item>
