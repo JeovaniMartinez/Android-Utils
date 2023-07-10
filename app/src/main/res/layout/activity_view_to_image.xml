@@ -92,7 +92,68 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:text="@string/view_to_image_result"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                app:srcCompat="@drawable/intro_img" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/general_spacing_half">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnShareResultImage"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:background="?attr/actionBarItemBackground"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_share"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnSaveResultImage"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
+                    android:background="?attr/actionBarItemBackground"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnShareResultImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_save"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnDeleteResultImage"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
+                    android:background="?attr/actionBarItemBackground"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_delete"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <View
+                android:id="@+id/separator1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="20dp"
@@ -273,7 +334,7 @@
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etPaddingRight"
                         android:text="10"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -294,7 +355,7 @@
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etMarginTop"
                         android:text="10"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
