@@ -17,6 +17,7 @@
         android:layout_marginEnd="@dimen/general_spacing" />
 
     <ScrollView
+        android:id="@+id/svMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="SpeakableTextPresentCheck">
@@ -93,6 +94,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -109,6 +111,7 @@
                 app:srcCompat="@drawable/intro_img" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutResultActions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/general_spacing_half">
@@ -119,7 +122,7 @@
                     android:layout_height="@dimen/image_button_size"
                     android:layout_marginEnd="@dimen/general_spacing_half"
                     android:background="?attr/actionBarItemBackground"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -130,8 +133,9 @@
                     android:id="@+id/btnSaveResultImage"
                     android:layout_width="@dimen/image_button_size"
                     android:layout_height="@dimen/image_button_size"
+                    android:layout_marginStart="@dimen/general_spacing_half"
                     android:background="?attr/actionBarItemBackground"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/btnShareResultImage"
                     app:layout_constraintTop_toTopOf="parent"
@@ -651,7 +655,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDrawDrawableWatermark"
+                android:id="@+id/btnConvert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/general_spacing"

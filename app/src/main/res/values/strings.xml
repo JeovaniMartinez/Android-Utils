@@ -104,9 +104,10 @@
     <string name="view_to_image_configuration" translatable="false">Configuration</string>
     <string name="view_to_image_background" translatable="false">Background</string>
     <string name="view_to_image_background_color" translatable="false">Color</string>
+    <string name="view_to_image_select_background_color" translatable="false">Select Background Color</string>
     <string name="view_to_image_background_corner_radius" translatable="false">Corner Radius</string>
     <string name="view_to_image_background_corner_all_equal" translatable="false">All Equal</string>
-    <string name="view_to_image_background_corner_all_equal_msg" translatable="false">The corner radius value will be applied to all corners of the background</string>
+    <string name="view_to_image_background_corner_all_equal_msg" translatable="false">The corner radius value will be applied to all corners of the background.</string>
     <string name="view_to_image_background_corner_not_all_equal_msg" translatable="false">Specify the value for each corner radius. There should be 8 values separated by
         commas for the positions: topLeftX, topLeftY, topRightX, topRightY, bottomRightX, bottomRightY, bottomLeftX, bottomLeftY. For Example: 10,10,10,10,10,10,10,10</string>
     <string name="view_to_image_background_corner_not_all_equal_err_msg" translatable="false">The values for the background corner radius are incorrect.</string>
