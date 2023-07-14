@@ -30,10 +30,21 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     * view to image conversion process, they are converted to the appropriate data type.
     * */
 
-    private var viewToImageTrimBorders = true
-    private var viewToImageBackgroundColor = Color.TRANSPARENT
-    private var viewToImageBackgroundCornerAllEqual = true
-    private var viewToImageBackgroundCornerRadius = "10"
+    object ViewToImage {
+        var trimBorders = true
+        var backgroundColor = Color.TRANSPARENT
+        var backgroundCornerAllEqual = true
+        var backgroundCornerRadius = "10"
+        var paddingTop = "10"
+        var paddingRight = "10"
+        var paddingBottom = "10"
+        var paddingLeft = "10"
+        var marginTop = "0"
+        var marginRight = "0"
+        var marginBottom = "0"
+        var marginLeft = "0"
+        var excludeViews = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,10 +90,10 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     private fun configurationSetup() {
 
         binding.swTrimBorders.setOnCheckedChangeListener { _, isChecked ->
-            viewToImageTrimBorders = isChecked
+            ViewToImage.trimBorders = isChecked
         }
 
-        viewToImageBackgroundColor = getColorCompat(R.color.view_to_image_default_background_color)
+        ViewToImage.backgroundColor = getColorCompat(R.color.view_to_image_default_background_color)
 
         binding.btnBackgroundColor.setOnClickListener {
             ColorPickerDialog.newBuilder().apply {
@@ -98,17 +109,17 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
 
         binding.swBackgroundCornerAllEqual.setOnCheckedChangeListener { _, isChecked ->
-            viewToImageBackgroundCornerAllEqual = isChecked
+            ViewToImage.backgroundCornerAllEqual = isChecked
 
             // Set the default value, input type, and show a help message
             val message: Int
             if (isChecked) {
-                viewToImageBackgroundCornerRadius = "10"
+                ViewToImage.backgroundCornerRadius = "10"
                 binding.etBackgroundCornerRadius.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
                 binding.etBackgroundCornerRadius.setText("10")
                 message = R.string.view_to_image_background_corner_all_equal_msg
             } else {
-                viewToImageBackgroundCornerRadius = "10,10,10,10,10,10,10,10"
+                ViewToImage.backgroundCornerRadius = "10,10,10,10,10,10,10,10"
                 binding.etBackgroundCornerRadius.inputType = InputType.TYPE_CLASS_TEXT
                 binding.etBackgroundCornerRadius.setText("10,10,10,10,10,10,10,10")
                 message = R.string.view_to_image_background_corner_not_all_equal_msg
@@ -122,14 +133,54 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
 
         binding.etBackgroundCornerRadius.doAfterTextChanged {
-            viewToImageBackgroundCornerRadius = it.toString()
+            ViewToImage.backgroundCornerRadius = it.toString()
+        }
+
+        binding.etPaddingTop.doAfterTextChanged {
+            ViewToImage.paddingTop = it.toString()
+        }
+
+        binding.etPaddingRight.doAfterTextChanged {
+            ViewToImage.paddingRight = it.toString()
+        }
+
+        binding.etPaddingBottom.doAfterTextChanged {
+            ViewToImage.paddingBottom = it.toString()
+        }
+
+        binding.etPaddingLeft.doAfterTextChanged {
+            ViewToImage.paddingLeft = it.toString()
+        }
+
+        binding.etMarginTop.doAfterTextChanged {
+            ViewToImage.marginTop = it.toString()
+        }
+
+        binding.etMarginRight.doAfterTextChanged {
+            ViewToImage.marginRight = it.toString()
+        }
+
+        binding.etMarginBottom.doAfterTextChanged {
+            ViewToImage.marginBottom = it.toString()
+        }
+
+        binding.etMarginLeft.doAfterTextChanged {
+            ViewToImage.marginLeft = it.toString()
+        }
+
+        binding.swExcludeViews.isChecked = ViewToImage.excludeViews
+        binding.layoutExcludeViews.visibility = View.GONE
+
+        binding.swExcludeViews.setOnCheckedChangeListener { _, isChecked ->
+            ViewToImage.excludeViews = isChecked
+            binding.layoutExcludeViews.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
 
     }
 
     /** ColorPickerDialog on color selected */
     override fun onColorSelected(dialogId: Int, color: Int) {
-        viewToImageBackgroundColor = color
+        ViewToImage.backgroundColor = color
         binding.btnBackgroundColor.setCardBackgroundColor(color)
     }
 
@@ -160,10 +211,19 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
 
         android.util.Log.d(
             "ViewToImageActivityTest", """
-                viewToImageTrimBorders $viewToImageTrimBorders
-                viewToImageBackgroundColor $viewToImageBackgroundColor
-                viewToImageBackgroundCornerAllEqual $viewToImageBackgroundCornerAllEqual
-                viewToImageBackgroundCornerRadius $viewToImageBackgroundCornerRadius
+                trimBorders ${ViewToImage.trimBorders}
+                backgroundColor ${ViewToImage.backgroundColor}
+                backgroundCornerAllEqual ${ViewToImage.backgroundCornerAllEqual}
+                backgroundCornerRadius ${ViewToImage.backgroundCornerRadius}
+                paddingTop ${ViewToImage.paddingTop}
+                paddingRight ${ViewToImage.paddingRight}
+                paddingBottom ${ViewToImage.paddingBottom}
+                paddingLeft ${ViewToImage.paddingLeft}
+                marginTop ${ViewToImage.marginTop}
+                marginRight ${ViewToImage.marginRight}
+                marginBottom ${ViewToImage.marginBottom}
+                marginLeft ${ViewToImage.marginLeft}
+                excludeViews ${ViewToImage.excludeViews}
             """.trimIndent()
         )
 
