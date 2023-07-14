@@ -9,8 +9,11 @@ import android.os.Looper
 import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.jeovanimartinez.androidutils.app.R
@@ -18,6 +21,7 @@ import com.jeovanimartinez.androidutils.app.databinding.ActivityViewToImageBindi
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 
 /** ViewToImageActivity */
 class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
@@ -44,6 +48,14 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         var marginBottom = "0"
         var marginLeft = "0"
         var excludeViews = false
+        var excludeViewTextExcludeMode: ExcludeMode? = null // null to no exclude, or use value from ExcludeMode enum to exclude
+        var excludeViewTextIncludeMargin = false
+        var excludeViewImageExcludeMode: ExcludeMode? = null
+        var excludeViewImageIncludeMargin = false
+        var excludeViewInputExcludeMode: ExcludeMode? = null
+        var excludeViewInputIncludeMargin = false
+        var excludeViewButtonExcludeMode: ExcludeMode? = null
+        var excludeViewButtonIncludeMargin = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,6 +188,56 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
             binding.layoutExcludeViews.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
 
+        val excludeModeAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, resources.getStringArray(R.array.view_to_image_exclude_mode_array))
+
+        val textExcludeModeMenu = binding.menuTextExcludeMode.editText as MaterialAutoCompleteTextView
+        textExcludeModeMenu.setAdapter(excludeModeAdapter)
+        textExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
+        textExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            if (position == 0) ViewToImage.excludeViewTextExcludeMode = null
+            else ViewToImage.excludeViewTextExcludeMode = ExcludeMode.values()[position - 1]
+        }
+
+        binding.cbTextIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
+            ViewToImage.excludeViewTextIncludeMargin = isChecked
+        }
+
+        val imageExcludeModeMenu = binding.menuImageExcludeMode.editText as MaterialAutoCompleteTextView
+        imageExcludeModeMenu.setAdapter(excludeModeAdapter)
+        imageExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
+        imageExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            if (position == 0) ViewToImage.excludeViewImageExcludeMode = null
+            else ViewToImage.excludeViewImageExcludeMode = ExcludeMode.values()[position - 1]
+        }
+
+        binding.cbImageIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
+            ViewToImage.excludeViewImageIncludeMargin = isChecked
+        }
+
+        val inputExcludeModeMenu = binding.menuInputExcludeMode.editText as MaterialAutoCompleteTextView
+        inputExcludeModeMenu.setAdapter(excludeModeAdapter)
+        inputExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
+        inputExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            if (position == 0) ViewToImage.excludeViewInputExcludeMode = null
+            else ViewToImage.excludeViewInputExcludeMode = ExcludeMode.values()[position - 1]
+        }
+
+        binding.cbInputIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
+            ViewToImage.excludeViewInputIncludeMargin = isChecked
+        }
+
+        val buttonExcludeModeMenu = binding.menuButtonExcludeMode.editText as MaterialAutoCompleteTextView
+        buttonExcludeModeMenu.setAdapter(excludeModeAdapter)
+        buttonExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
+        buttonExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            if (position == 0) ViewToImage.excludeViewButtonExcludeMode = null
+            else ViewToImage.excludeViewButtonExcludeMode = ExcludeMode.values()[position - 1]
+        }
+
+        binding.cbButtonIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
+            ViewToImage.excludeViewButtonIncludeMargin = isChecked
+        }
+
     }
 
     /** ColorPickerDialog on color selected */
@@ -224,6 +286,10 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
                 marginBottom ${ViewToImage.marginBottom}
                 marginLeft ${ViewToImage.marginLeft}
                 excludeViews ${ViewToImage.excludeViews}
+                excludeViewText ${ViewToImage.excludeViewTextExcludeMode} ${ViewToImage.excludeViewTextIncludeMargin}
+                excludeViewImage ${ViewToImage.excludeViewImageExcludeMode} ${ViewToImage.excludeViewImageIncludeMargin}
+                excludeViewInput ${ViewToImage.excludeViewInputExcludeMode} ${ViewToImage.excludeViewInputIncludeMargin}
+                excludeViewButton ${ViewToImage.excludeViewButtonExcludeMode} ${ViewToImage.excludeViewButtonIncludeMargin}
             """.trimIndent()
         )
 

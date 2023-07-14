@@ -131,7 +131,7 @@
     <string name="view_to_image_convert" translatable="false">Convert View To Image</string>
     <string name="view_to_image_result" translatable="false">Result</string>
     <string-array name="view_to_image_exclude_mode_array">
-        <item>Do Not Exclude</item>
+        <item>Not Exclude</item>
         <item>Hide</item>
         <item>Crop Vertically</item>
         <item>Crop Horizontally</item>
