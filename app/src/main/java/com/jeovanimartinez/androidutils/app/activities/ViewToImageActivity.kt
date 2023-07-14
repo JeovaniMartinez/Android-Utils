@@ -21,6 +21,9 @@ import com.jeovanimartinez.androidutils.app.databinding.ActivityViewToImageBindi
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
+import com.jeovanimartinez.androidutils.graphics.utils.Margin
+import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 
 /** ViewToImageActivity */
@@ -292,6 +295,41 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
                 excludeViewButton ${ViewToImage.excludeViewButtonExcludeMode} ${ViewToImage.excludeViewButtonIncludeMargin}
             """.trimIndent()
         )
+
+        // Validation and objects generation
+
+        val cornerRadius: CornerRadius
+
+        try {
+            cornerRadius = if (ViewToImage.backgroundCornerAllEqual) {
+                CornerRadius(ViewToImage.backgroundCornerRadius.toFloat())
+            } else {
+                val v = ViewToImage.backgroundCornerRadius.split(",")
+                if (v.size != 8) throw Exception("8 values were expected")
+                CornerRadius(v[0].toFloat(), v[1].toFloat(), v[2].toFloat(), v[3].toFloat(), v[4].toFloat(), v[5].toFloat(), v[6].toFloat(), v[7].toFloat())
+            }
+        } catch (err: Exception) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.view_to_image_incorrect_values_title)
+                .setMessage(R.string.view_to_image_background_corner_not_all_equal_err_msg)
+                .setPositiveButton(R.string.ok, null)
+                .show()
+            return
+        }
+
+        val padding: Padding
+        val margin: Margin
+
+        try {
+            padding = Padding(ViewToImage.paddingTop.toFloat(), ViewToImage.paddingRight.toFloat(), ViewToImage.paddingBottom.toFloat(), ViewToImage.paddingLeft.toFloat())
+            margin = Margin(ViewToImage.marginTop.toFloat(), ViewToImage.marginRight.toFloat(), ViewToImage.marginBottom.toFloat(), ViewToImage.marginLeft.toFloat())
+        } catch (err: Exception) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.view_to_image_incorrect_values_title)
+                .setMessage(R.string.view_to_image_incorrect_values_msg)
+                .setPositiveButton(R.string.ok, null)
+                .show()
+        }
 
         // Show the result and to to top
         changeResultVisibility(true)
