@@ -61,10 +61,10 @@ object ViewToImage : Base<ViewToImage>() {
             throw IllegalStateException("The view needs to be laid out before converting it to an image")
         }
         require(padding.top >= 0 && padding.right >= 0 && padding.bottom >= 0 && padding.left >= 0) {
-            "Padding values must be equal to or greater than zero"
+            "Padding values cannot be negative, the values must be equal to or greater than zero"
         }
         require(margin.top >= 0 && margin.right >= 0 && margin.bottom >= 0 && margin.left >= 0) {
-            "Margin values must be equal to or greater than zero"
+            "Margin values cannot be negative, the values must be equal to or greater than zero"
         }
 
         val context = view.context
