@@ -21,10 +21,12 @@ import com.jeovanimartinez.androidutils.app.databinding.ActivityViewToImageBindi
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
+import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
 
 /** ViewToImageActivity */
 class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
@@ -37,6 +39,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     * view to image conversion process, they are converted to the appropriate data type.
     * */
 
+    // Auxiliary object to store the properties that will be processed later
     object ViewToImage {
         var trimBorders = true
         var backgroundColor = Color.TRANSPARENT
@@ -274,29 +277,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     /** Execute the process to convert the view to an image. */
     private fun convertViewToImage() {
 
-        android.util.Log.d(
-            "ViewToImageActivityTest", """
-                trimBorders ${ViewToImage.trimBorders}
-                backgroundColor ${ViewToImage.backgroundColor}
-                backgroundCornerAllEqual ${ViewToImage.backgroundCornerAllEqual}
-                backgroundCornerRadius ${ViewToImage.backgroundCornerRadius}
-                paddingTop ${ViewToImage.paddingTop}
-                paddingRight ${ViewToImage.paddingRight}
-                paddingBottom ${ViewToImage.paddingBottom}
-                paddingLeft ${ViewToImage.paddingLeft}
-                marginTop ${ViewToImage.marginTop}
-                marginRight ${ViewToImage.marginRight}
-                marginBottom ${ViewToImage.marginBottom}
-                marginLeft ${ViewToImage.marginLeft}
-                excludeViews ${ViewToImage.excludeViews}
-                excludeViewText ${ViewToImage.excludeViewTextExcludeMode} ${ViewToImage.excludeViewTextIncludeMargin}
-                excludeViewImage ${ViewToImage.excludeViewImageExcludeMode} ${ViewToImage.excludeViewImageIncludeMargin}
-                excludeViewInput ${ViewToImage.excludeViewInputExcludeMode} ${ViewToImage.excludeViewInputIncludeMargin}
-                excludeViewButton ${ViewToImage.excludeViewButtonExcludeMode} ${ViewToImage.excludeViewButtonIncludeMargin}
-            """.trimIndent()
-        )
-
-        // Validation and objects generation
+        // Validations are performed and the appropriate objects are generated to convert the view into an image
 
         val cornerRadius: CornerRadius
 
@@ -329,9 +310,59 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
                 .setMessage(R.string.view_to_image_incorrect_values_msg)
                 .setPositiveButton(R.string.ok, null)
                 .show()
+            return
         }
 
-        // Show the result and to to top
+        val viewsToExclude = arrayListOf<ExcludeView>()
+
+        if (ViewToImage.excludeViews) {
+            ViewToImage.excludeViewTextExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.tvLayoutBaseText1, it, ViewToImage.excludeViewTextIncludeMargin)) }
+            ViewToImage.excludeViewImageExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.ivLayoutBaseImage1, it, ViewToImage.excludeViewImageIncludeMargin)) }
+            ViewToImage.excludeViewInputExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.layoutBaseInput1, it, ViewToImage.excludeViewInputIncludeMargin)) }
+            ViewToImage.excludeViewButtonExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.btnLayoutBaseButton1, it, ViewToImage.excludeViewButtonIncludeMargin)) }
+        }
+
+        /*
+        android.util.Log.d(
+            "ViewToImageActivityTest", """
+                trimBorders ${ViewToImage.trimBorders}
+                backgroundColor ${ViewToImage.backgroundColor}
+                backgroundCornerAllEqual ${ViewToImage.backgroundCornerAllEqual}
+                backgroundCornerRadius ${ViewToImage.backgroundCornerRadius}
+                cornerRadius $cornerRadius
+                paddingTop ${ViewToImage.paddingTop}
+                paddingRight ${ViewToImage.paddingRight}
+                paddingBottom ${ViewToImage.paddingBottom}
+                paddingLeft ${ViewToImage.paddingLeft}
+                padding $padding
+                marginTop ${ViewToImage.marginTop}
+                marginRight ${ViewToImage.marginRight}
+                marginBottom ${ViewToImage.marginBottom}
+                marginLeft ${ViewToImage.marginLeft}
+                margin $margin
+                excludeViews ${ViewToImage.excludeViews}
+                excludeViewText ${ViewToImage.excludeViewTextExcludeMode} ${ViewToImage.excludeViewTextIncludeMargin}
+                excludeViewImage ${ViewToImage.excludeViewImageExcludeMode} ${ViewToImage.excludeViewImageIncludeMargin}
+                excludeViewInput ${ViewToImage.excludeViewInputExcludeMode} ${ViewToImage.excludeViewInputIncludeMargin}
+                excludeViewButton ${ViewToImage.excludeViewButtonExcludeMode} ${ViewToImage.excludeViewButtonIncludeMargin}
+            """.trimIndent()
+        )
+        */
+
+        // The view is converted to an image
+        val convertViewToImageResult = com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImage.convert(
+            view = binding.layoutBase,
+            backgroundColor = ViewToImage.backgroundColor,
+            backgroundCornerRadius = cornerRadius,
+            trimBorders = ViewToImage.trimBorders,
+            padding = padding,
+            margin = margin,
+            viewsToExclude = viewsToExclude
+        )
+
+        binding.ivResult.setImageBitmap(convertViewToImageResult)
+
+        // Show the result and go to top
         changeResultVisibility(true)
         Handler(Looper.getMainLooper()).postDelayed({
             binding.svMain.smoothScrollTo(0, 0)
