@@ -23,6 +23,7 @@ import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
+import com.jeovanimartinez.androidutils.graphics.utils.Dimension
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImage
@@ -41,6 +42,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     * */
 
     private var trimBorders = true
+    private var interpretValuesAs = Dimension.PX
     private var backgroundColor = Color.TRANSPARENT
     private var backgroundCornerAllEqual = true
     private var backgroundCornerRadius = "10"
@@ -108,6 +110,14 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
 
         binding.swTrimBorders.setOnCheckedChangeListener { _, isChecked ->
             trimBorders = isChecked
+        }
+
+        val interpretValuesAsMenu = binding.menuInterpretValuesAs.editText as MaterialAutoCompleteTextView
+        val interpretValuesAsAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, resources.getStringArray(R.array.view_to_image_dimensions_array))
+        interpretValuesAsMenu.setAdapter(interpretValuesAsAdapter)
+        interpretValuesAsMenu.setText(interpretValuesAsAdapter.getItem(0).toString(), false)
+        interpretValuesAsMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            interpretValuesAs = Dimension.values()[position]
         }
 
         backgroundColor = getColorCompat(R.color.view_to_image_default_background_color)
@@ -257,6 +267,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     private fun changeResultVisibility(visible: Boolean) {
 
         val visibility = if (visible) View.VISIBLE else View.GONE
+        binding.separatorResult.visibility = visibility
         binding.tvResult.visibility = visibility
         binding.ivResult.visibility = visibility
         binding.layoutResultActions.visibility = visibility
@@ -317,10 +328,10 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
             excludeViewButtonExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.btnLayoutBaseButton1, it, excludeViewButtonIncludeMargin)) }
         }
 
-        /*
         android.util.Log.d(
             "ViewToImageActivityTest", """
                 trimBorders $trimBorders
+                interpretValuesAs $interpretValuesAs
                 backgroundColor $backgroundColor
                 backgroundCornerAllEqual $backgroundCornerAllEqual
                 backgroundCornerRadius $backgroundCornerRadius
@@ -342,16 +353,15 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
                 excludeViewButton $excludeViewButtonExcludeMode $excludeViewButtonIncludeMargin
             """.trimIndent()
         )
-        */
 
         // The view is converted to an image
         val convertViewToImageResult = ViewToImage.convert(
             view = binding.layoutBase,
             backgroundColor = backgroundColor,
-            backgroundCornerRadius = cornerRadius,
+            backgroundCornerRadius = if (interpretValuesAs == Dimension.PX) cornerRadius else cornerRadius.asDpToPx(this@ViewToImageActivity),
             trimBorders = trimBorders,
-            padding = padding,
-            margin = margin,
+            padding = if (interpretValuesAs == Dimension.PX) padding else padding.asDpToPx(this@ViewToImageActivity),
+            margin = if (interpretValuesAs == Dimension.PX) margin else margin.asDpToPx(this@ViewToImageActivity),
             viewsToExclude = viewsToExclude
         )
 

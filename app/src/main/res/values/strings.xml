@@ -102,6 +102,8 @@
     <string name="view_to_image_base_layout_input_1" translatable="false">Message</string>
     <string name="view_to_image_base_layout_button_1" translatable="false">Show Message</string>
     <string name="view_to_image_configuration" translatable="false">Configuration</string>
+    <string name="view_to_image_trim_borders" translatable="false">Trim Borders</string>
+    <string name="view_to_image_interpret_values_as" translatable="false">Interpret values as</string>
     <string name="view_to_image_background" translatable="false">Background</string>
     <string name="view_to_image_background_color" translatable="false">Color</string>
     <string name="view_to_image_select_background_color" translatable="false">Select Background Color</string>
@@ -113,7 +115,6 @@
     <string name="view_to_image_background_corner_not_all_equal_err_msg" translatable="false">The values for the background corner radius are incorrect.</string>
     <string name="view_to_image_incorrect_values_title" translatable="false">Incorrect Values</string>
     <string name="view_to_image_incorrect_values_msg" translatable="false">Please make sure that all inputs have a value.</string>
-    <string name="view_to_image_trim_borders" translatable="false">Trim Borders</string>
     <string name="view_to_image_padding" translatable="false">Padding</string>
     <string name="view_to_image_margin" translatable="false">Margin</string>
     <string name="view_to_image_padding_margin_top" translatable="false">Top</string>
@@ -136,6 +137,10 @@
         <item>Crop Vertically</item>
         <item>Crop Horizontally</item>
         <item>Crop All</item>
+    </string-array>
+    <string-array name="view_to_image_dimensions_array">
+        <item>PX</item>
+        <item>DP</item>
     </string-array>
 
 </resources>
