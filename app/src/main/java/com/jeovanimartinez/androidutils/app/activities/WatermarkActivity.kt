@@ -266,7 +266,6 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
             // Scrolling up is done to see the result
             binding.svMain.smoothScrollTo(0, 0)
 
-            /*
             android.util.Log.d(
                 "WatermarkActivityTest", """
                 watermarkDrawable $watermarkDrawable
@@ -280,7 +279,6 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
                 watermarkOpacity $watermarkOpacity
             """.trimIndent()
             )
-            */
 
         }
 
@@ -404,7 +402,6 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
             // Scrolling up is done to see the result
             binding.svMain.smoothScrollTo(0, 0)
 
-            /*
             android.util.Log.d(
                 "WatermarkActivityTest", """
                 watermarkText $watermarkText
@@ -424,7 +421,6 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
                 watermarkOpacity $watermarkOpacity
             """.trimIndent()
             )
-            */
 
         }
 
