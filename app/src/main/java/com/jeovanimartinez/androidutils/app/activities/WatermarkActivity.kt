@@ -267,7 +267,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
             binding.svMain.smoothScrollTo(0, 0)
 
             android.util.Log.d(
-                "WatermarkActivityTest", """
+                "WatermarkActivity", """
                 watermarkDrawable $watermarkDrawable
                 watermarkWidth $watermarkWidth
                 watermarkHeight $watermarkHeight
@@ -403,7 +403,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
             binding.svMain.smoothScrollTo(0, 0)
 
             android.util.Log.d(
-                "WatermarkActivityTest", """
+                "WatermarkActivity", """
                 watermarkText $watermarkText
                 watermarkTextSize $watermarkTextSize
                 watermarkTextColor $watermarkTextColor

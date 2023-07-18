@@ -329,7 +329,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
 
         android.util.Log.d(
-            "ViewToImageActivityTest", """
+            "ViewToImageActivity", """
                 trimBorders $trimBorders
                 interpretValuesAs $interpretValuesAs
                 backgroundColor $backgroundColor
