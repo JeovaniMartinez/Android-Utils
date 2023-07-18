@@ -46,6 +46,21 @@ data class CornerRadius(
             : this(topLeft, topLeft, topRight, topRight, bottomRight, bottomRight, bottomLeft, bottomLeft)
 
     /**
+     * On the class initialization validates that the corner radius values are not negative.
+     * If any value is negative, an IllegalArgumentException is thrown.
+     * */
+    init {
+        require(
+            topLeftX >= 0 && topLeftY >= 0 &&
+                    topRightX >= 0 && topRightY >= 0 &&
+                    bottomRightX >= 0 && bottomRightY >= 0 &&
+                    bottomLeftX >= 0 && bottomLeftY >= 0
+        ) {
+            "Corner radius values cannot be negative"
+        }
+    }
+
+    /**
      * Converts the corner radius values to radii (array of 8 values, 4 pairs of (X,Y))
      * @return Corner radius values as radii in FloatArray.
      * */
