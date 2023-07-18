@@ -287,7 +287,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etPaddingBottom"
-                        android:text="10"
+                        android:text="50"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -308,7 +308,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etPaddingLeft"
-                        android:text="10"
+                        android:text="50"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -337,7 +337,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etPaddingRight"
-                        android:text="10"
+                        android:text="50"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -358,7 +358,7 @@
                         android:imeOptions="actionNext"
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etMarginTop"
-                        android:text="10"
+                        android:text="50"
                         tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>

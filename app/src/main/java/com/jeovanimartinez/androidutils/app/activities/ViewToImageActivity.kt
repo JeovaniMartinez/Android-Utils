@@ -46,10 +46,10 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         var backgroundColor = Color.TRANSPARENT
         var backgroundCornerAllEqual = true
         var backgroundCornerRadius = "10"
-        var paddingTop = "10"
-        var paddingRight = "10"
-        var paddingBottom = "10"
-        var paddingLeft = "10"
+        var paddingTop = "50"
+        var paddingRight = "50"
+        var paddingBottom = "50"
+        var paddingLeft = "50"
         var marginTop = "0"
         var marginRight = "0"
         var marginBottom = "0"
