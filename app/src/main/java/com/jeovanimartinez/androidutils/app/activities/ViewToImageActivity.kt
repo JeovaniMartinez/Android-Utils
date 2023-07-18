@@ -25,6 +25,7 @@ import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
 import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
+import com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImage
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
 
@@ -40,7 +41,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     * */
 
     // Auxiliary object to store the properties that will be processed later
-    object ViewToImage {
+    object ViewToImageData {
         var trimBorders = true
         var backgroundColor = Color.TRANSPARENT
         var backgroundCornerAllEqual = true
@@ -108,10 +109,10 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     private fun configurationSetup() {
 
         binding.swTrimBorders.setOnCheckedChangeListener { _, isChecked ->
-            ViewToImage.trimBorders = isChecked
+            ViewToImageData.trimBorders = isChecked
         }
 
-        ViewToImage.backgroundColor = getColorCompat(R.color.view_to_image_default_background_color)
+        ViewToImageData.backgroundColor = getColorCompat(R.color.view_to_image_default_background_color)
 
         binding.btnBackgroundColor.setOnClickListener {
             ColorPickerDialog.newBuilder().apply {
@@ -127,17 +128,17 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
 
         binding.swBackgroundCornerAllEqual.setOnCheckedChangeListener { _, isChecked ->
-            ViewToImage.backgroundCornerAllEqual = isChecked
+            ViewToImageData.backgroundCornerAllEqual = isChecked
 
             // Set the default value, input type, and show a help message
             val message: Int
             if (isChecked) {
-                ViewToImage.backgroundCornerRadius = "10"
+                ViewToImageData.backgroundCornerRadius = "10"
                 binding.etBackgroundCornerRadius.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
                 binding.etBackgroundCornerRadius.setText("10")
                 message = R.string.view_to_image_background_corner_all_equal_msg
             } else {
-                ViewToImage.backgroundCornerRadius = "10,10,10,10,10,10,10,10"
+                ViewToImageData.backgroundCornerRadius = "10,10,10,10,10,10,10,10"
                 binding.etBackgroundCornerRadius.inputType = InputType.TYPE_CLASS_TEXT
                 binding.etBackgroundCornerRadius.setText("10,10,10,10,10,10,10,10")
                 message = R.string.view_to_image_background_corner_not_all_equal_msg
@@ -151,46 +152,46 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         }
 
         binding.etBackgroundCornerRadius.doAfterTextChanged {
-            ViewToImage.backgroundCornerRadius = it.toString()
+            ViewToImageData.backgroundCornerRadius = it.toString()
         }
 
         binding.etPaddingTop.doAfterTextChanged {
-            ViewToImage.paddingTop = it.toString()
+            ViewToImageData.paddingTop = it.toString()
         }
 
         binding.etPaddingRight.doAfterTextChanged {
-            ViewToImage.paddingRight = it.toString()
+            ViewToImageData.paddingRight = it.toString()
         }
 
         binding.etPaddingBottom.doAfterTextChanged {
-            ViewToImage.paddingBottom = it.toString()
+            ViewToImageData.paddingBottom = it.toString()
         }
 
         binding.etPaddingLeft.doAfterTextChanged {
-            ViewToImage.paddingLeft = it.toString()
+            ViewToImageData.paddingLeft = it.toString()
         }
 
         binding.etMarginTop.doAfterTextChanged {
-            ViewToImage.marginTop = it.toString()
+            ViewToImageData.marginTop = it.toString()
         }
 
         binding.etMarginRight.doAfterTextChanged {
-            ViewToImage.marginRight = it.toString()
+            ViewToImageData.marginRight = it.toString()
         }
 
         binding.etMarginBottom.doAfterTextChanged {
-            ViewToImage.marginBottom = it.toString()
+            ViewToImageData.marginBottom = it.toString()
         }
 
         binding.etMarginLeft.doAfterTextChanged {
-            ViewToImage.marginLeft = it.toString()
+            ViewToImageData.marginLeft = it.toString()
         }
 
-        binding.swExcludeViews.isChecked = ViewToImage.excludeViews
+        binding.swExcludeViews.isChecked = ViewToImageData.excludeViews
         binding.layoutExcludeViews.visibility = View.GONE
 
         binding.swExcludeViews.setOnCheckedChangeListener { _, isChecked ->
-            ViewToImage.excludeViews = isChecked
+            ViewToImageData.excludeViews = isChecked
             binding.layoutExcludeViews.visibility = if (isChecked) View.VISIBLE else View.GONE
         }
 
@@ -200,55 +201,55 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         textExcludeModeMenu.setAdapter(excludeModeAdapter)
         textExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
         textExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            if (position == 0) ViewToImage.excludeViewTextExcludeMode = null
-            else ViewToImage.excludeViewTextExcludeMode = ExcludeMode.values()[position - 1]
+            if (position == 0) ViewToImageData.excludeViewTextExcludeMode = null
+            else ViewToImageData.excludeViewTextExcludeMode = ExcludeMode.values()[position - 1]
         }
 
         binding.cbTextIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
-            ViewToImage.excludeViewTextIncludeMargin = isChecked
+            ViewToImageData.excludeViewTextIncludeMargin = isChecked
         }
 
         val imageExcludeModeMenu = binding.menuImageExcludeMode.editText as MaterialAutoCompleteTextView
         imageExcludeModeMenu.setAdapter(excludeModeAdapter)
         imageExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
         imageExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            if (position == 0) ViewToImage.excludeViewImageExcludeMode = null
-            else ViewToImage.excludeViewImageExcludeMode = ExcludeMode.values()[position - 1]
+            if (position == 0) ViewToImageData.excludeViewImageExcludeMode = null
+            else ViewToImageData.excludeViewImageExcludeMode = ExcludeMode.values()[position - 1]
         }
 
         binding.cbImageIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
-            ViewToImage.excludeViewImageIncludeMargin = isChecked
+            ViewToImageData.excludeViewImageIncludeMargin = isChecked
         }
 
         val inputExcludeModeMenu = binding.menuInputExcludeMode.editText as MaterialAutoCompleteTextView
         inputExcludeModeMenu.setAdapter(excludeModeAdapter)
         inputExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
         inputExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            if (position == 0) ViewToImage.excludeViewInputExcludeMode = null
-            else ViewToImage.excludeViewInputExcludeMode = ExcludeMode.values()[position - 1]
+            if (position == 0) ViewToImageData.excludeViewInputExcludeMode = null
+            else ViewToImageData.excludeViewInputExcludeMode = ExcludeMode.values()[position - 1]
         }
 
         binding.cbInputIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
-            ViewToImage.excludeViewInputIncludeMargin = isChecked
+            ViewToImageData.excludeViewInputIncludeMargin = isChecked
         }
 
         val buttonExcludeModeMenu = binding.menuButtonExcludeMode.editText as MaterialAutoCompleteTextView
         buttonExcludeModeMenu.setAdapter(excludeModeAdapter)
         buttonExcludeModeMenu.setText(excludeModeAdapter.getItem(0).toString(), false)
         buttonExcludeModeMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            if (position == 0) ViewToImage.excludeViewButtonExcludeMode = null
-            else ViewToImage.excludeViewButtonExcludeMode = ExcludeMode.values()[position - 1]
+            if (position == 0) ViewToImageData.excludeViewButtonExcludeMode = null
+            else ViewToImageData.excludeViewButtonExcludeMode = ExcludeMode.values()[position - 1]
         }
 
         binding.cbButtonIncludeMargin.setOnCheckedChangeListener { _, isChecked ->
-            ViewToImage.excludeViewButtonIncludeMargin = isChecked
+            ViewToImageData.excludeViewButtonIncludeMargin = isChecked
         }
 
     }
 
     /** ColorPickerDialog on color selected */
     override fun onColorSelected(dialogId: Int, color: Int) {
-        ViewToImage.backgroundColor = color
+        ViewToImageData.backgroundColor = color
         binding.btnBackgroundColor.setCardBackgroundColor(color)
     }
 
@@ -282,10 +283,10 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         val cornerRadius: CornerRadius
 
         try {
-            cornerRadius = if (ViewToImage.backgroundCornerAllEqual) {
-                CornerRadius(ViewToImage.backgroundCornerRadius.toFloat())
+            cornerRadius = if (ViewToImageData.backgroundCornerAllEqual) {
+                CornerRadius(ViewToImageData.backgroundCornerRadius.toFloat())
             } else {
-                val v = ViewToImage.backgroundCornerRadius.split(",")
+                val v = ViewToImageData.backgroundCornerRadius.split(",")
                 if (v.size != 8) throw Exception("8 values were expected")
                 CornerRadius(v[0].toFloat(), v[1].toFloat(), v[2].toFloat(), v[3].toFloat(), v[4].toFloat(), v[5].toFloat(), v[6].toFloat(), v[7].toFloat())
             }
@@ -302,8 +303,8 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         val margin: Margin
 
         try {
-            padding = Padding(ViewToImage.paddingTop.toFloat(), ViewToImage.paddingRight.toFloat(), ViewToImage.paddingBottom.toFloat(), ViewToImage.paddingLeft.toFloat())
-            margin = Margin(ViewToImage.marginTop.toFloat(), ViewToImage.marginRight.toFloat(), ViewToImage.marginBottom.toFloat(), ViewToImage.marginLeft.toFloat())
+            padding = Padding(ViewToImageData.paddingTop.toFloat(), ViewToImageData.paddingRight.toFloat(), ViewToImageData.paddingBottom.toFloat(), ViewToImageData.paddingLeft.toFloat())
+            margin = Margin(ViewToImageData.marginTop.toFloat(), ViewToImageData.marginRight.toFloat(), ViewToImageData.marginBottom.toFloat(), ViewToImageData.marginLeft.toFloat())
         } catch (err: Exception) {
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.view_to_image_incorrect_values_title)
@@ -315,46 +316,46 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
 
         val viewsToExclude = arrayListOf<ExcludeView>()
 
-        if (ViewToImage.excludeViews) {
-            ViewToImage.excludeViewTextExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.tvLayoutBaseText1, it, ViewToImage.excludeViewTextIncludeMargin)) }
-            ViewToImage.excludeViewImageExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.ivLayoutBaseImage1, it, ViewToImage.excludeViewImageIncludeMargin)) }
-            ViewToImage.excludeViewInputExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.layoutBaseInput1, it, ViewToImage.excludeViewInputIncludeMargin)) }
-            ViewToImage.excludeViewButtonExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.btnLayoutBaseButton1, it, ViewToImage.excludeViewButtonIncludeMargin)) }
+        if (ViewToImageData.excludeViews) {
+            ViewToImageData.excludeViewTextExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.tvLayoutBaseText1, it, ViewToImageData.excludeViewTextIncludeMargin)) }
+            ViewToImageData.excludeViewImageExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.ivLayoutBaseImage1, it, ViewToImageData.excludeViewImageIncludeMargin)) }
+            ViewToImageData.excludeViewInputExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.layoutBaseInput1, it, ViewToImageData.excludeViewInputIncludeMargin)) }
+            ViewToImageData.excludeViewButtonExcludeMode.whenNotNull { viewsToExclude.add(ExcludeView(binding.btnLayoutBaseButton1, it, ViewToImageData.excludeViewButtonIncludeMargin)) }
         }
 
         /*
         android.util.Log.d(
             "ViewToImageActivityTest", """
-                trimBorders ${ViewToImage.trimBorders}
-                backgroundColor ${ViewToImage.backgroundColor}
-                backgroundCornerAllEqual ${ViewToImage.backgroundCornerAllEqual}
-                backgroundCornerRadius ${ViewToImage.backgroundCornerRadius}
+                trimBorders ${ViewToImageData.trimBorders}
+                backgroundColor ${ViewToImageData.backgroundColor}
+                backgroundCornerAllEqual ${ViewToImageData.backgroundCornerAllEqual}
+                backgroundCornerRadius ${ViewToImageData.backgroundCornerRadius}
                 cornerRadius $cornerRadius
-                paddingTop ${ViewToImage.paddingTop}
-                paddingRight ${ViewToImage.paddingRight}
-                paddingBottom ${ViewToImage.paddingBottom}
-                paddingLeft ${ViewToImage.paddingLeft}
+                paddingTop ${ViewToImageData.paddingTop}
+                paddingRight ${ViewToImageData.paddingRight}
+                paddingBottom ${ViewToImageData.paddingBottom}
+                paddingLeft ${ViewToImageData.paddingLeft}
                 padding $padding
-                marginTop ${ViewToImage.marginTop}
-                marginRight ${ViewToImage.marginRight}
-                marginBottom ${ViewToImage.marginBottom}
-                marginLeft ${ViewToImage.marginLeft}
+                marginTop ${ViewToImageData.marginTop}
+                marginRight ${ViewToImageData.marginRight}
+                marginBottom ${ViewToImageData.marginBottom}
+                marginLeft ${ViewToImageData.marginLeft}
                 margin $margin
-                excludeViews ${ViewToImage.excludeViews}
-                excludeViewText ${ViewToImage.excludeViewTextExcludeMode} ${ViewToImage.excludeViewTextIncludeMargin}
-                excludeViewImage ${ViewToImage.excludeViewImageExcludeMode} ${ViewToImage.excludeViewImageIncludeMargin}
-                excludeViewInput ${ViewToImage.excludeViewInputExcludeMode} ${ViewToImage.excludeViewInputIncludeMargin}
-                excludeViewButton ${ViewToImage.excludeViewButtonExcludeMode} ${ViewToImage.excludeViewButtonIncludeMargin}
+                excludeViews ${ViewToImageData.excludeViews}
+                excludeViewText ${ViewToImageData.excludeViewTextExcludeMode} ${ViewToImageData.excludeViewTextIncludeMargin}
+                excludeViewImage ${ViewToImageData.excludeViewImageExcludeMode} ${ViewToImageData.excludeViewImageIncludeMargin}
+                excludeViewInput ${ViewToImageData.excludeViewInputExcludeMode} ${ViewToImageData.excludeViewInputIncludeMargin}
+                excludeViewButton ${ViewToImageData.excludeViewButtonExcludeMode} ${ViewToImageData.excludeViewButtonIncludeMargin}
             """.trimIndent()
         )
         */
 
         // The view is converted to an image
-        val convertViewToImageResult = com.jeovanimartinez.androidutils.views.viewtoimage.ViewToImage.convert(
+        val convertViewToImageResult = ViewToImage.convert(
             view = binding.layoutBase,
-            backgroundColor = ViewToImage.backgroundColor,
+            backgroundColor = ViewToImageData.backgroundColor,
             backgroundCornerRadius = cornerRadius,
-            trimBorders = ViewToImage.trimBorders,
+            trimBorders = ViewToImageData.trimBorders,
             padding = padding,
             margin = margin,
             viewsToExclude = viewsToExclude
