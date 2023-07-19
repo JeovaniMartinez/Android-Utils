@@ -28,8 +28,9 @@ object ViewToImage : Base<ViewToImage>() {
      * @param view View from which the image will be generated.
      * @param backgroundColor Background color to apply to the image.
      * @param backgroundCornerRadius Corner radius for the background.
-     * @param trimBorders Determines whether before applying margin and padding the borders of the view are cropped.
-     *        To define the cropping area, the background color of the view is used.
+     * @param trimBorders Determines whether the borders of the view are cropped, this process is performed before
+     *        applying the margin and padding, and after excluding views (if applicable). To define the cropping
+     *        area, the background color of the view is used.
      * @param padding Padding between the view edges and the margin internal edges. Values must be zero or positive,
      *        specified in pixels.
      * @param margin Margin between the padding external edges and the image edges. Values must be zero or positive,
