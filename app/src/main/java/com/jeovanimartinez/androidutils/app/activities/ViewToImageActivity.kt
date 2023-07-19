@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.app.activities
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -20,6 +21,7 @@ import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityViewToImageBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
+import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.graphics.utils.CornerRadius
@@ -41,6 +43,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
     * view to image conversion process, they are converted to the appropriate data type.
     * */
 
+    private var layoutBaseCurrentBackgroundId = 0 // 0 = null; 1 = solid color; 2 = gradient;
     private var trimBorders = true
     private var interpretValuesAs = Dimension.PX
     private var backgroundColor = Color.TRANSPARENT
@@ -93,6 +96,28 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
 
     /** Base layout setup */
     private fun baseLayoutSetup() {
+
+        binding.layoutBase.background = null
+
+        binding.btnChangeLayoutBaseBackground.setOnClickListener {
+            // Toggle between the backgrounds
+            when (layoutBaseCurrentBackgroundId) {
+                0 -> {
+                    binding.layoutBase.background = ColorDrawable(getColorCompat(R.color.view_to_image_layout_base_bg_1))
+                    layoutBaseCurrentBackgroundId = 1
+                }
+
+                1 -> {
+                    binding.layoutBase.background = getDrawableCompat(R.drawable.view_to_image_layout_base_bg_2)
+                    layoutBaseCurrentBackgroundId = 2
+                }
+
+                2 -> {
+                    layoutBaseCurrentBackgroundId = 0
+                    binding.layoutBase.background = null
+                }
+            }
+        }
 
         binding.btnLayoutBaseButton1.setOnClickListener {
             MaterialAlertDialogBuilder(this)
@@ -370,7 +395,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         // Show the result and go to top
         changeResultVisibility(true)
         Handler(Looper.getMainLooper()).postDelayed({
-            binding.svMain.smoothScrollTo(0, 0)
+            binding.svMain.smoothScrollTo(0, binding.btnChangeLayoutBaseBackground.height - dp2px(5))
         }, 100)
 
     }

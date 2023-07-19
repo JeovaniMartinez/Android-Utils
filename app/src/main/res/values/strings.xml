@@ -97,7 +97,7 @@
 
     <!-- ViewToImage Activity -->
     <string name="view_to_image_title" translatable="false">View To Image</string>
-    <string name="view_to_image_base_layout" translatable="false">Base Layout</string>
+    <string name="view_to_image_change_layout_base_bg" translatable="false">Change Background</string>
     <string name="view_to_image_base_layout_text_1" translatable="false">&app_name;\nLayout Base</string>
     <string name="view_to_image_base_layout_input_1" translatable="false">Message</string>
     <string name="view_to_image_base_layout_button_1" translatable="false">Show Message</string>
