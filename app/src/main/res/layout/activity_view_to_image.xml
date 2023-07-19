@@ -333,7 +333,7 @@
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etPaddingBottom"
                         android:text="50"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -354,7 +354,7 @@
                         android:inputType="numberDecimal"
                         android:nextFocusForward="@+id/etPaddingLeft"
                         android:text="50"
-                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck" />
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
