@@ -94,6 +94,12 @@ androidutils [Módulo]
                 > Padding ✔✔
         > reviews ✔✔
             > RateApp ✔✔
+        > views ✔✔
+            > viewtoimage ✔✔
+                > config ✔✔
+                    > ExcludeMode ✔✔
+                    > ExcludeView ✔✔
+                > ViewToImage ✔✔
         > watermark ✔✔
             > config ✔✔
                 > WatermarkPosition ✔✔
