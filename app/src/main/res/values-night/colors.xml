@@ -46,5 +46,8 @@
     <color name="watermark_default_text_color">#D5D5D5</color>
     <color name="watermark_default_text_shadow_color">#93000A</color>
     <color name="view_to_image_default_background_color">#0F0F10</color>
+    <color name="view_to_image_layout_base_bg_1">#200300</color>
+    <color name="view_to_image_layout_base_bg_2_c_1">#094FC3</color>
+    <color name="view_to_image_layout_base_bg_2_c_2">#EAE209</color>
 
 </resources>
