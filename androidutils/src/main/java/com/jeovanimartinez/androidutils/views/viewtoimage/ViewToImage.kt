@@ -26,7 +26,8 @@ object ViewToImage : Base<ViewToImage>() {
     /**
      * Converts a view to a bitmap image.
      * @param view View from which the image will be generated.
-     * @param backgroundColor Background color to apply to the image.
+     * @param backgroundColor Background color to apply to the image. Fills the entire [view] and [padding] if the view
+     *        has no background, but if the view has a background, this color will only be visible inside the applied padding.
      * @param backgroundCornerRadius Corner radius for the background. It will only be appreciated if [backgroundColor] is not completely transparent and if the [padding]
      *        values are greater than zero.
      * @param trimBorders Determines whether the borders of the view are cropped, this process is performed before
