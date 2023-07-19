@@ -26,7 +26,7 @@
         <item>Premium App</item>
     </string-array>
 
-    <!-- Rate App Activity -->
+    <!-- RateApp Activity -->
     <string name="rate_app_title" translatable="false">Rate App</string>
     <string name="rate_app_rate_in_google_play" translatable="false">Rate In Google Play</string>
     <string name="rate_app_go_rate_in_google_play" translatable="false">Go To Rate In Google Play</string>
@@ -142,5 +142,8 @@
         <item>PX</item>
         <item>DP</item>
     </string-array>
+
+    <!-- AboutApp Activity -->
+    <string name="about_app_title" translatable="false">About App</string>
 
 </resources>

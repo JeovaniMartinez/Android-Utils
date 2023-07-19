@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 3 -> {
-                    shortToast("About App")
+                    startActivity(Intent(this, AboutAppActivity::class.java))
                 }
 
                 4 -> {
