@@ -85,10 +85,12 @@ object ViewToImage : Base<ViewToImage>() {
                     log("Image borders are trimmed based on the background color of the view")
                     viewBitmap.trimByBorderColor((view.background as ColorDrawable).color, trimMargin)
                 }
+
                 null -> {
                     log("Image borders are trimmed by Color.TRANSPARENT")
                     viewBitmap.trimByBorderColor(Color.TRANSPARENT, trimMargin)
                 }
+
                 else -> {
                     log("It's not possible to trim the image borders, because the view background is not an instance of color drawable")
                     viewBitmap
@@ -206,8 +208,9 @@ object ViewToImage : Base<ViewToImage>() {
                 Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
             }
             // val hideViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.parseColor("#B2CF0000"); } // *** FOR DEVELOPMENT PURPOSES ONLY
+            var hiddenViewsCount = 0
             hideViews.forEach {
-                if (it.view.visibility == View.GONE) return@forEach
+                if (it.view.visibility == View.GONE || it.view.visibility == View.INVISIBLE) return@forEach // If it is not visible, there is no need to hide it
                 // Use marginLeft and marginRight instead of marginStart and marginEnd for best results, even in RTL mode
                 viewCanvas.drawRect(
                     it.view.x - if (it.includeMargin) it.view.marginLeft else 0,
@@ -216,8 +219,9 @@ object ViewToImage : Base<ViewToImage>() {
                     it.view.y + it.view.height + if (it.includeMargin) it.view.marginBottom else 0,
                     hideViewPaint
                 )
+                hiddenViewsCount++
             }
-            log("Excluded ${hideViews.size} view(s) from the image with mode ExcludeMode.HIDE")
+            log("Excluded $hiddenViewsCount view(s) from the image with mode ExcludeMode.HIDE")
 
             // FileUtils.saveBitmapToFile(context, viewBitmap, "EXCLUDE_VIEWS_STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
@@ -227,9 +231,10 @@ object ViewToImage : Base<ViewToImage>() {
         var viewBitmap2 = viewBitmap // Assignation initial
 
         if (cropVerticallyViews.isNotEmpty()) {
+            var croppedVerticallyViewsCount = 0
             // First, the entire region to be deleted is marked
             cropVerticallyViews.forEach {
-                if (it.view.visibility == View.GONE) return@forEach
+                if (it.view.visibility == View.GONE) return@forEach // Applies only in View.INVISIBLE and View.VISIBLE since in View.GONE the view does not occupy any space
                 // NOTE: The padding is part of the view, so it is already included in the width or height
                 viewCanvas.drawRect(
                     0f,
@@ -238,6 +243,7 @@ object ViewToImage : Base<ViewToImage>() {
                     it.view.y + it.view.height + if (it.includeMargin) it.view.marginBottom else 0,
                     markPaint
                 )
+                croppedVerticallyViewsCount++
             }
             val horizontalColoredArray = IntArray(viewBitmap.width) { markColor } // To compare to the mark color
             val horizontalBuffer = IntArray(viewBitmap.width) // To read the pixels from the image and compare them with horizontalColoredArray
@@ -257,7 +263,7 @@ object ViewToImage : Base<ViewToImage>() {
                     y++
                 }
             }
-            log("Excluded ${cropVerticallyViews.size} view(s) from the image with mode crop vertically")
+            log("Excluded $croppedVerticallyViewsCount view(s) from the image with mode crop vertically")
 
             // FileUtils.saveBitmapToFile(context, viewBitmap, "EXCLUDE_VIEWS_STEP_2_A") // *** FOR DEVELOPMENT PURPOSES ONLY
             // FileUtils.saveBitmapToFile(context, viewBitmap2, "EXCLUDE_VIEWS_STEP_2_B") // *** FOR DEVELOPMENT PURPOSES ONLY
@@ -269,9 +275,10 @@ object ViewToImage : Base<ViewToImage>() {
 
         if (cropHorizontallyViews.isNotEmpty()) {
             val viewBitmap2Canvas = Canvas(viewBitmap2) // To mark the area to be removed
+            var croppedHorizontallyViewsCount = 0
             // First, the entire region to be deleted is marked
             cropHorizontallyViews.forEach {
-                if (it.view.visibility == View.GONE) return@forEach
+                if (it.view.visibility == View.GONE) return@forEach // Applies only in View.INVISIBLE and View.VISIBLE since in View.GONE the view does not occupy any space
                 // NOTE: The padding is part of the view, so it is already included in the width or height
                 viewBitmap2Canvas.drawRect(
                     it.view.x - if (it.includeMargin) it.view.marginLeft else 0,
@@ -280,6 +287,7 @@ object ViewToImage : Base<ViewToImage>() {
                     viewBitmap2.height.toFloat(),
                     markPaint
                 )
+                croppedHorizontallyViewsCount++
             }
             val verticalColoredArray = IntArray(viewBitmap2.height) { markColor } // To compare to the mark color
             val verticalBuffer = IntArray(viewBitmap2.height) // To read the pixels from the image and compare them with verticalColoredArray
@@ -299,7 +307,7 @@ object ViewToImage : Base<ViewToImage>() {
                     x++
                 }
             }
-            log("Excluded ${cropHorizontallyViews.size} view(s) from the image with mode crop horizontally")
+            log("Excluded $croppedHorizontallyViewsCount view(s) from the image with mode crop horizontally")
 
             // FileUtils.saveBitmapToFile(context, viewBitmap2, "EXCLUDE_VIEWS_STEP_3_A") // *** FOR DEVELOPMENT PURPOSES ONLY
             // FileUtils.saveBitmapToFile(context, viewBitmap3, "EXCLUDE_VIEWS_STEP_3_B") // *** FOR DEVELOPMENT PURPOSES ONLY
