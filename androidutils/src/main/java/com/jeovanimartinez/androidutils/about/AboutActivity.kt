@@ -23,6 +23,7 @@ import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
+import com.jeovanimartinez.androidutils.extensions.view.changeAllTextViewsTextColor
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
@@ -148,6 +149,17 @@ class AboutActivity : TranslucentActivity() {
     /** Configure the activity based on AboutApp */
     private fun configureByAboutApp() {
 
+        // Configure the colors for the activity (background color, text color and icons color)
+        binding.topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor)
+        binding.contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor)
+        binding.rootLayout.changeAllTextViewsTextColor(aboutAppConfig.textColor)
+        val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.about_app_ic_check)
+        val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.about_app_ic_back)
+        closeDrawable?.setTint(aboutAppConfig.iconsColor)
+        closeTermsDrawable?.setTint(aboutAppConfig.iconsColor)
+        binding.closeBtn.setImageDrawable(closeDrawable)
+        binding.closeTermsBtn.setImageDrawable(closeTermsDrawable)
+
         binding.appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
         binding.appName.text = typeAsString(aboutAppConfig.appName)
         binding.authorName.text = typeAsString(aboutAppConfig.authorName)
@@ -165,19 +177,6 @@ class AboutActivity : TranslucentActivity() {
         // In versions prior to Android 4.4 it is always hidden, since the activity does not work correctly
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             binding.openSourceLicenses.visibility = View.GONE
-        }
-
-        binding.topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
-        binding.contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
-
-        // Icon color is assigned, only works from Android 5 onwards
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_check_circle_outline)
-            val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
-            closeDrawable?.setTint(aboutAppConfig.iconsColor!!)
-            closeTermsDrawable?.setTint(aboutAppConfig.iconsColor!!)
-            binding.closeBtn.setImageDrawable(closeDrawable)
-            binding.closeTermsBtn.setImageDrawable(closeTermsDrawable)
         }
 
         aboutAppConfig.authorLink.whenNotNull { link ->
