@@ -6,9 +6,10 @@ import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 
 /**
- * Configuration for about activity.
- * @param backgroundColor Background color for the activity, if null, the default value is used, which is the background color of the theme.
- * @param iconsColor Color for icons, if null, the default value is used, which is the color defined in the theme.
+ * Configuration for the about activity.
+ * @param backgroundColor Background color for the activity.
+ * @param textColor Color for the texts.
+ * @param iconsColor Color for the icons.
  * @param appIcon App icon or logo.
  * @param appName App name.
  * @param appVersionName App version.
@@ -24,8 +25,9 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription, leave null if it is not required.
  * */
 data class AboutAppConfig(
-    @ColorInt val backgroundColor: Int? = null,
-    @ColorInt val iconsColor: Int? = null,
+    @ColorInt val backgroundColor: Int,
+    @ColorInt val textColor: Int,
+    @ColorInt val iconsColor: Int,
     @DrawableOrDrawableRes val appIcon: Any?,
     @StringOrStringRes val appName: Any,
     @StringOrStringRes val appVersionName: Any,

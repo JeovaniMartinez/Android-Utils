@@ -7,7 +7,6 @@ internal object Event {
 
     // Check the library docs for a events and parameters description.
 
-    const val ABOUT_APP_SHOWN = "about_app_shown"
     const val ABOUT_APP_OSL_SHOWN = "about_app_osl_shown"
     const val ABOUT_APP_TERMS_POLICY_SHOWN = "about_app_terms_policy_shown"
 
@@ -39,6 +38,9 @@ internal object Event {
     * fully ready for the first final version of the library and are being moved from top to bottom as they are reviewed,
     * validated, and tested.
     * */
+
+    // About App
+    const val ABOUT_APP_SHOWN = "about_app_shown"
 
     // Rate App
     const val RATE_APP_REVIEW_FLOW_OK = "rate_app_review_flow_ok"
