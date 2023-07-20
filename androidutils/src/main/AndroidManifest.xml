@@ -11,6 +11,14 @@
             android:name=".about.AboutActivity"
             android:theme="@style/AndroidUtilsTheme.Translucent" />
 
+        <!-- Apply a custom theme to the open source licenses activity -->
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/OssLicensesTheme" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/OssLicensesTheme" />
+
         <!-- Receiver for ShareUtils -->
         <receiver android:name=".share.ApplicationSelectorReceiver" />
 
