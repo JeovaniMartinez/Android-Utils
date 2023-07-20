@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,8 +30,31 @@
             android:paddingTop="@dimen/general_spacing"
             android:paddingBottom="@dimen/general_spacing">
 
-            <!-- Base activity for a new utility -->
-            <!-- Content Here -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_marginBottom="@dimen/general_spacing_half"
+                android:weightSum="1">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnToggleTheme"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
+                    android:background="?attr/actionBarItemBackground"
+                    app:srcCompat="@drawable/ic_theme_light_dark"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowAboutAppActivity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_spacing"
+                    android:layout_weight="1"
+                    android:text="@string/about_app_show_about_app_activity"
+                    tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

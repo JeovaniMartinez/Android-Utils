@@ -145,5 +145,6 @@
 
     <!-- AboutApp Activity -->
     <string name="about_app_title" translatable="false">About App</string>
+    <string name="about_app_show_about_app_activity" translatable="false">Show About App Activity</string>
 
 </resources>
