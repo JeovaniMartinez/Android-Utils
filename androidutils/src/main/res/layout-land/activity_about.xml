@@ -25,7 +25,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="?attr/actionBarItemBackground"
-                app:srcCompat="@drawable/about_app_ic_back" />
+                app:srcCompat="@drawable/about_app_ic_back"
+                tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -66,7 +67,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/appIcon"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/appVersion"
@@ -78,7 +79,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/appName"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <View
                     android:id="@+id/topSeparator"
@@ -100,7 +101,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/topSeparator"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/authorName"
@@ -113,7 +114,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/authorTitle"
-                    tools:ignore="SpUsage" />
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/verticalGuideline"
@@ -141,7 +142,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/verticalGuideline"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/logo_jedemm_com" />
+                    app:srcCompat="@drawable/logo_jedemm_com"
+                    tools:ignore="ImageContrastCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/copyright"
@@ -154,7 +156,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/verticalGuideline"
                     app:layout_constraintTop_toBottomOf="@id/companyLogo"
-                    tools:ignore="SmallSp,SpUsage" />
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/rightsReserved"
@@ -166,7 +168,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/verticalGuideline"
                     app:layout_constraintTop_toBottomOf="@id/copyright"
-                    tools:ignore="SmallSp,SpUsage" />
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 <View
                     android:id="@+id/bottomSeparator"
@@ -176,7 +178,8 @@
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/verticalGuideline"
-                    app:layout_constraintTop_toBottomOf="@+id/rightsReserved" />
+                    app:layout_constraintTop_toBottomOf="@+id/rightsReserved"
+                    tools:ignore="VisualLintBounds" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/termsAndPolicy"
@@ -189,7 +192,7 @@
                     android:textSize="9dp"
                     app:layout_constraintStart_toStartOf="@id/verticalGuideline"
                     app:layout_constraintTop_toBottomOf="@id/bottomSeparator"
-                    tools:ignore="SmallSp,SpUsage" />
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/closeBtn"
@@ -199,7 +202,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/topSeparator"
-                    app:srcCompat="@drawable/about_app_ic_check" />
+                    app:srcCompat="@drawable/about_app_ic_check"
+                    tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/openSourceLicenses"
@@ -212,7 +216,7 @@
                     android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bottomSeparator"
-                    tools:ignore="SmallSp,SpUsage" />
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -233,7 +237,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="-7dp"
-                android:indeterminate="true" />
+                android:indeterminate="true"
+                tools:ignore="VisualLintBounds" />
 
         </com.google.android.material.card.MaterialCardView>
 
