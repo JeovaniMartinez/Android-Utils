@@ -2,11 +2,13 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRoot"
     style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layoutMain"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:orientation="horizontal">
@@ -21,6 +23,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutTitle"
             android:layout_width="@dimen/app_bar_height"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -42,6 +45,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLogo"
             android:layout_width="@dimen/image_button_size"
             android:layout_height="@dimen/image_button_size"
             android:layout_weight="0"

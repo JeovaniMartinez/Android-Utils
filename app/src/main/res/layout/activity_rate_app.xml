@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,10 +17,12 @@
         android:layout_marginEnd="@dimen/general_spacing" />
 
     <ScrollView
+        android:id="@+id/svMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/general_spacing"
@@ -29,6 +32,7 @@
             android:paddingBottom="@dimen/general_spacing">
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvRateInGooglePlay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -42,9 +46,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/general_spacing"
-                android:text="@string/rate_app_go_rate_in_google_play" />
+                android:text="@string/rate_app_go_rate_in_google_play"
+                tools:ignore="TextContrastCheck" />
 
             <View
+                android:id="@+id/separator1"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="@dimen/general_spacing"
@@ -52,6 +58,7 @@
                 android:background="@color/md_theme_primary" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvRateInApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -80,6 +87,7 @@
                 android:textStyle="bold" />
 
             <TableLayout
+                android:id="@+id/tableLayoutConfigValues"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
@@ -176,7 +184,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="@string/rate_app_check_and_show" />
+                android:text="@string/rate_app_check_and_show"
+                tools:ignore="TextContrastCheck" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
