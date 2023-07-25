@@ -115,32 +115,32 @@ class AboutActivity : TranslucentActivity() {
             configureTaskDescription(it)
         }
 
-        binding.progressBar.visibility = View.GONE
-        binding.termsAndPolicyWebView.visibility = View.GONE
-        binding.topActionCard.visibility = View.GONE
+        binding.pbLoadingTermsAndPolicy.visibility = View.GONE
+        binding.webViewTermsAndPolicy.visibility = View.GONE
+        binding.cardTopAction.visibility = View.GONE
 
         // Adjusts to hide item
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            binding.topActionCard.translationX = dp2px(48).toFloat()
+            binding.cardTopAction.translationX = dp2px(48).toFloat()
         } else {
-            binding.topActionCard.translationY = dp2px(48).toFloat()
+            binding.cardTopAction.translationY = dp2px(48).toFloat()
         }
 
-        binding.termsAndPolicy.setOnClickListener {
+        binding.btnTermsAndPolicy.setOnClickListener {
             loadTermsAndPolicy()
-            binding.termsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
+            binding.btnTermsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
         }
 
-        binding.closeTermsBtn.setOnClickListener {
+        binding.btnCloseTerms.setOnClickListener {
             hideTermsAndPolicy()
         }
 
-        binding.openSourceLicenses.setOnClickListener {
+        binding.btnOpenSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
             AboutApp.firebaseAnalytics(Event.ABOUT_APP_OSL_SHOWN)
         }
 
-        binding.closeBtn.setOnClickListener {
+        binding.btnClose.setOnClickListener {
             supportFinishAfterTransition()
         }
 
@@ -150,43 +150,43 @@ class AboutActivity : TranslucentActivity() {
     private fun configureByAboutApp() {
 
         // Configure the colors for the activity (background color, text color and icons color)
-        binding.topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor)
-        binding.contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor)
-        binding.rootLayout.changeAllTextViewsTextColor(aboutAppConfig.textColor)
+        binding.cardTopAction.setCardBackgroundColor(aboutAppConfig.backgroundColor)
+        binding.cardContent.setCardBackgroundColor(aboutAppConfig.backgroundColor)
+        binding.layoutRoot.changeAllTextViewsTextColor(aboutAppConfig.textColor)
         val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.about_app_ic_check)
         val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.about_app_ic_back)
         closeDrawable?.setTint(aboutAppConfig.iconsColor)
         closeTermsDrawable?.setTint(aboutAppConfig.iconsColor)
-        binding.closeBtn.setImageDrawable(closeDrawable)
-        binding.closeTermsBtn.setImageDrawable(closeTermsDrawable)
+        binding.btnClose.setImageDrawable(closeDrawable)
+        binding.btnCloseTerms.setImageDrawable(closeTermsDrawable)
 
-        binding.appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
-        binding.appName.text = typeAsString(aboutAppConfig.appName)
-        binding.authorName.text = typeAsString(aboutAppConfig.authorName)
-        binding.companyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
+        binding.ivAppIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
+        binding.tvAppName.text = typeAsString(aboutAppConfig.appName)
+        binding.tvAuthor.text = typeAsString(aboutAppConfig.authorName)
+        binding.ivCompanyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
         if (aboutAppConfig.termsAndPrivacyPolicyLink == null) {
-            binding.termsAndPolicy.visibility = View.GONE
-            val openSourceLParams = binding.openSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
+            binding.btnTermsAndPolicy.visibility = View.GONE
+            val openSourceLParams = binding.btnOpenSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
             openSourceLParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
             openSourceLParams.endToStart = ConstraintLayout.LayoutParams.UNSET
-            binding.openSourceLicenses.layoutParams = openSourceLParams
+            binding.btnOpenSourceLicenses.layoutParams = openSourceLParams
         }
 
-        binding.openSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
+        binding.btnOpenSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
         // In versions prior to Android 4.4 it is always hidden, since the activity does not work correctly
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            binding.openSourceLicenses.visibility = View.GONE
+            binding.btnOpenSourceLicenses.visibility = View.GONE
         }
 
         aboutAppConfig.authorLink.whenNotNull { link ->
-            binding.authorName.setOnClickListener {
+            binding.tvAuthor.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_author_link")
             }
         }
 
         aboutAppConfig.companyLink.whenNotNull { link ->
-            binding.companyLogo.setOnClickListener {
+            binding.ivCompanyLogo.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_company_link")
             }
         }
@@ -195,9 +195,9 @@ class AboutActivity : TranslucentActivity() {
 
     /** Set the app version and copyright */
     private fun configureData() {
-        binding.appVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
+        binding.tvAppVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        binding.copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
+        binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
     }
 
     /** Set the activity transitions */
@@ -227,17 +227,17 @@ class AboutActivity : TranslucentActivity() {
         AboutApp.log("loadTermsAndPolicy() Invoked")
 
         loadingTermsAndPolicyInProgress = true
-        binding.progressBar.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
+        binding.pbLoadingTermsAndPolicy.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
 
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
         // Get the background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(binding.contentCard.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
+        val backgroundColor = Integer.toHexString(binding.cardContent.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
         val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).toUpperCase(Locale.ROOT)
 
 
         // Generate WebViewClient for listening events
-        binding.termsAndPolicyWebView.webViewClient = object : WebViewClient() {
+        binding.webViewTermsAndPolicy.webViewClient = object : WebViewClient() {
 
             // When the page load finished (regardless of whether the result was successful or not)
             override fun onPageFinished(view: WebView?, url: String?) {
@@ -251,10 +251,10 @@ class AboutActivity : TranslucentActivity() {
                     loadingTermsAndPolicyInProgress = false
                 }, 500)
 
-                binding.progressBar.visibility = View.GONE
+                binding.pbLoadingTermsAndPolicy.visibility = View.GONE
                 if (pageLoadSuccessful) showTermsAndPolicy(animateShowTermsView) // They are only shown if the page loaded correctly
 
-                binding.termsAndPolicy.isClickable = true // It is enabled again
+                binding.btnTermsAndPolicy.isClickable = true // It is enabled again
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
@@ -273,13 +273,13 @@ class AboutActivity : TranslucentActivity() {
         }
 
         @SuppressLint("SetJavaScriptEnabled")
-        binding.termsAndPolicyWebView.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
-        binding.termsAndPolicyWebView.settings.domStorageEnabled = true // For best compatibility
+        binding.webViewTermsAndPolicy.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
+        binding.webViewTermsAndPolicy.settings.domStorageEnabled = true // For best compatibility
         // The URL is loaded, passing the background color and text color parameters
         aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
             val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
             AboutApp.log("Terms and Privacy Policy URL = $url")
-            binding.termsAndPolicyWebView.loadUrl(url)
+            binding.webViewTermsAndPolicy.loadUrl(url)
         }
     }
 
@@ -293,42 +293,42 @@ class AboutActivity : TranslucentActivity() {
         if (animate) {
 
             // Set back button visibility and animation
-            binding.topActionCard.visibility = View.VISIBLE
+            binding.cardTopAction.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                binding.topActionCard.animate().translationX(0f).onAnimationEnd { }
+                binding.cardTopAction.animate().translationX(0f).onAnimationEnd { }
             } else {
-                binding.topActionCard.animate().translationY(0f).onAnimationEnd { }
+                binding.cardTopAction.animate().translationY(0f).onAnimationEnd { }
             }
 
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
+            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
             // Sent at the end of the view to show an animation
-            binding.termsAndPolicyWebView.translationX = binding.contentCard.width.toFloat()
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
+            binding.webViewTermsAndPolicy.translationX = binding.cardContent.width.toFloat()
+            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
             // The web view is shown and the card container is hidden by means of an animation
-            binding.contentCardLayout.animate().translationX(-binding.contentCard.width.toFloat()).start()
-            binding.termsAndPolicyWebView.animate().translationX(0f).start()
+            binding.layoutContent.animate().translationX(-binding.cardContent.width.toFloat()).start()
+            binding.webViewTermsAndPolicy.animate().translationX(0f).start()
 
         } else {
 
             // Set back button visibility and animation
-            binding.topActionCard.visibility = View.VISIBLE
+            binding.cardTopAction.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                binding.topActionCard.translationX = 0f
+                binding.cardTopAction.translationX = 0f
             } else {
-                binding.topActionCard.translationY = 0f
+                binding.cardTopAction.translationY = 0f
             }
 
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
+            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
             // Sent to end of view for animation when exiting view
-            binding.termsAndPolicyWebView.translationX = binding.contentCard.width.toFloat()
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
+            binding.webViewTermsAndPolicy.translationX = binding.cardContent.width.toFloat()
+            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
             // The web view is shown and the card container is hidden
-            binding.contentCardLayout.translationX = -binding.contentCard.width.toFloat()
-            binding.termsAndPolicyWebView.translationX = 0f
+            binding.layoutContent.translationX = -binding.cardContent.width.toFloat()
+            binding.webViewTermsAndPolicy.translationX = 0f
 
         }
 
@@ -344,14 +344,14 @@ class AboutActivity : TranslucentActivity() {
 
         // Set back button visibility and animation
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            binding.topActionCard.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { binding.topActionCard.visibility = View.GONE }
+            binding.cardTopAction.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { binding.cardTopAction.visibility = View.GONE }
         } else {
-            binding.topActionCard.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { binding.topActionCard.visibility = View.GONE }
+            binding.cardTopAction.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { binding.cardTopAction.visibility = View.GONE }
         }
 
         // The card container is shown and the web view is hidden by means of an animation
-        binding.contentCardLayout.animate().translationX(0f).start()
-        binding.termsAndPolicyWebView.animate().translationX(binding.contentCard.width.toFloat()).start()
+        binding.layoutContent.animate().translationX(0f).start()
+        binding.webViewTermsAndPolicy.animate().translationX(binding.cardContent.width.toFloat()).start()
     }
 
 }
