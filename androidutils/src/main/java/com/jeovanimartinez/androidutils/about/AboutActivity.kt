@@ -12,12 +12,12 @@ import android.view.Window
 import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.databinding.ActivityAboutBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
+import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
@@ -44,7 +44,7 @@ class AboutActivity : TranslucentActivity() {
     private lateinit var binding: ActivityAboutBinding
 
     private var activityIsRunning = true // To show toast only if the activity is running and not paused
-    private var loadingTermsAndPolicyInProgress = false
+    private var loadingTermsAndPolicy = false
     private var termsAndPolicyVisible = false
     private lateinit var aboutAppConfig: AboutAppConfig // Config data
 
@@ -60,10 +60,8 @@ class AboutActivity : TranslucentActivity() {
 
         AboutApp.log("Started AboutActivity")
 
-        initSetup()
         backButtonSetup()
-        configureByAboutApp()
-        configureData()
+        generalSetup()
     }
 
     override fun onResume() {
@@ -111,45 +109,6 @@ class AboutActivity : TranslucentActivity() {
         }
     }
 
-    /** Initial setup */
-    private fun initSetup() {
-
-        // Configure the task description (if it is necessary)
-        aboutAppConfig.taskDescriptionConfig.whenNotNull {
-            configureTaskDescription(it)
-        }
-
-        binding.pbLoadingTermsAndPolicy.visibility = View.GONE
-        binding.webViewTermsAndPolicy.visibility = View.GONE
-        binding.cardTopAction.visibility = View.GONE
-
-        // Adjusts to hide item
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            binding.cardTopAction.translationX = dp2px(48).toFloat()
-        } else {
-            binding.cardTopAction.translationY = dp2px(48).toFloat()
-        }
-
-        binding.btnTermsAndPolicy.setOnClickListener {
-            loadTermsAndPolicy()
-            binding.btnTermsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
-        }
-
-        binding.btnCloseTerms.setOnClickListener {
-            hideTermsAndPolicy()
-        }
-
-        binding.btnOpenSourceLicenses.setOnClickListener {
-            startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
-            AboutApp.firebaseAnalytics(Event.ABOUT_APP_OSL_SHOWN)
-        }
-
-        binding.btnClose.setOnClickListener {
-            supportFinishAfterTransition()
-        }
-
-    }
-
     /** Back button setup */
     private fun backButtonSetup() {
         // Reference: https://medium.com/tech-takeaways/how-to-migrate-the-deprecated-onbackpressed-function-e66bb29fa2fd
@@ -161,53 +120,89 @@ class AboutActivity : TranslucentActivity() {
         })
     }
 
-    /** Configure the activity based on AboutApp */
-    private fun configureByAboutApp() {
+    /** Initial and general setup */
+    private fun generalSetup() {
+
+        // Configure the task description (if it is necessary)
+        aboutAppConfig.taskDescriptionConfig.whenNotNull {
+            configureTaskDescription(it)
+        }
+
+        // Adjust elements visibility
+        binding.pbLoadingTermsAndPolicy.visibility = View.GONE
+        binding.webViewTermsAndPolicy.visibility = View.GONE
+        binding.cardTopAction.visibility = View.GONE
+
+        // Adjusts to hide the element and show it properly with animations
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            binding.cardTopAction.translationX = dp2px(48).toFloat()
+        } else {
+            binding.cardTopAction.translationY = dp2px(48).toFloat()
+        }
 
         // Configure the colors for the activity (background color, text color and icons color)
         binding.cardTopAction.setCardBackgroundColor(aboutAppConfig.backgroundColor)
         binding.cardContent.setCardBackgroundColor(aboutAppConfig.backgroundColor)
         binding.layoutRoot.changeAllTextViewsTextColor(aboutAppConfig.textColor)
-        val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.about_app_ic_check)
-        val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.about_app_ic_back)
+        val closeDrawable = getDrawableCompat(R.drawable.about_app_ic_check)
+        val closeTermsDrawable = getDrawableCompat(R.drawable.about_app_ic_back)
         closeDrawable?.setTint(aboutAppConfig.iconsColor)
         closeTermsDrawable?.setTint(aboutAppConfig.iconsColor)
         binding.btnClose.setImageDrawable(closeDrawable)
         binding.btnCloseTerms.setImageDrawable(closeTermsDrawable)
 
+        // App data
         binding.ivAppIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
         binding.tvAppName.text = typeAsString(aboutAppConfig.appName)
+        binding.tvAppVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
+
+        // Author data
         binding.tvAuthor.text = typeAsString(aboutAppConfig.authorName)
-        binding.ivCompanyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
-        if (aboutAppConfig.termsAndPrivacyPolicyLink == null) {
-            binding.btnTermsAndPolicy.visibility = View.GONE
-            val openSourceLParams = binding.btnOpenSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
-            openSourceLParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
-            openSourceLParams.endToStart = ConstraintLayout.LayoutParams.UNSET
-            binding.btnOpenSourceLicenses.layoutParams = openSourceLParams
-        }
-
-        binding.btnOpenSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
-
         aboutAppConfig.authorLink.whenNotNull { link ->
             binding.tvAuthor.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_author_link")
             }
         }
 
+        // Company data and copyright
+        binding.ivCompanyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
+        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+        binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
         aboutAppConfig.companyLink.whenNotNull { link ->
             binding.ivCompanyLogo.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_company_link")
             }
         }
 
-    }
+        // Terms and privacy policy
+        if (aboutAppConfig.termsAndPrivacyPolicyLink == null) {
+            binding.btnTermsAndPolicy.visibility = View.GONE
+            // Adjust btnOpenSourceLicenses to be displayed correctly
+            val btnOpenSourceLicensesParams = binding.btnOpenSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
+            btnOpenSourceLicensesParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
+            btnOpenSourceLicensesParams.endToStart = ConstraintLayout.LayoutParams.UNSET
+            binding.btnOpenSourceLicenses.layoutParams = btnOpenSourceLicensesParams
+        } else {
+            binding.btnTermsAndPolicy.setOnClickListener {
+                loadTermsAndPolicy()
+                binding.btnTermsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
+            }
+            binding.btnCloseTerms.setOnClickListener {
+                hideTermsAndPolicy()
+            }
+        }
 
-    /** Set the app version and copyright */
-    private fun configureData() {
-        binding.tvAppVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
+        // Open source licenses
+        binding.btnOpenSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
+        binding.btnOpenSourceLicenses.setOnClickListener {
+            startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
+            AboutApp.firebaseAnalytics(Event.ABOUT_APP_OSL_SHOWN)
+        }
+
+        // Close button
+        binding.btnClose.setOnClickListener {
+            supportFinishAfterTransition()
+        }
     }
 
     /**
@@ -218,14 +213,14 @@ class AboutActivity : TranslucentActivity() {
     private fun loadTermsAndPolicy(animateShowTermsView: Boolean = true) {
 
         // If are already loading, it is not necessary to do it again
-        if (loadingTermsAndPolicyInProgress) {
+        if (loadingTermsAndPolicy) {
             AboutApp.log("loadTermsAndPolicy() is already in progress")
             return
         }
 
         AboutApp.log("loadTermsAndPolicy() Invoked")
 
-        loadingTermsAndPolicyInProgress = true
+        loadingTermsAndPolicy = true
         binding.pbLoadingTermsAndPolicy.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
 
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
@@ -247,7 +242,7 @@ class AboutActivity : TranslucentActivity() {
 
                 // Wait a moment to avoid repeated actions
                 Handler(Looper.getMainLooper()).postDelayed({
-                    loadingTermsAndPolicyInProgress = false
+                    loadingTermsAndPolicy = false
                 }, 500)
 
                 binding.pbLoadingTermsAndPolicy.visibility = View.GONE
