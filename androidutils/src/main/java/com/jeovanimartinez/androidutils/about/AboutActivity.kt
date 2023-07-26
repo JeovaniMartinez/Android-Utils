@@ -226,9 +226,20 @@ class AboutActivity : TranslucentActivity() {
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
         // Get the background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(binding.cardContent.cardBackgroundColor.defaultColor).substring(2).uppercase(Locale.ROOT)
-        val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).uppercase(Locale.ROOT)
+        val backgroundColor = Integer.toHexString(aboutAppConfig.backgroundColor).substring(2).uppercase(Locale.ROOT)
+        val textColor = Integer.toHexString(aboutAppConfig.textColor).substring(2).uppercase(Locale.ROOT)
 
+        // Configure the web view
+        @SuppressLint("SetJavaScriptEnabled")
+        binding.webViewTermsAndPolicy.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
+        binding.webViewTermsAndPolicy.settings.domStorageEnabled = true // For best compatibility
+
+        // The URL is loaded, passing the background color and text color parameters
+        aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
+            val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
+            AboutApp.log("Terms and Privacy Policy URL = $url")
+            binding.webViewTermsAndPolicy.loadUrl(url)
+        }
 
         // Generate WebViewClient for listening events
         binding.webViewTermsAndPolicy.webViewClient = object : WebViewClient() {
@@ -266,15 +277,6 @@ class AboutActivity : TranslucentActivity() {
             }
         }
 
-        @SuppressLint("SetJavaScriptEnabled")
-        binding.webViewTermsAndPolicy.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
-        binding.webViewTermsAndPolicy.settings.domStorageEnabled = true // For best compatibility
-        // The URL is loaded, passing the background color and text color parameters
-        aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
-            val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
-            AboutApp.log("Terms and Privacy Policy URL = $url")
-            binding.webViewTermsAndPolicy.loadUrl(url)
-        }
     }
 
     /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with animation or not. */
@@ -306,7 +308,7 @@ class AboutActivity : TranslucentActivity() {
 
         } else {
 
-            // Set back button visibility and animation
+            // Set back button visibility
             binding.cardTopAction.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 binding.cardTopAction.translationX = 0f
