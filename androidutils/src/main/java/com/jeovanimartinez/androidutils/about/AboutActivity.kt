@@ -3,7 +3,6 @@ package com.jeovanimartinez.androidutils.about
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -103,6 +102,15 @@ class AboutActivity : TranslucentActivity() {
         }
     }
 
+    /** Set the activity transitions */
+    private fun configureTransitions() {
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            enterTransition = Explode()
+            exitTransition = Explode()
+        }
+    }
+
     /** Initial setup */
     private fun initSetup() {
 
@@ -181,11 +189,6 @@ class AboutActivity : TranslucentActivity() {
 
         binding.btnOpenSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
 
-        // In versions prior to Android 4.4 it is always hidden, since the activity does not work correctly
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            binding.btnOpenSourceLicenses.visibility = View.GONE
-        }
-
         aboutAppConfig.authorLink.whenNotNull { link ->
             binding.tvAuthor.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_author_link")
@@ -205,17 +208,6 @@ class AboutActivity : TranslucentActivity() {
         binding.tvAppVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
-    }
-
-    /** Set the activity transitions */
-    private fun configureTransitions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            with(window) {
-                requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-                enterTransition = Explode()
-                exitTransition = Explode()
-            }
-        }
     }
 
     /**
@@ -239,8 +231,8 @@ class AboutActivity : TranslucentActivity() {
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
         // Get the background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(binding.cardContent.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
-        val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).toUpperCase(Locale.ROOT)
+        val backgroundColor = Integer.toHexString(binding.cardContent.cardBackgroundColor.defaultColor).substring(2).uppercase(Locale.ROOT)
+        val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).uppercase(Locale.ROOT)
 
 
         // Generate WebViewClient for listening events
