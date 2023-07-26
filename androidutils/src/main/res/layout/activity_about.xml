@@ -172,12 +172,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvRightsReserved" />
 
-                <com.google.android.material.textview.MaterialTextView
+                <Button
                     android:id="@+id/btnTermsAndPolicy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="10dp"
+                    android:padding="0dp"
+                    android:layout_margin="0dp"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:gravity="center"
                     android:text="@string/about_app_terms_and_policy"
                     android:textSize="9dp"
