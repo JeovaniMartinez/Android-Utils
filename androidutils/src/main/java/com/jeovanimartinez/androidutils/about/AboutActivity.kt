@@ -11,6 +11,7 @@ import android.transition.Explode
 import android.view.View
 import android.view.Window
 import android.webkit.*
+import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
@@ -61,14 +62,9 @@ class AboutActivity : TranslucentActivity() {
         AboutApp.log("Started AboutActivity")
 
         initSetup()
+        backButtonSetup()
         configureByAboutApp()
         configureData()
-
-    }
-
-    override fun onBackPressed() {
-        if (termsAndPolicyVisible) return hideTermsAndPolicy()
-        super.onBackPressed()
     }
 
     override fun onResume() {
@@ -144,6 +140,17 @@ class AboutActivity : TranslucentActivity() {
             supportFinishAfterTransition()
         }
 
+    }
+
+    /** Back button setup */
+    private fun backButtonSetup() {
+        // Reference: https://medium.com/tech-takeaways/how-to-migrate-the-deprecated-onbackpressed-function-e66bb29fa2fd
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (termsAndPolicyVisible) return hideTermsAndPolicy()
+                supportFinishAfterTransition()
+            }
+        })
     }
 
     /** Configure the activity based on AboutApp */
