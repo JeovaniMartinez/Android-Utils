@@ -44,10 +44,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    kotlin {
-        jvmToolchain(17)
-    }
     namespace 'com.jeovanimartinez.androidutils.app'
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
