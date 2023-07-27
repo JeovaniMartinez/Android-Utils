@@ -113,9 +113,22 @@ dokkaHtml.configure {
 afterEvaluate {
     publishing {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
+                groupId = 'com.jeovanimartinez.androidutils'
+                artifactId = 'androidutils'
+                version = androidUtilsVersionName
+                pom {
+                    name = 'Android Utils'
+                    description = 'Set of utilities for Android app development.'
+                    url = 'https://jeovanimartinez.github.io/Android-Utils/'
+                    licenses {
+                        license {
+                            name = 'Apache License 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        }
+                    }
+                }
             }
         }
     }
