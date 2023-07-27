@@ -108,3 +108,15 @@ dokkaHtml.configure {
     }
     // Documentation example: https://www.raywenderlich.com/30067669-documenting-kotlin-code-for-android-using-kdoc-and-dokka
 }
+
+// Publishing
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+            }
+        }
+    }
+}
