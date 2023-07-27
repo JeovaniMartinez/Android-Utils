@@ -47,10 +47,6 @@ android {
     namespace 'com.jeovanimartinez.androidutils.app'
 }
 
-kotlin {
-    jvmToolchain(17)
-}
-
 dependencies {
 
     // General dependencies

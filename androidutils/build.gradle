@@ -43,10 +43,6 @@ android {
     namespace 'com.jeovanimartinez.androidutils'
 }
 
-kotlin {
-    jvmToolchain(17)
-}
-
 dependencies {
 
     // Allows access to new APIs on older API versions of the platform
