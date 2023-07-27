@@ -1,11 +1,11 @@
 // Library Test App [ Gradle Script ]
 
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'com.google.android.gms.oss-licenses-plugin'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
+    id "com.android.application"
+    id "kotlin-android"
+    id "com.google.android.gms.oss-licenses-plugin"
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
 }
 
 android {
@@ -34,7 +34,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
@@ -42,30 +42,30 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
     }
-    namespace 'com.jeovanimartinez.androidutils.app'
+    namespace "com.jeovanimartinez.androidutils.app"
 }
 
 dependencies {
 
     // General dependencies
-    implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation "androidx.multidex:multidex:2.0.1"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "com.google.android.material:material:1.9.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.core:core-splashscreen:1.0.1"
 
     // Firebase dependencies
-    implementation 'com.google.firebase:firebase-analytics:21.3.0'
-    implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
+    implementation "com.google.firebase:firebase-analytics:21.3.0"
+    implementation "com.google.firebase:firebase-crashlytics:18.3.7"
 
     // Required for test premium utilities ** PENDING VERSION UPDATE **
-    implementation 'com.android.billingclient:billing-ktx:3.0.3'
+    implementation "com.android.billingclient:billing-ktx:3.0.3"
 
     // Library for using a color selector
-    implementation 'com.jaredrummler:colorpicker:1.1.0'
+    implementation "com.jaredrummler:colorpicker:1.1.0"
 
     // Android Utils Library
     implementation project(":androidutils")

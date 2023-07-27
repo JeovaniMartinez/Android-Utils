@@ -1,10 +1,10 @@
 // Android Utils Library [ Gradle Script ]
 
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'org.jetbrains.dokka'
-    id 'maven-publish'
+    id "com.android.library"
+    id "kotlin-android"
+    id "org.jetbrains.dokka"
+    id "maven-publish"
 }
 
 android {
@@ -31,7 +31,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false // Keep always in false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // Don't add rules here, use consumerProguardFiles
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro" // Don't add rules here, use consumerProguardFiles
         }
     }
     compileOptions {
@@ -39,40 +39,40 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
     }
-    namespace 'com.jeovanimartinez.androidutils'
+    namespace "com.jeovanimartinez.androidutils"
 }
 
 dependencies {
 
     // Allows access to new APIs on older API versions of the platform
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation "androidx.appcompat:appcompat:1.6.1"
 
     // Set of Kotlin extensions for Android Jetpack and other Android libraries
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation "androidx.core:core-ktx:1.10.1"
 
     // Material Components for Android
-    implementation 'com.google.android.material:material:1.9.0' // Required for designing the layouts
+    implementation "com.google.android.material:material:1.9.0" // Required for designing the layouts
 
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Required for design the layouts
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4" // Required for design the layouts
 
     // Runtime interface to interact with the Google Play Store
-    implementation 'com.google.android.play:core-ktx:1.8.1' // Required for using Google Play In-App review API
+    implementation "com.google.android.play:core-ktx:1.8.1" // Required for using Google Play In-App review API
 
     // Set of tools to express the open source software notices of libraries used in the apps
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1' // Required to display open source licenses in AboutApp
+    implementation "com.google.android.gms:play-services-oss-licenses:17.0.1" // Required to display open source licenses in AboutApp
 
     // Google Play's billing system, enables to sell digital products and content in the apps
-    implementation 'com.android.billingclient:billing-ktx:3.0.3' // Required for the premium utilities ** PENDING VERSION UPDATE **
+    implementation "com.android.billingclient:billing-ktx:3.0.3" // Required for the premium utilities ** PENDING VERSION UPDATE **
 
     // Libraries are required only for references. If they are used in the destination app, it must declare the dependencies
-    compileOnly 'com.google.firebase:firebase-analytics:21.3.0' // Used to reference Firebase Analytics
-    compileOnly 'com.google.firebase:firebase-crashlytics:18.3.7' // Used to reference Firebase Crashlytics
+    compileOnly "com.google.firebase:firebase-analytics:21.3.0" // Used to reference Firebase Analytics
+    compileOnly "com.google.firebase:firebase-crashlytics:18.3.7" // Used to reference Firebase Crashlytics
 
     // Lint check
-    lintPublish project(':lintcheck') // The library includes the lint check module for verifications
+    lintPublish project(":lintcheck") // The library includes the lint check module for verifications
 
 }
 
@@ -81,7 +81,7 @@ dokkaHtml.configure {
     doFirst {
         // Current documentation is deleted before generating the new one
         delete rootProject.projectDir.toString() + "/docs/api-reference/android-utils-api-reference"
-        println 'Deleted android-utils-api-reference directory'
+        println "Deleted android-utils-api-reference directory"
     }
     dokkaSourceSets {
         named("main") {
@@ -104,7 +104,7 @@ dokkaHtml.configure {
             from(rootProject.projectDir.toString() + "/resources/docs-images/dokka/logo-icon.svg")
             into(rootProject.projectDir.toString() + "/docs/api-reference/android-utils-api-reference/images")
         }
-        println 'Adjusted documentation logo'
+        println "Adjusted documentation logo"
     }
     // Documentation example: https://www.raywenderlich.com/30067669-documenting-kotlin-code-for-android-using-kdoc-and-dokka
 }
@@ -115,17 +115,17 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.jeovanimartinez.androidutils'
-                artifactId = 'androidutils'
+                groupId = "com.jeovanimartinez.androidutils"
+                artifactId = "androidutils"
                 version = androidUtilsVersionName
                 pom {
-                    name = 'Android Utils'
-                    description = 'Set of utilities for Android app development.'
-                    url = 'https://jeovanimartinez.github.io/Android-Utils/'
+                    name = "Android Utils"
+                    description = "Set of utilities for Android app development."
+                    url = "https://jeovanimartinez.github.io/Android-Utils/"
                     licenses {
                         license {
-                            name = 'Apache License 2.0'
-                            url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                            name = "Apache License 2.0"
+                            url = "https://www.apache.org/licenses/LICENSE-2.0"
                         }
                     }
                 }
