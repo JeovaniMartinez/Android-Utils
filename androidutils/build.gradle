@@ -58,7 +58,7 @@ dependencies {
     // Set of Kotlin extensions for Android Jetpack and other Android libraries
     implementation "androidx.core:core-ktx:1.10.1"
 
-    // ** CHECK **
+    // ** DONE **
     // Material Components for Android
     implementation "com.google.android.material:material:1.9.0" // Required for designing the layouts
 

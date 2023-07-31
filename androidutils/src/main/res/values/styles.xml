@@ -6,7 +6,11 @@
        Base of the library theme, the application that uses the library must declare a style with the same name that inherits from the main theme of the app,
        this so that the library preserves the style that the app uses.
     -->
-    <style name="AndroidUtilsTheme" parent="Theme.MaterialComponents" />
+    <style name="AndroidUtilsTheme" parent="Theme.Material3.Dark" />
+    <!--
+       Theme.Material3.Dark (in Material3) = Theme.MaterialComponents (in MaterialComponents):
+       https://github.com/material-components/material-components-android/blob/master/docs/getting-started.md
+    -->
 
     <!--########################################################################################################################################################################################## -->
 
