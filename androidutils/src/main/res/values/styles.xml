@@ -29,7 +29,7 @@
     <!-- Themes for the About App utility -->ø
 
     <!-- Theme for the about app activity, inherits from Material3 to maintain custom styling for the activity, regardless of which theme the app uses. -->
-    <style name="AndroidUtilsTheme.AboutApp" parent="Theme.AppCompat.DayNight">
+    <style name="AndroidUtilsTheme.AboutApp" parent="Theme.Material3.Light">
 
         <!-- It uses exactly the same configuration as AndroidUtilsTheme.Translucent -->
         <item name="android:windowIsTranslucent">true</item>
