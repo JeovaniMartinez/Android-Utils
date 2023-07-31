@@ -71,7 +71,7 @@ class AboutAppActivity : AppCompatActivity() {
             companyLink = R.string.about_app_company_link,
             termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link,
             showOpenSourceLicenses = true,
-            TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
+            //TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
         )
 
         AboutApp.show(this@AboutAppActivity, aboutAppConfig)

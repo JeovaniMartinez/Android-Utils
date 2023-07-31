@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-        Default colors of the theme, if they are overridden in the app, the colors defined in the app will be used,
-        since these files are mixed and the app files have priority.
-    -->
-    <color name="colorPrimary">#00838f</color>
-    <color name="colorAccent">#00838f</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorPrimaryVariant">#009688</color>
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorSecondary">#2196F3</color>
-    <color name="colorSecondaryVariant">#1976D2</color>
-    <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorBackground">#FFFFFF</color>
-    <color name="colorOnBackground">#000000</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorOnSurface">#000000</color>
-    <color name="colorError">#B00020</color>
-    <color name="colorOnError">#FFFFFF</color>
-
-    <!-- Color for the icons -->
-    <color name="colorIcon">#707070</color>
-
-    <!-- Colors for about app activity -->
-    <color name="colorTermsAndPrivacyPolicyText">#434343</color>
+    <!-- Colors for the About App utility -->
+    <color name="about_app_background_color">#673AB7</color>
+    <color name="about_app_text_color">#2196F3</color>
+    <color name="about_app_icons_color">#CDDC39</color>
 
 </resources>

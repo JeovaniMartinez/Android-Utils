@@ -6,15 +6,11 @@
        Base of the library theme, the application that uses the library must declare a style with the same name that inherits from the main theme of the app,
        this so that the library preserves the style that the app uses.
     -->
-    <style name="AndroidUtilsTheme" parent="Theme.Material3.Dark" />
-    <!--
-       Theme.Material3.Dark (in Material3) = Theme.MaterialComponents (in MaterialComponents):
-       https://github.com/material-components/material-components-android/blob/master/docs/getting-started.md
-    -->
+    <style name="AndroidUtilsTheme" parent="Theme.AppCompat.DayNight" />
 
     <!--########################################################################################################################################################################################## -->
 
-    <!-- Translucent theme. Implementation details in android utils.themes.translucent.Translucent Activity. and in the documentation. -->
+    <!-- Translucent theme. Implementation details in androidutils.themes.translucent.TranslucentActivity and in the documentation. -->
     <style name="AndroidUtilsTheme.Translucent" parent="AndroidUtilsTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -30,8 +26,29 @@
 
     <!--########################################################################################################################################################################################## -->
 
-    <!-- Theme for the activity where open-source licenses are displayed. It uses the application's theme and is configured to show the action bar. -->
-    <style name="OssLicensesTheme" parent="AndroidUtilsTheme">
+    <!-- Themes for the About App utility -->ø
+
+    <!-- Theme for the about app activity, inherits from Material3 to maintain custom styling for the activity, regardless of which theme the app uses. -->
+    <style name="AndroidUtilsTheme.AboutApp" parent="Theme.AppCompat.DayNight">
+
+        <!-- It uses exactly the same configuration as AndroidUtilsTheme.Translucent -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        <!-- And customization for Material3 -->
+
+    </style>
+
+    <!-- Theme for the activity where open-source licenses are displayed. Inherits from the main theme to maintain the app style. -->
+    <style name="AndroidUtilsTheme.OssLicenses" parent="AndroidUtilsTheme">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
     </style>
