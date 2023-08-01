@@ -57,12 +57,15 @@ class App : MultiDexApplication() {
 
     /** Rate In App Setup */
     private fun rateInAppSetup() {
+
+        val preferences = getSharedPreferences(Preferences.RATE_APP_PREFERENCES_FILE, Context.MODE_PRIVATE)
+
         RateApp.apply {
-            minInstallElapsedDays = 0
-            minInstallLaunchTimes = 1
-            minRemindElapsedDays = 0
-            minRemindLaunchTimes = 1
-            showAtEvent = 1
+            minInstallElapsedDays = preferences.getInt(Preferences.RATE_APP_MIN_INSTALL_ELAPSED_DAYS, 0)
+            minInstallLaunchTimes = preferences.getInt(Preferences.RATE_APP_MIN_INSTALL_LAUNCH_TIMES, 1)
+            minRemindElapsedDays = preferences.getInt(Preferences.RATE_APP_MIN_REMIND_ELAPSED_DAYS, 0)
+            minRemindLaunchTimes = preferences.getInt(Preferences.RATE_APP_MIN_REMIND_LAUNCH_TIMES, 1)
+            showAtEvent = preferences.getInt(Preferences.RATE_APP_SHOW_AT_EVENT, 1)
         }.init(this)
     }
 
