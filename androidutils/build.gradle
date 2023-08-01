@@ -46,44 +46,31 @@ android {
 
 dependencies {
 
-    // Temporary development notes:
-    // ** DONE ** = Done, leave the dependency as is for the final version.
-    // ** CHECK ** = Check if the dependency is required, if the version needs to be updated, or if implementation or compileOnly needs to be used.
-
-    // ** DONE **
     // Allows access to new APIs on older API versions of the platform
     implementation "androidx.appcompat:appcompat:1.6.1"
 
-    // ** DONE **
     // Set of Kotlin extensions for Android Jetpack and other Android libraries
     implementation "androidx.core:core-ktx:1.10.1"
 
-    // ** DONE **
     // Material Components for Android
     implementation "com.google.android.material:material:1.9.0" // Required for designing the layouts
 
-    // ** DONE **
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
     implementation "androidx.constraintlayout:constraintlayout:2.1.4" // Required for design the layouts
 
-    // ** CHECK **
     // Runtime interface to interact with the Google Play Store
     implementation "com.google.android.play:core-ktx:1.8.1" // Required for using Google Play In-App review API
 
-    // ** CHECK **
     // Set of tools to express the open source software notices of libraries used in the apps
     implementation "com.google.android.gms:play-services-oss-licenses:17.0.1" // Required to display open source licenses in AboutApp
 
-    // ** CHECK **
     // Google Play's billing system, enables to sell digital products and content in the apps
     implementation "com.android.billingclient:billing-ktx:3.0.3" // Required for the premium utilities ** PENDING VERSION UPDATE **
 
-    // ** DONE **
     // Libraries are required only for references. If they are used in the destination app, it must declare the dependencies
     compileOnly "com.google.firebase:firebase-analytics:21.3.0" // Used to reference Firebase Analytics
     compileOnly "com.google.firebase:firebase-crashlytics:18.3.7" // Used to reference Firebase Crashlytics
 
-    // ** DONE **
     // Lint check
     lintPublish project(":lintcheck") // The library includes the lint check module for verifications
 
