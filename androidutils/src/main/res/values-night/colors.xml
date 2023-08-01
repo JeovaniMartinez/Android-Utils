@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Colors for the About App utility -->
-    <color name="about_app_background_color">#673AB7</color>
-    <color name="about_app_text_color">#2196F3</color>
-    <color name="about_app_icons_color">#CDDC39</color>
+    <color name="about_app_background_color">#DD2C00</color>
+    <color name="about_app_text_color">#555555</color>
+    <color name="about_app_icons_color">#964B00</color>
 
 </resources>

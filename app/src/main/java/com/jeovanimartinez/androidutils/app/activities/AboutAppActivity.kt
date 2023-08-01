@@ -7,7 +7,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.about.AboutAppConfig
-import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.app.BuildConfig
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.constants.Preferences
@@ -58,9 +57,6 @@ class AboutAppActivity : AppCompatActivity() {
     private fun showAboutAppActivity() {
 
         val aboutAppConfig = AboutAppConfig(
-            backgroundColor = getColorCompat(R.color.md_theme_background),
-            textColor = getColorCompat(R.color.md_theme_onBackground),
-            iconsColor = getColorCompat(R.color.icons_1),
             appIcon = R.drawable.library_logo,
             appName = R.string.about_app_app_name,
             appVersionName = BuildConfig.VERSION_NAME,

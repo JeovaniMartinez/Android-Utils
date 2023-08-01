@@ -43,7 +43,8 @@
         <item name="android:windowMinWidthMinor">100%</item>
         <item name="android:windowBackground">@android:color/transparent</item>
 
-        <!-- And customization for Material3 -->
+        <!-- Customization for Material3 -->
+        <!-- Some colors are applied directly from the code, to prevent the main theme of the app from interfering with the style of this theme. -->
 
     </style>
 

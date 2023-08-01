@@ -1,15 +1,11 @@
 package com.jeovanimartinez.androidutils.about
 
-import androidx.annotation.ColorInt
 import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 
 /**
  * Configuration for the about activity.
- * @param backgroundColor Background color for the activity.
- * @param textColor Color for the texts.
- * @param iconsColor Color for the icons.
  * @param appIcon App icon or logo.
  * @param appName App name.
  * @param appVersionName App version.
@@ -24,9 +20,6 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription, leave null if it is not required.
  * */
 data class AboutAppConfig(
-    @ColorInt val backgroundColor: Int,
-    @ColorInt val textColor: Int,
-    @ColorInt val iconsColor: Int,
     @DrawableOrDrawableRes val appIcon: Any?,
     @StringOrStringRes val appName: Any,
     @StringOrStringRes val appVersionName: Any,

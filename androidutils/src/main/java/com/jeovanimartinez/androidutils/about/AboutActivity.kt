@@ -17,6 +17,7 @@ import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.databinding.ActivityAboutBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
+import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
@@ -141,13 +142,13 @@ class AboutActivity : TranslucentActivity() {
         }
 
         // Configure the colors for the activity (background color, text color and icons color)
-        binding.cardTopAction.setCardBackgroundColor(aboutAppConfig.backgroundColor)
-        binding.cardContent.setCardBackgroundColor(aboutAppConfig.backgroundColor)
-        binding.layoutRoot.changeAllTextViewsTextColor(aboutAppConfig.textColor)
+        binding.cardTopAction.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))
+        binding.cardContent.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))
+        binding.layoutRoot.changeAllTextViewsTextColor(getColorCompat(R.color.about_app_text_color))
         val closeDrawable = getDrawableCompat(R.drawable.about_app_ic_check)
         val closeTermsDrawable = getDrawableCompat(R.drawable.about_app_ic_back)
-        closeDrawable?.setTint(aboutAppConfig.iconsColor)
-        closeTermsDrawable?.setTint(aboutAppConfig.iconsColor)
+        closeDrawable?.setTint(getColorCompat(R.color.about_app_icons_color))
+        closeTermsDrawable?.setTint(getColorCompat(R.color.about_app_icons_color))
         binding.btnClose.setImageDrawable(closeDrawable)
         binding.btnCloseTerms.setImageDrawable(closeTermsDrawable)
 
@@ -226,8 +227,8 @@ class AboutActivity : TranslucentActivity() {
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
         // Get the background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(aboutAppConfig.backgroundColor).substring(2).uppercase(Locale.ROOT)
-        val textColor = Integer.toHexString(aboutAppConfig.textColor).substring(2).uppercase(Locale.ROOT)
+        val backgroundColor = Integer.toHexString(getColorCompat(R.color.about_app_background_color)).substring(2).uppercase(Locale.ROOT)
+        val textColor = Integer.toHexString(getColorCompat(R.color.about_app_text_color)).substring(2).uppercase(Locale.ROOT)
 
         // Configure the web view
         @SuppressLint("SetJavaScriptEnabled")
