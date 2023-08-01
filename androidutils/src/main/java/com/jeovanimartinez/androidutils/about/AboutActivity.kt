@@ -142,6 +142,8 @@ class AboutActivity : TranslucentActivity() {
             binding.cardTopAction.translationY = dp2px(48).toFloat()
         }
 
+        // IMPORTANT: Due to the use of Material3 which uses dynamic colors, in some occasions the applied colors may vary slightly from those specified in the colors files.
+
         // Configure the colors for the activity (background color, text color, icons color, etc.)
         binding.cardTopAction.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))
         binding.cardContent.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))

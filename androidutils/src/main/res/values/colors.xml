@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Colors for the About App utility -->
-    <color name="about_app_background_color">#FAFDFD</color>
+    <color name="about_app_background_color">#DFF0EF</color>
     <color name="about_app_text_color">#49454F</color>
     <color name="about_app_icons_color">#737373</color>
     <color name="about_app_primary_color">#00897b</color> <!-- Used for the progress bar, buttons, etc. -->
