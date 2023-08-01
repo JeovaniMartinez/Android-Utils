@@ -2,7 +2,7 @@
 <resources>
 
     <!-- App theme colors https://material-foundation.github.io/material-theme-builder/#/custom -->
-    <color name="md_theme_primary">#00897b</color>
+    <color name="md_theme_primary">#00897B</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#8FF2FF</color>
     <color name="md_theme_onPrimaryContainer">#001F23</color>
