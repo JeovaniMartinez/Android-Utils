@@ -8,6 +8,8 @@
     <!-- General Use -->
     <string name="ok" translatable="false" tools:ignore="ButtonCase,Typos">Ok</string>
     <string name="select" translatable="false">Select</string>
+    <string name="save" translatable="false">Save</string>
+    <string name="cancel" translatable="false">Cancel</string>
 
     <!-- Main Activity -->
     <string name="main_activity_app_description" translatable="false">
@@ -37,6 +39,12 @@
     <string name="rate_app_check_and_show" translatable="false">Check And Show</string>
     <string name="rate_app_current_configuration_values" translatable="false">Current Configuration Values</string>
     <string name="rate_app_check_the_logcat" translatable="false">>> Check the Logcat &lt;&lt;</string>
+    <string name="rate_app_edit_configuration" translatable="false">Edit Configuration</string>
+    <string name="rate_app_incorrect_values_title" translatable="false">Incorrect Values</string>
+    <string name="rate_app_incorrect_values_msg" translatable="false">Please make sure that all inputs have a valid value.</string>
+    <string name="rate_app_edit_configuration_done_msg" translatable="false">The new configuration has been successfully saved, but it&apos;s
+        necessary to restart the app for it to take effect.</string>
+    <string name="rate_app_restart_app_now" translatable="false">Restart App Now</string>
 
     <!-- Watermark Activity -->
     <string name="watermark_title" translatable="false">Watermark</string>
