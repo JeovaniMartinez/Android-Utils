@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.about
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
@@ -141,7 +142,7 @@ class AboutActivity : TranslucentActivity() {
             binding.cardTopAction.translationY = dp2px(48).toFloat()
         }
 
-        // Configure the colors for the activity (background color, text color and icons color)
+        // Configure the colors for the activity (background color, text color, icons color, etc.)
         binding.cardTopAction.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))
         binding.cardContent.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))
         binding.layoutRoot.changeAllTextViewsTextColor(getColorCompat(R.color.about_app_text_color))
@@ -151,6 +152,7 @@ class AboutActivity : TranslucentActivity() {
         closeTermsDrawable?.setTint(getColorCompat(R.color.about_app_icons_color))
         binding.btnClose.setImageDrawable(closeDrawable)
         binding.btnCloseTerms.setImageDrawable(closeTermsDrawable)
+        binding.pbLoadingTermsAndPolicy.indeterminateTintList = ColorStateList.valueOf(getColorCompat(R.color.about_app_primary_color))
 
         // App data
         binding.ivAppIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
