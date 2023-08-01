@@ -10,6 +10,8 @@ import androidx.annotation.ColorInt
 
 /**
  * Recursively changes the text color of all TextViews in the given ViewGroup and its child views.
+ * Is possible that when using this function, the color of button text and other elements may also
+ * change, as they use a TextView internally.
  * @param color The color to be applied to the text.
  * */
 fun ViewGroup.changeAllTextViewsTextColor(@ColorInt color: Int) {
