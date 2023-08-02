@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutRoot"
     android:layout_width="match_parent"
@@ -66,126 +67,307 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/general_spacing"
-                android:text="@string/rate_app_msg_config"
-                tools:ignore="VisualLintLongText" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/general_spacing_half"
-                android:text="@string/rate_app_msg_log" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/general_spacing"
-                android:text="@string/rate_app_current_configuration_values"
-                android:textStyle="bold" />
-
-            <TableLayout
-                android:id="@+id/tableLayoutConfigValues"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layoutRateInAppMainContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:stretchColumns="1">
-
-                <TableRow>
-
-                    <TextView
-                        android:text="minInstallElapsedDays"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/tvMinInstallElapsedDays"
-                        android:paddingStart="20dp"
-                        android:text="0"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
-
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:text="minInstallLaunchTimes"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/tvMinInstallLaunchTimes"
-                        android:paddingStart="20dp"
-                        android:text="0"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
-
-                </TableRow>
-
-
-                <TableRow>
-
-                    <TextView
-                        android:text="minRemindElapsedDays"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/tvMinRemindElapsedDays"
-                        android:paddingStart="20dp"
-                        android:text="0"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
-
-                </TableRow>
-
-
-                <TableRow>
-
-                    <TextView
-                        android:text="minRemindLaunchTimes"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/tvMinRemindLaunchTimes"
-                        android:paddingStart="20dp"
-                        android:text="0"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
-
-                </TableRow>
-
-
-                <TableRow>
-
-                    <TextView
-                        android:text="showAtEvent"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/tvShowAtEvent"
-                        android:paddingStart="20dp"
-                        android:text="0"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
-
-                </TableRow>
-
-            </TableLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvCheckLogcat"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="2dp"
-                android:text="@string/rate_app_check_the_logcat"
-                android:textColor="@color/md_theme_primary"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:visibility="visible">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCheckAndShow"
-                android:layout_width="wrap_content"
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing"
+                    android:text="@string/rate_app_msg_config"
+                    tools:ignore="VisualLintLongText" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:text="@string/rate_app_msg_log" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing"
+                    android:text="@string/rate_app_current_configuration_values"
+                    android:textStyle="bold" />
+
+                <TableLayout
+                    android:id="@+id/tableLayoutConfigValues"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:stretchColumns="1">
+
+                    <TableRow>
+
+                        <TextView android:text="@string/rate_app_config_min_install_elapsed_days" />
+
+                        <TextView
+                            android:id="@+id/tvMinInstallElapsedDays"
+                            android:paddingStart="20dp"
+                            android:text="0"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView android:text="@string/rate_app_config_min_install_launch_times" />
+
+                        <TextView
+                            android:id="@+id/tvMinInstallLaunchTimes"
+                            android:paddingStart="20dp"
+                            android:text="0"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    </TableRow>
+
+
+                    <TableRow>
+
+                        <TextView android:text="@string/rate_app_config_min_remind_elapsed_days" />
+
+                        <TextView
+                            android:id="@+id/tvMinRemindElapsedDays"
+                            android:paddingStart="20dp"
+                            android:text="0"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    </TableRow>
+
+
+                    <TableRow>
+
+                        <TextView android:text="@string/rate_app_config_min_remind_launch_times" />
+
+                        <TextView
+                            android:id="@+id/tvMinRemindLaunchTimes"
+                            android:paddingStart="20dp"
+                            android:text="0"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    </TableRow>
+
+
+                    <TableRow>
+
+                        <TextView android:text="@string/rate_app_config_show_at_event" />
+
+                        <TextView
+                            android:id="@+id/tvShowAtEvent"
+                            android:paddingStart="20dp"
+                            android:text="0"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvCheckLogcat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="@string/rate_app_check_the_logcat"
+                    android:textColor="@color/md_theme_primary"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEditConfiguration"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rate_app_edit_configuration"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCheckAndShow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rate_app_check_and_show"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layoutRateInAppEditConfig"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="@string/rate_app_check_and_show"
-                tools:ignore="TextContrastCheck" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/general_spacing"
+                    android:text="@string/rate_app_edit_configuration" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing"
+                    android:weightSum="2">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/general_spacing_half"
+                        android:layout_weight="1"
+                        android:hint="@string/rate_app_config_min_install_elapsed_days"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMinInstallElapsedDays"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:nextFocusForward="@+id/etMinInstallLaunchTimes"
+                            android:text="0"
+                            tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/general_spacing_half"
+                        android:layout_weight="1"
+                        android:hint="@string/rate_app_config_min_install_launch_times"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMinInstallLaunchTimes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:nextFocusForward="@+id/etMinRemindElapsedDays"
+                            android:text="1"
+                            tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing"
+                    android:weightSum="2">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/general_spacing_half"
+                        android:layout_weight="1"
+                        android:hint="@string/rate_app_config_min_remind_elapsed_days"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMinRemindElapsedDays"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:nextFocusForward="@+id/etMinRemindLaunchTimes"
+                            android:text="0"
+                            tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/general_spacing_half"
+                        android:layout_weight="1"
+                        android:hint="@string/rate_app_config_min_remind_launch_times"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMinRemindLaunchTimes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:nextFocusForward="@+id/etShowAtEvent"
+                            android:text="1"
+                            tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing"
+                    android:hint="@string/rate_app_config_show_at_event"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etShowAtEvent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:text="1"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEditConfigurationCancel"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancel"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEditConfigurationSave"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextContrastCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
