@@ -110,6 +110,19 @@ class RateAppActivity : AppCompatActivity() {
                     throw IllegalArgumentException("Invalid config value")
                 }
 
+                // If there is no change in values
+                if (
+                    minInstallElapsedDays == RateApp.minInstallElapsedDays &&
+                    minInstallLaunchTimes == RateApp.minInstallLaunchTimes &&
+                    minRemindElapsedDays == RateApp.minRemindElapsedDays &&
+                    minRemindLaunchTimes == RateApp.minRemindLaunchTimes &&
+                    showAtEvent == RateApp.showAtEvent
+                ) {
+                    binding.layoutRateInAppMainContent.visibility = View.VISIBLE
+                    binding.layoutRateInAppEditConfig.visibility = View.GONE
+                    return@setOnClickListener
+                }
+
             } catch (err: Exception) {
                 MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.rate_app_incorrect_values_title)
