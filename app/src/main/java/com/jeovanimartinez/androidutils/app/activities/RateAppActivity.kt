@@ -145,11 +145,7 @@ class RateAppActivity : AppCompatActivity() {
 
             MaterialAlertDialogBuilder(this)
                 .setMessage(R.string.rate_app_edit_configuration_done_msg)
-                .setPositiveButton(R.string.ok) { _, _ ->
-                    binding.layoutRateInAppMainContent.visibility = View.VISIBLE
-                    binding.layoutRateInAppEditConfig.visibility = View.GONE
-                }
-                .setNeutralButton(R.string.rate_app_restart_app_now) { _, _ ->
+                .setPositiveButton(R.string.rate_app_restart_app_now) { _, _ ->
                     val generalPreferences = getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE)
                     generalPreferences.edit().putBoolean(Preferences.LAUNCH_RATE_APP_ACTIVITY_ON_START, true).commit()
                     triggerRestart(this@RateAppActivity)
@@ -169,7 +165,7 @@ class RateAppActivity : AppCompatActivity() {
         @Suppress("USELESS_IS_CHECK")
         if (context is Activity) {
             @Suppress("USELESS_CAST")
-            (context as Activity).finish()
+            (context as Activity).finishAffinity()
         }
         Runtime.getRuntime().exit(0)
     }
