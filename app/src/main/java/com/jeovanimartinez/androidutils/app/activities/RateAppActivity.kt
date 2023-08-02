@@ -1,5 +1,6 @@
 package com.jeovanimartinez.androidutils.app.activities
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -45,6 +46,7 @@ class RateAppActivity : AppCompatActivity() {
     }
 
     /** Rate In App Setup */
+    @SuppressLint("ApplySharedPref")
     private fun rateInAppSetup() {
 
         // Configuration general
@@ -135,6 +137,8 @@ class RateAppActivity : AppCompatActivity() {
                     binding.layoutRateInAppEditConfig.visibility = View.GONE
                 }
                 .setNeutralButton(R.string.rate_app_restart_app_now) { _, _ ->
+                    val generalPreferences = getSharedPreferences(Preferences.GENERAL_PREFERENCES_FILE, Context.MODE_PRIVATE)
+                    generalPreferences.edit().putBoolean(Preferences.LAUNCH_RATE_APP_ACTIVITY_ON_START, true).commit()
                     triggerRestart(this@RateAppActivity)
                 }
                 .setCancelable(false)

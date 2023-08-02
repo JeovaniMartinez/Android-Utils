@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         initialSetup()
         libraryUtilitiesMenuSetup()
-
+        generalSetup()
     }
 
     /** Initial setup */
@@ -118,6 +118,17 @@ class MainActivity : AppCompatActivity() {
         // When the selected item changes
         libraryUtilitiesMenu.onItemClickListener = OnItemClickListener { _, _, position, _ ->
             preferences.edit().putInt(Preferences.UTILITIES_MENU_SELECTED_INDEX, position).apply()
+        }
+
+    }
+
+    /** General setup */
+    private fun generalSetup() {
+
+        // Launch RateAppActivity if necessary
+        if (preferences.getBoolean(Preferences.LAUNCH_RATE_APP_ACTIVITY_ON_START, false)) {
+            preferences.edit().putBoolean(Preferences.LAUNCH_RATE_APP_ACTIVITY_ON_START, false).apply() // Reset the value
+            startActivity(Intent(this, RateAppActivity::class.java))
         }
 
     }
