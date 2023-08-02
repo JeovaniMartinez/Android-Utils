@@ -41,6 +41,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minInstallElapsedDays = 10
         set(value) {
+            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minInstallElapsedDays")
             field = validateConfigValue(value, 0)
         }
 
@@ -50,6 +51,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minInstallLaunchTimes = 10
         set(value) {
+            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minInstallLaunchTimes")
             field = validateConfigValue(value, 1)
         }
 
@@ -59,6 +61,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minRemindElapsedDays = 2
         set(value) {
+            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minRemindElapsedDays")
             field = validateConfigValue(value, 0)
         }
 
@@ -68,6 +71,7 @@ object RateApp : Base<RateApp>() {
      * */
     var minRemindLaunchTimes = 4
         set(value) {
+            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minRemindLaunchTimes")
             field = validateConfigValue(value, 1)
         }
 
@@ -80,6 +84,7 @@ object RateApp : Base<RateApp>() {
      * */
     var showAtEvent = 2
         set(value) {
+            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of showAtEvent")
             field = validateConfigValue(value, 1)
         }
 
