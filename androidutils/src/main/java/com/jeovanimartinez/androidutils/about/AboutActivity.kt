@@ -32,7 +32,7 @@ import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import java.util.*
 
 /** About app activity */
-class AboutActivity : TranslucentActivity() {
+internal class AboutActivity : TranslucentActivity() {
 
     companion object {
         /*
