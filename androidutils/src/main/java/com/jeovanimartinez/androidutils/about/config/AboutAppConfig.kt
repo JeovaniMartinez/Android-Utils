@@ -1,4 +1,4 @@
-package com.jeovanimartinez.androidutils.about
+package com.jeovanimartinez.androidutils.about.config
 
 import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes

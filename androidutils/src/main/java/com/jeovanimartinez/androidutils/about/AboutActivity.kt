@@ -15,6 +15,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.databinding.ActivityAboutBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
