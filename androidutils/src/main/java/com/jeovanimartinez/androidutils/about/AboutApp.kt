@@ -42,6 +42,7 @@ object AboutApp : Base<AboutApp>() {
 
         firebaseAnalytics(Event.ABOUT_APP_SHOWN) // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
         log("Launched AboutActivity")
+
     }
 
 }
