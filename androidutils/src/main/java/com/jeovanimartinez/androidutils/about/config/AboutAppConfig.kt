@@ -5,30 +5,45 @@ import com.jeovanimartinez.androidutils.annotations.DrawableOrDrawableRes
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 
 /**
- * Configuration for the about activity.
- * @param appIcon App icon or logo.
+ * Configuration data for the about app activity.
+ * @param appLogo Logo or app icon.
  * @param appName App name.
- * @param appVersionName App version.
- * @param authorName App author name.
- * @param authorLink URL that opens when clicking on the author's name, null to not open any link.
- * @param companyLogo Developer company logo.
- * @param companyName Developer company name.
- * @param companyLink URL that opens when clicking on the company logo, null to not open any link.
- * @param termsAndPrivacyPolicyLink URL of the terms of use and privacy policy, leave null if you do not want to show them.
- * @param showOpenSourceLicenses Determines whether a button is shown to view the open source licenses of the app. If true, these https://developers.google.com/android/guides/opensource
- *        instructions must be followed in order to can shown open source licenses.
+ * @param appVersion App version name.
+ * @param credits App credits. For an independent app or one developed by an individual, could be the developer's name.
+ *        For a company, it could be a short text like: My Company Dev-Team. Always use a short text that takes up a
+ *        maximum of one line, or set to null to omit showing this section.
+ * @param creditsUrl It is optional and only takes effect if [credits] is not null, determining which URL will be opened in the
+ *        system's web browser when clicking on [credits]. Set to null to not open any URL.
+ * @param authorLogo The app's author's logo, it can be the company's logo or any logo that represents the app's author.
+ * @param authorUrl It is optional, determining which URL will be opened in the system's web browser when clicking on [authorLogo].
+ *        Set to null to not open any URL.
+ * @param copyrightHolderName Name of the copyright holder to be used in the copyright statement.
+ * @param termsAndPrivacyPolicyUrl The URL for the app's license terms and privacy policy, which will be displayed within the
+ *        about app activity in a WebView. Set to null to not show this section or the corresponding button.
+ * @param helpUrl URL for the app's help topics, which will be opened in the system's web browser. Set to null to not show this
+ *        section or the corresponding button.
+ * @param contactEmail Email for contact or sending feedback about the app. Set to null to not show this section or the
+ *        corresponding button.
+ * @param showOpenSourceLicenses Determines whether to show a button that launch an activity showing the open-source licenses
+ *        used by the app. If set to true, it is necessary to follow these instructions to display the licenses
+ *        correctly: https://developers.google.com/android/guides/opensource
+ * @param style Sets the configuration for the about app activity's style. If set to null, the values from the resource files will
+ *        be used. If assigned, the specified values will be used, and the values from the resource files will be ignored.
  * @param taskDescriptionConfig Object with the configuration for the activity TaskDescription, leave null if it is not required.
  * */
 data class AboutAppConfig(
-    @DrawableOrDrawableRes val appIcon: Any?,
+    @DrawableOrDrawableRes val appLogo: Any,
     @StringOrStringRes val appName: Any,
-    @StringOrStringRes val appVersionName: Any,
-    @StringOrStringRes val authorName: Any,
-    @StringOrStringRes val authorLink: Any?,
-    @DrawableOrDrawableRes val companyLogo: Any?,
-    @StringOrStringRes val companyName: Any,
-    @StringOrStringRes val companyLink: Any?,
-    @StringOrStringRes val termsAndPrivacyPolicyLink: Any?,
+    @StringOrStringRes val appVersion: Any,
+    @StringOrStringRes val credits: Any?,
+    @StringOrStringRes val creditsUrl: Any?,
+    @DrawableOrDrawableRes val authorLogo: Any,
+    @StringOrStringRes val authorUrl: Any?,
+    @StringOrStringRes val copyrightHolderName: Any,
+    @StringOrStringRes val termsAndPrivacyPolicyUrl: Any?,
+    @StringOrStringRes val helpUrl: Any?,
+    @StringOrStringRes val contactEmail: Any?,
     val showOpenSourceLicenses: Boolean,
+    val style: AboutAppStyle? = null,
     val taskDescriptionConfig: TaskDescriptionConfig? = null,
 )
