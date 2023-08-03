@@ -49,7 +49,7 @@
                 android:layout_marginEnd="15dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivAppIcon"
+                    android:id="@+id/ivAppLogo"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginTop="19dp"
@@ -68,7 +68,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ivAppIcon"
+                    app:layout_constraintTop_toBottomOf="@id/ivAppLogo"
                     tools:ignore="SpUsage,TextSizeCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -94,7 +94,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvAppVersion" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAuthorLabel"
+                    android:id="@+id/tvCreditsLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -106,7 +106,7 @@
                     tools:ignore="SpUsage,TextSizeCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvAuthor"
+                    android:id="@+id/tvCredits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -115,7 +115,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvAuthorLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvCreditsLabel"
                     tools:ignore="SpUsage,TextSizeCheck" />
 
                 <View
@@ -126,10 +126,10 @@
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvAuthor" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCredits" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivCompanyLogo"
+                    android:id="@+id/ivAuthorLogo"
                     android:layout_width="130dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
@@ -149,7 +149,7 @@
                     android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ivCompanyLogo"
+                    app:layout_constraintTop_toBottomOf="@id/ivAuthorLogo"
                     tools:ignore="SmallSp,SpUsage,TextSizeCheck" />
 
                 <com.google.android.material.textview.MaterialTextView

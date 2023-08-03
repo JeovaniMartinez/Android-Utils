@@ -158,30 +158,30 @@ internal class AboutActivity : TranslucentActivity() {
         binding.pbLoadingTermsAndPolicy.indeterminateTintList = ColorStateList.valueOf(getColorCompat(R.color.about_app_primary_color))
 
         // App data
-        binding.ivAppIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
+        binding.ivAppLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.appLogo))
         binding.tvAppName.text = typeAsString(aboutAppConfig.appName)
-        binding.tvAppVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
+        binding.tvAppVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersion)
 
-        // Author data
-        binding.tvAuthor.text = typeAsString(aboutAppConfig.authorName)
-        aboutAppConfig.authorLink.whenNotNull { link ->
-            binding.tvAuthor.setOnClickListener {
-                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_author_link")
+        // Credits
+        binding.tvCredits.text = typeAsString(aboutAppConfig.creditsText)
+        aboutAppConfig.creditsUrl.whenNotNull { url ->
+            binding.tvCredits.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_author_link")
             }
         }
 
         // Company data and copyright
-        binding.ivCompanyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
+        binding.ivAuthorLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.authorLogo))
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
-        aboutAppConfig.companyLink.whenNotNull { link ->
-            binding.ivCompanyLogo.setOnClickListener {
-                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_company_link")
+        binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.copyrightHolderName))
+        aboutAppConfig.authorUrl.whenNotNull { url ->
+            binding.ivAuthorLogo.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_company_link")
             }
         }
 
         // Terms and privacy policy
-        if (aboutAppConfig.termsAndPrivacyPolicyLink == null) {
+        if (aboutAppConfig.termsAndPrivacyPolicyUrl == null) {
             binding.btnTermsAndPolicy.visibility = View.GONE
             // Adjust btnOpenSourceLicenses to be displayed correctly
             val btnOpenSourceLicensesParams = binding.btnOpenSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
@@ -241,7 +241,7 @@ internal class AboutActivity : TranslucentActivity() {
         binding.webViewTermsAndPolicy.settings.domStorageEnabled = true // For best compatibility
 
         // The URL is loaded, passing the background color and text color parameters
-        aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
+        aboutAppConfig.termsAndPrivacyPolicyUrl.whenNotNull {
             val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
             AboutApp.log("Terms and Privacy Policy URL = $url")
             binding.webViewTermsAndPolicy.loadUrl(url)

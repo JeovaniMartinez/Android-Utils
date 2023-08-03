@@ -9,11 +9,11 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param appLogo Logo or app icon.
  * @param appName App name.
  * @param appVersion App version name.
- * @param credits App credits. For an independent app or one developed by an individual, could be the developer's name.
+ * @param creditsText App credits. For an independent app or one developed by an individual, could be the developer's name.
  *        For a company, it could be a short text like: My Company Dev-Team. Always use a short text that takes up a
  *        maximum of one line.
- * @param creditsUrl It is optional and only takes effect if [credits] is not null, determining which URL will be opened in the
- *        system's web browser when clicking on [credits]. Set to null to not open any URL.
+ * @param creditsUrl It is optional and only takes effect if [creditsText] is not null, determining which URL will be opened in the
+ *        system's web browser when clicking on [creditsText]. Set to null to not open any URL.
  * @param authorLogo The app's author's logo, it can be the company's logo or any logo that represents the app's author.
  * @param authorUrl It is optional, determining which URL will be opened in the system's web browser when clicking on [authorLogo].
  *        Set to null to not open any URL.
@@ -35,7 +35,7 @@ data class AboutAppConfig(
     @DrawableOrDrawableRes val appLogo: Any,
     @StringOrStringRes val appName: Any,
     @StringOrStringRes val appVersion: Any,
-    @StringOrStringRes val credits: Any,
+    @StringOrStringRes val creditsText: Any,
     @StringOrStringRes val creditsUrl: Any?,
     @DrawableOrDrawableRes val authorLogo: Any,
     @StringOrStringRes val authorUrl: Any?,

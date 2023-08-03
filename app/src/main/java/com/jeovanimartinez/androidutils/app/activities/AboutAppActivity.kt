@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
+import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
 import com.jeovanimartinez.androidutils.app.BuildConfig
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.constants.Preferences
@@ -57,17 +58,20 @@ class AboutAppActivity : AppCompatActivity() {
     private fun showAboutAppActivity() {
 
         val aboutAppConfig = AboutAppConfig(
-            appIcon = R.drawable.library_logo,
+            appLogo = R.drawable.library_logo,
             appName = R.string.about_app_app_name,
-            appVersionName = BuildConfig.VERSION_NAME,
-            authorName = R.string.about_app_author_name,
-            authorLink = R.string.about_app_author_link,
-            companyLogo = R.drawable.logo_jedemm_com,
-            companyName = R.string.about_app_company_name,
-            companyLink = R.string.about_app_company_link,
-            termsAndPrivacyPolicyLink = R.string.about_app_terms_and_policy_link,
+            appVersion = BuildConfig.VERSION_NAME,
+            creditsText = R.string.about_app_author_name,
+            creditsUrl = R.string.about_app_author_link,
+            authorLogo = R.drawable.logo_jedemm_com,
+            authorUrl = R.string.about_app_company_link,
+            copyrightHolderName = R.string.about_app_company_name,
+            termsAndPrivacyPolicyUrl = R.string.about_app_terms_and_policy_link,
+            helpUrl = null,
+            contactEmail = null,
             showOpenSourceLicenses = true,
-            //TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.colorBackground))
+            style = null,
+            TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
         )
 
         AboutApp.show(this@AboutAppActivity, aboutAppConfig)
