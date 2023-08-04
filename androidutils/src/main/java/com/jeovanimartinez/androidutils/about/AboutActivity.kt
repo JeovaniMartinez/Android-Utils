@@ -166,7 +166,7 @@ internal class AboutActivity : TranslucentActivity() {
         binding.tvCredits.text = typeAsString(aboutAppConfig.creditsText)
         aboutAppConfig.creditsUrl.whenNotNull { url ->
             binding.tvCredits.setOnClickListener {
-                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_author_link")
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_credits_url")
             }
         }
 
@@ -176,7 +176,7 @@ internal class AboutActivity : TranslucentActivity() {
         binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.copyrightHolderName))
         aboutAppConfig.authorUrl.whenNotNull { url ->
             binding.ivAuthorLogo.setOnClickListener {
-                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_company_link")
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_author_url")
             }
         }
 
