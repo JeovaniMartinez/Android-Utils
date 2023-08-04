@@ -16,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
+import com.jeovanimartinez.androidutils.about.config.AboutAppStyle
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.databinding.ActivityAboutBinding
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
@@ -50,6 +51,7 @@ internal class AboutActivity : TranslucentActivity() {
     private var loadingTermsAndPolicy = false
     private var termsAndPolicyVisible = false
     private lateinit var aboutAppConfig: AboutAppConfig // Config data
+    private lateinit var style: AboutAppStyle // Style for this activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         aboutActivityRunning = true // Indicates that the activity is running
@@ -63,6 +65,7 @@ internal class AboutActivity : TranslucentActivity() {
 
         AboutApp.log("Started AboutActivity")
 
+        styleSetup()
         backButtonSetup()
         generalSetup()
     }
@@ -123,13 +126,31 @@ internal class AboutActivity : TranslucentActivity() {
         })
     }
 
-    /** Initial and general setup */
-    private fun generalSetup() {
+    /** Style setup */
+    private fun styleSetup() {
+
+        // Configure the activity style
+        style = if (aboutAppConfig.style == null) {
+            // The style of the resources is used
+            AboutAppStyle(
+                primaryColor = getColorCompat(R.color.about_app_primary_color),
+                backgroundColor = getColorCompat(R.color.about_app_background_color),
+                textColor = getColorCompat(R.color.about_app_text_color),
+                iconsColor = getColorCompat(R.color.about_app_icons_color)
+            )
+        } else {
+            aboutAppConfig.style!! // The style of the configuration object is used
+        }
 
         // Configure the task description (if it is necessary)
         aboutAppConfig.taskDescriptionConfig.whenNotNull {
             configureTaskDescription(it)
         }
+
+    }
+
+    /** Initial and general setup */
+    private fun generalSetup() {
 
         // Adjust elements visibility
         binding.pbLoadingTermsAndPolicy.visibility = View.GONE
@@ -146,16 +167,16 @@ internal class AboutActivity : TranslucentActivity() {
         // IMPORTANT: Due to the use of Material3 which uses dynamic colors, in some occasions the applied colors may vary slightly from those specified in the colors files.
 
         // Configure the colors for the activity (background color, text color, icons color, etc.)
-        binding.cardTopAction.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))
-        binding.cardContent.setCardBackgroundColor(getColorCompat(R.color.about_app_background_color))
-        binding.layoutRoot.changeAllTextViewsTextColor(getColorCompat(R.color.about_app_text_color))
+        binding.cardTopAction.setCardBackgroundColor(style.backgroundColor)
+        binding.cardContent.setCardBackgroundColor(style.backgroundColor)
+        binding.layoutRoot.changeAllTextViewsTextColor(style.textColor)
         val closeDrawable = getDrawableCompat(R.drawable.about_app_ic_check)
         val closeTermsDrawable = getDrawableCompat(R.drawable.about_app_ic_back)
-        closeDrawable?.setTint(getColorCompat(R.color.about_app_icons_color))
-        closeTermsDrawable?.setTint(getColorCompat(R.color.about_app_icons_color))
+        closeDrawable?.setTint(style.iconsColor)
+        closeTermsDrawable?.setTint(style.iconsColor)
         binding.btnClose.setImageDrawable(closeDrawable)
         binding.btnCloseTerms.setImageDrawable(closeTermsDrawable)
-        binding.pbLoadingTermsAndPolicy.indeterminateTintList = ColorStateList.valueOf(getColorCompat(R.color.about_app_primary_color))
+        binding.pbLoadingTermsAndPolicy.indeterminateTintList = ColorStateList.valueOf(style.primaryColor)
 
         // App data
         binding.ivAppLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.appLogo))
@@ -232,8 +253,8 @@ internal class AboutActivity : TranslucentActivity() {
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
         // Get the background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(getColorCompat(R.color.about_app_background_color)).substring(2).uppercase(Locale.ROOT)
-        val textColor = Integer.toHexString(getColorCompat(R.color.about_app_text_color)).substring(2).uppercase(Locale.ROOT)
+        val backgroundColor = Integer.toHexString(style.backgroundColor).substring(2).uppercase(Locale.ROOT)
+        val textColor = Integer.toHexString(style.textColor).substring(2).uppercase(Locale.ROOT)
 
         // Configure the web view
         @SuppressLint("SetJavaScriptEnabled")
