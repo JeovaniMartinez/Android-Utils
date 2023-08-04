@@ -56,7 +56,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/library_logo" />
+                    app:srcCompat="@drawable/android_utils_logo" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvAppName"
@@ -136,7 +136,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/separator2"
-                    app:srcCompat="@drawable/logo_jedemm_com"
+                    app:srcCompat="@drawable/android_utils_text_logo"
                     tools:ignore="ImageContrastCheck" />
 
                 <com.google.android.material.textview.MaterialTextView

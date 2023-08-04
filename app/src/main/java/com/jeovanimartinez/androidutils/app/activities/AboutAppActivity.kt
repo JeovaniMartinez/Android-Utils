@@ -58,12 +58,12 @@ class AboutAppActivity : AppCompatActivity() {
     private fun showAboutAppActivity() {
 
         val aboutAppConfig = AboutAppConfig(
-            appLogo = R.drawable.library_logo,
+            appLogo = R.drawable.android_utils_logo,
             appName = R.string.about_app_default_app_name,
             appVersion = BuildConfig.VERSION_NAME,
             creditsText = R.string.about_app_default_credits_text,
             creditsUrl = null,
-            authorLogo = R.drawable.logo_jedemm_com,
+            authorLogo = R.drawable.android_utils_text_logo,
             authorUrl = null,
             copyrightHolderName = "",
             termsAndPrivacyPolicyUrl = "https://jedemm.com/android-utils/terms-and-policy/license.html",
