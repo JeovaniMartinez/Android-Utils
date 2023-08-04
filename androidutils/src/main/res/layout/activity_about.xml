@@ -174,18 +174,32 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvRightsReserved" />
 
-                <com.google.android.material.textview.MaterialTextView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTermsAndPolicy"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="45dp"
                     android:gravity="center"
                     android:text="@string/about_app_terms_and_policy"
                     android:textSize="9dp"
+                    android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/separator3"
-                    tools:ignore="SmallSp,SpUsage,TextSizeCheck" />
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOpenSourceLicenses"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:text="@string/about_app_open_source_licenses"
+                    android:textSize="9dp"
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toStartOf="@id/btnClose"
+                    app:layout_constraintStart_toEndOf="@id/btnTermsAndPolicy"
+                    app:layout_constraintTop_toBottomOf="@id/separator3"
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TouchTargetSizeCheck" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnClose"
@@ -196,20 +210,6 @@
                     app:layout_constraintTop_toBottomOf="@id/separator3"
                     app:srcCompat="@drawable/about_app_ic_check"
                     tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/btnOpenSourceLicenses"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="center"
-                    android:text="@string/about_app_open_source_licenses"
-                    android:textSize="9dp"
-                    app:layout_constraintEnd_toStartOf="@id/btnClose"
-                    app:layout_constraintStart_toEndOf="@id/btnTermsAndPolicy"
-                    app:layout_constraintTop_toBottomOf="@id/separator3"
-                    tools:ignore="SmallSp,SpUsage,TextSizeCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
