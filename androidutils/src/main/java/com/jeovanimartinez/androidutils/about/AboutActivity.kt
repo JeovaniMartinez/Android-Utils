@@ -297,9 +297,9 @@ internal class AboutActivity : TranslucentActivity() {
             // Set back button visibility and animation
             binding.cardTopAction.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                binding.cardTopAction.animate().translationX(0f).onAnimationEnd { }
+                binding.cardTopAction.animate().translationX(0f)
             } else {
-                binding.cardTopAction.animate().translationY(0f).onAnimationEnd { }
+                binding.cardTopAction.animate().translationY(0f)
             }
 
             binding.webViewTermsAndPolicy.visibility = View.VISIBLE
