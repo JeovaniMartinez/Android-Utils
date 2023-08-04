@@ -1,20 +1,16 @@
 <resources>
 
     <!-- About App -->
-    <string name="about_app_app_name">Utilidades Android</string>
     <string name="about_app_version">versión %1$s</string>
-    <string name="about_app_author_title">Programación y Diseño por</string>
-    <string name="about_app_author_name">Jeovani Martínez</string>
-    <string name="about_app_author_link">https://github.com/JeovaniMartinez</string>
-    <string name="about_app_company_name">Jedemm Technologies</string>
-    <string name="about_app_company_link">https://jedemm.com</string>
+    <string name="about_app_credits_label">Programación y Diseño por</string>
     <string name="about_app_copyright">Copyright © %1$s %2$s</string>
     <string name="about_app_all_rights_reserved">Todos los Derechos Reservados</string>
     <string name="about_app_terms_and_policy">Términos y Política\nde Privacidad</string>
     <string name="about_app_terms_and_policy_not_available">No disponible</string>
     <string name="about_app_terms_and_policy_network_error">No disponible, se requiere conexión a internet</string>
-    <string name="about_app_terms_and_policy_link">https://jedemm.com/android-utils/terms-and-policy/license.html</string>
     <string name="about_app_open_source_licenses">Licencias de\nCódigo Abierto</string>
+    <string name="about_app_default_app_name">Android Utils</string>
+    <string name="about_app_default_credits_text">Android Utils Dev-Team</string>
 
     <!-- More Apps -->
     <string name="more_apps_unable_to_show_dev_page">No disponible</string>
