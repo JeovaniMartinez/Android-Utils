@@ -30,6 +30,7 @@ import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.changeAllTextViewsTextColor
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
+import com.jeovanimartinez.androidutils.toplevelfunctions.convertHexColorArgbToRgba
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import java.util.*
 
@@ -233,6 +234,24 @@ internal class AboutActivity : TranslucentActivity() {
     }
 
     /**
+     * Generate and return a String in query parameters style of a URL using all the properties of the style from
+     * AboutAppStyle applied to this activity.
+     * */
+    private fun convertStyleToUrlQueryParams(): String {
+        /*
+        * For the colors, first, the Int color is converted to a hexadecimal color, then everything is converted to uppercase,
+        * and finally, it is converted from ARGB (which is how it is used in Android) to RGBA (which is how it is used on the web)
+        * so that the colors can be represented correctly.
+        * */
+        return buildString {
+            append("primary-color=${convertHexColorArgbToRgba(Integer.toHexString(style.primaryColor).uppercase(Locale.ROOT))}")
+            append("&background-color=${convertHexColorArgbToRgba(Integer.toHexString(style.backgroundColor).uppercase(Locale.ROOT))}")
+            append("&text-color=${convertHexColorArgbToRgba(Integer.toHexString(style.textColor).uppercase(Locale.ROOT))}")
+            append("&icons-color=${convertHexColorArgbToRgba(Integer.toHexString(style.iconsColor).uppercase(Locale.ROOT))}")
+        }
+    }
+
+    /**
      * Start the process to get the terms and privacy policy in a web view.
      * @param animateShowTermsView Determines if when the terms view is shown it will be done with animation,
      *        this view is only shown if the data was obtained correctly from the server.
@@ -252,10 +271,6 @@ internal class AboutActivity : TranslucentActivity() {
 
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
-        // Get the background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(style.backgroundColor).substring(2).uppercase(Locale.ROOT)
-        val textColor = Integer.toHexString(style.textColor).substring(2).uppercase(Locale.ROOT)
-
         // Configure the web view
         @SuppressLint("SetJavaScriptEnabled")
         binding.webViewTermsAndPolicy.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
@@ -263,7 +278,7 @@ internal class AboutActivity : TranslucentActivity() {
 
         // The URL is loaded, passing the background color and text color parameters
         aboutAppConfig.termsAndPrivacyPolicyUrl.whenNotNull {
-            val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
+            val url = "${typeAsString(it)}?${convertStyleToUrlQueryParams()}&lang=${Locale.getDefault().language}"
             AboutApp.log("Terms and Privacy Policy URL = $url")
             binding.webViewTermsAndPolicy.loadUrl(url)
         }
