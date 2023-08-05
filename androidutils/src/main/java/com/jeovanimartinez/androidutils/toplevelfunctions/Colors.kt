@@ -9,7 +9,7 @@ package com.jeovanimartinez.androidutils.toplevelfunctions
 fun convertHexColorArgbToRgba(colorArgb: String): String {
 
     require(colorArgb.length == 8) {
-        "The ARGB must be exactly 8 characters long, current is {${colorArgb.length}} ($colorArgb)"
+        "The ARGB must be exactly 8 characters long, current is ${colorArgb.length} ($colorArgb)"
     }
 
     // It's just rearranging the string
