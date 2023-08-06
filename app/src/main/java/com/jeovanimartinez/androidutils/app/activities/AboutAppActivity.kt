@@ -66,7 +66,7 @@ class AboutAppActivity : AppCompatActivity() {
             authorLogo = R.drawable.android_utils_text_logo,
             authorUrl = null,
             copyrightHolderName = "",
-            termsAndPrivacyPolicyUrl = "https://jedemm.com/android-utils/terms-and-policy/license.html",
+            termsAndPrivacyPolicyUrl = "https://jeovanimartinez.github.io/Android-Utils_Terms-Privacy-Policy-Template/index.html",
             helpUrl = null,
             contactEmail = null,
             showOpenSourceLicenses = true,

@@ -1,1 +1,0 @@
-Template for license terms and the privacy policy.
