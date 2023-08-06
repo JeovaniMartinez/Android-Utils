@@ -22,8 +22,8 @@ object AboutApp : Base<AboutApp>() {
 
     /**
      * Shows an about activity.
-     * @param activity Current activity from which the about activity will be launched.
-     * @param aboutAppConfig Configuration object for the about activity.
+     * @param activity Current activity from which the about app activity will be launched.
+     * @param aboutAppConfig Configuration object for the about app activity.
      * */
     fun show(activity: Activity, aboutAppConfig: AboutAppConfig) {
 
