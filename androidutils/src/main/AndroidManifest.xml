@@ -24,4 +24,13 @@
 
     </application>
 
+    <!-- <queries> Element to query for activities that handle ACTION_SENDTO intent for the EmailUtils -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="mailto" />
+        </intent>
+    </queries>
+
 </manifest>
