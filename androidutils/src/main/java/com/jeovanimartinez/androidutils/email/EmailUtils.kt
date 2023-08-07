@@ -24,7 +24,7 @@ object EmailUtils : Base<EmailUtils>() {
 
     /**
      * Launches an external app (using a chooser) to send an simple email through that app. If there is no app
-     * available to send the email, show a toast and if the recipient is not null, copy the recipient's email
+     * available to send the email, show a toast, and if the recipient is not null, copy the recipient's email
      * address to the clipboard.
      * @param activity Activity from which the process is initiated.
      * @param recipient Email address of the recipient. It is possible to specify the field or leave it as null
@@ -79,7 +79,7 @@ object EmailUtils : Base<EmailUtils>() {
 
             // Show a toast
             val message = if (finalRecipient == null) activity.getString(R.string.email_utils_send_email_external_app_not_available_msg)
-            else activity.getString(R.string.email_utils_send_email_external_app_not_available_msg_alt)
+            else activity.getString(R.string.email_utils_send_email_external_app_not_available_msg_alt, finalRecipient)
             activity.longToast(message)
 
             // Copy the recipient's email address to the clipboard (if applicable)
@@ -92,7 +92,7 @@ object EmailUtils : Base<EmailUtils>() {
         // Intent with the configuration
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
-            if (recipient != null) putExtra(Intent.EXTRA_EMAIL, arrayOf(finalRecipient))
+            if (finalRecipient != null) putExtra(Intent.EXTRA_EMAIL, arrayOf(finalRecipient))
             putExtra(Intent.EXTRA_SUBJECT, finalSubject)
             putExtra(Intent.EXTRA_TEXT, finalContent)
         }
