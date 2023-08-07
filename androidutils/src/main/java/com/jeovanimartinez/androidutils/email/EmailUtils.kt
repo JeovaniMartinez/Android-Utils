@@ -85,8 +85,7 @@ object EmailUtils : Base<EmailUtils>() {
             // Copy the recipient's email address to the clipboard (if applicable)
             if (finalRecipient != null) {
                 val clipboardManager = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                val clipData = ClipData.newPlainText(finalRecipient, finalRecipient)
-                clipboardManager.setPrimaryClip(clipData)
+                clipboardManager.setPrimaryClip(ClipData.newPlainText(finalRecipient, finalRecipient))
             }
         }
 
