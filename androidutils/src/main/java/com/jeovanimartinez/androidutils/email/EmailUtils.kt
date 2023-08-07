@@ -48,10 +48,10 @@ object EmailUtils : Base<EmailUtils>() {
     ) {
 
         // The data is processed and the final values are generated
-        val finalRecipient = if (recipient == null) null else activity.typeAsString(recipient)
-        val finalSubject = activity.typeAsString(subject)
-        val finalContent = activity.typeAsString(content)
-        val finalChooserTitle = activity.typeAsString(chooserTitle)
+        val finalRecipient = if (recipient == null) null else activity.typeAsString(recipient).trim()
+        val finalSubject = activity.typeAsString(subject).trim()
+        val finalContent = activity.typeAsString(content).trim()
+        val finalChooserTitle = activity.typeAsString(chooserTitle).trim()
 
         @Suppress("ReplaceIsEmptyWithIfEmpty")
         val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
