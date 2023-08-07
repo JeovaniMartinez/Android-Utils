@@ -12,6 +12,10 @@
     <string name="about_app_default_app_name">Android Utils</string>
     <string name="about_app_default_credits_text">Android Utils Dev-Team</string>
 
+    <!-- Email Utils -->
+    <string name="email_utils_send_email_external_app_not_available_msg">No disponible</string>
+    <string name="email_utils_send_email_external_app_not_available_msg_alt">Envía un correo a %1$s (la dirección de correo ha sido copiada al portapapeles)</string>
+
     <!-- More Apps -->
     <string name="more_apps_unable_to_show_dev_page">No disponible</string>
 

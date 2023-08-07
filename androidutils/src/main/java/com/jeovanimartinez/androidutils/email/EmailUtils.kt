@@ -1,6 +1,9 @@
 package com.jeovanimartinez.androidutils.email
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +13,7 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
+import com.jeovanimartinez.androidutils.extensions.context.longToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
@@ -52,6 +56,17 @@ object EmailUtils : Base<EmailUtils>() {
         @Suppress("ReplaceIsEmptyWithIfEmpty")
         val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
 
+        log(
+            """
+            EmailUtils > sendEmailViaExternalApp() Data
+            Recipient: $finalRecipient
+            Subject: $finalSubject
+            Content: $finalContent
+            ChooserTitle: $finalChooserTitle
+            Case: $finalCase
+            """.trimIndent()
+        )
+
         // Email validation (if applicable)
         finalRecipient.whenNotNull {
             require(Patterns.EMAIL_ADDRESS.matcher(it).matches()) {
@@ -61,8 +76,18 @@ object EmailUtils : Base<EmailUtils>() {
 
         // If the action cannot be performed
         val handleNotAvailableAppOrException = fun() {
-            //val message = if (recipient != null) activity.getString(R.string.email_utils_send_email_external_app_not_available_msg)
-            //else activity.getString(R.string.email_utils_send_email_external_app_not_available_msg)
+
+            // Show a toast
+            val message = if (finalRecipient == null) activity.getString(R.string.email_utils_send_email_external_app_not_available_msg)
+            else activity.getString(R.string.email_utils_send_email_external_app_not_available_msg_alt)
+            activity.longToast(message)
+
+            // Copy the recipient's email address to the clipboard (if applicable)
+            if (finalRecipient != null) {
+                val clipboardManager = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clipData = ClipData.newPlainText(finalRecipient, finalRecipient)
+                clipboardManager.setPrimaryClip(clipData)
+            }
         }
 
         // Intent with the configuration
