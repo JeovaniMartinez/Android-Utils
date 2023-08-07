@@ -41,6 +41,9 @@ internal object Event {
     const val ABOUT_APP_OSL_SHOWN = "about_app_osl_shown"
     const val ABOUT_APP_TERMS_POLICY_SHOWN = "about_app_terms_policy_shown"
 
+    // Email Utils
+    const val EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP = "email_utils_send_email_external_app"
+
     // Rate App
     const val RATE_APP_REVIEW_FLOW_OK = "rate_app_review_flow_ok"
     const val RATE_APP_REVIEW_FLOW_ERROR = "rate_app_review_flow_error"
@@ -55,6 +58,9 @@ internal object Event {
      * Constants with the names of the parameters for the events.
      * */
     object Parameter {
+
+        // Email Utils
+        const val EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE = "send_email_case"
 
         // System Web Browser
         const val SYSTEM_WEB_BROWSER_OPEN_URL_CASE = "open_url_case"
