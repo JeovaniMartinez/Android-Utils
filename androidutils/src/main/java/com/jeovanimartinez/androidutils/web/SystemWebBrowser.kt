@@ -51,7 +51,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
             // General exception
             context.shortToast(R.string.system_web_browser_error)
             firebaseAnalytics(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, "exception") })
-            logw("Error opening URL [$url]", e)
+            loge("Error opening URL [$url]", e)
         }
     }
 
