@@ -172,10 +172,13 @@ internal class AboutActivity : TranslucentActivity() {
         binding.cardContent.setCardBackgroundColor(style.backgroundColor)
         binding.layoutRoot.changeAllTextViewsTextColor(style.textColor)
         val closeDrawable = getDrawableCompat(R.drawable.about_app_ic_check)
+        val helpDrawable = getDrawableCompat(R.drawable.about_app_ic_help)
         val closeTermsDrawable = getDrawableCompat(R.drawable.about_app_ic_back)
         closeDrawable?.setTint(style.iconsColor)
+        helpDrawable?.setTint(style.iconsColor)
         closeTermsDrawable?.setTint(style.iconsColor)
         binding.btnClose.setImageDrawable(closeDrawable)
+        binding.btnHelp.setImageDrawable(helpDrawable)
         binding.btnCloseTerms.setImageDrawable(closeTermsDrawable)
         binding.pbLoadingTermsAndPolicy.indeterminateTintList = ColorStateList.valueOf(style.primaryColor)
 
