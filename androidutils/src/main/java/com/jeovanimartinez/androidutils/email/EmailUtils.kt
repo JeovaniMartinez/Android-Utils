@@ -114,6 +114,7 @@ object EmailUtils : Base<EmailUtils>() {
         * This is because, sometimes, if there is no app that can handle the intent, it calls "com.android.fallback" and displays a message that
         * the action is not available. With this, the message is skipped and instead, a toast is shown if there is no installed app that can
         * handle the action.
+        * Reference: https://www.mail-archive.com/android-developers@googlegroups.com/msg07564.html
         * */
 
         // It is checked whether the user has installed an app that can handle the action
