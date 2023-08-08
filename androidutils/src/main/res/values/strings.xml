@@ -26,7 +26,7 @@
     <string name="share">Share</string>
 
     <!-- System Web Browser -->
-    <string name="system_web_browser_not_available">There is no app installed to display the requested web page</string>
+    <string name="system_web_browser_not_available">There is no app installed to show the requested web page</string>
     <string name="system_web_browser_error">Not available</string>
 
 </resources>
