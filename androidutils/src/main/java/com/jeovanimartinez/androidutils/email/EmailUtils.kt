@@ -5,7 +5,10 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Patterns
 import androidx.annotation.Size
@@ -97,8 +100,24 @@ object EmailUtils : Base<EmailUtils>() {
             putExtra(Intent.EXTRA_TEXT, finalContent)
         }
 
+        // A list of all apps that can handle the intent action is obtained
+        val intentActivitiesList: List<ResolveInfo> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            activity.packageManager.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_DEFAULT_ONLY.toLong()))
+        } else {
+            @Suppress("DEPRECATION")
+            activity.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        }
+
+        /*
+        * This approach is used: intentActivitiesList.isNotEmpty() && intentActivitiesList[0].activityInfo.packageName != "com.android.fallback"
+        * Instead of this: intent.resolveActivity(activity.packageManager) != null
+        * This is because, sometimes, if there is no app that can handle the intent, it calls "com.android.fallback" and displays a message that
+        * the action is not available. With this, the message is skipped and instead, a toast is shown if there is no installed app that can
+        * handle the action.
+        * */
+
         // It is checked whether the user has installed an app that can handle the action
-        if (intent.resolveActivity(activity.packageManager) != null) {
+        if (intentActivitiesList.isNotEmpty() && intentActivitiesList[0].activityInfo.packageName != "com.android.fallback") {
             try {
                 activity.startActivity(Intent.createChooser(intent, finalChooserTitle))
                 firebaseAnalytics(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
