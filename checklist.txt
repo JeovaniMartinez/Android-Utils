@@ -68,6 +68,8 @@ androidutils [Módulo]
         > annotations ✔✔
             > DrawableOrDrawableRes ✔✔
             > StringOrStringRes ✔✔
+        > email ✔✔
+            > EmailUtils ✔✔
         > extensions ✔✔
             > activity ✔✔
                 > TaskDescription.kt ✔✔
@@ -94,6 +96,8 @@ androidutils [Módulo]
                 > Padding ✔✔
         > reviews ✔✔
             > RateApp ✔✔
+        > toplevelfunctions ✔✔
+            > Colors.kt ✔✔
         > views ✔✔
             > viewtoimage ✔✔
                 > config ✔✔
