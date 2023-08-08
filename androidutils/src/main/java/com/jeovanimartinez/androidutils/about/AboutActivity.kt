@@ -69,6 +69,7 @@ internal class AboutActivity : TranslucentActivity() {
         styleSetup()
         backButtonSetup()
         generalSetup()
+        helpSectionSetup()
     }
 
     override fun onResume() {
@@ -236,6 +237,21 @@ internal class AboutActivity : TranslucentActivity() {
         }
     }
 
+    /** Help section setup */
+    private fun helpSectionSetup() {
+
+        if (aboutAppConfig.helpUrl == null && aboutAppConfig.contactEmail == null && aboutAppConfig.feedbackEmail == null) {
+            binding.btnHelp.visibility = View.GONE
+        } else {
+            binding.btnHelp.visibility = View.VISIBLE
+        }
+
+        binding.btnHelp.setOnClickListener {
+
+        }
+
+    }
+
     /**
      * Generate and return a String in query parameters style of a URL using all the properties of the style from
      * AboutAppStyle applied to this activity.
@@ -271,6 +287,7 @@ internal class AboutActivity : TranslucentActivity() {
 
         loadingTermsAndPolicy = true
         binding.pbLoadingTermsAndPolicy.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
+        binding.btnHelp.isClickable = false
 
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
@@ -305,6 +322,7 @@ internal class AboutActivity : TranslucentActivity() {
                 if (pageLoadSuccessful) showTermsAndPolicy(animateShowTermsView) // They are only shown if the page loaded correctly
 
                 binding.btnTermsAndPolicy.isClickable = true // It is enabled again
+                binding.btnHelp.isClickable = true
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
