@@ -13,7 +13,13 @@
     <string name="about_app_default_credits_text">Android Utils Dev-Team</string>
     <string name="about_app_help_center">Centro de Ayuda</string>
     <string name="about_app_contact_us">Contáctanos</string>
+    <string name="about_app_contact_email_subject">Contacto - %1$s</string>
+    <string name="about_app_contact_email_content">Escribe tu mensaje aquí.</string>
+    <string name="about_app_contact_email_chooser_title">Selecciona una App para enviarnos un correo</string>
     <string name="about_app_send_feedback">Enviar Comentarios</string>
+    <string name="about_app_feedback_email_subject">Comentarios - %1$s</string>
+    <string name="about_app_feedback_email_content">Escribe tus comentarios aquí.</string>
+    <string name="about_app_feedback_email_chooser_title">Selecciona una App para enviarnos un correo</string>
 
     <!-- Email Utils -->
     <string name="email_utils_send_email_external_app_not_available_msg">No disponible</string>
