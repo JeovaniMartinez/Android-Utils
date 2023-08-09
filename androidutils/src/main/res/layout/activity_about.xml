@@ -255,6 +255,79 @@
                 android:indeterminate="true"
                 tools:ignore="VisualLintBounds" />
 
+            <View
+                android:id="@+id/helpDimBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80000000"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layoutHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#FFFFFFFF"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnCloseHelp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:background="?attr/actionBarItemBackground"
+                    app:srcCompat="@drawable/about_app_ic_close"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHelpCenter"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/about_app_help_center"
+                    android:textSize="13dp"
+                    android:textStyle="normal"
+                    app:icon="@drawable/about_app_ic_help_center"
+                    app:iconGravity="textStart"
+                    tools:ignore="SpUsage,TextSizeCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnContact"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/about_app_contact_us"
+                    android:textSize="13dp"
+                    android:textStyle="normal"
+                    app:icon="@drawable/about_app_ic_contact"
+                    app:iconGravity="textStart"
+                    tools:ignore="SpUsage,TextSizeCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFeedback"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/about_app_send_feedback"
+                    android:textSize="13dp"
+                    android:textStyle="normal"
+                    app:icon="@drawable/about_app_ic_feedback"
+                    app:iconGravity="textStart"
+                    tools:ignore="SpUsage,TextSizeCheck" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -168,7 +168,7 @@ internal class AboutActivity : TranslucentActivity() {
 
         // IMPORTANT: Due to the use of Material3 which uses dynamic colors, in some occasions the applied colors may vary slightly from those specified in the colors files.
 
-        // Configure the colors for the activity (background color, text color, icons color, etc.)
+        // Configure the style for the activity (background color, text color, icons color, etc.)
         binding.cardTopAction.setCardBackgroundColor(style.backgroundColor)
         binding.cardContent.setCardBackgroundColor(style.backgroundColor)
         binding.layoutRoot.changeAllTextViewsTextColor(style.textColor)
@@ -240,6 +240,16 @@ internal class AboutActivity : TranslucentActivity() {
     /** Help section setup */
     private fun helpSectionSetup() {
 
+        // Configure the style
+        binding.layoutHelp.setBackgroundColor(style.backgroundColor)
+        val closeHelpDrawable = getDrawableCompat(R.drawable.about_app_ic_close)
+        closeHelpDrawable?.setTint(style.iconsColor)
+        binding.btnCloseHelp.setImageDrawable(closeHelpDrawable)
+        binding.btnHelpCenter.iconTint = ColorStateList.valueOf(style.textColor)
+        binding.btnContact.iconTint = ColorStateList.valueOf(style.textColor)
+        binding.btnFeedback.iconTint = ColorStateList.valueOf(style.textColor)
+
+        // Visibility
         if (aboutAppConfig.helpUrl == null && aboutAppConfig.contactEmail == null && aboutAppConfig.feedbackEmail == null) {
             binding.btnHelp.visibility = View.GONE
         } else {
