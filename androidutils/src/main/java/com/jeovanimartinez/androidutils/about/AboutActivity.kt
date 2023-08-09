@@ -277,6 +277,8 @@ internal class AboutActivity : TranslucentActivity() {
         // Actions
 
         binding.btnHelp.setOnClickListener {
+            // To avoid repeated actions, in this case, binding.layoutHelp.visibility == View.VISIBLE works better than helpSectionVisible == true
+            if (binding.layoutHelp.visibility == View.VISIBLE) return@setOnClickListener
             showHelpSection()
             AboutApp.firebaseAnalytics(Event.ABOUT_APP_HELP_SECTION_SHOWN)
         }
