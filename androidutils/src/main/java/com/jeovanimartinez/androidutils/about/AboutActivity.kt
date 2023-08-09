@@ -293,6 +293,12 @@ internal class AboutActivity : TranslucentActivity() {
             // No action is required, it's just to prevent passing the click to helpDimBackground
         }
 
+        aboutAppConfig.helpCenterUrl.whenNotNull { url ->
+            binding.btnHelpCenter.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_help_center")
+            }
+        }
+
     }
 
     /**
