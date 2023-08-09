@@ -198,7 +198,7 @@ internal class AboutActivity : TranslucentActivity() {
         // App data
         binding.ivAppLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.appLogo))
         binding.tvAppName.text = typeAsString(aboutAppConfig.appName)
-        binding.tvAppVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersion)
+        binding.tvAppVersion.text = getString(R.string.about_app_version, typeAsString(aboutAppConfig.appVersion))
 
         // Credits
         binding.tvCredits.text = typeAsString(aboutAppConfig.creditsText)
