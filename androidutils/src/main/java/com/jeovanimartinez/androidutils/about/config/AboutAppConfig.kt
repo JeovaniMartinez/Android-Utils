@@ -20,7 +20,8 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param copyrightHolderName Name of the copyright holder to be used in the copyright statement.
  * @param termsAndPrivacyPolicyUrl The URL for the app's license terms and privacy policy, which will be displayed within the
  *        about app activity in a WebView. Set to null to not show this section or the corresponding button.
- * @param helpUrl URL for the app's help center, which will be opened in the system's web browser. Set to null to not show this option.
+ * @param helpCenterUrl URL for the app's help center, which will be opened in the system's web browser. Set to null to not show
+ *        this option.
  * @param contactEmail Email for contact. Set to null to not show this option.
  * @param feedbackEmail Email for  sending feedback about the app. Set to null to not show this option.
  * @param showOpenSourceLicenses Determines whether to show a button that launch an activity showing the open-source licenses
@@ -40,7 +41,7 @@ data class AboutAppConfig(
     @StringOrStringRes val authorUrl: Any?,
     @StringOrStringRes val copyrightHolderName: Any,
     @StringOrStringRes val termsAndPrivacyPolicyUrl: Any?,
-    @StringOrStringRes val helpUrl: Any?,
+    @StringOrStringRes val helpCenterUrl: Any?,
     @StringOrStringRes val contactEmail: Any?,
     @StringOrStringRes val feedbackEmail: Any?,
     val showOpenSourceLicenses: Boolean,
