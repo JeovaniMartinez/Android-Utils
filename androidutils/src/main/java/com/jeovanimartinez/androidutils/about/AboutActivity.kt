@@ -382,9 +382,7 @@ internal class AboutActivity : TranslucentActivity() {
                 binding.cardTopAction.animate().translationY(0f)
             }
 
-            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
-
-            // Sent at the end of the view to show an animation
+            // Adjust translation and visibility to show the animation correctly
             binding.webViewTermsAndPolicy.translationX = binding.cardContent.width.toFloat()
             binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
@@ -392,9 +390,12 @@ internal class AboutActivity : TranslucentActivity() {
             binding.layoutContent.animate().translationX(-binding.cardContent.width.toFloat()).start()
             binding.webViewTermsAndPolicy.animate().translationX(0f).start()
 
+            // It's only registered here as it's when the section is displayed upon user's request
+            AboutApp.firebaseAnalytics(Event.ABOUT_APP_TERMS_POLICY_SHOWN)
+
         } else {
 
-            // Set back button visibility
+            // Set back button visibility and translation
             binding.cardTopAction.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 binding.cardTopAction.translationX = 0f
@@ -402,19 +403,12 @@ internal class AboutActivity : TranslucentActivity() {
                 binding.cardTopAction.translationY = 0f
             }
 
-            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
-
-            // Sent to end of view for animation when exiting view
-            binding.webViewTermsAndPolicy.translationX = binding.cardContent.width.toFloat()
-            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
-
             // The web view is shown and the card container is hidden
             binding.layoutContent.translationX = -binding.cardContent.width.toFloat()
             binding.webViewTermsAndPolicy.translationX = 0f
+            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
         }
-
-        AboutApp.firebaseAnalytics(Event.ABOUT_APP_TERMS_POLICY_SHOWN)
 
     }
 
@@ -432,7 +426,7 @@ internal class AboutActivity : TranslucentActivity() {
             binding.cardTopAction.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { binding.cardTopAction.visibility = View.GONE }
         }
 
-        // The card container is shown and the web view is hidden by means of an animation
+        // The main container is shown and the web view is hidden by means of an animation
         binding.layoutContent.animate().translationX(0f).start()
         binding.webViewTermsAndPolicy.animate().translationX(binding.cardContent.width.toFloat()).start()
 
