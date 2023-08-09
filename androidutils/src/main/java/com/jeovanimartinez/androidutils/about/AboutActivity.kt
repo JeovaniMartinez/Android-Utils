@@ -283,6 +283,16 @@ internal class AboutActivity : TranslucentActivity() {
             hideHelpSection()
         }
 
+        binding.helpDimBackground.isSoundEffectsEnabled = false // The sound is disabled upon clicking as it is not a button
+        binding.helpDimBackground.setOnClickListener {
+            hideHelpSection()
+        }
+
+        binding.layoutHelp.isSoundEffectsEnabled = false // The sound is disabled upon clicking as it is not a button
+        binding.layoutHelp.setOnClickListener {
+            // No action is required, it's just to prevent passing the click to helpDimBackground
+        }
+
     }
 
     /**
