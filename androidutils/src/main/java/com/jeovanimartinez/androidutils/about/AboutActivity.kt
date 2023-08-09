@@ -19,6 +19,7 @@ import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
 import com.jeovanimartinez.androidutils.about.config.AboutAppStyle
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.databinding.ActivityAboutBinding
+import com.jeovanimartinez.androidutils.email.EmailUtils
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
@@ -296,6 +297,32 @@ internal class AboutActivity : TranslucentActivity() {
         aboutAppConfig.helpCenterUrl.whenNotNull { url ->
             binding.btnHelpCenter.setOnClickListener {
                 SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_help_center")
+            }
+        }
+
+        aboutAppConfig.contactEmail.whenNotNull { email ->
+            binding.btnContact.setOnClickListener {
+                EmailUtils.sendEmailViaExternalApp(
+                    activity = this@AboutActivity,
+                    recipient = email,
+                    subject = getString(R.string.about_app_contact_email_subject, typeAsString(aboutAppConfig.appName)),
+                    content = R.string.about_app_contact_email_content,
+                    chooserTitle = R.string.about_app_contact_email_chooser_title,
+                    case = "about_app_contact"
+                )
+            }
+        }
+
+        aboutAppConfig.feedbackEmail.whenNotNull { email ->
+            binding.btnFeedback.setOnClickListener {
+                EmailUtils.sendEmailViaExternalApp(
+                    activity = this@AboutActivity,
+                    recipient = email,
+                    subject = getString(R.string.about_app_feedback_email_subject, typeAsString(aboutAppConfig.appName)),
+                    content = R.string.about_app_feedback_email_content,
+                    chooserTitle = R.string.about_app_feedback_email_chooser_title,
+                    case = "about_app_contact"
+                )
             }
         }
 
