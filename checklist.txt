@@ -62,6 +62,12 @@ app [Módulo]
 androidutils [Módulo]
     > java
         > Base ✔✔
+        > about ✔✔
+            > config ✔✔
+                > AboutAppConfig ✔✔
+                > AboutAppStyle ✔✔
+            > AboutActivity ✔✔
+            > AboutApp ✔✔
         > activity ✔✔
             > config ✔✔
                 > TaskDescriptionConfig ✔✔
