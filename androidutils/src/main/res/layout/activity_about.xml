@@ -260,7 +260,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#80000000"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layoutHelp"
@@ -269,7 +269,8 @@
                 android:layout_gravity="bottom"
                 android:background="#FFFFFFFF"
                 android:orientation="vertical"
-                android:paddingBottom="4dp">
+                android:paddingBottom="4dp"
+                android:visibility="gone">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnCloseHelp"

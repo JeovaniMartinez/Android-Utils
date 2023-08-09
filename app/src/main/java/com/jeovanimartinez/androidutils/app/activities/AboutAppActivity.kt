@@ -67,9 +67,9 @@ class AboutAppActivity : AppCompatActivity() {
             authorUrl = null,
             copyrightHolderName = "",
             termsAndPrivacyPolicyUrl = "https://jeovanimartinez.github.io/Android-Utils_Terms-Privacy-Policy-Template/index.html",
-            helpCenterUrl = "demo",
-            contactEmail = "asd",
-            feedbackEmail = null,
+            helpCenterUrl = "asd",
+            contactEmail = null,
+            feedbackEmail = "asd",
             showOpenSourceLicenses = true,
             style = null,
             TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))

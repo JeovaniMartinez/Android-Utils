@@ -51,6 +51,7 @@ internal class AboutActivity : TranslucentActivity() {
     private var activityIsRunning = true // To show toast only if the activity is running and not paused
     private var loadingTermsAndPolicy = false
     private var termsAndPolicyVisible = false
+    private var helpSectionVisible = false
     private lateinit var aboutAppConfig: AboutAppConfig // Config data
     private lateinit var style: AboutAppStyle // Style for this activity
 
@@ -123,6 +124,7 @@ internal class AboutActivity : TranslucentActivity() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (termsAndPolicyVisible) return hideTermsAndPolicy()
+                if (helpSectionVisible) return hideHelpSection()
                 supportFinishAfterTransition()
             }
         })
@@ -250,14 +252,24 @@ internal class AboutActivity : TranslucentActivity() {
         binding.btnFeedback.iconTint = ColorStateList.valueOf(style.textColor)
 
         // Visibility
-        if (aboutAppConfig.helpUrl == null && aboutAppConfig.contactEmail == null && aboutAppConfig.feedbackEmail == null) {
+        binding.helpDimBackground.visibility = View.GONE
+        binding.layoutHelp.visibility = View.GONE
+        if (aboutAppConfig.helpCenterUrl == null && aboutAppConfig.contactEmail == null && aboutAppConfig.feedbackEmail == null) {
             binding.btnHelp.visibility = View.GONE
         } else {
             binding.btnHelp.visibility = View.VISIBLE
         }
+        binding.btnHelpCenter.visibility = if (aboutAppConfig.helpCenterUrl == null) View.GONE else View.VISIBLE
+        binding.btnContact.visibility = if (aboutAppConfig.contactEmail == null) View.GONE else View.VISIBLE
+        binding.btnFeedback.visibility = if (aboutAppConfig.feedbackEmail == null) View.GONE else View.VISIBLE
+
+        // Actions
 
         binding.btnHelp.setOnClickListener {
-
+            showHelpSection()
+        }
+        binding.btnCloseHelp.setOnClickListener {
+            hideHelpSection()
         }
 
     }
@@ -421,6 +433,50 @@ internal class AboutActivity : TranslucentActivity() {
         // The card container is shown and the web view is hidden by means of an animation
         binding.layoutContent.animate().translationX(0f).start()
         binding.webViewTermsAndPolicy.animate().translationX(binding.cardContent.width.toFloat()).start()
+    }
+
+    /** Show the help section, [animate] determines if they are shown with animation or not. */
+    private fun showHelpSection(animate: Boolean = true) {
+
+        AboutApp.log("showHelpSection() Invoked")
+        helpSectionVisible = true
+
+        if (animate) {
+
+            // Hide to show animation
+            binding.layoutHelp.translationY = binding.cardContent.height.toFloat()
+            binding.layoutHelp.visibility = View.VISIBLE
+            binding.helpDimBackground.translationY = -binding.cardContent.height.toFloat()
+            binding.helpDimBackground.visibility = View.VISIBLE
+
+            // Start the animation
+            binding.layoutHelp.animate().translationY(0f).start()
+            binding.helpDimBackground.animate().translationY(0f).start()
+
+        } else {
+
+            binding.layoutHelp.translationY = 0f
+            binding.layoutHelp.visibility = View.VISIBLE
+            binding.helpDimBackground.translationY = 0f
+            binding.helpDimBackground.visibility = View.VISIBLE
+
+        }
+
+    }
+
+    /** Hide help section. */
+    private fun hideHelpSection() {
+
+        AboutApp.log("hideHelpSection() Invoked")
+        helpSectionVisible = false
+
+        binding.layoutHelp.animate().translationY(binding.cardContent.height.toFloat()).onAnimationEnd {
+            binding.layoutHelp.visibility = View.GONE
+        }
+        binding.helpDimBackground.animate().translationY(-binding.cardContent.height.toFloat()).onAnimationEnd {
+            binding.helpDimBackground.visibility = View.GONE
+        }
+
     }
 
 }
