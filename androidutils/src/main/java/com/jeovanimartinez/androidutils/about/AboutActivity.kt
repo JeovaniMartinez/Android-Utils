@@ -237,6 +237,7 @@ internal class AboutActivity : TranslucentActivity() {
         binding.btnClose.setOnClickListener {
             supportFinishAfterTransition()
         }
+
     }
 
     /** Help section setup */
@@ -419,6 +420,7 @@ internal class AboutActivity : TranslucentActivity() {
 
     /** Hide view of terms and privacy policy. */
     private fun hideTermsAndPolicy() {
+
         AboutApp.log("hideTermsAndPolicy() Invoked")
         termsAndPolicyVisible = false
         super.activityOpacity = 0.9f
@@ -433,6 +435,7 @@ internal class AboutActivity : TranslucentActivity() {
         // The card container is shown and the web view is hidden by means of an animation
         binding.layoutContent.animate().translationX(0f).start()
         binding.webViewTermsAndPolicy.animate().translationX(binding.cardContent.width.toFloat()).start()
+
     }
 
     /** Show the help section, [animate] determines if they are shown with animation or not. */
@@ -443,7 +446,7 @@ internal class AboutActivity : TranslucentActivity() {
 
         if (animate) {
 
-            // Hide to show animation
+            // The views are showed and hidden from the visible area in order to showcase the animation
             binding.layoutHelp.translationY = binding.cardContent.height.toFloat()
             binding.layoutHelp.visibility = View.VISIBLE
             binding.helpDimBackground.translationY = -binding.cardContent.height.toFloat()
