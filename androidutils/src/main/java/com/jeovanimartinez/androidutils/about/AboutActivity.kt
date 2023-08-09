@@ -268,6 +268,7 @@ internal class AboutActivity : TranslucentActivity() {
 
         binding.btnHelp.setOnClickListener {
             showHelpSection()
+            AboutApp.firebaseAnalytics(Event.ABOUT_APP_HELP_SECTION_SHOWN)
         }
         binding.btnCloseHelp.setOnClickListener {
             hideHelpSection()

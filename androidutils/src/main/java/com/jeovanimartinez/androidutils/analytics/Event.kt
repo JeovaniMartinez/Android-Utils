@@ -40,6 +40,7 @@ internal object Event {
     const val ABOUT_APP_SHOWN = "about_app_shown"
     const val ABOUT_APP_OSL_SHOWN = "about_app_osl_shown"
     const val ABOUT_APP_TERMS_POLICY_SHOWN = "about_app_terms_policy_shown"
+    const val ABOUT_APP_HELP_SECTION_SHOWN = "about_app_help_section_shown"
 
     // Email Utils
     const val EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP = "email_utils_send_email_external_app"
