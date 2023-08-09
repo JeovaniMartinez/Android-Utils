@@ -38,12 +38,16 @@ import java.util.*
 internal class AboutActivity : TranslucentActivity() {
 
     companion object {
+
         /*
         * Helper to allow only one instance of this activity. It is used this way and not with android:launchMode="singleInstance" as
         * due to the transparent theme and transition, using that setting does not work properly.
         * */
         var aboutActivityRunning = false
+
         private const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
+        private const val STATE_HELP_SECTION_VISIBLE = "state_help_section_visible"
+
     }
 
     private lateinit var binding: ActivityAboutBinding
@@ -98,6 +102,7 @@ internal class AboutActivity : TranslucentActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putBoolean(STATE_TERMS_AND_POLICY_VISIBLE, termsAndPolicyVisible) // Save if the terms are visible, for the onRestoreInstanceState
+        outState.putBoolean(STATE_HELP_SECTION_VISIBLE, helpSectionVisible) // Save if the help section is visible, for the onRestoreInstanceState
         super.onSaveInstanceState(outState)
     }
 
@@ -106,6 +111,10 @@ internal class AboutActivity : TranslucentActivity() {
         // Terms and policy are shown if they are visible on onSaveInstanceState
         if (savedInstanceState.getBoolean(STATE_TERMS_AND_POLICY_VISIBLE)) {
             loadTermsAndPolicy(false)
+        }
+        // Help section is shown if it was visible on onSaveInstanceState
+        if (savedInstanceState.getBoolean(STATE_HELP_SECTION_VISIBLE)) {
+            showHelpSection(false)
         }
     }
 

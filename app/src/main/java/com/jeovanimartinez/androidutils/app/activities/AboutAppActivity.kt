@@ -68,7 +68,7 @@ class AboutAppActivity : AppCompatActivity() {
             copyrightHolderName = "",
             termsAndPrivacyPolicyUrl = "https://jeovanimartinez.github.io/Android-Utils_Terms-Privacy-Policy-Template/index.html",
             helpCenterUrl = "asd",
-            contactEmail = null,
+            contactEmail = "ok",
             feedbackEmail = "asd",
             showOpenSourceLicenses = true,
             style = null,
