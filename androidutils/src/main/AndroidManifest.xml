@@ -25,6 +25,8 @@
 
     </application>
 
+    <!-- Common intents and queries reference:  https://developer.android.com/guide/components/intents-common -->
+
     <!-- <queries> Element to query for activities that handle ACTION_SENDTO intent for the EmailUtils -->
     <queries>
         <intent>
