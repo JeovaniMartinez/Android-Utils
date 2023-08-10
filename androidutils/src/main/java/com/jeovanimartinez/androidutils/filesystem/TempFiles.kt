@@ -1,9 +1,8 @@
-@file:Suppress("unused")
-
 package com.jeovanimartinez.androidutils.filesystem
 
 import android.content.Context
 import com.jeovanimartinez.androidutils.Base
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,23 +21,34 @@ object TempFiles : Base<TempFiles>() {
      * start of the app or when you need to clean the contents of the folder. The function runs asynchronously so as
      * not to affect the app flow. It's not necessary to call within a try-catch block, as exceptions are handled internally.
      * */
+    @OptIn(DelicateCoroutinesApi::class)
     fun clearTempFilesFolder(context: Context) {
+
         log("clearTempFilesFolder() invoked")
+
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                makeTempDir(context) // If not exists, it is generated to be able to get the file list.
-                val files = File(context.filesDir, TEMP_FILES_DIR).listFiles()
-                files?.forEach {
-                    it.delete()
-                }
-                if (files != null && files.isNotEmpty()) log("Deleted ${files.size} file(s) from temp files dir")
+
+                val dir = File(context.filesDir, TEMP_FILES_DIR)
+                val fileCount = dir.listFiles()?.size ?: 0
+                dir.deleteRecursively() // Delete all files recursively
+
+                // The directory is created again; makeTempDir() is not used to avoid shown logs
+                dir.mkdirs()
+
+                if (fileCount > 0) log("Deleted $fileCount file(s) from temp files dir")
                 else log("Temp files dir is empty, no need to delete files")
+
                 log("clearTempFilesFolder() done")
+
             } catch (e: Exception) {
+
                 loge("Failed to delete files from the temporary folder", e)
                 firebaseCrashlyticsInstance?.recordException(e)
+
             }
         }
+
     }
 
     /**
