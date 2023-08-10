@@ -20,7 +20,7 @@ object TempFiles : Base<TempFiles>() {
     /**
      * Delete all files created with this utility (the files in the temporary folder), it is recommended to call at the
      * start of the app or when you need to clean the contents of the folder. The function runs asynchronously so as
-     * not to affect the app flow and can be called from anywhere.
+     * not to affect the app flow. It's not necessary to call within a try-catch block, as exceptions are handled internally.
      * */
     fun clearTempFilesFolder(context: Context) {
         log("clearTempFilesFolder() invoked")
@@ -46,8 +46,10 @@ object TempFiles : Base<TempFiles>() {
      * temporary files directory.
      * */
     fun makeTempDir(context: Context) {
+        log("makeTempDir() invoked")
         val result = File(context.filesDir, TEMP_FILES_DIR).mkdirs() // Create the directory if it does not exist. If it exists, do not take any action.
-        if (result) log("Directory for temporary files is created [${context.filesDir}/$TEMP_FILES_DIR]")
+        if (result) log("The directory for temporary files is created [${context.filesDir}/$TEMP_FILES_DIR]")
+        else log("The directory for temporary files already exists, there's no need to create it [${context.filesDir}/$TEMP_FILES_DIR]")
     }
 
 }
