@@ -79,7 +79,7 @@ object FileUtils : Base<FileUtils>() {
     private fun normalizeFileName(fileName: String?, fileExtension: String): String {
         return if (fileName == null || fileName.trim().isBlank()) "${UUID.randomUUID()}.$fileExtension" // Default, use UUID
         else {
-            if (fileName.trim().toLowerCase(Locale.ROOT).endsWith(fileExtension)) fileName // If already contains a file extension
+            if (fileName.trim().lowercase(Locale.ROOT).endsWith(fileExtension)) fileName // If already contains a file extension
             else "${fileName.trim()}.$fileExtension" // Add the file extension
         }
     }
