@@ -96,6 +96,8 @@ androidutils [Módulo]
                 > NullSafety.kt ✔✔
             > view ✔✔
                 > Animations.kt ✔✔
+        > filesystem
+            > TempFiles ✔✔
         > graphics ✔✔
             > utils ✔✔
                 > CornerRadius ✔✔
