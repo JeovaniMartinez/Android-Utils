@@ -25,13 +25,13 @@
     <string name="email_utils_send_email_external_app_not_available_msg">Not available</string>
     <string name="email_utils_send_email_external_app_not_available_msg_alt">Send an email to %1$s (the email address has been copied to the clipboard)</string>
 
-    <!-- More Apps -->
-    <string name="more_apps_unable_to_show_dev_page">Not available</string>
+    <!-- Developer Apps -->
+    <string name="developer_apps_unable_to_show_app_list">Not available</string>
 
     <!-- Rate App -->
     <string name="rate_app_unable_to_show_app_on_google_play">Not available, please rate the App on Google Play</string>
 
-    <!-- ShareUtils -->
+    <!-- Share Utils -->
     <string name="share">Share</string>
 
     <!-- System Web Browser -->

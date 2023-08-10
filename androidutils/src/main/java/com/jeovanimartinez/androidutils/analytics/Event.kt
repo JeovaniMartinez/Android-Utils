@@ -20,9 +20,6 @@ internal object Event {
     const val BILLING_PURCHASE_COMPLETED = "billing_purchase_completed"
     const val BILLING_PURCHASE_ACKNOWLEDGE_ERROR = "billing_purchase_acknowledge_error"
 
-    const val MORE_APPS_SHOWN_GOOGLE_PLAY_OK = "more_apps_shown_google_play_ok"
-    const val MORE_APPS_SHOWN_GOOGLE_PLAY_ERROR = "more_apps_shown_google_play_error"
-
     const val SHARE_LAUNCHED = "share_launched"
     const val SHARE_COMPLETED = "share_completed"
     const val SHARE_OLD_API = "share_old_api"
@@ -41,6 +38,10 @@ internal object Event {
     const val ABOUT_APP_OSL_SHOWN = "about_app_osl_shown"
     const val ABOUT_APP_TERMS_POLICY_SHOWN = "about_app_terms_policy_shown"
     const val ABOUT_APP_HELP_SECTION_SHOWN = "about_app_help_section_shown"
+
+    // Developer Apps
+    const val DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_OK = "dev_apps_shown_list_google_play_ok"
+    const val DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_ERROR = "dev_apps_shown_list_google_play_error"
 
     // Email Utils
     const val EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP = "email_utils_send_email_external_app"

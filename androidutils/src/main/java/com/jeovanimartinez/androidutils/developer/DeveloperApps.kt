@@ -1,4 +1,4 @@
-package com.jeovanimartinez.androidutils.moreapps
+package com.jeovanimartinez.androidutils.developer
 
 import android.app.Activity
 import android.content.Intent
@@ -10,11 +10,11 @@ import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 
 /**
- * Utility to invite the user to install more developer applications.
+ * Utilities for developer Apps.
  * */
-object MoreApps : Base<MoreApps>() {
+object DeveloperApps : Base<DeveloperApps>() {
 
-    override val LOG_TAG = "MoreApps"
+    override val LOG_TAG = "DeveloperApps"
 
     /**
      * Directs the user to the developer's app list in Google Play, based on their developer ID.
@@ -46,14 +46,14 @@ object MoreApps : Base<MoreApps>() {
 
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
             log("Sent user to view developer page in google play [$webUriString]")
-            firebaseAnalytics(Event.MORE_APPS_SHOWN_GOOGLE_PLAY_OK)
+            firebaseAnalytics(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_OK)
 
         } catch (e: Exception) {
 
             // If it couldn't be shown developer's app list, a message is displayed on a toast
-            activity.shortToast(R.string.more_apps_unable_to_show_dev_page)
+            activity.shortToast(R.string.developer_apps_unable_to_show_app_list)
             logw("Unable to send the user to developer page on google play", e)
-            firebaseAnalytics(Event.MORE_APPS_SHOWN_GOOGLE_PLAY_ERROR)
+            firebaseAnalytics(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_ERROR)
 
         }
 
