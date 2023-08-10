@@ -28,7 +28,6 @@ object TempFiles : Base<TempFiles>() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-
                 val dir = File(context.filesDir, TEMP_FILES_DIR)
                 val fileCount = dir.listFiles()?.size ?: 0
                 dir.deleteRecursively() // Delete all files recursively
@@ -40,15 +39,11 @@ object TempFiles : Base<TempFiles>() {
                 else log("Temp files dir is empty, no need to delete files")
 
                 log("clearTempFilesFolder() done")
-
             } catch (e: Exception) {
-
                 loge("Failed to delete files from the temporary folder", e)
                 firebaseCrashlyticsInstance?.recordException(e)
-
             }
         }
-
     }
 
     /**
