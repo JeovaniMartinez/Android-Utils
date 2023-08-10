@@ -3,6 +3,7 @@ package com.jeovanimartinez.androidutils.filesystem
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
+import androidx.annotation.IntRange
 import com.jeovanimartinez.androidutils.Base
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -37,7 +38,7 @@ object FileUtils : Base<FileUtils>() {
         fileName: String? = null,
         path: String? = null,
         format: CompressFormat = CompressFormat.PNG,
-        quality: Int = 100
+        @IntRange(from = 0, to = 100) quality: Int = 100
     ): File {
 
         // Get the file extension for the format
@@ -54,12 +55,13 @@ object FileUtils : Base<FileUtils>() {
         log("Saving bitmap [$finalFileName] in [$file]")
 
         val stream = ByteArrayOutputStream()
-        bitmap.compress(format, quality, stream) // Adjust bitmap
+        bitmap.compress(format, quality, stream) // Write the bitmap to the output stream
 
         // Write the file
         val fileOutPutStream = FileOutputStream(file)
         fileOutPutStream.write(stream.toByteArray())
         fileOutPutStream.close()
+        stream.close() // CHECK
 
         log("Bitmap saved successfully")
 
