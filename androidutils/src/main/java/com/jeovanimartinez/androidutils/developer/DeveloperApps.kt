@@ -52,7 +52,7 @@ object DeveloperApps : Base<DeveloperApps>() {
 
             // If it couldn't be shown developer's app list, a message is displayed on a toast
             activity.shortToast(R.string.developer_apps_unable_to_show_app_list)
-            logw("Unable to send the user to developer page and app list on google play", e)
+            logw("Unable to send the user to developer page and app list in google play", e)
             firebaseAnalytics(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_ERROR)
 
         }
