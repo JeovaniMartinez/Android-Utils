@@ -104,6 +104,9 @@ androidutils [Módulo]
                 > Padding ✔✔
         > reviews ✔✔
             > RateApp ✔✔
+        > themes ✔✔
+            > translucent ✔✔
+                > TranslucentActivity ✔✔
         > toplevelfunctions ✔✔
             > Colors.kt ✔✔
         > views ✔✔
