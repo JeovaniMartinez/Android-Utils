@@ -7,11 +7,12 @@
 
     <application>
 
+        <!-- AboutActivity for AboutApp Utility -->
         <activity
             android:name=".about.AboutActivity"
             android:theme="@style/AndroidUtilsTheme.AboutApp" />
 
-        <!-- Apply a custom theme to the open source licenses activity -->
+        <!-- Apply a custom theme to the open source licenses activities -->
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
             android:theme="@style/AndroidUtilsTheme.OssLicenses" />
@@ -25,12 +26,12 @@
     </application>
 
     <!-- <queries> Element to query for activities that handle ACTION_SENDTO intent for the EmailUtils -->
-    <!-- <queries>
+    <queries>
         <intent>
             <action android:name="android.intent.action.SENDTO" />
             <category android:name="android.intent.category.DEFAULT" />
             <data android:scheme="mailto" />
         </intent>
-    </queries> -->
+    </queries>
 
 </manifest>
