@@ -64,7 +64,7 @@ open class TranslucentActivity : AppCompatActivity() {
      * undesirable visual effect is generated.
      *
      * ```
-     * For example, for a dialog:
+     *     // For example, for a dialog:
      *     val dialog = MaterialAlertDialogBuilder(this@AboutActivity).setTitle("DEMO").show();
      *     configureWindowDim(dialog.window);
      * ```
