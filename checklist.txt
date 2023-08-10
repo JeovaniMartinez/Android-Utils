@@ -74,6 +74,8 @@ androidutils [Módulo]
         > annotations ✔✔
             > DrawableOrDrawableRes ✔✔
             > StringOrStringRes ✔✔
+        > developer ✔✔
+            > DeveloperApps ✔✔
         > email ✔✔
             > EmailUtils ✔✔
         > extensions ✔✔

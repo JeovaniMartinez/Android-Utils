@@ -45,14 +45,14 @@ object DeveloperApps : Base<DeveloperApps>() {
             }
 
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
-            log("Sent user to view developer page in google play [$webUriString]")
+            log("Sent user to view developer page and its list of apps in google play [$webUriString]")
             firebaseAnalytics(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_OK)
 
         } catch (e: Exception) {
 
             // If it couldn't be shown developer's app list, a message is displayed on a toast
             activity.shortToast(R.string.developer_apps_unable_to_show_app_list)
-            logw("Unable to send the user to developer page on google play", e)
+            logw("Unable to send the user to developer page and app list on google play", e)
             firebaseAnalytics(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_ERROR)
 
         }
