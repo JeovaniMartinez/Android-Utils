@@ -266,7 +266,11 @@ internal class AboutActivity : TranslucentActivity() {
         // Visibility
         binding.helpDimBackground.visibility = View.GONE
         binding.layoutHelp.visibility = View.GONE
-        if (aboutAppConfig.helpCenterUrl == null && aboutAppConfig.contactEmail == null && aboutAppConfig.feedbackEmail == null) {
+        if (aboutAppConfig.helpCenterUrl == null &&
+            aboutAppConfig.crashReportEmail == null &&
+            aboutAppConfig.contactEmail == null &&
+            aboutAppConfig.feedbackEmail == null
+        ) {
             binding.btnHelp.visibility = View.GONE
         } else {
             binding.btnHelp.visibility = View.VISIBLE
@@ -308,7 +312,7 @@ internal class AboutActivity : TranslucentActivity() {
             binding.btnCrashReport.setOnClickListener {
                 EmailUtils.sendEmailViaExternalApp(
                     activity = this@AboutActivity,
-                    recipient = email,
+                    recipient = typeAsString(email),
                     subject = getString(R.string.about_app_crash_email_subject, typeAsString(aboutAppConfig.appName)),
                     content = R.string.about_app_crash_email_content,
                     chooserTitle = R.string.about_app_crash_email_chooser_title,
@@ -321,7 +325,7 @@ internal class AboutActivity : TranslucentActivity() {
             binding.btnContact.setOnClickListener {
                 EmailUtils.sendEmailViaExternalApp(
                     activity = this@AboutActivity,
-                    recipient = email,
+                    recipient = typeAsString(email),
                     subject = getString(R.string.about_app_contact_email_subject, typeAsString(aboutAppConfig.appName)),
                     content = R.string.about_app_contact_email_content,
                     chooserTitle = R.string.about_app_contact_email_chooser_title,
@@ -334,7 +338,7 @@ internal class AboutActivity : TranslucentActivity() {
             binding.btnFeedback.setOnClickListener {
                 EmailUtils.sendEmailViaExternalApp(
                     activity = this@AboutActivity,
-                    recipient = email,
+                    recipient = typeAsString(email),
                     subject = getString(R.string.about_app_feedback_email_subject, typeAsString(aboutAppConfig.appName)),
                     content = R.string.about_app_feedback_email_content,
                     chooserTitle = R.string.about_app_feedback_email_chooser_title,

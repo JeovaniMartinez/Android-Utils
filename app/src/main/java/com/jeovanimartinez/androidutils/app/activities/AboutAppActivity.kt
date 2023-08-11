@@ -67,13 +67,13 @@ class AboutAppActivity : AppCompatActivity() {
             authorUrl = "https://jeovanimartinez.github.io/Android-Utils/",
             copyrightHolderName = "",
             termsAndPrivacyPolicyUrl = "https://jeovanimartinez.github.io/Android-Utils_Terms-Privacy-Policy-Template/index.html",
+            showOpenSourceLicenses = true,
             helpCenterUrl = "https://jeovanimartinez.github.io/Android-Utils/",
             crashReportEmail = "fallos@demo.com",
             contactEmail = "contacto@demo.com",
             feedbackEmail = "comentarios@demo.com",
-            showOpenSourceLicenses = true,
             style = null,
-            TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
+            taskDescriptionConfig = TaskDescriptionConfig(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
         )
 
         AboutApp.show(this@AboutAppActivity, aboutAppConfig)
