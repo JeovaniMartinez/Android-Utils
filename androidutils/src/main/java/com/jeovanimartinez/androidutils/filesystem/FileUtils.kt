@@ -100,13 +100,13 @@ object FileUtils : Base<FileUtils>() {
         val file = if (path == null) File(context.filesDir, "${TempFileManager.TEMP_FILES_DIR}/$fileName") // If the path is null, use the temp files dir
         else File(path, fileName) // Otherwise uses the defined path
 
-        if (path == null) TempFileManager.makeTempDir(context) // If uses temp file dir, should be created it if doesn't exist
-        else {
+        //if (path == null) TempFileManager.makeTempDir(context) // If uses temp file dir, should be created it if doesn't exist
+        //else {
             // If using a custom path, the directories are created if they don't exist
             val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path, exclude the filename
             log("Make directory [$dirPath]")
             File(dirPath).mkdirs()
-        }
+        //}
 
         return file
     }

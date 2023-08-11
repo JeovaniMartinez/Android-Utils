@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
+import java.util.UUID
 
 /** Utility to work with temporary files. */
 object TempFileManager : Base<TempFileManager>() {
@@ -52,12 +53,25 @@ object TempFileManager : Base<TempFileManager>() {
         }
     }
 
+    fun createNewTempFile(context: Context, fileName: String? = null, fileExtension: String? = null): File {
+
+        // Generate the final file name
+        var finalFileName = if (fileName != null && fileName.trim().isNotEmpty()) fileName.trim() else UUID.randomUUID().toString()
+        if (fileExtension != null && fileExtension.trim().isNotEmpty()) finalFileName = "${finalFileName}.${fileExtension.trim()}"
+
+        makeTempDir(context) // It is always called before creating the file to ensure that the directory exists.
+
+        // Creates and return the new file
+        return File(context.filesDir, "$TEMP_FILES_DIR/$finalFileName")
+
+    }
+
     /**
      * Create the directory for temporary files (if it does not already exist). Invoke whenever you are going to work with the
      * temporary files directory.
      * @param context The app context.
      * */
-    internal fun makeTempDir(context: Context) {
+    private fun makeTempDir(context: Context) {
         log("makeTempDir() invoked")
         val result = File(context.filesDir, TEMP_FILES_DIR).mkdirs() // Create the directory if it does not exist. If it exists, do not take any action.
         if (result) log("The directory for temporary files is created [${context.filesDir}/$TEMP_FILES_DIR]")
