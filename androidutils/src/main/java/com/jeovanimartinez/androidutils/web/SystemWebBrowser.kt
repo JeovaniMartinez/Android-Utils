@@ -21,7 +21,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
     override val LOG_TAG = "SystemWebBrowser"
 
     /**
-     * Open the system web browser at the specified [url].
+     * Open the default system web browser at the specified [url].
      * @param context Context.
      * @param url URL to be opened, it must be a complete URL, including HTTP or HTTPS, otherwise, it will not pass the validation.
      * @param case Reason that the URL was opened in the browser. This applies only if Firebase Analytics is enabled.
@@ -30,6 +30,8 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
      * @throws IllegalArgumentException If the provided URL is not a valid URL.
      * */
     fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
+
+        // No chooser is showed to select a web browser; instead, it opens directly in the default web browser.
 
         // URL validation
         require(URLUtil.isValidUrl(url)) {

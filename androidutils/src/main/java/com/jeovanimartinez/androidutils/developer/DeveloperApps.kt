@@ -44,6 +44,7 @@ object DeveloperApps : Base<DeveloperApps>() {
                 "https://play.google.com/store/apps/developer?id=$developerId"
             }
 
+            // It opens directly in the default web browser (no chooser is shown), and if Google Play is installed, the app list it is showed there
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
             log("Sent user to view developer page and its list of apps in google play [$webUriString]")
             firebaseAnalytics(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_OK)
