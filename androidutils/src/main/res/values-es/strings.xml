@@ -12,7 +12,7 @@
     <string name="about_app_default_app_name">Android Utils</string>
     <string name="about_app_default_credits_text">Android Utils Dev-Team</string>
     <string name="about_app_help_center">Centro de Ayuda</string>
-    <string name="about_app_crash_report">Informe de Fallas</string>
+    <string name="about_app_crash_report">Informar Fallas</string>
     <string name="about_app_crash_email_subject">Informe de Fallas - %1$s</string>
     <string name="about_app_crash_email_content">Describe detalladamente la falla o el problema que tienes con la aplicación.</string>
     <string name="about_app_crash_email_chooser_title">Selecciona una App para enviarnos un correo</string>
