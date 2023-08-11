@@ -12,6 +12,10 @@
     <string name="about_app_default_app_name">Android Utils</string>
     <string name="about_app_default_credits_text">Android Utils Dev-Team</string>
     <string name="about_app_help_center">Help Center</string>
+    <string name="about_app_crash_report">App Crash Report</string>
+    <string name="about_app_crash_email_subject">App Crash Report - %1$s</string>
+    <string name="about_app_crash_email_content">Thoroughly describe the crash you have with the app.</string>
+    <string name="about_app_crash_email_chooser_title">Select an App to send us an email</string>
     <string name="about_app_contact_us">Contact Us</string>
     <string name="about_app_contact_email_subject">Contact - %1$s</string>
     <string name="about_app_contact_email_content">Write your message here.</string>
