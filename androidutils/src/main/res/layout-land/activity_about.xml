@@ -294,20 +294,44 @@
                     app:srcCompat="@drawable/about_app_ic_close"
                     tools:ignore="SpeakableTextPresentCheck" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnHelpCenter"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/about_app_help_center"
-                    android:textSize="13dp"
-                    android:textStyle="normal"
-                    app:icon="@drawable/about_app_ic_help_center"
-                    app:iconGravity="textStart"
-                    tools:ignore="SpUsage,TextSizeCheck" />
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnHelpCenter"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/about_app_help_center"
+                        android:textSize="13dp"
+                        android:textStyle="normal"
+                        app:icon="@drawable/about_app_ic_help_center"
+                        app:iconGravity="textStart"
+                        tools:ignore="SpUsage,TextSizeCheck" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCrashReport"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/about_app_crash_report"
+                        android:textSize="13dp"
+                        android:textStyle="normal"
+                        app:icon="@drawable/about_app_ic_crash"
+                        app:iconGravity="textStart"
+                        tools:ignore="SpUsage,TextSizeCheck" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"

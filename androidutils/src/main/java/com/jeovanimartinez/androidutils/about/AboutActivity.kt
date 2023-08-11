@@ -259,6 +259,7 @@ internal class AboutActivity : TranslucentActivity() {
         closeHelpDrawable?.setTint(style.iconsColor)
         binding.btnCloseHelp.setImageDrawable(closeHelpDrawable)
         binding.btnHelpCenter.iconTint = ColorStateList.valueOf(style.textColor)
+        binding.btnCrashReport.iconTint = ColorStateList.valueOf(style.textColor)
         binding.btnContact.iconTint = ColorStateList.valueOf(style.textColor)
         binding.btnFeedback.iconTint = ColorStateList.valueOf(style.textColor)
 
@@ -271,6 +272,7 @@ internal class AboutActivity : TranslucentActivity() {
             binding.btnHelp.visibility = View.VISIBLE
         }
         binding.btnHelpCenter.visibility = if (aboutAppConfig.helpCenterUrl == null) View.GONE else View.VISIBLE
+        binding.btnCrashReport.visibility = if (aboutAppConfig.crashReportEmail == null) View.GONE else View.VISIBLE
         binding.btnContact.visibility = if (aboutAppConfig.contactEmail == null) View.GONE else View.VISIBLE
         binding.btnFeedback.visibility = if (aboutAppConfig.feedbackEmail == null) View.GONE else View.VISIBLE
 
@@ -302,6 +304,19 @@ internal class AboutActivity : TranslucentActivity() {
             }
         }
 
+        aboutAppConfig.crashReportEmail.whenNotNull { email ->
+            binding.btnCrashReport.setOnClickListener {
+                EmailUtils.sendEmailViaExternalApp(
+                    activity = this@AboutActivity,
+                    recipient = email,
+                    subject = getString(R.string.about_app_crash_email_subject, typeAsString(aboutAppConfig.appName)),
+                    content = R.string.about_app_crash_email_content,
+                    chooserTitle = R.string.about_app_crash_email_chooser_title,
+                    case = "about_app_crash_report"
+                )
+            }
+        }
+
         aboutAppConfig.contactEmail.whenNotNull { email ->
             binding.btnContact.setOnClickListener {
                 EmailUtils.sendEmailViaExternalApp(
@@ -323,7 +338,7 @@ internal class AboutActivity : TranslucentActivity() {
                     subject = getString(R.string.about_app_feedback_email_subject, typeAsString(aboutAppConfig.appName)),
                     content = R.string.about_app_feedback_email_content,
                     chooserTitle = R.string.about_app_feedback_email_chooser_title,
-                    case = "about_app_contact"
+                    case = "about_app_feedback"
                 )
             }
         }
