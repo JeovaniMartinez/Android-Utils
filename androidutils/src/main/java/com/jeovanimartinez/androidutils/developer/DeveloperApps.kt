@@ -21,9 +21,10 @@ object DeveloperApps : Base<DeveloperApps>() {
      * If not possible, show a toast with a message.
      * @param activity Current activity from which the function is called.
      * @param developerId The developer ID, which is displayed when opening the developer page on
-     *        Google Play, can be alphanumeric (developer name), for example, 'Jeo-Dev', or purely numeric,
-     *        for example, '5700313618786177705'. For certain developer accounts, the numeric identifier may
-     *        not work, so try it, and if it doesn't work, use the alphanumeric (developer name) one instead.
+     *        Google Play, can be alphanumeric (developer name), for example, 'Jeo-Dev' (it is case-sensitive),
+     *        or purely numeric, for example, '5700313618786177705'. For certain developer accounts, the numeric
+     *        identifier may not work, so try it, and if it doesn't work, use the alphanumeric (developer name)
+     *        one instead.
      * */
     fun showAppListInGooglePlay(activity: Activity, developerId: String) {
 
