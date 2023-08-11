@@ -397,7 +397,7 @@ object RateApp : Base<RateApp>() {
      * the Google Play app, if is not possible, open it in the browser, if it is not possible either, show a toast with a message.
      * @param activity Activity.
      * */
-    fun goToRateInGooglePlay(activity: Activity) {
+    fun goToRateOnGooglePlay(activity: Activity) {
 
         val marketUriString = "market://details?id=${activity.packageName}"
         val uri = Uri.parse(marketUriString)
@@ -413,7 +413,7 @@ object RateApp : Base<RateApp>() {
                 // If it cannot be shown in the google play app, it tries to open in the default system web browser (It doesn't show a chooser)
                 val webUriString = "https://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
-                log("User is sent to view app details in google play on web browser [$webUriString]")
+                log("User is sent to view app details on google play on web browser [$webUriString]")
                 firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY)
             } catch (e2: ActivityNotFoundException) {
                 // If it couldn't be displayed in either of the above two ways, show a toast

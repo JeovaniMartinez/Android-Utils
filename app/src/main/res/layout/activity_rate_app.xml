@@ -33,21 +33,21 @@
             android:paddingBottom="@dimen/general_spacing">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvRateInGooglePlay"
+                android:id="@+id/tvRateOnGooglePlay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="@string/rate_app_rate_in_google_play"
+                android:text="@string/rate_app_rate_on_google_play"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnGoToRateInGooglePlay"
+                android:id="@+id/btnGoToRateOnGooglePlay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/general_spacing"
-                android:text="@string/rate_app_go_rate_in_google_play"
+                android:text="@string/rate_app_go_rate_on_google_play"
                 tools:ignore="TextContrastCheck" />
 
             <View

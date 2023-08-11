@@ -34,14 +34,14 @@ class RateAppActivity : AppCompatActivity() {
 
         preferences = getSharedPreferences(Preferences.RATE_APP_PREFERENCES_FILE, Context.MODE_PRIVATE)
 
-        rateInGooglePlaySetup()
+        rateOnGooglePlaySetup()
         rateInAppSetup()
     }
 
-    /** Rate In Google Play Setup */
-    private fun rateInGooglePlaySetup() {
-        binding.btnGoToRateInGooglePlay.setOnClickListener {
-            RateApp.goToRateInGooglePlay(this@RateAppActivity)
+    /** Rate On Google Play Setup */
+    private fun rateOnGooglePlaySetup() {
+        binding.btnGoToRateOnGooglePlay.setOnClickListener {
+            RateApp.goToRateOnGooglePlay(this@RateAppActivity)
         }
     }
 
