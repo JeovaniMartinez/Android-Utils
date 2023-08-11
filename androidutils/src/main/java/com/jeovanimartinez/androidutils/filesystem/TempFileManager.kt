@@ -9,12 +9,12 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 /** Utility to work with temporary files. */
-object TempFiles : Base<TempFiles>() {
+object TempFileManager : Base<TempFileManager>() {
 
     /** Directory to store temporary files, the parent is context.filesDir */
     const val TEMP_FILES_DIR = "androidutils/tempfiles"
 
-    override val LOG_TAG = "TempFiles"
+    override val LOG_TAG = "TempFileManager"
 
     /**
      * Delete all files created with this utility (the files in the temporary folder), it is recommended to call at the

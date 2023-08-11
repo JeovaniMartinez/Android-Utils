@@ -97,7 +97,7 @@ androidutils [Módulo]
             > view ✔✔
                 > Animations.kt ✔✔
         > filesystem
-            > TempFiles ✔✔
+            > TempFileManager ✔✔
         > graphics ✔✔
             > utils ✔✔
                 > CornerRadius ✔✔
