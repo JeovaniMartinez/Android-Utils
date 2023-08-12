@@ -50,8 +50,9 @@ object FileUtils : Base<FileUtils>() {
      * @param fileName Filename for the image (without the extension as it is added automatically).
      *        Set to null or an empty or blank string to generate a UUID as the file name.
      * @param format Format for the image based on [Bitmap.CompressFormat].
-     * @param path Absolute path where the image will be saved. If null or an empty or blank string, the image
-     *   will be saved in the app's private storage within the temporary files directory of the [TempFileManager] utility.
+     * @param path Absolute path where the image will be saved (the path can be from internal or external storage,
+     *   considering the required permissions.). If null or an empty or blank string, the image will be saved in
+     *   the app's private storage within the temporary files directory of the [TempFileManager] utility.
      * @param quality Quality for the image, between 0 and 100. Default is 100. The value is interpreted differently
      *   depending on the [Bitmap.CompressFormat]
      *
