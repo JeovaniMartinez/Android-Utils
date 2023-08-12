@@ -17,7 +17,7 @@ object FileUtils : Base<FileUtils>() {
     override val LOG_TAG = "FileUtils"
 
     /**
-     * Analyze and generate the final name for a file according to the received parameters.
+     * Analyze and generate a final name for a file according to the received parameters.
      * ```
      *     // Example of the file name based on the received parameters.
      *     // ** NOTE: An empty string will be interpreted as null.
