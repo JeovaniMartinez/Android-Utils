@@ -49,11 +49,11 @@ object FileUtils : Base<FileUtils>() {
      * @param bitmap Bitmap to be saved in the file.
      * @param fileName Filename for the image (without the extension as it is added automatically).
      *        Set to null or an empty string to generate a UUID as the file name.
-     * @param format Format for the image based on [CompressFormat].
+     * @param format Format for the image based on [Bitmap.CompressFormat].
      * @param path Absolute path where the image will be saved. If null or an empty string, the image
      *   will be saved in the app's private storage within the temporary files directory of the [TempFileManager] utility.
-     * @param quality Quality for the image, between 0 and 100. Default is 100. The quality only applies to certain image
-     *   formats, refer to [CompressFormat] for more details.
+     * @param quality Quality for the image, between 0 and 100. Default is 100. The value is interpreted differently
+     *   depending on the [Bitmap.CompressFormat]
      *
      * @return The created file.
      *
@@ -63,16 +63,16 @@ object FileUtils : Base<FileUtils>() {
     fun saveBitmapToFile(
         context: Context,
         bitmap: Bitmap,
-        fileName: String? = null,
+        fileName: String?,
         format: CompressFormat,
-        path: String? = null,
+        path: String?,
         @IntRange(from = 0, to = 100) quality: Int = 100
     ): File {
 
-        // Get the file extension for the format
+        // Get the file extension according the format
         val fileExtension = when (format) {
-            CompressFormat.PNG -> "png"
             CompressFormat.JPEG -> "jpeg"
+            CompressFormat.PNG -> "png"
             else -> "webp"
         }
 
@@ -89,7 +89,7 @@ object FileUtils : Base<FileUtils>() {
         val fileOutPutStream = FileOutputStream(file)
         fileOutPutStream.write(stream.toByteArray())
         fileOutPutStream.close()
-        stream.close() // CHECK
+        stream.close()
 
         log("Bitmap saved successfully")
 
@@ -98,26 +98,26 @@ object FileUtils : Base<FileUtils>() {
     }
 
     /**
-     * Generate an abstract file.
+     * Generate an abstract file to write content to it later.
      * @param context Context.
      * @param fileName Name for the file, must include the extension.
-     * @param path Absolute path to create the file, if it is null, it is created in the temp files directory.
-     *
-     * @throws IOException If an I/O error occurs.
+     * @param path Absolute path to create the file, if it is null, it is created in the temp files directory of the [TempFileManager] utility.
+     * @return The newly generated file.
      * */
-    @Throws(IOException::class)
     private fun generateFile(context: Context, fileName: String, path: String?): File {
-        // Generate file in the path
-        val file = if (path == null) File(context.filesDir, "${TempFileManager.TEMP_FILES_DIR}/$fileName") // If the path is null, use the temp files dir
+
+        val file = if (path == null) TempFileManager.createNewTempFile(context, fileName) // If the path is null, use the temp files dir
         else File(path, fileName) // Otherwise uses the defined path
 
-        //if (path == null) TempFileManager.makeTempDir(context) // If uses temp file dir, should be created it if doesn't exist
-        //else {
-        // If using a custom path, the directories are created if they don't exist
-        val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path, exclude the filename
-        log("Make directory [$dirPath]")
-        File(dirPath).mkdirs()
-        //}
+        // If using a custom path, the directories are created if they don't exist so that the file can be written correctly
+        if (path != null) {
+            val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path, exclude the filename
+            val dirFile = File(dirPath)
+            if (!dirFile.exists()) {
+                File(dirPath).mkdirs()
+                log("Make directory [$dirPath]")
+            }
+        }
 
         return file
     }
