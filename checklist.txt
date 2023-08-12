@@ -96,7 +96,8 @@ androidutils [Módulo]
                 > NullSafety.kt ✔✔
             > view ✔✔
                 > Animations.kt ✔✔
-        > filesystem
+        > filesystem ✔✔
+            > FileUtils ✔✔
             > TempFileManager ✔✔
         > graphics ✔✔
             > utils ✔✔
