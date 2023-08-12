@@ -55,7 +55,8 @@ object TempFileManager : Base<TempFileManager>() {
 
     /**
      * Create a new file in the temporary files directory. The file will be generated in the file system until some
-     * content is saved to it, and it will be deleted when [clearTempFilesFolder] is called.
+     * content is saved to it, and it will be deleted when [clearTempFilesFolder] is called. If the file already
+     * exists, it will be replaced until some content is saved in it.
      * ```
      *     // Example of the file name based on the received parameters.
      *     // ** NOTE: An empty string will be interpreted as null, and string are trimmed **
