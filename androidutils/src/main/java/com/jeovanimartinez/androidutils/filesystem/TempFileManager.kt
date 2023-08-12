@@ -12,6 +12,7 @@ import java.io.File
 object TempFileManager : Base<TempFileManager>() {
 
     /** Directory to store temporary files, the parent is context.filesDir (private app directory) */
+    @Suppress("MemberVisibilityCanBePrivate")
     const val TEMP_FILES_DIR = "androidutils/tempfiles"
 
     override val LOG_TAG = "TempFileManager"
