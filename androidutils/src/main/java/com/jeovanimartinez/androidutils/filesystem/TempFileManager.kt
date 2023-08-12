@@ -58,7 +58,7 @@ object TempFileManager : Base<TempFileManager>() {
      * exists, it will be replaced until some content is saved in it.
      * ```
      *     // Example of the file name based on the received parameters.
-     *     // ** NOTE: An empty string will be interpreted as null.
+     *     // ** NOTE: An empty or blank string will be interpreted as null.
      *     // ** NOTE: Whitespace is removed from the parameter strings if they are not null.
      *     (fileName = null, fileExtension = null) // f067ee7e-7875-4e4a-9f3b-ddddddf365e5
      *     (fileName = "demo", fileExtension = null) // demo
@@ -68,9 +68,9 @@ object TempFileManager : Base<TempFileManager>() {
      *     (fileName = null, fileExtension = "txt") // c1c53230-d6b7-4216-a8a3-a12eb1aec165.txt
      * ```
      * @param context Context.
-     * @param fileName File name to create, set as null or an empty string to use a UUID as the file name, which is
+     * @param fileName File name to create, set as null or an empty or blank string to use a UUID as the file name, which is
      *        highly recommended for the temp files folder.
-     * @param fileExtension File extension. Set as null or an empty string to create a file without extension, or
+     * @param fileExtension File extension. Set as null or an empty or blank string to create a file without extension, or
      *        if the extension is already included in the [fileName].
      * @return The newly created temporary file.
      * */

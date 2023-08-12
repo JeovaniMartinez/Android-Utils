@@ -20,7 +20,7 @@ object FileUtils : Base<FileUtils>() {
      * Analyze and generate a final name for a file according to the received parameters.
      * ```
      *     // Example of the file name based on the received parameters.
-     *     // ** NOTE: An empty string will be interpreted as null.
+     *     // ** NOTE: An empty or blank string will be interpreted as null.
      *     // ** NOTE: Whitespace is removed from the parameter strings if they are not null.
      *     (fileName = null, fileExtension = null) // f067ee7e-7875-4e4a-9f3b-ddddddf365e5
      *     (fileName = "demo", fileExtension = null) // demo
@@ -29,8 +29,8 @@ object FileUtils : Base<FileUtils>() {
      *     (fileName = "demo.txt", fileExtension = "txt") // demo.txt.txt
      *     (fileName = null, fileExtension = "txt") // c1c53230-d6b7-4216-a8a3-a12eb1aec165.txt
      * ```
-     * @param fileName File name, set as null or an empty string to use a UUID as the file name.
-     * @param fileExtension File extension. Set as null or an empty string to omit the extension,
+     * @param fileName File name, set as null or an empty or blank string to use a UUID as the file name.
+     * @param fileExtension File extension. Set as null or an empty or blank string to omit the extension,
      *        or if the extension is already included in the [fileName].
      * @return The final normalized filename.
      * */
@@ -48,9 +48,9 @@ object FileUtils : Base<FileUtils>() {
      * @param context Context.
      * @param bitmap Bitmap to be saved in the file.
      * @param fileName Filename for the image (without the extension as it is added automatically).
-     *        Set to null or an empty string to generate a UUID as the file name.
+     *        Set to null or an empty or blank string to generate a UUID as the file name.
      * @param format Format for the image based on [Bitmap.CompressFormat].
-     * @param path Absolute path where the image will be saved. If null or an empty string, the image
+     * @param path Absolute path where the image will be saved. If null or an empty or blank string, the image
      *   will be saved in the app's private storage within the temporary files directory of the [TempFileManager] utility.
      * @param quality Quality for the image, between 0 and 100. Default is 100. The value is interpreted differently
      *   depending on the [Bitmap.CompressFormat]
