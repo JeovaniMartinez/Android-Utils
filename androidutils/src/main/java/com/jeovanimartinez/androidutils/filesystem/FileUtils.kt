@@ -106,6 +106,11 @@ object FileUtils : Base<FileUtils>() {
      * */
     private fun generateFile(context: Context, fileName: String, path: String?): File {
 
+        /*
+        * No I/O exceptions occur when generating a file with File(parent, child), or when called File(path).mkdirs()
+        * since it is generated in an abstract manner, and exceptions may arise only once content is written to the file.
+        * */
+
         // Use a custom path if the path is not null and, after trimming, it is not empty
         val useCustomPath = path != null && path.trim().isNotBlank()
 

@@ -76,6 +76,11 @@ object TempFileManager : Base<TempFileManager>() {
      * */
     fun createNewTempFile(context: Context, fileName: String? = null, fileExtension: String? = null): File {
 
+        /*
+         * No I/O exceptions occur when generating a file with File(parent, child), or when called File(path).mkdirs()
+         * since it is generated in an abstract manner, and exceptions may arise only once content is written to the file.
+         * */
+
         // Generate the final file name
         val finalFileName = FileUtils.generateNormalizedFileName(fileName, fileExtension)
 
