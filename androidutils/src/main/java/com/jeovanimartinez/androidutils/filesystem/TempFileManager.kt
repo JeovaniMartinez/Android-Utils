@@ -77,7 +77,7 @@ object TempFileManager : Base<TempFileManager>() {
     fun createNewTempFile(context: Context, fileName: String? = null, fileExtension: String? = null): File {
 
         // Generate the final file name
-        val finalFileName = FileUtils.normalizeFileName(fileName, fileExtension)
+        val finalFileName = FileUtils.generateNormalizedFileName(fileName, fileExtension)
 
         makeTempDir(context) // It is always called before creating the file to ensure that the directory exists.
 

@@ -34,7 +34,7 @@ object FileUtils : Base<FileUtils>() {
      *        or if the extension is already included in the [fileName].
      * @return The final normalized filename.
      * */
-    fun normalizeFileName(fileName: String?, fileExtension: String?): String {
+    fun generateNormalizedFileName(fileName: String?, fileExtension: String?): String {
 
         var finalFileName = if (fileName != null && fileName.trim().isNotEmpty()) fileName.trim() else UUID.randomUUID().toString()
         if (fileExtension != null && fileExtension.trim().isNotEmpty()) finalFileName = "${finalFileName}.${fileExtension.trim()}"
@@ -76,7 +76,7 @@ object FileUtils : Base<FileUtils>() {
             else -> "webp"
         }
 
-        val finalFileName = normalizeFileName(fileName, fileExtension) // Adjust the file name
+        val finalFileName = generateNormalizedFileName(fileName, fileExtension) // Adjust the file name
 
         val file = generateFile(context, finalFileName, path) // Generate the file
 
