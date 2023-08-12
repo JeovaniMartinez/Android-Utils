@@ -17,15 +17,43 @@ object FileUtils : Base<FileUtils>() {
     override val LOG_TAG = "FileUtils"
 
     /**
+     * Analyze and generate the final name for a file according to the received parameters.
+     * ```
+     *     // Example of the file name based on the received parameters.
+     *     // ** NOTE: An empty string will be interpreted as null.
+     *     // ** NOTE: Whitespace is removed from the parameter strings if they are not null.
+     *     (fileName = null, fileExtension = null) // f067ee7e-7875-4e4a-9f3b-ddddddf365e5
+     *     (fileName = "demo", fileExtension = null) // demo
+     *     (fileName = "demo.txt", fileExtension = null) // demo.txt
+     *     (fileName = "demo", fileExtension = "txt") // demo.txt
+     *     (fileName = "demo.txt", fileExtension = "txt") // demo.txt.txt
+     *     (fileName = null, fileExtension = "txt") // c1c53230-d6b7-4216-a8a3-a12eb1aec165.txt
+     * ```
+     * @param fileName File name, set as null or an empty string to use a UUID as the file name.
+     * @param fileExtension File extension. Set as null or an empty string to omit the extension,
+     *        or if the extension is already included in the [fileName].
+     * @return The final normalized filename.
+     * */
+    fun normalizeFileName(fileName: String?, fileExtension: String?): String {
+
+        var finalFileName = if (fileName != null && fileName.trim().isNotEmpty()) fileName.trim() else UUID.randomUUID().toString()
+        if (fileExtension != null && fileExtension.trim().isNotEmpty()) finalFileName = "${finalFileName}.${fileExtension.trim()}"
+
+        return finalFileName
+
+    }
+
+    /**
      * Save a bitmap object in an image file.
      * @param context Context.
-     * @param bitmap Bitmap to save.
-     * @param fileName Filename for the image, if it is null or a blank string, a UUID is used for the image file name.
-     *        If the file name does not contain the file extension, it is automatically added. So it is recommended
-     *        that it be the file name without the extension.
-     * @param path Absolute path to save the image file, if it is null, it is saved in the temp files directory.
-     * @param format Format for the image. The default is PNG.
-     * @param quality Quality for the image, between 0 and 100. Default is 100.
+     * @param bitmap Bitmap to be saved in the file.
+     * @param fileName Filename for the image (without the extension as it is added automatically).
+     *        Set to null or an empty string to generate a UUID as the file name.
+     * @param format Format for the image based on [CompressFormat].
+     * @param path Absolute path where the image will be saved. If null or an empty string, the image
+     *   will be saved in the app's private storage within the temporary files directory of the [TempFileManager] utility.
+     * @param quality Quality for the image, between 0 and 100. Default is 100. The quality only applies to certain image
+     *   formats, refer to [CompressFormat] for more details.
      *
      * @return The created file.
      *
@@ -36,8 +64,8 @@ object FileUtils : Base<FileUtils>() {
         context: Context,
         bitmap: Bitmap,
         fileName: String? = null,
+        format: CompressFormat,
         path: String? = null,
-        format: CompressFormat = CompressFormat.PNG,
         @IntRange(from = 0, to = 100) quality: Int = 100
     ): File {
 
@@ -70,23 +98,6 @@ object FileUtils : Base<FileUtils>() {
     }
 
     /**
-     * Analyze and generate the final name for the file including its extension.
-     * - If the [fileName] is null or blank, it generate a UUID with the [fileExtension] for the file name.
-     * - If the [fileExtension] already contains the [fileExtension], it is left as this.
-     * - Otherwise the [fileExtension] is added to the [fileName].
-     * @param fileName Name for the file.
-     * @param fileExtension Extension for the file.
-     * @return A final file name with the extension.
-     * */
-    private fun normalizeFileName(fileName: String?, fileExtension: String): String {
-        return if (fileName == null || fileName.trim().isBlank()) "${UUID.randomUUID()}.$fileExtension" // Default, use UUID
-        else {
-            if (fileName.trim().lowercase(Locale.ROOT).endsWith(fileExtension)) fileName // If already contains a file extension
-            else "${fileName.trim()}.$fileExtension" // Add the file extension
-        }
-    }
-
-    /**
      * Generate an abstract file.
      * @param context Context.
      * @param fileName Name for the file, must include the extension.
@@ -102,10 +113,10 @@ object FileUtils : Base<FileUtils>() {
 
         //if (path == null) TempFileManager.makeTempDir(context) // If uses temp file dir, should be created it if doesn't exist
         //else {
-            // If using a custom path, the directories are created if they don't exist
-            val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path, exclude the filename
-            log("Make directory [$dirPath]")
-            File(dirPath).mkdirs()
+        // If using a custom path, the directories are created if they don't exist
+        val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path, exclude the filename
+        log("Make directory [$dirPath]")
+        File(dirPath).mkdirs()
         //}
 
         return file
