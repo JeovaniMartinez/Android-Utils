@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.File
-import java.util.UUID
 
 /** Utility to work with temporary files. */
 object TempFileManager : Base<TempFileManager>() {
@@ -59,7 +58,8 @@ object TempFileManager : Base<TempFileManager>() {
      * exists, it will be replaced until some content is saved in it.
      * ```
      *     // Example of the file name based on the received parameters.
-     *     // ** NOTE: An empty string will be interpreted as null, and string are trimmed **
+     *     // ** NOTE: An empty string will be interpreted as null.
+     *     // ** NOTE: Whitespace is removed from the parameter strings if they are not null.
      *     (fileName = null, fileExtension = null) // f067ee7e-7875-4e4a-9f3b-ddddddf365e5
      *     (fileName = "demo", fileExtension = null) // demo
      *     (fileName = "demo.txt", fileExtension = null) // demo.txt
@@ -68,17 +68,16 @@ object TempFileManager : Base<TempFileManager>() {
      *     (fileName = null, fileExtension = "txt") // c1c53230-d6b7-4216-a8a3-a12eb1aec165.txt
      * ```
      * @param context Context.
-     * @param fileName File name to create, set as null to use a UUID as the file name, which is highly recommended
-     *        for the temp files folder.
-     * @param fileExtension File extension. Set as null to create a file without extension, or if the extension is
-     *        already included in the [fileName].
+     * @param fileName File name to create, set as null or an empty string to use a UUID as the file name, which is
+     *        highly recommended for the temp files folder.
+     * @param fileExtension File extension. Set as null or an empty string to create a file without extension, or
+     *        if the extension is already included in the [fileName].
      * @return The newly created temporary file.
      * */
     fun createNewTempFile(context: Context, fileName: String? = null, fileExtension: String? = null): File {
 
         // Generate the final file name
-        var finalFileName = if (fileName != null && fileName.trim().isNotEmpty()) fileName.trim() else UUID.randomUUID().toString()
-        if (fileExtension != null && fileExtension.trim().isNotEmpty()) finalFileName = "${finalFileName}.${fileExtension.trim()}"
+        val finalFileName = FileUtils.normalizeFileName(fileName, fileExtension)
 
         makeTempDir(context) // It is always called before creating the file to ensure that the directory exists.
 
