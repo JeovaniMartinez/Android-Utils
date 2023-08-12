@@ -106,11 +106,14 @@ object FileUtils : Base<FileUtils>() {
      * */
     private fun generateFile(context: Context, fileName: String, path: String?): File {
 
-        val file = if (path == null) TempFileManager.createNewTempFile(context, fileName) // If the path is null, use the temp files dir
+        // Use a custom path if the path is not null and, after trimming, it is not empty
+        val useCustomPath = path != null && path.trim().isNotEmpty()
+
+        val file = if (!useCustomPath) TempFileManager.createNewTempFile(context, fileName) // If the path is null, use the temp files dir
         else File(path, fileName) // Otherwise uses the defined path
 
         // If using a custom path, the directories are created if they don't exist so that the file can be written correctly
-        if (path != null) {
+        if (useCustomPath) {
             val dirPath = file.absolutePath.substringBeforeLast("/") // Get the path, exclude the filename
             val dirFile = File(dirPath)
             if (!dirFile.exists()) {
