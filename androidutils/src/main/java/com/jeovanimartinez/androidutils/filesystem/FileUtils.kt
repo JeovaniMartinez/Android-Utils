@@ -36,8 +36,8 @@ object FileUtils : Base<FileUtils>() {
      * */
     fun generateNormalizedFileName(fileName: String?, fileExtension: String?): String {
 
-        var finalFileName = if (fileName != null && fileName.trim().isNotEmpty()) fileName.trim() else UUID.randomUUID().toString()
-        if (fileExtension != null && fileExtension.trim().isNotEmpty()) finalFileName = "${finalFileName}.${fileExtension.trim()}"
+        var finalFileName = if (fileName != null && fileName.trim().isNotBlank()) fileName.trim() else UUID.randomUUID().toString()
+        if (fileExtension != null && fileExtension.trim().isNotBlank()) finalFileName = "${finalFileName}.${fileExtension.trim()}"
 
         return finalFileName
 
@@ -107,7 +107,7 @@ object FileUtils : Base<FileUtils>() {
     private fun generateFile(context: Context, fileName: String, path: String?): File {
 
         // Use a custom path if the path is not null and, after trimming, it is not empty
-        val useCustomPath = path != null && path.trim().isNotEmpty()
+        val useCustomPath = path != null && path.trim().isNotBlank()
 
         val file = if (!useCustomPath) TempFileManager.createNewTempFile(context, fileName) // If the path is null, use the temp files dir
         else File(path, fileName) // Otherwise uses the defined path
