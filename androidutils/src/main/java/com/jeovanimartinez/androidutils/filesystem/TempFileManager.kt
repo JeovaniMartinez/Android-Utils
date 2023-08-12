@@ -82,8 +82,21 @@ object TempFileManager : Base<TempFileManager>() {
 
         makeTempDir(context) // It is always called before creating the file to ensure that the directory exists.
 
-        // Creates and return the new file
-        return File(context.filesDir, "$TEMP_FILES_DIR/$finalFileName")
+        val file = File(context.filesDir, "$TEMP_FILES_DIR/$finalFileName") // Creates the new file
+
+        log(
+            """
+            createNewTempFile() invoked
+            fileName: $fileName
+            fileExtension: $fileExtension
+            Created file = $file
+            """.trimIndent()
+        )
+
+        // If the file already exists, a warning is given, indicating that it will be replaced until content is saved in the newly created file
+        if (file.exists()) logw("The file [$finalFileName] already exists, so it will be replaced when some content is saved into it.")
+
+        return file  // Return the new file
 
     }
 
