@@ -52,11 +52,11 @@ dependencies {
     // Set of Kotlin extensions for Android Jetpack and other Android libraries
     implementation "androidx.core:core-ktx:1.10.1"
 
-    // Material Components for Android
-    implementation "com.google.android.material:material:1.9.0" // Required for designing the layouts
-
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
     implementation "androidx.constraintlayout:constraintlayout:2.1.4" // Required for design the layouts
+
+    // Material Components for Android
+    implementation "com.google.android.material:material:1.9.0" // Required for designing the layouts
 
     // Runtime interface to interact with the Google Play Store
     implementation "com.google.android.play:core-ktx:1.8.1" // Required for using Google Play In-App review API
