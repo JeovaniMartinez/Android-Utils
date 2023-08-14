@@ -1,130 +1,35 @@
 ## Checklist for v1.0.0
 
-* IMPORTANTE: Cuando se finalice el desarrollo, verificar que todos los archivos estén en esta lista y estén listos.
+* Solo este archivo está en español.
 
-* Solo este archivo esta en español.
-
-* Lista de verificación de partes de la biblioteca que ya se terminaron de desarrollar.
-
-* Hasta este punto, lo que aparece en este archivo ya esta listo, solo van a quedar pendientes las pruebas en diversas versiones de Android,
-  ya que por el momento se desarrolla y prueba en un celular físico con Android 8.1.0.
-
-* En el caso de las dependencias de Gradle, para la versión 1.0.0 de la biblioteca ya no actualizar ninguna (a menos que se especifique lo contrario) 
-  ya que las que se tienen ya se van a probar en el desarrollo, y para evitar posibles conflictos ya dejarlas como están, ya que se actualizaron
+* En el caso de las dependencias de Gradle, para la versión 1.0.0 de la biblioteca ya no actualizar ninguna (a menos que se especifique lo contrario),
+  ya que las que se tienen ya se van a probar en el desarrollo, y para evitar posibles conflictos ya dejarlas como están, porque se actualizaron
   el 04/06/2023.
 
-* ✔✔ Indica que el archivo/utilidad ya esta lista.
+* ✔✔ Indica que el archivo/utilidad/carpeta ya está lista.
 
-* ✔⚠⚠ Indica que el archivo/utilidad ya casi esta lista, solo requiere pequeños ajustes que se van a realizar después ya que dependen de otra cosa,
-  y abajo se agrega una anotación indicando lo que está pendiente de ajustar.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-***************************************************************************************************************************************************
+- .git ✔✔
+- .gradle ✔✔
+- .idea ✔✔
+- androidutils
+    > Todo listo y verificado, solo falta:
+        > Terminar Share Utils
+        > Terminar Premium
+- app
+    > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
+    excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
+    que hacer una revision general de toda la app y mejorarla y terminarla.
+- build ✔✔
+- docs
+    > Verificar y mover si es posible a otra rama o ver donde acomodar, y actualizar los archivos, rutas y nombres.
+- gradle ✔✔
+- lintcheck ✔✔
+- resources
+    > Verificar y mover si es posible a otra rama o ver donde acomodar, y actualizar los archivos, rutas y nombres.
+- Archivos del directorio raíz
+    > Solo actualizar README.md, todo lo demás está listo.
 
-Gradle Scripts (Todo terminado, solo los 2 pequeños ajustes de billingclient pendientes)
-    > build.gradle (Project: Android-Utils) ✔✔
-    > build.gradle (Module :androidutils) ✔⚠⚠
-        - Actualizar la dependencia 'com.android.billingclient:billing-ktx' cuando se actualice la utilidad
-    > build.gradle (Module :app) ✔⚠⚠
-        - Actualizar la dependencia 'com.android.billingclient:billing-ktx' cuando se actualice la utilidad
-    > build.gradle (Module :lintcheck) ✔✔
-    > consumer-rules.pro ✔✔
-    > proguard-rules.pro ✔✔
-    > proguard-rules.pro ✔✔
-    > gradle.properties ✔✔
-    > gradle-wrapper.properties ✔✔
-    > local.properties ✔✔
-    > settings.gradle ✔✔
-
-***************************************************************************************************************************************************
-
-lintcheck [Módulo] ✔✔ (Todo terminado, módulo listo)
-    > main ✔✔
-        > java ✔✔
-            > com.jeovanimartinez.androidutils.lintcheck.annotations ✔✔
-                > annotations ✔✔
-                    > TypeOrResource ✔✔
-                > IssueRegistry ✔✔
-        > resources ✔✔
-            > META-INF ✔✔
-                > services ✔✔
-                    > com.android.tools.lint.client.api.IssueRegistry ✔✔
-    
-***************************************************************************************************************************************************
-
-app [Módulo]
-    > 06/06/2023: Revisión general de todo el código, archivos y recursos. Todo esta bien, solo ir ajustando lo que se requiera conforme se
-    desarrolle la app. Al final hacer nuevamente una revisión general de todos los archivos del proyecto.
-        > En la actividad de Watermark agregar los botones de guardar y compartir la imagen. ✔⚠⚠
-        > En la actividad de ViewToImage agregar los botones de guardar y compartir la imagen. ✔⚠⚠
-
-***************************************************************************************************************************************************
-
-androidutils [Módulo]
-    > java
-        > Base ✔✔
-        > about ✔✔
-            > config ✔✔
-                > AboutAppConfig ✔✔
-                > AboutAppStyle ✔✔
-            > AboutActivity ✔✔
-            > AboutApp ✔✔
-        > activity ✔✔
-            > config ✔✔
-                > TaskDescriptionConfig ✔✔
-        > annotations ✔✔
-            > DrawableOrDrawableRes ✔✔
-            > StringOrStringRes ✔✔
-        > developer ✔✔
-            > DeveloperApps ✔✔
-        > email ✔✔
-            > EmailUtils ✔✔
-        > extensions ✔✔
-            > activity ✔✔
-                > TaskDescription.kt ✔✔
-            > basictypes ✔✔
-                > Float.kt ✔✔
-            > context ✔✔
-                > Resources.kt ✔✔
-                > Toast.kt ✔✔
-                > TypeOrResource.kt ✔✔
-            > dimension ✔✔
-                > Dimensions.kt ✔✔
-                > DimensionsF.kt ✔✔
-            > graphics ✔✔
-                > Bitmap.kt ✔✔
-            > nullability ✔✔
-                > NullSafety.kt ✔✔
-            > view ✔✔
-                > Animations.kt ✔✔
-        > filesystem ✔✔
-            > FileUtils ✔✔
-            > TempFileManager ✔✔
-        > graphics ✔✔
-            > utils ✔✔
-                > CornerRadius ✔✔
-                > Dimension ✔✔
-                > Margin ✔✔
-                > Padding ✔✔
-        > reviews ✔✔
-            > RateApp ✔✔
-        > themes ✔✔
-            > translucent ✔✔
-                > TranslucentActivity ✔✔
-        > toplevelfunctions ✔✔
-            > Colors.kt ✔✔
-        > views ✔✔
-            > viewtoimage ✔✔
-                > config ✔✔
-                    > ExcludeMode ✔✔
-                    > ExcludeView ✔✔
-                > ViewToImage ✔✔
-        > watermark ✔✔
-            > config ✔✔
-                > WatermarkPosition ✔✔
-                > WatermarkShadow ✔✔
-            > Watermark ✔✔
-            > WatermarkUtils ✔✔
-        > web ✔✔
-            > SystemWebBrowser ✔✔
-
-***************************************************************************************************************************************************
+- Una vez terminado todo eso, generar los nuevos javadoc y actualizar la documentación del proyecto, y generar un nuevo lanzamiento
+en Google Play con la nueva versión de la biblioteca y de la app.
