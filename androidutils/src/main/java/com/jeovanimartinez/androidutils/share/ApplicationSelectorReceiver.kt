@@ -18,7 +18,7 @@ import java.util.*
 internal class ApplicationSelectorReceiver : BroadcastReceiver() {
 
     companion object {
-        const val EXTRA_SHARE_CASE_KEY = "case" // Key for the extra of the intent
+        const val EXTRA_SHARE_CASE_KEY = "share_case" // Key for the extra of the intent
     }
 
     /**
@@ -33,7 +33,7 @@ internal class ApplicationSelectorReceiver : BroadcastReceiver() {
                 putString(Event.Parameter.SHARE_SELECTED_APP, getSelectedAppName(context, intent))
             })
         } else {
-            ShareUtils.log("case is null")
+            ShareUtils.log("The share case is null")
         }
     }
 
