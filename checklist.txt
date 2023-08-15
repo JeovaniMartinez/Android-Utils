@@ -17,6 +17,7 @@
     > Todo listo y verificado, solo falta:
         > Terminar Share Utils
         > Terminar Premium
+        > En todas las doucumentaciones, verificar @param activity Activity. y @param context Context. para ver como se puede reemplazar por algó mas apropiado.
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
