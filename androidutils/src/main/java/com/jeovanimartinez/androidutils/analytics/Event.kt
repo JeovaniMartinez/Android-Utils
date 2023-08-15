@@ -20,10 +20,6 @@ internal object Event {
     const val BILLING_PURCHASE_COMPLETED = "billing_purchase_completed"
     const val BILLING_PURCHASE_ACKNOWLEDGE_ERROR = "billing_purchase_acknowledge_error"
 
-    const val SHARE_LAUNCHED = "share_launched"
-    const val SHARE_COMPLETED = "share_completed"
-    const val SHARE_OLD_API = "share_old_api"
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
@@ -53,6 +49,10 @@ internal object Event {
     const val RATE_APP_SENT_GOOGLE_PLAY = "rate_app_sent_google_play"
     const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
+    // Share Utils
+    const val SHARE_LAUNCHED = "share_launched"
+    const val SHARE_COMPLETED = "share_completed"
+
     // System Web Browser
     const val SYSTEM_WEB_BROWSER_OPEN_URL = "system_web_browser_open_url"
 
@@ -67,7 +67,7 @@ internal object Event {
         // System Web Browser
         const val SYSTEM_WEB_BROWSER_OPEN_URL_CASE = "open_url_case"
 
-        // To be verified...
+        // Share Utils
         const val SHARE_CASE = "share_case"
         const val SHARE_SELECTED_APP = "share_selected_app"
 
