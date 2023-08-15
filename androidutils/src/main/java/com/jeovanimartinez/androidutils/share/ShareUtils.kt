@@ -15,17 +15,21 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import java.io.File
 
-// Reference: https://developer.android.com/training/sharing/send
+/*
+* References
+* https://developer.android.com/training/sharing/send
+* https://developer.android.com/reference/androidx/core/content/FileProvider
+* */
 
 /**
- * Utility to share text and files with other apps
+ * Utility to share text and files with other apps.
  * */
 object ShareUtils : Base<ShareUtils>() {
 
     override val LOG_TAG = "ShareUtils"
 
     /**
-     * Provider to share files
+     * File provider authority defined in the app's manifest to share files.
      * */
     var fileProviderAuthority = ""
         set(value) {
@@ -33,9 +37,12 @@ object ShareUtils : Base<ShareUtils>() {
             field = value
         }
 
+    // To make it incremental and generate a new unique one for each share action
+    private var pendingIntentRequestCode = 0
+
     /**
      * Share text with other apps.
-     * @param activity Activity.
+     * @param activity Activity from which the process is initiated.
      * @param content Text to share, it can be a string or an id of a string resource.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
@@ -47,13 +54,16 @@ object ShareUtils : Base<ShareUtils>() {
         @StringOrStringRes chooserTitle: Any = R.string.share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
-        doShare(activity, activity.typeAsString(chooserTitle), activity.typeAsString(content), case)
+        log("shareText() Invoked")
+        doShare(activity, activity.typeAsString(chooserTitle), activity.typeAsString(content), null, case)
     }
 
     /**
      * Share a file (image, video, ect.) with other apps.
-     * @param activity Activity.
-     * @param file File to share.
+     * @param activity Activity from which the process is initiated.
+     * @param file File to share, it can be from the internal or external storage.
+     * @param displayName The filename to be displayed. This can be used if the original filename is undesirable.
+     *        Set to null to skip.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
      *        the share event is registered and contains a parameter with the share case.
@@ -61,32 +71,38 @@ object ShareUtils : Base<ShareUtils>() {
     fun shareFile(
         activity: Activity,
         file: File,
+        @StringOrStringRes displayName: String? = null,
         @StringOrStringRes chooserTitle: Any = R.string.share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
+        log("shareFile() Invoked")
         if (fileProviderAuthority.isBlank()) {
-            throw IllegalStateException("You must specify the file provider (ShareUtils.fileProviderAuthority) before calling this function")
+            throw IllegalStateException("You must specify the file provider [ShareUtils.fileProviderAuthority] before calling this function")
         }
-        doShare(activity, activity.typeAsString(chooserTitle), file, case)
+        doShare(activity, activity.typeAsString(chooserTitle), file, if (displayName != null) activity.typeAsString(displayName) else null, case)
     }
 
     /**
-     * Execute the action of sharing content
-     * @param activity Activity.
+     * Execute the action of sharing content.
+     * @param activity Activity from which the process is initiated.
+     * @param chooserTitle Title for share chooser.
      * @param content Content to share, must be type String or File.
-     * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
+     * @param displayName This applies only if the content is file type. Is the filename to be displayed.
+     *        This can be used if the original filename is undesirable. Set to null to skip.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
      *        the share event is registered and contains a parameter with the share case.
      * */
-    private fun doShare(activity: Activity, chooserTitle: String, content: Any, case: String) {
+    private fun doShare(activity: Activity, chooserTitle: String, content: Any, displayName: String?, case: String) {
 
+        @Suppress("ReplaceIsEmptyWithIfEmpty")
         val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
 
         log(
             """
-            Share invoked.
-            Title: $chooserTitle
+            ShareUtils > doShare() Data
+            Chooser Title: $chooserTitle
             Content: $content
+            Display Name: $displayName
             Case: $finalCase
         """.trimIndent()
         )
@@ -99,15 +115,22 @@ object ShareUtils : Base<ShareUtils>() {
                 sendIntent.type = "text/plain"
                 sendIntent.putExtra(Intent.EXTRA_TEXT, content.toString())
             }
+
             is File -> {
                 val extension = MimeTypeMap.getFileExtensionFromUrl(content.name)
                 val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
                 log("File extension: $extension | Mime type: $mimeType")
                 sendIntent.type = mimeType
-                sendIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(activity, fileProviderAuthority, content))
+                if (displayName == null) {
+                    sendIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(activity, fileProviderAuthority, content))
+                } else {
+                    sendIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(activity, fileProviderAuthority, content, displayName))
+                }
+                sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
+
             else -> {
-                throw IllegalArgumentException("content must be a String or File object")
+                throw IllegalArgumentException("Content to share must be a String or File object")
             }
         }
 
@@ -115,7 +138,7 @@ object ShareUtils : Base<ShareUtils>() {
         val intentChooser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             val intentReceiver = Intent(activity, ApplicationSelectorReceiver::class.java)
             intentReceiver.putExtra(ApplicationSelectorReceiver.EXTRA_SHARE_CASE_KEY, finalCase) // In order to determine the case in the broadcast
-            val pendingIntent = PendingIntent.getBroadcast(activity, 0, intentReceiver, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent = PendingIntent.getBroadcast(activity, pendingIntentRequestCode++, intentReceiver, PendingIntent.FLAG_UPDATE_CURRENT)
             Intent.createChooser(sendIntent, chooserTitle, pendingIntent.intentSender)
         } else {
             Intent.createChooser(sendIntent, chooserTitle)
@@ -123,12 +146,8 @@ object ShareUtils : Base<ShareUtils>() {
 
         activity.startActivity(intentChooser) // Launch the chooser to share
 
-        // Register the event
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            firebaseAnalytics(Event.SHARE_LAUNCHED, Bundle().apply { putString(Event.Parameter.SHARE_CASE, finalCase) })
-        } else {
-            firebaseAnalytics(Event.SHARE_OLD_API, Bundle().apply { putString(Event.Parameter.SHARE_CASE, finalCase) })
-        }
+        // The event is registered, if applicable
+        firebaseAnalytics(Event.SHARE_LAUNCHED, Bundle().apply { putString(Event.Parameter.SHARE_CASE, finalCase) })
 
     }
 
