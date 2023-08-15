@@ -65,7 +65,7 @@ object EmailUtils : Base<EmailUtils>() {
             Recipient: $finalRecipient
             Subject: $finalSubject
             Content: $finalContent
-            ChooserTitle: $finalChooserTitle
+            Chooser Title: $finalChooserTitle
             Case: $finalCase
             """.trimIndent()
         )
