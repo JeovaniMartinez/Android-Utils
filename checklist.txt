@@ -33,3 +33,63 @@
 
 - Una vez terminado todo eso, generar los nuevos javadoc y actualizar la documentación del proyecto, y generar un nuevo lanzamiento
 en Google Play con la nueva versión de la biblioteca y de la app.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Temporal, documentación de Share Utils, pasos a seguir para configurar.
+1: Agregar en el manifest de la app: https://developer.android.com/training/secure-file-sharing/setup-sharing
+<provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.jeovanimartinez.androidutils.app.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+2. Agregar el arhcivo file_paths con la ruta de carpetas a compartir
+<paths>
+    <files-path
+        name="androidutils_tempfiles"
+        path="androidutils/tempfiles" />
+</paths>
+eso de arriba solo compartira el directorio privado de la app androidutils/tempfiles, usar path="." para compartir todos los directorios
+de la carpeta privada de la app dentro de la carpeta files/
+3. Asignar fileProviderAuthority del fileprovider, debe ser el mismo que se uso en el manifest
