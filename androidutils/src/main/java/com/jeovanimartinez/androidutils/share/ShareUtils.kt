@@ -138,7 +138,8 @@ object ShareUtils : Base<ShareUtils>() {
         val intentChooser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             val intentReceiver = Intent(activity, ApplicationSelectorReceiver::class.java)
             intentReceiver.putExtra(ApplicationSelectorReceiver.EXTRA_SHARE_CASE_KEY, finalCase) // In order to determine the case in the broadcast
-            val pendingIntent = PendingIntent.getBroadcast(activity, pendingIntentRequestCode++, intentReceiver, PendingIntent.FLAG_UPDATE_CURRENT)
+            // Using PendingIntent.FLAG_MUTABLE is very important in order to obtain the name of the selected app in ApplicationSelectorReceiver
+            val pendingIntent = PendingIntent.getBroadcast(activity, pendingIntentRequestCode++, intentReceiver, PendingIntent.FLAG_MUTABLE)
             Intent.createChooser(sendIntent, chooserTitle, pendingIntent.intentSender)
         } else {
             Intent.createChooser(sendIntent, chooserTitle)
