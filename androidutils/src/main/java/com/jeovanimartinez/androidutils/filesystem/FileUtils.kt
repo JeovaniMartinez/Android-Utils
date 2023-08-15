@@ -24,7 +24,7 @@ object FileUtils : Base<FileUtils>() {
      *     // ** NOTE: Whitespace is removed from the parameter strings if they are not null.
      *     (fileName = null, fileExtension = null) // f067ee7e-7875-4e4a-9f3b-ddddddf365e5
      *     (fileName = "demo", fileExtension = null) // demo
-     *     (fileName = "demo.txt", fileExtension = null) // demo.txt
+     *     (fileName = "    demo.txt    ", fileExtension = null) // demo.txt
      *     (fileName = "demo", fileExtension = "txt") // demo.txt
      *     (fileName = "demo.txt", fileExtension = "txt") // demo.txt.txt
      *     (fileName = null, fileExtension = "txt") // c1c53230-d6b7-4216-a8a3-a12eb1aec165.txt
@@ -47,8 +47,9 @@ object FileUtils : Base<FileUtils>() {
      * Save a bitmap object in an image file.
      * @param context Context.
      * @param bitmap Bitmap to be saved in the file.
-     * @param fileName Filename for the image (without the extension as it is added automatically).
-     *        Set to null or an empty or blank string to generate a UUID as the file name.
+     * @param fileName Filename for the image (without the extension as it is added automatically). Set to null
+     *   or an empty or blank string to generate a UUID as the file name. Note that the file name is processed
+     *   using [generateNormalizedFileName].
      * @param format Format for the image based on [Bitmap.CompressFormat].
      * @param path Absolute path where the image will be saved (the path can be from internal or external storage,
      *   considering the required permissions.). If null or an empty or blank string, the image will be saved in

@@ -63,7 +63,7 @@ object TempFileManager : Base<TempFileManager>() {
      *     // ** NOTE: Whitespace is removed from the parameter strings if they are not null.
      *     (fileName = null, fileExtension = null) // f067ee7e-7875-4e4a-9f3b-ddddddf365e5
      *     (fileName = "demo", fileExtension = null) // demo
-     *     (fileName = "demo.txt", fileExtension = null) // demo.txt
+     *     (fileName = "    demo.txt    ", fileExtension = null) // demo.txt
      *     (fileName = "demo", fileExtension = "txt") // demo.txt
      *     (fileName = "demo.txt", fileExtension = "txt") // demo.txt.txt
      *     (fileName = null, fileExtension = "txt") // c1c53230-d6b7-4216-a8a3-a12eb1aec165.txt
