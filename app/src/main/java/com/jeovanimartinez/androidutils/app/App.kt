@@ -1,5 +1,3 @@
-@file:Suppress("UnusedImport")
-
 package com.jeovanimartinez.androidutils.app
 
 import android.content.Context

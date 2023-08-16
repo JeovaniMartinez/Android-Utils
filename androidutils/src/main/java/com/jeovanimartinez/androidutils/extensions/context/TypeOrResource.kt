@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.jeovanimartinez.androidutils.extensions.context
 
 import android.content.Context

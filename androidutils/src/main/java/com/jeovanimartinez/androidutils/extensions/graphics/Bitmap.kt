@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.jeovanimartinez.androidutils.extensions.graphics
 
 import android.graphics.Bitmap

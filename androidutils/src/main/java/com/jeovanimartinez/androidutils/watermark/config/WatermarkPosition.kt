@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.jeovanimartinez.androidutils.watermark.config
 
 /**
