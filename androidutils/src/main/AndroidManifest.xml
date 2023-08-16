@@ -27,7 +27,7 @@
 
     <queries>
 
-        <!-- Common intents and queries reference:  https://developer.android.com/guide/components/intents-common -->
+        <!-- Common intents and queries reference: https://developer.android.com/guide/components/intents-common -->
 
         <!-- Element to query for activities that handle ACTION_VIEW used in various utilities -->
         <intent>
