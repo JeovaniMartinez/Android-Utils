@@ -14,8 +14,7 @@
 - .gradle ✔✔
 - .idea ✔✔
 - androidutils
-    > Todo listo y verificado, solo falta:
-        > Terminar Share Utils
+    > Tod@ listo y verificado, solo falta:
         > Terminar Premium
         > En todas las doucumentaciones, verificar @param activity Activity. y @param context Context. para ver como se puede reemplazar por algó mas apropiado.
         > Eliminar los @file:Suppress("unused")
@@ -33,9 +32,9 @@
 - resources
     > Verificar y mover si es posible a otra rama o ver donde acomodar, y actualizar los archivos, rutas y nombres.
 - Archivos del directorio raíz
-    > Solo actualizar README.md, todo lo demás está listo.
+    > Solo actualizar README.md, tod@ lo demás está listo.
 
-- Una vez terminado todo eso, generar los nuevos javadoc y actualizar la documentación del proyecto, y generar un nuevo lanzamiento
+- Una vez terminado eso, generar los nuevos javadoc y actualizar la documentación del proyecto, y generar un nuevo lanzamiento
 en Google Play con la nueva versión de la biblioteca y de la app.
 
 
