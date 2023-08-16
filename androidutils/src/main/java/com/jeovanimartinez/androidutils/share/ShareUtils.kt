@@ -102,6 +102,7 @@ object ShareUtils : Base<ShareUtils>() {
             ShareUtils > doShare() Data
             Chooser Title: $chooserTitle
             Content: $content
+            Content Type: ${content::class.simpleName}
             Display Name: $displayName
             Case: $finalCase
         """.trimIndent()
