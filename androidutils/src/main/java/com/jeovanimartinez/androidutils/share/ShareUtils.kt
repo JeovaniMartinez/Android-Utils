@@ -121,6 +121,10 @@ object ShareUtils : Base<ShareUtils>() {
                 val extension = MimeTypeMap.getFileExtensionFromUrl(content.name)
                 val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
                 log("File extension: $extension | Mime type: $mimeType")
+
+                // Validation
+                require(extension != "" && mimeType != null) { "Invalid file extension. Cannot obtain the file MIME type." }
+
                 sendIntent.type = mimeType
                 if (displayName == null) {
                     sendIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(activity, fileProviderAuthority, content))
