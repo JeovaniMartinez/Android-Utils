@@ -135,15 +135,14 @@ object ShareUtils : Base<ShareUtils>() {
             }
         }
 
+        ApplicationSelectorReceiver.currentShareCase = finalCase
+
         // The intent chooser is assigned, since in Android 5.1 and higher it is possible to determine which app the user chooses, Reference https://stackoverflow.com/a/50288268
         val intentChooser = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             val intentReceiver = Intent(activity, ApplicationSelectorReceiver::class.java)
-            intentReceiver.putExtra(ApplicationSelectorReceiver.EXTRA_SHARE_CASE_KEY, finalCase) // In order to determine the case in the broadcast
-            /*
-            * Using "Intent.FILL_IN_ACTION or PendingIntent.FLAG_MUTABLE" is very important in order to kept the intent extras and to obtain the name of the
-            * selected app and the intentReceiver extras in ApplicationSelectorReceiver
-            * */
-            val pendingIntent = PendingIntent.getBroadcast(activity, pendingIntentRequestCode++, intentReceiver, Intent.FILL_IN_ACTION or PendingIntent.FLAG_MUTABLE)
+            // Avoid to use intentReceiver.putExtra() because not work correctly in the BroadcastReceiver, since sometimes data from previous calls is obtained in intent.extras?.get()
+            // Using PendingIntent.FLAG_MUTABLE is very important in order to to obtain the name of the selected app in ApplicationSelectorReceiver
+            val pendingIntent = PendingIntent.getBroadcast(activity, pendingIntentRequestCode++, intentReceiver, PendingIntent.FLAG_MUTABLE)
             Intent.createChooser(sendIntent, chooserTitle, pendingIntent.intentSender)
         } else {
             Intent.createChooser(sendIntent, chooserTitle)
