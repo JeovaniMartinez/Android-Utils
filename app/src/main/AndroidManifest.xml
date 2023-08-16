@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Optional, as it is automatically added when adding the GPBL dependency (https://developer.android.com/google/play/billing/release-notes#release-1_0) -->
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
