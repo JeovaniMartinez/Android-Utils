@@ -140,10 +140,10 @@ object ShareUtils : Base<ShareUtils>() {
             val intentReceiver = Intent(activity, ApplicationSelectorReceiver::class.java)
             intentReceiver.putExtra(ApplicationSelectorReceiver.EXTRA_SHARE_CASE_KEY, finalCase) // In order to determine the case in the broadcast
             /*
-            * Using "Intent.FILL_IN_DATA or PendingIntent.FLAG_MUTABLE" is very important in order to kept the intent extras and to obtain the name of the
+            * Using "Intent.FILL_IN_ACTION or PendingIntent.FLAG_MUTABLE" is very important in order to kept the intent extras and to obtain the name of the
             * selected app and the intentReceiver extras in ApplicationSelectorReceiver
             * */
-            val pendingIntent = PendingIntent.getBroadcast(activity, pendingIntentRequestCode++, intentReceiver, Intent.FILL_IN_DATA or PendingIntent.FLAG_MUTABLE)
+            val pendingIntent = PendingIntent.getBroadcast(activity, pendingIntentRequestCode++, intentReceiver, Intent.FILL_IN_ACTION or PendingIntent.FLAG_MUTABLE)
             Intent.createChooser(sendIntent, chooserTitle, pendingIntent.intentSender)
         } else {
             Intent.createChooser(sendIntent, chooserTitle)
