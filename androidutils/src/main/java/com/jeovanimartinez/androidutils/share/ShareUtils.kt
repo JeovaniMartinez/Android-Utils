@@ -123,7 +123,7 @@ object ShareUtils : Base<ShareUtils>() {
                 log("File extension: $extension | Mime type: $mimeType")
 
                 // Validation
-                require(extension != "" && mimeType != null) { "Invalid file extension. Cannot obtain the file MIME type." }
+                require(extension != "" && mimeType != null) { "Invalid file extension [$extension]. Cannot obtain the file MIME type." }
 
                 sendIntent.type = mimeType
                 if (displayName == null) {
