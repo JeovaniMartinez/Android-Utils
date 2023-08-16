@@ -97,3 +97,23 @@ Temporal, documentación de Share Utils, pasos a seguir para configurar.
 eso de arriba solo compartira el directorio privado de la app androidutils/tempfiles, usar path="." para compartir todos los directorios
 de la carpeta privada de la app dentro de la carpeta files/
 3. Asignar fileProviderAuthority del fileprovider, debe ser el mismo que se uso en el manifest
+4. Agregar las queries en el manifest según el tipo de archivo a compartir
+  <queries>
+
+        <!-- Reference: https://developer.android.com/training/package-visibility/declaring#intent-filter-signature -->
+
+        <!-- Element to query for activities that handle SEND intent for share files -->
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="image/jpeg" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="image/png" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="image/webp" />
+        </intent>
+
+    </queries>
