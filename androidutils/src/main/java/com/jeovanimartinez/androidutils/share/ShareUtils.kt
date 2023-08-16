@@ -51,7 +51,7 @@ object ShareUtils : Base<ShareUtils>() {
     fun shareText(
         activity: Activity,
         @StringOrStringRes content: Any,
-        @StringOrStringRes chooserTitle: Any = R.string.share,
+        @StringOrStringRes chooserTitle: Any = R.string.share_utils_share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
         log("shareText() Invoked")
@@ -72,7 +72,7 @@ object ShareUtils : Base<ShareUtils>() {
         activity: Activity,
         file: File,
         @StringOrStringRes displayName: String? = null,
-        @StringOrStringRes chooserTitle: Any = R.string.share,
+        @StringOrStringRes chooserTitle: Any = R.string.share_utils_share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
         log("shareFile() Invoked")

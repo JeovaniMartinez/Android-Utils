@@ -36,7 +36,7 @@
     <string name="rate_app_unable_to_show_app_on_google_play">Not available, please rate the App on Google Play</string>
 
     <!-- Share Utils -->
-    <string name="share">Share</string>
+    <string name="share_utils_share">Share</string>
 
     <!-- System Web Browser -->
     <string name="system_web_browser_not_available">There is no App installed to show the requested web page</string>
