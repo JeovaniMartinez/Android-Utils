@@ -155,7 +155,7 @@ object ShareUtils : Base<ShareUtils>() {
         activity.startActivity(intentChooser) // Launch the chooser to share
 
         // The event is registered, if applicable
-        firebaseAnalytics(Event.SHARE_LAUNCHED, Bundle().apply { putString(Event.Parameter.SHARE_CASE, finalCase) })
+        logAnalyticsEvent(Event.SHARE_LAUNCHED, Bundle().apply { putString(Event.Parameter.SHARE_CASE, finalCase) })
 
     }
 

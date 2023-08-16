@@ -40,7 +40,7 @@ object AboutApp : Base<AboutApp>() {
         // Launch about activity, currentConfig is already assigned to be used
         activity.startActivity(Intent(activity, AboutActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
 
-        firebaseAnalytics(Event.ABOUT_APP_SHOWN) // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
+        logAnalyticsEvent(Event.ABOUT_APP_SHOWN) // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
         log("Launched AboutActivity")
 
     }

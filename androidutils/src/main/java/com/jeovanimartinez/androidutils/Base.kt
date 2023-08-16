@@ -50,11 +50,10 @@ abstract class Base<T : Base<T>> {
     /**
      * Log an event in Firebase Analytics, as long as the base class has an instance of Firebase Analytics, and event logging is enabled for
      * the instance of the class.
-     *
      * @param eventName Event name, must be between 1 and 40 characters.
      * @param eventParams Event parameters (optional).
      * */
-    internal fun firebaseAnalytics(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
+    internal fun logAnalyticsEvent(@Size(min = 1L, max = 40L) eventName: String, eventParams: Bundle? = null) {
 
         // No need to log the event in Firebase Analytics or show debug info, firebaseAnalyticsInstance is null
         if (firebaseAnalyticsInstance == null) return

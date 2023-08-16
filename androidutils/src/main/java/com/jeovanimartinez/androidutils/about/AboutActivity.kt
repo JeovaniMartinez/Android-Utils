@@ -240,7 +240,7 @@ internal class AboutActivity : TranslucentActivity() {
         binding.btnOpenSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
         binding.btnOpenSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
-            AboutApp.firebaseAnalytics(Event.ABOUT_APP_OSL_SHOWN)
+            AboutApp.logAnalyticsEvent(Event.ABOUT_APP_OSL_SHOWN)
         }
 
         // Close button
@@ -286,7 +286,7 @@ internal class AboutActivity : TranslucentActivity() {
             // To avoid repeated actions, in this case, binding.layoutHelp.visibility == View.VISIBLE works better than helpSectionVisible == true
             if (binding.layoutHelp.visibility == View.VISIBLE) return@setOnClickListener
             showHelpSection()
-            AboutApp.firebaseAnalytics(Event.ABOUT_APP_HELP_SECTION_SHOWN)
+            AboutApp.logAnalyticsEvent(Event.ABOUT_APP_HELP_SECTION_SHOWN)
         }
         binding.btnCloseHelp.setOnClickListener {
             hideHelpSection()
@@ -465,7 +465,7 @@ internal class AboutActivity : TranslucentActivity() {
             binding.webViewTermsAndPolicy.animate().translationX(0f).start()
 
             // It's only registered here as it's when the section is displayed upon user's request
-            AboutApp.firebaseAnalytics(Event.ABOUT_APP_TERMS_POLICY_SHOWN)
+            AboutApp.logAnalyticsEvent(Event.ABOUT_APP_TERMS_POLICY_SHOWN)
 
         } else {
 

@@ -314,7 +314,7 @@ object RateApp : Base<RateApp>() {
                     successfulReviewFlow = true // The flow was correct
                     log("launchReviewFlow() > Success")
                     updatePreferencesOnFlowShown() // Preferences are updated because the flow is complete
-                    firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_OK)
+                    logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_OK)
                 }
 
                 // Review flow error
@@ -322,7 +322,7 @@ object RateApp : Base<RateApp>() {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                     checkShowEventCount = showAtEvent - 1 // Adjust to try again on the next event
                     loge("launchReviewFlow() > Error", it)
-                    firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_ERROR)
+                    logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_ERROR)
                 }
 
                 // Flow completed
@@ -346,7 +346,7 @@ object RateApp : Base<RateApp>() {
                                 "Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
                                         "it is considered that the flow was shown to the user"
                             )
-                            firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_SHOWN)
+                            logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_SHOWN)
                         } else {
                             log(
                                 "Elapsed time ${elapsedTime / 1000.0} is less than ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
@@ -360,7 +360,7 @@ object RateApp : Base<RateApp>() {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                 checkShowEventCount = showAtEvent - 1 // Adjust to try again on the next event
                 loge("requestReviewFlow() > Error", request.exception)
-                firebaseAnalytics(Event.RATE_APP_REVIEW_FLOW_ERROR)
+                logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_ERROR)
             }
         }
 
@@ -407,19 +407,19 @@ object RateApp : Base<RateApp>() {
         try {
             activity.startActivity(googlePlayIntent) // It tries to show in the Google Play app
             log("User is sent to view app details in the google play app [$marketUriString]")
-            firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY)
+            logAnalyticsEvent(Event.RATE_APP_SENT_GOOGLE_PLAY)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // If it cannot be shown in the google play app, it tries to open in the default system web browser (It doesn't show a chooser)
                 val webUriString = "https://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
                 log("User is sent to view app details on google play on web browser [$webUriString]")
-                firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY)
+                logAnalyticsEvent(Event.RATE_APP_SENT_GOOGLE_PLAY)
             } catch (e2: ActivityNotFoundException) {
                 // If it couldn't be displayed in either of the above two ways, show a toast
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
                 logw("Unable to send the user to app details, google play app and web browser are not available", e2)
-                firebaseAnalytics(Event.RATE_APP_SENT_GOOGLE_PLAY_ERROR)
+                logAnalyticsEvent(Event.RATE_APP_SENT_GOOGLE_PLAY_ERROR)
             }
         }
 

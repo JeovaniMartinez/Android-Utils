@@ -136,10 +136,10 @@ object Premium : Base<Premium>() {
                             val billingFlowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails[0]).build()
                             billingClient.launchBillingFlow(activity, billingFlowParams)
                             log("Started billing flow")
-                            firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_OK)
+                            logAnalyticsEvent(Event.BILLING_FLOW_LAUNCH_OK)
                         } else {
                             logw("Unable to start the purchase flow because the product details could not be obtained")
-                            firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_ERROR)
+                            logAnalyticsEvent(Event.BILLING_FLOW_LAUNCH_ERROR)
                             listener.whenNotNull {
                                 log("Listener function invoked > onStartPurchaseError()")
                                 it.onStartPurchaseError(BillingResponseCode.ERROR)
@@ -149,7 +149,7 @@ object Premium : Base<Premium>() {
                     }
                 } else {
                     logw("Unable to start the purchase flow because the billing client could not connect")
-                    firebaseAnalytics(Event.BILLING_FLOW_LAUNCH_ERROR)
+                    logAnalyticsEvent(Event.BILLING_FLOW_LAUNCH_ERROR)
                     listener.whenNotNull { log("Listener function invoked > onStartPurchaseError()"); it.onStartPurchaseError(code) }
                 }
             }
@@ -176,7 +176,7 @@ object Premium : Base<Premium>() {
                 currentState = result // Update the current state
                 listener.whenNotNull {
                     log("Listener function invoked > onCheckPremium() | The result is informed by the preferences")
-                    firebaseAnalytics(Event.BILLING_CHECK_PREMIUM_PREFERENCES)
+                    logAnalyticsEvent(Event.BILLING_CHECK_PREMIUM_PREFERENCES)
                     it.onCheckPremium(result)
                 }
             }
@@ -194,7 +194,7 @@ object Premium : Base<Premium>() {
                     currentState = result // Update the current state
                     listener.whenNotNull {
                         log("Listener function invoked > onCheckPremium() | The result is informed by the billing client")
-                        firebaseAnalytics(Event.BILLING_CHECK_PREMIUM_CLIENT)
+                        logAnalyticsEvent(Event.BILLING_CHECK_PREMIUM_CLIENT)
                         it.onCheckPremium(result)
                     }
                     endConnection()
@@ -300,10 +300,10 @@ object Premium : Base<Premium>() {
                 override fun onBillingSetupFinished(billingResult: BillingResult) {
                     if (billingResult.responseCode == BillingResponseCode.OK) {
                         log("Billing client successfully connected")
-                        firebaseAnalytics(Event.BILLING_CLIENT_CONNECTION_OK)
+                        logAnalyticsEvent(Event.BILLING_CLIENT_CONNECTION_OK)
                     } else {
                         logw("Failed to connect the Billing Client. ${getResCodeDesc(billingResult.responseCode)}")
-                        firebaseAnalytics(Event.BILLING_CLIENT_CONNECTION_ERROR)
+                        logAnalyticsEvent(Event.BILLING_CLIENT_CONNECTION_ERROR)
                     }
                     result(billingResult.responseCode) // The result is reported
                 }
@@ -311,7 +311,7 @@ object Premium : Base<Premium>() {
                 override fun onBillingServiceDisconnected() {
                     // At the moment, no need to handle reconnection
                     log("Billing client has been disconnected")
-                    firebaseAnalytics(Event.BILLING_CLIENT_DISCONNECTED)
+                    logAnalyticsEvent(Event.BILLING_CLIENT_DISCONNECTED)
                 }
             })
         }
@@ -352,23 +352,23 @@ object Premium : Base<Premium>() {
                             if (skuDetailsList != null && skuDetailsList.isNotEmpty()) {
                                 log("Sku details list was successfully obtained. Size = ${skuDetailsList.size} Expected size = ${skuList.size}")
                                 log("$skuDetailsList")
-                                firebaseAnalytics(Event.BILLING_SKU_DETAILS_OK)
+                                logAnalyticsEvent(Event.BILLING_SKU_DETAILS_OK)
                                 result(skuDetailsList)
                             } else {
                                 logw("Error on getting the sku details, the result list is empty.")
-                                firebaseAnalytics(Event.BILLING_SKU_DETAILS_ERROR)
+                                logAnalyticsEvent(Event.BILLING_SKU_DETAILS_ERROR)
                                 result(null) // The result is null because it could not be obtained the details of the product
                             }
                         } else {
                             log("Failed querySkuDetailsAsync. ${getResCodeDesc(billingResult.responseCode)}")
-                            firebaseAnalytics(Event.BILLING_SKU_DETAILS_ERROR)
+                            logAnalyticsEvent(Event.BILLING_SKU_DETAILS_ERROR)
                             result(null) // The result is null because it could not be obtained the details of the product
                         }
                     }
 
                 } else {
                     logw("Unable to get sku details list because the billing client could not connect")
-                    firebaseAnalytics(Event.BILLING_SKU_DETAILS_ERROR)
+                    logAnalyticsEvent(Event.BILLING_SKU_DETAILS_ERROR)
                     result(null) // The result is null because it could not be obtained the details of the product
                 }
             }
@@ -458,10 +458,10 @@ object Premium : Base<Premium>() {
                     billingClient.acknowledgePurchase(acknowledgePurchaseParams) { billingResult ->
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             log("The purchase has been acknowledged successfully")
-                            firebaseAnalytics(Event.BILLING_PURCHASE_COMPLETED) // The purchase is completed until acknowledged it
+                            logAnalyticsEvent(Event.BILLING_PURCHASE_COMPLETED) // The purchase is completed until acknowledged it
                         } else {
                             logw("Failed to acknowledge the purchase. ${getResCodeDesc(billingResult.responseCode)}")
-                            firebaseAnalytics(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
+                            logAnalyticsEvent(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
                         }
                         preventEndConnection = false
                         // The connection is ended as the places from where acknowledgePurchase() is invoked no longer need the connection
@@ -470,7 +470,7 @@ object Premium : Base<Premium>() {
                 } else {
                     preventEndConnection = false
                     log("The billing client is not ready to acknowledge the purchase")
-                    firebaseAnalytics(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
+                    logAnalyticsEvent(Event.BILLING_PURCHASE_ACKNOWLEDGE_ERROR)
                 }
             }
         }
@@ -499,7 +499,7 @@ object Premium : Base<Premium>() {
                     // The purchase was canceled, an error occurred or the payment method was rejected. The purchase was not completed
                     result = State.NOT_PREMIUM
                     log("Purchase canceled")
-                    firebaseAnalytics(Event.BILLING_PURCHASE_CANCELLED)
+                    logAnalyticsEvent(Event.BILLING_PURCHASE_CANCELLED)
                 }
             }
             currentState = result // Update the current state

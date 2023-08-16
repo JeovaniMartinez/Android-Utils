@@ -121,20 +121,20 @@ object EmailUtils : Base<EmailUtils>() {
         if (intentActivitiesList.isNotEmpty() && intentActivitiesList[0].activityInfo.packageName != "com.android.fallback") {
             try {
                 activity.startActivity(Intent.createChooser(intent, finalChooserTitle))
-                firebaseAnalytics(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
+                logAnalyticsEvent(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
                     putString(Event.Parameter.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE, finalCase)
                 })
                 log("A chooser was launched to send an email with an external app")
             } catch (ex: Exception) {
                 handleNotAvailableAppOrException()
-                firebaseAnalytics(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
+                logAnalyticsEvent(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
                     putString(Event.Parameter.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE, "exception")
                 })
                 loge("Unable to start action to send email", ex)
             }
         } else {
             handleNotAvailableAppOrException()
-            firebaseAnalytics(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
+            logAnalyticsEvent(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
                 putString(Event.Parameter.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE, "no_app_available")
             })
             logw("There is no app available to send an email")
