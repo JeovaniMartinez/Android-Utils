@@ -76,7 +76,7 @@
 
         <!-- Reference: https://developer.android.com/training/package-visibility/declaring#intent-filter-signature -->
 
-        <!-- Element to query for activities that handle SEND intent for share files -->
+        <!-- Elements to query for activities that handle SEND intent for share files -->
         <intent>
             <action android:name="android.intent.action.SEND" />
             <data android:mimeType="image/jpeg" />

@@ -29,7 +29,7 @@
 
         <!-- Common intents and queries reference: https://developer.android.com/guide/components/intents-common -->
 
-        <!-- Element to query for activities that handle ACTION_VIEW used in various utilities -->
+        <!-- Elements to query for activities that handle ACTION_VIEW used in various utilities -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
