@@ -19,6 +19,7 @@
         > Terminar Premium
         > En todas las doucumentaciones, verificar @param activity Activity. y @param context Context. para ver como se puede reemplazar por algó mas apropiado.
         > Eliminar los @file:Suppress("unused")
+        > internal fun firebaseAnalytics() ver si se deja así o si se ajusta el nombre de la función
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay

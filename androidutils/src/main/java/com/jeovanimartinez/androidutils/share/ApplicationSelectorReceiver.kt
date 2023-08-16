@@ -27,11 +27,14 @@ internal class ApplicationSelectorReceiver : BroadcastReceiver() {
      * */
     override fun onReceive(context: Context, intent: Intent) {
         ShareUtils.log("Invoked > ApplicationSelectorReceiver > onReceive")
+
         val case = intent.extras?.getString(EXTRA_SHARE_CASE_KEY)
         if (case != null) {
+            val selectedAppName = getSelectedAppName(context, intent)
+            ShareUtils.log("Selected App Name: $selectedAppName")
             ShareUtils.firebaseAnalytics(Event.SHARE_COMPLETED, Bundle().apply {
                 putString(Event.Parameter.SHARE_CASE, case)
-                putString(Event.Parameter.SHARE_SELECTED_APP, getSelectedAppName(context, intent))
+                putString(Event.Parameter.SHARE_SELECTED_APP, selectedAppName)
             })
         } else {
             ShareUtils.log("The share case is null")
