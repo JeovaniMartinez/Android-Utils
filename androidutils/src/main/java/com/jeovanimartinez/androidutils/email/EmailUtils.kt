@@ -29,7 +29,7 @@ object EmailUtils : Base<EmailUtils>() {
      * Launches an external app (using a chooser) to send an simple email through that app. If there is no app
      * available to send the email, show a toast, and if the recipient is not null, copy the recipient's email
      * address to the clipboard.
-     * @param activity Activity from which the process is initiated.
+     * @param activity Activity from which the process starts.
      * @param recipient Email address of the recipient. It is possible to specify the field or leave it as null
      *        for the user to enter it manually in the external app.
      * @param subject Subject of the email.

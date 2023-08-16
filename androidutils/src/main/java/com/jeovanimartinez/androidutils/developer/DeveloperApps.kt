@@ -19,7 +19,7 @@ object DeveloperApps : Base<DeveloperApps>() {
     /**
      * Directs the user to the developer's app list on Google Play, based on their developer ID.
      * If not possible, show a toast with a message.
-     * @param activity Current activity from which the function is called.
+     * @param activity Activity from which the process starts.
      * @param developerId The developer ID, which is displayed when opening the developer page on
      *        Google Play, can be alphanumeric (developer name), for example, 'Jeo-Dev' (it is case-sensitive),
      *        or purely numeric, for example, '5700313618786177705'. For certain developer accounts, the numeric

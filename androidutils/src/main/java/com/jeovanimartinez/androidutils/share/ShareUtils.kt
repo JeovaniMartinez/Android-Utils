@@ -42,7 +42,7 @@ object ShareUtils : Base<ShareUtils>() {
 
     /**
      * Share text with other apps.
-     * @param activity Activity from which the process is initiated.
+     * @param activity Activity from which the process starts.
      * @param content Text to share, it can be a string or an id of a string resource.
      * @param chooserTitle Title for share chooser, it can be a string or an id of a string resource.
      * @param case Reason that the share action is called. This applies only if Firebase Analytics is enabled,
@@ -60,7 +60,7 @@ object ShareUtils : Base<ShareUtils>() {
 
     /**
      * Share a file (image, video, ect.) with other apps.
-     * @param activity Activity from which the process is initiated.
+     * @param activity Activity from which the process starts.
      * @param file File to share, it can be from the internal or external storage.
      * @param displayName The filename to be displayed. This can be used if the original filename is undesirable.
      *        Set to null to skip.
@@ -84,7 +84,7 @@ object ShareUtils : Base<ShareUtils>() {
 
     /**
      * Execute the action of sharing content.
-     * @param activity Activity from which the process is initiated.
+     * @param activity Activity from which the process starts.
      * @param chooserTitle Title for share chooser.
      * @param content Content to share, must be type String or File.
      * @param displayName This applies only if the content is file type. Is the filename to be displayed.

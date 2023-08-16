@@ -127,7 +127,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Checks if all conditions to show the flow are met, and shows the flow only if all conditions are met.
-     * @param activity Activity.
+     * @param activity Activity from which the process starts.
      * */
     fun checkAndShow(activity: Activity) {
         if (!initialized) throw IllegalStateException("Need to call init() before calling this method") // It's necessary to call init before calling this method
@@ -176,7 +176,7 @@ object RateApp : Base<RateApp>() {
     /**
      * Execute the verification and show the flow to rate the app, call after executing the first checks in checkAndShow(),
      * the functions were separated for better code structure.
-     * @param activity Activity.
+     * @param activity Activity from which the process starts.
      * */
     private fun doCheckAndShow(activity: Activity) {
 
@@ -280,7 +280,7 @@ object RateApp : Base<RateApp>() {
     * */
     /**
      * Show the flow to rate the app with Google Play In-App Review API.
-     * @param activity Activity.
+     * @param activity Activity from which the process starts.
      * */
     private fun rateWithInAppReviewApi(activity: Activity) {
 
@@ -395,7 +395,7 @@ object RateApp : Base<RateApp>() {
     /**
      * Directs the user to the app details on Google Play so they can rate the app. If is possible, open the details directly in
      * the Google Play app, if is not possible, open it in the browser, if it is not possible either, show a toast with a message.
-     * @param activity Activity.
+     * @param activity Activity from which the process starts.
      * */
     fun goToRateOnGooglePlay(activity: Activity) {
 

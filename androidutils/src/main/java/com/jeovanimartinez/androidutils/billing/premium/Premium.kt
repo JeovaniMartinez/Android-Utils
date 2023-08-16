@@ -117,7 +117,7 @@ object Premium : Base<Premium>() {
 
         /**
          * Start the purchase flow of the integrated product that grants the premium benefits.
-         * @param activity Activity.
+         * @param activity Activity from which the process starts.
          * @param sku Id of the product to purchase.
          * */
         fun startPurchase(activity: Activity, sku: String) {
