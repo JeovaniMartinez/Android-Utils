@@ -22,7 +22,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
 
     /**
      * Open the default system web browser at the specified [url].
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param url URL to be opened, it must be a complete URL, including HTTP or HTTPS, otherwise, it will not pass the validation.
      * @param case Reason that the URL was opened in the browser. This applies only if Firebase Analytics is enabled.
      *        When a URL is loaded in the browser the event is registered, this event contains a parameter that

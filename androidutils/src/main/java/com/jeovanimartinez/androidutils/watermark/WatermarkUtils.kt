@@ -29,7 +29,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
     /**
      * Draw a watermark inside the [bitmap].
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param bitmap Bitmap where the watermark is to be drawn.
      * @param watermark [Watermark.Drawable] or [Watermark.Text] to draw inside the [bitmap].
      * */
@@ -43,7 +43,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
     /**
      * Draw a list of watermarks inside the [bitmap].
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param bitmap Bitmap where the watermarks are to be drawn.
      * @param watermarkList List of [Watermark.Drawable] or [Watermark.Text] to draw inside the [bitmap].
      * */
@@ -55,7 +55,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
     /**
      * Validate the properties of the [watermark] object, and generate an [IllegalArgumentException] in case of finding incorrect values.
      * @param watermark The watermark object.
-     * @param context Context.
+     * @param context Context from which the function is called.
      * */
     private fun validateWatermark(watermark: Watermark, context: Context) {
         require(watermark.opacity in 0f..1f) {
@@ -84,7 +84,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
     /**
      * Draw a drawable watermark inside a bitmap.
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
      * @param watermark [Watermark.Drawable] to draw inside the [targetBitmap].
      * */
@@ -193,7 +193,7 @@ object WatermarkUtils : Base<WatermarkUtils>() {
 
     /**
      * Draw a text watermark inside a bitmap.
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param targetBitmap Bitmap where the watermark is to be drawn.
      * @param watermark [Watermark.Text] to draw in the [targetBitmap].
      * */

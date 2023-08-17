@@ -115,7 +115,7 @@ class TypeOrResource : Detector(), Detector.UastScanner {
 
     /**
      * Check the use of the DrawableOrDrawableRes annotation and report the issue if applicable.
-     * @param context Context.
+     * @param context Context from which the function is called.
      * @param element The AST node scope the error applies to (reference within the code where the annotation is used and where the code is being parsed).
      * @param elementType Element type.
      * @param text Value assigned to the variable or property of the annotation in String.
@@ -145,7 +145,7 @@ class TypeOrResource : Detector(), Detector.UastScanner {
 
     /**
      * Check the use of the StringOrStringRes annotation and report the issue if applicable.
-     * @param context Context.
+     * @param context Context from which the function is called.
      * @param element The AST node scope the error applies to (reference within the code where the annotation is used and where the code is being parsed).
      * @param elementType Element type.
      * @param text Value assigned to the variable or property of the annotation in String.

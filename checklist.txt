@@ -16,7 +16,6 @@
 - androidutils
     > Tod@ listo y verificado, solo falta:
         > Terminar Premium
-        > En todas las doucumentaciones, verificar @param activity Activity. y @param context Context. para ver como se puede reemplazar por algó mas apropiado.
         > Eventos de analytic, ver si cambiar algunos por excepciones
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de

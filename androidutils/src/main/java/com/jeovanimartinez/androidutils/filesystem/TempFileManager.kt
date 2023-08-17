@@ -21,7 +21,7 @@ object TempFileManager : Base<TempFileManager>() {
      * Delete all files created with this utility (the files in the temporary folder), it is recommended to call at the
      * start of the app or when you need to clean the contents of the folder. The function runs asynchronously so as
      * not to affect the app flow. It's not necessary to call within a try-catch block, as exceptions are handled internally.
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param onComplete Optional callback function that will be invoked when the operation is complete. It will receive a
      *        boolean parameter indicating the success of the operation.
      * */
@@ -68,7 +68,7 @@ object TempFileManager : Base<TempFileManager>() {
      *     (fileName = "demo.txt", fileExtension = "txt") // demo.txt.txt
      *     (fileName = null, fileExtension = "txt") // c1c53230-d6b7-4216-a8a3-a12eb1aec165.txt
      * ```
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param fileName File name to create, set as null or an empty or blank string to use a UUID as the file name, which is
      *        highly recommended for the temp files folder.
      * @param fileExtension File extension. Set as null or an empty or blank string to create a file without extension, or
@@ -108,7 +108,7 @@ object TempFileManager : Base<TempFileManager>() {
     /**
      * Create the directory for temporary files (if it does not already exist). Invoke whenever you are going to work with the
      * temporary files directory.
-     * @param context Context.
+     * @param context Context from which the process starts.
      * */
     private fun makeTempDir(context: Context) {
         log("makeTempDir() invoked")

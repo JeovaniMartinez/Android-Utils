@@ -54,7 +54,7 @@ object Premium : Base<Premium>() {
 
         /**
          * Initialize and configure the utility, it must always be called only once from the app.
-         * @param context Context.
+         * @param context Context for initializing the utility.
          * @param premiumSkus List of all ids that grant premium benefits of the app.
          * */
         fun init(context: Context, premiumSkus: List<String>) {
@@ -101,7 +101,7 @@ object Premium : Base<Premium>() {
 
         /**
          * Starts the process to get the details of products based on their sku (id).
-         * @param context Context.
+         * @param context Context from which the process starts.
          * @param skuList List with the skus (ids) of the products of which you want to obtain the details.
          * The result is informed by [Premium.Listener.onSkuDetails].
          * */
@@ -162,7 +162,7 @@ object Premium : Base<Premium>() {
          *
          * _Either the billing client or the preferences, the result is ALWAYS reported._
          *
-         * @param context Context.
+         * @param context Context from which the process starts.
          * */
         fun checkPremium(context: Context) {
             log("Called > checkPremium()")
@@ -334,7 +334,7 @@ object Premium : Base<Premium>() {
 
         /**
          * Get the details of products based on their sku (id).
-         * @param context Context.
+         * @param context Context from which the process starts.
          * @param skuList List with the skus (ids) of the products of which you want to obtain the details.
          * @param result Asynchronous function to report the result, If the information cannot be obtained, skuDetails list will be null.
          * */

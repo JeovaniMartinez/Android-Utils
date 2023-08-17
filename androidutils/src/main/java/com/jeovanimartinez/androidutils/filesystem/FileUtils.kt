@@ -45,7 +45,7 @@ object FileUtils : Base<FileUtils>() {
 
     /**
      * Save a bitmap object in an image file.
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param bitmap Bitmap to be saved in the file.
      * @param fileName Filename for the image (without the extension as it is added automatically). Set to null
      *   or an empty or blank string to generate a UUID as the file name. Note that the file name is processed
@@ -101,7 +101,7 @@ object FileUtils : Base<FileUtils>() {
 
     /**
      * Generate an abstract file to write content to it later.
-     * @param context Context.
+     * @param context Context from which the process starts.
      * @param fileName Name for the file, must include the extension.
      * @param path Absolute path to create the file, if it is null, it is created in the temp files directory of the [TempFileManager] utility.
      * @return The newly generated file.

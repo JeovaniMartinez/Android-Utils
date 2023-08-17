@@ -101,7 +101,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Initialize and configure the utility, it must always be called only once from the app.
-     * @param context Context.
+     * @param context Context for initializing the utility.
      * */
     fun init(context: Context) {
         if (initialized) {
@@ -147,7 +147,7 @@ object RateApp : Base<RateApp>() {
 
     /**
      * Generate the instance to manipulate the preferences and set the preferences to the default values in case they are not already configured.
-     * @param context Context.
+     * @param context Context from which the function is called.
      * */
     private fun configurePreferences(context: Context) {
         sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
