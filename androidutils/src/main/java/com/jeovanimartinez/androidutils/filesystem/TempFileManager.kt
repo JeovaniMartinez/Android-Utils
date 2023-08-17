@@ -108,7 +108,7 @@ object TempFileManager : Base<TempFileManager>() {
     /**
      * Create the directory for temporary files (if it does not already exist). Invoke whenever you are going to work with the
      * temporary files directory.
-     * @param context Context from which the process starts.
+     * @param context Context from which the function is called.
      * */
     private fun makeTempDir(context: Context) {
         log("makeTempDir() invoked")

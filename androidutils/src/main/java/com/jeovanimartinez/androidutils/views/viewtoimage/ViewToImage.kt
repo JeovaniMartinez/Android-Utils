@@ -138,7 +138,7 @@ object ViewToImage : Base<ViewToImage>() {
 
     /**
      * Exclude the list of children views of the image.
-     * @param context Context from which the function is called.
+     * @param context The view's Context.
      * @param view Main view (must be a view group).
      * @param viewsToExclude List of children views to exclude.
      *

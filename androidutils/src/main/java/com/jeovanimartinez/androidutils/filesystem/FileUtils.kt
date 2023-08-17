@@ -101,7 +101,7 @@ object FileUtils : Base<FileUtils>() {
 
     /**
      * Generate an abstract file to write content to it later.
-     * @param context Context from which the process starts.
+     * @param context Context from which the function is called.
      * @param fileName Name for the file, must include the extension.
      * @param path Absolute path to create the file, if it is null, it is created in the temp files directory of the [TempFileManager] utility.
      * @return The newly generated file.
