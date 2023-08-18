@@ -17,7 +17,7 @@ import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 /**
  * Set of utilities to simplify the verification and purchase process of the premium version of the app.
  * */
-object Premium : Base<Premium>() {
+object PremiumOld : Base<Premium>() {
 
     override val LOG_TAG = "Premium"
 
