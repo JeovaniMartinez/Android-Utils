@@ -47,12 +47,10 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
         } catch (e: ActivityNotFoundException) {
             // No app can open the URL
             activity.shortToast(R.string.system_web_browser_not_available)
-            logAnalyticsEvent(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, "activity_not_found_exception") })
             logw("Unable to open URL [$url], web browser not available", e)
         } catch (e: Exception) {
             // General exception
             activity.shortToast(R.string.system_web_browser_error)
-            logAnalyticsEvent(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, "exception") })
             loge("Error opening URL [$url]", e)
         }
     }
