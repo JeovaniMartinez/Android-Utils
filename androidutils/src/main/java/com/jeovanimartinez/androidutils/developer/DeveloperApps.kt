@@ -48,14 +48,13 @@ object DeveloperApps : Base<DeveloperApps>() {
             // It opens directly in the default web browser (no chooser is shown), and if Google Play is installed, the app list it is showed there
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
             log("Sent user to view developer page and its list of apps on google play [$webUriString]")
-            logAnalyticsEvent(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_OK)
+            logAnalyticsEvent(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY)
 
         } catch (e: Exception) {
 
             // If it couldn't be shown developer's app list, a message is displayed on a toast
             activity.shortToast(R.string.developer_apps_unable_to_show_app_list)
             logw("Unable to send the user to developer page and app list on google play", e)
-            logAnalyticsEvent(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_ERROR)
 
         }
 

@@ -36,8 +36,7 @@ internal object Event {
     const val ABOUT_APP_HELP_SECTION_SHOWN = "about_app_help_section_shown"
 
     // Developer Apps
-    const val DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_OK = "dev_apps_shown_list_google_play_ok"
-    const val DEV_APPS_SHOWN_LIST_GOOGLE_PLAY_ERROR = "dev_apps_shown_list_google_play_error"
+    const val DEV_APPS_SHOWN_LIST_GOOGLE_PLAY = "dev_apps_shown_list_google_play"
 
     // Email Utils
     const val EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP = "email_utils_send_email_external_app"
