@@ -125,9 +125,9 @@ object EmailUtils : Base<EmailUtils>() {
                     putString(Event.Parameter.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE, finalCase)
                 })
                 log("A chooser was launched to send an email with an external app")
-            } catch (ex: Exception) {
+            } catch (e: Exception) {
                 handleNotAvailableAppOrException()
-                loge("Unable to start action to send email", ex)
+                logw("Unable to start action to send email", e)
             }
         } else {
             handleNotAvailableAppOrException()

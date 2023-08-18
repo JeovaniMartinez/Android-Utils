@@ -51,7 +51,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
         } catch (e: Exception) {
             // General exception
             activity.shortToast(R.string.system_web_browser_error)
-            loge("Error opening URL [$url]", e)
+            logw("Error opening URL [$url]", e)
         }
     }
 
