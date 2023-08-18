@@ -33,7 +33,7 @@
 - Una vez terminado eso, generar los nuevos javadoc y actualizar la documentación del proyecto, y generar un nuevo lanzamiento
 en Google Play con la nueva versión de la biblioteca y de la app.
 
-
+- Ver si agregar utilidad en toplevelfunction para manejar los log más fácilmente
 
 
 

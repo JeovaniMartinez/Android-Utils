@@ -72,7 +72,7 @@ internal class ApplicationSelectorReceiver : BroadcastReceiver() {
             }
         } catch (e: Exception) {
             // ** Ideally, an exception should never occur with the way this code is written; however, it is used only for safety **
-            e.printStackTrace()
+            ShareUtils.loge("Error when obtaining the name of the selected app when sharing", e)
             Base.firebaseCrashlyticsInstance?.recordException(e)
         }
 
