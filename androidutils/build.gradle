@@ -65,7 +65,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-oss-licenses:17.0.1" // Required to display open source licenses in AboutApp
 
     // Google Play's billing system, enables to sell digital products and content in the apps
-    implementation "com.android.billingclient:billing-ktx:3.0.3" // Required for the premium utilities ** PENDING VERSION UPDATE **
+    implementation "com.android.billingclient:billing-ktx:6.0.1" // Required for the premium utilities
 
     // Libraries are required only for references. If they are used in the destination app, it must declare the dependencies
     compileOnly "com.google.firebase:firebase-analytics:21.3.0" // Used to reference Firebase Analytics
