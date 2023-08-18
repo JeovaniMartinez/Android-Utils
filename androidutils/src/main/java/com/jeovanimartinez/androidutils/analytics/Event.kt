@@ -50,8 +50,8 @@ internal object Event {
     const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
     // Share Utils
-    const val SHARE_LAUNCHED = "share_launched"
-    const val SHARE_COMPLETED = "share_completed"
+    const val SHARE_UTILS_SHARE_LAUNCHED = "share_utils_share_launched"
+    const val SHARE_UTILS_SHARE_COMPLETED = "share_utils_share_completed"
 
     // System Web Browser
     const val SYSTEM_WEB_BROWSER_OPEN_URL = "system_web_browser_open_url"
@@ -68,8 +68,8 @@ internal object Event {
         const val SYSTEM_WEB_BROWSER_OPEN_URL_CASE = "open_url_case"
 
         // Share Utils
-        const val SHARE_CASE = "share_case"
-        const val SHARE_SELECTED_APP = "share_selected_app"
+        const val SHARE_UTILS_SHARE_CASE = "share_case"
+        const val SHARE_UTILS_SHARE_SELECTED_APP = "share_selected_app"
 
     }
 

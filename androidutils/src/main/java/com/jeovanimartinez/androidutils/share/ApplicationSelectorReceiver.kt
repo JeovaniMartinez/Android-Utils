@@ -31,9 +31,9 @@ internal class ApplicationSelectorReceiver : BroadcastReceiver() {
 
         val selectedAppName = getSelectedAppName(context, intent)
         ShareUtils.log("Selected App Name: $selectedAppName")
-        ShareUtils.logAnalyticsEvent(Event.SHARE_COMPLETED, Bundle().apply {
-            putString(Event.Parameter.SHARE_CASE, currentShareCase)
-            putString(Event.Parameter.SHARE_SELECTED_APP, selectedAppName)
+        ShareUtils.logAnalyticsEvent(Event.SHARE_UTILS_SHARE_COMPLETED, Bundle().apply {
+            putString(Event.Parameter.SHARE_UTILS_SHARE_CASE, currentShareCase)
+            putString(Event.Parameter.SHARE_UTILS_SHARE_SELECTED_APP, selectedAppName)
         })
     }
 
