@@ -285,6 +285,8 @@ object RateApp : Base<RateApp>() {
     private fun rateWithInAppReviewApi(activity: Activity) {
 
         log("rateWithInAppReviewApi() Invoked")
+        logAnalyticsEvent(Event.RATE_APP_REQUEST_REVIEW_FLOW)
+
         val reviewManager = ReviewManagerFactory.create(activity)
         val managerRequest = reviewManager.requestReviewFlow()
 
@@ -322,7 +324,6 @@ object RateApp : Base<RateApp>() {
                     validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                     checkShowEventCount = showAtEvent - 1 // Adjust to try again on the next event
                     loge("launchReviewFlow() > Error", it)
-                    logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_ERROR)
                 }
 
                 // Flow completed
@@ -360,7 +361,6 @@ object RateApp : Base<RateApp>() {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                 checkShowEventCount = showAtEvent - 1 // Adjust to try again on the next event
                 loge("requestReviewFlow() > Error", request.exception)
-                logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_ERROR)
             }
         }
 
@@ -419,7 +419,6 @@ object RateApp : Base<RateApp>() {
                 // If it couldn't be displayed in either of the above two ways, show a toast
                 activity.shortToast(R.string.rate_app_unable_to_show_app_on_google_play)
                 logw("Unable to send the user to app details, google play app and web browser are not available", e2)
-                logAnalyticsEvent(Event.RATE_APP_SENT_GOOGLE_PLAY_ERROR)
             }
         }
 

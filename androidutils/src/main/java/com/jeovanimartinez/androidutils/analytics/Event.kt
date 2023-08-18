@@ -42,11 +42,10 @@ internal object Event {
     const val EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP = "email_utils_send_email_external_app"
 
     // Rate App
+    const val RATE_APP_REQUEST_REVIEW_FLOW = "rate_app_request_review_flow"
     const val RATE_APP_REVIEW_FLOW_OK = "rate_app_review_flow_ok"
-    const val RATE_APP_REVIEW_FLOW_ERROR = "rate_app_review_flow_error"
     const val RATE_APP_REVIEW_FLOW_SHOWN = "rate_app_review_flow_shown"
     const val RATE_APP_SENT_GOOGLE_PLAY = "rate_app_sent_google_play"
-    const val RATE_APP_SENT_GOOGLE_PLAY_ERROR = "rate_app_sent_google_play_error"
 
     // Share Utils
     const val SHARE_UTILS_SHARE_LAUNCHED = "share_utils_share_launched"
