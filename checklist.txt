@@ -16,7 +16,6 @@
 - androidutils
     > Tod@ listo y verificado, solo falta:
         > Terminar Premium
-        > Eventos de analytic, ver si cambiar algunos por excepciones
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
@@ -93,7 +92,8 @@ Temporal, documentación de Share Utils, pasos a seguir para configurar.
 eso de arriba solo compartira el directorio privado de la app androidutils/tempfiles, usar path="." para compartir todos los directorios
 de la carpeta privada de la app dentro de la carpeta files/
 3. Asignar fileProviderAuthority del fileprovider, debe ser el mismo que se uso en el manifest
-4. Agregar las queries en el manifest según el tipo de archivo a compartir
+4. Agregar las queries en el manifest según el tipo de archivo a compartir, verificar ya que puede ser no necesario y solo necesitarse
+cuando se quiere obtener info de las apps instaladas que manejan esos intents, y no cuando se quieren lanzar
   <queries>
 
         <!-- Reference: https://developer.android.com/training/package-visibility/declaring#intent-filter-signature -->
