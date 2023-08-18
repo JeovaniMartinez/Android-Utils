@@ -127,16 +127,10 @@ object EmailUtils : Base<EmailUtils>() {
                 log("A chooser was launched to send an email with an external app")
             } catch (ex: Exception) {
                 handleNotAvailableAppOrException()
-                logAnalyticsEvent(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
-                    putString(Event.Parameter.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE, "exception")
-                })
                 loge("Unable to start action to send email", ex)
             }
         } else {
             handleNotAvailableAppOrException()
-            logAnalyticsEvent(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
-                putString(Event.Parameter.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE, "no_app_available")
-            })
             logw("There is no app available to send an email")
         }
 
