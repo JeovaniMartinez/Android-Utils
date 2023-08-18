@@ -1,7 +1,7 @@
 package com.jeovanimartinez.androidutils.web
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -22,14 +22,14 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
 
     /**
      * Open the default system web browser at the specified [url].
-     * @param context Context from which the process starts.
+     * @param activity Activity from which the process starts.
      * @param url URL to be opened, it must be a complete URL, including HTTP or HTTPS, otherwise, it will not pass the validation.
      * @param case Reason that the URL was opened in the browser. This applies only if Firebase Analytics is enabled.
      *        When a URL is loaded in the browser the event is registered, this event contains a parameter that
      *        helps determine which website was opened.
      * @throws IllegalArgumentException If the provided URL is not a valid URL.
      * */
-    fun openUrl(context: Context, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
+    fun openUrl(activity: Activity, url: String, @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A) {
 
         // No chooser is showed to select a web browser; instead, it opens directly in the default web browser.
 
@@ -39,19 +39,19 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
         }
 
         try {
-            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
             @Suppress("ReplaceIsEmptyWithIfEmpty")
             val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
             logAnalyticsEvent(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, finalCase) })
             log("URL: [$url] opened, case: $finalCase")
         } catch (e: ActivityNotFoundException) {
             // No app can open the URL
-            context.shortToast(R.string.system_web_browser_not_available)
+            activity.shortToast(R.string.system_web_browser_not_available)
             logAnalyticsEvent(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, "activity_not_found_exception") })
             logw("Unable to open URL [$url], web browser not available", e)
         } catch (e: Exception) {
             // General exception
-            context.shortToast(R.string.system_web_browser_error)
+            activity.shortToast(R.string.system_web_browser_error)
             logAnalyticsEvent(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, "exception") })
             loge("Error opening URL [$url]", e)
         }
