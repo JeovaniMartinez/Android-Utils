@@ -16,6 +16,7 @@
 - androidutils
     > Tod@ listo y verificado, solo falta:
         > Terminar Premium
+        > Verificar los log de todos los invoked y ajustar mensaje como en premium
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
