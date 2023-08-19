@@ -6,7 +6,7 @@ import com.jeovanimartinez.androidutils.Base
 /**
  * Utility for working with preferences file relating to app premium billing.
  * */
-object PremiumPreferences : Base<PremiumPreferences>() {
+internal object PremiumPreferences : Base<PremiumPreferences>() {
 
     override val LOG_TAG = "PremiumPreferences"
 
