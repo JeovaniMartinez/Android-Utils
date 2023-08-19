@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.jeovanimartinez.androidutils.billing.premium
+package com.jeovanimartinez.androidutils.billing.premium.tmp
 
 /*
 import android.app.Activity
