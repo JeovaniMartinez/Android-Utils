@@ -7,12 +7,12 @@ import java.util.UUID
 /**
  * Utility for working with preferences file relating to app premium billing.
  * */
-object PremiumPreferences : Base<PremiumPreferences>() {
+internal object PremiumPreferences : Base<PremiumPreferences>() {
 
     override val LOG_TAG = "PremiumPreferences"
 
     // File name, keys, and values
-    private const val FILE_NAME = "aUpPkjA5IcXzlL49AfkB"
+    private const val FILE_NAME = "029e3ff6-ba8f-410a-b517-b01ffe530fa5"
     private const val KEY_PREMIUM_STATE = "f8c2f92f-7746-4d5a-a26b-82e933272d52"
     private const val VALUE_PREMIUM_STATE_NOT_PREMIUM = "4dafc9f2-43f2-4168-8af5-5804446a5f5a"
     private const val VALUE_PREMIUM_STATE_PENDING_TRANSACTION = "5758e6ae-fe94-4571-a919-c6a55b7514ff"
@@ -32,9 +32,9 @@ object PremiumPreferences : Base<PremiumPreferences>() {
         // Random keys and values are inserted to enhance security. This process is executed only once.
         if (!preferences.contains(KEY_PREMIUM_STATE)) {
 
-            log("The preference file does not have KEY_PREMIUM_STATE, proceeding to insert random values")
+            log("The preference file does not have KEY_PREMIUM_STATE, proceeding to insert random keys and values")
 
-            for (i in 0..99) {
+            for (i in 0..49) {
                 val uuidKey = UUID.randomUUID().toString()
                 val uuidValue = UUID.randomUUID().toString()
 
@@ -44,7 +44,7 @@ object PremiumPreferences : Base<PremiumPreferences>() {
                 }
             }
 
-            log("Random values insertion completed")
+            log("Random keys and values insertion completed")
 
         }
 
