@@ -25,6 +25,22 @@
     <string name="about_app_feedback_email_content">Escribe tus comentarios aquí.</string>
     <string name="about_app_feedback_email_chooser_title">Selecciona una App para enviarnos un correo</string>
 
+    <!-- Billing Utils -->
+    <string name="billing_utils_brc_billing_unavailable_msg">La facturación no está disponible en este momento. Inténtalo de nuevo más tarde.</string>
+    <string name="billing_utils_brc_developer_error_msg">Error de desarrollo. Por favor, ponte en contacto con el equipo de soporte de la aplicación.</string>
+    <string name="billing_utils_brc_error_msg">Se ha producido un error en el proceso. Inténtalo de nuevo más tarde.</string>
+    <string name="billing_utils_brc_feature_not_supported_msg">Esta función no es compatible con tu dispositivo.</string>
+    <string name="billing_utils_brc_item_already_owned_msg">Ya has adquirido el producto anteriormente.</string>
+    <string name="billing_utils_brc_item_not_owned_msg">No tienes acceso a este producto.</string>
+    <string name="billing_utils_brc_item_unavailable_msg">El producto no está disponible en este momento.</string>
+    <string name="billing_utils_brc_network_error_msg">Error de red. Verifica tu conexión a internet y vuelve a intentarlo.</string>
+    <string name="billing_utils_brc_ok_msg">Operación exitosa.</string>
+    <string name="billing_utils_brc_service_disconnected_msg">La conexión se ha perdido. Inténtalo de nuevo más tarde.</string>
+    <string name="billing_utils_brc_service_timeout_msg">Tiempo de espera agotado. Inténtalo de nuevo más tarde.</string>
+    <string name="billing_utils_brc_service_unavailable_msg">El servicio no está disponible en este momento. Inténtalo de nuevo más tarde.</string>
+    <string name="billing_utils_brc_user_canceled_msg">Has cancelado la operación.</string>
+    <string name="billing_utils_brc_invalid_code_msg">Código inválido.</string>
+
     <!-- Email Utils -->
     <string name="email_utils_send_email_external_app_not_available_msg">No disponible</string>
     <string name="email_utils_send_email_external_app_not_available_msg_alt">Envía un correo a %1$s (la dirección de correo ha sido copiada al portapapeles)</string>

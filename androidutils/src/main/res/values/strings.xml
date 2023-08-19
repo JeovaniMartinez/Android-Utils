@@ -25,6 +25,22 @@
     <string name="about_app_feedback_email_content">Write your feedback here.</string>
     <string name="about_app_feedback_email_chooser_title">Select an App to send us an email</string>
 
+    <!-- Billing Utils -->
+    <string name="billing_utils_brc_billing_unavailable_msg">Billing is not available at the moment. Please try again later.</string>
+    <string name="billing_utils_brc_developer_error_msg">Development error. Please contact the app support team.</string>
+    <string name="billing_utils_brc_error_msg">An error has occurred in the process. Please try again later.</string>
+    <string name="billing_utils_brc_feature_not_supported_msg">This feature is not supported on your device.</string>
+    <string name="billing_utils_brc_item_already_owned_msg">You have already purchased the product previously.</string>
+    <string name="billing_utils_brc_item_not_owned_msg">You do not have access to this product.</string>
+    <string name="billing_utils_brc_item_unavailable_msg">The product is not available at the moment.</string>
+    <string name="billing_utils_brc_network_error_msg">Network error. Please check your internet connection and try again.</string>
+    <string name="billing_utils_brc_ok_msg">Operation successful.</string>
+    <string name="billing_utils_brc_service_disconnected_msg">Connection has been lost. Please try again later.</string>
+    <string name="billing_utils_brc_service_timeout_msg">Timeout reached. Please try again later.</string>
+    <string name="billing_utils_brc_service_unavailable_msg">The service is not available at the moment. Please try again later.</string>
+    <string name="billing_utils_brc_user_canceled_msg">You have canceled the operation.</string>
+    <string name="billing_utils_brc_invalid_code_msg">Invalid code.</string>
+
     <!-- Email Utils -->
     <string name="email_utils_send_email_external_app_not_available_msg">Not available</string>
     <string name="email_utils_send_email_external_app_not_available_msg_alt">Send an email to %1$s (the email address has been copied to the clipboard)</string>
