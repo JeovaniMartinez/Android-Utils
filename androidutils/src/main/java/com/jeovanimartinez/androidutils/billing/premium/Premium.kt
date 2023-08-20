@@ -8,6 +8,9 @@ import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.jeovanimartinez.androidutils.Base
+import com.android.billingclient.api.BillingClient.BillingResponseCode
+import com.android.billingclient.api.BillingClient.ConnectionState
+import com.jeovanimartinez.androidutils.billing.BillingUtils
 
 /**
  * Set of utilities to simplify the verification and purchase process of the premium version of the app.
@@ -84,7 +87,55 @@ object Premium : Base<Premium>() {
         }
 
         /**
-         * Closes the billing client connection.
+         * Initialize the connection with the billing client. Call this when need connecting to the billing client or before
+         * performing any billing-related task to ensure it is connected.
+         * @param context It is used to recreate the billing client instance if the connection has already been closed,
+         *        set it as null if it is certain that the connection has not been closed.
+         * @param result Asynchronous function callback to report the connection result, with the result code based on [BillingResponseCode]
+         * */
+        fun connectBillingClient(context: Context?, result: (resultCode: Int) -> Unit) {
+
+            log("Invoked > connectBillingClient()")
+
+            if (billingClient.isReady) {
+                log("The billing client is already connected")
+                return result(BillingResponseCode.OK)
+            }
+
+            if (billingClient.connectionState == ConnectionState.CLOSED) {
+                log("The billing client connection is already closed")
+                if (context != null) {
+                    billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+                    log("Recreated billing client instance")
+                } else {
+                    logw("The context is null, the billing client instance cannot be recreated")
+                    /*
+                    * DEVELOPER_ERROR is returned as the response, as the context should only be null when it is certain that the connection
+                    * with the billing client has not been closed
+                    * */
+                    return result(BillingResponseCode.DEVELOPER_ERROR)
+                }
+            }
+
+            billingClient.startConnection(object : BillingClientStateListener {
+
+                override fun onBillingSetupFinished(billingResult: BillingResult) {
+                    val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
+                    log("Billing client setup finished. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                    result(billingResult.responseCode)
+                }
+
+                override fun onBillingServiceDisconnected() {
+                    // At the moment, no need to handle reconnection
+                    log("The billing client has been disconnected")
+                }
+
+            })
+
+        }
+
+        /**
+         * Closes/end the billing client connection.
          * If [preventEndBillingClientConnection] is true, the connection is not closed even if this function is called.
          * */
         fun endBillingClientConnection() {
