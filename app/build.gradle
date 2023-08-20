@@ -70,4 +70,7 @@ dependencies {
     // Android Utils Library
     implementation project(":androidutils")
 
+    // LeakCanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
+
 }
