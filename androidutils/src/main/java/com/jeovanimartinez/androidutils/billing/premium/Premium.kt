@@ -93,7 +93,7 @@ object Premium : Base<Premium>() {
          *        set it as null if it is certain that the connection has not been closed.
          * @param result Asynchronous function callback to report the connection result, with the result code based on [BillingResponseCode]
          * */
-        fun connectBillingClient(context: Context?, result: (resultCode: Int) -> Unit) {
+        private fun connectBillingClient(context: Context?, result: (resultCode: Int) -> Unit) {
 
             log("Invoked > connectBillingClient()")
 
@@ -146,7 +146,7 @@ object Premium : Base<Premium>() {
          * Closes/end the billing client connection.
          * If [preventEndBillingClientConnection] is true, the connection is not closed even if this function is called.
          * */
-        fun endBillingClientConnection() {
+        private fun endBillingClientConnection() {
 
             log("Invoked > endBillingClientConnection()")
 
@@ -178,29 +178,6 @@ object Premium : Base<Premium>() {
             *
         * */
 
-        fun tmpReinstanciarReconectar(context: Context) {
-            billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
-            tmpConect()
-        }
-
-        fun tmpConect() {
-            billingClient.startConnection(object : BillingClientStateListener {
-                override fun onBillingServiceDisconnected() {
-                    logw("onBillingServiceDisconnected")
-                }
-
-                override fun onBillingSetupFinished(p0: BillingResult) {
-                    logw("onBillingSetupFinished")
-                }
-
-            })
-        }
-
-
-        fun billingClientCurrentState() {
-            logw(billingClient.connectionState)
-            logw(billingClient.isReady)
-        }
 
         private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
 
