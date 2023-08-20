@@ -2,6 +2,9 @@
 
 package com.jeovanimartinez.androidutils.billing.premium
 
+import android.content.Context
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.PurchasesUpdatedListener
 import com.jeovanimartinez.androidutils.Base
 
 /**
@@ -35,14 +38,19 @@ object Premium : Base<Premium>() {
     object Controller {
 
         internal var initialized = false // Helper to determine if init was already called
+        private lateinit var billingClient: BillingClient // Billing client for communication with Google Play billing
+        private lateinit var premiumAccessProductIds: List<String> // List of all product IDs that grant premium benefits in the application
 
         /**
          * Initialize and configure the utility. It must be called only once when starting the app.
+         * @param context Context for initializing the utility. Using the Application Context is highly recommended.
+         * @param premiumAccessProductIds List of all product IDs that grant premium benefits in the application.
          * */
-        fun init() {
+        fun init(context: Context, premiumAccessProductIds: List<String>) {
 
             log("Invoked > init()")
 
+            // Validations
             if (initialized) {
                 logw(
                     """
@@ -52,10 +60,45 @@ object Premium : Base<Premium>() {
                 )
                 return
             }
+            require(premiumAccessProductIds.isNotEmpty()) {
+                "The premiumAccessProductIds list must not be empty; it must have at least one element"
+            }
 
+            currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
+            billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+            this.premiumAccessProductIds = premiumAccessProductIds
             initialized = true
+            // It's not necessary to call connect function here
 
-            log("The premium controller has been initialized successfully")
+            log("The premium controller has been initialized successfully. Premium Access Product Ids: ${this.premiumAccessProductIds}")
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
 
         }
 
