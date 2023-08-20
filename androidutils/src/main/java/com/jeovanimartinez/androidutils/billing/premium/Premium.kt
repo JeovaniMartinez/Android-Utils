@@ -45,6 +45,7 @@ object Premium : Base<Premium>() {
         internal var initialized = false // Helper to determine if init was already called
         private lateinit var billingClient: BillingClient // Billing client for communication with Google Play billing
         private lateinit var premiumAccessProductIds: List<String> // List of all product IDs that grant premium benefits in the application
+        private var premiumListener: PremiumListener? = null  // Listener to report events
 
         /*
         * Prevents the connection from being ended if there is an important process running with the billing client in the background.
@@ -84,6 +85,37 @@ object Premium : Base<Premium>() {
 
             log("The premium controller has been initialized successfully. Premium Access Product Ids: ${this.premiumAccessProductIds}")
 
+        }
+
+        /**
+         * Sets the listener to receive premium events.
+         * @param listener The listener to be set.
+         * */
+        fun setListener(listener: PremiumListener) {
+            log("Invoked > setListener()")
+            checkInitialization()
+            premiumListener = listener
+            log("The listener to report premium events has been assigned")
+        }
+
+        /**
+         * Removes the listener set to receive premium events.
+         * */
+        fun removeListener() {
+            log("Invoked > removeListener()")
+            checkInitialization()
+            premiumListener = null
+            log("The listener to report premium events has been removed. premiumListener = null")
+        }
+
+        /**
+         * Check if this utility has been initialized by calling Premium.Controller.init(), and throw an exception if it has not been initialized yet.
+         * @throws IllegalStateException if the utility has not been initialized yet.
+         * */
+        private fun checkInitialization() {
+            if (!initialized) {
+                throw IllegalStateException("It is necessary to call Premium.Controller.init() before calling any other function of Premium.Controller")
+            }
         }
 
         /**
