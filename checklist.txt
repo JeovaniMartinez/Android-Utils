@@ -18,6 +18,7 @@
         > Terminar Premium
         > Verificar los log de todos los invoked y ajustar mensaje como en premium
         > En el init de RateApp agregar un mensaje más claro, y quitar las IllegalStateException al cambiar un valor y solo mandar un warring o error al log
+        > Verificar y quitar todos lo return log(), dejar el return en otra línea, esto por las reglas de proguard, ya que elimina las llamadas a log()
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay

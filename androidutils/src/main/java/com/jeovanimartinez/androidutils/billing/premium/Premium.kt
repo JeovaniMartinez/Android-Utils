@@ -4,6 +4,8 @@ package com.jeovanimartinez.androidutils.billing.premium
 
 import android.content.Context
 import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.jeovanimartinez.androidutils.Base
 
@@ -41,6 +43,12 @@ object Premium : Base<Premium>() {
         private lateinit var billingClient: BillingClient // Billing client for communication with Google Play billing
         private lateinit var premiumAccessProductIds: List<String> // List of all product IDs that grant premium benefits in the application
 
+        /*
+        * Prevents the connection from being ended if there is an important process running with the billing client in the background.
+        * For example, if the status of a purchase is "pending transaction" and the result is being awaited.
+        * */
+        private var preventEndBillingClientConnection = false
+
         /**
          * Initialize and configure the utility. It must be called only once when starting the app.
          * @param context Context for initializing the utility. Using the Application Context is highly recommended.
@@ -67,6 +75,7 @@ object Premium : Base<Premium>() {
             currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
             billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
+            preventEndBillingClientConnection = false
             initialized = true
             // It's not necessary to call connect function here
 
@@ -74,29 +83,65 @@ object Premium : Base<Premium>() {
 
         }
 
+        /**
+         * Closes the billing client connection.
+         * If [preventEndBillingClientConnection] is true, the connection is not closed even if this function is called.
+         * */
+        fun endBillingClientConnection() {
+
+            log("Invoked > endBillingClientConnection()")
+
+            if (preventEndBillingClientConnection) {
+                log("No need to close the billing client connection. preventEndBillingClientConnection is true")
+                return
+            }
+            if (!billingClient.isReady) {
+                log("No need to close the billing client connection. Billing Client is not ready or the connection has already been closed")
+                return
+            }
+
+            billingClient.endConnection()
+
+            log("The connection with the billing client was closed")
+
+        }
 
 
+        /*
+        * Pruebas y validado el 19.08.2023
+        * public @interface ConnectionState {
+                int DISCONNECTED = 0; // Estado inicial, luego ce llamar a init y al .build() del billing client; billingClient.isReady = false
+                int CONNECTING = 1; // Se esta conectando ... billingClient.isReady = false; al llamar a billingClient.startConnection
+                int CONNECTED = 2; // Esta ya conectado billingClient.isReady = true; Luego de logw("onBillingSetupFinished")
+                int CLOSED = 3; // Luego de llamar a endConnection(); billingClient.isReady = false; una vez cerrada no es posible conectarse nuevamente, hay que crecrear la instancia
+            }
+            *
+            *
+        * */
+
+        fun tmpReinstanciarReconectar(context: Context) {
+            billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+            tmpConect()
+        }
+
+        fun tmpConect() {
+            billingClient.startConnection(object : BillingClientStateListener {
+                override fun onBillingServiceDisconnected() {
+                    logw("onBillingServiceDisconnected")
+                }
+
+                override fun onBillingSetupFinished(p0: BillingResult) {
+                    logw("onBillingSetupFinished")
+                }
+
+            })
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        fun billingClientCurrentState() {
+            logw(billingClient.connectionState)
+            logw(billingClient.isReady)
+        }
 
         private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
 
