@@ -98,6 +98,7 @@ object Premium : Base<Premium>() {
             log("Invoked > connectBillingClient()")
 
             if (billingClient.isReady) {
+                // If billingClient.isReady then billingClient.connectionState == ConnectionState.CONNECTED
                 log("The billing client is already connected")
                 return result(BillingResponseCode.OK)
             }
@@ -117,6 +118,13 @@ object Premium : Base<Premium>() {
                 }
             }
 
+            if (billingClient.connectionState == ConnectionState.CONNECTING) {
+                logw("The billing client is already in the process of connecting. Call connectBillingClient() later")
+                // ERROR is returned as BillingResponseCode does not have an appropriate code for this situation, which ideally should not occur
+                return result(BillingResponseCode.ERROR)
+            }
+
+            // billingClient.connectionState == ConnectionState.DISCONNECTED Proceeding to initiate the connection with the billing client
             billingClient.startConnection(object : BillingClientStateListener {
 
                 override fun onBillingSetupFinished(billingResult: BillingResult) {
