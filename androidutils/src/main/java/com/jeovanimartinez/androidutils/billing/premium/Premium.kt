@@ -122,6 +122,13 @@ object Premium : Base<Premium>() {
             log("Invoked > getProductsDetails()")
             checkInitialization()
 
+            // A warning is logged if any of the provided product IDs is not in the premiumAccessProductIds list
+            productIds.forEach {
+                if (!premiumAccessProductIds.contains(it)) {
+                    logw("The '$it' Id is not in the Premium.Controller.premiumAccessProductIds list")
+                }
+            }
+
             // The process is carried out through a private function, and the result is reported
             getProductsDetails(context, productIds) { resultCode, productDetailsList ->
 
