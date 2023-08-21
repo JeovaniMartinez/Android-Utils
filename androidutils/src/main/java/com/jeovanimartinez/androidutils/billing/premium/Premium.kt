@@ -12,6 +12,7 @@ import com.jeovanimartinez.androidutils.Base
 import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClient.ConnectionState
 import com.android.billingclient.api.BillingClient.ProductType
+import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryProductDetailsParams.Product
@@ -147,7 +148,7 @@ object Premium : Base<Premium>() {
          * @param productId Id of the product to purchase.
          * */
         fun startProductPurchase(activity: Activity, productId: String) {
-            /*log("Invoked > startProductPurchase()")
+            log("Invoked > startProductPurchase()")
             checkInitialization()
 
             // The product Id must be on the premiumAccessProductIds list to be able to validate the purchase later
@@ -155,22 +156,47 @@ object Premium : Base<Premium>() {
                 throw IllegalArgumentException("Cannot start the purchase because the specified product Id '$productId' is not in the premiumAccessProductIds list")
             }
 
-            connectBillingClient(activity) { resultCode ->
-                if (resultCode == BillingResponseCode.OK) {
+            connectBillingClient(activity) { connectionResultCode ->
+                if (connectionResultCode == BillingResponseCode.OK) {
+
+                    // The product details are obtained in order to initiate the purchase flow
+                    getProductsDetails(activity, listOf(productId)) { productDetailsResultCode, productDetailsList ->
+
+                        // As only one product is requested, if productDetailsList is not null, it must contain the data for that product
+                        if (productDetailsList != null) {
+
+                            // The purchase flow is configured and launched
+                            val productDetailsParamsList = listOf(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(productDetailsList[0]).build())
+                            val billingFlowParams = BillingFlowParams.newBuilder().setProductDetailsParamsList(productDetailsParamsList).build()
+                            val billingResult = billingClient.launchBillingFlow(activity, billingFlowParams)
+
+                            val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
+                            log("Billing client launch billing flow result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+
+                            // If the purchase flow could not be launched
+                            if (billingResult.responseCode != BillingResponseCode.OK) {
+                                logPremiumListenerInvocation("onStartPurchaseError()")
+                                premiumListener?.onStartPurchaseError(productDetailsResultCode)
+                            }
+                            // If the purchase flow was launched successfully, the result is reported in the purchasesUpdatedListener
+
+                        } else {
+                            logw("Unable to start the purchase flow because the product details could not be obtained")
+                            logPremiumListenerInvocation("onStartPurchaseError()")
+                            premiumListener?.onStartPurchaseError(productDetailsResultCode)
+                            endBillingClientConnection()
+                        }
+                    }
 
                 } else {
                     logw(
                         "Unable to start the purchase flow because the connection to the billing client could not be established. " +
-                                "Connection result: ${BillingUtils.getBillingResponseCodeInfo(resultCode).shortDesc}"
+                                "Connection result: ${BillingUtils.getBillingResponseCodeInfo(connectionResultCode).shortDesc}"
                     )
-                    if (premiumListener != null) {
-                        log("Invoked > PremiumListener.onStartPurchaseError()")
-                        premiumListener?.onStartPurchaseError(resultCode)
-                    } else {
-                        logw("Cannot be invoked PremiumListener.onStartPurchaseError() > The premiumListener is null")
-                    }
+                    logPremiumListenerInvocation("onStartPurchaseError()")
+                    premiumListener?.onStartPurchaseError(connectionResultCode)
                 }
-            }*/
+            }
 
         }
 
