@@ -153,7 +153,9 @@ object Premium : Base<Premium>() {
 
             // The product Id must be on the premiumAccessProductIds list to be able to validate the purchase later
             if (!premiumAccessProductIds.contains(productId)) {
-                throw IllegalArgumentException("Cannot start the purchase because the specified product Id '$productId' is not in the premiumAccessProductIds list")
+                throw IllegalArgumentException(
+                    "Cannot start the purchase flow because the specified product Id '$productId' is not in the premiumAccessProductIds list $premiumAccessProductIds"
+                )
             }
 
             connectBillingClient(activity) { connectionResultCode ->
