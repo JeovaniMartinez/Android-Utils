@@ -179,6 +179,11 @@ object Premium : Base<Premium>() {
                             if (billingResult.responseCode != BillingResponseCode.OK) {
                                 logPremiumListenerInvocation("onStartPurchaseError()")
                                 premiumListener?.onStartPurchaseError(productDetailsResultCode)
+                                endBillingClientConnection()
+                                /*
+                                * NOTE: In tests conducted, if the product has already been purchased or if there is no internet connection,
+                                * the response code remains OK and the error message is displayed in the modal of the opened purchase flow
+                                * */
                             }
                             // If the purchase flow was launched successfully, the result is reported in the purchasesUpdatedListener
 
