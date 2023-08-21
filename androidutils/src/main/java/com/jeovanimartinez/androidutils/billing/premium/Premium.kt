@@ -113,6 +113,31 @@ object Premium : Base<Premium>() {
         }
 
         /**
+         * Starts the process to retrieve details of one or more In-app products asynchronously. The result is
+         * informed by [PremiumListener.onProductDetails]
+         * @param context Context from which the process starts. Using the Application Context is highly recommended.
+         * @param productIds List containing the product IDs to be queried.
+         * */
+        fun getProductsDetails(context: Context, productIds: List<String>) {
+            log("Invoked > getProductsDetails()")
+            checkInitialization()
+
+            // The process is carried out through a private function, and the result is reported
+            getProductsDetails(context, productIds) { resultCode, productDetailsList ->
+
+                if (premiumListener != null) {
+                    log("Invoked > PremiumListener.onProductDetails()")
+                    premiumListener?.onProductDetails(resultCode, productDetailsList)
+                } else {
+                    logw("Cannot be invoked PremiumListener.onProductDetails() > The premiumListener is null")
+                }
+
+                endBillingClientConnection()
+            }
+
+        }
+
+        /**
          * Check if this utility has been initialized by calling Premium.Controller.init(), and throw an exception if it has not been initialized yet.
          * @throws IllegalStateException if the utility has not been initialized yet.
          * */
@@ -165,7 +190,7 @@ object Premium : Base<Premium>() {
 
                 override fun onBillingSetupFinished(billingResult: BillingResult) {
                     val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-                    log("Billing client setup finished. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                    log("Billing client connection setup finished. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
                     result(billingResult.responseCode)
                 }
 
@@ -207,11 +232,13 @@ object Premium : Base<Premium>() {
          * @param productIds List containing the product IDs to be queried.
          * @param result Asynchronous function callback to receive the result, with the result code based on [BillingResponseCode]
          *        and a list with the details of the products. The list only contains elements if the response code is
-         *        BillingResponseCode.OK; otherwise, it will be null.
+         *        BillingResponseCode.OK; otherwise, it will be null. The [productDetailsList] will always contain at least one
+         *        element or be null, but it will never be an empty list, his ensures that if it's not null, the response code
+         *        was BillingResponseCode.OK, and the list contains at least one element.
          * */
-        fun getProductsDetails(context: Context, productIds: List<String>, result: (resultCode: Int, productDetailsList: List<ProductDetails>?) -> Unit) {
+        private fun getProductsDetails(context: Context, productIds: List<String>, result: (resultCode: Int, productDetailsList: List<ProductDetails>?) -> Unit) {
 
-            log("Invoked > getProductsDetails()")
+            log("Invoked > getProductsDetails() [Private]")
 
             connectBillingClient(context) { resultCode ->
                 if (resultCode == BillingResponseCode.OK) {
