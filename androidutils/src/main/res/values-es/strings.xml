@@ -26,7 +26,7 @@
     <string name="about_app_feedback_email_chooser_title">Selecciona una App para enviarnos un correo</string>
 
     <!-- Billing Utils -->
-    <string name="billing_utils_brc_billing_unavailable_msg">La facturación no está disponible en este momento. Inténtalo de nuevo más tarde.</string>
+    <string name="billing_utils_brc_billing_unavailable_msg">El servicio de facturación no está disponible en este momento. Inténtalo de nuevo más tarde.</string>
     <string name="billing_utils_brc_developer_error_msg">Error de desarrollo. Por favor, ponte en contacto con el equipo de soporte de la aplicación.</string>
     <string name="billing_utils_brc_error_msg">Se ha producido un error en el proceso. Inténtalo de nuevo más tarde.</string>
     <string name="billing_utils_brc_feature_not_supported_msg">Esta función no es compatible con tu dispositivo.</string>

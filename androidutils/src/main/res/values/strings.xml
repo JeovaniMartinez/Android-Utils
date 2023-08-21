@@ -26,7 +26,7 @@
     <string name="about_app_feedback_email_chooser_title">Select an App to send us an email</string>
 
     <!-- Billing Utils -->
-    <string name="billing_utils_brc_billing_unavailable_msg">Billing is not available at the moment. Please try again later.</string>
+    <string name="billing_utils_brc_billing_unavailable_msg">The billing service is not available at the moment. Please try again later.</string>
     <string name="billing_utils_brc_developer_error_msg">Development error. Please contact the app support team.</string>
     <string name="billing_utils_brc_error_msg">An error has occurred in the process. Please try again later.</string>
     <string name="billing_utils_brc_feature_not_supported_msg">This feature is not supported on your device.</string>
