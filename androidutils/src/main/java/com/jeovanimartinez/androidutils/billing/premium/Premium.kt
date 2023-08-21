@@ -10,6 +10,10 @@ import com.android.billingclient.api.PurchasesUpdatedListener
 import com.jeovanimartinez.androidutils.Base
 import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClient.ConnectionState
+import com.android.billingclient.api.BillingClient.ProductType
+import com.android.billingclient.api.ProductDetails
+import com.android.billingclient.api.QueryProductDetailsParams
+import com.android.billingclient.api.QueryProductDetailsParams.Product
 import com.jeovanimartinez.androidutils.billing.BillingUtils
 
 /**
@@ -194,6 +198,62 @@ object Premium : Base<Premium>() {
             billingClient.endConnection()
 
             log("The connection with the billing client was closed")
+
+        }
+
+        /**
+         * Retrieve the details of one or more In-app products from the billing client.
+         * @param context Context from which the process starts.
+         * @param productIds List containing the product IDs to be queried.
+         * @param result Asynchronous function callback to receive the result, with the result code based on [BillingResponseCode]
+         *        and a list with the details of the products. The list only contains elements if the response code is
+         *        BillingResponseCode.OK; otherwise, it will be null.
+         * */
+        fun getProductsDetails(context: Context, productIds: List<String>, result: (resultCode: Int, productDetailsList: List<ProductDetails>?) -> Unit) {
+
+            log("Invoked > getProductsDetails()")
+
+            connectBillingClient(context) { resultCode ->
+                if (resultCode == BillingResponseCode.OK) {
+
+                    // The list of products to be queried is generated
+                    val productList: MutableList<Product> = mutableListOf()
+                    productIds.forEach { productId ->
+                        productList.add(Product.newBuilder().setProductType(ProductType.INAPP).setProductId(productId).build())
+                    }
+
+                    // Generate the product details params and execute the query
+                    val queryProductDetailsParams = QueryProductDetailsParams.newBuilder().setProductList(productList).build()
+                    billingClient.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsList ->
+
+                        // NOTE: The result can be BillingResponseCode.OK, but the list might be empty, in case any of the queried product IDs does not exist
+
+                        if (billingResult.responseCode == BillingResponseCode.OK) {
+                            if (productDetailsList.isNotEmpty()) {
+                                log("The list of products details was successfully retrieved. List: $productDetailsList")
+                                result(billingResult.responseCode, productDetailsList)
+                            } else {
+                                logw("The list of products details was successfully retrieved, but it is empty")
+                                logw("** Verify that the product IDs are correct and try again **")
+                                // In this case, the response ERROR is simulated as the product(s) with the provided IDs are not available
+                                result(BillingResponseCode.ERROR, null)
+                            }
+                        } else {
+                            val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
+                            logw("The products details could not be obtained. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                            result(billingResult.responseCode, null)
+                        }
+
+                    }
+
+                } else {
+                    logw(
+                        "Product details could not be retrieved as a connection to the billing client could not be established. " +
+                                "Connection result: ${BillingUtils.getBillingResponseCodeInfo(resultCode).shortDesc}"
+                    )
+                    result(resultCode, null)
+                }
+            }
 
         }
 
