@@ -18,10 +18,14 @@ interface PremiumListener {
 
     /**
      * Informs the details of the products (title, price, description, etc.). It's invoked after requesting products details
-     * with **PENDING TO UPDATE**
-     * @param productDetailsList List with details of the products, or null if products details could not be obtained.
+     * with [Premium.Controller.getProductsDetails]
+     * @param resultCode The result code based on [BillingResponseCode]
+     * @param productDetailsList list with the details of the products. The list only contains elements if the response code
+     *        is BillingResponseCode.OK; otherwise, it will be null. The [productDetailsList] will always contain at least one
+     *        element or be null, but it will never be an empty list, his ensures that if it's not null, the response code was
+     *        BillingResponseCode.OK, and the list contains at least one element.
      * */
-    fun onProductDetails(productDetailsList: List<ProductDetails>?)
+    fun onProductDetails(resultCode: Int, productDetailsList: List<ProductDetails>?)
 
     /**
      * It's invoked when an error occurs and it is not possible to start the purchase flow.
