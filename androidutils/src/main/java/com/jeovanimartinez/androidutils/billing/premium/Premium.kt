@@ -2,6 +2,7 @@
 
 package com.jeovanimartinez.androidutils.billing.premium
 
+import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
@@ -132,15 +133,44 @@ object Premium : Base<Premium>() {
             // The process is carried out through a private function, and the result is reported
             getProductsDetails(context, productIds) { resultCode, productDetailsList ->
 
-                if (premiumListener != null) {
-                    log("Invoked > PremiumListener.onProductDetails()")
-                    premiumListener?.onProductDetails(resultCode, productDetailsList)
-                } else {
-                    logw("Cannot be invoked PremiumListener.onProductDetails() > The premiumListener is null")
-                }
+                logPremiumListenerInvocation("onProductDetails()")
+                premiumListener?.onProductDetails(resultCode, productDetailsList)
 
                 endBillingClientConnection()
             }
+
+        }
+
+        /**
+         * Start the purchase flow of a integrated product that grants the premium benefits for the app.
+         * @param activity Activity from which the process starts.
+         * @param productId Id of the product to purchase.
+         * */
+        fun startProductPurchase(activity: Activity, productId: String) {
+            /*log("Invoked > startProductPurchase()")
+            checkInitialization()
+
+            // The product Id must be on the premiumAccessProductIds list to be able to validate the purchase later
+            if (!premiumAccessProductIds.contains(productId)) {
+                throw IllegalArgumentException("Cannot start the purchase because the specified product Id '$productId' is not in the premiumAccessProductIds list")
+            }
+
+            connectBillingClient(activity) { resultCode ->
+                if (resultCode == BillingResponseCode.OK) {
+
+                } else {
+                    logw(
+                        "Unable to start the purchase flow because the connection to the billing client could not be established. " +
+                                "Connection result: ${BillingUtils.getBillingResponseCodeInfo(resultCode).shortDesc}"
+                    )
+                    if (premiumListener != null) {
+                        log("Invoked > PremiumListener.onStartPurchaseError()")
+                        premiumListener?.onStartPurchaseError(resultCode)
+                    } else {
+                        logw("Cannot be invoked PremiumListener.onStartPurchaseError() > The premiumListener is null")
+                    }
+                }
+            }*/
 
         }
 
@@ -151,6 +181,18 @@ object Premium : Base<Premium>() {
         private fun checkInitialization() {
             if (!initialized) {
                 throw IllegalStateException("It is necessary to call Premium.Controller.init() before calling any other function of Premium.Controller")
+            }
+        }
+
+        /**
+         * Utility to be called before invoking any function of the PremiumListener, used to log the state of the listener in the logcat.
+         * @param functionName In text, name of the function of the PremiumListener to be invoked after calling this function.
+         * */
+        private fun logPremiumListenerInvocation(functionName: String) {
+            if (premiumListener != null) {
+                log("Invoked > PremiumListener.$functionName")
+            } else {
+                logw("Cannot be invoked PremiumListener.$functionName > The premiumListener is null")
             }
         }
 
