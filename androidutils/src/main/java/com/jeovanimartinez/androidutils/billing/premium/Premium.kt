@@ -230,7 +230,7 @@ object Premium : Base<Premium>() {
 
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             if (productDetailsList.isNotEmpty()) {
-                                log("The list of products details was successfully retrieved. List: $productDetailsList")
+                                log("The list of products details was successfully retrieved. List (size: ${productDetailsList.size}): $productDetailsList")
                                 result(billingResult.responseCode, productDetailsList)
                             } else {
                                 logw("The list of products details was successfully retrieved, but it is empty")
