@@ -88,7 +88,7 @@ object Premium : Base<Premium>() {
                 return
             }
             require(applicationContext.isApplicationContext()) {
-                "To initiate this utility (Premium.Controller), the application context must be provided. No other type of context is accepted"
+                "To initiate this utility (Premium.Controller), the application context must be provided forcibly. No other type of context is accepted"
             }
             require(premiumAccessProductIds.isNotEmpty()) {
                 "The premiumAccessProductIds list must not be empty; it must have at least one element"
@@ -129,12 +129,14 @@ object Premium : Base<Premium>() {
         /**
          * Starts the process to retrieve details of one or more In-app products asynchronously. The result is
          * informed by [PremiumListener.onProductDetails]
-         * @param context Context from which the process starts. Using the Application Context is highly recommended.
+         * @param applicationContext Context from which the process starts. It must be the application context.
          * @param productIds List containing the product IDs to be queried.
+         * @throws IllegalArgumentException If the [applicationContext] is not the application context.
          * */
-        fun getProductsDetails(context: Context, productIds: List<String>) {
+        fun getProductsDetails(applicationContext: Context, productIds: List<String>) {
             log("Invoked > getProductsDetails()")
             checkInitialization()
+            checkContext(applicationContext)
 
             // A warning is logged if any of the provided product IDs is not in the premiumAccessProductIds list
             productIds.forEach {
@@ -144,7 +146,7 @@ object Premium : Base<Premium>() {
             }
 
             // The process is carried out through a private function, and the result is reported
-            getProductsDetails(context, productIds) { resultCode, productDetailsList ->
+            getProductsDetails(applicationContext, productIds) { resultCode, productDetailsList ->
 
                 logPremiumListenerTriggered("onProductDetails()")
                 premiumListener?.onProductDetails(resultCode, productDetailsList)
@@ -226,6 +228,16 @@ object Premium : Base<Premium>() {
         private fun checkInitialization() {
             if (!initialized) {
                 throw IllegalStateException("It is necessary to call Premium.Controller.init() before calling any other function of Premium.Controller")
+            }
+        }
+
+        /**
+         * Verifies that the provided context is the application context and throws an exception if it is not.
+         * @throws IllegalArgumentException If the [context] is not the application context.
+         * */
+        private fun checkContext(context: Context) {
+            require(context.isApplicationContext()) {
+                "The provided context is not valid. To call this function, the application context must be provided forcibly"
             }
         }
 
