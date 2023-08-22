@@ -264,6 +264,14 @@ object Premium : Base<Premium>() {
 
             log("Invoked > connectBillingClient()")
 
+            /*
+            * BillingClient.ConnectionState
+            * DISCONNECTED // Initial state, after calling billing client build(); billingClient.isReady = false
+            * CONNECTING // Currently connecting when calling billingClient.startConnection; billingClient.isReady = false
+            * CONNECTED // Successfully connected; billingClient.isReady = true
+            * CLOSED // After calling endConnection(); billingClient.isReady = false; Once closed, it's not possible to connect again, the instance must be recreated
+            * */
+
             if (billingClient.isReady) {
                 // If billingClient.isReady then billingClient.connectionState == ConnectionState.CONNECTED
                 log("The billing client is already connected")
@@ -459,20 +467,6 @@ object Premium : Base<Premium>() {
             premiumListener?.onPurchaseResult(premiumResult)
 
         }
-
-
-        /*
-        * Pruebas y validado el 19.08.2023
-        * public @interface ConnectionState {
-                int DISCONNECTED = 0; // Estado inicial, luego ce llamar a init y al .build() del billing client; billingClient.isReady = false
-                int CONNECTING = 1; // Se esta conectando ... billingClient.isReady = false; al llamar a billingClient.startConnection
-                int CONNECTED = 2; // Esta ya conectado billingClient.isReady = true; Luego de logw("onBillingSetupFinished")
-                int CLOSED = 3; // Luego de llamar a endConnection(); billingClient.isReady = false; una vez cerrada no es posible conectarse nuevamente, hay que crecrear la instancia
-            }
-            *
-            *
-        * */
-
 
     }
 
