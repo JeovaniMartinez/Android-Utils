@@ -173,7 +173,7 @@ object Premium : Base<Premium>() {
                             val billingResult = billingClient.launchBillingFlow(activity, billingFlowParams)
 
                             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-                            log("Billing client launch billing flow result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                            log("Billing client launchBillingFlow result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
 
                             // If the purchase flow could not be launched
                             if (billingResult.responseCode != BillingResponseCode.OK) {
