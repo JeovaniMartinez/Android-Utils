@@ -5,17 +5,18 @@ package com.jeovanimartinez.androidutils.billing.premium
 import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.BillingClient
-import com.android.billingclient.api.BillingClientStateListener
-import com.android.billingclient.api.BillingResult
-import com.android.billingclient.api.PurchasesUpdatedListener
-import com.jeovanimartinez.androidutils.Base
 import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClient.ConnectionState
 import com.android.billingclient.api.BillingClient.ProductType
+import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.ProductDetails
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryProductDetailsParams.Product
+import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.billing.BillingUtils
 
 /**
@@ -58,6 +59,12 @@ object Premium : Base<Premium>() {
         * For example, if the status of a purchase is "pending transaction" and the result is being awaited.
         * */
         private var preventEndBillingClientConnection = false
+
+        // Listener for updates in the state of purchases
+        private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
+            log("Triggered > PurchasesUpdatedListener.onPurchasesUpdated()")
+            onPurchasesUpdated(billingResult, purchases)
+        }
 
         /**
          * Initialize and configure the utility. It must be called only once when starting the app.
@@ -134,7 +141,7 @@ object Premium : Base<Premium>() {
             // The process is carried out through a private function, and the result is reported
             getProductsDetails(context, productIds) { resultCode, productDetailsList ->
 
-                logPremiumListenerInvocation("onProductDetails()")
+                logPremiumListenerTriggered("onProductDetails()")
                 premiumListener?.onProductDetails(resultCode, productDetailsList)
 
                 endBillingClientConnection()
@@ -177,7 +184,7 @@ object Premium : Base<Premium>() {
 
                             // If the purchase flow could not be launched
                             if (billingResult.responseCode != BillingResponseCode.OK) {
-                                logPremiumListenerInvocation("onStartPurchaseError()")
+                                logPremiumListenerTriggered("onStartPurchaseError()")
                                 premiumListener?.onStartPurchaseError(productDetailsResultCode)
                                 endBillingClientConnection()
                                 /*
@@ -189,7 +196,7 @@ object Premium : Base<Premium>() {
 
                         } else {
                             logw("Unable to start the purchase flow because the product details could not be obtained")
-                            logPremiumListenerInvocation("onStartPurchaseError()")
+                            logPremiumListenerTriggered("onStartPurchaseError()")
                             premiumListener?.onStartPurchaseError(productDetailsResultCode)
                             endBillingClientConnection()
                         }
@@ -200,7 +207,7 @@ object Premium : Base<Premium>() {
                         "Unable to start the purchase flow because the connection to the billing client could not be established. " +
                                 "Connection result: ${BillingUtils.getBillingResponseCodeInfo(connectionResultCode).shortDesc}"
                     )
-                    logPremiumListenerInvocation("onStartPurchaseError()")
+                    logPremiumListenerTriggered("onStartPurchaseError()")
                     premiumListener?.onStartPurchaseError(connectionResultCode)
                 }
             }
@@ -218,14 +225,14 @@ object Premium : Base<Premium>() {
         }
 
         /**
-         * Utility to be called before invoking any function of the PremiumListener, used to log the state of the listener in the logcat.
-         * @param functionName In text, name of the function of the PremiumListener to be invoked after calling this function.
+         * Utility to be called before trigger any function of the PremiumListener, used to log the state of the listener in the logcat.
+         * @param functionName In text, name of the function of the PremiumListener to be triggered after calling this function.
          * */
-        private fun logPremiumListenerInvocation(functionName: String) {
+        private fun logPremiumListenerTriggered(functionName: String) {
             if (premiumListener != null) {
-                log("Invoked > PremiumListener.$functionName")
+                log("Triggered > PremiumListener.$functionName")
             } else {
-                logw("Cannot be invoked PremiumListener.$functionName > The premiumListener is null")
+                logw("Cannot be trigger PremiumListener.$functionName > The premiumListener is null")
             }
         }
 
@@ -366,6 +373,15 @@ object Premium : Base<Premium>() {
 
         }
 
+        /**
+         * Handles PurchasesUpdatedListener.onPurchasesUpdated()
+         * @param billingResult Result of the purchase update.
+         * @param purchases List of updated purchases if present.
+         * */
+        private fun onPurchasesUpdated(billingResult: BillingResult, purchases: List<Purchase>?) {
+            log("Invoked > onPurchasesUpdated()")
+        }
+
 
         /*
         * Pruebas y validado el 19.08.2023
@@ -379,10 +395,6 @@ object Premium : Base<Premium>() {
             *
         * */
 
-
-        private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-
-        }
 
     }
 
