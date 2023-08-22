@@ -56,16 +56,14 @@ object Premium : Base<Premium>() {
         private var premiumListener: PremiumListener? = null  // Listener to report events
 
         /*
-        * Prevents the connection from being ended if there is an important process running with the billing client in the background.
-        * For example, if the status of a purchase is "pending transaction" and the result is being awaited.
-        * */
-        private var preventEndBillingClientConnection = false
-
-        /*
         * It's used to temporarily store the application context for use in the PurchasesUpdatedListener and the functions called when
         * the listener is triggered. Once the context is no longer needed, it's set to null to avoid unnecessary references.
         * */
         private var applicationContext: Context? = null
+            set(value) {
+                log("Updated applicationContext to = $value")
+                field = value
+            }
 
         // Listener for updates in the state of purchases
         private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
@@ -107,7 +105,6 @@ object Premium : Base<Premium>() {
             currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
             billingClient = BillingClient.newBuilder(context.applicationContext).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
-            preventEndBillingClientConnection = false
             initialized = true
             // It's not necessary to call connect function here
 
@@ -319,14 +316,15 @@ object Premium : Base<Premium>() {
 
         /**
          * Closes/end the billing client connection.
-         * If [preventEndBillingClientConnection] is true, the connection is not closed even if this function is called.
+         * In certain cases, even when calling this function, the connection is avoided from being closed if there are critical
+         * pending processes with the billing client.
          * */
         private fun endBillingClientConnection() {
 
             log("Invoked > endBillingClientConnection()")
 
-            if (preventEndBillingClientConnection) {
-                log("No need to close the billing client connection. preventEndBillingClientConnection is true")
+            if (currentPremiumState == PremiumState.PENDING_TRANSACTION) {
+                log("currentPremiumState is PENDING_TRANSACTION, the billing client connection closure is skipped to await purchase updates")
                 return
             }
 
@@ -411,6 +409,7 @@ object Premium : Base<Premium>() {
          * @param purchases List of updated purchases if present.
          * */
         private fun onPurchasesUpdated(billingResult: BillingResult, purchases: List<Purchase>?) {
+
             log("Invoked > onPurchasesUpdated()")
 
             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
@@ -450,16 +449,8 @@ object Premium : Base<Premium>() {
                 PremiumPreferences.savePremiumState(it, premiumResult)
             }
 
-            // It checks if a final result has already been obtained or if the result is pending
-            if (premiumResult == PremiumState.PREMIUM || premiumResult == PremiumState.NOT_PREMIUM) {
-                log("A final PremiumState result has been obtained, resources are now being released")
-                endBillingClientConnection()
-            } else {
-                // If the transaction is pending, the connection is not ended to wait for the result
-                log("Premium state is PENDING_TRANSACTION | preventEndBillingClientConnection = true to wait for the final result")
-                preventEndBillingClientConnection = true
-                // The reference to applicationContext is maintained in case the listener is triggered again
-            }
+            // The function is called, but within it, closing the connection is avoided if there are pending tasks with the billing client
+            endBillingClientConnection()
 
             log("Result (Premium State) = $premiumResult")
 
