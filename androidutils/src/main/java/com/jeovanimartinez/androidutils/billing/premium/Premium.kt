@@ -180,7 +180,7 @@ object Premium : Base<Premium>() {
                             val billingResult = billingClient.launchBillingFlow(activity, billingFlowParams)
 
                             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-                            log("Billing client launchBillingFlow result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                            log("Billing client launchBillingFlow. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
 
                             // If the purchase flow could not be launched
                             if (billingResult.responseCode != BillingResponseCode.OK) {
@@ -380,6 +380,55 @@ object Premium : Base<Premium>() {
          * */
         private fun onPurchasesUpdated(billingResult: BillingResult, purchases: List<Purchase>?) {
             log("Invoked > onPurchasesUpdated()")
+
+            val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
+            log("onPurchasesUpdated() | Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
+
+            val result: PremiumState // To assign the result
+
+            when (billingResult.responseCode) {
+
+                // Satisfactory result, the purchase needs to be handled to obtain the status
+                BillingResponseCode.OK -> {
+                    log("BillingResponseCode.OK > The purchase is being to handled and processed")
+                    result = PremiumState.NOT_PREMIUM // ***######## PENDING TO UPDATE #######** USE handlePurchase(purchases) // Purchase status is validated
+                }
+
+                // The user already had the product, and purchases are null, so the data is updated to indicate that the user is already premium
+                BillingResponseCode.ITEM_ALREADY_OWNED -> {
+                    log(
+                        "BillingResponseCode.ITEM_ALREADY_OWNED > The user had already purchased the product, so it is assumed that they " +
+                                "should already be a premium user"
+                    )
+                    result = PremiumState.PREMIUM
+                }
+
+                // The user canceled the purchase process, an error occurred or the payment method was rejected. The purchase was not completed
+                else -> {
+                    log("The purchase has not been successfully completed")
+                    result = PremiumState.NOT_PREMIUM
+                }
+
+            }
+
+            currentPremiumState = result // Update the current premium state
+
+            //PremiumPreferences.savePremiumState() ** VERIFICAR Y AJUSTAR< IMPORTANTE
+
+            log("Result (Premium state) = $result")
+
+            logPremiumListenerTriggered("onPurchaseResult()")
+            premiumListener?.onPurchaseResult(result)
+
+            // If a specific result is obtained, the connection is ended
+            if (result == PremiumState.PREMIUM || result == PremiumState.NOT_PREMIUM) {
+                endBillingClientConnection()
+            } else {
+                // If the transaction is pending, the connection is not ended to wait for the result
+                log("Premium state is PENDING_TRANSACTION preventEndBillingClientConnection = true to wait for the final result")
+                preventEndBillingClientConnection = true
+            }
+
         }
 
 
