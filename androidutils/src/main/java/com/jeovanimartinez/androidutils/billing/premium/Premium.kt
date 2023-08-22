@@ -18,6 +18,7 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryProductDetailsParams.Product
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.billing.BillingUtils
+import com.jeovanimartinez.androidutils.extensions.context.isApplicationContext
 
 /**
  * Set of utilities to simplify the verification and purchase process of the premium version of the app.
@@ -68,10 +69,11 @@ object Premium : Base<Premium>() {
 
         /**
          * Initialize and configure the utility. It must be called only once when starting the app.
-         * @param context Context for initializing the utility. Using the Application Context is highly recommended.
+         * @param applicationContext Context for initializing the utility. It must be the application context.
          * @param premiumAccessProductIds List of all product IDs that grant premium benefits in the application.
+         * @throws IllegalArgumentException If the [applicationContext] is not the application context or if [premiumAccessProductIds] list is empty.
          * */
-        fun init(context: Context, premiumAccessProductIds: List<String>) {
+        fun init(applicationContext: Context, premiumAccessProductIds: List<String>) {
 
             log("Invoked > init()")
 
@@ -85,12 +87,15 @@ object Premium : Base<Premium>() {
                 )
                 return
             }
+            require(applicationContext.isApplicationContext()) {
+                "To initiate this utility (Premium.Controller), the application context must be provided. No other type of context is accepted"
+            }
             require(premiumAccessProductIds.isNotEmpty()) {
                 "The premiumAccessProductIds list must not be empty; it must have at least one element"
             }
 
-            currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
-            billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+            currentPremiumState = PremiumPreferences.getPremiumState(applicationContext) // The last known state is obtained
+            billingClient = BillingClient.newBuilder(applicationContext).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
             preventEndBillingClientConnection = false
             initialized = true
