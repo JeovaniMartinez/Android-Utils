@@ -18,6 +18,7 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryProductDetailsParams.Product
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.billing.BillingUtils
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
 /**
  * Set of utilities to simplify the verification and purchase process of the premium version of the app.
@@ -59,6 +60,12 @@ object Premium : Base<Premium>() {
         * For example, if the status of a purchase is "pending transaction" and the result is being awaited.
         * */
         private var preventEndBillingClientConnection = false
+
+        /*
+        * It's used to temporarily store the application context for use in the PurchasesUpdatedListener and the functions called when
+        * the listener is triggered. Once the context is no longer needed, it's set to null to avoid unnecessary references.
+        * */
+        private var applicationContext: Context? = null
 
         // Listener for updates in the state of purchases
         private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
@@ -199,8 +206,10 @@ object Premium : Base<Premium>() {
                                 * NOTE: In tests conducted, if the product has already been purchased or if there is no internet connection,
                                 * the response code remains OK and the error message is displayed in the modal of the opened purchase flow
                                 * */
+                            } else {
+                                // If the purchase flow was launched successfully, the result is reported in the purchasesUpdatedListener
+                                applicationContext = activity.applicationContext // To have it available in the listener when the result is reported
                             }
-                            // If the purchase flow was launched successfully, the result is reported in the purchasesUpdatedListener
 
                         } else {
                             logw("Unable to start the purchase flow because the product details could not be obtained")
@@ -312,6 +321,9 @@ object Premium : Base<Premium>() {
                 log("No need to close the billing client connection. preventEndBillingClientConnection is true")
                 return
             }
+
+            applicationContext = null // It's no longer needed
+
             if (!billingClient.isReady) {
                 log("No need to close the billing client connection. Billing Client is not ready or the connection has already been closed")
                 return
@@ -381,6 +393,10 @@ object Premium : Base<Premium>() {
 
         }
 
+        private fun handlePurchase(context: Context?, purchases: List<Purchase>?): PremiumState {
+            return PremiumState.PENDING_TRANSACTION // Temporary while the function is being programmed
+        }
+
         /**
          * Handles PurchasesUpdatedListener.onPurchasesUpdated()
          * @param billingResult Result of the purchase update.
@@ -392,14 +408,14 @@ object Premium : Base<Premium>() {
             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
             log("onPurchasesUpdated() | Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
 
-            val result: PremiumState // To assign the result
+            val premiumResult: PremiumState // To assign the result
 
             when (billingResult.responseCode) {
 
                 // Satisfactory result, the purchase needs to be handled to obtain the status
                 BillingResponseCode.OK -> {
                     log("BillingResponseCode.OK > The purchase is being to handled and processed")
-                    result = PremiumState.NOT_PREMIUM // ***######## PENDING TO UPDATE #######** USE handlePurchase(purchases) // Purchase status is validated
+                    premiumResult = handlePurchase(applicationContext, purchases)
                 }
 
                 // The user already had the product, and purchases are null, so the data is updated to indicate that the user is already premium
@@ -408,34 +424,39 @@ object Premium : Base<Premium>() {
                         "BillingResponseCode.ITEM_ALREADY_OWNED > The user had already purchased the product, so it is assumed that they " +
                                 "should already be a premium user"
                     )
-                    result = PremiumState.PREMIUM
+                    premiumResult = PremiumState.PREMIUM
                 }
 
                 // The user canceled the purchase process, an error occurred or the payment method was rejected. The purchase was not completed
                 else -> {
-                    log("The purchase has not been successfully completed")
-                    result = PremiumState.NOT_PREMIUM
+                    log("The purchase has not been completed")
+                    premiumResult = PremiumState.NOT_PREMIUM
                 }
 
             }
 
-            currentPremiumState = result // Update the current premium state
+            currentPremiumState = premiumResult // Update the current premium state
 
-            //PremiumPreferences.savePremiumState() ** VERIFICAR Y AJUSTAR< IMPORTANTE
+            // The state is updated in the preferences
+            applicationContext.whenNotNull {
+                PremiumPreferences.savePremiumState(it, premiumResult)
+            }
 
-            log("Result (Premium state) = $result")
-
-            logPremiumListenerTriggered("onPurchaseResult()")
-            premiumListener?.onPurchaseResult(result)
-
-            // If a specific result is obtained, the connection is ended
-            if (result == PremiumState.PREMIUM || result == PremiumState.NOT_PREMIUM) {
+            // It checks if a final result has already been obtained or if the result is pending
+            if (premiumResult == PremiumState.PREMIUM || premiumResult == PremiumState.NOT_PREMIUM) {
+                log("A final PremiumState result has been obtained, resources are now being released")
                 endBillingClientConnection()
             } else {
                 // If the transaction is pending, the connection is not ended to wait for the result
                 log("Premium state is PENDING_TRANSACTION | preventEndBillingClientConnection = true to wait for the final result")
                 preventEndBillingClientConnection = true
+                // The reference to applicationContext is maintained in case the listener is triggered again
             }
+
+            log("Result (Premium State) = $premiumResult")
+
+            logPremiumListenerTriggered("onPurchaseResult()")
+            premiumListener?.onPurchaseResult(premiumResult)
 
         }
 
