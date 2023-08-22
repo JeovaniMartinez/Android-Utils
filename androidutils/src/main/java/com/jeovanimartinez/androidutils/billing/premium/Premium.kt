@@ -400,7 +400,32 @@ object Premium : Base<Premium>() {
         }
 
         private fun handlePurchase(context: Context?, purchases: List<Purchase>?): PremiumState {
-            return PremiumState.PENDING_TRANSACTION // Temporary while the function is being programmed
+
+            log("Invoked > handlePurchase()")
+            log("handlePurchase() > context = $context")
+            log("handlePurchase() > purchases = $purchases")
+
+            var premiumResult = PremiumState.NOT_PREMIUM // Default result, updates based on validations
+
+            if (!purchases.isNullOrEmpty()) {
+                purchases.forEach {
+
+                }
+            } else {
+                premiumResult = PremiumState.NOT_PREMIUM
+                log("The purchases list is null or empty. There is nothing to process")
+            }
+
+            currentPremiumState = premiumResult // Update the current premium state
+
+            // The state is updated in the preferences
+            context.whenNotNull {
+                PremiumPreferences.savePremiumState(it, premiumResult)
+            }
+
+            log("handlePurchase() > Final Premium Result = $premiumResult")
+            return premiumResult
+
         }
 
         /**
@@ -442,11 +467,14 @@ object Premium : Base<Premium>() {
 
             }
 
-            currentPremiumState = premiumResult // Update the current premium state
+            // If the result is BillingResponseCode.OK, these actions are performed in handlePurchase()
+            if (billingResult.responseCode != BillingResponseCode.OK) {
+                currentPremiumState = premiumResult // Update the current premium state
 
-            // The state is updated in the preferences
-            applicationContext.whenNotNull {
-                PremiumPreferences.savePremiumState(it, premiumResult)
+                // The state is updated in the preferences
+                applicationContext.whenNotNull {
+                    PremiumPreferences.savePremiumState(it, premiumResult)
+                }
             }
 
             // The function is called, but within it, closing the connection is avoided if there are pending tasks with the billing client
