@@ -18,7 +18,6 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryProductDetailsParams.Product
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.billing.BillingUtils
-import com.jeovanimartinez.androidutils.extensions.context.isApplicationContext
 
 /**
  * Set of utilities to simplify the verification and purchase process of the premium version of the app.
@@ -69,11 +68,11 @@ object Premium : Base<Premium>() {
 
         /**
          * Initialize and configure the utility. It must be called only once when starting the app.
-         * @param applicationContext Context for initializing the utility. It must be the application context.
+         * @param context Context for initializing the utility.
          * @param premiumAccessProductIds List of all product IDs that grant premium benefits in the application.
-         * @throws IllegalArgumentException If the [applicationContext] is not the application context or if [premiumAccessProductIds] list is empty.
+         * @throws IllegalArgumentException If [premiumAccessProductIds] list is empty.
          * */
-        fun init(applicationContext: Context, premiumAccessProductIds: List<String>) {
+        fun init(context: Context, premiumAccessProductIds: List<String>) {
 
             log("Invoked > init()")
 
@@ -87,15 +86,12 @@ object Premium : Base<Premium>() {
                 )
                 return
             }
-            require(applicationContext.isApplicationContext()) {
-                "To initiate this utility (Premium.Controller), the application context must be provided forcibly. No other type of context is accepted"
-            }
             require(premiumAccessProductIds.isNotEmpty()) {
                 "The premiumAccessProductIds list must not be empty; it must have at least one element"
             }
 
-            currentPremiumState = PremiumPreferences.getPremiumState(applicationContext) // The last known state is obtained
-            billingClient = BillingClient.newBuilder(applicationContext).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+            currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
+            billingClient = BillingClient.newBuilder(context.applicationContext).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
             preventEndBillingClientConnection = false
             initialized = true
@@ -129,14 +125,12 @@ object Premium : Base<Premium>() {
         /**
          * Starts the process to retrieve details of one or more In-app products asynchronously. The result is
          * informed by [PremiumListener.onProductDetails]
-         * @param applicationContext Context from which the process starts. It must be the application context.
+         * @param context Context from which the process starts.
          * @param productIds List containing the product IDs to be queried.
-         * @throws IllegalArgumentException If the [applicationContext] is not the application context.
          * */
-        fun getProductsDetails(applicationContext: Context, productIds: List<String>) {
+        fun getProductsDetails(context: Context, productIds: List<String>) {
             log("Invoked > getProductsDetails()")
             checkInitialization()
-            checkContext(applicationContext)
 
             // A warning is logged if any of the provided product IDs is not in the premiumAccessProductIds list
             productIds.forEach {
@@ -146,7 +140,7 @@ object Premium : Base<Premium>() {
             }
 
             // The process is carried out through a private function, and the result is reported
-            getProductsDetails(applicationContext, productIds) { resultCode, productDetailsList ->
+            getProductsDetails(context.applicationContext, productIds) { resultCode, productDetailsList ->
 
                 logPremiumListenerTriggered("onProductDetails()")
                 premiumListener?.onProductDetails(resultCode, productDetailsList)
@@ -228,16 +222,6 @@ object Premium : Base<Premium>() {
         private fun checkInitialization() {
             if (!initialized) {
                 throw IllegalStateException("It is necessary to call Premium.Controller.init() before calling any other function of Premium.Controller")
-            }
-        }
-
-        /**
-         * Verifies that the provided context is the application context and throws an exception if it is not.
-         * @throws IllegalArgumentException If the [context] is not the application context.
-         * */
-        private fun checkContext(context: Context) {
-            require(context.isApplicationContext()) {
-                "The provided context is not valid. To call this function, the application context must be provided forcibly"
             }
         }
 
