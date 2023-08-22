@@ -90,6 +90,13 @@ object Premium : Base<Premium>() {
                 "The premiumAccessProductIds list must not be empty; it must have at least one element"
             }
 
+            /*
+            * IMPORTANT
+            * In some places, such as when connecting with the client, context.applicationContext is used instead of the provided context.
+            * This is done to ensure that the BillingClient instance can be correctly re-created if required and to maintain the connection
+            * open when necessary.
+            * */
+
             currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
             billingClient = BillingClient.newBuilder(context.applicationContext).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
@@ -166,11 +173,11 @@ object Premium : Base<Premium>() {
                 )
             }
 
-            connectBillingClient(activity) { connectionResultCode ->
+            connectBillingClient(activity.applicationContext) { connectionResultCode ->
                 if (connectionResultCode == BillingResponseCode.OK) {
 
                     // The product details are obtained in order to initiate the purchase flow
-                    getProductsDetails(activity, listOf(productId)) { productDetailsResultCode, productDetailsList ->
+                    getProductsDetails(activity.applicationContext, listOf(productId)) { productDetailsResultCode, productDetailsList ->
 
                         // As only one product is requested, if productDetailsList is not null, it must contain the data for that product
                         if (productDetailsList != null) {
