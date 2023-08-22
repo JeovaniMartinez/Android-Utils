@@ -425,7 +425,7 @@ object Premium : Base<Premium>() {
                 endBillingClientConnection()
             } else {
                 // If the transaction is pending, the connection is not ended to wait for the result
-                log("Premium state is PENDING_TRANSACTION preventEndBillingClientConnection = true to wait for the final result")
+                log("Premium state is PENDING_TRANSACTION | preventEndBillingClientConnection = true to wait for the final result")
                 preventEndBillingClientConnection = true
             }
 
