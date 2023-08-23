@@ -4,6 +4,7 @@ package com.jeovanimartinez.androidutils.billing.premium
 
 import android.app.Activity
 import android.content.Context
+import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClient.ConnectionState
@@ -57,6 +58,12 @@ object Premium : Base<Premium>() {
         private var premiumListener: PremiumListener? = null  // Listener to report events
 
         /*
+        * Determines if a purchase is currently being acknowledged, in order to prevent closing the billing client connection and releasing
+        * resources during the process.
+        * */
+        private var acknowledgePurchaseInProgress = false
+
+        /*
         * It's used to temporarily store the application context for use in the PurchasesUpdatedListener and the functions called when
         * the listener is triggered. Once the context is no longer needed, it's set to null to avoid unnecessary references.
         * */
@@ -106,6 +113,7 @@ object Premium : Base<Premium>() {
             currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
             billingClient = BillingClient.newBuilder(context.applicationContext).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
+            acknowledgePurchaseInProgress = false
             initialized = true
             // It's not necessary to call connect function here
 
@@ -329,6 +337,11 @@ object Premium : Base<Premium>() {
                 return
             }
 
+            if (acknowledgePurchaseInProgress) {
+                log("Acknowledge purchase in progress, the billing client connection closure is skipped to wait for the process to finish")
+                return
+            }
+
             applicationContext = null // It's no longer needed
 
             if (!billingClient.isReady) {
@@ -404,7 +417,7 @@ object Premium : Base<Premium>() {
          * It is responsible for managing and validating the purchases and assign the new premium status according to the
          * performed validations.
          * @param context Context from which the process starts. It accepts null because applicationContext also accepts it,
-         *        but ideally, it shouldn't be null to process everything correctly
+         *        but ideally, it shouldn't be null to process everything correctly.
          * @param purchases Purchase list, to determine the new premium status.
          * @return The new premium status according to the performed validations.
          * */
@@ -460,7 +473,7 @@ object Premium : Base<Premium>() {
                         * It is verified if the purchase has already been acknowledged. If it is not already acknowledged, it acknowledges it
                         * This process is independent and it's performed on another thread.
                         * */
-                        //acknowledgePurchase(it)
+                        acknowledgePurchase(context, purchase)
 
                     } else {
                         logw(
@@ -484,6 +497,78 @@ object Premium : Base<Premium>() {
 
             log("handlePurchase() > Final Premium Result = $premiumResult")
             return premiumResult
+
+        }
+
+        /**
+         * Verifies if the [purchase] has already been acknowledged, and if not, it is acknowledged.
+         * This process is independent, runs in the background and does not affect any other process.
+         * The acknowledgment of the purchase is mandatory, because if it is not done after a while, Google will refund the purchase.
+         * @param context Context from which the process starts. It accepts null because applicationContext also accepts it,
+         *        but ideally, it shouldn't be null to process everything correctly.
+         * @param purchase Purchase to validate and acknowledge (if applicable).
+         * */
+        private fun acknowledgePurchase(context: Context?, purchase: Purchase) {
+
+            log("Invoked > acknowledgePurchase()")
+            log("handlePurchase() > context = $context")
+            log("handlePurchase() > purchase = $purchase")
+            acknowledgePurchaseInProgress = false
+
+            when {
+                purchase.isAcknowledged -> {
+                    log("Purchase is already acknowledged")
+                    return
+                }
+
+                purchase.purchaseState == PurchaseState.UNSPECIFIED_STATE -> {
+                    log("No need to acknowledge the purchase, because the purchase state is UNSPECIFIED_STATE (${PurchaseState.UNSPECIFIED_STATE})")
+                    return
+                }
+
+                purchase.purchaseState == PurchaseState.PENDING -> {
+                    log("No need to acknowledge the purchase, because the purchase state is PENDING (${PurchaseState.PENDING})")
+                    return
+                }
+            }
+
+            log("The purchase is not yet acknowledged and the state is PURCHASED (${PurchaseState.PURCHASED}), started the process to acknowledge it")
+            acknowledgePurchaseInProgress = true
+
+            connectBillingClient(context) { resultCode ->
+
+                if (resultCode == BillingResponseCode.OK) {
+
+                    // The process to acknowledge the purchase is initiated
+                    val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.purchaseToken).build()
+                    billingClient.acknowledgePurchase(acknowledgePurchaseParams) { billingResult ->
+
+                        val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
+                        log("Acknowledge purchase result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+
+                        if (billingResult.responseCode == BillingResponseCode.OK) {
+                            log("The purchase has been acknowledged successfully")
+                        } else {
+                            loge("Failed to acknowledge the purchase")
+                        }
+
+                        acknowledgePurchaseInProgress = false
+                    }
+
+                } else {
+                    logw(
+                        "The purchase couldn't be acknowledged because a connection with the billing client could not be established. " +
+                                "Connection result: ${BillingUtils.getBillingResponseCodeInfo(resultCode).shortDesc}"
+                    )
+                    acknowledgePurchaseInProgress = false
+                }
+
+            }
+
+            /*
+            * NOTES
+            * - In case of an error, there is no retry policy; it will be attempted to acknowledge the purchase until the next time this function is invoked.
+            * */
 
         }
 
