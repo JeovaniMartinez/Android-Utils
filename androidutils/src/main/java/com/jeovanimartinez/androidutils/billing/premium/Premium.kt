@@ -408,7 +408,30 @@ object Premium : Base<Premium>() {
             var premiumResult = PremiumState.NOT_PREMIUM // Default result, updates based on validations
 
             if (!purchases.isNullOrEmpty()) {
-                purchases.forEach {
+                log("Starting purchases iteration, purchases size: ${purchases.size}")
+                purchases.forEach { purchase ->
+
+                    val purchaseStateDesc = when (purchase.purchaseState) {
+                        Purchase.PurchaseState.PURCHASED -> "PURCHASED (${purchase.purchaseState})"
+                        Purchase.PurchaseState.PENDING -> "PENDING (${purchase.purchaseState})"
+                        else -> "UNSPECIFIED_STATE (${purchase.purchaseState})"
+                    }
+
+                    log("Purchase Information")
+                    log("Order Id: ${purchase.orderId} | Product Ids ${purchase.products}")
+                    log("Purchase state: $purchaseStateDesc | Acknowledge: ${purchase.isAcknowledged}")
+
+                    // Products IDs of the purchase, ideally there should always be only 1 since only one product is purchased at a time in startProductPurchase()
+                    val purchaseProducts = purchase.products
+                    // It is checked whether purchaseProducts contains at least one ID that matches those present in premiumAccessProductIds
+                    val commonIds = premiumAccessProductIds.intersect(purchaseProducts.toSet())
+
+                    // If commonIds isNotEmpty, it indicates at least one match
+                    if (commonIds.isNotEmpty()) {
+                        // ...
+                    } else {
+                        log("premiumAccessProductIds list $premiumResult does not contains any purchase.products $purchaseProducts | No need to handle the purchase")
+                    }
 
                 }
             } else {
