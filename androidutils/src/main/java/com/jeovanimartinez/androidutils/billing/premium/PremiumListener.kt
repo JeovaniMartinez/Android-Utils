@@ -9,38 +9,43 @@ import com.android.billingclient.api.ProductDetails
 interface PremiumListener {
 
     /**
-     * Informs if the user has premium rights to the app. It's invoked after calling **PENDING TO UPDATE**.
+     * Reports if the user has premium rights to the app. It's invoked after calling [Premium.Controller.checkPremiumState].
      * The reported [premiumState] is the one obtained directly from the Google Play billing client, and in the event that
-     * it is not possible to obtain that value, the value of the preferences is reported.
+     * it is not possible to obtain that value, the value of the preferences is reported, which is the latest known value
+     * of PremiumState.
      * @param premiumState The current premium state.
      * */
-    fun onCheckPremium(premiumState: PremiumState)
+    fun onCheckPremiumState(premiumState: PremiumState)
 
     /**
-     * Informs the details of the products (title, price, description, etc.). It's invoked after requesting products details
-     * with [Premium.Controller.getProductsDetails]
-     * @param resultCode The result code based on [BillingResponseCode]
+     * Reports the details of the products (title, price, description, etc.). It's invoked after requesting products details
+     * with [Premium.Controller.getProductsDetails].
+     * @param resultCode The result code based on [BillingResponseCode].
      * @param productDetailsList list with the details of the products. The list only contains elements if the response code
      *        is BillingResponseCode.OK; otherwise, it will be null. The [productDetailsList] will always contain at least one
      *        element or be null, but it will never be an empty list, his ensures that if it's not null, the response code was
      *        BillingResponseCode.OK, and the list contains at least one element.
      * */
-    fun onProductDetails(resultCode: Int, productDetailsList: List<ProductDetails>?)
+    fun onProductsDetails(resultCode: Int, productDetailsList: List<ProductDetails>?)
 
     /**
-     * It's invoked when an error occurs and it is not possible to start the purchase flow.
-     * @param errorCode Error code based on [BillingResponseCode]
+     * Reports the result of initiating the purchase flow. It's invoked after launch billing flow
+     * with [Premium.Controller.startProductPurchase].
+     * @param resultCode Result code based on [BillingResponseCode]. If the response code is [BillingResponseCode.OK],
+     *        it indicates that the flow was launched and displayed correctly to the user; any other code indicates
+     *        that the flow was not displayed to the user.
      * */
-    fun onStartPurchaseError(errorCode: Int)
+    fun onStartPurchaseResult(resultCode: Int)
 
     /**
-     * Reports the result of the purchase, and when the premium status changes.
+     * Reports the result of the purchase, and when the premium state changes.
      *
      * Can be invoked in the following cases:
-     * - When launching the billing flow, this function is invoked at the end of the flow to report the [result].
-     * - When the status of a pending transaction changes, it is invoked to report the [result].
+     * - When launching the billing flow with [Premium.Controller.startProductPurchase], this function is invoked
+     *   at the end of the flow to report the [result].
+     * - When the state of a pending transaction changes, it is invoked to report the [result].
      *
-     * @param result Final result based on [PremiumState] indicating whether the user has premium privileges in the app.
+     * @param result Final result based on [PremiumState] indicating whether the user has premium rights in the app.
      * */
     fun onPurchaseResult(result: PremiumState)
 
