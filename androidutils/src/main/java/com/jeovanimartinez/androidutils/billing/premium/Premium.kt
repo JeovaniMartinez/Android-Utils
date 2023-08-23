@@ -535,6 +535,7 @@ object Premium : Base<Premium>() {
 
             // If the purchase couldn't be successfully acknowledged, retry the process after 2 minutes
             val retryAcknowledgePurchase = fun() {
+                loge("The purchase will be retried for acknowledgment again in 2 minutes")
                 Handler(Looper.getMainLooper()).postDelayed({
                     acknowledgePurchase(context, purchase)
                 }, 120000)
