@@ -146,7 +146,7 @@ object Premium : Base<Premium>() {
 
         /**
          * Starts the process to retrieve details of one or more In-app products asynchronously. The result is
-         * informed by [PremiumListener.onProductDetails]
+         * informed by [PremiumListener.onProductsDetails]
          * @param context Context from which the process starts.
          * @param productIds List containing the product IDs to be queried.
          * */
@@ -164,8 +164,8 @@ object Premium : Base<Premium>() {
             // The process is carried out through a private function, and the result is reported
             getProductsDetails(context.applicationContext, productIds) { resultCode, productDetailsList ->
 
-                logPremiumListenerTriggered("onProductDetails()")
-                premiumListener?.onProductDetails(resultCode, productDetailsList)
+                logPremiumListenerTriggered("onProductsDetails()")
+                premiumListener?.onProductsDetails(resultCode, productDetailsList)
 
                 endBillingClientConnection()
             }
@@ -205,24 +205,26 @@ object Premium : Base<Premium>() {
                             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
                             log("Billing client launchBillingFlow. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
 
-                            // If the purchase flow could not be launched
                             if (billingResult.responseCode != BillingResponseCode.OK) {
-                                logPremiumListenerTriggered("onStartPurchaseError()")
-                                premiumListener?.onStartPurchaseError(productDetailsResultCode)
+                                // If the purchase flow could not be launched
                                 endBillingClientConnection()
+
                                 /*
                                 * NOTE: In tests conducted, if the product has already been purchased or if there is no internet connection,
-                                * the response code remains OK and the error message is displayed in the modal of the opened purchase flow
+                                * the response code remains OK and the error message is displayed in the modal of the opened purchase flow.
                                 * */
                             } else {
                                 // If the purchase flow was launched successfully, the result is reported in the purchasesUpdatedListener
                                 applicationContext = activity.applicationContext // To have it available in the listener when the result is reported
                             }
 
+                            logPremiumListenerTriggered("onStartPurchaseResult()")
+                            premiumListener?.onStartPurchaseResult(billingResult.responseCode)
+
                         } else {
                             logw("Unable to start the purchase flow because the product details could not be obtained")
-                            logPremiumListenerTriggered("onStartPurchaseError()")
-                            premiumListener?.onStartPurchaseError(productDetailsResultCode)
+                            logPremiumListenerTriggered("onStartPurchaseResult()")
+                            premiumListener?.onStartPurchaseResult(productDetailsResultCode)
                             endBillingClientConnection()
                         }
                     }
@@ -232,10 +234,23 @@ object Premium : Base<Premium>() {
                         "Unable to start the purchase flow because the connection to the billing client could not be established. " +
                                 "Connection result: ${BillingUtils.getBillingResponseCodeInfo(connectionResultCode).shortDesc}"
                     )
-                    logPremiumListenerTriggered("onStartPurchaseError()")
-                    premiumListener?.onStartPurchaseError(connectionResultCode)
+                    logPremiumListenerTriggered("onStartPurchaseResult()")
+                    premiumListener?.onStartPurchaseResult(connectionResultCode)
                 }
             }
+
+        }
+
+        /**
+         * Check if the user has premium privileges, and reports the result by [PremiumListener.onCheckPremiumState].
+         * - It is first verified on the billing client, and that result is reported.
+         * - If the billing client cannot report the result, the preferences result is reported.
+         *
+         * _Either the billing client or the preferences, the result is ALWAYS reported._
+         *
+         * @param context Context from which the process starts.
+         * */
+        fun checkPremiumState(context: Context) {
 
         }
 
@@ -416,12 +431,12 @@ object Premium : Base<Premium>() {
         }
 
         /**
-         * It is responsible for managing and validating the purchases and assign the new premium status according to the
+         * It is responsible for managing and validating the purchases and assign the new premium state according to the
          * performed validations.
          * @param context Context from which the process starts. It accepts null because applicationContext also accepts it,
          *        but ideally, it shouldn't be null to process everything correctly.
-         * @param purchases Purchase list, to determine the new premium status.
-         * @return The new premium status according to the performed validations.
+         * @param purchases Purchase list, to determine the new premium state.
+         * @return The new premium state according to the performed validations.
          * */
         private fun handlePurchase(context: Context?, purchases: List<Purchase>?): PremiumState {
 
@@ -466,9 +481,9 @@ object Premium : Base<Premium>() {
                                 PurchaseState.PENDING -> premiumResult = PremiumState.PENDING_TRANSACTION
                                 PurchaseState.UNSPECIFIED_STATE -> premiumResult = PremiumState.NOT_PREMIUM
                             }
-                            log("A new premium status is assigned according to the purchase. New premium status: $premiumResult")
+                            log("A new premium state is assigned according to the purchase. New premium state: $premiumResult")
                         } else {
-                            log("There's no need to assign a new premium status based on this purchase, as the status is already PREMIUM")
+                            log("There's no need to assign a new premium state based on this purchase, as the state is already PREMIUM")
                         }
 
                         /*
@@ -600,7 +615,7 @@ object Premium : Base<Premium>() {
 
             when (billingResult.responseCode) {
 
-                // Satisfactory result, the purchase needs to be handled to obtain the status
+                // Satisfactory result, the purchase needs to be handled to obtain the state
                 BillingResponseCode.OK -> {
                     log("BillingResponseCode.OK > The purchase is being to handled and processed")
                     premiumResult = handlePurchase(applicationContext, purchases)
