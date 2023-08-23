@@ -568,6 +568,10 @@ object Premium : Base<Premium>() {
             /*
             * NOTES
             * - In case of an error, there is no retry policy; it will be attempted to acknowledge the purchase until the next time this function is invoked.
+            * - The billing client connection is not closed upon completing the purchase acknowledgment process (regardless of whether it was successful or
+            *   not). This is because this task is independent and to avoid disrupting the execution flow. It's possible that in some cases, the connection
+            *   might remain open and applicationContext might stay assigned, but ideally, this will happen only once (during purchase acknowledgment), so
+            *   it shouldn't be a problem.
             * */
 
         }
