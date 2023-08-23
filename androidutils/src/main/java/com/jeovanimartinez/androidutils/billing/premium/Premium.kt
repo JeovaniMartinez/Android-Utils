@@ -451,7 +451,7 @@ object Premium : Base<Premium>() {
                                 PurchaseState.PENDING -> premiumResult = PremiumState.PENDING_TRANSACTION
                                 PurchaseState.UNSPECIFIED_STATE -> premiumResult = PremiumState.NOT_PREMIUM
                             }
-                            log("A new premium status is assigned according to the purchase: $premiumResult")
+                            log("A new premium status is assigned according to the purchase. New premium status: $premiumResult")
                         } else {
                             log("There's no need to assign a new premium status based on this purchase, as the status is already PREMIUM")
                         }
