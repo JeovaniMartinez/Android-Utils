@@ -8,6 +8,7 @@ import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.BillingClient.ConnectionState
 import com.android.billingclient.api.BillingClient.ProductType
+import com.android.billingclient.api.Purchase.PurchaseState
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingResult
@@ -399,6 +400,14 @@ object Premium : Base<Premium>() {
 
         }
 
+        /**
+         * It is responsible for managing and validating the purchases and assign the new premium status according to the
+         * performed validations.
+         * @param context Context from which the process starts. It accepts null because applicationContext also accepts it,
+         *        but ideally, it shouldn't be null to process everything correctly
+         * @param purchases Purchase list, to determine the new premium status.
+         * @return The new premium status according to the performed validations.
+         * */
         private fun handlePurchase(context: Context?, purchases: List<Purchase>?): PremiumState {
 
             log("Invoked > handlePurchase()")
@@ -412,8 +421,8 @@ object Premium : Base<Premium>() {
                 purchases.forEach { purchase ->
 
                     val purchaseStateDesc = when (purchase.purchaseState) {
-                        Purchase.PurchaseState.PURCHASED -> "PURCHASED (${purchase.purchaseState})"
-                        Purchase.PurchaseState.PENDING -> "PENDING (${purchase.purchaseState})"
+                        PurchaseState.PURCHASED -> "PURCHASED (${purchase.purchaseState})"
+                        PurchaseState.PENDING -> "PENDING (${purchase.purchaseState})"
                         else -> "UNSPECIFIED_STATE (${purchase.purchaseState})"
                     }
 
@@ -428,9 +437,36 @@ object Premium : Base<Premium>() {
 
                     // If commonIds isNotEmpty, it indicates at least one match
                     if (commonIds.isNotEmpty()) {
-                        // ...
+
+                        /*
+                        * It is validated that premiumResult is different from PREMIUM, and only if it's different, the reassignment is performed.
+                        * This is done because if in any previous iteration it was already determined that the user has purchased a product and
+                        * the result has been assigned as PREMIUM, there is no need to change the result since the user should already have access
+                        * to premium features having purchased any of the products from the premiumAccessProductIds list.
+                        * */
+                        if (premiumResult != PremiumState.PREMIUM) {
+                            // The appropriate value is assigned.
+                            when (purchase.purchaseState) {
+                                PurchaseState.PURCHASED -> premiumResult = PremiumState.PREMIUM
+                                PurchaseState.PENDING -> premiumResult = PremiumState.PENDING_TRANSACTION
+                                PurchaseState.UNSPECIFIED_STATE -> premiumResult = PremiumState.NOT_PREMIUM
+                            }
+                            log("A new premium status is assigned according to the purchase: $premiumResult")
+                        } else {
+                            log("There's no need to assign a new premium status based on this purchase, as the status is already PREMIUM")
+                        }
+
+                        /*
+                        * It is verified if the purchase has already been acknowledged. If it is not already acknowledged, it acknowledges it
+                        * This process is independent and it's performed on another thread.
+                        * */
+                        //acknowledgePurchase(it)
+
                     } else {
-                        log("premiumAccessProductIds list $premiumResult does not contains any purchase.products $purchaseProducts | No need to handle the purchase")
+                        logw(
+                            "Premium Access Product Ids list $premiumAccessProductIds does not contains " +
+                                    "any purchase.products $purchaseProducts | No need to handle the purchase"
+                        )
                     }
 
                 }
