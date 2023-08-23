@@ -4,6 +4,8 @@ package com.jeovanimartinez.androidutils.billing.premium
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClient.BillingResponseCode
@@ -513,7 +515,6 @@ object Premium : Base<Premium>() {
             log("Invoked > acknowledgePurchase()")
             log("handlePurchase() > context = $context")
             log("handlePurchase() > purchase = $purchase")
-            acknowledgePurchaseInProgress = false
 
             when {
                 purchase.isAcknowledged -> {
@@ -532,6 +533,13 @@ object Premium : Base<Premium>() {
                 }
             }
 
+            // If the purchase couldn't be successfully acknowledged, retry the process after 2 minutes
+            val retryAcknowledgePurchase = fun() {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    acknowledgePurchase(context, purchase)
+                }, 120000)
+            }
+
             log("The purchase is not yet acknowledged and the state is PURCHASED (${PurchaseState.PURCHASED}), started the process to acknowledge it")
             acknowledgePurchaseInProgress = true
 
@@ -548,11 +556,11 @@ object Premium : Base<Premium>() {
 
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             log("The purchase has been acknowledged successfully")
+                            acknowledgePurchaseInProgress = false // It is set to false until the purchase is successfully acknowledged
                         } else {
                             loge("Failed to acknowledge the purchase")
+                            retryAcknowledgePurchase()
                         }
-
-                        acknowledgePurchaseInProgress = false
                     }
 
                 } else {
@@ -560,14 +568,13 @@ object Premium : Base<Premium>() {
                         "The purchase couldn't be acknowledged because a connection with the billing client could not be established. " +
                                 "Connection result: ${BillingUtils.getBillingResponseCodeInfo(resultCode).shortDesc}"
                     )
-                    acknowledgePurchaseInProgress = false
+                    retryAcknowledgePurchase()
                 }
 
             }
 
             /*
             * NOTES
-            * - In case of an error, there is no retry policy; it will be attempted to acknowledge the purchase until the next time this function is invoked.
             * - The billing client connection is not closed upon completing the purchase acknowledgment process (regardless of whether it was successful or
             *   not). This is because this task is independent and to avoid disrupting the execution flow. It's possible that in some cases, the connection
             *   might remain open and applicationContext might stay assigned, but ideally, this will happen only once (during purchase acknowledgment), so
