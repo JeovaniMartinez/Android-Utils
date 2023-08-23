@@ -16,7 +16,7 @@ enum class PremiumState {
      * Indicates that the user has started the process of purchasing a premium version of
      * the app, but the purchase has not yet been completed.
      * In this case, access to premium features should be denied until the transaction
-     * status changes, whether it is completed or canceled.
+     * state changes, whether it is completed or canceled.
      * */
     PENDING_TRANSACTION,
 
