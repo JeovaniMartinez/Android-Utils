@@ -225,7 +225,7 @@ object Premium : Base<Premium>() {
             // A warning is logged if any of the provided product IDs is not in the premiumAccessProductIds list
             productIds.forEach {
                 if (!premiumAccessProductIds.contains(it)) {
-                    logw("The '$it' Id is not in the Premium.Controller.premiumAccessProductIds list")
+                    logw("The '$it' Id is not in the Premium.Controller.premiumAccessProductIds list $premiumAccessProductIds")
                 }
             }
 
