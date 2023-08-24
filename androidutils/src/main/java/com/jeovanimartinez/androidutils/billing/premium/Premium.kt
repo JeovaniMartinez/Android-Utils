@@ -377,6 +377,7 @@ object Premium : Base<Premium>() {
                 return result(BillingResponseCode.ERROR)
             }
 
+            log("Connecting the billing client...")
             // billingClient.connectionState == ConnectionState.DISCONNECTED Proceeding to initiate the connection with the billing client
             billingClient.startConnection(object : BillingClientStateListener {
 
