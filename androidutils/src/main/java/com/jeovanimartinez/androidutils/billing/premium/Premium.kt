@@ -634,12 +634,19 @@ object Premium : Base<Premium>() {
                             log("The purchase has been acknowledged successfully")
                             acknowledgePurchaseInProgress = false // It is set to false until the purchase is successfully acknowledged
                         } else {
+
+                            // The error is logged in Firebase Crashlytics if it is enabled
+                            firebaseCrashlyticsInstance?.log(info.shortDesc)
+                            firebaseCrashlyticsInstance?.log(billingResult.debugMessage)
+                            firebaseCrashlyticsInstance?.recordException(Exception("Error acknowledging the purchase"))
+
                             loge("Failed to acknowledge the purchase")
                             retryAcknowledgePurchase()
                         }
                     }
 
                 } else {
+                    // The error is not logged in Firebase Crashlytics since it's a connection error
                     logw(
                         "The purchase couldn't be acknowledged because a connection with the billing client could not be established. " +
                                 "Connection result: ${BillingUtils.getBillingResponseCodeInfo(resultCode).shortDesc}"
