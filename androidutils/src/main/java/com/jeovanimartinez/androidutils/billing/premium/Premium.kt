@@ -163,7 +163,7 @@ object Premium : Base<Premium>() {
             // Check the last known premium state from preferences if it's not possible to retrieve the information from the billing client
             val checkPremiumStateFromPreferences = fun() {
                 log("Invoked > checkPremiumState() > checkPremiumStateFromPreferences()")
-                log("The premium state couldn't be obtained from the billing client, so it's retrieved from Shared Preferences")
+                log("The premium state is going to be reported from the Shared Preferences")
 
                 currentPremiumState = PremiumPreferences.getPremiumState(context)
 
