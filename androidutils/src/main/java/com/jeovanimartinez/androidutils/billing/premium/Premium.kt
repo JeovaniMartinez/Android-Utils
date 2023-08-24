@@ -634,6 +634,9 @@ object Premium : Base<Premium>() {
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             log("The purchase has been acknowledged successfully")
                             acknowledgePurchaseInProgress = false // It is set to false until the purchase is successfully acknowledged
+
+                            // It is registered here since the purchase is only completed once it is acknowledged
+                            logAnalyticsEvent(Event.PREMIUM_BILLING_PURCHASE_COMPLETED)
                         } else {
 
                             // The error is logged in Firebase Crashlytics if it is enabled
