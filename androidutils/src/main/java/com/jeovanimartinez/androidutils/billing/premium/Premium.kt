@@ -145,6 +145,19 @@ object Premium : Base<Premium>() {
         }
 
         /**
+         * Check if the user has premium privileges, and reports the result by [PremiumListener.onCheckPremiumState].
+         * - It is first verified directly on the billing client, and that result is reported.
+         * - If the billing client cannot report the result, the preferences result is reported which is the latest known value of PremiumState.
+         *
+         * _Either the billing client or the preferences, the result is ALWAYS reported._
+         *
+         * @param context Context from which the process starts.
+         * */
+        fun checkPremiumState(context: Context) {
+
+        }
+
+        /**
          * Starts the process to retrieve details of one or more In-app products asynchronously. The result is
          * informed by [PremiumListener.onProductsDetails]
          * @param context Context from which the process starts.
@@ -238,19 +251,6 @@ object Premium : Base<Premium>() {
                     premiumListener?.onStartPurchaseResult(connectionResultCode)
                 }
             }
-
-        }
-
-        /**
-         * Check if the user has premium privileges, and reports the result by [PremiumListener.onCheckPremiumState].
-         * - It is first verified on the billing client, and that result is reported.
-         * - If the billing client cannot report the result, the preferences result is reported.
-         *
-         * _Either the billing client or the preferences, the result is ALWAYS reported._
-         *
-         * @param context Context from which the process starts.
-         * */
-        fun checkPremiumState(context: Context) {
 
         }
 
