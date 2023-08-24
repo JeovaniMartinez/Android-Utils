@@ -263,7 +263,7 @@ object Premium : Base<Premium>() {
                     getProductsDetails(activity.applicationContext, listOf(productId)) { productDetailsResultCode, productDetailsList ->
 
                         // As only one product is requested, if productDetailsList is not null, it must contain the data for that product
-                        if (productDetailsList != null) {
+                        if (!productDetailsList.isNullOrEmpty()) {
 
                             // The purchase flow is configured and launched
                             val productDetailsParamsList = listOf(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(productDetailsList[0]).build())
