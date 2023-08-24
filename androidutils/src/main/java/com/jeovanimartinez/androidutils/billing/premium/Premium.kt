@@ -222,6 +222,10 @@ object Premium : Base<Premium>() {
             log("Invoked > getProductsDetails()")
             checkInitialization()
 
+            require(productIds.isNotEmpty()) {
+                "The productIds list must not be empty; it must have at least one element"
+            }
+
             // A warning is logged if any of the provided product IDs is not in the premiumAccessProductIds list
             productIds.forEach {
                 if (!premiumAccessProductIds.contains(it)) {
