@@ -20,6 +20,7 @@ import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryProductDetailsParams.Product
+import com.android.billingclient.api.QueryPurchasesParams
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.billing.BillingUtils
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
@@ -147,13 +148,62 @@ object Premium : Base<Premium>() {
         /**
          * Check if the user has premium privileges, and reports the result by [PremiumListener.onCheckPremiumState].
          * - It is first verified directly on the billing client, and that result is reported.
-         * - If the billing client cannot report the result, the preferences result is reported which is the latest known value of PremiumState.
+         * - If the billing client cannot report the result, the stored value of Shared Preferences is reported
+         *   which is the latest known value of PremiumState.
          *
          * _Either the billing client or the preferences, the result is ALWAYS reported._
          *
          * @param context Context from which the process starts.
          * */
         fun checkPremiumState(context: Context) {
+
+            log("Invoked > checkPremiumState()")
+            checkInitialization()
+
+            // Check the last known premium state from preferences if it's not possible to retrieve the information from the billing client
+            val checkPremiumStateFromPreferences = fun() {
+                log("Invoked > checkPremiumState() > checkPremiumStateFromPreferences()")
+                log("The premium state couldn't be obtained from the billing client, so it's retrieved from Shared Preferences")
+
+                currentPremiumState = PremiumPreferences.getPremiumState(context)
+
+                logPremiumListenerTriggered("onCheckPremiumState()")
+                premiumListener?.onCheckPremiumState(currentPremiumState, false)
+            }
+
+            connectBillingClient(context.applicationContext) { resultCode ->
+                if (resultCode == BillingResponseCode.OK) {
+
+                    // The query is executed to determine the purchases that the user has made in the app
+                    val params = QueryPurchasesParams.newBuilder().setProductType(ProductType.INAPP).build()
+                    billingClient.queryPurchasesAsync(params) { billingResult, purchases ->
+
+                        val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
+                        log("Billing client queryPurchasesAsync Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
+
+                        if (billingResult.responseCode == BillingResponseCode.OK) {
+                            val result = handlePurchase(context.applicationContext, purchases)
+                            logPremiumListenerTriggered("onCheckPremiumState()")
+                            premiumListener?.onCheckPremiumState(result, true)
+                            /*
+                            * IMPORTANT
+                            * In handlePurchase(), the value of currentPremiumState is updated and saved in preferences, so there is no longer a need to do it here
+                            * */
+                        } else {
+                            logw("The premium state couldn't be verified from the billing client because the purchases could not be obtained")
+                            checkPremiumStateFromPreferences()
+                        }
+
+                        endBillingClientConnection()
+                    }
+                } else {
+                    logw(
+                        "The premium state couldn't be verified from the billing client because the connection to the billing client " +
+                                "could not be established. Connection result: ${BillingUtils.getBillingResponseCodeInfo(resultCode).shortDesc}"
+                    )
+                    checkPremiumStateFromPreferences()
+                }
+            }
 
         }
 
