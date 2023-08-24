@@ -20,6 +20,7 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryProductDetailsParams.Product
 import com.android.billingclient.api.QueryPurchasesParams
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.billing.BillingUtils
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 
@@ -277,17 +278,17 @@ object Premium : Base<Premium>() {
                             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
                             log("Billing client launchBillingFlow. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
 
-                            if (billingResult.responseCode != BillingResponseCode.OK) {
+                            /*
+                             * NOTE: In tests conducted, if the product has already been purchased or if there is no internet connection,
+                             * the billingResult.responseCode remains OK and the error message is displayed in the modal of the opened purchase flow.
+                             * */
+
+                            if (billingResult.responseCode == BillingResponseCode.OK) {
+                                applicationContext = activity.applicationContext // To have it available in the listener when the result is reported
+                                logAnalyticsEvent(Event.PREMIUM_BILLING_LAUNCHED_BILLING_FLOW)
+                            } else {
                                 // If the purchase flow could not be launched
                                 endBillingClientConnection()
-
-                                /*
-                                * NOTE: In tests conducted, if the product has already been purchased or if there is no internet connection,
-                                * the response code remains OK and the error message is displayed in the modal of the opened purchase flow.
-                                * */
-                            } else {
-                                // If the purchase flow was launched successfully, the result is reported in the purchasesUpdatedListener
-                                applicationContext = activity.applicationContext // To have it available in the listener when the result is reported
                             }
 
                             logPremiumListenerTriggered("onStartPurchaseResult()")
