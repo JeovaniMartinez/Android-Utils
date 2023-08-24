@@ -584,8 +584,8 @@ object Premium : Base<Premium>() {
         private fun acknowledgePurchase(context: Context?, purchase: Purchase) {
 
             log("Invoked > acknowledgePurchase()")
-            log("handlePurchase() > context = $context")
-            log("handlePurchase() > purchase = $purchase")
+            log("acknowledgePurchase() > context = $context")
+            log("acknowledgePurchase() > purchase = $purchase")
 
             when {
                 purchase.isAcknowledged -> {
