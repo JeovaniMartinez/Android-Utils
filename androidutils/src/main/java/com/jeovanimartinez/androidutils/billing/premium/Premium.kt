@@ -178,6 +178,13 @@ object Premium : Base<Premium>() {
                     val params = QueryPurchasesParams.newBuilder().setProductType(ProductType.INAPP).build()
                     billingClient.queryPurchasesAsync(params) { billingResult, purchases ->
 
+                        /*
+                        * If a purchase is refunded but the access entitlement are not removed, the purchase will appear in the Google Play
+                        * console as refunded. However, the list of purchases will still include that purchase. Although it has been refunded,
+                        * the access entitlement have not been removed. As a result, the purchase will still appear here and continue to grant
+                        * premium benefits to the user if the product id is in premiumAccessProductIds list.
+                        * */
+
                         val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
                         log("Billing client queryPurchasesAsync Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
 
