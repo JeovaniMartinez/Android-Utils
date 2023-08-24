@@ -11,11 +11,14 @@ interface PremiumListener {
     /**
      * Reports if the user has premium rights to the app. It's invoked after calling [Premium.Controller.checkPremiumState].
      * The reported [premiumState] is the one obtained directly from the Google Play billing client, and in the event that
-     * it is not possible to obtain that value, the value of the preferences is reported, which is the latest known value
-     * of PremiumState.
+     * it is not possible to obtain that value, the stored  value of the Shared Preferences is reported, which is the latest
+     * known value of PremiumState.
      * @param premiumState The current premium state.
+     * @param informedByBillingClient If it's true, it indicates that the [premiumState] has been obtained and informed
+     *        directly via the Google Play Billing Client. If it's false, it indicates that the result has been obtained
+     *        from the Shared Preferences.
      * */
-    fun onCheckPremiumState(premiumState: PremiumState)
+    fun onCheckPremiumState(premiumState: PremiumState, informedByBillingClient: Boolean)
 
     /**
      * Reports the details of the products (title, price, description, etc.). It's invoked after requesting products details
