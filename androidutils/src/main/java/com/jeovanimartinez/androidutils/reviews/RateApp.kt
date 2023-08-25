@@ -132,12 +132,18 @@ object RateApp : Base<RateApp>() {
     fun checkAndShow(activity: Activity) {
         if (!initialized) throw IllegalStateException("Need to call init() before calling this method") // It's necessary to call init before calling this method
 
-        if (validated) return log("The conditions have already been validated in this session")
+        if (validated) {
+            log("The conditions have already been validated in this session")
+            return
+        }
 
         checkShowEventCount++
 
         // If it does not apply to show in this call to the event
-        if (showAtEvent != checkShowEventCount) return log("No need verify conditions in this call, showAtEvent: $showAtEvent | checkShowEventCount  $checkShowEventCount ")
+        if (showAtEvent != checkShowEventCount) {
+            log("No need verify conditions in this call, showAtEvent: $showAtEvent | checkShowEventCount  $checkShowEventCount ")
+            return
+        }
 
         log("We proceed to verify the conditions to show the flow to rate the app, check and show event: $showAtEvent")
         doCheckAndShow(activity) // Execute the full verification
