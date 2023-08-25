@@ -8,13 +8,18 @@
 
 * ✔✔ Indica que el archivo/utilidad/carpeta ya está lista.
 
+ESTADO ACTUAL DE DESARROLLO, ACTUALIZADO EL 24/08/2023
+
+Todo está terminado como se indica más abajo, solo hay que terminar la app de prueba y algunos ajustes
+generales a los archivos del repositorio. Pero lo que es el módulo principal de la biblioteca ya esta listo.
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 - .git ✔✔
 - .gradle ✔✔
 - .idea ✔✔
 - androidutils ✔✔
-    > Tod@ listo. ✔✔
+    > Tod@ listo. ✔✔ EL MÓDULO DE androidutils esta completamente listo.
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
@@ -33,7 +38,6 @@
 en Google Play con la nueva versión de la biblioteca y de la app.
 
 - Ver si agregar utilidad en toplevelfunction para manejar los log más fácilmente
-
 
 
 
@@ -91,8 +95,8 @@ Temporal, documentación de Share Utils, pasos a seguir para configurar.
 eso de arriba solo compartira el directorio privado de la app androidutils/tempfiles, usar path="." para compartir todos los directorios
 de la carpeta privada de la app dentro de la carpeta files/
 3. Asignar fileProviderAuthority del fileprovider, debe ser el mismo que se uso en el manifest
-4. Agregar las queries en el manifest según el tipo de archivo a compartir, verificar ya que puede ser no necesario y solo necesitarse
-cuando se quiere obtener info de las apps instaladas que manejan esos intents, y no cuando se quieren lanzar
+4. Agregar las queries en el manifest según el tipo de archivo a compartir, VERIFICAR ya que puede ser no necesario y solo necesitarse
+cuando se quiere obtener info de las apps instaladas que manejan esos intents, y no cuando se quieren lanzar.
   <queries>
 
         <!-- Reference: https://developer.android.com/training/package-visibility/declaring#intent-filter-signature -->
