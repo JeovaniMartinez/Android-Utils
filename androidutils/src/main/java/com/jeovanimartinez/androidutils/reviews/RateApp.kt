@@ -129,7 +129,6 @@ object RateApp : Base<RateApp>() {
         return value
     }
 
-    private lateinit var sharedPreferences: SharedPreferences // To manipulate preferences
     private var initialized = false // Helper to determine if init was already called
     private var checkShowEventCount = 0 // Helper to count how many times checkAndShow() has been called
     private var validated = false // Determines if it has already been validated if the flow should be shown, to only validate it once per session
@@ -149,8 +148,11 @@ object RateApp : Base<RateApp>() {
             return
         }
 
-        configurePreferences(context)
-        updateLaunchCounter()
+        // Configure the preferences and values
+        val sharedPreferences = context.applicationContext.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
+        configurePreferences(sharedPreferences)
+        updateLaunchCounter(sharedPreferences)
+
         initialized = true
 
         log(
@@ -195,11 +197,10 @@ object RateApp : Base<RateApp>() {
     }
 
     /**
-     * Generate the instance to manipulate the preferences and set the preferences to the default values in case they are not already configured.
-     * @param context Context from which the function is called.
+     * Set the preferences to the default values in case they are not already configured.
+     * @param sharedPreferences Shared Preferences for handling the preferences.
      * */
-    private fun configurePreferences(context: Context) {
-        sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
+    private fun configurePreferences(sharedPreferences: SharedPreferences) {
         if (!sharedPreferences.getBoolean(Preferences.CONFIGURED, false)) {
             with(sharedPreferences.edit()) {
                 putInt(Preferences.LAUNCH_COUNTER, 0)
@@ -214,8 +215,11 @@ object RateApp : Base<RateApp>() {
         }
     }
 
-    /** Update the app launch counter. */
-    private fun updateLaunchCounter() {
+    /**
+     * Update the app launch counter.
+     * @param sharedPreferences Shared Preferences for handling the preferences.
+     * */
+    private fun updateLaunchCounter(sharedPreferences: SharedPreferences) {
         val currentValue = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 0)
         val newValue = currentValue + 1
         sharedPreferences.edit().putInt(Preferences.LAUNCH_COUNTER, newValue).apply()
@@ -230,6 +234,8 @@ object RateApp : Base<RateApp>() {
     private fun doCheckAndShow(activity: Activity) {
 
         log("Invoked > doCheckAndShow()")
+
+        val sharedPreferences = activity.applicationContext.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
 
         // First, preferences for reference values are loaded
         val launchCounter = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 1)
@@ -364,7 +370,7 @@ object RateApp : Base<RateApp>() {
                      */
                     successfulReviewFlow = true // The flow was correct
                     log("launchReviewFlow() > Success")
-                    updatePreferencesOnFlowShown() // Preferences are updated because the flow is complete
+                    updatePreferencesOnFlowShown(activity.applicationContext) // Preferences are updated because the flow is complete
                     logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_OK)
                 }
 
@@ -415,10 +421,15 @@ object RateApp : Base<RateApp>() {
 
     }
 
-    /** Update the preferences to indicate that the flow to rate app has just been shown. */
-    private fun updatePreferencesOnFlowShown() {
+    /**
+     * Update the preferences to indicate that the flow to rate app has just been shown.
+     * @param context Context from which the function is called.
+     * */
+    private fun updatePreferencesOnFlowShown(context: Context) {
 
         log("Invoked > updatePreferencesOnFlowShown()")
+
+        val sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
 
         // The counter of times the flow has been shown is loaded, and it is increased by one, to count this time the flow was shown
         val flowShowCounter = sharedPreferences.getInt(Preferences.FLOW_SHOWN_COUNTER, 0) + 1
