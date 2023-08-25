@@ -28,7 +28,7 @@ object RateApp : Base<RateApp>() {
 
     /** Object with constants for the preferences. */
     internal object Preferences {
-        const val KEY = "rate_app_preferences" // Filename
+        const val KEY = "androidutils_rate_app_preferences" // Filename
         const val CONFIGURED = "rate_app_configured"
         const val LAUNCH_COUNTER = "rate_app_launch_counter"
         const val LAST_SHOW_DATE = "rate_app_last_show_date" // Time in milliseconds since January 1, 1970, 00:00:00 GMT
