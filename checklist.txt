@@ -18,7 +18,6 @@
         > En el init de RateApp agregar un mensaje más claro, y quitar las IllegalStateException al cambiar un valor y solo mandar un warring o error al log
         > En RateApp, ver lo del contexto si se requiere el de la app, y ver lo de las shared preferences para si es posible no tener un objeto estático con la referencia
           o ajustar según se requiera luego de perminar Premium donde se estan abordando y tratando esos temas
-        > Share utils ver que pasa si no hay app para comprarir
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay

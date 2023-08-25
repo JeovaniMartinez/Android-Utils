@@ -152,6 +152,7 @@ object ShareUtils : Base<ShareUtils>() {
             Intent.createChooser(sendIntent, chooserTitle)
         }
 
+        // If there is no app capable of receiving the content, the system displays a message, no exception is generated, and it doesn't need to be handled
         activity.startActivity(intentChooser) // Launch the chooser to share
 
         // The event is registered, if applicable
