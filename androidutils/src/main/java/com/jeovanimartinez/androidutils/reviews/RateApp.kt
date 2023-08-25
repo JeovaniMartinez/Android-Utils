@@ -41,7 +41,14 @@ object RateApp : Base<RateApp>() {
      * */
     var minInstallElapsedDays = 10
         set(value) {
-            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minInstallElapsedDays")
+            if (initialized && value != field) {
+                /*
+                * If it's already initialized and the value intended to be assigned is different from the current one, an exception is
+                * thrown since changing the value is not allowed. If the value to be assigned is the same as the current one, nothing
+                * happens, and the assignment is permitted as it will remain unchanged.
+                * */
+                throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minInstallElapsedDays")
+            }
             field = validateConfigValue(value, 0)
         }
 
@@ -51,7 +58,14 @@ object RateApp : Base<RateApp>() {
      * */
     var minInstallLaunchTimes = 10
         set(value) {
-            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minInstallLaunchTimes")
+            if (initialized && value != field) {
+                /*
+                * If it's already initialized and the value intended to be assigned is different from the current one, an exception is
+                * thrown since changing the value is not allowed. If the value to be assigned is the same as the current one, nothing
+                * happens, and the assignment is permitted as it will remain unchanged.
+                * */
+                throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minInstallLaunchTimes")
+            }
             field = validateConfigValue(value, 1)
         }
 
@@ -61,7 +75,14 @@ object RateApp : Base<RateApp>() {
      * */
     var minRemindElapsedDays = 2
         set(value) {
-            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minRemindElapsedDays")
+            if (initialized && value != field) {
+                /*
+                * If it's already initialized and the value intended to be assigned is different from the current one, an exception is
+                * thrown since changing the value is not allowed. If the value to be assigned is the same as the current one, nothing
+                * happens, and the assignment is permitted as it will remain unchanged.
+                * */
+                throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minRemindElapsedDays")
+            }
             field = validateConfigValue(value, 0)
         }
 
@@ -71,7 +92,14 @@ object RateApp : Base<RateApp>() {
      * */
     var minRemindLaunchTimes = 4
         set(value) {
-            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minRemindLaunchTimes")
+            if (initialized && value != field) {
+                /*
+                * If it's already initialized and the value intended to be assigned is different from the current one, an exception is
+                * thrown since changing the value is not allowed. If the value to be assigned is the same as the current one, nothing
+                * happens, and the assignment is permitted as it will remain unchanged.
+                * */
+                throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of minRemindLaunchTimes")
+            }
             field = validateConfigValue(value, 1)
         }
 
@@ -84,7 +112,14 @@ object RateApp : Base<RateApp>() {
      * */
     var showAtEvent = 2
         set(value) {
-            if (initialized) throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of showAtEvent")
+            if (initialized && value != field) {
+                /*
+                * If it's already initialized and the value intended to be assigned is different from the current one, an exception is
+                * thrown since changing the value is not allowed. If the value to be assigned is the same as the current one, nothing
+                * happens, and the assignment is permitted as it will remain unchanged.
+                * */
+                throw IllegalStateException("RateApp is already initialized. It is no longer possible to change the value of showAtEvent")
+            }
             field = validateConfigValue(value, 1)
         }
 
@@ -105,7 +140,12 @@ object RateApp : Base<RateApp>() {
      * */
     fun init(context: Context) {
         if (initialized) {
-            logw("RateApp is already initialized")
+            logw(
+                """
+                    This call to RateApp.init() HAS BEEN IGNORED AND WILL HAVE NO EFFECT, 
+                    as RateApp.init() should only be called once when the application starts.
+                """.trimIndent()
+            )
             return
         }
 
