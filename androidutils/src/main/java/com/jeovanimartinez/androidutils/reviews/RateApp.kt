@@ -130,7 +130,10 @@ object RateApp : Base<RateApp>() {
      * @param activity Activity from which the process starts.
      * */
     fun checkAndShow(activity: Activity) {
-        if (!initialized) throw IllegalStateException("Need to call init() before calling this method") // It's necessary to call init before calling this method
+        if (!initialized) {
+            // It's necessary to call init before calling this function
+            throw IllegalStateException("Need to call RateApp.init() before calling this function")
+        }
 
         if (validated) {
             log("The conditions have already been validated in this session")
