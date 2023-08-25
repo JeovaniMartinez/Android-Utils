@@ -28,7 +28,7 @@ object TempFileManager : Base<TempFileManager>() {
     @OptIn(DelicateCoroutinesApi::class)
     fun clearTempFilesFolder(context: Context, onComplete: (success: Boolean) -> Unit = {}) {
 
-        log("clearTempFilesFolder() invoked")
+        log("Invoked > clearTempFilesFolder()")
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
@@ -91,7 +91,7 @@ object TempFileManager : Base<TempFileManager>() {
 
         log(
             """
-            createNewTempFile() invoked
+            Invoked > createNewTempFile()
             fileName: $fileName
             fileExtension: $fileExtension
             Created file = $file
@@ -111,7 +111,7 @@ object TempFileManager : Base<TempFileManager>() {
      * @param context Context from which the function is called.
      * */
     private fun makeTempDir(context: Context) {
-        log("makeTempDir() invoked")
+        log("Invoked > makeTempDir()")
         val result = File(context.filesDir, TEMP_FILES_DIR).mkdirs() // Create the directory if it does not exist. If it exists, do not take any action.
         if (result) log("The directory for temporary files is created [${context.filesDir}/$TEMP_FILES_DIR]")
         else log("The directory for temporary files already exists, there's no need to create it [${context.filesDir}/$TEMP_FILES_DIR]")

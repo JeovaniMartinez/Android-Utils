@@ -27,7 +27,7 @@ internal class ApplicationSelectorReceiver : BroadcastReceiver() {
      * It is received when the user selects an app to share the content.
      * */
     override fun onReceive(context: Context, intent: Intent) {
-        ShareUtils.log("Invoked > ApplicationSelectorReceiver > onReceive")
+        ShareUtils.log("Invoked > ApplicationSelectorReceiver > onReceive()")
 
         val selectedAppName = getSelectedAppName(context, intent)
         ShareUtils.log("Selected App Name: $selectedAppName")

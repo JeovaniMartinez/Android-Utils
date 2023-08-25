@@ -180,7 +180,7 @@ object RateApp : Base<RateApp>() {
      * */
     private fun doCheckAndShow(activity: Activity) {
 
-        log("doCheckAndShow() Invoked")
+        log("Invoked > doCheckAndShow()")
 
         // First, preferences for reference values are loaded
         val launchCounter = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 1)
@@ -284,7 +284,7 @@ object RateApp : Base<RateApp>() {
      * */
     private fun rateWithInAppReviewApi(activity: Activity) {
 
-        log("rateWithInAppReviewApi() Invoked")
+        log("Invoked > rateWithInAppReviewApi()")
         logAnalyticsEvent(Event.RATE_APP_REQUEST_REVIEW_FLOW)
 
         val reviewManager = ReviewManagerFactory.create(activity)
@@ -369,7 +369,7 @@ object RateApp : Base<RateApp>() {
     /** Update the preferences to indicate that the flow to rate app has just been shown. */
     private fun updatePreferencesOnFlowShown() {
 
-        log("updatePreferencesOnFlowShown() Invoked")
+        log("Invoked > updatePreferencesOnFlowShown()")
 
         // The counter of times the flow has been shown is loaded, and it is increased by one, to count this time the flow was shown
         val flowShowCounter = sharedPreferences.getInt(Preferences.FLOW_SHOWN_COUNTER, 0) + 1

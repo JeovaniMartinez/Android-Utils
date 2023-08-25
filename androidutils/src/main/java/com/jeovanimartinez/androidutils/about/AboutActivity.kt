@@ -380,7 +380,7 @@ internal class AboutActivity : TranslucentActivity() {
             return
         }
 
-        AboutApp.log("loadTermsAndPolicy() Invoked")
+        AboutApp.log("Invoked > loadTermsAndPolicy()")
 
         loadingTermsAndPolicy = true
         binding.pbLoadingTermsAndPolicy.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
@@ -406,7 +406,7 @@ internal class AboutActivity : TranslucentActivity() {
             // When the page load finished (regardless of whether the result was successful or not)
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                AboutApp.log("WebViewClient onPageFinished() invoked")
+                AboutApp.log("WebViewClient onPageFinished() Invoked")
 
                 view?.scrollTo(0, 0) // Go to view's top
 
@@ -425,14 +425,14 @@ internal class AboutActivity : TranslucentActivity() {
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_network_error)
-                AboutApp.log("WebViewClient onReceivedError() invoked")
+                AboutApp.log("WebViewClient onReceivedError() Invoked")
                 super.onReceivedError(view, request, error)
             }
 
             override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_not_available)
-                AboutApp.log("WebViewClient onReceivedHttpError() invoked")
+                AboutApp.log("WebViewClient onReceivedHttpError() Invoked")
                 super.onReceivedHttpError(view, request, errorResponse)
             }
         }
@@ -442,7 +442,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with animation or not. */
     private fun showTermsAndPolicy(animate: Boolean = true) {
 
-        AboutApp.log("showTermsAndPolicy() Invoked")
+        AboutApp.log("Invoked > showTermsAndPolicy()")
         termsAndPolicyVisible = true
         super.activityOpacity = 0.95f
 
@@ -489,7 +489,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Hide view of terms and privacy policy. */
     private fun hideTermsAndPolicy() {
 
-        AboutApp.log("hideTermsAndPolicy() Invoked")
+        AboutApp.log("Invoked > hideTermsAndPolicy()")
         termsAndPolicyVisible = false
         super.activityOpacity = 0.9f
 
@@ -509,7 +509,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Show the help section, [animate] determines if they are shown with animation or not. */
     private fun showHelpSection(animate: Boolean = true) {
 
-        AboutApp.log("showHelpSection() Invoked")
+        AboutApp.log("Invoked > showHelpSection()")
         helpSectionVisible = true
 
         if (animate) {
@@ -538,7 +538,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Hide help section. */
     private fun hideHelpSection() {
 
-        AboutApp.log("hideHelpSection() Invoked")
+        AboutApp.log("Invoked > hideHelpSection()")
         helpSectionVisible = false
 
         binding.layoutHelp.animate().translationY(binding.cardContent.height.toFloat()).onAnimationEnd {

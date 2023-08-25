@@ -54,7 +54,7 @@ object ShareUtils : Base<ShareUtils>() {
         @StringOrStringRes chooserTitle: Any = R.string.share_utils_share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
-        log("shareText() Invoked")
+        log("Invoked > shareText()")
         doShare(activity, activity.typeAsString(chooserTitle), activity.typeAsString(content), null, case)
     }
 
@@ -75,7 +75,7 @@ object ShareUtils : Base<ShareUtils>() {
         @StringOrStringRes chooserTitle: Any = R.string.share_utils_share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
-        log("shareFile() Invoked")
+        log("Invoked > shareFile()")
         if (fileProviderAuthority.isBlank()) {
             throw IllegalStateException("You must specify the file provider [ShareUtils.fileProviderAuthority] before calling this function")
         }

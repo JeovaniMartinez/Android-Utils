@@ -15,7 +15,6 @@
 - .idea ✔✔
 - androidutils
     > Tod@ listo y verificado, solo falta:
-        > Verificar los log de todos los invoked y ajustar mensaje como en premium
         > En el init de RateApp agregar un mensaje más claro, y quitar las IllegalStateException al cambiar un valor y solo mandar un warring o error al log
         > Verificar y quitar todos lo return log(), dejar el return en otra línea, esto por las reglas de proguard, ya que elimina las llamadas a log()
         > En RateApp, ver lo del contexto si se requiere el de la app, y ver lo de las shared preferences para si es posible no tener un objeto estático con la referencia
