@@ -27,18 +27,6 @@
 
         <!-- Common intents and queries reference: https://developer.android.com/guide/components/intents-common -->
 
-        <!-- Elements to query for activities that handle ACTION_VIEW used in various utilities -->
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <data android:scheme="http" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <data android:scheme="https" />
-        </intent>
-
         <!-- Element to query for activities that handle ACTION_SENDTO intent for the EmailUtils -->
         <intent>
             <action android:name="android.intent.action.SENDTO" />

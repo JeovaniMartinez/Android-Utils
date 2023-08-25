@@ -74,24 +74,4 @@
 
     </application>
 
-    <queries>
-
-        <!-- Reference: https://developer.android.com/training/package-visibility/declaring#intent-filter-signature -->
-
-        <!-- Elements to query for activities that handle SEND intent for share files -->
-        <intent>
-            <action android:name="android.intent.action.SEND" />
-            <data android:mimeType="image/jpeg" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.SEND" />
-            <data android:mimeType="image/png" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.SEND" />
-            <data android:mimeType="image/webp" />
-        </intent>
-
-    </queries>
-
 </manifest>
