@@ -24,6 +24,7 @@ generales a los archivos del repositorio. Pero lo que es el módulo principal de
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
     que hacer una revision general de toda la app y mejorarla y terminarla.
+    > Ver y checar lo del tema predetemrinado (claro u oscuro cuando se instale la app), al inicio usar el mismo del sistema
 - build ✔✔
 - docs
     > Verificar y mover si es posible a otra rama o ver donde acomodar, y actualizar los archivos, rutas y nombres.
