@@ -30,7 +30,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false // Keep always in false
+            minifyEnabled true // Keep always in false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro" // Don't add rules here, use consumerProguardFiles
         }
     }
