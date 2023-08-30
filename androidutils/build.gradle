@@ -30,8 +30,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true // Keep always in false
+            minifyEnabled false // Keep always in false
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro" // Don't add rules here, use consumerProguardFiles
+            consumerProguardFiles "androidutils-lib-consumer-rules.pro" // These rules are embedded in the generated AAR and provided to the app that implements the library
         }
     }
     compileOptions {
