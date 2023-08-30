@@ -20,5 +20,5 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-# *** IMPORTANT *** : Do not add rules here, add the required rules in consumer-rules.pro
+# *** IMPORTANT *** : Do not add rules here, add the required rules in androidutils-lib-consumer-rules.pro
 # References: https://stackoverflow.com/a/43572171 | https://developer.android.com/studio/projects/android-library#Considerations

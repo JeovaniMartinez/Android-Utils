@@ -23,7 +23,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        consumerProguardFiles "consumer-rules.pro" // These rules are embedded in the generated AAR and provided to the app that implements the library
+        consumerProguardFiles "androidutils-lib-consumer-rules.pro" // These rules are embedded in the generated AAR and provided to the app that implements the library
     }
     buildFeatures {
         viewBinding true
