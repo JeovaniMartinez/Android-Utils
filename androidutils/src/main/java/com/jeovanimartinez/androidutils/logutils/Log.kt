@@ -2,7 +2,6 @@ package com.jeovanimartinez.androidutils.logutils
 
 import android.util.Log
 import androidx.annotation.Size
-import com.jeovanimartinez.androidutils.BuildConfig
 
 /**
  * Utility for sending log output. It's similar and uses [android.util.Log] to send log output, but it offers greater flexibility.
@@ -10,9 +9,9 @@ import com.jeovanimartinez.androidutils.BuildConfig
 object Log {
 
     /**
-     * To enable or disable the log messages, by default it is configured by BuildConfig.DEBUG
+     * To enable or disable the log messages.
      **/
-    var logEnable = BuildConfig.DEBUG
+    var logEnable = true
 
     /**
      * Send a VERBOSE log message.
@@ -27,7 +26,7 @@ object Log {
     }
 
     /**
-     * Send a VERBOSE log message.
+     * Send a VERBOSE log message and log the exception.
      * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
      * @param throwable The exception to be logged.
      * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
