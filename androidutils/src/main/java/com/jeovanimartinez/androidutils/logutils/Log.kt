@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.jeovanimartinez.androidutils.logutils
 
 import android.util.Log
@@ -36,6 +38,106 @@ object Log {
         if (!logEnable) return
         val finalTag = tag ?: generateLogTag()
         Log.v(finalTag, message.toString(), throwable)
+    }
+
+    /**
+     * Send a DEBUG log message.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logd(message: Any, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.d(finalTag, message.toString())
+    }
+
+    /**
+     * Send a DEBUG log message and log the exception.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param throwable The exception to be logged.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logd(message: Any?, throwable: Throwable, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.d(finalTag, message.toString(), throwable)
+    }
+
+    /**
+     * Send a INFO log message.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logi(message: Any, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.i(finalTag, message.toString())
+    }
+
+    /**
+     * Send a INFO log message and log the exception.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param throwable The exception to be logged.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logi(message: Any?, throwable: Throwable, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.i(finalTag, message.toString(), throwable)
+    }
+
+    /**
+     * Send a WARN log message.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logw(message: Any, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.w(finalTag, message.toString())
+    }
+
+    /**
+     * Send a WARN log message and log the exception.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param throwable The exception to be logged.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logw(message: Any?, throwable: Throwable, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.w(finalTag, message.toString(), throwable)
+    }
+
+    /**
+     * Send a ERROR log message.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun loge(message: Any, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.e(finalTag, message.toString())
+    }
+
+    /**
+     * Send a ERROR log message and log the exception.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param throwable The exception to be logged.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun loge(message: Any?, throwable: Throwable, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.e(finalTag, message.toString(), throwable)
     }
 
     /**

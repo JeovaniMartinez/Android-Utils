@@ -29,7 +29,7 @@ class App : MultiDexApplication() {
         //    Log.d(LOG_TAG, i.toString())
         // }
 
-        Base.logEnable = BuildConfig.DEBUG // Adjust the debug log
+        com.jeovanimartinez.androidutils.logutils.Log.logEnable = BuildConfig.DEBUG // Adjust the debug log
 
         Base.firebaseCrashlyticsInstance = FirebaseCrashlytics.getInstance()
 
