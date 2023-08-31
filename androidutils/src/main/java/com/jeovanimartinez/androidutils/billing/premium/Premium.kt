@@ -23,6 +23,9 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.billing.BillingUtils
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
+import com.jeovanimartinez.androidutils.logutils.Log.loge
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 
 /**
  * Set of utilities to simplify the verification and purchase process of the premium version of the app.
@@ -34,7 +37,7 @@ object Premium : Base<Premium>() {
     /** Current premium state. */
     private var currentPremiumState: PremiumState = PremiumState.NOT_PREMIUM // Initial value
         set(value) {
-            log("Updated Premium.currentPremiumState from $field to $value")
+            logv("Updated Premium.currentPremiumState from $field to $value")
             field = value
         }
 
@@ -71,13 +74,13 @@ object Premium : Base<Premium>() {
         * */
         private var applicationContext: Context? = null
             set(value) {
-                log("Updated applicationContext to = $value")
+                logv("Updated applicationContext to = $value")
                 field = value
             }
 
         // Listener for updates in the state of purchases
         private val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-            log("Triggered > PurchasesUpdatedListener.onPurchasesUpdated()")
+            logv("Triggered > PurchasesUpdatedListener.onPurchasesUpdated()")
             onPurchasesUpdated(billingResult, purchases)
         }
 
@@ -89,7 +92,7 @@ object Premium : Base<Premium>() {
          * */
         fun init(context: Context, premiumAccessProductIds: List<String>) {
 
-            log("Invoked > init()")
+            logv("Invoked > init()")
 
             // Validations
             if (initialized) {
@@ -119,7 +122,7 @@ object Premium : Base<Premium>() {
             initialized = true
             // It's not necessary to call connect function here
 
-            log("The premium controller has been initialized successfully. Premium Access Product Ids: ${this.premiumAccessProductIds}")
+            logv("The premium controller has been initialized successfully. Premium Access Product Ids: ${this.premiumAccessProductIds}")
 
         }
 
@@ -128,20 +131,20 @@ object Premium : Base<Premium>() {
          * @param listener The listener to be set.
          * */
         fun setListener(listener: PremiumListener) {
-            log("Invoked > setListener()")
+            logv("Invoked > setListener()")
             checkInitialization()
             premiumListener = listener
-            log("The listener to report premium events has been assigned")
+            logv("The listener to report premium events has been assigned")
         }
 
         /**
          * Removes the listener set to receive premium events.
          * */
         fun removeListener() {
-            log("Invoked > removeListener()")
+            logv("Invoked > removeListener()")
             checkInitialization()
             premiumListener = null
-            log("The listener to report premium events has been removed. premiumListener = null")
+            logv("The listener to report premium events has been removed. premiumListener = null")
         }
 
         /**
@@ -156,13 +159,13 @@ object Premium : Base<Premium>() {
          * */
         fun checkPremiumState(context: Context) {
 
-            log("Invoked > checkPremiumState()")
+            logv("Invoked > checkPremiumState()")
             checkInitialization()
 
             // Check the last known premium state from preferences if it's not possible to retrieve the information from the billing client
             val checkPremiumStateFromPreferences = fun() {
-                log("Invoked > checkPremiumState() > checkPremiumStateFromPreferences()")
-                log("The premium state is going to be reported from the Shared Preferences")
+                logv("Invoked > checkPremiumState() > checkPremiumStateFromPreferences()")
+                logv("The premium state is going to be reported from the Shared Preferences")
 
                 currentPremiumState = PremiumPreferences.getPremiumState(context)
 
@@ -185,7 +188,7 @@ object Premium : Base<Premium>() {
                         * */
 
                         val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-                        log("Billing client queryPurchasesAsync Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
+                        logv("Billing client queryPurchasesAsync Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
 
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             val result = handlePurchase(context.applicationContext, purchases)
@@ -220,7 +223,7 @@ object Premium : Base<Premium>() {
          * @param productIds List containing the product IDs to be queried.
          * */
         fun getProductsDetails(context: Context, productIds: List<String>) {
-            log("Invoked > getProductsDetails()")
+            logv("Invoked > getProductsDetails()")
             checkInitialization()
 
             require(productIds.isNotEmpty()) {
@@ -251,7 +254,7 @@ object Premium : Base<Premium>() {
          * @param productId Id of the product to purchase.
          * */
         fun startProductPurchase(activity: Activity, productId: String) {
-            log("Invoked > startProductPurchase()")
+            logv("Invoked > startProductPurchase()")
             checkInitialization()
 
             // The product Id must be on the premiumAccessProductIds list to be able to validate the purchase later
@@ -276,7 +279,7 @@ object Premium : Base<Premium>() {
                             val billingResult = billingClient.launchBillingFlow(activity, billingFlowParams)
 
                             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-                            log("Billing client launchBillingFlow. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                            logv("Billing client launchBillingFlow. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
 
                             /*
                              * NOTE: In tests conducted, if the product has already been purchased or if there is no internet connection,
@@ -330,7 +333,7 @@ object Premium : Base<Premium>() {
          * */
         private fun logPremiumListenerTriggered(functionName: String) {
             if (premiumListener != null) {
-                log("Triggered > PremiumListener.$functionName")
+                logv("Triggered > PremiumListener.$functionName")
             } else {
                 logw("Cannot be trigger PremiumListener.$functionName > The premiumListener is null")
             }
@@ -345,7 +348,7 @@ object Premium : Base<Premium>() {
          * */
         private fun connectBillingClient(context: Context?, result: (resultCode: Int) -> Unit) {
 
-            log("Invoked > connectBillingClient()")
+            logv("Invoked > connectBillingClient()")
 
             /*
             * BillingClient.ConnectionState
@@ -357,15 +360,15 @@ object Premium : Base<Premium>() {
 
             if (billingClient.isReady) {
                 // If billingClient.isReady then billingClient.connectionState == ConnectionState.CONNECTED
-                log("The billing client is already connected")
+                logv("The billing client is already connected")
                 return result(BillingResponseCode.OK)
             }
 
             if (billingClient.connectionState == ConnectionState.CLOSED) {
-                log("The billing client connection is already closed")
+                logv("The billing client connection is already closed")
                 if (context != null) {
                     billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
-                    log("Recreated billing client instance")
+                    logv("Recreated billing client instance")
                 } else {
                     logw("The context is null, the billing client instance cannot be recreated")
                     /*
@@ -382,19 +385,19 @@ object Premium : Base<Premium>() {
                 return result(BillingResponseCode.ERROR)
             }
 
-            log("Connecting the billing client...")
+            logv("Connecting the billing client...")
             // billingClient.connectionState == ConnectionState.DISCONNECTED Proceeding to initiate the connection with the billing client
             billingClient.startConnection(object : BillingClientStateListener {
 
                 override fun onBillingSetupFinished(billingResult: BillingResult) {
                     val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-                    log("Billing client connection setup finished. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                    logv("Billing client connection setup finished. Result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
                     result(billingResult.responseCode)
                 }
 
                 override fun onBillingServiceDisconnected() {
                     // At the moment, no need to handle reconnection
-                    log("The billing client has been disconnected")
+                    logv("The billing client has been disconnected")
                 }
 
             })
@@ -408,28 +411,28 @@ object Premium : Base<Premium>() {
          * */
         private fun endBillingClientConnection() {
 
-            log("Invoked > endBillingClientConnection()")
+            logv("Invoked > endBillingClientConnection()")
 
             if (currentPremiumState == PremiumState.PENDING_TRANSACTION) {
-                log("currentPremiumState is PENDING_TRANSACTION, the billing client connection closure is skipped to await purchase updates")
+                logv("currentPremiumState is PENDING_TRANSACTION, the billing client connection closure is skipped to await purchase updates")
                 return
             }
 
             if (acknowledgePurchaseInProgress) {
-                log("Acknowledge purchase in progress, the billing client connection closure is skipped to wait for the process to finish")
+                logv("Acknowledge purchase in progress, the billing client connection closure is skipped to wait for the process to finish")
                 return
             }
 
             applicationContext = null // It's no longer needed
 
             if (!billingClient.isReady) {
-                log("No need to close the billing client connection. Billing Client is not ready or the connection has already been closed")
+                logv("No need to close the billing client connection. Billing Client is not ready or the connection has already been closed")
                 return
             }
 
             billingClient.endConnection()
 
-            log("The connection with the billing client was closed")
+            logv("The connection with the billing client was closed")
 
         }
 
@@ -445,7 +448,7 @@ object Premium : Base<Premium>() {
          * */
         private fun getProductsDetails(context: Context, productIds: List<String>, result: (resultCode: Int, productDetailsList: List<ProductDetails>?) -> Unit) {
 
-            log("Invoked > getProductsDetails() [Private]")
+            logv("Invoked > getProductsDetails() [Private]")
 
             connectBillingClient(context) { resultCode ->
                 if (resultCode == BillingResponseCode.OK) {
@@ -464,7 +467,7 @@ object Premium : Base<Premium>() {
 
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             if (productDetailsList.isNotEmpty()) {
-                                log("The list of products details was successfully retrieved. List (size: ${productDetailsList.size}): $productDetailsList")
+                                logv("The list of products details was successfully retrieved. List (size: ${productDetailsList.size}): $productDetailsList")
                                 result(billingResult.responseCode, productDetailsList)
                             } else {
                                 logw("The list of products details was successfully retrieved, but it is empty")
@@ -501,14 +504,14 @@ object Premium : Base<Premium>() {
          * */
         private fun handlePurchase(context: Context?, purchases: List<Purchase>?): PremiumState {
 
-            log("Invoked > handlePurchase()")
-            log("handlePurchase() > context = $context")
-            log("handlePurchase() > purchases = $purchases")
+            logv("Invoked > handlePurchase()")
+            logv("handlePurchase() > context = $context")
+            logv("handlePurchase() > purchases = $purchases")
 
             var premiumResult = PremiumState.NOT_PREMIUM // Default result, updates based on validations
 
             if (!purchases.isNullOrEmpty()) {
-                log("Starting purchases iteration, purchases size: ${purchases.size}")
+                logv("Starting purchases iteration, purchases size: ${purchases.size}")
                 purchases.forEach { purchase ->
 
                     val purchaseStateDesc = when (purchase.purchaseState) {
@@ -517,9 +520,9 @@ object Premium : Base<Premium>() {
                         else -> "UNSPECIFIED_STATE (${purchase.purchaseState})"
                     }
 
-                    log("Purchase Information")
-                    log("Order Id: ${purchase.orderId} | Product Ids ${purchase.products}")
-                    log("Purchase state: $purchaseStateDesc | Acknowledge: ${purchase.isAcknowledged}")
+                    logv("Purchase Information")
+                    logv("Order Id: ${purchase.orderId} | Product Ids ${purchase.products}")
+                    logv("Purchase state: $purchaseStateDesc | Acknowledge: ${purchase.isAcknowledged}")
 
                     // Products IDs of the purchase, ideally there should always be only 1 since only one product is purchased at a time in startProductPurchase()
                     val purchaseProducts = purchase.products
@@ -542,9 +545,9 @@ object Premium : Base<Premium>() {
                                 PurchaseState.PENDING -> premiumResult = PremiumState.PENDING_TRANSACTION
                                 PurchaseState.UNSPECIFIED_STATE -> premiumResult = PremiumState.NOT_PREMIUM
                             }
-                            log("A new premium state is assigned according to the purchase. New premium state: $premiumResult")
+                            logv("A new premium state is assigned according to the purchase. New premium state: $premiumResult")
                         } else {
-                            log("There's no need to assign a new premium state based on this purchase, as the state is already PREMIUM")
+                            logv("There's no need to assign a new premium state based on this purchase, as the state is already PREMIUM")
                         }
 
                         /*
@@ -563,7 +566,7 @@ object Premium : Base<Premium>() {
                 }
             } else {
                 premiumResult = PremiumState.NOT_PREMIUM
-                log("The purchases list is null or empty. There is nothing to process")
+                logv("The purchases list is null or empty. There is nothing to process")
             }
 
             currentPremiumState = premiumResult // Update the current premium state
@@ -573,7 +576,7 @@ object Premium : Base<Premium>() {
                 PremiumPreferences.savePremiumState(it, premiumResult)
             }
 
-            log("handlePurchase() > Final Premium Result = $premiumResult")
+            logv("handlePurchase() > Final Premium Result = $premiumResult")
             return premiumResult
 
         }
@@ -588,36 +591,36 @@ object Premium : Base<Premium>() {
          * */
         private fun acknowledgePurchase(context: Context?, purchase: Purchase) {
 
-            log("Invoked > acknowledgePurchase()")
-            log("acknowledgePurchase() > context = $context")
-            log("acknowledgePurchase() > purchase = $purchase")
+            logv("Invoked > acknowledgePurchase()")
+            logv("acknowledgePurchase() > context = $context")
+            logv("acknowledgePurchase() > purchase = $purchase")
 
             when {
                 purchase.isAcknowledged -> {
-                    log("Purchase is already acknowledged")
+                    logv("Purchase is already acknowledged")
                     return
                 }
 
                 purchase.purchaseState == PurchaseState.UNSPECIFIED_STATE -> {
-                    log("No need to acknowledge the purchase, because the purchase state is UNSPECIFIED_STATE (${PurchaseState.UNSPECIFIED_STATE})")
+                    logv("No need to acknowledge the purchase, because the purchase state is UNSPECIFIED_STATE (${PurchaseState.UNSPECIFIED_STATE})")
                     return
                 }
 
                 purchase.purchaseState == PurchaseState.PENDING -> {
-                    log("No need to acknowledge the purchase, because the purchase state is PENDING (${PurchaseState.PENDING})")
+                    logv("No need to acknowledge the purchase, because the purchase state is PENDING (${PurchaseState.PENDING})")
                     return
                 }
             }
 
             // If the purchase couldn't be successfully acknowledged, retry the process after 2 minutes
             val retryAcknowledgePurchase = fun() {
-                log("The purchase will be retried for acknowledgment again in 2 minutes")
+                logv("The purchase will be retried for acknowledgment again in 2 minutes")
                 Handler(Looper.getMainLooper()).postDelayed({
                     acknowledgePurchase(context, purchase)
                 }, 120000)
             }
 
-            log("The purchase is not yet acknowledged and the state is PURCHASED (${PurchaseState.PURCHASED}), started the process to acknowledge it")
+            logv("The purchase is not yet acknowledged and the state is PURCHASED (${PurchaseState.PURCHASED}), started the process to acknowledge it")
             acknowledgePurchaseInProgress = true
 
             connectBillingClient(context) { resultCode ->
@@ -629,10 +632,10 @@ object Premium : Base<Premium>() {
                     billingClient.acknowledgePurchase(acknowledgePurchaseParams) { billingResult ->
 
                         val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-                        log("Acknowledge purchase result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
+                        logv("Acknowledge purchase result: ${info.shortDesc} | Message: ${billingResult.debugMessage}")
 
                         if (billingResult.responseCode == BillingResponseCode.OK) {
-                            log("The purchase has been acknowledged successfully")
+                            logv("The purchase has been acknowledged successfully")
                             acknowledgePurchaseInProgress = false // It is set to false until the purchase is successfully acknowledged
 
                             // It is registered here since the purchase is only completed once it is acknowledged
@@ -677,10 +680,10 @@ object Premium : Base<Premium>() {
          * */
         private fun onPurchasesUpdated(billingResult: BillingResult, purchases: List<Purchase>?) {
 
-            log("Invoked > onPurchasesUpdated()")
+            logv("Invoked > onPurchasesUpdated()")
 
             val info = BillingUtils.getBillingResponseCodeInfo(billingResult.responseCode)
-            log("onPurchasesUpdated() | Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
+            logv("onPurchasesUpdated() | Result: ${info.shortDesc} | Message: ${billingResult.debugMessage} | Purchases: $purchases")
 
             val premiumResult: PremiumState // To assign the result
 
@@ -688,13 +691,13 @@ object Premium : Base<Premium>() {
 
                 // Satisfactory result, the purchase needs to be handled to obtain the state
                 BillingResponseCode.OK -> {
-                    log("BillingResponseCode.OK > The purchase is being to handled and processed")
+                    logv("BillingResponseCode.OK > The purchase is being to handled and processed")
                     premiumResult = handlePurchase(applicationContext, purchases)
                 }
 
                 // The user already had the product, and purchases are null, so the data is updated to indicate that the user is already premium
                 BillingResponseCode.ITEM_ALREADY_OWNED -> {
-                    log(
+                    logv(
                         "BillingResponseCode.ITEM_ALREADY_OWNED > The user had already purchased the product, so it is assumed that they " +
                                 "should already be a premium user"
                     )
@@ -703,7 +706,7 @@ object Premium : Base<Premium>() {
 
                 // The user canceled the purchase process, an error occurred or the payment method was rejected. The purchase was not completed
                 else -> {
-                    log("The purchase has not been completed")
+                    logv("The purchase has not been completed")
                     premiumResult = PremiumState.NOT_PREMIUM
                 }
 
@@ -722,7 +725,7 @@ object Premium : Base<Premium>() {
             // The function is called, but within it, closing the connection is avoided if there are pending tasks with the billing client
             endBillingClientConnection()
 
-            log("Result (Premium State) = $premiumResult")
+            logv("Result (Premium State) = $premiumResult")
 
             logPremiumListenerTriggered("onPurchaseResult()")
             premiumListener?.onPurchaseResult(premiumResult)

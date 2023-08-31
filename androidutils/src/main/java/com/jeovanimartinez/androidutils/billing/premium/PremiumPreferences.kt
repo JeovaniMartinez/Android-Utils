@@ -2,6 +2,7 @@ package com.jeovanimartinez.androidutils.billing.premium
 
 import android.content.Context
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.logutils.Log.logv
 import java.util.UUID
 
 /**
@@ -25,14 +26,14 @@ internal object PremiumPreferences : Base<PremiumPreferences>() {
      * */
     fun savePremiumState(context: Context, premiumState: PremiumState) {
 
-        log("Invoked > savePremiumState()")
+        logv("Invoked > savePremiumState()")
 
         val preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
 
         // Random keys and values are inserted to enhance security. This process is executed only once.
         if (!preferences.contains(KEY_PREMIUM_STATE)) {
 
-            log("The preference file does not have KEY_PREMIUM_STATE, proceeding to insert random keys and values")
+            logv("The preference file does not have KEY_PREMIUM_STATE, proceeding to insert random keys and values")
 
             for (i in 0..49) {
                 val uuidKey = UUID.randomUUID().toString()
@@ -44,7 +45,7 @@ internal object PremiumPreferences : Base<PremiumPreferences>() {
                 }
             }
 
-            log("Random keys and values insertion completed")
+            logv("Random keys and values insertion completed")
 
         }
 
@@ -54,7 +55,7 @@ internal object PremiumPreferences : Base<PremiumPreferences>() {
             PremiumState.PREMIUM -> preferences.edit().putString(KEY_PREMIUM_STATE, VALUE_PREMIUM_STATE_PREMIUM).apply()
         }
 
-        log("Saved premium state in preferences. State = $premiumState")
+        logv("Saved premium state in preferences. State = $premiumState")
 
     }
 
@@ -65,7 +66,7 @@ internal object PremiumPreferences : Base<PremiumPreferences>() {
      * */
     fun getPremiumState(context: Context): PremiumState {
 
-        log("Invoked > getPremiumState()")
+        logv("Invoked > getPremiumState()")
 
         val preferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
 
@@ -76,7 +77,7 @@ internal object PremiumPreferences : Base<PremiumPreferences>() {
             else -> PremiumState.NOT_PREMIUM
         }
 
-        log("Premium state was obtained from preferences. State = $state")
+        logv("Premium state was obtained from preferences. State = $state")
 
         return state
 
