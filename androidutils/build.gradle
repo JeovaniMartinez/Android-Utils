@@ -67,9 +67,14 @@ dependencies {
     // Google Play's billing system, enables to sell digital products and content in the apps
     implementation "com.android.billingclient:billing-ktx:6.0.1" // Required for the premium utilities
 
-    // Libraries are required only for references. If they are used in the destination app, it must declare the dependencies
-    compileOnly "com.google.firebase:firebase-analytics:21.3.0" // Used to reference Firebase Analytics
-    compileOnly "com.google.firebase:firebase-crashlytics:18.3.7" // Used to reference Firebase Crashlytics
+    /*
+    * Libraries are required only for references.
+    * "Implementation" is used instead of "compileOnly" because if the app implementing the library doesn't use any of these dependencies
+    * and the app's release is generated with "minifyEnabled true," an error occurs. However, with "minifyEnabled true," the dependencies
+    * not being used will be removed anyway.
+    * */
+    implementation "com.google.firebase:firebase-analytics:21.3.0" // Used to reference Firebase Analytics
+    implementation "com.google.firebase:firebase-crashlytics:18.3.7" // Used to reference Firebase Crashlytics
 
     // Lint check
     lintPublish project(":lintcheck") // The library includes the lint check module for verifications
