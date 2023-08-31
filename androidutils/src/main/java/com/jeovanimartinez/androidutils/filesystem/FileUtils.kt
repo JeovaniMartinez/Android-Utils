@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
 import androidx.annotation.IntRange
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.logutils.Log.logv
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -82,7 +83,7 @@ object FileUtils : Base<FileUtils>() {
 
         val file = generateFile(context, finalFileName, path) // Generate the file
 
-        log("Saving bitmap [$finalFileName] in [$file]")
+        logv("Saving bitmap [$finalFileName] in [$file]")
 
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, quality, stream) // Write the bitmap to the output stream
@@ -93,7 +94,7 @@ object FileUtils : Base<FileUtils>() {
         fileOutPutStream.close()
         stream.close()
 
-        log("Bitmap saved successfully")
+        logv("Bitmap saved successfully")
 
         return file
 
@@ -125,7 +126,7 @@ object FileUtils : Base<FileUtils>() {
             val dirFile = File(dirPath)
             if (!dirFile.exists()) {
                 File(dirPath).mkdirs()
-                log("Make directory [$dirPath]")
+                logv("Make directory [$dirPath]")
             }
         }
 

@@ -2,6 +2,9 @@ package com.jeovanimartinez.androidutils.filesystem
 
 import android.content.Context
 import com.jeovanimartinez.androidutils.Base
+import com.jeovanimartinez.androidutils.logutils.Log.loge
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -28,7 +31,7 @@ object TempFileManager : Base<TempFileManager>() {
     @OptIn(DelicateCoroutinesApi::class)
     fun clearTempFilesFolder(context: Context, onComplete: (success: Boolean) -> Unit = {}) {
 
-        log("Invoked > clearTempFilesFolder()")
+        logv("Invoked > clearTempFilesFolder()")
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
@@ -39,10 +42,10 @@ object TempFileManager : Base<TempFileManager>() {
                 // The directory is created again; makeTempDir() is not used to avoid shown logs
                 dir.mkdirs()
 
-                if (fileCount > 0) log("Deleted $fileCount file(s) from the temp files dir")
-                else log("The temp files dir is empty, no need to delete files")
+                if (fileCount > 0) logv("Deleted $fileCount file(s) from the temp files dir")
+                else logv("The temp files dir is empty, no need to delete files")
 
-                log("clearTempFilesFolder() done")
+                logv("clearTempFilesFolder() done")
                 onComplete(true)
 
             } catch (e: Exception) {
@@ -89,7 +92,7 @@ object TempFileManager : Base<TempFileManager>() {
 
         val file = File(context.filesDir, "$TEMP_FILES_DIR/$finalFileName") // Creates the new file
 
-        log(
+        logv(
             """
             Invoked > createNewTempFile()
             fileName: $fileName
@@ -111,10 +114,10 @@ object TempFileManager : Base<TempFileManager>() {
      * @param context Context from which the function is called.
      * */
     private fun makeTempDir(context: Context) {
-        log("Invoked > makeTempDir()")
+        logv("Invoked > makeTempDir()")
         val result = File(context.filesDir, TEMP_FILES_DIR).mkdirs() // Create the directory if it does not exist. If it exists, do not take any action.
-        if (result) log("The directory for temporary files is created [${context.filesDir}/$TEMP_FILES_DIR]")
-        else log("The directory for temporary files already exists, there's no need to create it [${context.filesDir}/$TEMP_FILES_DIR]")
+        if (result) logv("The directory for temporary files is created [${context.filesDir}/$TEMP_FILES_DIR]")
+        else logv("The directory for temporary files already exists, there's no need to create it [${context.filesDir}/$TEMP_FILES_DIR]")
     }
 
 }

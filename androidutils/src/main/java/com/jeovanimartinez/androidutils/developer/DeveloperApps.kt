@@ -8,6 +8,8 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 
 /**
  * Utilities for developer Apps.
@@ -47,7 +49,7 @@ object DeveloperApps : Base<DeveloperApps>() {
 
             // It opens directly in the default web browser (no chooser is shown), and if Google Play is installed, the app list it is showed there
             activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
-            log("Sent user to view developer page and its list of apps on google play [$webUriString]")
+            logv("Sent user to view developer page and its list of apps on google play [$webUriString]")
             logAnalyticsEvent(Event.DEV_APPS_SHOWN_LIST_GOOGLE_PLAY)
 
         } catch (e: Exception) {

@@ -15,6 +15,7 @@ import com.jeovanimartinez.androidutils.graphics.utils.Margin
 import com.jeovanimartinez.androidutils.graphics.utils.Padding
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeMode
 import com.jeovanimartinez.androidutils.views.viewtoimage.config.ExcludeView
+import com.jeovanimartinez.androidutils.logutils.Log.logv
 
 /**
  * Utility class for converting views to images.
@@ -57,7 +58,7 @@ object ViewToImage : Base<ViewToImage>() {
         viewsToExclude: ArrayList<ExcludeView> = arrayListOf()
     ): Bitmap {
 
-        log("Started process to convert a view to a bitmap image")
+        logv("Started process to convert a view to a bitmap image")
 
         // Validations
         if (!ViewCompat.isLaidOut(view)) {
@@ -82,22 +83,22 @@ object ViewToImage : Base<ViewToImage>() {
             val trimMargin = Margin(1f)
             when (view.background) {
                 is ColorDrawable -> {
-                    log("Image borders are trimmed based on the background color of the view")
+                    logv("Image borders are trimmed based on the background color of the view")
                     viewBitmap.trimByBorderColor((view.background as ColorDrawable).color, trimMargin)
                 }
 
                 null -> {
-                    log("Image borders are trimmed by Color.TRANSPARENT")
+                    logv("Image borders are trimmed by Color.TRANSPARENT")
                     viewBitmap.trimByBorderColor(Color.TRANSPARENT, trimMargin)
                 }
 
                 else -> {
-                    log("It's not possible to trim the image borders, because the view background is not an instance of color drawable")
+                    logv("It's not possible to trim the image borders, because the view background is not an instance of color drawable")
                     viewBitmap
                 }
             }
         } else {
-            log("No need to trim image borders")
+            logv("No need to trim image borders")
             viewBitmap
         }
 
@@ -110,7 +111,7 @@ object ViewToImage : Base<ViewToImage>() {
             Bitmap.Config.ARGB_8888
         )
 
-        log("Final image size: width = ${viewBitmap3.width} height = ${viewBitmap3.height}")
+        logv("Final image size: width = ${viewBitmap3.width} height = ${viewBitmap3.height}")
 
         val viewBitmap3Canvas = Canvas(viewBitmap3)
 
@@ -131,7 +132,7 @@ object ViewToImage : Base<ViewToImage>() {
 
         // FileUtils.saveBitmapToFile(context, viewBitmap3, "CONVERT_RESULT") // *** FOR DEVELOPMENT PURPOSES ONLY
 
-        log("Finished process to convert a view to a bitmap image")
+        logv("Finished process to convert a view to a bitmap image")
 
         return viewBitmap3
     }
@@ -149,7 +150,7 @@ object ViewToImage : Base<ViewToImage>() {
     private fun excludeChildrenViews(context: Context, view: View, viewsToExclude: ArrayList<ExcludeView>): Bitmap {
 
         if (viewsToExclude.isEmpty()) {
-            log("There are no children views to exclude from the image")
+            logv("There are no children views to exclude from the image")
             return view.drawToBitmap(Bitmap.Config.ARGB_8888)
         }
 
@@ -167,14 +168,14 @@ object ViewToImage : Base<ViewToImage>() {
 
         // FileUtils.saveBitmapToFile(context, view.drawToBitmap(Bitmap.Config.ARGB_8888), "EXCLUDE_VIEWS_STEP_0") // *** FOR DEVELOPMENT PURPOSES ONLY
 
-        log("Started process to exclude children views")
+        logv("Started process to exclude children views")
 
         // Lists of children views to exclude, according to the exclusion mode
         val hideViews = viewsToExclude.filter { it.mode == ExcludeMode.HIDE }
         val cropVerticallyViews = viewsToExclude.filter { it.mode == ExcludeMode.CROP_VERTICALLY || it.mode == ExcludeMode.CROP_ALL }.sortedBy { it.view.y }
         val cropHorizontallyViews = viewsToExclude.filter { it.mode == ExcludeMode.CROP_HORIZONTALLY || it.mode == ExcludeMode.CROP_ALL }.sortedBy { it.view.x }
 
-        log("Exclusion lists size: hideViews = ${hideViews.size} | cropVerticallyViews = ${cropVerticallyViews.size} | cropHorizontallyViews = ${cropHorizontallyViews.size} ")
+        logv("Exclusion lists size: hideViews = ${hideViews.size} | cropVerticallyViews = ${cropVerticallyViews.size} | cropHorizontallyViews = ${cropHorizontallyViews.size} ")
 
         val markColor = Color.RED // Color to mark the spaces to be removed from the image with cropping modes
         val markPaint = Paint().apply { style = Paint.Style.FILL; color = markColor; } // Paint for cropping modes
@@ -191,8 +192,8 @@ object ViewToImage : Base<ViewToImage>() {
             view.draw(this)
         }
 
-        log("View size: width = ${view.width} height = ${view.height} ")
-        log("viewBitmap size: width = ${viewBitmap.width} height = ${viewBitmap.height} ")
+        logv("View size: width = ${view.width} height = ${view.height} ")
+        logv("viewBitmap size: width = ${viewBitmap.width} height = ${viewBitmap.height} ")
 
         val viewCanvas = Canvas(viewBitmap)
 
@@ -201,10 +202,10 @@ object ViewToImage : Base<ViewToImage>() {
         if (hideViews.isNotEmpty()) {
             // If the view has a solid background color, that color is used, otherwise, the pixels are cleared with alpha.
             val hideViewPaint = if (view.background is ColorDrawable) {
-                log("Use view background color for hideViewPaint")
+                logv("Use view background color for hideViewPaint")
                 Paint().apply { style = Paint.Style.FILL; color = (view.background as ColorDrawable).color }
             } else {
-                log("Use PorterDuff.Mode.CLEAR for hideViewPaint")
+                logv("Use PorterDuff.Mode.CLEAR for hideViewPaint")
                 Paint().apply { style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
             }
             // val hideViewPaint = Paint().apply { style = Paint.Style.FILL; color = Color.parseColor("#B2CF0000"); } // *** FOR DEVELOPMENT PURPOSES ONLY
@@ -221,7 +222,7 @@ object ViewToImage : Base<ViewToImage>() {
                 )
                 hiddenViewsCount++
             }
-            log("Excluded $hiddenViewsCount view(s) from the image with mode ExcludeMode.HIDE")
+            logv("Excluded $hiddenViewsCount view(s) from the image with mode ExcludeMode.HIDE")
 
             // FileUtils.saveBitmapToFile(context, viewBitmap, "EXCLUDE_VIEWS_STEP_1") // *** FOR DEVELOPMENT PURPOSES ONLY
         }
@@ -253,7 +254,7 @@ object ViewToImage : Base<ViewToImage>() {
                 if (viewBitmap.getPixel(viewBitmap.width - 1, y) == markColor) allCropHeight++
             }
             viewBitmap2 = Bitmap.createBitmap(viewBitmap.width - extraRightPadding, viewBitmap.height - allCropHeight, Bitmap.Config.ARGB_8888)
-            log("viewBitmap2 size: width = ${viewBitmap2.width} height = ${viewBitmap2.height} (allCropHeight = $allCropHeight)")
+            logv("viewBitmap2 size: width = ${viewBitmap2.width} height = ${viewBitmap2.height} (allCropHeight = $allCropHeight)")
             var y = 0 // Position in y-axis for draw the pixels
             for (i in 0 until viewBitmap.height) {
                 viewBitmap.getPixels(horizontalBuffer, 0, viewBitmap.width, 0, i, viewBitmap.width, 1) // It reads the entire width and one pixel height
@@ -263,7 +264,7 @@ object ViewToImage : Base<ViewToImage>() {
                     y++
                 }
             }
-            log("Excluded $croppedVerticallyViewsCount view(s) from the image with mode crop vertically")
+            logv("Excluded $croppedVerticallyViewsCount view(s) from the image with mode crop vertically")
 
             // FileUtils.saveBitmapToFile(context, viewBitmap, "EXCLUDE_VIEWS_STEP_2_A") // *** FOR DEVELOPMENT PURPOSES ONLY
             // FileUtils.saveBitmapToFile(context, viewBitmap2, "EXCLUDE_VIEWS_STEP_2_B") // *** FOR DEVELOPMENT PURPOSES ONLY
@@ -297,7 +298,7 @@ object ViewToImage : Base<ViewToImage>() {
                 if (viewBitmap2.getPixel(x, viewBitmap2.height - 1) == markColor) allCropWidth++
             }
             viewBitmap3 = Bitmap.createBitmap(viewBitmap2.width - allCropWidth, viewBitmap2.height - extraBottomPadding, Bitmap.Config.ARGB_8888)
-            log("viewBitmap3 size: width = ${viewBitmap3.width} (allCropWidth = $allCropWidth) height = ${viewBitmap3.height}")
+            logv("viewBitmap3 size: width = ${viewBitmap3.width} (allCropWidth = $allCropWidth) height = ${viewBitmap3.height}")
             var x = 0 // Position in x-axis to draw the pixels
             for (i in 0 until viewBitmap2.width) {
                 viewBitmap2.getPixels(verticalBuffer, 0, 1, i, 0, 1, viewBitmap2.height) // It reads the entire width and one pixel height
@@ -307,7 +308,7 @@ object ViewToImage : Base<ViewToImage>() {
                     x++
                 }
             }
-            log("Excluded $croppedHorizontallyViewsCount view(s) from the image with mode crop horizontally")
+            logv("Excluded $croppedHorizontallyViewsCount view(s) from the image with mode crop horizontally")
 
             // FileUtils.saveBitmapToFile(context, viewBitmap2, "EXCLUDE_VIEWS_STEP_3_A") // *** FOR DEVELOPMENT PURPOSES ONLY
             // FileUtils.saveBitmapToFile(context, viewBitmap3, "EXCLUDE_VIEWS_STEP_3_B") // *** FOR DEVELOPMENT PURPOSES ONLY
@@ -317,7 +318,7 @@ object ViewToImage : Base<ViewToImage>() {
 
         // FileUtils.saveBitmapToFile(context, viewBitmap3, "EXCLUDE_VIEWS_RESULT") // *** FOR DEVELOPMENT PURPOSES ONLY
 
-        log("Finished process to exclude children views")
+        logv("Finished process to exclude children views")
 
         return viewBitmap3
     }

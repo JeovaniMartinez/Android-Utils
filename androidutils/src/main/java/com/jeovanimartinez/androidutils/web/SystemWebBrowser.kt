@@ -12,6 +12,8 @@ import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import java.lang.Exception
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 
 /**
  * Utility to interact with the system web browser.
@@ -43,7 +45,7 @@ object SystemWebBrowser : Base<SystemWebBrowser>() {
             @Suppress("ReplaceIsEmptyWithIfEmpty")
             val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
             logAnalyticsEvent(Event.SYSTEM_WEB_BROWSER_OPEN_URL, Bundle().apply { putString(Event.Parameter.SYSTEM_WEB_BROWSER_OPEN_URL_CASE, finalCase) })
-            log("URL: [$url] opened, case: $finalCase")
+            logv("URL: [$url] opened, case: $finalCase")
         } catch (e: ActivityNotFoundException) {
             // No app can open the URL
             activity.shortToast(R.string.system_web_browser_not_available)

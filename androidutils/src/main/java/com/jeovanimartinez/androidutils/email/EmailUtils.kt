@@ -19,6 +19,8 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.longToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 
 /** Set of utilities for e-mails. */
 object EmailUtils : Base<EmailUtils>() {
@@ -59,7 +61,7 @@ object EmailUtils : Base<EmailUtils>() {
         @Suppress("ReplaceIsEmptyWithIfEmpty")
         val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
 
-        log(
+        logv(
             """
             EmailUtils > sendEmailViaExternalApp() Data
             Recipient: $finalRecipient
@@ -124,7 +126,7 @@ object EmailUtils : Base<EmailUtils>() {
                 logAnalyticsEvent(Event.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP, Bundle().apply {
                     putString(Event.Parameter.EMAIL_UTILS_SEND_EMAIL_EXTERNAL_APP_CASE, finalCase)
                 })
-                log("A chooser was launched to send an email with an external app")
+                logv("A chooser was launched to send an email with an external app")
             } catch (e: Exception) {
                 handleNotAvailableAppOrException()
                 logw("Unable to start action to send email", e)
