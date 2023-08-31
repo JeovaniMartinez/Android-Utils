@@ -14,8 +14,3 @@
 #       public Access modifier
 #       log    Function name
 #       (...)  ... Matches any number of arguments of any type.
--assumenosideeffects class com.jeovanimartinez.androidutils.Base {
-    public log(...);
-    public logw(...);
-    public loge(...);
-}
