@@ -6,6 +6,8 @@ import android.content.Intent
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
 import com.jeovanimartinez.androidutils.analytics.Event
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 
 /**
  * Utility to show an about app activity.
@@ -29,7 +31,7 @@ object AboutApp : Base<AboutApp>() {
 
         // If the activity is already launched
         if (AboutActivity.aboutActivityRunning) {
-            log("AboutActivity is running and only one instance of this activity is allowed")
+            logw("AboutActivity is running and only one instance of this activity is allowed")
             return
         }
 
@@ -41,7 +43,7 @@ object AboutApp : Base<AboutApp>() {
         activity.startActivity(Intent(activity, AboutActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
 
         logAnalyticsEvent(Event.ABOUT_APP_SHOWN) // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
-        log("Launched AboutActivity")
+        logv("Launched AboutActivity")
 
     }
 

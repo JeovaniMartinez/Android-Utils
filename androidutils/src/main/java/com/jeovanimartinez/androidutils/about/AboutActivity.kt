@@ -30,6 +30,7 @@ import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import com.jeovanimartinez.androidutils.extensions.view.changeAllTextViewsTextColor
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
+import com.jeovanimartinez.androidutils.logutils.Log.logv
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
 import com.jeovanimartinez.androidutils.toplevelfunctions.convertHexColorArgbToRgba
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
@@ -70,7 +71,7 @@ internal class AboutActivity : TranslucentActivity() {
 
         aboutAppConfig = AboutApp.currentConfig!! // The config object is assigned to be able to use it
 
-        AboutApp.log("Started AboutActivity")
+        logv("Started AboutActivity", AboutApp.LOG_TAG)
 
         styleSetup()
         backButtonSetup()
@@ -89,7 +90,7 @@ internal class AboutActivity : TranslucentActivity() {
     }
 
     override fun onDestroy() {
-        AboutApp.log("Activity onDestroy(), isFinishing: $isFinishing")
+        logv("Activity onDestroy(), isFinishing: $isFinishing", AboutApp.LOG_TAG)
         /*
         * If it is ending, the AboutApp.currentConfig object is set to null to free it from memory, as it is not required and when
         * the activity is shown again, the object is assigned before it is displayed.
@@ -376,11 +377,11 @@ internal class AboutActivity : TranslucentActivity() {
 
         // If are already loading, it is not necessary to do it again
         if (loadingTermsAndPolicy) {
-            AboutApp.log("loadTermsAndPolicy() is already in progress")
+            logv("loadTermsAndPolicy() is already in progress", AboutApp.LOG_TAG)
             return
         }
 
-        AboutApp.log("Invoked > loadTermsAndPolicy()")
+        logv("Invoked > loadTermsAndPolicy()", AboutApp.LOG_TAG)
 
         loadingTermsAndPolicy = true
         binding.pbLoadingTermsAndPolicy.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
@@ -396,7 +397,7 @@ internal class AboutActivity : TranslucentActivity() {
         // The URL is loaded, passing the background color and text color parameters
         aboutAppConfig.termsAndPrivacyPolicyUrl.whenNotNull {
             val url = "${typeAsString(it)}?${convertStyleToUrlQueryParams()}&lang=${Locale.getDefault().language}"
-            AboutApp.log("Terms and Privacy Policy URL = $url")
+            logv("Terms and Privacy Policy URL = $url", AboutApp.LOG_TAG)
             binding.webViewTermsAndPolicy.loadUrl(url)
         }
 
@@ -406,7 +407,7 @@ internal class AboutActivity : TranslucentActivity() {
             // When the page load finished (regardless of whether the result was successful or not)
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                AboutApp.log("WebViewClient onPageFinished() Invoked")
+                logv("WebViewClient onPageFinished() Invoked", AboutApp.LOG_TAG)
 
                 view?.scrollTo(0, 0) // Go to view's top
 
@@ -425,14 +426,14 @@ internal class AboutActivity : TranslucentActivity() {
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_network_error)
-                AboutApp.log("WebViewClient onReceivedError() Invoked")
+                logv("WebViewClient onReceivedError() Invoked", AboutApp.LOG_TAG)
                 super.onReceivedError(view, request, error)
             }
 
             override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_not_available)
-                AboutApp.log("WebViewClient onReceivedHttpError() Invoked")
+                logv("WebViewClient onReceivedHttpError() Invoked", AboutApp.LOG_TAG)
                 super.onReceivedHttpError(view, request, errorResponse)
             }
         }
@@ -442,7 +443,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with animation or not. */
     private fun showTermsAndPolicy(animate: Boolean = true) {
 
-        AboutApp.log("Invoked > showTermsAndPolicy()")
+        logv("Invoked > showTermsAndPolicy()", AboutApp.LOG_TAG)
         termsAndPolicyVisible = true
         super.activityOpacity = 0.95f
 
@@ -489,7 +490,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Hide view of terms and privacy policy. */
     private fun hideTermsAndPolicy() {
 
-        AboutApp.log("Invoked > hideTermsAndPolicy()")
+        logv("Invoked > hideTermsAndPolicy()", AboutApp.LOG_TAG)
         termsAndPolicyVisible = false
         super.activityOpacity = 0.9f
 
@@ -509,7 +510,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Show the help section, [animate] determines if they are shown with animation or not. */
     private fun showHelpSection(animate: Boolean = true) {
 
-        AboutApp.log("Invoked > showHelpSection()")
+        logv("Invoked > showHelpSection()", AboutApp.LOG_TAG)
         helpSectionVisible = true
 
         if (animate) {
@@ -538,7 +539,7 @@ internal class AboutActivity : TranslucentActivity() {
     /** Hide help section. */
     private fun hideHelpSection() {
 
-        AboutApp.log("Invoked > hideHelpSection()")
+        logv("Invoked > hideHelpSection()", AboutApp.LOG_TAG)
         helpSectionVisible = false
 
         binding.layoutHelp.animate().translationY(binding.cardContent.height.toFloat()).onAnimationEnd {
