@@ -11,6 +11,10 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
+import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
+import com.jeovanimartinez.androidutils.logutils.Log.loge
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 import java.lang.IllegalStateException
 import java.text.DateFormat
 import java.util.*
@@ -155,7 +159,7 @@ object RateApp : Base<RateApp>() {
 
         initialized = true
 
-        log(
+        logv(
             """
             RateApp initialized
             minInstallElapsedDays: $minInstallElapsedDays
@@ -178,7 +182,7 @@ object RateApp : Base<RateApp>() {
         }
 
         if (validated) {
-            log("The conditions have already been validated in this session")
+            logv("The conditions have already been validated in this session")
             return
         }
 
@@ -186,11 +190,11 @@ object RateApp : Base<RateApp>() {
 
         // If it does not apply to show in this call to the event
         if (showAtEvent != checkShowEventCount) {
-            log("No need verify conditions in this call, showAtEvent: $showAtEvent | checkShowEventCount  $checkShowEventCount ")
+            logv("No need verify conditions in this call, showAtEvent: $showAtEvent | checkShowEventCount  $checkShowEventCount ")
             return
         }
 
-        log("We proceed to verify the conditions to show the flow to rate the app, check and show event: $showAtEvent")
+        logv("We proceed to verify the conditions to show the flow to rate the app, check and show event: $showAtEvent")
         doCheckAndShow(activity) // Execute the full verification
 
         validated = true // In the end, it is indicated that it is already valid, to only do it once per session
@@ -209,9 +213,9 @@ object RateApp : Base<RateApp>() {
                 putBoolean(Preferences.CONFIGURED, true)
                 apply()
             }
-            log("The preferences are configured for the first time")
+            logv("The preferences are configured for the first time")
         } else {
-            log("The preferences are already configured")
+            logv("The preferences are already configured")
         }
     }
 
@@ -223,7 +227,7 @@ object RateApp : Base<RateApp>() {
         val currentValue = sharedPreferences.getInt(Preferences.LAUNCH_COUNTER, 0)
         val newValue = currentValue + 1
         sharedPreferences.edit().putInt(Preferences.LAUNCH_COUNTER, newValue).apply()
-        log("Updated launch counter value from $currentValue to $newValue")
+        logv("Updated launch counter value from $currentValue to $newValue")
     }
 
     /**
@@ -233,7 +237,7 @@ object RateApp : Base<RateApp>() {
      * */
     private fun doCheckAndShow(activity: Activity) {
 
-        log("Invoked > doCheckAndShow()")
+        logv("Invoked > doCheckAndShow()")
 
         val sharedPreferences = activity.applicationContext.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
 
@@ -250,16 +254,16 @@ object RateApp : Base<RateApp>() {
             // If the flow has never shown, the values are assigned according to the installation values
             minElapsedDays = minInstallElapsedDays
             minLaunchTimes = minInstallLaunchTimes
-            log("Values configured by install values")
+            logv("Values configured by install values")
         } else {
             // If the flow has already been shown at least once, the values are assigned based on the reminder values
             minElapsedDays = minRemindElapsedDays
             minLaunchTimes = minRemindLaunchTimes
-            log("Values configured by remind values")
+            logv("Values configured by remind values")
         }
 
         // Show values for development purposes, the date is displayed in a local format for better understanding
-        log(
+        logv(
             """
             Current Values
             launchCounter: $launchCounter
@@ -273,37 +277,37 @@ object RateApp : Base<RateApp>() {
 
         // Check app launches
         val launchCounterAreMet = if (launchCounter < minLaunchTimes) {
-            log("The condition of minimum required launches is not met, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
+            logv("The condition of minimum required launches is not met, a minimum of $minLaunchTimes launches is required, current: $launchCounter")
             false
         } else {
-            log("The condition of minimum required launches is met, current: $launchCounter | required: $minLaunchTimes")
+            logv("The condition of minimum required launches is met, current: $launchCounter | required: $minLaunchTimes")
             true
         }
 
         // Calculate elapsed days between the last date the flow was shown and the current date
         val elapsedDays = ((Date().time - lastShowDateValue) / TimeUnit.DAYS.toMillis(1)).toInt()
-        log("Elapsed days between the last date of the review flow showed and today is: $elapsedDays")
+        logv("Elapsed days between the last date of the review flow showed and today is: $elapsedDays")
 
         var elapsedDaysAreMet = false // Initial value
 
         // If the elapsed days are negative, it indicates an alteration in the date of the device, so the value of LAST_SHOW_DATE is reset
         if (elapsedDays < 0) {
             sharedPreferences.edit().putLong(Preferences.LAST_SHOW_DATE, Date().time).apply()
-            log("Elapsed days ($elapsedDays) value is negative and invalid, the value is restarted to the current date")
+            logv("Elapsed days ($elapsedDays) value is negative and invalid, the value is restarted to the current date")
         } else {
             // Check elapsed days
             elapsedDaysAreMet = if (elapsedDays < minElapsedDays) {
-                log("The condition of minimum elapsed days is not met, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
+                logv("The condition of minimum elapsed days is not met, a minimum of $minElapsedDays days elapsed is required, current: $elapsedDays")
                 false
             } else {
-                log("The condition of minimum elapsed days is met, current: $elapsedDays | required: $minElapsedDays")
+                logv("The condition of minimum elapsed days is met, current: $elapsedDays | required: $minElapsedDays")
                 true
             }
         }
 
         // If any of the conditions are not met
         if (!launchCounterAreMet || !elapsedDaysAreMet) {
-            log(
+            logv(
                 "Not all conditions are met [launchCounterAreMet = $launchCounterAreMet] [elapsedDaysAreMet = $elapsedDaysAreMet], " +
                         "It is not necessary to show flow to rate the app"
             )
@@ -312,7 +316,7 @@ object RateApp : Base<RateApp>() {
 
         // If all conditions are met, the flow to rate app must be shown
 
-        log("All conditions are met, the flow to rate the app must be shown")
+        logv("All conditions are met, the flow to rate the app must be shown")
 
         rateWithInAppReviewApi(activity)
 
@@ -339,7 +343,7 @@ object RateApp : Base<RateApp>() {
      * */
     private fun rateWithInAppReviewApi(activity: Activity) {
 
-        log("Invoked > rateWithInAppReviewApi()")
+        logv("Invoked > rateWithInAppReviewApi()")
         logAnalyticsEvent(Event.RATE_APP_REQUEST_REVIEW_FLOW)
 
         val reviewManager = ReviewManagerFactory.create(activity)
@@ -353,7 +357,7 @@ object RateApp : Base<RateApp>() {
                 // If the request was created successfully
                 var successfulReviewFlow = false // Determine if the flow was correct
                 val flowObtainedTime = Date().time // Assign the date was the flow is obtained
-                log("requestReviewFlow() > Success")
+                logv("requestReviewFlow() > Success")
                 val reviewInfo = request.result // Get the result
                 val reviewFlow = reviewManager.launchReviewFlow(activity, reviewInfo) // The flow to rate the app is launched
 
@@ -369,7 +373,7 @@ object RateApp : Base<RateApp>() {
                      *   - If the user still does not rate the app, but the quota to show the flow has already been exceeded, the flow is not shown
                      */
                     successfulReviewFlow = true // The flow was correct
-                    log("launchReviewFlow() > Success")
+                    logv("launchReviewFlow() > Success")
                     updatePreferencesOnFlowShown(activity.applicationContext) // Preferences are updated because the flow is complete
                     logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_OK)
                 }
@@ -383,7 +387,7 @@ object RateApp : Base<RateApp>() {
 
                 // Flow completed
                 reviewFlow.addOnCompleteListener {
-                    log("Finished process to rate the app with Google Play In-App Review API")
+                    logv("Finished process to rate the app with Google Play In-App Review API")
                     /*
                     * If the flow result was correct.
                     *
@@ -396,15 +400,15 @@ object RateApp : Base<RateApp>() {
                     * */
                     if (successfulReviewFlow) {
                         val elapsedTime = Date().time - flowObtainedTime
-                        log("Elapsed time in review flow ${elapsedTime / 1000.0} seconds ($elapsedTime milliseconds)")
+                        logv("Elapsed time in review flow ${elapsedTime / 1000.0} seconds ($elapsedTime milliseconds)")
                         if (elapsedTime >= REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME) {
-                            log(
+                            logv(
                                 "Elapsed time ${elapsedTime / 1000.0} is greater or equal to ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
                                         "it is considered that the flow was shown to the user"
                             )
                             logAnalyticsEvent(Event.RATE_APP_REVIEW_FLOW_SHOWN)
                         } else {
-                            log(
+                            logv(
                                 "Elapsed time ${elapsedTime / 1000.0} is less than ${REVIEW_FLOW_SHOWN_MIN_ELAPSED_TIME / 1000.0}, " +
                                         "it is considered that the flow NO was shown to the user"
                             )
@@ -415,7 +419,7 @@ object RateApp : Base<RateApp>() {
             } else {
                 validated = false // It is returned to false, to try again in this session, since the flow could not be shown
                 checkShowEventCount = showAtEvent - 1 // Adjust to try again on the next event
-                loge("requestReviewFlow() > Error", request.exception)
+                request.exception.whenNotNull { loge("requestReviewFlow() > Error", it) }
             }
         }
 
@@ -427,7 +431,7 @@ object RateApp : Base<RateApp>() {
      * */
     private fun updatePreferencesOnFlowShown(context: Context) {
 
-        log("Invoked > updatePreferencesOnFlowShown()")
+        logv("Invoked > updatePreferencesOnFlowShown()")
 
         val sharedPreferences = context.getSharedPreferences(Preferences.KEY, Context.MODE_PRIVATE)
 
@@ -441,7 +445,7 @@ object RateApp : Base<RateApp>() {
             apply()
         }
 
-        log("updatePreferencesOnFlowShown() Done")
+        logv("updatePreferencesOnFlowShown() Done")
 
     }
 
@@ -466,14 +470,14 @@ object RateApp : Base<RateApp>() {
 
         try {
             activity.startActivity(googlePlayIntent) // It tries to show in the Google Play app
-            log("User is sent to view app details in the google play app [$marketUriString]")
+            logv("User is sent to view app details in the google play app [$marketUriString]")
             logAnalyticsEvent(Event.RATE_APP_SENT_GOOGLE_PLAY)
         } catch (e1: ActivityNotFoundException) {
             try {
                 // If it cannot be shown in the google play app, it tries to open in the default system web browser (It doesn't show a chooser)
                 val webUriString = "https://play.google.com/store/apps/details?id=${activity.packageName}"
                 activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(webUriString)))
-                log("User is sent to view app details on google play on web browser [$webUriString]")
+                logv("User is sent to view app details on google play on web browser [$webUriString]")
                 logAnalyticsEvent(Event.RATE_APP_SENT_GOOGLE_PLAY)
             } catch (e2: ActivityNotFoundException) {
                 // If it couldn't be displayed in either of the above two ways, show a toast
