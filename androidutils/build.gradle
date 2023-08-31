@@ -92,11 +92,11 @@ dokkaHtml.configure {
         }
     }
     pluginsMapConfiguration.set(
-            [
-                    "org.jetbrains.dokka.base.DokkaBase": """{
+        [
+            "org.jetbrains.dokka.base.DokkaBase": """{
                 "footerMessage": "Copyright © 2020 - Present by Jeovani Martinez"
             }"""
-            ]
+        ]
     )
     doLast {
         // The library logo is copied to the documentation
