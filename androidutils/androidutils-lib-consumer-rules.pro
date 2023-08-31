@@ -14,3 +14,12 @@
 #       public Access modifier
 #       log    Function name
 #       (...)  ... Matches any number of arguments of any type.
+
+-assumenosideeffects class com.jeovanimartinez.androidutils.logutils.Log {
+    public final void logv(...);
+    public final void logd(...);
+    public final void logi(...);
+    public final void logw(...);
+    public final void loge(...);
+    public final void logwtf(...);
+}
