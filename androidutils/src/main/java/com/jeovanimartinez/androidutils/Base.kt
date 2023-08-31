@@ -1,11 +1,11 @@
 package com.jeovanimartinez.androidutils
 
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.Size
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
+import com.jeovanimartinez.androidutils.logutils.Log.logv
 
 /**
  * Base class for the library utilities, with common properties and functions.
@@ -13,12 +13,6 @@ import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 abstract class Base<T : Base<T>> {
 
     companion object {
-        /**
-         * To enable or disable the debug log messages, by default it is configured by BuildConfig.DEBUG, this configuration
-         * applies to all classes that inherit from Base, that is, it is globally enabled or disabled.
-         **/
-        var logEnable = BuildConfig.DEBUG
-
         /**
          * Firebase Analytics instance, assign only if the app that implements the library should log analytics events, this property
          * is global and is used in all subclasses of this class. If you want to disable event logging for a specific class, do so
@@ -45,7 +39,7 @@ abstract class Base<T : Base<T>> {
 
     /** Log tag */
     @Suppress("PropertyName")
-    protected abstract val LOG_TAG: String
+    internal abstract val LOG_TAG: String
 
     /**
      * Log an event in Firebase Analytics, as long as the base class has an instance of Firebase Analytics, and event logging is enabled for
@@ -64,7 +58,7 @@ abstract class Base<T : Base<T>> {
         val logResult = { message: String ->
             var params = "[N/A]" // To report in the log
             eventParams.whenNotNull { params = it.toString().replace("Bundle", "") }
-            log("Event emitted: [ $eventName ] Params: $params | $message")
+            logv("Event emitted: [ $eventName ] Params: $params | $message", LOG_TAG)
         }
 
         if (firebaseAnalyticsEnabled) {
@@ -74,27 +68,6 @@ abstract class Base<T : Base<T>> {
             logResult("No need to log the event in Firebase Analytics, this is disabled for this class instance")
         }
 
-    }
-
-    /**
-     * Show the [message] and the [throwable] in the VERBOSE log, used to detail the execution flow.
-     **/
-    fun log(message: Any, throwable: Throwable? = null) {
-        if (!logEnable) return
-        if (throwable != null) Log.v(LOG_TAG, message.toString(), throwable)
-        else Log.v(LOG_TAG, message.toString())
-    }
-
-    /** Show the [message] and the [throwable] in the WARN log. */
-    fun logw(message: Any, throwable: Throwable? = null) {
-        if (throwable != null) Log.w(LOG_TAG, message.toString(), throwable)
-        else Log.w(LOG_TAG, message.toString())
-    }
-
-    /** Show the [message] and the [throwable] in the ERROR log. */
-    fun loge(message: Any, throwable: Throwable? = null) {
-        if (throwable != null) Log.e(LOG_TAG, message.toString(), throwable)
-        else Log.e(LOG_TAG, message.toString())
     }
 
 }
