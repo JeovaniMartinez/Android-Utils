@@ -141,6 +141,31 @@ object Log {
     }
 
     /**
+     * What a Terrible Failure: Report an exception that should never happen.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logwtf(message: Any, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.wtf(finalTag, message.toString())
+    }
+
+    /**
+     * What a Terrible Failure: Report an exception that should never happen.
+     * @param message The message to be logged. It can be of any data type and the value is always converted to a string for display.
+     * @param throwable The exception to be logged.
+     * @param tag Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     *        Set or leave as null to use the name of the class that calls this function as the tag.
+     * */
+    fun logwtf(message: Any?, throwable: Throwable, @Size(max = 23L) tag: String? = null) {
+        if (!logEnable) return
+        val finalTag = tag ?: generateLogTag()
+        Log.wtf(finalTag, message.toString(), throwable)
+    }
+
+    /**
      * Generates the log tag using the name of the class that invoked the logging function as the tag.
      * @return The log tag.
      * */
