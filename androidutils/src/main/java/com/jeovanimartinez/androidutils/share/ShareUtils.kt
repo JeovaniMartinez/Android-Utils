@@ -14,6 +14,7 @@ import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import java.io.File
+import com.jeovanimartinez.androidutils.logutils.Log.logv
 
 /*
 * References
@@ -33,7 +34,7 @@ object ShareUtils : Base<ShareUtils>() {
      * */
     var fileProviderAuthority = ""
         set(value) {
-            log("File Provider Authority = $value")
+            logv("File Provider Authority = $value")
             field = value
         }
 
@@ -54,7 +55,7 @@ object ShareUtils : Base<ShareUtils>() {
         @StringOrStringRes chooserTitle: Any = R.string.share_utils_share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
-        log("Invoked > shareText()")
+        logv("Invoked > shareText()")
         doShare(activity, activity.typeAsString(chooserTitle), activity.typeAsString(content), null, case)
     }
 
@@ -75,7 +76,7 @@ object ShareUtils : Base<ShareUtils>() {
         @StringOrStringRes chooserTitle: Any = R.string.share_utils_share,
         @Size(min = 1L, max = 100L) case: String = Event.ParameterValue.N_A
     ) {
-        log("Invoked > shareFile()")
+        logv("Invoked > shareFile()")
         if (fileProviderAuthority.isBlank()) {
             throw IllegalStateException("You must specify the file provider [ShareUtils.fileProviderAuthority] before calling this function")
         }
@@ -97,7 +98,7 @@ object ShareUtils : Base<ShareUtils>() {
         @Suppress("ReplaceIsEmptyWithIfEmpty")
         val finalCase = if (case.trim().isBlank()) Event.ParameterValue.N_A else case.trim()
 
-        log(
+        logv(
             """
             ShareUtils > doShare() Data
             Chooser Title: $chooserTitle
@@ -120,7 +121,7 @@ object ShareUtils : Base<ShareUtils>() {
             is File -> {
                 val extension = MimeTypeMap.getFileExtensionFromUrl(content.name)
                 val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
-                log("File extension: $extension | Mime type: $mimeType")
+                logv("File extension: $extension | Mime type: $mimeType")
 
                 // Validation
                 require(extension != "" && mimeType != null) { "Invalid file extension [$extension]. Cannot obtain the file MIME type." }

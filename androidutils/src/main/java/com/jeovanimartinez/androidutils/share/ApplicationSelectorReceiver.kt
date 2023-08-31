@@ -11,6 +11,8 @@ import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
 import java.util.*
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.loge
 
 /**
  * Auxiliary BroadcastReceiver that is invoked when sharing content with ShareUtils, the broadcast is invoked only
@@ -27,10 +29,10 @@ internal class ApplicationSelectorReceiver : BroadcastReceiver() {
      * It is received when the user selects an app to share the content.
      * */
     override fun onReceive(context: Context, intent: Intent) {
-        ShareUtils.log("Invoked > ApplicationSelectorReceiver > onReceive()")
+        logv("Invoked > ApplicationSelectorReceiver > onReceive()", ShareUtils.LOG_TAG)
 
         val selectedAppName = getSelectedAppName(context, intent)
-        ShareUtils.log("Selected App Name: $selectedAppName")
+        logv("Selected App Name: $selectedAppName", ShareUtils.LOG_TAG)
         ShareUtils.logAnalyticsEvent(Event.SHARE_UTILS_SHARE_COMPLETED, Bundle().apply {
             putString(Event.Parameter.SHARE_UTILS_SHARE_CASE, currentShareCase)
             putString(Event.Parameter.SHARE_UTILS_SHARE_SELECTED_APP, selectedAppName)
@@ -72,7 +74,7 @@ internal class ApplicationSelectorReceiver : BroadcastReceiver() {
             }
         } catch (e: Exception) {
             // ** Ideally, an exception should never occur with the way this code is written; however, it is used only for safety **
-            ShareUtils.loge("Error when obtaining the name of the selected app when sharing", e)
+            loge("Error when obtaining the name of the selected app when sharing", e, ShareUtils.LOG_TAG)
             Base.firebaseCrashlyticsInstance?.recordException(e)
         }
 
