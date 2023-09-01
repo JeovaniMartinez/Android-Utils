@@ -17,6 +17,7 @@
 #       void = Since it doesn't return any value (used as in Java)
 #       logv = Function name
 #       (...) = ... Matches any number of arguments of any type.
+# Note: Calls to log functions that use """ """.trimIndent() are not removed
 
 -assumenosideeffects class com.jeovanimartinez.androidutils.logutils.Log {
     public void logv(...);
