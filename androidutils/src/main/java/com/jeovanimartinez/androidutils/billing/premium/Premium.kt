@@ -47,7 +47,7 @@ object Premium : Base<Premium>() {
      * */
     fun getCurrentPremiumState(): PremiumState {
         if (!Controller.initialized) {
-            throw IllegalStateException("It is necessary to call Premium.Controller.init() before being able to retrieve the current premium state")
+            throw IllegalStateException("It is necessary to call Controller.init() before being able to retrieve the current state")
         }
         return currentPremiumState
     }
@@ -103,7 +103,7 @@ object Premium : Base<Premium>() {
                 return
             }
             require(premiumAccessProductIds.isNotEmpty()) {
-                "The premiumAccessProductIds list must not be empty; it must have at least one element"
+                "The list must not be empty; it must have at least one element"
             }
 
             /*
@@ -225,7 +225,7 @@ object Premium : Base<Premium>() {
             checkInitialization()
 
             require(productIds.isNotEmpty()) {
-                "The productIds list must not be empty; it must have at least one element"
+                "The list must not be empty; it must have at least one element"
             }
 
             // A warning is logged if any of the provided product IDs is not in the premiumAccessProductIds list
@@ -258,7 +258,7 @@ object Premium : Base<Premium>() {
             // The product Id must be on the premiumAccessProductIds list to be able to validate the purchase later
             if (!premiumAccessProductIds.contains(productId)) {
                 throw IllegalArgumentException(
-                    "Cannot start the purchase flow because the specified product Id '$productId' is not in the premiumAccessProductIds list $premiumAccessProductIds"
+                    "Cannot start the process because the specified product Id '$productId' is not in the list $premiumAccessProductIds"
                 )
             }
 
@@ -321,7 +321,7 @@ object Premium : Base<Premium>() {
          * */
         private fun checkInitialization() {
             if (!initialized) {
-                throw IllegalStateException("It is necessary to call Premium.Controller.init() before calling any other function of Premium.Controller")
+                throw IllegalStateException("It is necessary to call init() function before calling any other function of this utility")
             }
         }
 
