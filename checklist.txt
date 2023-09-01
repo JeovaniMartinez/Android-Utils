@@ -19,7 +19,7 @@ generales a los archivos del repositorio. Pero lo que es el módulo principal de
 - .gradle ✔✔
 - .idea ✔✔
 - androidutils ✔✔
-    > Tod@ listo. ✔✔ EL MÓDULO DE androidutils esta completamente listo.
+    > Tod@ listo. ✔✔ EL MÓDULO DE androidutils esta completamente listo
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
