@@ -117,3 +117,8 @@ cuando se quiere obtener info de las apps instaladas que manejan esos intents, y
         </intent>
 
     </queries>
+
+
+Si esta habilitada la ofuscación para que se eliminen las llamadas a com.jeovanimartinez.androidutils.logutils.Log
+es necesario que la app tenga habilitada la ofuscación y se use si o sí proguard-android-optimize.txt, ya que si se usa
+proguard-android.txt no se eliminan las llamadas al log ni todos los mensajes que se generan en el log mediante dicha utilidad
