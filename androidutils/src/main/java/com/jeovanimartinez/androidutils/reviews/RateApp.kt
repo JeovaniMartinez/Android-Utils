@@ -144,10 +144,8 @@ object RateApp : Base<RateApp>() {
     fun init(context: Context) {
         if (initialized) {
             logw(
-                """
-                    This call to RateApp.init() HAS BEEN IGNORED AND WILL HAVE NO EFFECT, 
-                    as RateApp.init() should only be called once when the application starts.
-                """.trimIndent()
+                "This call to RateApp.init() HAS BEEN IGNORED AND WILL HAVE NO EFFECT, " +
+                        "as RateApp.init() should only be called once when the application starts."
             )
             return
         }

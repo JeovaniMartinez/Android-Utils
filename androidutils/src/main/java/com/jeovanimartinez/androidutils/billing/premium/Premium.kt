@@ -97,10 +97,8 @@ object Premium : Base<Premium>() {
             // Validations
             if (initialized) {
                 logw(
-                    """
-                        This call to Premium.Controller.init() HAS BEEN IGNORED AND WILL HAVE NO EFFECT, 
-                        as Premium.Controller.init() should only be called once when the application starts.
-                    """.trimIndent()
+                    "This call to Premium.Controller.init() HAS BEEN IGNORED AND WILL HAVE NO EFFECT, as Premium.Controller.init() " +
+                            "should only be called once when the application starts."
                 )
                 return
             }
