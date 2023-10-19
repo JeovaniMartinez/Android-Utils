@@ -20,6 +20,8 @@ generales a los archivos del repositorio. Pero lo que es el módulo principal de
 - .idea ✔✔
 - androidutils ✔✔
     > Tod@ listo. ✔✔ EL MÓDULO DE androidutils esta completamente listo
+    > Ajustar solamente ApplicationSelectorReceiver en la parte de getApplicationInfo el error de NameNotFoundException de RCCC,
+      se puede solo agregar otro try catch y dejar el nombre en N/A, o algo así cuando no se pueda obtener
 - app
     > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
     excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
