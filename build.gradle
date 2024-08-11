@@ -5,7 +5,7 @@ buildscript {
     ext {
 
         // ** Android Utils Library Version **
-        androidUtilsVersionCode = 3
+        androidUtilsVersionCode = 4
         androidUtilsVersionName = "1.0.0-beta"
 
         // Lint tool version (Current version of Gradle plugin is 8.0.1)
