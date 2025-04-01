@@ -10,14 +10,14 @@ plugins {
 
 android {
 
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.jeovanimartinez.androidutils.app"
 
         minSdkVersion 21 // Android 5 (Lollipop)
 
-        targetSdkVersion 33
+        targetSdkVersion 34
 
         versionCode androidUtilsVersionCode
         versionName androidUtilsVersionName
