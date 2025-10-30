@@ -13,6 +13,7 @@ import com.android.billingclient.api.Purchase.PurchaseState
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
@@ -114,7 +115,9 @@ object Premium : Base<Premium>() {
             * */
 
             currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
-            billingClient = BillingClient.newBuilder(context.applicationContext).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+            billingClient = BillingClient.newBuilder(context.applicationContext).enablePendingPurchases(
+                PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()
+            ).setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
             acknowledgePurchaseInProgress = false
             initialized = true
@@ -365,7 +368,9 @@ object Premium : Base<Premium>() {
             if (billingClient.connectionState == ConnectionState.CLOSED) {
                 logv("The billing client connection is already closed")
                 if (context != null) {
-                    billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(purchasesUpdatedListener).build()
+                    billingClient = BillingClient.newBuilder(context).enablePendingPurchases(
+                        PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()
+                    ).setListener(purchasesUpdatedListener).build()
                     logv("Recreated billing client instance")
                 } else {
                     logw("The context is null, the billing client instance cannot be recreated")
@@ -459,9 +464,11 @@ object Premium : Base<Premium>() {
 
                     // Generate the product details params and execute the query
                     val queryProductDetailsParams = QueryProductDetailsParams.newBuilder().setProductList(productList).build()
-                    billingClient.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsList ->
+                    billingClient.queryProductDetailsAsync(queryProductDetailsParams) { billingResult, productDetailsResult ->
 
                         // NOTE: The result can be BillingResponseCode.OK, but the list might be empty, in case any of the queried product IDs does not exist
+
+                        val productDetailsList = productDetailsResult.productDetailsList
 
                         if (billingResult.responseCode == BillingResponseCode.OK) {
                             if (productDetailsList.isNotEmpty()) {
