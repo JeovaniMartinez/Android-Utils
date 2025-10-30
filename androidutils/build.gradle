@@ -46,9 +46,6 @@ android {
             jvmTarget = JvmTarget.JVM_11
         }
     }
-    publishing {
-        singleVariant("release") {}
-    }
     namespace "com.jeovanimartinez.androidutils"
 }
 
