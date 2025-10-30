@@ -11,8 +11,9 @@ android {
 
     compileSdk 36
 
-    defaultConfig {6
-        minSdkVersion 21 // Android 5 (Lollipop)
+    defaultConfig {
+
+        minSdkVersion 23 // Android 6 (Marshmallow)
 
         targetSdkVersion 36
 
@@ -47,16 +48,16 @@ android {
 dependencies {
 
     // Allows access to new APIs on older API versions of the platform
-    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.appcompat:appcompat:1.7.1"
 
     // Set of Kotlin extensions for Android Jetpack and other Android libraries
-    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "androidx.core:core-ktx:1.17.0"
 
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
     implementation "androidx.constraintlayout:constraintlayout:2.1.4" // Required for design the layouts
 
     // Material Components for Android
-    implementation "com.google.android.material:material:1.9.0" // Required for designing the layouts
+    implementation "com.google.android.material:material:1.13.0" // Required for designing the layouts
 
     // Runtime interface to interact with the Google Play Store
     implementation "com.google.android.play:review-ktx:2.0.2" // Required for using Google Play In-App review API
@@ -73,8 +74,8 @@ dependencies {
     * and the app's release is generated with "minifyEnabled true," an error occurs. However, with "minifyEnabled true," the dependencies
     * not being used will be removed anyway.
     * */
-    implementation "com.google.firebase:firebase-analytics:21.3.0" // Used to reference Firebase Analytics
-    implementation "com.google.firebase:firebase-crashlytics:18.4.1" // Used to reference Firebase Crashlytics
+    implementation "com.google.firebase:firebase-analytics:23.0.0" // Used to reference Firebase Analytics
+    implementation "com.google.firebase:firebase-crashlytics:20.0.3" // Used to reference Firebase Crashlytics
 
     // Lint check
     lintPublish project(":lintcheck") // The library includes the lint check module for verifications

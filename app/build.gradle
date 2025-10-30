@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId "com.jeovanimartinez.androidutils.app"
 
-        minSdkVersion 21 // Android 5 (Lollipop)
+        minSdkVersion 23 // Android 6 (Marshmallow)
 
         targetSdkVersion 36
 
@@ -51,15 +51,15 @@ dependencies {
 
     // General dependencies
     implementation "androidx.multidex:multidex:2.0.1"
-    implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "androidx.core:core-ktx:1.10.1"
-    implementation "com.google.android.material:material:1.9.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation "androidx.core:core-ktx:1.17.0"
+    implementation "com.google.android.material:material:1.13.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.1"
     implementation "androidx.core:core-splashscreen:1.0.1"
 
     // Firebase dependencies
-    implementation "com.google.firebase:firebase-analytics:21.3.0"
-    implementation "com.google.firebase:firebase-crashlytics:18.4.1"
+    implementation "com.google.firebase:firebase-analytics:23.0.0"
+    implementation "com.google.firebase:firebase-crashlytics:20.0.3"
 
     // Required for test premium utilities ** PENDING VERSION UPDATE **
     implementation "com.android.billingclient:billing-ktx:6.0.1"
@@ -71,6 +71,6 @@ dependencies {
     implementation project(":androidutils")
 
     // LeakCanary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 
 }

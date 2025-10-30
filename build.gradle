@@ -12,7 +12,7 @@ buildscript {
         lintVersion = '31.13.0' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
 
         // Kotlin version
-        kotlinVersion = "1.8.10"
+        kotlinVersion = "2.2.21"
 
     }
 
