@@ -54,7 +54,7 @@ dependencies {
     implementation "androidx.core:core-ktx:1.17.0"
 
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
-    implementation "androidx.constraintlayout:constraintlayout:2.1.4" // Required for design the layouts
+    implementation "androidx.constraintlayout:constraintlayout:2.2.1" // Required for design the layouts
 
     // Material Components for Android
     implementation "com.google.android.material:material:1.13.0" // Required for designing the layouts
@@ -63,7 +63,7 @@ dependencies {
     implementation "com.google.android.play:review-ktx:2.0.2" // Required for using Google Play In-App review API
 
     // Set of tools to express the open source software notices of libraries used in the apps
-    implementation "com.google.android.gms:play-services-oss-licenses:17.0.1" // Required to display open source licenses in AboutApp
+    implementation "com.google.android.gms:play-services-oss-licenses:17.3.0" // Required to display open source licenses in AboutApp
 
     // Google Play's billing system, enables to sell digital products and content in the apps
     implementation "com.android.billingclient:billing-ktx:6.0.1" // Required for the premium utilities
