@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.jeovanimartinez.androidutils.about.AboutApp
 import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
 import com.jeovanimartinez.androidutils.activity.config.TaskDescriptionConfig
@@ -25,6 +27,16 @@ class AboutAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Edge-to-edge configuration
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+            val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+
+            view.setPadding(0, statusBars.top, 0, navBars.bottom)
+            insets
+        }
+
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
 
         binding.appBar.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }

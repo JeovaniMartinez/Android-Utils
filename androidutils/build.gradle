@@ -9,12 +9,12 @@ plugins {
 
 android {
 
-    compileSdk 33
+    compileSdk 36
 
-    defaultConfig {
+    defaultConfig {6
         minSdkVersion 21 // Android 5 (Lollipop)
 
-        targetSdkVersion 33
+        targetSdkVersion 36
 
         versionCode androidUtilsVersionCode
         versionName androidUtilsVersionName
