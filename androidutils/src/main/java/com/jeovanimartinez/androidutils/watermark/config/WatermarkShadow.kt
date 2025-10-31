@@ -13,5 +13,5 @@ data class WatermarkShadow(
     val radius: Float,
     val dx: Float,
     val dy: Float,
-    @ColorInt val color: Int
+    @param:ColorInt val color: Int
 )
