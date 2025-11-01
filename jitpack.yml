@@ -1,4 +1,3 @@
 before_install:
-  - cd androidutils
   - sdk install java 17.0.7-jbr
   - sdk use java 17.0.7-jbr
