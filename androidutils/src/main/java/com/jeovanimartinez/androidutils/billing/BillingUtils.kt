@@ -19,7 +19,7 @@ object BillingUtils : Base<BillingUtils>() {
      * @param messageResId IDs of string resources with a user-understandable message that can be displayed
      *        according to the current response code.
      * */
-    data class BillingResponseCodeInfo(val code: Int, val shortDesc: String, @StringRes val messageResId: Int)
+    data class BillingResponseCodeInfo(val code: Int, val shortDesc: String, @param:StringRes val messageResId: Int)
 
     /**
      * Returns an [BillingResponseCodeInfo] object according to the received [code] of [BillingResponseCode]

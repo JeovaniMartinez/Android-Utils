@@ -12,4 +12,4 @@ import com.jeovanimartinez.androidutils.annotations.StringOrStringRes
  * @param icon Icon to show (resource id), it must be a PNG image, if the resource id is an SVG, it will not be applied and the app icon will be shown.
  * @param color A color to override the theme's primary color, this color must be opaque.
  * */
-data class TaskDescriptionConfig(@StringOrStringRes val title: Any, @DrawableRes val icon: Int, @ColorInt val color: Int)
+data class TaskDescriptionConfig(@param:StringOrStringRes val title: Any, @param:DrawableRes val icon: Int, @param:ColorInt val color: Int)

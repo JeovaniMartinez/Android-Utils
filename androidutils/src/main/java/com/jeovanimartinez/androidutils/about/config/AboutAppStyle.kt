@@ -10,8 +10,8 @@ import androidx.annotation.ColorInt
  * @param iconsColor Color for the icons.
  * */
 data class AboutAppStyle(
-    @ColorInt val primaryColor: Int,
-    @ColorInt val backgroundColor: Int,
-    @ColorInt val textColor: Int,
-    @ColorInt val iconsColor: Int,
+    @param:ColorInt val primaryColor: Int,
+    @param:ColorInt val backgroundColor: Int,
+    @param:ColorInt val textColor: Int,
+    @param:ColorInt val iconsColor: Int,
 )

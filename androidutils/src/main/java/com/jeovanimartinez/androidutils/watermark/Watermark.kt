@@ -41,14 +41,14 @@ sealed class Watermark {
      *        according to the screen density. It is recommended to use only Dimension.PX or Dimension.DP for a Drawable watermark.
      * */
     data class Drawable(
-        @DrawableOrDrawableRes val drawable: Any,
+        @param:DrawableOrDrawableRes val drawable: Any,
         override val position: WatermarkPosition = WatermarkPosition.MIDDLE_CENTER,
-        @FloatRange(from = 1.0) val width: Float? = 1f,
-        @FloatRange(from = 1.0) val height: Float? = 1f,
+        @param:FloatRange(from = 1.0) val width: Float? = 1f,
+        @param:FloatRange(from = 1.0) val height: Float? = 1f,
         override val dx: Float = 0f,
         override val dy: Float = 0f,
         override val rotation: Float = 0f,
-        @FloatRange(from = 0.0, to = 1.0) override val opacity: Float = 1f,
+        @param:FloatRange(from = 0.0, to = 1.0) override val opacity: Float = 1f,
         override val measurementDimension: Dimension = Dimension.PX
     ) : Watermark()
 
@@ -71,14 +71,14 @@ sealed class Watermark {
      *        It is recommended to use DP instead of SP to prevent the text size from being affected by the device's font size setting.
      * */
     data class Text(
-        @StringOrStringRes val text: Any,
-        @FloatRange(from = 0.1) val textSize: Float = 12f,
-        @ColorInt val textColor: Int = Color.BLACK,
+        @param:StringOrStringRes val text: Any,
+        @param:FloatRange(from = 0.1) val textSize: Float = 12f,
+        @param:ColorInt val textColor: Int = Color.BLACK,
         override val position: WatermarkPosition = WatermarkPosition.MIDDLE_CENTER,
         override val dx: Float = 0f,
         override val dy: Float = 0f,
         override val rotation: Float = 0f,
-        @FloatRange(from = 0.0, to = 1.0) override val opacity: Float = 1f,
+        @param:FloatRange(from = 0.0, to = 1.0) override val opacity: Float = 1f,
         val typeface: Typeface? = null,
         val shadow: WatermarkShadow? = null,
         override val measurementDimension: Dimension = Dimension.PX
