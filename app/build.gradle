@@ -12,14 +12,14 @@ plugins {
 
 android {
 
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId "com.jeovanimartinez.androidutils.app"
 
         minSdkVersion 23 // Android 6 (Marshmallow)
 
-        targetSdkVersion 36
+        targetSdkVersion 37
 
         versionCode androidUtilsVersionCode
         versionName androidUtilsVersionName
