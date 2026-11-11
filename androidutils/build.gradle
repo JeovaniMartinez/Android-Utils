@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
 
-        minSdkVersion 23 // Android 6 (Marshmallow)
+        minSdkVersion 24 // Android 7
 
         targetSdkVersion 37
 
@@ -61,22 +61,22 @@ android {
 dependencies {
 
     // Allows access to new APIs on older API versions of the platform
-    implementation "androidx.appcompat:appcompat:1.7.1"
+    implementation "androidx.appcompat:appcompat:1.8.0"
 
     // Set of Kotlin extensions for Android Jetpack and other Android libraries
-    implementation "androidx.core:core-ktx:1.17.0"
+    implementation "androidx.core:core-ktx:1.19.1"
 
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
-    implementation "androidx.constraintlayout:constraintlayout:2.2.1" // Required for design the layouts
+    implementation "androidx.constraintlayout:constraintlayout:2.2.2" // Required for design the layouts
 
     // Material Components for Android
-    implementation "com.google.android.material:material:1.13.0" // Required for designing the layouts
+    implementation "com.google.android.material:material:1.14.0" // Required for designing the layouts
 
     // Runtime interface to interact with the Google Play Store
     implementation "com.google.android.play:review-ktx:2.0.2" // Required for using Google Play In-App review API
 
     // Set of tools to express the open source software notices of libraries used in the apps
-    implementation "com.google.android.gms:play-services-oss-licenses:17.3.0" // Required to display open source licenses in AboutApp
+    implementation "com.google.android.gms:play-services-oss-licenses:17.5.3" // Required to display open source licenses in AboutApp
 
     // Google Play's billing system, enables to sell digital products and content in the apps
     implementation "com.android.billingclient:billing-ktx:8.0.0" // Required for the premium utilities
@@ -87,8 +87,8 @@ dependencies {
     * and the app's release is generated with "minifyEnabled true," an error occurs. However, with "minifyEnabled true," the dependencies
     * not being used will be removed anyway.
     * */
-    implementation "com.google.firebase:firebase-analytics:23.0.0" // Used to reference Firebase Analytics
-    implementation "com.google.firebase:firebase-crashlytics:20.0.3" // Used to reference Firebase Crashlytics
+    implementation "com.google.firebase:firebase-analytics:24.0.0" // Used to reference Firebase Analytics
+    implementation "com.google.firebase:firebase-crashlytics:21.0.1" // Used to reference Firebase Crashlytics
 
     // Lint check
     lintPublish project(":lintcheck") // The library includes the lint check module for verifications
