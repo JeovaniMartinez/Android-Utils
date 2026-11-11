@@ -50,6 +50,12 @@ android {
         singleVariant("release") {}
     }
     namespace "com.jeovanimartinez.androidutils"
+    lint {
+        targetSdk 36
+    }
+    testOptions {
+        targetSdk 36
+    }
 }
 
 dependencies {
