@@ -51,10 +51,10 @@ android {
     }
     namespace "com.jeovanimartinez.androidutils"
     lint {
-        targetSdk 36
+        targetSdk 37
     }
     testOptions {
-        targetSdk 36
+        targetSdk 37
     }
 }
 

@@ -8,7 +8,7 @@ buildscript {
         androidUtilsVersionCode = 9
         androidUtilsVersionName = "1.5.0-beta"
 
-        // Lint tool version (Current version of Gradle plugin is 8.13.0)
+        // Lint tool version (Current version of Gradle plugin is 9.5.1)
         lintVersion = '32.5.1' // The version depends of the Gradle plugin version. If the Gradle plugin version is X.Y.Z, then the Lint library version is X+23.Y.Z
 
         // Kotlin version
