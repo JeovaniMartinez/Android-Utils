@@ -445,7 +445,7 @@ object Premium : Base<Premium>() {
          * @param productIds List containing the product IDs to be queried.
          * @param result Asynchronous function callback to receive the result, with the result code based on [BillingResponseCode]
          *        and a list with the details of the products. The list only contains elements if the response code is
-         *        BillingResponseCode.OK; otherwise, it will be null. The [productDetailsList] will always contain at least one
+         *        BillingResponseCode.OK; otherwise, it will be null. The [ProductDetails] will always contain at least one
          *        element or be null, but it will never be an empty list, his ensures that if it's not null, the response code
          *        was BillingResponseCode.OK, and the list contains at least one element.
          * */

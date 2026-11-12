@@ -66,8 +66,8 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics:24.0.0"
     implementation "com.google.firebase:firebase-crashlytics:21.0.1"
 
-    // Required for test premium utilities ** PENDING VERSION UPDATE **
-    implementation "com.android.billingclient:billing-ktx:8.0.0"
+    // Required for test premium utilities
+    implementation "com.android.billingclient:billing-ktx:9.1.0"
 
     // Library for using a color selector
     implementation "com.jaredrummler:colorpicker:1.1.0"
