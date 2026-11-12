@@ -117,7 +117,7 @@ object Premium : Base<Premium>() {
             currentPremiumState = PremiumPreferences.getPremiumState(context) // The last known state is obtained
             billingClient = BillingClient.newBuilder(context.applicationContext).enablePendingPurchases(
                 PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()
-            ).setListener(purchasesUpdatedListener).build()
+            ).enableAutoServiceReconnection().setListener(purchasesUpdatedListener).build()
             this.premiumAccessProductIds = premiumAccessProductIds
             acknowledgePurchaseInProgress = false
             initialized = true
@@ -370,7 +370,7 @@ object Premium : Base<Premium>() {
                 if (context != null) {
                     billingClient = BillingClient.newBuilder(context).enablePendingPurchases(
                         PendingPurchasesParams.newBuilder().enableOneTimeProducts().build()
-                    ).setListener(purchasesUpdatedListener).build()
+                    ).enableAutoServiceReconnection().setListener(purchasesUpdatedListener).build()
                     logv("Recreated billing client instance")
                 } else {
                     logw("The context is null, the billing client instance cannot be recreated")
