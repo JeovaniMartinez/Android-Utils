@@ -27,7 +27,7 @@ _The objective of this library is to provide a set of utilities that are commonl
 
 #### Main Features
 
-- Compatible with Android `API 21+`
+- Compatible with Android `API 24+`
 - Source code is written 100% in `Kotlin`
 - UI with `light and dark` theme support.
 - UI with language support for: `English - Spanish`
