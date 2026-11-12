@@ -13,7 +13,7 @@ import android.view.Window
 import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
 import com.jeovanimartinez.androidutils.about.config.AboutAppStyle

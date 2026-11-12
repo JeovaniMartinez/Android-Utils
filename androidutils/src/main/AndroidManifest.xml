@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,11 +13,9 @@
 
         <!-- Apply a custom theme to the open source licenses activities -->
         <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
-            android:theme="@style/AndroidUtilsTheme.OssLicenses" />
-        <activity
-            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
-            android:theme="@style/AndroidUtilsTheme.OssLicenses" />
+            android:name="com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity"
+            android:theme="@style/AndroidUtilsTheme.OssLicenses"
+            tools:replace="android:theme" />
 
         <!-- Receiver for ShareUtils -->
         <receiver android:name=".share.ApplicationSelectorReceiver" />
