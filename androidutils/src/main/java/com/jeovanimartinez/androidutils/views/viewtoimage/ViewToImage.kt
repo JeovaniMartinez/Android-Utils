@@ -61,7 +61,7 @@ object ViewToImage : Base<ViewToImage>() {
         logv("Started process to convert a view to a bitmap image")
 
         // Validations
-        if (!ViewCompat.isLaidOut(view)) {
+        if (!view.isLaidOut) {
             throw IllegalStateException("The view needs to be laid out before converting it to an image")
         }
         require(padding.top >= 0 && padding.right >= 0 && padding.bottom >= 0 && padding.left >= 0) {

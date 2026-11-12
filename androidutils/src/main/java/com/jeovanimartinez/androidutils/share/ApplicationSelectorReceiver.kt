@@ -10,7 +10,6 @@ import android.os.Bundle
 import com.jeovanimartinez.androidutils.Base
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
-import java.util.*
 import com.jeovanimartinez.androidutils.logutils.Log.logv
 import com.jeovanimartinez.androidutils.logutils.Log.loge
 
