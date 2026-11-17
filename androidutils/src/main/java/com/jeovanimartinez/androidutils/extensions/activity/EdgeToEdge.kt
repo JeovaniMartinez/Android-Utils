@@ -1,35 +1,37 @@
 package com.jeovanimartinez.androidutils.extensions.activity
 
 import android.os.Build
-import androidx.activity.ComponentActivity
-import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.viewbinding.ViewBinding
 
 /**
- * Se encarga de ajustar correctamente los margenes según la orientación para el edge-to-edge.
- * Tomando en cuenta las barras del sistema y los cortes de pantalla, como cuando el dispositivo
- * tiene la cámara debajo de la pantalla.
- * Invocar siempre en el onCreate y en el onConfigurationChanged de la actividad.
- * Referencia: https://developer.android.com/develop/ui/views/layout/edge-to-edge
- * @param binding Binding principal de la actividad
- * */
+ * Adjusts the activity's content padding to accommodate system bars and display cutouts
+ * when using edge-to-edge display.
+ *
+ * The padding is automatically updated whenever Android dispatches new window insets,
+ * including changes caused by device orientation.
+ *
+ * This function should be called only once from the activity's `onCreate()` method,
+ * immediately after inflating the view binding and setting the activity's content view.
+ *
+ * Reference: https://developer.android.com/develop/ui/views/layout/edge-to-edge
+ *
+ * @param binding The activity's root view binding.
+ */
 fun adjustEdgeToEdge(binding: ViewBinding) {
 
-    // En versiones anteriores a la API 35 (de 34 para abajo) no se ocupa
+    // Not required on Android versions below API 35.
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
         return
     }
 
     ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+
         val bars = insets.getInsets(
-            WindowInsetsCompat.Type.systemBars() // Barras del sistema
-                    or WindowInsetsCompat.Type.displayCutout() // O cortes de pantalla
+            WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout() // System bars or display cutouts
         )
-
-
 
         view.updatePadding(
             left = bars.left,
@@ -37,16 +39,9 @@ fun adjustEdgeToEdge(binding: ViewBinding) {
             right = bars.right,
             bottom = bars.bottom,
         )
+
         WindowInsetsCompat.CONSUMED
+
     }
 
-}
-
-/**
- * Configura el EdgeToEdge en actividades translúcidas, llamar siempre antes del super.onCreate(savedInstanceState)
- * */
-fun adjustEdgeToEdgeTranslucentActivity(activity: ComponentActivity) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-        activity.enableEdgeToEdge()
-    }
 }
