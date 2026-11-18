@@ -2,6 +2,7 @@
 
 package com.jeovanimartinez.androidutils.themes.translucent
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -202,6 +203,7 @@ open class TranslucentActivity : AppCompatActivity() {
      *
      * @return `true` if button navigation is enabled, `false` otherwise.
      */
+    @SuppressLint("DiscouragedApi")
     fun isUsingButtonNavigation(): Boolean {
         return try {
             val resourceId = resources.getIdentifier(
