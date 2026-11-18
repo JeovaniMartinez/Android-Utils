@@ -14,7 +14,14 @@ import androidx.viewbinding.ViewBinding
  * including changes caused by device orientation.
  *
  * This function should be called only once from the activity's `onCreate()` method,
- * immediately after inflating the view binding and setting the activity's content view.
+ * immediately after inflating the view binding and calling `setContentView()`.
+ *
+ * Example:
+ * ```
+ * binding = ActivityMainBinding.inflate(layoutInflater)
+ * setContentView(binding.root)
+ * adjustEdgeToEdge(binding)
+ * ```
  *
  * Reference: https://developer.android.com/develop/ui/views/layout/edge-to-edge
  *
