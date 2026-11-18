@@ -63,10 +63,9 @@ fun adjustEdgeToEdge(binding: ViewBinding) {
  *
  * Edge-to-edge is enabled only on Android 15 (API 35) and higher.
  *
- * @param activity The activity in which edge-to-edge display will be enabled.
  */
-fun adjustEdgeToEdgeTranslucentActivity(activity: ComponentActivity) {
+fun ComponentActivity.adjustEdgeToEdgeTranslucentActivity() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-        activity.enableEdgeToEdge()
+        enableEdgeToEdge()
     }
 }
