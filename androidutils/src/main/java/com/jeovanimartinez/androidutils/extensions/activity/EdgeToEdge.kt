@@ -1,6 +1,8 @@
 package com.jeovanimartinez.androidutils.extensions.activity
 
 import android.os.Build
+import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -51,4 +53,20 @@ fun adjustEdgeToEdge(binding: ViewBinding) {
 
     }
 
+}
+
+/**
+ * Enables edge-to-edge display for translucent activities.
+ *
+ * This function must be called before `setContentView(binding.root)`
+ * in activities that extend `TranslucentActivity`.
+ *
+ * Edge-to-edge is enabled only on Android 15 (API 35) and higher.
+ *
+ * @param activity The activity in which edge-to-edge display will be enabled.
+ */
+fun adjustEdgeToEdgeTranslucentActivity(activity: ComponentActivity) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+        activity.enableEdgeToEdge()
+    }
 }
