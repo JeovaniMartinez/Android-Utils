@@ -2,11 +2,17 @@
 
 package com.jeovanimartinez.androidutils.themes.translucent
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.os.Bundle
+import android.view.Surface
+import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.jeovanimartinez.androidutils.R
 import com.jeovanimartinez.androidutils.extensions.basictypes.mapValue
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
@@ -35,6 +41,21 @@ open class TranslucentActivity : AppCompatActivity() {
             window.setDimAmount(value) // Adjust the activity opacity
         }
 
+    /**
+     * The activity's main view, which must be assigned to enable proper horizontal
+     * positioning adjustments, particularly on modern Android versions where
+     * edge-to-edge display is enabled by default.
+     *
+     * This property must be assigned after enabling edge-to-edge with `adjustEdgeToEdgeTranslucentActivity()`
+     * and setting the activity's content view. It is required for the automatic position
+     * adjustment based on the device orientation and display cutout.
+     * */
+    protected var mainLayout: View? = null
+        set(value) {
+            field = value
+            value?.post { adjustViewPosition() }
+        }
+
     /** When the activity is created, to assign the initial values */
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AndroidUtilsTheme_Translucent)
@@ -54,6 +75,12 @@ open class TranslucentActivity : AppCompatActivity() {
         // The activity background is set to transparent, so that opacity is kept based on the value of dimAmount
         window.setBackgroundDrawable(generateBackgroundDrawable(0f))
         super.onResume()
+    }
+
+    /** Called when the device configuration changes */
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        adjustViewPosition() // Adjusts the main layout's position after an orientation change
     }
 
     /**
@@ -87,6 +114,61 @@ open class TranslucentActivity : AppCompatActivity() {
         // The black color is assigned, with the required capacity
         drawable.setColor(Color.argb(alpha.mapValue(0f, 1f, 0f, 255f).toInt(), 0, 0, 0))
         return drawable
+    }
+
+    /**
+     * Adjusts the main layout's horizontal position according to the current device orientation
+     * and display cutout.
+     *
+     * In landscape orientation, the layout is shifted horizontally to compensate for the display
+     * cutout, taking the current display rotation into account.
+     *
+     * In portrait orientation, the horizontal translation is reset to zero.
+     *
+     * The adjustment is performed only when the main layout and window insets are available.
+     * */
+    private fun adjustViewPosition() {
+
+        // Get the main layout and return if it has not been assigned
+        val layout = mainLayout ?: return
+
+        // Get the current display rotation
+        val rotation = getCurrentDisplayRotation()
+
+        // Retrieve the current window insets and return if they are not available
+        val insets = ViewCompat.getRootWindowInsets(layout) ?: return
+
+        // Get the display cutout insets
+        val cutout = insets.getInsets(WindowInsetsCompat.Type.displayCutout())
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            // Adjust the horizontal position according to the display rotation
+            if (rotation == Surface.ROTATION_270) {
+                layout.translationX = -cutout.right.toFloat()
+            } else if (rotation == Surface.ROTATION_90) {
+                layout.translationX = cutout.right.toFloat()
+            }
+
+        } else {
+
+            // Reset the horizontal translation in portrait orientation
+            layout.translationX = 0f
+
+        }
+
+    }
+
+    /**
+     * Returns the current display rotation
+     * */
+    private fun getCurrentDisplayRotation(): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            display?.rotation ?: Surface.ROTATION_0
+        } else {
+            @Suppress("DEPRECATION")
+            windowManager.defaultDisplay.rotation
+        }
     }
 
 }

@@ -20,6 +20,7 @@ import com.jeovanimartinez.androidutils.about.config.AboutAppStyle
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.databinding.ActivityAboutBinding
 import com.jeovanimartinez.androidutils.email.EmailUtils
+import com.jeovanimartinez.androidutils.extensions.activity.adjustEdgeToEdgeTranslucentActivity
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
@@ -68,6 +69,9 @@ internal class AboutActivity : TranslucentActivity() {
         configureTransitions()
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        adjustEdgeToEdgeTranslucentActivity()
+
+        mainLayout = binding.layoutMain
 
         aboutAppConfig = AboutApp.currentConfig!! // The config object is assigned to be able to use it
 
