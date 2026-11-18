@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.drawToBitmap
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -19,6 +17,7 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityWatermarkBinding
 import com.jeovanimartinez.androidutils.app.enums.TextWatermarkTypeface
+import com.jeovanimartinez.androidutils.extensions.activity.adjustEdgeToEdge
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.getFontCompat
@@ -73,15 +72,7 @@ class WatermarkActivity : AppCompatActivity(), ColorPickerDialogListener {
         super.onCreate(savedInstanceState)
         binding = ActivityWatermarkBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Edge-to-edge configuration
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-
-            view.setPadding(0, statusBars.top, 0, navBars.bottom)
-            insets
-        }
+        adjustEdgeToEdge(binding)
 
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
 

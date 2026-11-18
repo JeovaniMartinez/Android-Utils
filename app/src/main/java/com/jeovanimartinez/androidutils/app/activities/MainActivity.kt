@@ -8,14 +8,13 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.jeovanimartinez.androidutils.app.BuildConfig
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.constants.Preferences
 import com.jeovanimartinez.androidutils.app.databinding.ActivityMainBinding
+import com.jeovanimartinez.androidutils.extensions.activity.adjustEdgeToEdge
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
@@ -32,15 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Edge-to-edge configuration
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-
-            view.setPadding(0, statusBars.top, 0, navBars.bottom)
-            insets
-        }
+        adjustEdgeToEdge(binding)
 
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
 

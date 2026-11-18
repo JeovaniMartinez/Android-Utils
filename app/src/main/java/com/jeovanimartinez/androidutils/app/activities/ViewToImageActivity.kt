@@ -12,8 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -21,6 +19,7 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityViewToImageBinding
+import com.jeovanimartinez.androidutils.extensions.activity.adjustEdgeToEdge
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
@@ -74,15 +73,7 @@ class ViewToImageActivity : AppCompatActivity(), ColorPickerDialogListener {
         super.onCreate(savedInstanceState)
         binding = ActivityViewToImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Edge-to-edge configuration
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-
-            view.setPadding(0, statusBars.top, 0, navBars.bottom)
-            insets
-        }
+        adjustEdgeToEdge(binding)
 
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
 

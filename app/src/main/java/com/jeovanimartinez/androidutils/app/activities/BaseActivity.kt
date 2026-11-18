@@ -2,10 +2,9 @@ package com.jeovanimartinez.androidutils.app.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.jeovanimartinez.androidutils.app.R
 import com.jeovanimartinez.androidutils.app.databinding.ActivityBaseBinding
+import com.jeovanimartinez.androidutils.extensions.activity.adjustEdgeToEdge
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
 import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
 
@@ -18,15 +17,7 @@ class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Edge-to-edge configuration
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
-            val navBars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
-
-            view.setPadding(0, statusBars.top, 0, navBars.bottom)
-            insets
-        }
+        adjustEdgeToEdge(binding)
 
         configureTaskDescription(R.string.app_name, R.mipmap.ic_launcher, getColorCompat(R.color.md_theme_background))
 
