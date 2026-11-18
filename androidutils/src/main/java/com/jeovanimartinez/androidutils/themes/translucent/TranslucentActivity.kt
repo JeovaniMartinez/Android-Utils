@@ -144,10 +144,10 @@ open class TranslucentActivity : AppCompatActivity() {
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             // Adjust the horizontal position according to the display rotation
-            if (rotation == Surface.ROTATION_270) {
+            if (rotation == Surface.ROTATION_270 && isUsingButtonNavigation()) {
                 layout.translationX = -cutout.right.toFloat()
-            } else if (rotation == Surface.ROTATION_90) {
-                layout.translationX = cutout.right.toFloat()
+            } else  {
+                layout.translationX = 0f
             }
 
         } else {
@@ -168,6 +168,24 @@ open class TranslucentActivity : AppCompatActivity() {
         } else {
             @Suppress("DEPRECATION")
             windowManager.defaultDisplay.rotation
+        }
+    }
+
+    /**
+     * Checks whether the device uses button-based navigation.
+     *
+     * @return `true` if button navigation is enabled, `false` otherwise.
+     */
+    fun isUsingButtonNavigation(): Boolean {
+        return try {
+            val resourceId = resources.getIdentifier(
+                "config_navBarInteractionMode",
+                "integer",
+                "android"
+            )
+            resourceId != 0 && resources.getInteger(resourceId) != 2
+        } catch (e: Exception) {
+            false
         }
     }
 
