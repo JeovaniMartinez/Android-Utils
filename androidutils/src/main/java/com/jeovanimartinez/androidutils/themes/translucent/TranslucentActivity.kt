@@ -5,8 +5,10 @@ package com.jeovanimartinez.androidutils.themes.translucent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.hardware.display.DisplayManager
 import android.os.Build
 import android.os.Bundle
+import android.view.Display
 import android.view.Surface
 import android.view.View
 import android.view.Window
@@ -67,6 +69,7 @@ open class TranslucentActivity : AppCompatActivity() {
     override fun onPause() {
         // Adds background to the activity for a better view in animations
         window.setBackgroundDrawable(generateBackgroundDrawable(this.window.attributes.dimAmount))
+        (getSystemService(DISPLAY_SERVICE) as DisplayManager).unregisterDisplayListener(displayListener)
         super.onPause()
     }
 
@@ -74,6 +77,7 @@ open class TranslucentActivity : AppCompatActivity() {
     override fun onResume() {
         // The activity background is set to transparent, so that opacity is kept based on the value of dimAmount
         window.setBackgroundDrawable(generateBackgroundDrawable(0f))
+        (getSystemService(DISPLAY_SERVICE) as DisplayManager).registerDisplayListener(displayListener, null)
         super.onResume()
     }
 
@@ -114,6 +118,28 @@ open class TranslucentActivity : AppCompatActivity() {
         // The black color is assigned, with the required capacity
         drawable.setColor(Color.argb(alpha.mapValue(0f, 1f, 0f, 255f).toInt(), 0, 0, 0))
         return drawable
+    }
+
+    /**
+     * Listens for changes to the default display.
+     *
+     * When the display changes, checks whether the affected display is the default
+     * display and adjusts the main layout's horizontal position accordingly.
+     *
+     * This listener helps detect display rotation changes that may not trigger
+     * [onConfigurationChanged], such as transitions between landscape rotations.
+     */
+    private val displayListener = object : DisplayManager.DisplayListener {
+
+        override fun onDisplayChanged(displayId: Int) {
+            if (displayId == Display.DEFAULT_DISPLAY) {
+                adjustViewPosition()
+            }
+        }
+
+        override fun onDisplayAdded(displayId: Int) {}
+
+        override fun onDisplayRemoved(displayId: Int) {}
     }
 
     /**
