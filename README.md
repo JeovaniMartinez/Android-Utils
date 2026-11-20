@@ -17,9 +17,11 @@
 <a href="https://jeovanimartinez.github.io/Android-Utils/reference/index.html"><img src="https://img.shields.io/badge/API-REFERENCE-blue?style=for-the-badge&labelColor=3F3F3F&color=00996F" alt="API-REFERENCE" /></a>&nbsp;&nbsp;
     <a href="https://jeovanimartinez.github.io/Android-Utils/" target="_self"><img src="https://img.shields.io/badge/WEB-WEBSITE-blue?style=for-the-badge&logo=tor-browser&label=%20&labelColor=3F3F3F&color=DA5900&logoColor=FFFFFF" alt="WEBSITE" /></a>
 </p>
+<p align="center">
 <a href="https://play.google.com/store/apps/details?id=com.jeovanimartinez.androidutils.app">
     <img src="https://img.shields.io/badge/GET_IT_ON-Google_Play-414141?style=for-the-badge&logo=googleplay&logoColor=white" alt="Get it on Google Play" />
 </a>
+</p>
 
 ---
 
