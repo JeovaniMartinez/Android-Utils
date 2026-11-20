@@ -2,8 +2,8 @@ package com.jeovanimartinez.androidutils.about
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,41 +11,56 @@ import android.transition.Explode
 import android.view.View
 import android.view.Window
 import android.webkit.*
+import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity
 import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
+import com.jeovanimartinez.androidutils.about.config.AboutAppStyle
 import com.jeovanimartinez.androidutils.analytics.Event
 import com.jeovanimartinez.androidutils.databinding.ActivityAboutBinding
+import com.jeovanimartinez.androidutils.email.EmailUtils
+import com.jeovanimartinez.androidutils.extensions.activity.adjustEdgeToEdgeTranslucentActivity
 import com.jeovanimartinez.androidutils.extensions.activity.configureTaskDescription
+import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
+import com.jeovanimartinez.androidutils.extensions.context.getDrawableCompat
 import com.jeovanimartinez.androidutils.extensions.context.shortToast
 import com.jeovanimartinez.androidutils.extensions.context.typeAsDrawable
 import com.jeovanimartinez.androidutils.extensions.context.typeAsString
 import com.jeovanimartinez.androidutils.extensions.dimension.dp2px
 import com.jeovanimartinez.androidutils.extensions.nullability.whenNotNull
+import com.jeovanimartinez.androidutils.extensions.view.changeAllTextViewsTextColor
 import com.jeovanimartinez.androidutils.extensions.view.onAnimationEnd
+import com.jeovanimartinez.androidutils.logutils.Log.logv
 import com.jeovanimartinez.androidutils.themes.translucent.TranslucentActivity
+import com.jeovanimartinez.androidutils.toplevelfunctions.convertHexColorArgbToRgba
 import com.jeovanimartinez.androidutils.web.SystemWebBrowser
 import java.util.*
 
 /** About app activity */
-class AboutActivity : TranslucentActivity() {
+internal class AboutActivity : TranslucentActivity() {
 
     companion object {
+
         /*
         * Helper to allow only one instance of this activity. It is used this way and not with android:launchMode="singleInstance" as
         * due to the transparent theme and transition, using that setting does not work properly.
         * */
         var aboutActivityRunning = false
+
         private const val STATE_TERMS_AND_POLICY_VISIBLE = "state_terms_and_policy_visible"
+        private const val STATE_HELP_SECTION_VISIBLE = "state_help_section_visible"
+
     }
 
     private lateinit var binding: ActivityAboutBinding
 
     private var activityIsRunning = true // To show toast only if the activity is running and not paused
-    private var loadingTermsAndPolicyInProgress = false
+    private var loadingTermsAndPolicy = false
     private var termsAndPolicyVisible = false
+    private var helpSectionVisible = false
     private lateinit var aboutAppConfig: AboutAppConfig // Config data
+    private lateinit var style: AboutAppStyle // Style for this activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         aboutActivityRunning = true // Indicates that the activity is running
@@ -54,20 +69,18 @@ class AboutActivity : TranslucentActivity() {
         configureTransitions()
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        adjustEdgeToEdgeTranslucentActivity()
+
+        mainLayout = binding.layoutMain
 
         aboutAppConfig = AboutApp.currentConfig!! // The config object is assigned to be able to use it
 
-        AboutApp.log("Started AboutActivity")
+        logv("Started AboutActivity", AboutApp.LOG_TAG)
 
-        initSetup()
-        configureByAboutApp()
-        configureData()
-
-    }
-
-    override fun onBackPressed() {
-        if (termsAndPolicyVisible) return hideTermsAndPolicy()
-        super.onBackPressed()
+        styleSetup()
+        backButtonSetup()
+        generalSetup()
+        helpSectionSetup()
     }
 
     override fun onResume() {
@@ -81,7 +94,7 @@ class AboutActivity : TranslucentActivity() {
     }
 
     override fun onDestroy() {
-        AboutApp.log("Activity onDestroy(), isFinishing: $isFinishing")
+        logv("Activity onDestroy(), isFinishing: $isFinishing", AboutApp.LOG_TAG)
         /*
         * If it is ending, the AboutApp.currentConfig object is set to null to free it from memory, as it is not required and when
         * the activity is shown again, the object is assigned before it is displayed.
@@ -95,6 +108,7 @@ class AboutActivity : TranslucentActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putBoolean(STATE_TERMS_AND_POLICY_VISIBLE, termsAndPolicyVisible) // Save if the terms are visible, for the onRestoreInstanceState
+        outState.putBoolean(STATE_HELP_SECTION_VISIBLE, helpSectionVisible) // Save if the help section is visible, for the onRestoreInstanceState
         super.onSaveInstanceState(outState)
     }
 
@@ -104,255 +118,441 @@ class AboutActivity : TranslucentActivity() {
         if (savedInstanceState.getBoolean(STATE_TERMS_AND_POLICY_VISIBLE)) {
             loadTermsAndPolicy(false)
         }
+        // Help section is shown if it was visible on onSaveInstanceState
+        if (savedInstanceState.getBoolean(STATE_HELP_SECTION_VISIBLE)) {
+            showHelpSection(false)
+        }
     }
 
-    /** Initial setup */
-    private fun initSetup() {
+    /** Set the activity transitions */
+    private fun configureTransitions() {
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            enterTransition = Explode()
+            exitTransition = Explode()
+        }
+    }
+
+    /** Back button setup */
+    private fun backButtonSetup() {
+        // Reference: https://medium.com/tech-takeaways/how-to-migrate-the-deprecated-onbackpressed-function-e66bb29fa2fd
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (termsAndPolicyVisible) return hideTermsAndPolicy()
+                if (helpSectionVisible) return hideHelpSection()
+                supportFinishAfterTransition()
+            }
+        })
+    }
+
+    /** Style setup */
+    private fun styleSetup() {
+
+        // Configure the activity style
+        style = if (aboutAppConfig.style == null) {
+            // The style of the resources is used
+            AboutAppStyle(
+                primaryColor = getColorCompat(R.color.about_app_primary_color),
+                backgroundColor = getColorCompat(R.color.about_app_background_color),
+                textColor = getColorCompat(R.color.about_app_text_color),
+                iconsColor = getColorCompat(R.color.about_app_icons_color)
+            )
+        } else {
+            aboutAppConfig.style!! // The style of the configuration object is used
+        }
 
         // Configure the task description (if it is necessary)
         aboutAppConfig.taskDescriptionConfig.whenNotNull {
             configureTaskDescription(it)
         }
 
-        binding.progressBar.visibility = View.GONE
-        binding.termsAndPolicyWebView.visibility = View.GONE
-        binding.topActionCard.visibility = View.GONE
+    }
 
-        // Adjusts to hide item
+    /** Initial and general setup */
+    private fun generalSetup() {
+
+        // Adjust elements visibility
+        binding.pbLoadingTermsAndPolicy.visibility = View.GONE
+        binding.webViewTermsAndPolicy.visibility = View.GONE
+        binding.cardTopAction.visibility = View.GONE
+
+        // Adjusts to hide the element and show it properly with animations
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            binding.topActionCard.translationX = dp2px(48).toFloat()
+            binding.cardTopAction.translationX = dp2px(48).toFloat()
         } else {
-            binding.topActionCard.translationY = dp2px(48).toFloat()
+            binding.cardTopAction.translationY = dp2px(48).toFloat()
         }
 
-        binding.termsAndPolicy.setOnClickListener {
-            loadTermsAndPolicy()
-            binding.termsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
+        // IMPORTANT: Due to the use of Material3 which uses dynamic colors, in some occasions the applied colors may vary slightly from those specified in the colors files.
+
+        // Configure the style for the activity (background color, text color, icons color, etc.)
+        binding.cardTopAction.setCardBackgroundColor(style.backgroundColor)
+        binding.cardContent.setCardBackgroundColor(style.backgroundColor)
+        binding.layoutRoot.changeAllTextViewsTextColor(style.textColor)
+        val closeDrawable = getDrawableCompat(R.drawable.about_app_ic_check)
+        val helpDrawable = getDrawableCompat(R.drawable.about_app_ic_help)
+        val closeTermsDrawable = getDrawableCompat(R.drawable.about_app_ic_back)
+        closeDrawable?.setTint(style.iconsColor)
+        helpDrawable?.setTint(style.iconsColor)
+        closeTermsDrawable?.setTint(style.iconsColor)
+        binding.btnClose.setImageDrawable(closeDrawable)
+        binding.btnHelp.setImageDrawable(helpDrawable)
+        binding.btnCloseTerms.setImageDrawable(closeTermsDrawable)
+        binding.pbLoadingTermsAndPolicy.indeterminateTintList = ColorStateList.valueOf(style.primaryColor)
+
+        // App data
+        binding.ivAppLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.appLogo))
+        binding.tvAppName.text = typeAsString(aboutAppConfig.appName)
+        binding.tvAppVersion.text = getString(R.string.about_app_version, typeAsString(aboutAppConfig.appVersion))
+
+        // Credits
+        binding.tvCredits.text = typeAsString(aboutAppConfig.creditsText)
+        aboutAppConfig.creditsUrl.whenNotNull { url ->
+            binding.tvCredits.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_credits_url")
+            }
         }
 
-        binding.closeTermsBtn.setOnClickListener {
-            hideTermsAndPolicy()
+        // Company data and copyright
+        binding.ivAuthorLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.authorLogo))
+        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+        binding.tvCopyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.copyrightHolderName))
+        aboutAppConfig.authorUrl.whenNotNull { url ->
+            binding.ivAuthorLogo.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_author_url")
+            }
         }
 
-        binding.openSourceLicenses.setOnClickListener {
+        // Terms and privacy policy
+        if (aboutAppConfig.termsAndPrivacyPolicyUrl == null) {
+            binding.btnTermsAndPolicy.visibility = View.GONE
+            // Adjust btnOpenSourceLicenses to be displayed correctly
+            val btnOpenSourceLicensesParams = binding.btnOpenSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
+            btnOpenSourceLicensesParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
+            btnOpenSourceLicensesParams.endToStart = ConstraintLayout.LayoutParams.UNSET
+            binding.btnOpenSourceLicenses.layoutParams = btnOpenSourceLicensesParams
+        } else {
+            binding.btnTermsAndPolicy.setOnClickListener {
+                loadTermsAndPolicy()
+                binding.btnTermsAndPolicy.isClickable = false // Click is disabled, to avoid repeated actions
+            }
+            binding.btnCloseTerms.setOnClickListener {
+                hideTermsAndPolicy()
+            }
+        }
+
+        // Open source licenses
+        binding.btnOpenSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
+        binding.btnOpenSourceLicenses.setOnClickListener {
             startActivity(Intent(this@AboutActivity, OssLicensesMenuActivity::class.java))
-            AboutApp.firebaseAnalytics(Event.ABOUT_APP_OSL_SHOWN)
+            AboutApp.logAnalyticsEvent(Event.ABOUT_APP_OSL_SHOWN)
         }
 
-        binding.closeBtn.setOnClickListener {
+        // Close button
+        binding.btnClose.setOnClickListener {
             supportFinishAfterTransition()
         }
 
     }
 
-    /** Configure the activity in base of AboutApp  */
-    private fun configureByAboutApp() {
+    /** Help section setup */
+    private fun helpSectionSetup() {
 
-        binding.appIcon.setImageDrawable(typeAsDrawable(aboutAppConfig.appIcon))
-        binding.appName.text = typeAsString(aboutAppConfig.appName)
-        binding.authorName.text = typeAsString(aboutAppConfig.authorName)
-        binding.companyLogo.setImageDrawable(typeAsDrawable(aboutAppConfig.companyLogo))
-        if (aboutAppConfig.termsAndPrivacyPolicyLink == null) {
-            binding.termsAndPolicy.visibility = View.GONE
-            val openSourceLParams = binding.openSourceLicenses.layoutParams as ConstraintLayout.LayoutParams
-            openSourceLParams.startToStart = ConstraintLayout.LayoutParams.MATCH_PARENT
-            openSourceLParams.endToStart = ConstraintLayout.LayoutParams.UNSET
-            binding.openSourceLicenses.layoutParams = openSourceLParams
+        // Configure the style
+        binding.layoutHelp.setBackgroundColor(style.backgroundColor)
+        val closeHelpDrawable = getDrawableCompat(R.drawable.about_app_ic_close)
+        closeHelpDrawable?.setTint(style.iconsColor)
+        binding.btnCloseHelp.setImageDrawable(closeHelpDrawable)
+        binding.btnHelpCenter.iconTint = ColorStateList.valueOf(style.textColor)
+        binding.btnCrashReport.iconTint = ColorStateList.valueOf(style.textColor)
+        binding.btnContact.iconTint = ColorStateList.valueOf(style.textColor)
+        binding.btnFeedback.iconTint = ColorStateList.valueOf(style.textColor)
+
+        // Visibility
+        binding.helpDimBackground.visibility = View.GONE
+        binding.layoutHelp.visibility = View.GONE
+        if (aboutAppConfig.helpCenterUrl == null &&
+            aboutAppConfig.crashReportEmail == null &&
+            aboutAppConfig.contactEmail == null &&
+            aboutAppConfig.feedbackEmail == null
+        ) {
+            binding.btnHelp.visibility = View.GONE
+        } else {
+            binding.btnHelp.visibility = View.VISIBLE
+        }
+        binding.btnHelpCenter.visibility = if (aboutAppConfig.helpCenterUrl == null) View.GONE else View.VISIBLE
+        binding.btnCrashReport.visibility = if (aboutAppConfig.crashReportEmail == null) View.GONE else View.VISIBLE
+        binding.btnContact.visibility = if (aboutAppConfig.contactEmail == null) View.GONE else View.VISIBLE
+        binding.btnFeedback.visibility = if (aboutAppConfig.feedbackEmail == null) View.GONE else View.VISIBLE
+
+        // Actions
+
+        binding.btnHelp.setOnClickListener {
+            // To avoid repeated actions, in this case, binding.layoutHelp.visibility == View.VISIBLE works better than helpSectionVisible == true
+            if (binding.layoutHelp.visibility == View.VISIBLE) return@setOnClickListener
+            showHelpSection()
+            AboutApp.logAnalyticsEvent(Event.ABOUT_APP_HELP_SECTION_SHOWN)
+        }
+        binding.btnCloseHelp.setOnClickListener {
+            hideHelpSection()
         }
 
-        binding.openSourceLicenses.visibility = if (aboutAppConfig.showOpenSourceLicenses) View.VISIBLE else View.GONE
-
-        // In versions prior to Android 4.4 it is always hidden, since the activity does not work correctly
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            binding.openSourceLicenses.visibility = View.GONE
+        binding.helpDimBackground.isSoundEffectsEnabled = false // The sound is disabled upon clicking as it is not a button
+        binding.helpDimBackground.setOnClickListener {
+            hideHelpSection()
         }
 
-        binding.topActionCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
-        binding.contentCard.setCardBackgroundColor(aboutAppConfig.backgroundColor!!)
-
-        // Icon color is assigned, only works from Android 5 onwards
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val closeDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_check_circle_outline)
-            val closeTermsDrawable = ContextCompat.getDrawable(this@AboutActivity, R.drawable.ic_back)
-            closeDrawable?.setTint(aboutAppConfig.iconsColor!!)
-            closeTermsDrawable?.setTint(aboutAppConfig.iconsColor!!)
-            binding.closeBtn.setImageDrawable(closeDrawable)
-            binding.closeTermsBtn.setImageDrawable(closeTermsDrawable)
+        binding.layoutHelp.isSoundEffectsEnabled = false // The sound is disabled upon clicking as it is not a button
+        binding.layoutHelp.setOnClickListener {
+            // No action is required, it's just to prevent passing the click to helpDimBackground
         }
 
-        aboutAppConfig.authorLink.whenNotNull { link ->
-            binding.authorName.setOnClickListener {
-                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_author_link")
+        aboutAppConfig.helpCenterUrl.whenNotNull { url ->
+            binding.btnHelpCenter.setOnClickListener {
+                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(url), "about_app_help_center")
             }
         }
 
-        aboutAppConfig.companyLink.whenNotNull { link ->
-            binding.companyLogo.setOnClickListener {
-                SystemWebBrowser.openUrl(this@AboutActivity, typeAsString(link), "about_app_company_link")
+        aboutAppConfig.crashReportEmail.whenNotNull { email ->
+            binding.btnCrashReport.setOnClickListener {
+                EmailUtils.sendEmailViaExternalApp(
+                    activity = this@AboutActivity,
+                    recipient = typeAsString(email),
+                    subject = getString(R.string.about_app_crash_email_subject, typeAsString(aboutAppConfig.appName)),
+                    content = R.string.about_app_crash_email_content,
+                    chooserTitle = R.string.about_app_crash_email_chooser_title,
+                    case = "about_app_crash_report"
+                )
+            }
+        }
+
+        aboutAppConfig.contactEmail.whenNotNull { email ->
+            binding.btnContact.setOnClickListener {
+                EmailUtils.sendEmailViaExternalApp(
+                    activity = this@AboutActivity,
+                    recipient = typeAsString(email),
+                    subject = getString(R.string.about_app_contact_email_subject, typeAsString(aboutAppConfig.appName)),
+                    content = R.string.about_app_contact_email_content,
+                    chooserTitle = R.string.about_app_contact_email_chooser_title,
+                    case = "about_app_contact"
+                )
+            }
+        }
+
+        aboutAppConfig.feedbackEmail.whenNotNull { email ->
+            binding.btnFeedback.setOnClickListener {
+                EmailUtils.sendEmailViaExternalApp(
+                    activity = this@AboutActivity,
+                    recipient = typeAsString(email),
+                    subject = getString(R.string.about_app_feedback_email_subject, typeAsString(aboutAppConfig.appName)),
+                    content = R.string.about_app_feedback_email_content,
+                    chooserTitle = R.string.about_app_feedback_email_chooser_title,
+                    case = "about_app_feedback"
+                )
             }
         }
 
     }
 
-    /** Set the app version and copyright */
-    private fun configureData() {
-        binding.appVersion.text = getString(R.string.about_app_version, aboutAppConfig.appVersionName)
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        binding.copyright.text = getString(R.string.about_app_copyright, currentYear.toString(), typeAsString(aboutAppConfig.companyName))
-    }
-
-    /** Set the activity transitions */
-    private fun configureTransitions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            with(window) {
-                requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-                enterTransition = Explode()
-                exitTransition = Explode()
-            }
+    /**
+     * Generate and return a String in query parameters style of a URL using all the properties of the style from
+     * AboutAppStyle applied to this activity.
+     * */
+    private fun convertStyleToUrlQueryParams(): String {
+        /*
+        * For the colors, first, the Int color is converted to a hexadecimal color, then everything is converted to uppercase,
+        * and finally, it is converted from ARGB (which is how it is used in Android) to RGBA (which is how it is used on the web)
+        * so that the colors can be represented correctly.
+        * */
+        return buildString {
+            append("primary-color=${convertHexColorArgbToRgba(Integer.toHexString(style.primaryColor).uppercase(Locale.ROOT))}")
+            append("&background-color=${convertHexColorArgbToRgba(Integer.toHexString(style.backgroundColor).uppercase(Locale.ROOT))}")
+            append("&text-color=${convertHexColorArgbToRgba(Integer.toHexString(style.textColor).uppercase(Locale.ROOT))}")
+            append("&icons-color=${convertHexColorArgbToRgba(Integer.toHexString(style.iconsColor).uppercase(Locale.ROOT))}")
         }
     }
 
     /**
      * Start the process to get the terms and privacy policy in a web view.
-     * @param animateShowTermsView Determines if when the terms view is shown it will be done with an animation,
+     * @param animateShowTermsView Determines if when the terms view is shown it will be done with animation,
      *        this view is only shown if the data was obtained correctly from the server.
      * */
     private fun loadTermsAndPolicy(animateShowTermsView: Boolean = true) {
 
         // If are already loading, it is not necessary to do it again
-        if (loadingTermsAndPolicyInProgress) {
-            AboutApp.log("loadTermsAndPolicy() is already in progress")
+        if (loadingTermsAndPolicy) {
+            logv("loadTermsAndPolicy() is already in progress", AboutApp.LOG_TAG)
             return
         }
 
-        AboutApp.log("loadTermsAndPolicy() Invoked")
+        logv("Invoked > loadTermsAndPolicy()", AboutApp.LOG_TAG)
 
-        loadingTermsAndPolicyInProgress = true
-        binding.progressBar.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
+        loadingTermsAndPolicy = true
+        binding.pbLoadingTermsAndPolicy.visibility = View.VISIBLE // The progress bar is displayed, as it may take time
+        binding.btnHelp.isClickable = false
 
         var pageLoadSuccessful = true // Helper to know if the page was loaded successfully, it only changes to false if some error occurs
 
-        // Get te background color and the text color to send the data to the server and obtain the view adapted to the theme (the substring removes the alpha since it is not required)
-        val backgroundColor = Integer.toHexString(binding.contentCard.cardBackgroundColor.defaultColor).substring(2).toUpperCase(Locale.ROOT)
-        val textColor = Integer.toHexString(aboutAppConfig.termsAndPrivacyPolicyTextColor!!).substring(2).toUpperCase(Locale.ROOT)
+        // Configure the web view
+        @SuppressLint("SetJavaScriptEnabled")
+        binding.webViewTermsAndPolicy.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
+        binding.webViewTermsAndPolicy.settings.domStorageEnabled = true // For best compatibility
 
+        // The URL is loaded, passing the background color and text color parameters
+        aboutAppConfig.termsAndPrivacyPolicyUrl.whenNotNull {
+            val url = "${typeAsString(it)}?${convertStyleToUrlQueryParams()}&lang=${Locale.getDefault().language}"
+            logv("Terms and Privacy Policy URL = $url", AboutApp.LOG_TAG)
+            binding.webViewTermsAndPolicy.loadUrl(url)
+        }
 
         // Generate WebViewClient for listening events
-        binding.termsAndPolicyWebView.webViewClient = object : WebViewClient() {
+        binding.webViewTermsAndPolicy.webViewClient = object : WebViewClient() {
 
             // When the page load finished (regardless of whether the result was successful or not)
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                AboutApp.log("WebViewClient onPageFinished() invoked")
+                logv("WebViewClient onPageFinished() Invoked", AboutApp.LOG_TAG)
 
                 view?.scrollTo(0, 0) // Go to view's top
 
                 // Wait a moment to avoid repeated actions
                 Handler(Looper.getMainLooper()).postDelayed({
-                    loadingTermsAndPolicyInProgress = false
+                    loadingTermsAndPolicy = false
                 }, 500)
 
-                binding.progressBar.visibility = View.GONE
+                binding.pbLoadingTermsAndPolicy.visibility = View.GONE
                 if (pageLoadSuccessful) showTermsAndPolicy(animateShowTermsView) // They are only shown if the page loaded correctly
 
-                binding.termsAndPolicy.isClickable = true // It is enabled again
+                binding.btnTermsAndPolicy.isClickable = true // It is enabled again
+                binding.btnHelp.isClickable = true
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_network_error)
-                AboutApp.log("WebViewClient onReceivedError() invoked")
+                logv("WebViewClient onReceivedError() Invoked", AboutApp.LOG_TAG)
                 super.onReceivedError(view, request, error)
             }
 
             override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
                 pageLoadSuccessful = false
                 if (activityIsRunning) shortToast(R.string.about_app_terms_and_policy_not_available)
-                AboutApp.log("WebViewClient onReceivedHttpError() invoked")
+                logv("WebViewClient onReceivedHttpError() Invoked", AboutApp.LOG_TAG)
                 super.onReceivedHttpError(view, request, errorResponse)
             }
         }
 
-        @SuppressLint("SetJavaScriptEnabled")
-        binding.termsAndPolicyWebView.settings.javaScriptEnabled = true // Javascript is enabled as it is necessary for the page style to be configured with the URL parameters
-        binding.termsAndPolicyWebView.settings.domStorageEnabled = true // For best compatibility
-        // The URL is loaded, passing the background color and text color parameters
-        aboutAppConfig.termsAndPrivacyPolicyLink.whenNotNull {
-            val url = "${typeAsString(it)}?background-color=$backgroundColor&text-color=$textColor&lang=${Locale.getDefault().language}"
-            AboutApp.log("Terms and Privacy Policy URL = $url")
-            binding.termsAndPolicyWebView.loadUrl(url)
-        }
     }
 
-    /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with an animation or not. */
+    /** Show the terms and privacy policy, call only if they were loaded correctly, [animate] determines if they are shown with animation or not. */
     private fun showTermsAndPolicy(animate: Boolean = true) {
 
-        AboutApp.log("showTermsAndPolicy() Invoked")
+        logv("Invoked > showTermsAndPolicy()", AboutApp.LOG_TAG)
         termsAndPolicyVisible = true
         super.activityOpacity = 0.95f
 
         if (animate) {
 
             // Set back button visibility and animation
-            binding.topActionCard.visibility = View.VISIBLE
+            binding.cardTopAction.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                binding.topActionCard.animate().translationX(0f).onAnimationEnd { }
+                binding.cardTopAction.animate().translationX(0f)
             } else {
-                binding.topActionCard.animate().translationY(0f).onAnimationEnd { }
+                binding.cardTopAction.animate().translationY(0f)
             }
 
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
-
-            // Sent at the end of the view to show an animation
-            binding.termsAndPolicyWebView.translationX = binding.contentCard.width.toFloat()
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
+            // Adjust translation and visibility to show the animation correctly
+            binding.webViewTermsAndPolicy.translationX = binding.cardContent.width.toFloat()
+            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
             // The web view is shown and the card container is hidden by means of an animation
-            binding.contentCardLayout.animate().translationX(-binding.contentCard.width.toFloat()).start()
-            binding.termsAndPolicyWebView.animate().translationX(0f).start()
+            binding.layoutContent.animate().translationX(-binding.cardContent.width.toFloat()).start()
+            binding.webViewTermsAndPolicy.animate().translationX(0f).start()
+
+            // It's only registered here as it's when the section is displayed upon user's request
+            AboutApp.logAnalyticsEvent(Event.ABOUT_APP_TERMS_POLICY_SHOWN)
 
         } else {
 
-            // Set back button visibility and animation
-            binding.topActionCard.visibility = View.VISIBLE
+            // Set back button visibility and translation
+            binding.cardTopAction.visibility = View.VISIBLE
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                binding.topActionCard.translationX = 0f
+                binding.cardTopAction.translationX = 0f
             } else {
-                binding.topActionCard.translationY = 0f
+                binding.cardTopAction.translationY = 0f
             }
 
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
-
-            // Sent to end of view for animation when exiting view
-            binding.termsAndPolicyWebView.translationX = binding.contentCard.width.toFloat()
-            binding.termsAndPolicyWebView.visibility = View.VISIBLE
-
             // The web view is shown and the card container is hidden
-            binding.contentCardLayout.translationX = -binding.contentCard.width.toFloat()
-            binding.termsAndPolicyWebView.translationX = 0f
+            binding.layoutContent.translationX = -binding.cardContent.width.toFloat()
+            binding.webViewTermsAndPolicy.translationX = 0f
+            binding.webViewTermsAndPolicy.visibility = View.VISIBLE
 
         }
-
-        AboutApp.firebaseAnalytics(Event.ABOUT_APP_TERMS_POLICY_SHOWN)
 
     }
 
     /** Hide view of terms and privacy policy. */
     private fun hideTermsAndPolicy() {
-        AboutApp.log("hideTermsAndPolicy() Invoked")
+
+        logv("Invoked > hideTermsAndPolicy()", AboutApp.LOG_TAG)
         termsAndPolicyVisible = false
         super.activityOpacity = 0.9f
 
         // Set back button visibility and animation
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            binding.topActionCard.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { binding.topActionCard.visibility = View.GONE }
+            binding.cardTopAction.animate().translationX(dp2px(48).toFloat()).onAnimationEnd { binding.cardTopAction.visibility = View.GONE }
         } else {
-            binding.topActionCard.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { binding.topActionCard.visibility = View.GONE }
+            binding.cardTopAction.animate().translationY(dp2px(48).toFloat()).onAnimationEnd { binding.cardTopAction.visibility = View.GONE }
         }
 
-        // The card container is shown and the web view is hidden by means of an animation
-        binding.contentCardLayout.animate().translationX(0f).start()
-        binding.termsAndPolicyWebView.animate().translationX(binding.contentCard.width.toFloat()).start()
+        // The main container is shown and the web view is hidden by means of an animation
+        binding.layoutContent.animate().translationX(0f).start()
+        binding.webViewTermsAndPolicy.animate().translationX(binding.cardContent.width.toFloat()).start()
+
+    }
+
+    /** Show the help section, [animate] determines if they are shown with animation or not. */
+    private fun showHelpSection(animate: Boolean = true) {
+
+        logv("Invoked > showHelpSection()", AboutApp.LOG_TAG)
+        helpSectionVisible = true
+
+        if (animate) {
+
+            // The views are showed and hidden from the visible area in order to showcase the animation
+            binding.layoutHelp.translationY = binding.cardContent.height.toFloat()
+            binding.layoutHelp.visibility = View.VISIBLE
+            binding.helpDimBackground.translationY = -binding.cardContent.height.toFloat()
+            binding.helpDimBackground.visibility = View.VISIBLE
+
+            // Start the animation
+            binding.layoutHelp.animate().translationY(0f).start()
+            binding.helpDimBackground.animate().translationY(0f).start()
+
+        } else {
+
+            binding.layoutHelp.translationY = 0f
+            binding.layoutHelp.visibility = View.VISIBLE
+            binding.helpDimBackground.translationY = 0f
+            binding.helpDimBackground.visibility = View.VISIBLE
+
+        }
+
+    }
+
+    /** Hide help section. */
+    private fun hideHelpSection() {
+
+        logv("Invoked > hideHelpSection()", AboutApp.LOG_TAG)
+        helpSectionVisible = false
+
+        binding.layoutHelp.animate().translationY(binding.cardContent.height.toFloat()).onAnimationEnd {
+            binding.layoutHelp.visibility = View.GONE
+        }
+        binding.helpDimBackground.animate().translationY(-binding.cardContent.height.toFloat()).onAnimationEnd {
+            binding.helpDimBackground.visibility = View.GONE
+        }
+
     }
 
 }

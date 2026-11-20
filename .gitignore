@@ -53,6 +53,9 @@ captures/
 .idea/modules.xml
 # Comment next line if keeping position of elements in Navigation Editor is relevant for you
 .idea/navEditor.xml
+.idea/deploymentTargetSelector.xml
+.idea/markdown.xml
+.idea/migrations.xml
 
 # Keystore files
 # Uncomment the following lines if you do not want to check your keystore files in.
@@ -108,6 +111,7 @@ output.json
 
 # Gradle files
 .gradle
+gradle/gradle-daemon-jvm.properties
 
 # Signing files
 .signing/
@@ -155,6 +159,7 @@ obj/
 .idea/copyright/profiles_settings.xml
 .idea/encodings.xml
 .idea/misc.xml
+.idea/deploymentTargetDropDown.xml
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
@@ -210,5 +215,9 @@ fabric.properties
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+
+# Documentation #
+
+/docs/api-reference/android-utils-api-reference/
 
 # End of https://www.toptal.com/developers/gitignore/api/android,androidstudio

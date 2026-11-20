@@ -29,7 +29,7 @@ data class Padding(var top: Float, var right: Float, var bottom: Float, var left
     /**
      * Interprets that the current values are expressed in density-independent pixels (dp) and converts them
      * to pixels (px) according to the device screen density.
-     * @param context Context.
+     * @param context Context from which the function is called.
      * @return This instance with the values already converted.
      * */
     fun asDpToPx(context: Context): Padding {

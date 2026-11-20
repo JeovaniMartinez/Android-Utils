@@ -2,35 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootLayout"
+    android:id="@+id/layoutRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".about.AboutActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contentLayout"
+        android:id="@+id/layoutMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/topActionCard"
+            android:id="@+id/cardTopAction"
+            style="?attr/materialCardViewElevatedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            app:layout_constraintEnd_toStartOf="@id/contentCard"
-            app:layout_constraintTop_toTopOf="@id/contentCard">
+            app:layout_constraintEnd_toStartOf="@id/cardContent"
+            app:layout_constraintTop_toTopOf="@id/cardContent">
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/closeTermsBtn"
+                android:id="@+id/btnCloseTerms"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="?attr/actionBarItemBackground"
-                app:srcCompat="@drawable/ic_back" />
+                app:srcCompat="@drawable/about_app_ic_back"
+                tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/contentCard"
+            android:id="@+id/cardContent"
+            style="?attr/materialCardViewElevatedStyle"
             android:layout_width="430dp"
             android:layout_height="240dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,91 +42,98 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/contentCardLayout"
+                android:id="@+id/layoutContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp">
+                android:layout_height="match_parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/appIcon"
-                    android:layout_width="197dp"
+                    android:id="@+id/ivAppLogo"
+                    android:layout_width="196dp"
                     android:layout_height="75dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="23dp"
-                    app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
+                    app:layout_constraintEnd_toEndOf="@+id/guidelineDivider"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/library_logo" />
+                    app:srcCompat="@drawable/android_utils_logo" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/appName"
+                    android:id="@+id/tvAppName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:text="@string/about_app_app_name"
+                    android:maxLines="1"
+                    android:text="@string/about_app_default_app_name"
                     android:textSize="18dp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
+                    app:layout_constraintEnd_toEndOf="@+id/guidelineDivider"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/appIcon"
-                    tools:ignore="SpUsage" />
+                    app:layout_constraintTop_toBottomOf="@id/ivAppLogo"
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/appVersion"
+                    android:id="@+id/tvAppVersion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
+                    android:maxLines="1"
                     android:text="@string/about_app_version"
                     android:textSize="14dp"
-                    app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
+                    app:layout_constraintEnd_toEndOf="@+id/guidelineDivider"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/appName"
-                    tools:ignore="SpUsage" />
+                    app:layout_constraintTop_toBottomOf="@id/tvAppName"
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <View
-                    android:id="@+id/topSeparator"
+                    android:id="@+id/separator1"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
                     android:layout_marginTop="10dp"
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appVersion" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvAppVersion" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/authorTitle"
+                    android:id="@+id/tvCreditsLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/about_app_author_title"
+                    android:maxLines="1"
+                    android:text="@string/about_app_credits_label"
                     android:textSize="13dp"
-                    app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
+                    app:layout_constraintEnd_toEndOf="@+id/guidelineDivider"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/topSeparator"
-                    tools:ignore="SpUsage" />
+                    app:layout_constraintTop_toBottomOf="@id/separator1"
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/authorName"
+                    android:id="@+id/tvCredits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
-                    android:text="@string/about_app_author_name"
+                    android:maxLines="1"
+                    android:text="@string/about_app_default_credits_text"
                     android:textSize="15dp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/verticalGuideline"
+                    app:layout_constraintEnd_toEndOf="@+id/guidelineDivider"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/authorTitle"
-                    tools:ignore="SpUsage" />
+                    app:layout_constraintTop_toBottomOf="@id/tvCreditsLabel"
+                    tools:ignore="SpUsage,TextSizeCheck" />
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/verticalGuideline"
+                    android:id="@+id/guidelineDivider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.5" />
 
                 <View
-                    android:id="@+id/middleSeparator"
+                    android:id="@+id/separator2"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
                     android:layout_marginTop="8dp"
@@ -131,93 +141,114 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/authorName" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCredits" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/companyLogo"
-                    android:layout_width="130dp"
+                    android:id="@+id/ivAuthorLogo"
+                    android:layout_width="196dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="25dp"
+                    android:layout_marginEnd="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/verticalGuideline"
+                    app:layout_constraintStart_toStartOf="@id/guidelineDivider"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/logo_jedemm_com" />
+                    app:srcCompat="@drawable/android_utils_text_logo"
+                    tools:ignore="ImageContrastCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/copyright"
+                    android:id="@+id/tvCopyright"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:layout_marginEnd="15dp"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/about_app_copyright"
                     android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/verticalGuideline"
-                    app:layout_constraintTop_toBottomOf="@id/companyLogo"
-                    tools:ignore="SmallSp,SpUsage" />
+                    app:layout_constraintStart_toStartOf="@id/guidelineDivider"
+                    app:layout_constraintTop_toBottomOf="@id/ivAuthorLogo"
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/rightsReserved"
+                    android:id="@+id/tvRightsReserved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/about_app_all_rights_reserved"
                     android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/verticalGuideline"
-                    app:layout_constraintTop_toBottomOf="@id/copyright"
-                    tools:ignore="SmallSp,SpUsage" />
+                    app:layout_constraintStart_toStartOf="@id/guidelineDivider"
+                    app:layout_constraintTop_toBottomOf="@id/tvCopyright"
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck" />
 
                 <View
-                    android:id="@+id/bottomSeparator"
+                    android:id="@+id/separator3"
                     android:layout_width="200dp"
                     android:layout_height="3dp"
                     android:layout_marginTop="8dp"
                     android:background="?android:attr/listDivider"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/verticalGuideline"
-                    app:layout_constraintTop_toBottomOf="@+id/rightsReserved" />
+                    app:layout_constraintStart_toStartOf="@id/guidelineDivider"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRightsReserved"
+                    tools:ignore="VisualLintBounds" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/termsAndPolicy"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTermsAndPolicy"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10.5dp"
+                    android:layout_height="42dp"
                     android:gravity="center"
                     android:text="@string/about_app_terms_and_policy"
                     android:textSize="9dp"
-                    app:layout_constraintStart_toStartOf="@id/verticalGuideline"
-                    app:layout_constraintTop_toBottomOf="@id/bottomSeparator"
-                    tools:ignore="SmallSp,SpUsage" />
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@id/guidelineDivider"
+                    app:layout_constraintTop_toBottomOf="@id/separator3"
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck,TouchTargetSizeCheck" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/closeBtn"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="?attr/actionBarItemBackground"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/topSeparator"
-                    app:srcCompat="@drawable/ic_check_circle_outline" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/openSourceLicenses"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOpenSourceLicenses"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10.5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="15dp"
                     android:gravity="center"
                     android:text="@string/about_app_open_source_licenses"
                     android:textSize="9dp"
+                    android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bottomSeparator"
-                    tools:ignore="SmallSp,SpUsage" />
+                    app:layout_constraintTop_toBottomOf="@id/separator3"
+                    tools:ignore="SmallSp,SpUsage,TextSizeCheck,TextContrastCheck,TouchTargetSizeCheck" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnHelp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="?attr/actionBarItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnClose"
+                    app:layout_constraintTop_toBottomOf="@id/separator1"
+                    app:srcCompat="@drawable/about_app_ic_help"
+                    tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnClose"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="?attr/actionBarItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/separator1"
+                    app:srcCompat="@drawable/about_app_ic_check"
+                    tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <WebView
-                android:id="@+id/termsAndPolicyWebView"
+                android:id="@+id/webViewTermsAndPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"
@@ -227,13 +258,121 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/pbLoadingTermsAndPolicy"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="-7dp"
-                android:indeterminate="true" />
+                android:indeterminate="true"
+                tools:ignore="VisualLintBounds" />
+
+            <View
+                android:id="@+id/helpDimBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80000000"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layoutHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#FFFFFFFF"
+                android:orientation="vertical"
+                android:paddingBottom="4dp"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnCloseHelp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:background="?attr/actionBarItemBackground"
+                    app:srcCompat="@drawable/about_app_ic_close"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnHelpCenter"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/about_app_help_center"
+                        android:textSize="13dp"
+                        android:textStyle="normal"
+                        app:icon="@drawable/about_app_ic_help_center"
+                        app:iconGravity="textStart"
+                        tools:ignore="SpUsage,TextSizeCheck" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCrashReport"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/about_app_crash_report"
+                        android:textSize="13dp"
+                        android:textStyle="normal"
+                        app:icon="@drawable/about_app_ic_crash"
+                        app:iconGravity="textStart"
+                        tools:ignore="SpUsage,TextSizeCheck" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnContact"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/about_app_contact_us"
+                        android:textSize="13dp"
+                        android:textStyle="normal"
+                        app:icon="@drawable/about_app_ic_contact"
+                        app:iconGravity="textStart"
+                        tools:ignore="SpUsage,TextSizeCheck" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFeedback"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:text="@string/about_app_send_feedback"
+                        android:textSize="13dp"
+                        android:textStyle="normal"
+                        app:icon="@drawable/about_app_ic_feedback"
+                        app:iconGravity="textStart"
+                        tools:ignore="SpUsage,TextSizeCheck" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </com.google.android.material.card.MaterialCardView>
 

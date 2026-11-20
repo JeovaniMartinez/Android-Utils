@@ -30,7 +30,7 @@ data class CornerRadius(
 
     /**
      * Corner radius configuration.
-     * @param radius Radius for all corners, in the pair values, first is for x-axis and second is for y-axis.
+     * @param radius Radius for all corners, in the pair values, first is for the x-axis and second is for the y-axis.
      * */
     constructor(radius: Pair<Float, Float>)
             : this(radius.first, radius.second, radius.first, radius.second, radius.first, radius.second, radius.first, radius.second)
@@ -44,6 +44,21 @@ data class CornerRadius(
      * */
     constructor(topLeft: Float, topRight: Float, bottomRight: Float, bottomLeft: Float)
             : this(topLeft, topLeft, topRight, topRight, bottomRight, bottomRight, bottomLeft, bottomLeft)
+
+    /**
+     * On the class initialization validates that the corner radius values are not negative.
+     * If any value is negative, an IllegalArgumentException is thrown.
+     * */
+    init {
+        require(
+            topLeftX >= 0 && topLeftY >= 0 &&
+                    topRightX >= 0 && topRightY >= 0 &&
+                    bottomRightX >= 0 && bottomRightY >= 0 &&
+                    bottomLeftX >= 0 && bottomLeftY >= 0
+        ) {
+            "Corner radius values cannot be negative"
+        }
+    }
 
     /**
      * Converts the corner radius values to radii (array of 8 values, 4 pairs of (X,Y))
@@ -61,7 +76,7 @@ data class CornerRadius(
     /**
      * Interprets that the current values are expressed in density-independent pixels (dp) and converts them
      * to pixels (px) according to the device screen density.
-     * @param context Context.
+     * @param context Context from which the function is called.
      * @return This instance with the values already converted.
      * */
     fun asDpToPx(context: Context): CornerRadius {

@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Colors of the app theme -->
-    <color name="colorPrimary">#4DB6AC</color>
-    <color name="colorAccent">#4DB6AC</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorPrimaryVariant">#80CBC4</color>
-    <color name="colorOnPrimary">#121212</color>
-    <color name="colorSecondary">#2196F3</color>
-    <color name="colorSecondaryVariant">#1976D2</color>
-    <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorBackground">#212121</color>
-    <color name="colorOnBackground">#FFFFFF</color>
-    <color name="colorSurface">#212121</color>
-    <color name="colorOnSurface">#FFFFFF</color>
-    <color name="colorError">#CF6679</color>
-    <color name="colorOnError">#000000</color>
+    <!-- App theme colors https://material-foundation.github.io/material-theme-builder/#/custom -->
+    <color name="md_theme_primary">#00897B</color>
+    <color name="md_theme_onPrimary">#DCDCDC</color>
+    <color name="md_theme_primaryContainer">#004F56</color>
+    <color name="md_theme_onPrimaryContainer">#8FF2FF</color>
+    <color name="md_theme_secondary">#73D1FF</color>
+    <color name="md_theme_onSecondary">#003548</color>
+    <color name="md_theme_secondaryContainer">#004D67</color>
+    <color name="md_theme_onSecondaryContainer">#C1E8FF</color>
+    <color name="md_theme_tertiary">#B9C6EA</color>
+    <color name="md_theme_onTertiary">#23304D</color>
+    <color name="md_theme_tertiaryContainer">#3A4664</color>
+    <color name="md_theme_onTertiaryContainer">#D9E2FF</color>
+    <color name="md_theme_error">#FFB4AB</color>
+    <color name="md_theme_errorContainer">#93000A</color>
+    <color name="md_theme_onError">#690005</color>
+    <color name="md_theme_onErrorContainer">#FFDAD6</color>
+    <color name="md_theme_background">#1B1B1D</color>
+    <color name="md_theme_onBackground">#E0E3E3</color>
+    <color name="md_theme_surface">#191C1D</color>
+    <color name="md_theme_onSurface">#E0E3E3</color>
+    <color name="md_theme_surfaceVariant">#3F484A</color>
+    <color name="md_theme_onSurfaceVariant">#BEC8CA</color>
+    <color name="md_theme_outline">#899294</color>
+    <color name="md_theme_inverseOnSurface">#191C1D</color>
+    <color name="md_theme_inverseSurface">#E0E3E3</color>
+    <color name="md_theme_inversePrimary">#006972</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_surfaceTint">#4ED8E9</color>
+    <color name="md_theme_surfaceTintColor">#4ED8E9</color>
 
-    <!-- App colors -->
-    <color name="colorSeparator">#DFDFDF</color>
+    <!-- Status bar and navigation bar colors -->
+    <color name="app_status_bar">#212121</color>
+    <color name="app_navigation_bar">#212121</color>
+
+    <!-- General app colors -->
+    <color name="ic_launcher_background">#E4E4E4</color>
+    <color name="logo_text_color">#BDBDBD</color>
+    <color name="separator_1">#DFDFDF</color>
+    <color name="icons_1">#BDBDBD</color>
+    <color name="border_1">#BDBDBD</color>
+    <color name="watermark_shape_1">#93000A</color>
+    <color name="watermark_default_text_color">#D5D5D5</color>
+    <color name="watermark_default_text_shadow_color">#93000A</color>
+    <color name="view_to_image_default_background_color">#0F0F10</color>
+    <color name="view_to_image_layout_base_bg_1">#200300</color>
+    <color name="view_to_image_layout_base_bg_2_c_1">#094FC3</color>
+    <color name="view_to_image_layout_base_bg_2_c_2">#EAE209</color>
 
 </resources>

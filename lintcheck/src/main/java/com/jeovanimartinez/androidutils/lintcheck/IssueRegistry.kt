@@ -1,6 +1,7 @@
 package com.jeovanimartinez.androidutils.lintcheck
 
 import com.android.tools.lint.client.api.IssueRegistry
+import com.android.tools.lint.client.api.Vendor
 import com.android.tools.lint.detector.api.CURRENT_API
 import com.jeovanimartinez.androidutils.lintcheck.annotations.TypeOrResource
 
@@ -15,4 +16,10 @@ class IssueRegistry : IssueRegistry() {
 
     override val api: Int
         get() = CURRENT_API
+
+    override val vendor: Vendor = Vendor(
+        vendorName = "Android Utils Library",
+        feedbackUrl = "https://github.com/JeovaniMartinez/Android-Utils/issues",
+        contact = "https://github.com/JeovaniMartinez/Android-Utils"
+    )
 }

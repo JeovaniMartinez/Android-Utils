@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jeovanimartinez.androidutils">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application>
+
+        <!-- AboutActivity for AboutApp Utility -->
         <activity
             android:name=".about.AboutActivity"
-            android:theme="@style/AndroidUtilsTheme.Translucent" />
+            android:theme="@style/AndroidUtilsTheme.AboutApp" />
+
+        <!-- Apply a custom theme to the open source licenses activities -->
         <activity
-            android:name=".reviews.RateAppActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/AndroidUtilsTheme.Translucent" />
+            android:name="com.google.android.gms.oss.licenses.v2.OssLicensesMenuActivity"
+            android:theme="@style/AndroidUtilsTheme.OssLicenses"
+            tools:replace="android:theme" />
+
+        <!-- Receiver for ShareUtils -->
+        <receiver android:name=".share.ApplicationSelectorReceiver" />
+
     </application>
+
+    <queries>
+
+        <!-- Common intents and queries reference: https://developer.android.com/guide/components/intents-common -->
+
+        <!-- Element to query for activities that handle ACTION_SENDTO intent for the EmailUtils -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="mailto" />
+        </intent>
+
+    </queries>
 
 </manifest>

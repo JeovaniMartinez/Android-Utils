@@ -1,20 +1,83 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/colorOnPrimary</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
-        <item name="colorOnSecondary">@color/colorOnSecondary</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="colorOnBackground">@color/colorOnBackground</item>
-        <item name="colorSurface">@color/colorSurface</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
-        <item name="colorError">@color/colorError</item>
-        <item name="colorOnError">@color/colorOnError</item>
+    <style name="SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/md_theme_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_screen_logo</item>
+        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="31">@drawable/logo_text</item>
+
+        <item name="postSplashScreenTheme">@style/AppTheme</item>
+
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/app_status_bar</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:navigationBarColor">@color/app_navigation_bar</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
+        <!-- Reference: https://developer.android.com/guide/topics/ui/splash-screen -->
+        <!-- Reference: https://developer.android.com/reference/kotlin/androidx/core/splashscreen/SplashScreen -->
+        <!-- Reference: https://itnext.io/a-comprehensive-guide-to-android-12s-splash-screen-api-644609c811fa -->
+    </style>
+
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_error</item>
+        <item name="colorErrorContainer">@color/md_theme_errorContainer</item>
+        <item name="colorOnError">@color/md_theme_onError</item>
+        <item name="colorOnErrorContainer">@color/md_theme_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_background</item>
+        <item name="colorOnBackground">@color/md_theme_onBackground</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_outline</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/md_theme_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_inversePrimary</item>
+
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/app_status_bar</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:navigationBarColor">@color/app_navigation_bar</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
+        <!-- Style for the dialogs -->
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
+    </style>
+
+    <style name="MaterialAlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/DialogTitleTextStyle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/DialogBodyTextStyle</item>
+        <item name="alertDialogStyle">@style/DialogStyle</item>
+    </style>
+
+    <style name="DialogTitleTextStyle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textSize">@dimen/dialog_title_text_size</item>
+    </style>
+
+    <style name="DialogBodyTextStyle" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textSize">@dimen/dialog_body_text_size</item>
+    </style>
+
+    <style name="DialogStyle" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/DialogShapeAppearance</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="DialogShapeAppearance" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
     <!-- Android Utils library theme, used to preserve the app style. -->

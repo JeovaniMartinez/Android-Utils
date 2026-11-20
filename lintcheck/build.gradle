@@ -1,9 +1,10 @@
-// Lintcheck
+// Lint Check [ Gradle Script ]
 
 plugins {
-    id 'java-library'
-    id 'kotlin'
-    id 'com.android.lint'
+    id "java-library"
+    id "kotlin"
+    id "com.android.lint"
+    id "maven-publish"
 }
 
 lintOptions {
@@ -15,12 +16,11 @@ lintOptions {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
-    //noinspection DifferentStdlibGradleVersion
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compileOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compileOnly "com.android.tools.lint:lint-api:$lintVersion"

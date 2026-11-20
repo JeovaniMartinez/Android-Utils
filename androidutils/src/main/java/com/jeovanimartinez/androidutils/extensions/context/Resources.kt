@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.jeovanimartinez.androidutils.extensions.context
 
 import android.content.Context
@@ -28,6 +26,6 @@ fun Context.getDrawableCompat(@DrawableRes id: Int): Drawable? {
 }
 
 /** Get a font from the resources based on their ID using ResourcesCompat.getFont() */
-fun Context.getFontCompat(@FontRes id: Int) : Typeface? {
+fun Context.getFontCompat(@FontRes id: Int): Typeface? {
     return ResourcesCompat.getFont(this, id)
 }

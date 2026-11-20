@@ -1,90 +1,154 @@
-// Android Utils
+// Android Utils Library [ Gradle Script ]
+
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'org.jetbrains.dokka'
+    id "com.android.library"
+    id "kotlin-android"
+    id "org.jetbrains.dokka"
+    id "maven-publish"
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+
+    compileSdk = 37
 
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 30
+
+        minSdkVersion 24 // Android 7
+
+        targetSdkVersion 37
+
         versionCode androidUtilsVersionCode
         versionName androidUtilsVersionName
 
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
-    }
 
+        consumerProguardFiles "androidutils-lib-consumer-rules.pro" // These rules are embedded in the generated AAR and provided to the app that implements the library
+    }
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled false // Keep always in false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro" // Don't add rules here, use consumerProguardFiles
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_11
+        }
     }
-
-    buildFeatures {
-        viewBinding true
+    publishing {
+        singleVariant("release") {}
+    }
+    namespace "com.jeovanimartinez.androidutils"
+    lint {
+        targetSdk 37
+    }
+    testOptions {
+        targetSdk 37
     }
 }
 
 dependencies {
 
     // Allows access to new APIs on older API versions of the platform
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.appcompat:appcompat:1.8.0"
 
     // Set of Kotlin extensions for Android Jetpack and other Android libraries
-    implementation 'androidx.core:core-ktx:1.3.2'
-
-    // Material Components for Android
-    implementation 'com.google.android.material:material:1.3.0' // Required for design the layouts
+    implementation "androidx.core:core-ktx:1.19.1"
 
     // Constraint Layout (position and size widgets in a flexible way with relative positioning)
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4' // Required for design the layouts
+    implementation "androidx.constraintlayout:constraintlayout:2.2.2" // Required for design the layouts
+
+    // Material Components for Android
+    implementation "com.google.android.material:material:1.14.0" // Required for designing the layouts
 
     // Runtime interface to interact with the Google Play Store
-    implementation 'com.google.android.play:core-ktx:1.8.1' // Required for use Google Play In-App review API
+    implementation "com.google.android.play:review-ktx:2.0.2" // Required for using Google Play In-App review API
 
-    // Set of tools to express the open source software notices of libraries used in their apps
-    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0' // Required to display open source licenses in AboutApp
+    // Set of tools to express the open source software notices of libraries used in the apps
+    implementation "com.google.android.gms:play-services-oss-licenses:17.5.3" // Required to display open source licenses in AboutApp
 
-    // Google Play's billing system to enables to sell digital products and content in the apps
-    implementation 'com.android.billingclient:billing-ktx:3.0.3' // Required for the premium utilities
+    // Google Play's billing system, enables to sell digital products and content in the apps
+    implementation "com.android.billingclient:billing-ktx:9.1.0" // Required for the premium utilities
 
-    // Libraries required only for references. If they are used in the destination app, it must declare the dependencies
-    compileOnly 'com.google.firebase:firebase-analytics:18.0.2' // Used to reference Firebase Analytics
-    compileOnly 'com.google.firebase:firebase-crashlytics:17.4.1' // Used to reference Firebase Crashlytics
-
-    // Utilities for testing
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    /*
+    * Libraries are required only for references.
+    * "Implementation" is used instead of "compileOnly" because if the app implementing the library doesn't use any of these dependencies
+    * and the app's release is generated with "minifyEnabled true," an error occurs. However, with "minifyEnabled true," the dependencies
+    * not being used will be removed anyway.
+    * */
+    implementation "com.google.firebase:firebase-analytics:24.0.0" // Used to reference Firebase Analytics
+    implementation "com.google.firebase:firebase-crashlytics:21.0.1" // Used to reference Firebase Crashlytics
 
     // Lint check
-    lintPublish project(':lintcheck') // The library includes the lintcheck module for verifications
+    lintPublish project(":lintcheck") // The library includes the lint check module for verifications
 
 }
 
 // Documentation
 dokkaHtml.configure {
+    doFirst {
+        // Current documentation is deleted before generating the new one
+        delete rootProject.projectDir.toString() + "/docs/api-reference/android-utils-api-reference"
+        println "Deleted android-utils-api-reference directory"
+    }
     dokkaSourceSets {
         named("main") {
-            outputDirectory.set(file("../docs"))
+            moduleName.set("Android Utils")
+            outputDirectory.set(file("../docs/api-reference/android-utils-api-reference"))
             noAndroidSdkLink.set(true)
             skipDeprecated.set(false)
+        }
+    }
+    pluginsMapConfiguration.set(
+        [
+            "org.jetbrains.dokka.base.DokkaBase": """{
+                "footerMessage": "Copyright © 2020 - Present by Jeovani Martinez"
+            }"""
+        ]
+    )
+    doLast {
+        // The library logo is copied to the documentation
+        copy {
+            from(rootProject.projectDir.toString() + "/resources/docs-images/dokka/logo-icon.svg")
+            into(rootProject.projectDir.toString() + "/docs/api-reference/android-utils-api-reference/images")
+        }
+        println "Adjusted documentation logo"
+    }
+    // Documentation example: https://www.raywenderlich.com/30067669-documenting-kotlin-code-for-android-using-kdoc-and-dokka
+}
+
+// Publishing
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = "com.jeovanimartinez.androidutils"
+                artifactId = "androidutils"
+                version = androidUtilsVersionName
+                pom {
+                    name = "Android Utils"
+                    description = "Set of utilities for Android app development."
+                    url = "https://jeovanimartinez.github.io/Android-Utils/"
+                    licenses {
+                        license {
+                            name = "Apache License 2.0"
+                            url = "https://www.apache.org/licenses/LICENSE-2.0"
+                        }
+                    }
+                }
+            }
         }
     }
 }

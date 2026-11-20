@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package com.jeovanimartinez.androidutils.extensions.graphics
 
 import android.graphics.Bitmap
@@ -26,7 +24,7 @@ fun Bitmap.rotate(degrees: Float): Bitmap {
 
 // Reference: https://stackoverflow.com/a/49281542
 /**
- * Trims the borders of a bitmap of a specific color.
+ * Trims the bitmap by removing the border of a specified color around the edges.
  * @param color Color of the borders to be trimmed.
  * @param trimMargin Optional margin in pixels to keep between the edges of the content and the bitmap borders.
  * @return A new bitmap with the borders trimmed.
@@ -41,6 +39,7 @@ fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT, trimMargi
     var colored = IntArray(width) { color }
     var buffer = IntArray(width)
 
+    @Suppress("KotlinConstantConditions")
     for (y in bottom until top) {
         getPixels(buffer, 0, width, 0, y, width, 1)
         if (!colored.contentEquals(buffer)) {
@@ -61,6 +60,7 @@ fun Bitmap.trimByBorderColor(@ColorInt color: Int = Color.TRANSPARENT, trimMargi
     colored = IntArray(heightRemaining) { color }
     buffer = IntArray(heightRemaining)
 
+    @Suppress("KotlinConstantConditions")
     for (x in left until right) {
         getPixels(buffer, 0, 1, x, bottom, 1, heightRemaining)
         if (!colored.contentEquals(buffer)) {

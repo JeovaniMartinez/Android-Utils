@@ -1,57 +1,81 @@
-// App
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+// Library Test App [ Gradle Script ]
 
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'com.google.android.gms.oss-licenses-plugin'
+    id "com.android.application"
+    id "kotlin-android"
+    id "com.google.android.gms.oss-licenses-plugin"
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+
+    compileSdk = 37
 
     defaultConfig {
         applicationId "com.jeovanimartinez.androidutils.app"
-        minSdkVersion 17
-        targetSdkVersion 30
+
+        minSdkVersion 24 // Android 7
+
+        targetSdkVersion 37
+
         versionCode androidUtilsVersionCode
         versionName androidUtilsVersionName
 
         vectorDrawables.useSupportLibrary = true
+        // Multidex is enabled by default for API 21 or higher (https://developer.android.com/studio/build/multidex#mdex-gradle)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_11
+        }
     }
-
-    buildFeatures {
-        viewBinding true
-    }
+    namespace "com.jeovanimartinez.androidutils.app"
 }
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    // General dependencies
+    implementation "androidx.multidex:multidex:2.0.1"
+    implementation "androidx.appcompat:appcompat:1.8.0"
+    implementation "androidx.core:core-ktx:1.19.1"
+    implementation "com.google.android.material:material:1.14.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.2.2"
+    implementation "androidx.core:core-splashscreen:1.2.0"
 
+    // Firebase dependencies
+    implementation "com.google.firebase:firebase-analytics:24.0.0"
+    implementation "com.google.firebase:firebase-crashlytics:21.0.1"
+
+    // Required for test premium utilities
+    implementation "com.android.billingclient:billing-ktx:9.1.0"
+
+    // Library for using a color selector
+    implementation "com.jaredrummler:colorpicker:1.1.0"
+
+    // Android Utils Library
     implementation project(":androidutils")
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // LeakCanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 
 }

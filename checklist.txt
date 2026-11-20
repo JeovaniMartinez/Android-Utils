@@ -1,0 +1,126 @@
+## Checklist for v1.0.0
+
+* Solo este archivo está en español.
+
+* En el caso de las dependencias de Gradle, para la versión 1.0.0 de la biblioteca ya no actualizar ninguna (a menos que se especifique lo contrario),
+  ya que las que se tienen ya se van a probar en el desarrollo, y para evitar posibles conflictos ya dejarlas como están, porque se actualizaron
+  el 04/06/2023.
+
+* ✔✔ Indica que el archivo/utilidad/carpeta ya está lista.
+
+ESTADO ACTUAL DE DESARROLLO, ACTUALIZADO EL 24/08/2023
+
+Todo está terminado como se indica más abajo, solo hay que terminar la app de prueba y algunos ajustes
+generales a los archivos del repositorio. Pero lo que es el módulo principal de la biblioteca ya esta listo.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+- .git ✔✔
+- .gradle ✔✔
+- .idea ✔✔
+- androidutils ✔✔
+    > Tod@ listo. ✔✔ EL MÓDULO DE androidutils esta completamente listo
+    > Ajustar solamente ApplicationSelectorReceiver en la parte de getApplicationInfo el error de NameNotFoundException de RCCC,
+      se puede solo agregar otro try catch y dejar el nombre en N/A, o algo así cuando no se pueda obtener
+- app
+    > Terminar de desarrollar las actividades para probar las actividades pendientes, y en las que ya están verificar el manejo de
+    excepciones y de valores que pueden ser incorrectos para poder probar las utilidades correctamente. En términos generales hay
+    que hacer una revision general de toda la app y mejorarla y terminarla.
+    > Ver y checar lo del tema predetemrinado (claro u oscuro cuando se instale la app), al inicio usar el mismo del sistema
+- build ✔✔
+- docs
+    > Verificar y mover si es posible a otra rama o ver donde acomodar, y actualizar los archivos, rutas y nombres.
+- gradle ✔✔
+- lintcheck ✔✔
+- resources
+    > Verificar y mover si es posible a otra rama o ver donde acomodar, y actualizar los archivos, rutas y nombres.
+- Archivos del directorio raíz
+    > Solo actualizar README.md, tod@ lo demás está listo.
+
+- Una vez terminado eso, generar los nuevos javadoc y actualizar la documentación del proyecto, y generar un nuevo lanzamiento
+en Google Play con la nueva versión de la biblioteca y de la app.
+
+- Ver si agregar utilidad en toplevelfunction para manejar los log más fácilmente
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Temporal, documentación de Share Utils, pasos a seguir para configurar.
+1: Agregar en el manifest de la app: https://developer.android.com/training/secure-file-sharing/setup-sharing
+<provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.jeovanimartinez.androidutils.app.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+2. Agregar el arhcivo file_paths con la ruta de carpetas a compartir
+<paths>
+    <files-path
+        name="androidutils_tempfiles"
+        path="androidutils/tempfiles" />
+</paths>
+eso de arriba solo compartira el directorio privado de la app androidutils/tempfiles, usar path="." para compartir todos los directorios
+de la carpeta privada de la app dentro de la carpeta files/
+3. Asignar fileProviderAuthority del fileprovider, debe ser el mismo que se uso en el manifest
+4. Agregar las queries en el manifest según el tipo de archivo a compartir, VERIFICAR ya que puede ser no necesario y solo necesitarse
+cuando se quiere obtener info de las apps instaladas que manejan esos intents, y no cuando se quieren lanzar.
+  <queries>
+
+        <!-- Reference: https://developer.android.com/training/package-visibility/declaring#intent-filter-signature -->
+
+        <!-- Element to query for activities that handle SEND intent for share files -->
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="image/jpeg" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="image/png" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="image/webp" />
+        </intent>
+
+    </queries>
+
+
+Si esta habilitada la ofuscación para que se eliminen las llamadas a com.jeovanimartinez.androidutils.logutils.Log
+es necesario que la app tenga habilitada la ofuscación y se use si o sí proguard-android-optimize.txt, ya que si se usa
+proguard-android.txt no se eliminan las llamadas al log ni todos los mensajes que se generan en el log mediante dicha utilidad

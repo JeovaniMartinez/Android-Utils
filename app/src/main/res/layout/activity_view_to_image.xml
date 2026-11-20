@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.ViewToImageActivity">
+
+    <include
+        android:id="@+id/appBar"
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/general_spacing"
+        android:layout_marginTop="@dimen/general_spacing"
+        android:layout_marginEnd="@dimen/general_spacing" />
+
+    <ScrollView
+        android:id="@+id/svMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layoutMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/general_spacing"
+            android:layout_marginEnd="@dimen/general_spacing"
+            android:orientation="vertical"
+            android:paddingTop="0dp"
+            android:paddingBottom="@dimen/general_spacing">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChangeLayoutBaseBackground"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/view_to_image_change_layout_base_bg"
+                tools:ignore="TextContrastCheck" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layoutBaseContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutBase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/general_spacing">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvLayoutBaseText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_to_image_base_layout_text_1"
+                        android:textAlignment="center"
+                        tools:ignore="TextContrastCheck" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivLayoutBaseImage1"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="@dimen/general_spacing_half"
+                        app:srcCompat="@drawable/intro_img" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutBaseInput1"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/general_spacing_half"
+                        android:hint="@string/view_to_image_base_layout_input_1"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etLayoutBaseInput1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:inputType="text"
+                            android:text=""
+                            tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLayoutBaseButton1"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/general_spacing"
+                        android:text="@string/view_to_image_base_layout_button_1"
+                        tools:ignore="TextContrastCheck" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:id="@+id/separatorResult"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_marginBottom="0dp"
+                android:background="@color/md_theme_primary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:text="@string/view_to_image_result"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                app:srcCompat="@drawable/intro_img" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutResultActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/general_spacing_half">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnShareResultImage"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:background="?attr/actionBarItemBackground"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_share"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnSaveResultImage"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:background="?attr/actionBarItemBackground"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnShareResultImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_save"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnDeleteResultImage"
+                    android:layout_width="@dimen/image_button_size"
+                    android:layout_height="@dimen/image_button_size"
+                    android:background="?attr/actionBarItemBackground"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_delete"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/separator1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="0dp"
+                android:background="@color/md_theme_primary" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvConfiguration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:text="@string/view_to_image_configuration"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_marginBottom="@dimen/general_spacing_half"
+                android:weightSum="1">
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swTrimBorders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/general_spacing"
+                    android:layout_marginEnd="@dimen/general_spacing"
+                    android:checked="true"
+                    android:text="@string/view_to_image_trim_borders"
+                    tools:ignore="TextContrastCheck" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/menuInterpretValuesAs"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_spacing"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_interpret_values_as">
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="SpeakableTextPresentCheck, LabelFor,VisualLintTextFieldSize" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_weight="1"
+                android:text="@string/view_to_image_background"
+                android:textSize="14sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:hint="@string/view_to_image_background_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:visibility="invisible"
+                    tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnBackgroundColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="-43dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/view_to_image_default_background_color"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:weightSum="1">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_background_corner_radius"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBackgroundCornerRadius"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etPaddingTop"
+                        android:text="10"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swBackgroundCornerAllEqual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:checked="true"
+                    android:text="@string/view_to_image_background_corner_all_equal"
+                    tools:ignore="TextContrastCheck" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvPadding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_weight="1"
+                android:text="@string/view_to_image_padding"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:weightSum="2">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_top"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPaddingTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etPaddingBottom"
+                        android:text="50"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_bottom"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPaddingBottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etPaddingLeft"
+                        android:text="50"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:weightSum="2">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_left"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPaddingLeft"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etPaddingRight"
+                        android:text="50"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_right"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPaddingRight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etMarginTop"
+                        android:text="50"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvMargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:layout_weight="1"
+                android:text="@string/view_to_image_margin"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:weightSum="2">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_top"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMarginTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etMarginBottom"
+                        android:text="0"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_bottom"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMarginBottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etMarginLeft"
+                        android:text="0"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:weightSum="2">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_left"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMarginLeft"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:nextFocusForward="@+id/etMarginRight"
+                        android:text="0"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/general_spacing_half"
+                    android:layout_weight="1"
+                    android:hint="@string/view_to_image_padding_margin_right"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMarginRight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:text="0"
+                        tools:ignore="HardcodedText,VisualLintTextFieldSize,TextContrastCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/swExcludeViews"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:checked="false"
+                android:text="@string/view_to_image_exclude_views"
+                tools:ignore="TextContrastCheck" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layoutExcludeViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:weightSum="3">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="65dp"
+                        android:text="@string/view_to_image_exclude_view_text" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/menuTextExcludeMode"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="@string/view_to_image_exclude_mode">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            tools:ignore="SpeakableTextPresentCheck, LabelFor,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbTextIncludeMargin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/general_spacing"
+                        android:layout_marginTop="-10dp"
+                        android:layout_marginEnd="@dimen/general_spacing"
+                        android:text="@string/view_to_image_include_margin"
+                        android:textAlignment="center"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:weightSum="3">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="65dp"
+                        android:text="@string/view_to_image_exclude_view_image" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/menuImageExcludeMode"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="@string/view_to_image_exclude_mode">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            tools:ignore="SpeakableTextPresentCheck, LabelFor,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbImageIncludeMargin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/general_spacing"
+                        android:layout_marginTop="-10dp"
+                        android:layout_marginEnd="@dimen/general_spacing"
+                        android:text="@string/view_to_image_include_margin"
+                        android:textAlignment="center" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:weightSum="3">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="65dp"
+                        android:text="@string/view_to_image_exclude_view_input" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/menuInputExcludeMode"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="@string/view_to_image_exclude_mode">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            tools:ignore="SpeakableTextPresentCheck, LabelFor,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbInputIncludeMargin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/general_spacing"
+                        android:layout_marginTop="-10dp"
+                        android:layout_marginEnd="@dimen/general_spacing"
+                        android:text="@string/view_to_image_include_margin"
+                        android:textAlignment="center" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/general_spacing_half"
+                    android:layout_marginBottom="@dimen/general_spacing_half"
+                    android:weightSum="3">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="65dp"
+                        android:text="@string/view_to_image_exclude_view_button" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/menuButtonExcludeMode"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:hint="@string/view_to_image_exclude_mode">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            tools:ignore="SpeakableTextPresentCheck, LabelFor,VisualLintTextFieldSize" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/cbButtonIncludeMargin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/general_spacing"
+                        android:layout_marginTop="-10dp"
+                        android:layout_marginEnd="@dimen/general_spacing"
+                        android:text="@string/view_to_image_include_margin"
+                        android:textAlignment="center" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConvert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_spacing"
+                android:text="@string/view_to_image_convert"
+                tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

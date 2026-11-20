@@ -3,11 +3,11 @@ package com.jeovanimartinez.androidutils.about
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
-import android.os.Build
 import com.jeovanimartinez.androidutils.Base
-import com.jeovanimartinez.androidutils.R
+import com.jeovanimartinez.androidutils.about.config.AboutAppConfig
 import com.jeovanimartinez.androidutils.analytics.Event
-import com.jeovanimartinez.androidutils.extensions.context.getColorCompat
+import com.jeovanimartinez.androidutils.logutils.Log.logv
+import com.jeovanimartinez.androidutils.logutils.Log.logw
 
 /**
  * Utility to show an about app activity.
@@ -23,41 +23,28 @@ object AboutApp : Base<AboutApp>() {
     internal var currentConfig: AboutAppConfig? = null
 
     /**
-     * Shows about activity.
-     * @param activity Activity.
-     * @param aboutAppConfig Configuration object for the about activity.
+     * Shows an about activity.
+     * @param activity Current activity from which the about app activity will be launched.
+     * @param aboutAppConfig Configuration object for the about app activity.
      * */
     fun show(activity: Activity, aboutAppConfig: AboutAppConfig) {
 
         // If the activity is already launched
         if (AboutActivity.aboutActivityRunning) {
-            log("AboutActivity is running and only one instance of this activity is allowed")
+            logw("AboutActivity is running and only one instance of this activity is allowed")
             return
         }
 
-        // Obtains the color from the config
-        var backgroundColor = aboutAppConfig.backgroundColor
-        var iconsColor = aboutAppConfig.iconsColor
-        var termsAndPrivacyPolicyTextColor = aboutAppConfig.termsAndPrivacyPolicyTextColor
+        currentConfig = aboutAppConfig // Set the current configuration
 
-        // For the null colors, get the default color.
-        if (backgroundColor == null) backgroundColor = activity.getColorCompat(R.color.colorBackground)
-        if (iconsColor == null) iconsColor = activity.getColorCompat(R.color.colorIcon)
-        if (termsAndPrivacyPolicyTextColor == null) termsAndPrivacyPolicyTextColor = activity.getColorCompat(R.color.colorTermsAndPrivacyPolicyText)
+        AboutActivity.aboutActivityRunning = true // Set to true since the activity is going to start
 
-        // The final configuration object is generated and assigned to the singleton to be able to use the data in the AboutActivity
-        currentConfig = aboutAppConfig.copy(backgroundColor = backgroundColor, iconsColor = iconsColor, termsAndPrivacyPolicyTextColor = termsAndPrivacyPolicyTextColor)
+        // Launch about activity, currentConfig is already assigned to be used
+        activity.startActivity(Intent(activity, AboutActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
 
-        AboutActivity.aboutActivityRunning = true // It is true since the activity is going to start
+        logAnalyticsEvent(Event.ABOUT_APP_SHOWN) // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
+        logv("Launched AboutActivity")
 
-        // Launch about activity, currentConfig is already assigned to be use
-        activity.startActivity(
-            Intent(activity, AboutActivity::class.java),
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) ActivityOptions.makeSceneTransitionAnimation(activity).toBundle() else null
-        )
-
-        firebaseAnalytics(Event.ABOUT_APP_SHOWN) // The event is registered here, to avoid registering more than once in the activity (in case it is recreated)
-        log("Launched AboutActivity")
     }
 
 }

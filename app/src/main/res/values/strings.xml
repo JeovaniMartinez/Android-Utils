@@ -1,5 +1,162 @@
-<resources>
+<!DOCTYPE resources [<!ENTITY app_name "Android Utils">]>
 
-    <string name="app_name" translatable="false">Android Utils</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="app_name" translatable="false">&app_name;</string>
+    <string name="app_name_2" translatable="false">&app_name; Library</string>
+
+    <!-- General Use -->
+    <string name="ok" translatable="false" tools:ignore="ButtonCase,Typos">Ok</string>
+    <string name="select" translatable="false">Select</string>
+    <string name="save" translatable="false">Save</string>
+    <string name="cancel" translatable="false">Cancel</string>
+
+    <!-- Main Activity -->
+    <string name="main_activity_app_description" translatable="false">
+        This app is intended to test the library utilities during the development process and to provide a preview of the main utilities to the developers.
+        You can check the complete documentation for all library utilities on the library\'s website.
+    </string>
+    <string name="main_activity_app_credits" translatable="false">&app_name; v%1$s\nBy Jeovani Martinez</string>
+    <string name="main_activity_library_docs" translatable="false">Library Docs</string>
+    <string name="main_activity_library_utilities" translatable="false">Library Utilities</string>
+    <string name="main_activity_go_to_utility" translatable="false">Go To Selected Utility</string>
+    <string-array name="main_activity_library_utilities_array">
+        <item>Rate App</item>
+        <item>Watermark</item>
+        <item>View To Image</item>
+        <item>About App</item>
+    </string-array>
+
+    <!-- RateApp Activity -->
+    <string name="rate_app_title" translatable="false">Rate App</string>
+    <string name="rate_app_rate_on_google_play" translatable="false">Rate On Google Play</string>
+    <string name="rate_app_go_rate_on_google_play" translatable="false">Go To Rate On Google Play</string>
+    <string name="rate_app_rate_in_app" translatable="false">Rate In App</string>
+    <string name="rate_app_msg_config" translatable="false">The initialization of the utility have been done in the function rateInAppSetup()
+        in the App class.</string>
+    <string name="rate_app_msg_log" translatable="false">Check the Logcat for the details of the execution flow of this utility.</string>
+    <string name="rate_app_check_and_show" translatable="false">Check And Show</string>
+    <string name="rate_app_current_configuration_values" translatable="false">Current Configuration Values</string>
+    <string name="rate_app_config_min_install_elapsed_days" translatable="false">minInstallElapsedDays</string>
+    <string name="rate_app_config_min_install_launch_times" translatable="false">minInstallLaunchTimes</string>
+    <string name="rate_app_config_min_remind_elapsed_days" translatable="false">minRemindElapsedDays</string>
+    <string name="rate_app_config_min_remind_launch_times" translatable="false">minRemindLaunchTimes</string>
+    <string name="rate_app_config_show_at_event" translatable="false">showAtEvent</string>
+    <string name="rate_app_check_the_logcat" translatable="false">>> Check the Logcat &lt;&lt;</string>
+    <string name="rate_app_edit_configuration" translatable="false">Edit Configuration</string>
+    <string name="rate_app_incorrect_values_title" translatable="false">Incorrect Values</string>
+    <string name="rate_app_incorrect_values_msg" translatable="false">Please make sure that all inputs have a valid value.</string>
+    <string name="rate_app_edit_configuration_done_msg" translatable="false">The new configuration has been successfully saved, but it\'s
+        necessary to restart the app for it to take effect.</string>
+    <string name="rate_app_restart_app_now" translatable="false">Restart App Now</string>
+
+    <!-- Watermark Activity -->
+    <string name="watermark_title" translatable="false">Watermark</string>
+    <string name="watermark_text_watermark" translatable="false">Text Watermark</string>
+    <string name="watermark_drawable_watermark" translatable="false">Drawable Watermark</string>
+    <string name="watermark_general_configuration" translatable="false">General Configuration</string>
+    <string name="watermark_position" translatable="false">Position</string>
+    <string name="watermark_measurement_dimension" translatable="false">Measurement Dimension</string>
+    <string name="watermark_dx" translatable="false">x-axis offset</string>
+    <string name="watermark_dy" translatable="false">y-axis offset</string>
+    <string name="watermark_rotation" translatable="false">Rotation</string>
+    <string name="watermark_opacity" translatable="false">Opacity</string>
+    <string name="watermark_width" translatable="false">Width</string>
+    <string name="watermark_height" translatable="false">Height</string>
+    <string name="watermark_Text" translatable="false">Text</string>
+    <string name="watermark_watermark_1" translatable="false">Image 1</string>
+    <string name="watermark_watermark_2" translatable="false">Image 2</string>
+    <string name="watermark_watermark_3" translatable="false">Shape</string>
+    <string name="watermark_draw_drawable_watermark" translatable="false">Draw Drawable Watermark</string>
+    <string name="watermark_draw_text_watermark" translatable="false">Draw Text Watermark</string>
+    <string name="watermark_text_size" translatable="false">Text Size</string>
+    <string name="watermark_text_color" translatable="false">Text Color</string>
+    <string name="watermark_typeface" translatable="false">Typeface (Font)</string>
+    <string name="watermark_text_shadow" translatable="false">Text Shadow</string>
+    <string name="watermark_shadow_radius" translatable="false">Shadow Radius</string>
+    <string name="watermark_shadow_dx" translatable="false">Shadow x-axis offset</string>
+    <string name="watermark_shadow_dy" translatable="false">Shadow y-axis offset</string>
+    <string name="watermark_shadow_color" translatable="false">Shadow Color</string>
+    <string name="watermark_convert_values_error_title" translatable="false">Incorrect Values</string>
+    <string name="watermark_convert_values_error_msg" translatable="false">Please make sure that all inputs have a value.</string>
+    <string name="watermark_information" translatable="false">Information</string>
+    <string name="watermark_info_current_device" translatable="false">Current Device Info\n1 dp = %1$s px\n1 sp = %2$s px</string>
+    <string name="watermark_info_current_base_image" translatable="false">Current Base Image\nWidth: %1$s px\nHeight: %2$s px</string>
+    <string-array name="watermark_positions_array">
+        <item>Absolute</item>
+        <item>Top Left</item>
+        <item>Top Center</item>
+        <item>Top Right</item>
+        <item>Middle Left</item>
+        <item>Middle Center</item>
+        <item>Middle Right</item>
+        <item>Bottom Left</item>
+        <item>Bottom Center</item>
+        <item>Bottom Right</item>
+    </string-array>
+    <string-array name="watermark_dimensions_array">
+        <item>PX</item>
+        <item>DP</item>
+        <item>SP</item>
+    </string-array>
+    <string-array name="watermark_typefaces_array">
+        <item>Default</item>
+        <item>Ballet</item>
+        <item>Fugaz One</item>
+        <item>Karla</item>
+        <item>Oi</item>
+    </string-array>
+
+    <!-- ViewToImage Activity -->
+    <string name="view_to_image_title" translatable="false">View To Image</string>
+    <string name="view_to_image_change_layout_base_bg" translatable="false">Change Background</string>
+    <string name="view_to_image_base_layout_text_1" translatable="false">&app_name;\nLayout Base</string>
+    <string name="view_to_image_base_layout_input_1" translatable="false">Message</string>
+    <string name="view_to_image_base_layout_button_1" translatable="false">Show Message</string>
+    <string name="view_to_image_configuration" translatable="false">Configuration</string>
+    <string name="view_to_image_trim_borders" translatable="false">Trim Borders</string>
+    <string name="view_to_image_interpret_values_as" translatable="false">Interpret values as</string>
+    <string name="view_to_image_background" translatable="false">Background</string>
+    <string name="view_to_image_background_color" translatable="false">Color</string>
+    <string name="view_to_image_select_background_color" translatable="false">Select Background Color</string>
+    <string name="view_to_image_background_corner_radius" translatable="false">Corner Radius</string>
+    <string name="view_to_image_background_corner_all_equal" translatable="false">All Equal</string>
+    <string name="view_to_image_background_corner_all_equal_msg" translatable="false">The corner radius value will be applied to all corners of the background.</string>
+    <string name="view_to_image_background_corner_not_all_equal_msg" translatable="false">Specify the value for each corner radius. There should be 8 values separated by
+        commas for the positions: topLeftX, topLeftY, topRightX, topRightY, bottomRightX, bottomRightY, bottomLeftX, bottomLeftY. For Example: 10,10,10,10,10,10,10,10</string>
+    <string name="view_to_image_background_corner_not_all_equal_err_msg" translatable="false">The values for the background corner radius are incorrect.</string>
+    <string name="view_to_image_incorrect_values_title" translatable="false">Incorrect Values</string>
+    <string name="view_to_image_incorrect_values_msg" translatable="false">Please make sure that all inputs have a value.</string>
+    <string name="view_to_image_padding" translatable="false">Padding</string>
+    <string name="view_to_image_margin" translatable="false">Margin</string>
+    <string name="view_to_image_padding_margin_top" translatable="false">Top</string>
+    <string name="view_to_image_padding_margin_bottom" translatable="false">Bottom</string>
+    <string name="view_to_image_padding_margin_left" translatable="false">Left</string>
+    <string name="view_to_image_padding_margin_right" translatable="false">Right</string>
+    <string name="view_to_image_exclude_views" translatable="false">Exclude Views</string>
+    <string name="view_to_image_view" translatable="false">View</string>
+    <string name="view_to_image_include_margin" translatable="false">Include\nMargin</string>
+    <string name="view_to_image_exclude_mode" translatable="false">Exclude Mode</string>
+    <string name="view_to_image_exclude_view_text" translatable="false">Text</string>
+    <string name="view_to_image_exclude_view_image" translatable="false">Image</string>
+    <string name="view_to_image_exclude_view_input" translatable="false">Input</string>
+    <string name="view_to_image_exclude_view_button" translatable="false">Button</string>
+    <string name="view_to_image_convert" translatable="false">Convert View To Image</string>
+    <string name="view_to_image_result" translatable="false">Result</string>
+    <string-array name="view_to_image_exclude_mode_array">
+        <item>Not Exclude</item>
+        <item>Hide</item>
+        <item>Crop Vertically</item>
+        <item>Crop Horizontally</item>
+        <item>Crop All</item>
+    </string-array>
+    <string-array name="view_to_image_dimensions_array">
+        <item>PX</item>
+        <item>DP</item>
+    </string-array>
+
+    <!-- AboutApp Activity -->
+    <string name="about_app_title" translatable="false">About App</string>
+    <string name="about_app_show_about_app_activity" translatable="false">Show About App Activity</string>
 
 </resources>
